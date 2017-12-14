@@ -69,7 +69,7 @@ kable(fr)
 \end{itemize}
 \vspace{4mm}
 \begin{description}
-\item[2.] 
+\item[2.] La Oficina de Estadística Laboral ha definido una muestra de 30 comunidades de todo Estados Unidos y compiló los precios de productos básicos en cada comunidad al principio y al final del mes de agosto, con el fin de encontrar cuánto ha variado aproximadamente el Índice de Precios al Consumidor (IPC) (CPI,Consumer Price Index) durante ese mes. Los cambios porcentuales en los precios para las 30 comunidades son:
 \end{description}
 
 
