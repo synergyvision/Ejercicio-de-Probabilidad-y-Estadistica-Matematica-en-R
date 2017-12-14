@@ -1,0 +1,75 @@
+---
+title: "Ejercicios"
+author: "Synergy Vision"
+date: "Diciembre de 2017"
+output: pdf_document
+fontsize: 12pt
+---
+```{r setup,include=FALSE}
+library(knitr)
+```
+
+\vspace{4mm}
+
+\begin{description}
+
+\item[1.] La compañía High Perfomance Bicycle Products de Chape Hill, Carolina del Norte, hizo un muestreo de sus registros de embarque para cierto día con los siguientes resultados:
+
+\centering
+\textbf{\underline{Tiempo entre la recepción de una orden y su entrega (en días)}}
+\\
+\begin{tabular}{l c c c c c c c c c r}
+\centering
+4 & 12 & 8 & 14 & 11 & 6 & 7 & 13 & 13 & 11 \\
+11 & 20 & 5 & 19 & 10 & 15 & 24 & 7 & 29 & 6
+\end{tabular}
+
+\end{description}
+
+Construya una distribución de frecuencias para estos datos y una distribución de frecuencias relativas.Use intervalos de 6 días.
+
+\begin{itemize}
+
+\item[a)] ¿Qué puede asegurar acerca de la efectividad del procesamiento de pedidos a partir de la distribución de frecuencias?
+
+\item[b)] Si la compañía desea asegurar que la mitad de sus entregas se hagan en 10 días o menos, ¿Puede determinar, a partie de la distribución de frecuencias, si han logrado esta meta?
+
+\item[c)] ¿Qué puede hacer con los datos si tiene una distribución de frecuencias relativas, que es difícil lograr con sólo una distribución de frecuencias?
+\end{itemize}
+
+\textbf{\underline{Solución:}}
+
+Construyamos una distribución de frecuencias y una distribución de frecuencias relativas:
+
+```{r}
+dias<-c(4,12,8,14,11,6,7,13,13,11,11,20,5,19,10,15,24,7,29,6)
+Intervalos<-cut(dias,breaks=c(seq(1,31,by=6)),include.lowest=T,right=F)
+conteo<-table(Intervalos)
+df<-data.frame(conteo)
+colnames(df)<-c('Intervalos','Frecuencia')
+kable(df)
+```
+
+Añadiendo las frecuencias relativas tenemos
+
+```{r}
+fr<-transform(df,Fr=prop.table(Frecuencia))
+colnames(fr)<-c('Intervalos','Frecuencia','Frecuencia Relativa')
+kable(fr)
+```
+
+\begin{itemize}
+
+\item[a)] A partir de la distribución de frecuencias, el tiempo entre la recepción de una orden y su entrega, tiene una mayor frecuencia entre los días 7 y 12 de 8 entregas.
+
+\item[b)] No,no se puede determinar que la compañía asegure la mitad de sus entregas en 10 días o menos a partir de la distribución de frecuencias, ya que entre los días 1 y 12 hay una frecuencia de 12 entregas que representan mas de la mitad de ellas, sin embargo, se pierde información de la frecuencia de entregas entre los días 1 y 10.
+
+\item[c)] Una distribución de frecuencias relativas describe los porcentajes del número total de observaciones correspondientes, lo que hace que sea mas fácil el manejo de los datos
+
+\end{itemize}
+\vspace{4mm}
+\begin{description}
+\item[2.] 
+\end{description}
+
+
