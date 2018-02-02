@@ -35,25 +35,40 @@ Ahora calcularemos los deciles 2 y 8,
 
 \begin{equation*}
 \begin{split}
-D2 & =\frac{2*12}{10}\\
-&= \frac{24}{10}\\
-&= 2.4
+D2 & =\frac{2*(12+1)}{10}\\
+&= \frac{26}{10}\\
+&= 2.6
 \end{split}
 \end{equation*}
-Por lo que el D2 es la media de los valores que ocupan las posiciones 2 y 3, que son 57 y 104. Asi, $D2=(57+104)/2=80.5$
+
+Por lo que el D2 esta dado por los valores que ocupan las posiciones 2 y 3, que son 57 y 104. Así, $D2=57+0.6(104-57)=85.2$
+
+**\underline{En R:}**
+```{r,comment=''}
+dolares<-c(43,57,104,162,201,220,253,302,380,467,500,633)
+D2<-quantile(dolares,probs = 0.2,type=6)
+D2
+```
 
 \begin{equation*}
 \begin{split}
-D8 & =\frac{8*12}{10}\\
+D8 & =\frac{8*13}{10}\\
 &= \frac{96}{10}\\
-&= 9.6
+&= 10.4
 \end{split}
 \end{equation*}
-Por lo que el D8 es la media de los valores que ocupan las posiciones 9 y 10, que son 380 y 467. Asi, $D8=(380+476)/2=423.5$
+
+Por lo que el D8 esta dado por los valores que ocupan las posiciones 10 y 11, que son 467 y 500. Así, $D8=467+0.4(500-467)=480.2$ donde $10.4-10=0.4$
+
+**\underline{En R:}**
+```{r,comment=''}
+D8<-quantile(dolares,probs=0.8,type=6)
+D8
+```
 
 Por lo que el rango interfractil es,
 
-$$rifractil=D8-D2=423.5-80.5=343$$
+$$interfractil=D8-D2=480.2-85.2=395$$
 
 b) Calcularemos ahora, la mediana, Q1 y Q3.
 
@@ -83,15 +98,17 @@ El Q3 es la media de los valores en la posicion 9 y 10, que son 380 y 467, asi e
 
 **\underline{En R,}** 
 
-```{r}
-dólares<-c(43,57,104,162,201,220,253,302,380,467,500,633)
-cuantiles<-quantile(dólares,probs=c(0.25,0.5,0.75),type = 5)
+```{r,comment=""}
+dolares<-c(43,57,104,162,201,220,253,302,380,467,500,633)
+cuantiles<-quantile(dolares,probs=c(0.25,0.5,0.75),type = 5)
 cuantiles
 ```
 
+Así, el 25% del volúmen mensual en dólares de los contratos de investigaciones que la compañia firmó el año anterior es de 133 mil dólares, el 50% es de 236.5 mil dólares y el 75% es de 423.5 mil dólares.
+
 c) Calculemos ahora el rango intercuartil,
 
-$$ricuartil=Q3-Q1=423.5-133=290.5$$
+$$intercuartil=Q3-Q1=423.5-133=290.5$$
 
 **\underline{17:}** El consejo directivo del Banco de la Reserva Federal de los Estados Unidos ha otorgado permisos a todos los bancos miembros para elevar las tasas de interés 0.5% para todos los depositantes. Las tasas de interés anteriores para las cuentas de ahorro eran 5/4; para certificados de depósito (CD) a un año, 7/2%; para CD a 18 meses, 8(3/4); a dos años, 9/2; a tres años, 10/2; y para CD a 5 años, 11%. El presidente de First State Bank desea saber que características tendrá la nueva distribución de tasas de interés si se le agrega 1/2% a todas las tasas. ¿Como se relacionan las nuevas características con las anteriores?
 
@@ -118,7 +135,7 @@ CD a 5 años&11&12\\ \hline
 Calculemos las medias, varianza y desviaciones estándar de cada una de la tasas,
 
 **\underline{En R:}**
-```{r}
+```{r,comment=""}
 anteriores<-c(5/4,7/2,24/4,9/2,10/2,11)
 media1<-mean(anteriores)
 var1<-var(anteriores)
@@ -185,27 +202,54 @@ Australia&203\\ \hline
 **\underline{Solución:}**
 
 a) Calculemos la media aritmética de los datos,
+
+\begin{equation*}
+\begin{split}
+\bar{x} & =\frac{17+21+44+50+79+86+140+178+203}{9}\\
+&= \frac{818}{10}\\
+&= 90.888
+\end{split}
+\end{equation*}
  
 **\underline{En R:}**
-```{r}
-capitalización<-c(17,21,44,50,79,86,140,178,203)
-media<-mean(capitalización)
+```{r,comment=""}
+capitalizacion<-c(17,21,44,50,79,86,140,178,203)
+media<-mean(capitalizacion)
 media
 ```
 
 b) Calculemos la mediana de los datos,
 
+\begin{equation*}
+\begin{split}
+Mediana & =\left(\frac{n+1}{2}\right)\\
+&= \left(\frac{9+1}{2}\right)\\
+&= 5
+\end{split}
+\end{equation*}
+
+El quinto elementos es 79, por lo que la mediana es 79.
+
 **\underline{En R:}**
-```{r}
-capitalización<-c(17,21,44,50,79,86,140,178,203)
-mediana<-median(capitalización)
+```{r,comment=""}
+capitalizacion<-c(17,21,44,50,79,86,140,178,203)
+mediana<-median(capitalizacion)
 mediana
 ```
 \
 \
 c) Calculemos la moda,
 
-La moda es el valor más frecuente en un conjunto de datos, por lo que el valor modal es 203 de capitalización de Australia.
+La moda es el valor más frecuente en un conjunto de datos, así:
+
+**\underline{En R,}**
+```{r,message=FALSE,comment=''}
+library('modeest')
+moda<-mfv(capitalizacion)
+moda
+```
+
+Por lo que no tenemos un valor modal por no tener valores con frecuencias mayores a 1.
 \
 \
 d) La mejor medida de tendencia central de los datos es la mediana ya que ella no está afectada por el valor más extremo 17 que afecta a la media y la moda esta completamente por encima de la capitalización promedio.
@@ -215,17 +259,25 @@ e) Calculemos la desviación estándar poblacional de las capitalizaciones,
 
 
 $$\sigma= \sqrt{\frac{\sum{x^2}}{N}-\mu^2}$$
+\begin{equation*}
+\begin{split}
+\sigma & =\sqrt{\frac{17^2+21^2+44^2+50^2+79^2+86^2+140^2+178^2+203^2}{9}-(90.888)^2}\\
+&= \sqrt{\frac{111296}{9}-(90.888)^2}\\
+&= 64.07
+\end{split}
+\end{equation*}
 
 
 **\underline{En R:}**
-```{r}
-capitalización<-c(17,21,44,50,79,86,140,178,203)
-x2<-capitalización^2
+```{r,comment=""}
+capitalizacion<-c(17,21,44,50,79,86,140,178,203)
+x2<-capitalizacion^2
 sigma<-sqrt(sum(x2)/9-(media)^2)
 sigma
 ```
 \
-\
+La desviación poblacional de las capitalizaciones en miles de millones de dólares es de 64.07.
+
 **\underline{19:}** La siguiente distribución de frecuencias resume los cambios de precios ocurridos el 24 de mayo de 1993 en todas las compañias que participaron en la Bola de Valores de Nueva York y cuyos nombres comienzan con L o con R.
 
 \newpage
@@ -264,9 +316,26 @@ Cambio de precios&Nro de compañias con L&Nro de compañias con R\\
 
 a) Calculemos la media aritmética para las dos distribuciones de frecuencias,
 
+\begin{equation*}
+\begin{split}
+\bar{x_l} & =\frac{1+1+1+7+19+14+21+5+3+2+1}{11}\\
+&= \frac{75}{11}\\
+&= 6.81
+\end{split}
+\end{equation*}
+
+\begin{equation*}
+\begin{split}
+\bar{x_R} & =\frac{1+1+0+5+20+20+14+8+1+4+0}{11}\\
+&= \frac{74}{11}\\
+&= 6.72
+\end{split}
+\end{equation*}
+
+
 **\underline{En R:}**
 
-```{r}
+```{r,comment=""}
 L<-c(1,1,1,7,19,14,21,5,3,2,1)
 media_L<-mean(L)
 media_L
@@ -275,11 +344,14 @@ media_R<-mean(R)
 media_R
 ```
 
+La media aritmética para las compañias que comienzan con L es de 6.81 cuyo cambio de precios esta aproximadamente en $-0.50a -0.26$ y para las que comienzan con R es de 6.72 donde el cambio de precio más cercano es en $0.26-0.50$.
+
+
 b) Calculemos la mediana,
 
 **\underline{En R:}**
 
-```{r}
+```{r,comment=""}
 L<-c(1,1,1,7,19,14,21,5,3,2,1)
 L<-sort(L)
 L
@@ -293,15 +365,15 @@ mediana_R
 ```
 
 
-La mediana de las compañias con L es 3 cuyo cambio de precio equivale a 0.51a 0.75, y con R el valor de la mediana es 4 cuyo cambio de precio esta entre 0.76a 1.00.
+La mediana de las compañias que comienzan con L es 3 cuyo cambio de precio equivale a 0.51a 0.75, y que comienzan con R el valor de la mediana es 4 cuyo cambio de precio esta entre 0.76a 1.00.
 
 c) Calculemos la moda,
 
-Veamos cuál es la máxima frecuencia de las compañias con L y R,
+Veamos cuál es la máxima frecuencia de las compañias que comienzan con L y R porque es la que más se repite en este caso, por lo que el valor modal es,
 
 **\underline{En R:}**
 
-```{r}
+```{r,comment=""}
 L<-c(1,1,1,7,19,14,21,5,3,2,1)
 moda_L<-max(L)
 moda_L
@@ -310,7 +382,7 @@ moda_R<-max(R)
 moda_R
 ```
 
-Para el nro de compañias con L, el valor modal es 21 cuyo cambio precio equivale al 00.1a 0.25 y para el nro de compañias con R, el valor modal es 20 cuyos cambios de precios equivalen al -0.25a -0.01 y 0.00.
+Para el nro de compañias que comienzan con L, el valor modal es 21 cuyo cambio precio equivale al 00.1a 0.25 y para el nro de compañias que comienzan con R, el valor modal es 20 cuyos cambios de precios equivalen al -0.25a -0.01 y 0.00.
 
 d) La mejor medida de tendencia central de los datos es la mediana ya que ella no está afectada por el valores más extremos 1 y 0 que afecta a la media y la moda esta completamente por encima de la media además para el nro de compañias con R tiene dos modas que son difícil de interpretar.
 
@@ -321,7 +393,7 @@ e) Calculemos la desviación estándar poblacional,
 $$\sigma= \sqrt{\frac{\sum{x^2}}{N}-\mu^2}$$
 
 **\underline{En R:}**
-```{r}
+```{r,comment=""}
 L<-c(1,1,1,7,19,14,21,5,3,2,1)
 x2<-L^2
 sigmaL<-sqrt(sum(x2)/length(L)-(media_L)^2)
@@ -332,13 +404,17 @@ sigmaR<-sqrt(sum(y2)/length(R)-(media_R)^2)
 sigmaR
 ```
 
+La desviación estándar poblacional para las compañias que comienzan con L es de 7.24 y para las compañias que comienzan con R es de 7.42, es decir, los cambio de precios para las compañias que comienzan con R se desvian un poco más de la media.
+
+\
+\
 
 f) Calculemos la varianza de las dos distribuciones,
 
 $$\sigma^2=\frac{\sum{x^2}}{N}-\mu^2$$
 
 **\underline{En R:}**
-```{r}
+```{r,comment=""}
 varL<-sigmaL^2
 varL
 varR<-sigmaR^2
@@ -349,33 +425,41 @@ La distribución que tiene menor variabilidad es el número de compañias que co
 
 \
 \
-**\underline{20:}** Larsen Equipment Rental proporciona a los contratistas las herramientas que necesitan sólo por unos días, como sierras por concreto. Cuando el equipo se descompone al estar rentado,debe considerarse fuera de servicio hasta que se repare. Con frecuencia se hace rápido,pero algunas veces tarda mientras llegan las refacciones. Larsen acaba de obtener la siguiente información adicional de descompostura por pieza de maquinaria en los últimos años, 
+\
+**\underline{20:}** Larsen Equipment Rental proporciona a los contratistas las herramientas que necesitan sólo por unos días, como sierras por concreto. Cuando el equipo se descompone al estar rentado,debe considerarse fuera de servicio hasta que se repare. Con frecuencia se hace rápido,pero algunas veces tarda mientras llegan las refacciones.Es útil hacer un análisis del tiempo perdido para planear el inventario. Los registros de descompostura y los registros por pieza de maquinaria en los últimos años, 
 
 \newpage
 
-\begin{table}[htpb]
+\begin{table}[h]
 \begin{center}
-\begin{tabular}{l c r}
-\hline
-Grupo de equipos&Piezas de maquinarias\\
-\hline \hline
-1&1\\ \hline
-2&3\\ \hline
-3&1\\ \hline
-4&4\\ \hline
-5&2\\ \hline
-6&1\\ \hline
-7&1\\ \hline
-8&5\\ \hline
-9&8\\ \hline
-10&2\\ \hline
-11&2\\ \hline
-12&6\\ \hline
-13&1\\ \hline
-14&1\\ \hline
+\begin{tabular}{c c c}
+Grupo de equipos&Días descompuesto&Piezas de maquinarias\\ \midrule
+1&1&2\\ 
+2&3&19\\ 
+3&1&14\\
+4&4&21\\ 
+5&2&5\\ 
+6&1&7\\
+7&1&11\\
 \end{tabular}
 \end{center}
 \end{table}
+
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{c c c}
+Grupo de equipos&Días descompuesto&Piezas de maquinarias\\ \midrule
+8&5&8\\ 
+9&8&29\\
+10&2&6\\ 
+11&2&0\\ 
+12&6&4\\ 
+13&1&4\\ 
+14&1&10\\ 
+\end{tabular}
+\end{center}
+\end{table}
+
 
 \begin{itemize}
 \item[a)] ¿Cuál es el tiempo promedio de descompostura por pieza de maquinaria?
@@ -385,10 +469,10 @@ Grupo de equipos&Piezas de maquinarias\\
 
 **\underline{Solución:}**
 
-a) Calculemos la media de descompostura por pieza de maquinaria,
+a) Calculemos la media para calcular el promedio de descompostura por pieza de maquinaria,
 
 **\underline{En R:}**
-```{r}
+```{r,comment=""}
 maquinarias<-c(1,3,1,4,2,1,1,5,8,2,2,6,1,1)
 media<-mean(maquinarias)
 media
@@ -396,7 +480,10 @@ media
 
 b) Calculemos la media de descompostura por pieza de maquinaria para cada grupo al clasificarlas por grupo,
 
-```{r}
+Los grupos serían 1, 2, 3, 4, 5, 6 y 8, por lo que las medias estan dadas por,
+
+**\underline{En R:}**
+```{r,comment=""}
 grupo1<-c(1,3,6,7,13,14)
 m_g1<-mean(grupo1)
 m_g1
@@ -415,16 +502,35 @@ m_g8<-9
 m_g8
 ```
 
+En la siguiente tabla mostraremos la media de decompostura por pieza de maquinaria para cada grupo,
 
-c) Veamos cuántos grupos están por encima de la media,
+\begin{table}[htpb]
+\begin{center}
+\begin{tabular}{l c r}
+\hline
+Grupos&Media\\
+\hline \hline
+1&7.33\\ \hline
+2&8.66\\ \hline
+3&2\\ \hline
+4&4\\ \hline
+5&8\\ \hline
+6&12\\ \hline
+8&9\\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+c) Veamos cuántos grupos tienen un tiempo de descompostura por encima de la media por piezas de maquinaria,
 
 **\underline{En R:}**
 
-```{r}
-grupos_mayores<-which(maquinarias>media)
+```{r,comment=""}
+grupos_media<-c(7.33,8.66,2,4,8,12,9)
+grupos_mayores<-which(grupos_media>media)
 grupos_mayores
 ```
- Los grupos 2,4,8,9 y 12 están por encima de la media.
+Los grupos 1,2,4,5,6,8 están por encima del promedio por piezas de maquinaria.
 
 **\underline{21:}** Las 40 acciones principales del mercado secundario (OTC, por sus siglas en inglés),clasificadas por el porcentaje de acciones en circulación vendidas en un día el año pasado son como sigue:
 
@@ -448,50 +554,54 @@ grupos_mayores
 a) Costruyamos un histograma de frecuencia relativa,
 
 **\underline{En R:}**
-```{r}
+```{r,comment=""}
+library("ggplot2")
 acciones<-c(11.88,6.27,5.49,4.81,4.40,3.78,
 3.44,3.11,2.88,2.68,7.99,6.07,5.26,4.79,
 4.05,3.69,3.36,3.03,2.74,2.63,7.15,5.98,
 5.07,4.55,3.94,3.62,3.26,2.99,2.74,2.62,
 7.13,5.91,4.94,4.43,3.93,3.48,3.20,2.89,
 2.69,2.61)
-h<-hist(acciones,plot=FALSE)
-h$counts=h$counts/sum(h$counts)
-plot(h,col="red",xlab="Acciones",ylab="Frecuencia relativa",main="Histograma 
-de frecuencia relativa")
+dat<-data.frame(acciones)
+h<-ggplot(dat,aes(x=acciones))+
+geom_histogram(aes(y=..density..),closed="left",bins=8,fill="red",col="black",alpha=0.7)+
+labs(title="Histograma",x="Acciones",y="Frecuencia Relativa")
+h
 ```
 
-b) Veamos que proporción vendió más de 4%,
+b) A partir del histograma de frecuencias relativas veamos que proporción vendió más de 4% de las acciones en circulación,
 
 **\underline{En R:}**
-```{r}
+```{r,comment=""}
 #Veamos quienes en proporción son mayores que 0.04
-p<-which(h$counts>=0.04)
-p
-vendidos<-sum(h$counts[1:6])
+g<-ggplot_build(h)$data[[1]]$count/length(acciones)#muestra la proporción de cada barra.
+#veamos quienes son mayores que 0.04
+g1<-which(g>0.04)
+g1
+vendidos<-sum(g[1:4])
 vendidos
 ```
 
-Podemos ver que el 97.5% de las acciones principales vendió más de 4% de las acciones en circulación.
+Podemos ver que el 95% de las acciones principales vendió más de 4% de las acciones en circulación.
 
 c) Escogiendo una acción principal al azar de las 40, veamos cuál es la probabilidad de que venda menos de 5% de las acciones en circulación,
 
 **\underline{En R:}**
-```{r}
+```{r,comment=""}
 accion<-sample(acciones,size=1)
 frecuencia<-length(which(acciones==accion))
 #probabilidad de las acciones principales
 prob<-frecuencia/40
 #proporción acciones con venta menor que 0.05 
-v<-which(h$counts<0.05)
-vendidos1<-sum(h$counts[7:10])
+v<-which(g<0.05)
+vendidos1<-sum(g[5:8])
 vendidos1
 #calculamos la probabilidad
 probabilidad<-prob*vendidos1
 probabilidad
 ```
 
-La probabilidad es muy baja ya que sólo el 2.5% de las acciones principales vende menos de 5% de sus acciones en circulación.
+La probabilidad es muy baja ya que sólo el 5% de las acciones principales vende menos de 5% de sus acciones en circulación.
 
 **\underline{22:}** La demanda diaria, en unidades de un producto, durante 30 días de trabajo es:
 
@@ -516,7 +626,7 @@ La probabilidad es muy baja ya que sólo el 2.5% de las acciones principales ven
 a) Construyamos las distribuciones de frecuencia relativa y de frecuencia acumulada,
 
 **\underline{En R:}**
-```{r,echo=-1,warning=FALSE}
+```{r,echo=-1,warning=FALSE,comment=""}
 library("knitr")
 demanda<-c(38,35,76,58,48,59,67,63,33,69,53,51,
 28,25,36,32,61,57,49,78,48,42,72,52,47,66,58,44,44,56)
@@ -529,22 +639,51 @@ colnames(far)<-c("Demanda","Frecuencia","Frecuencia Relativa")
 kable(far)
 ```
 
+
+Veamos las siguientes gráficas que muestran las distribuciones de frecuencia relativa y acumulada,
+
+
+
+```{r,echo=FALSE}
+library("ggplot2")
+dat<-data.frame(demanda)
+h<-ggplot(dat,aes(x=demanda))+
+geom_histogram(aes(y=..density..),closed="left",bins=8,fill="red",col="black",alpha=0.7)+
+labs(title="Histograma",x="Demanda",y="Frecuencia Relativa")
+h
+a<-sort(unique(demanda))
+plot(fa[,3]~a,xlab="Demanda",ylab="Frecuencia Acumulada", col="red",type="o")
+```
+
 b) Calculemos los tres cuantiles con la frecuencia acumulada,
 
 **\underline{En R:}**
-```{r}
+```{r,comment=""}
 cuantiles<-quantile(fa[,3],prob=c(0.25,0.50,0.75))
 cuantiles
 ```
+
+Calculemos ahora los cuantiles con los datos de la demanda,
+
+```{r,comment=""}
+c_demanda<-quantile(demanda,prob=c(0.25,0.50,0.75))
+c_demanda
+```
+
+
+Podemos observar desde el gráfico de la frecuencia acumulada que el 25% de la demanda diaria es de 42.5, el 50% es de 51.5 y el 75% de 60.5.
+
+
 c) Primeramente calculemos la media, mediana, moda,etc. con datos no agrupados,
 
 **\underline{En R:}**
-```{r}
+```{r,message=FALSE,comment=""}
+library("modeest")
 media<-mean(demanda)
 media
 mediana<-median(demanda)
 mediana
-moda<-max(demanda)
+moda<-mfv(demanda)
 moda
 de<-sd(demanda)
 de
@@ -557,7 +696,7 @@ dm
 Agrupemos los datos en intervalos de 5,
 
 **\underline{En R:}**
-```{r}
+```{r,comment=""}
 intervalos<-cut(demanda,breaks=c(25,36,48,56,63,78),include.lowest=T,right=F)
 conteo<-table(intervalos)
 df<-data.frame(conteo)
@@ -568,7 +707,7 @@ kable(df)
 Calcularemos la media, mediana, moda,etc. con datos agrupados,
 
 **\underline{En R:}**
-```{r}
+```{r,comment=""}
 ptomedio<-c(30,41.5,50.5,58.5,70.5)
 frecuencia<-df[,2]
 media<-sum(ptomedio*frecuencia)/30
@@ -589,6 +728,11 @@ dmd<-sum(frecuencia*(abs(ptomedio-mediana)))/30 #desviación mediana
 dmd
 ```
 
+Para los datos agrupados la media, la mediana, la desviación estándar,desviación media y mediana los valores son aproximadamente iguales a los datos no agrupados, salvo en algunos casos que son iguales, sin embargo,la moda difiere en ambos ya que para datos no agrupados se tiene tres valores modales y para los datos agrupados tenemos un valor de 70.5.
+
+
+
+
 **\underline{23:}** La siguiente tabla muestra las tablas, en miles de dólares, de 20 vendedores de una compañia de computadoras.
 
 \begin{center}
@@ -607,10 +751,16 @@ dmd
 
 **\underline{Solución:}** 
 
+Definiremos primeramente el recorrido intercuantil y el recorrido interdecil,
+
+**\underline{Recorrido Intercuantil:}** Es la diferencia entre el percentil 90avo y 25avo. 
+
+**\underline{Recorrido Interdecil:}** Es la diferencia entre el percentil 75avo y décimo. 
+
 a) Calculemos la media, median, etc.
 
 **\underline{En R:}**
-```{r}
+```{r,comment=""}
 ventas<-c(40.2,29.3,35.6,88.2,42.9,
 26.9,28.7,99.8,35.6,37.8,
 44.2,32.3,55.2,50.6,25.4,
@@ -632,6 +782,11 @@ intcuantil
 intdecil<-cuantiles[[4]]-cuantiles[[1]]
 intdecil
 ```
+
+De acuerdo a los resultados obtenidos la media de los 20 vendedores de una compañia de computadoras en miles de dólares es 42.56, la mediana es de 37.3, la desviación estándar es de 19.46, la desviación mediana 11.82, el recorrido intercuantil 13.35 que refleja la variabilidad de las observaciones comprendidas entre los percentiles 75 y 25 y por último el recorrido interdecil es de 31.75 que es la dispersión entre los percentiles 90 y 10.
+
+
+
 
 b) Para la medida de tendencia central la mejor medida es la mediana ya que no es afectada por valores extremos, además para conjuntos relacionados con informaciones de tipo económico y financiero, las mejores elecciones para las medidas de tendencia central y dispersión son la mediana y la desviación mediana respectivamente.
 
@@ -675,7 +830,7 @@ Menos de 2,500&25.9\\ \hline
 a) Calculemos la anchura del segundo y séptimo intervalo de clase,
 
 **\underline{En R:}**
-```{r}
+```{r,comment=""}
 #Calculemos primeramente las fronteras superior e inferior
 fsup2<-1/2*(4999+5000) #promedio del lim superior con lim inferior de la siguiente clase.
 fsup2
@@ -692,7 +847,33 @@ anchura7<-fsup7-finf7
 anchura7
 ```
 
+
+La anchura o tamaño del intervalo 2 es de 2500 dólares y la anchura del séptimo es de 150000 dólares.
+
+
+
+
 b) Siete intervalos de clase tienen diferentes tamaños, ya que el primero y el último no tienen tamaños especificados.
+
+Calculemos los tamaños de los intervalos 3, 4, 5, 6, y 8,
+
+**\underline{En R,}**
+
+```{r,comment=""}
+anchura3<-(10000+9999)/2-(4999+5000)/2
+anchura3
+anchura4<-(19999+20000)/2-(10000+9999)/2
+anchura4
+anchura5<-(39999+40000)/2-(19999+20000)/2
+anchura5
+anchura6<-(99999+100000)/2-(39999+40000)/2
+anchura6
+anchura8<-(499999+500000)/2-(250000+249000)
+anchura8
+```
+
+
+
 
 c) Hay dos intervalos de clase abiertos que son: Menos de 2,500 que no posee límite inferior y 500,000 o más que no posee límite superior.
 
@@ -701,7 +882,7 @@ d) La anchura del segundo intervalo de clase es de 2,500 dólares por lo que hab
 e) Calculemos la marca (punto medio) del segundo y séptimo intervalo de clase,
 
 **\underline{En R:}**
-```{r}
+```{r,comment=""}
 marca2<-1/2*(4999+2500)
 marca2
 marca7<-1/2*(249999+100000)
@@ -712,28 +893,28 @@ f) Calculemos las fronteras superior e inferior del cuarto intervalo de clase,
 
 **\underline{En R:}**
 
-```{r}
+```{r,comment=""}
 fsup4<-1/2*(19999+20000)
 fsup4
 finf4<-1/2*(9999+10000)
 finf4
 ```
 
-g) El porcentaje de plantaciones con ventas de $20,000 o más es de 11.0+14.4+8.5+1.8+0.6=36.3%, y por debajo de $10,000 es de 13.0+13.2+25.9=52.1%.
+g) El porcentaje de plantaciones con ventas de \$20,000 o más es de 11.0+14.4+8.5+1.8+0.6=36.3%, y por debajo de \$10,000 es de 13.0+13.2+25.9=52.1%.
 
-h) El porcentaje de plantaciones con ventas de al menos $10,000, pero no mayores que $40,000 es de 11.0+11.7=22.7%.
+h) El porcentaje de plantaciones con ventas de al menos \$10,000, pero no mayores que \$40,000 es de 11.0+11.7=22.7%.
 
 i) Si la muestra es aleatoria, consideremos la siguiente ojiva de porcentajes,
 
 **\underline{En R:}**
-```{r}
+```{r,comment=""}
 ptomedio<-c(2500,3749.5,7499.5,14999.5,29999.5,69999.5,174999.5,374999.5,500000)
 #ptos medios de las clases
 porcetanjes<-c(25.9,39.1,52.1,63.8,74.8,89.2,97.7,99.5,100.1) #frecuencia acumulada
 ojiva<-plot(porcetanjes~ptomedio,type="b",xlab="Ventas",ylab="Porcentajes",main="Ojiva",col="red")
 ```
 
-Debido a los diferentes tamaños de los intervalos de clase, es dificil interpretar los datos, sin embargo podemos decir que el porcentaje que tuvo ventas entre  $15,000 y $25,000 oscila entre $8-$10, que es la diferencia entre $78-$68, las cuales son los porcentajes de ventas de $25,000 y $15,000 respectivamente.
+Debido a los diferentes tamaños de los intervalos de clase, es dificil interpretar los datos, sin embargo podemos decir que el porcentaje que tuvo ventas entre  \$15,000 y \$25,000 oscila entre $8-10$, que es la diferencia entre \$78-\$68, las cuales son los porcentajes de ventas de \$25,000 y \$15,000 respectivamente.
 
 
 j) Todos los porcentajes suman 25.9+13.2+13.0+11.7+11.0+14.4+8.5+1.8+0.6=100.1%, es decir, hay un 0.1% de porcentaje que está de más, esto podría ser debido a los errores de redondeo al calcular porcentajes.
@@ -743,6 +924,7 @@ j) Todos los porcentajes suman 25.9+13.2+13.0+11.7+11.0+14.4+8.5+1.8+0.6=100.1%,
 \begin{itemize}
 \item[a)] ¿Por qué es imposible construir un histograma de porcentajes o un polígono de frecuencias para la distribución de la tabla anterior?
 \item[b)] ¿Como modificaria la distribución para que pudieran construirse ambos?
+\item[c)] Llevar a cabo la modificación y la construcción.
 \end{itemize}
 
 **\underline{Solución:}**
@@ -752,29 +934,313 @@ a) Se imposibilita debido a los diferentes tamaños de los intervalos de clase. 
 
 b) Se modificaría cambiando los intervalos de clase a intervalos de clase con anchuras iguales.
 
+c) Veamos la siguiente modificación de la distribución anterior, donde escogimos la anchura de los intervalos de 250000$.
+
+\begin{table}[htpb]
+\begin{center}
+\begin{tabular}{l r}
+\hline
+Ventas (dólares) & Explotaciones (\%)\\
+\hline \hline
+0-249,999&97.7\\ \hline
+250,000-499,999&1.8\\ \hline
+500,000 o más&0.6\\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Grafiquemos la siguiente distribución,
+
+```{r,echo=FALSE,message=FALSE}
+prueba<-c(rep(230000,55),400000,400000,740000)
+dat<-data.frame(prueba)
+h2<-ggplot(dat,aes(x=prueba))+geom_histogram(aes(y=..ncount..),closed='left',fill='blue',col='black',alpha=0.7,breaks = seq(0,750000,by=250000))+labs(x='Ventas',y='Explotaciones',title="Histograma")+scale_x_continuous(breaks = seq(0,750000,by=250000))
+h2
+h3<-ggplot(dat,aes(x=prueba))+geom_histogram(aes(y=..ncount..),closed='left',fill='blue',col='black',alpha=0.7,breaks = seq(0,750000,by=250000))+scale_x_continuous(breaks = seq(0,750000,by=250000))+geom_freqpoly(aes(y=..ncount..),col='red',breaks = seq(0,750000,by=250000),size=0.4)+labs(x='Ventas',y='Explotaciones',title="Poligono de frecuencia")
+h3
+```
+
 
 **\underline{26:}** 
 
-1. The intervals in a frequency of distribution should always have which of the following characteristics? The intervals should always:
+1. Los intervalos en una frecuencia de distribución siempre deben tener cuál de las siguientes características? Los intervalos siempre deben:
 
 \begin{itemize}
-\item[A.] be truncated.
-\item[B.] be open ended.
-\item[C.] be nonoverlapping.
+\item[A.] Ser truncados.
+\item[B.] Ser de extremos derechos abiertos.
+\item[C.]Ser no superpuesto.
 \end{itemize}
 
 **\underline{Solución:}** 
 
-The correct answer is C.,the intervals in a frequency of distribution should always be nonoverlapping.
+La respuesta correcta es la opción C.,los intervalos en una distribución de frecuencias siempre deben ser no superpuestos.
 
-**\underline{27: }** Year end-prices and dividends for Nopat Mutual Fund for each of six years are listed below along with the actual yield (return) on a money market fund called Emfund.
+Use la siguiente distribución de frecuencias para la pregunta 2 hasta la 4.
+\
+\begin{table}[h]
+\begin{tabular}{c c}
+\hline
+Estadística & Frecuencia \\ \hline
+-10\% hasta 0\% & 3 \\
+0\% hasta 10\% & 7 \\
+10\% hasta 20\% & 3 \\
+20\% hasta 30\% & 2 \\
+30\% hasta 40\% & 1 \\
+\hline
+\end{tabular}
+\end{table}
+
+2. El número de intervalos en esta tabla de frecuencias es:
+
+\begin{itemize}
+\item[A.] 1.
+\item[B.] 5.
+\item[C.] 16.
+\end{itemize}
+
+\underline{\textbf{Solución:}}
+
+La respuesta correcta es la B. Hay 5 intervalos en esta tabla de frecuencias.
+
+3. El tamaño de muestra es:
+
+\begin{itemize}
+\item[A.] 1.
+\item[B.] 5.
+\item[C.] 16.
+\end{itemize}
+
+\underline{\textbf{Solución:}}
+
+La respuesta correcta es la C. El tamaño de la muestra es la suma de todas las frecuencias en la distribución.
+
+4. La frecuencia relativa del segundo intervalo es:
+
+\begin{itemize}
+\item[A.] 10.0\%
+\item[B.] 16.0\%
+\item[C.] 43.8\%
+\end{itemize}
+
+\underline{\textbf{Solución:}}
+
+La respuesta correcta es la C. La frecuencia relativa del intervalo es la frecuencia de esta dividida por el tamaño de la muestra, $\frac{7}{16} = 43.8\%$.
+
+
+
+Use los siguientes datos para responder la pregunta 5 hasta la 13.
+
+
+\textbf{XYZ Corp. Precios del Mercado Anual} 
+\begin{table}[h]
+\begin{tabular}{c c c c c c}
+\hline
+2003 & 2004 & 2005 & 2006 & 2007 & 2008 \\
+\\
+22\% & 5\% & -7\% & 11\% & 2\% & 11\% \\
+\hline
+\end{tabular}
+\end{table}
+
+5. ¿Cúal es la media aritmética que resulta de los valores del mercado de \textbf{XYZ}?
+
+\begin{itemize}
+\item[A.] 7.3\%
+\item[B.] 8.0\%
+\item[C.] 11.0\%
+\end{itemize}
+
+\underline{\textbf{Solución:}}
+
+La respuesta correcta es la A. Pues $(22\% + 5\% + -7\% + 11\% + 2\% + 11\%)/6 = 7.3\%$.
+
+6. ¿Cúal es la mediana que resulta de los valores del mercado de \textbf{XYZ}?
+
+\begin{itemize}
+\item[A.] 7.3\%
+\item[B.] 8.0\%
+\item[C.] 11.0\%
+\end{itemize}
+
+\underline{\textbf{Solución:}}
+
+La respuesta correcta es la B. Para hallar la mediana primero ordenamos los datos en una forma ascendente: $-7\%, 2\%, 5\%, 11\%, 11\%, 22\%$. Luego como la cantidad de datos es par, la mediana sera el promedio de los dos valores que están en el medio, es decir, $(5\% + 11\%)/2=8.0\%$.
+
+7. ¿Cúal es la moda que resulta de los valores del mercado de \textbf{XYZ}?
+
+\begin{itemize}
+\item[A.] 7.3\%
+\item[B.] 8.0\%
+\item[C.] 11.0\%
+\end{itemize}
+
+\underline{\textbf{Solución:}}
+
+La respuesta correcta es la C. La moda es valor que se repite más, en este caso es el $11\%$.
+
+8. ¿Cúal es el rango que resulta de los valores del mercado de \textbf{XYZ}?
+
+\begin{itemize}
+\item[A.] 11.0\%
+\item[B.] 22.0\%
+\item[C.] 29.0\%
+\end{itemize}
+
+\underline{\textbf{Solución:}}
+
+La respuesta correcta es la C. El rango se obtiene al restar el valor más alto con el valor más bajo, esto es: $22\% - (-7\%)=29\%$.
+
+
+9. ¿Cúal es la desviación media absoluta que resulta de los valores del mercado de \textbf{XYZ}?
+
+\begin{itemize}
+\item[A.] 5.20\%
+\item[B.] 7.33\%
+\item[C.] 29.0\%
+\end{itemize}
+
+\underline{\textbf{Solución:}}
+
+La respuesta correcta es la B. La desviación media absoluta se obtiene al restar en valor absoluto cada valor de los datos con la media de estos, para luego sacar el promedio de los nuevos valores resultantes, es decir, $(|22 - 7.3|+|5 - 7.3|+|-7 - 7.3|+|11 - 7.3|+|2 - 7.3|+|11 - 7.3|)/6 = 7.33\%$.
+
+10. Asumiendo que la distribución de los precios del mercado anual de \textbf{XYZ Corp.} es una población. ¿Cúal es la varianza poblacional?
+
+\begin{itemize}
+\item[A.] 6.8$\%^2$
+\item[B.] 7.7$\%^2$
+\item[C.] 80.2$\%^2$
+\end{itemize}
+
+\underline{\textbf{Solución:}}
+
+La respuesta correcta es la C. La varianza poblacional, $\sigma^2$, se obtiene al restar al cuadrado cada valor de los datos con la media de estos, para luego sacar el promedio de los nuevos valores resultantes, es decir, $\sigma^2 = ((22 - 7.3)^2+(5 - 7.3)^2+(-7 - 7.3)^2+(11 - 7.3)^2+(2 - 7.3)^2+(11 - 7.3)^2)/6 = 80.2\%^2$.
+
+11. Asumiendo que la distribución de los precios del mercado anual de \textbf{XYZ Corp.} es una población. ¿Cúal es la desviación estándar poblacional?
+
+\begin{itemize}
+\item[A.] 5.02\%
+\item[B.] 8.96\%
+\item[C.] 46.22\%
+\end{itemize}
+
+\underline{\textbf{Solución:}}
+
+La respuesta correcta es la B. La desviación poblacional, $\sigma$, se obtiene calculando la raíz cuadrada de la varianza poblacional. Esto es: $\sigma = \sqrt{\sigma^2} = \sqrt{80.2\%^2} = 8.96\%$.
+
+12. Asumiendo que la distribución de los precios del mercado anual de \textbf{XYZ Corp.} es una muestra. La varianza muestral es cercana a:
+
+\begin{itemize}
+\item[A.] 5.0$\%^2$
+\item[B.] 72.4$\%^2$
+\item[C.] 96.3$\%^2$
+\end{itemize}
+
+\underline{\textbf{Solución:}}
+
+La respuesta correcta es la C. La varianza muestral se calcula análogo a la varianza poblacional solo que dividimos con $N-1$, es decir, restándole 1 al tamaño de la población. Esto es: $s^2 = ((22 - 7.3)^2+(5 - 7.3)^2+(-7 - 7.3)^2+(11 - 7.3)^2+(2 - 7.3)^2+(11 - 7.3)^2)/6-1 = 96.3\%^2$.
+
+
+
+13. Asumiendo que la distribución de los precios del mercado anual de \textbf{XYZ Corp.} es una muestra. ¿Cúal es la desviación estándar muestral?
+
+\begin{itemize}
+\item[A.] 9.8\%
+\item[B.] 72.4\%
+\item[C.] 96.3\%
+\end{itemize}
+
+\underline{\textbf{Solución:}}
+
+La respuesta correcta es la A. La desviación muestral, $s$, se obtiene calculando la raíz cuadrada de la varianza muestral. Esto es: $s = \sqrt{s^2} = \sqrt{96.3\%^2} = 9.8\%$.
+
+14. Para una distribución sesgada, ¿Cúal es el mínimo porcentaje de observaciones que estará entre $\pm 2.5$ desviaciones estándar de una media basada en la desigualdad de Chebyshev?
+
+\begin{itemize}
+\item[A.] 56\%
+\item[B.] 75\%
+\item[C.] 84\%
+\end{itemize}
+
+\underline{\textbf{Solución:}}
+
+La respuesta correcta es la C. Usando la desigualdad de Chebyshev tenemos: $1 - \frac{1}{2.5^2} = 0.84$, es decir $84\%$.
+
+
+
+Use los siguientes datos para responder las preguntas 15 y 16.
+Los rendimiento anuales de las acciones comunes de FJW durante los años 2003, 2004, 2005, and 2006 son 15%, 19%, -8% y 14%.
+
+15. ¿Cuál es la media aritmética de los rendimientos de las acciones comunes de FJW?
+
+\begin{itemize}
+\item[A.] 10.00%
+\item[B.] 14.00%
+\item[C.] 15.25%
+\end{itemize}
+
+
+**\underline{Solución:}** 
+La media aritmética de los rendimientos de las acciones es $\frac{15+19+(-8)+14}{4}=10$. Por lo que la respuesta correcta es  la opción A. 10.00%.
+
+16. ¿Cuál es la media geométrica para los rendimientos de las acciones de FJW?
+
+\begin{itemize}
+\item[A.] 9.45%
+\item[B.] 14.21%
+\item[C.] No puede ser determinado porque el rendimiento del año 2005 es negativo.
+\end{itemize}
+
+**\underline{Solución:}** 
+La media geométrica está determinada por $(1.151.19.0.92.1.14)^{1/4}-1=9.45\%$. Asi la respuesta correcta es la opción A.
+
+17.Una distribución de rendimientos que tiene un mayor porcentaje de pequeñas desviaciones de
+la media y un mayor porcentaje de desviaciones extremadamente grandes de la media
+en comparación con una distribución normal:
+
+\begin{itemize}
+\item[A.] Está positivamente sesgada.
+\item[B.] Tiene exceso positivo de curtosis.
+\item[C.] Tiene exceso negativo de curtosis.
+\end{itemize}
+
+
+**\underline{Solución:}** 
+Una distribución que tiene un mayor porcentaje de pequeñas desviaciones de
+la media y un mayor porcentaje de desviaciones extremadamente grandes de la media tiene un exceso positivo de curtosis, esta distribución tendrá más picos y tendrá
+colas más gordas que una distribución normal. por lo tanto la opción correcta es la B. 
+
+18.¿Cuál de los siguientes es más exacto con respecto a una distribución que
+tiene una media mayor que su mediana?
+
+\begin{itemize}
+\item[A.] Está positivamente sesgada.
+\item[B.] ES una distribución simétrica.
+\item[C.] Tiene exceso positivo de curtosis.
+\end{itemize}
+
+**\underline{Solución:}** 
+Una distribución que tiene una media mayor que su mediana está positivamente sesgada o sesgada a la derecha. Asi la respuesta correcta es la opción A.
+
+19. La media armónica de 3, 4 y 5 es:
+
+\begin{itemize}
+\item[A.] 3.74
+\item[B.] 3.83
+\item[C.] 4.12
+\end{itemize}
+
+**\underline{Solución:}**
+La media armónica está dada por, $\bar{x}_H=\frac{3}{1/3+1/4+1/5}=3.83$.Por lo tanto la respuesta es la opción B.
+
+
+**\underline{27: }** Los precios de fin de año y los dividendos para Nopat Mutual Fund para cada uno de los seis años se detallan a continuación junto con el rendimiento real (rendimiento) de un fondo del mercado monetario denominado Emfund.
 
 
 \begin{table}[h]
 \begin{center}
-\begin{tabular}{|l p{2cm} p{2cm} p{3.5cm} p{2.5cm}|}
+\begin{tabular}{|l p{2cm} p{2cm} p{2cm} p{2.5cm}|}
 \hline
-Year & Nopat Fund Year-End Price & Nopat Fund Year-End Dividend & Nopat Annual Holding Period Return & Emfund Return for the Year\\
+Año & Precio de fin de año de Nopat Fund & Dividendo de fin de año de Nopat Fund & Rendimiento anual de Nopat Fund& Rendimiento por año de Emfund\\
 \hline \hline
 2004 & \$28.50 & \$0.14 & & 3.00\% \\ \hline
 2005 & \$26.80 & \$0.15 & ? & 4.00\%\\ \hline
@@ -786,42 +1252,46 @@ Year & Nopat Fund Year-End Price & Nopat Fund Year-End Dividend & Nopat Annual H
 \end{center}
 \end{table}
 
-Average risk-free rate over the five years 2005-2009 is 2.8%. Risk-free rate for 2004 is 2.8%.
+\newpage
+
+La tasa promedio libre de riesgo durante los cinco años 2005-2009 es del 2.8%. La tasa libre de riesgo para 2004 es del 2.8%.
 
 \begin{itemize}
-\item[A.] Calculate the annual holding period returns for a beginning-of-year investment in Nopat fund for each of the five years over the period 2005-2009 (\% with two decimal places).
-\item[B.] What is the arithmetic mean annual total return on an investment in Nopat fund shares (dividends reinvested) over the period 2005-2009?
-\item[C.] What is the average compound annual rate of return on an investment in Nopal fund made at year end 2004 if it were held (dividends reinvested) until the end of 2009?
-\item[D.] What is the median annual return on an Emfund investment over the 6-year period 2005-2009?
-\item[E.] What is the sample standard deviation of the annual returns on money market funds over the 6-year period,using the Emfund returns as a sample?
-\item[F.] What is the holding period return on a 6-year investment in Emfund made at the beginning of 2004?
-\item[G.] If an investor bought \$10,000 of Nopal Fund shares at the end of the year in each of the three years 2007-2009,what is the average price paid per share? What is the arithmetic mean of the three year-end prices?
-\item[H.] What would have been the 1-year holding period return on a portfolio that had \$60,000 invested in Nopat Fund and \$40,000 invested in Emfund as of the beginning of 2009?
-\item[I.] What is the coefficient of variation of the Nopal Fund annual total return 2005-2009 and of the Emfund annual return for the six years 2004-2009? Which is riskier?
-\item[J.] What is the Sharpe ratio for an investment in the Nopal Fund over the five years from 2005-2009? What is the Sharpe ratio for an investment in the Emfund over the six years 2004-2009? Which Sharpe ratios is more preferred?
-\item[K.] Calculate the range and mean absolute deviation of returns for an investment in the Emfund over the 6-year period 2004-2009. 
-\item[L.] What is the annual growth rate of dividends on Nopal Fund over the period from 2004-2009?
+\item[A.] Calcule el rendimiento anual de una inversión de principio de año en el Nopat fund para cada uno de los cinco años durante el período 2005-2009 (\% con dos decimales).
+\item[B.] ¿Cuál es la media aitmética del rendimiento anual  de una inversión en acciones del Nopat fund (dividendos reinvertidos) durante el período 2005-2009?
+\item[C.] ¿Cuál es la tasa de rendimiento anual promedio compuesta de una inversión en el Nopat fund realizada al cierre de 2004 si se mantuviera (dividendos reinvertidos) hasta el final de 2009?
+\item[D.] ¿Cuál es la mediana del rendimiento anual de una inversión de Emfund durante el período de 6 años 2005-2009?
+\item[E.] ¿Cuál es la desviación estándar de la muestra de los rendimientos anuales de los fondos del mercado monetario durante el período de 6 años, utilizando los rendimientos del Emfund como muestra?
+\item[F.] ¿Cuál es el rendimiento anual de una inversión de 6 años en Emfund realizada a principios de 2004?
+\item[G.] Si un inversionista compró \$ 10,000 de acciones del Nopat Fund al final del año en cada uno de los tres años 2007-2009, ¿cuál es el precio promedio pagado por acción? ¿Cuál es la media aritmética de los precios de tres años?
+\item[H.] ¿Cuál hubiera sido el rendimiento anual de 1 año en una cartera que tenía \$ 60,000 dólares invertidos en Nopat Fund y \$ 40,000 invertidos en Emfund a partir de principios de 2009?
+\item[I.] ¿Cuál es el coeficiente de variación del rendimiento anual total del Nopat Fund 2005-2009 y del rendimiento anual del Emfund para los seis años 2004-2009? ¿Cuál es más arriesgado?
+\item[J.] ¿Cuál es el índice de Sharpe para una inversión en el Nopat Fund durante los cinco años del 2005-2009? ¿Cuál es el índice de Sharpe para una inversión en el Emfund en los seis años 2004-2009? ¿Qué proporciones de Sharpe es más preferido?
+\item[K.] Calcule el rango y la desviación media absoluta de los rendimientos de una inversión en el Emfund durante el período de 6 años 2004-2009. 
+\item[L.] ¿Cuál es la tasa de crecimiento anual de los dividendos en Nopat Fund durante el período 2004-2009?
 \end{itemize}
 
 **\underline{Solution:}**
 
-A. The annual holding period returns (total returns) are given in the table and are each claculated as:
+A. Los rendimientos anuales se dan en la tabla y se calculan como sigue:
+
+\newpage
 
 **\underline{En R:}**
 ```{r}
-year_end_price<-c(26.80,29.60, 31.40,34.50,37.25)
-year_end_dividend<-c(0.15,0.17,0.17,0.19,0.22)
-previous_year_end_price<-c(28.50,26.80,29.60,31.40,34.50)
-annual_holding<-(year_end_price+year_end_dividend)/(previous_year_end_price)-1
-annual_holding<-annual_holding*100
-annual_holding
+año_precio<-c(26.80,29.60, 31.40,34.50,37.25)
+año_dividendo<-c(0.15,0.17,0.17,0.19,0.22)
+previos_año_precio<-c(28.50,26.80,29.60,31.40,34.50)
+rend_anual<-(año_precio+año_dividendo)/(previos_año_precio)-1
+rend_anual<-rend_anual*100
+rend_anual
 ```
 
 \begin{table}[h]
 \begin{center}
-\begin{tabular}{|l p{2cm} p{2cm} p{3.5cm} p{2.5cm}|}
+\begin{tabular}{|l p{2cm} p{2cm} p{2cm} p{2.5cm}|}
 \hline
-Year & Nopat Fund Year-End Price & Nopat Fund Year-End Dividend & Nopat Annual Holding Period Return & Emfund Return for the Year\\
+Año & Precio de fin de año de Nopat Fund & Dividendo de fin de año de Nopat Fund & Rendimiento anual de Nopat Fund& Rendimiento por año de Emfund\\
 \hline \hline
 2004 & \$28.50 & \$0.14 & & 3.00\% \\ \hline
 2005 & \$26.80 & \$0.15 & -5.44\% & 4.00\%\\ \hline
@@ -837,35 +1307,36 @@ B.
 
 **\underline{En R:}**
 ```{r}
-mean_arithmetic<-mean(annual_holding)
-mean_arithmetic
+media_aritmetica<-mean(rend_anual)
+media_aritmetica
 ```
-The arithmetic mean is 6.28%
+La media aritmética es 6.28%
 
 C. **\underline{En R:}**
 ```{r}
-average<-((1-0.0544)*(1+0.1108)*(1+0.0666)*(1+0.1048)*(1+0.0861))^(1/5)-1
-average<-average*100
-average
+promedio<-((1-0.0544)*(1+0.1108)*(1+0.0666)*(1+0.1048)*(1+0.0861))^(1/5)-1
+promedio<-promedio*100
+promedio
 ```
 
-The average is 6.10%.
+El promedio es 6.10%.
 
 D. **\underline{En R:}**
 
 ```{r}
 Emfund<-c(3.00,4.00,4.30,5.00,4.10,6.00)
-median_annual_Emfund<-median(Emfund)
-median_annual_Emfund
+mediana_anual_Emfund<-median(Emfund)
+mediana_anual_Emfund
 ```
-The median annual is 4.2%.
+
+La mediana anual es 4.2%
 
 E. **\underline{En R:}**
 ```{r}
 sd_Emfund<-sd(Emfund)
 sd_Emfund
 ```
-The standard deviation is 1.01%
+La desviación estándar es 1.01%
 
 F. \underline{En R:}
 ```{r}
@@ -873,129 +1344,131 @@ hpr<-(1+0.03)*(1+0.04)*(1+0.043)*(1+0.05)*(1+0.041)*(1+0.06)-1
 hpr
 ```
 
-The holding period return on a 6-year investment in Emfund made at the beginnig of 2004 is 29.45%
+El rendimiento de una inversión de 6 años en Emfund realizada a comienzos de 2004 es del 29.45%
 
 G. **\underline{En R:}**
 ```{r}
-# Calculate the harmonic mean
-years<-c(31.40,34.50,37.25)
-average<-3/(1/31.40 +1/34.50 +1/37.25)
-average
-#Calculate the arithmetic mean
-arit_mean<-mean(years)
-arit_mean
+# Calculemos la media armónica
+años<-c(31.40,34.50,37.25)
+promedio<-3/(1/31.40 +1/34.50 +1/37.25)
+promedio
+#calculemos la media aritmética
+arit_media<-mean(años)
+arit_media
 
 ```
 
-The harmonic mean is 34.22% that is the average price paid per share. The arithmetic mean is 34.38%
+La media armónica es 34.22% que es el precio promedio pagado por acción. La media aritmética es 34.38%
+
 
 H.  **\underline{En R:}**
 ```{r}
-portfolio<-0.6*8.61+0.4*6
-portfolio
+cartera<-0.6*8.61+0.4*6
+cartera
 ```
 
-The portfolio return is 7.57%.
+
+El rendimiento de la cartera es 7.57%.
 
 I. **\underline{En R:}**
 ```{r}
-#calculate standard deviation of Nopat annual holding
-sd_Nopat<-sd(annual_holding)
+#calculemos la desviación estándar del rendimiento anual de  Nopat
+sd_Nopat<-sd(rend_anual)
 sd_Nopat
-#Calculate the coefficient of variation 
-CV_Nopat<-sd_Nopat/mean_arithmetic
+#calculemos el coeficiente de variación
+CV_Nopat<-sd_Nopat/media_aritmetica
 CV_Nopat
-#Calculate the arithmetic median of Emfund
-mean_Emfund<-mean(Emfund)
-mean_Emfund
-#Calculate the coefficient of variation
-CV_Emfund<-sd_Emfund/mean_Emfund
+#calculemos la media aritmetica para Emfund
+media_Emfund<-mean(Emfund)
+media_Emfund
+#calculemos el coeficiente de variación
+CV_Emfund<-sd_Emfund/media_Emfund
 CV_Emfund
 ```
 
-Emfund is less risky by this measure.
+Emfund es menos arriesgado.
 
 J. **\underline{En R:}**
 
 ```{r}
-#Risk-free is 2.8%
-srNopat<-(mean_arithmetic-2.8)/sd_Nopat
+#riesgo libre es de 2.8%
+srNopat<-(media_aritmetica-2.8)/sd_Nopat
 srNopat
-srEmfund<-(mean_Emfund-2.8)/sd_Emfund
+srEmfund<-(media_Emfund-2.8)/sd_Emfund
 srEmfund
 ```
 
-The Emfund is preferred using this criterion because it has higher excess returns per unit per risk.
+Se prefiere el Emfund usando este criterio porque tiene un mayor exceso de devoluciones por unidad de riesgo.
 
 K. **\underline{En R:}**
 ```{r}
-Range_Emfund<-6-3
-Range_Emfund
-MAD_Emfund<- sum(abs(Emfund-mean_Emfund))/length(Emfund)
+Rango_Emfund<-6-3
+Rango_Emfund
+MAD_Emfund<- sum(abs(Emfund-media_Emfund))/length(Emfund)
 MAD_Emfund
 ```
 
-L. Average annual growth rate of dividends is the geometric mean rate of growt:
+L. La tasa de crecimiento anual promedio de los dividendos es la tasa media geométrica de crecimiento:
 
  **\underline{En R:}**
  
 ```{r}
-growth<-(0.22/0.14)^(1/5)-1
-growth
+crecimiento<-(0.22/0.14)^(1/5)-1
+crecimiento
 ```
 
- Average annual growth rate of dividends is 9.46%.
+ La tasa de crecimiento anual promedio de los dividendos es del 9.46%.
 
-**\underline{28.}** An analist has estimated the following parameters for the annual returns distributions for four portfolios: 
+**\underline{28.}** Un analista ha estimado los siguientes parámetros para las distribuciones anuales de devoluciones para cuatro carteras: 
 
 \begin{table}[h]
 \begin{center}
-\begin{tabular}{|l p{2cm} p{1.5cm} c r|}
+\begin{tabular}{|l p{2cm} p{2.5cm} c r|}
 \hline
-Portfolio & Mean Return E(R) & Variance of returns & Skewness & Kurtosis\\
+Cartera & Rendimiento promedio E(R) & Varianza de rendimiento & Sesgo & Curtosis\\
 \hline \hline
-Portfolio A & 10\% & 625 & 1.8 & 0\\ \hline
-Portfolio B & 14\% & 900 & 0.0 & 3\\ \hline
-Portfolio C & 16\% & 1250 & -0.85 & 5\\ \hline
-Portfolio D & 19\% & 2000 & 1.4 & 2\\ \hline
+Cartera A & 10\% & 625 & 1.8 & 0\\ \hline
+Cartera B & 14\% & 900 & 0.0 & 3\\ \hline
+Cartera C & 16\% & 1250 & -0.85 & 5\\ \hline
+Cartera D & 19\% & 2000 & 1.4 & 2\\ \hline
 \end{tabular}
 \end{center}
 \end{table}
 
-She has been asked to evaluate the portfolios' risk and return characteristics. Assume that a risk-free investment will earn 5%.
+Se le ha pedido que evalúe las características de riesgo y rendimiento de la cartera. Suponga que una inversión libre de riesgo obtendrá un 5%.
 
 \begin{itemize}
-\item[A.] Which portfolio would be preferred based on the Sharpe performance measure?
-\item[B.] Which portfolio would be the most preferred based on the coefficient of variation?
-\item[C.] Which portfolio(s) is/are symmetric?
-\item[D.] Which portfolio(s) has/have fatter tails than a normal distribution?
-\item[E.] Which portfolio is the riskiest based on its skewness?
-\item[F.] Which portfolio is the riskiest based on its kurtosis?
+\item[A.] ¿Qué cartera se preferiría según la medida de rendimiento de Sharpe?
+\item[B.] ¿Qué cartera sería la más preferida en función del coeficiente de variación?
+\item[C.] ¿Qué cartera (s) es (son) simétrica (s)?
+\item[D.] ¿Qué cartera (s) tiene / tienen colas más gruesas que una distribución normal?
+\item[E.] ¿Qué cartera es la más riesgosa en función de su sesgo?
+\item[F.] ¿Qué cartera es la más riesgosa basada en su curtosis?
 \end{itemize}
 
 **\underline{Solution:}**
 
-A. Portfolio D has the highest Sharpe ratio, $19-5/\sqrt{2000}=0.313$ and is therefore the most preferred. (Risk-free is 5%)
+A. La cartera D tiene el radio de Sharpe más alto, $19-5/\sqrt{2000}=0.313$ y es por lo tanto la más preferible. (tasa libre de  riesgos es de 5%)
 
-B. Portfolio B has the lowest coefficient of variation, $\sqrt{900}/14=2.1429$ and is therefore the most preferred.
+B. La cartera B tiene el coeficiente de variación más bajo, $\sqrt{900}/14=2.1429$ y por lo tanto la más preferible.
 
-C. Portfolio B is symmetric because it has a skewness is 0.0.
+C. La cartera B es simétrica porque tiene un sesgo de 0.0.
 
-D. Portfolio C has positive excess kurtosis, indicating fatter tails relative to a normal distribution.
+D. La cartera C tiene exceso de curtosis positiva, lo que indica colas más gordas en relación con una distribución normal.
 
-E. Negative skew indicates that return below the mean are more extreme, so we would consider Portfolio C to be the most risky based on skew alone.
+E. El sesgo negativo indica que el retorno por debajo de la media es más extremo, por lo que consideraríamos que el Portafolio C es el más arriesgado basado únicamente en el sesgo.
 
-F. Larger kurtosis indicates greater likelihood of extreme outcomes and from a risk-management standpoint this indicates greater risk.Portfolio C has the greatest kurtosis.
+F. Una curtosis mayor indica una mayor probabilidad de resultados extremos y desde el punto de vista de la gestión del riesgo, esto indica un mayor riesgo. La cartera C tiene la mayor curtosis.
 \
 \
-**\underline{29:}** A manager is responsible for managing part of an institutional portfolio to mimic the returns on the S&P 500 stock index. He is evaluated based on his ability  to exactly match the returns on the index. His portfolio holds 200 stocks but has exactly the same dividend yield as the S&P 500 portfolio. Which of the statistical measures from this review would be an appropiate measure of his performance and how would you use it?
+**\underline{29:}** Un gerente es responsable de administrar parte de una cartera institucional para imitar los rendimientos del índice bursátil S & P 500. Él se evalúa en función de su capacidad para coincidir exactamente con los rendimientos del índice. Su cartera tiene 200 acciones pero tiene exactamente el mismo rendimiento de dividendo que la cartera del S & P 500. ¿Cuál de las medidas estadísticas de esta revisión sería una medida adecuada de su desempeño y cómo lo usaría?
 
 **\underline{Solution:}**
 
-Since the goal is to match the index returns,we must focus on the differences between the returns on the manager's portfolio and those on the index he is attempting to mimic. These differences are referred to as "tracking error". The standard deviation or variance of the differences between his portfolio returns and the returns of the index over a number of periods would be a suitable measure of his performance. If you said mean absolute deviation, that is defensible as well as it is certainly one way to measure tracking error. It is, however, not the measure of tracking error we see used in practice.
+Dado que el objetivo es hacer coincidir los rendimientos del índice, debemos centrarnos en las diferencias entre los rendimientos de la cartera del administrador y los del índice que intenta imitar. Estas diferencias se conocen como "error de seguimiento". La desviación estándar o la varianza de las diferencias entre los rendimientos de su cartera y los rendimientos del índice durante un número de períodos sería una medida adecuada de su rendimiento. Si dijiste la desviación absoluta media, eso es defendible y también es una forma de medir el error de seguimiento. Sin embargo, no es la medida del error de seguimiento que vemos utilizado en la práctica.
 \
 \
-**\underline{30:}** Below are the returns on 20 industry groups of stocks over the past year: 
+**\underline{30:}** A continuación se muestran los rendimientos de 20 grupos de acciones de la industria en el último año: 
 
 \begin{center}
 \begin{tabular}{l c c c c c c c c r}
@@ -1005,18 +1478,18 @@ Since the goal is to match the index returns,we must focus on the differences be
 \end{center}
 
 \begin{itemize}
-\item[A.] What is the return on the industry group with the lowest rate of return in top quartile?
-\item[B.] What is the 40th percentile of this array of data?
-\item[C.] What is the range of the data?
-\item[D.] Based on a frequency distribution with 12 intervals, what is the relative frequency and cumulative  relative frequency of the 10th interval (ascending order)?
+\item[A.] ¿Cuál es el rendimiento del grupo industrial con la tasa de rendimiento más baja en el cuantil superior?
+\item[B.] ¿Cuál es el percentil 40 de este arreglo de datos?
+\item[C.] ¿Cuál es el rango de los datos?
+\item[D.] En función de una distribución de frecuencias con 12 intervalos, ¿cuál es la frecuencia relativa y la frecuencia relativa acumulada del décimo intervalo (orden ascendente)?
 \end{itemize}
 
 **\underline{Solution:}** 
 
-A. With 20 datapoints, the top quartile (1/4) is the top 5. Count down from the greatest value to find the 5th from the top is 21%.
+A. Con 20 puntos de datos, el cuantil superior (1/4) está en el top 5. La cuenta regresiva desde el valor más alto hasta el quinto es de 21%
 
-B. The location of the 40th percentile is $(20+1)(40/100)=8.4$. The 8th and 9th lowest return are 6% and 7%, so the 40th percentile is $6+0.4(7-6)=6.4\%$.
+B. La ubicación del percentil 40 es $(20+1)(40/100)=8.4$. El 8vo y 9no rendimiento más bajo son 6% y 7%, por lo que el percentil 40 es $6+0.4(7-6)=6.4\%$.
 
-C. The range of the data  is $32-(-28)=60$.
+C. EL rango de los datos es $32-(-28)=60$.
 
-D. Divide the range by to get 5. The 10th interval from the bottom is the 3rd from the top. The top three intervals are $27\leq{x}\leq{32},22\leq{x}<27$, and $17\leq{x}<22$. There are only two observations in the 10th interval, 18% and 21%. The relative frequency is 2/20=10%. Since there are four observations $\geq{22}\%$, the cumulative relative frequency of the 10th interval is $(20-4)/20=80\%$.
+D. Dividimos el rango por 5 para obtener 12 intervalos. Los tres intervalos principales son el décimo tercero, décimo segundo y décimo respectivamente $27\leq{x}\leq{32},22\leq{x}<27$, y $17\leq{x}<22$. Solo hay dos observaciones en el décimo intervalo, 18% y 21%. La frecuencia relativa es 2/20 = 10%. Dado que hay cuatro observaciones $\geq{22}\%$, la frecuencia relativa acumulada del décimo intervalo es $(20-4)/20=80\%$.
