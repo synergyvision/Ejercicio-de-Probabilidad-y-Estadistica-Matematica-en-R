@@ -7,6 +7,8 @@ fontsize: 12pt
 ---
 ```{r setup,include=FALSE}
 library(knitr)
+library('ggplot2')
+library('scales')
 ```
 ##
 1. La compañía High Perfomance Bicycle Products de Chape Hill, Carolina del Norte, hizo un muestreo de sus registros de embarque para cierto día con los siguientes resultados:
@@ -51,7 +53,7 @@ kable(fr)
 ```
 
 \begin{itemize}
-\item[a)] A partir de la distribución de frecuencias, el tiempo entre la recepción de una orden y su entrega, tiene una mayor frecuencia entre los días 7 y 12 de 8 entregas.
+\item[a)] La mayor frecuencia está en el intervalo de [7,13) días, observando 8 entregas y en los intervalos vecinos a este.
 
 \item[b)] No, no se puede determinar que la compañía asegure la mitad de sus entregas en 10 días o menos a partir de la distribución de frecuencias, ya que entre los días 1 y 12 hay una frecuencia de 12 entregas que representan mas de la mitad de ellas, sin embargo, se pierde información de la frecuencia de entregas entre los días 1 y 10.
 
@@ -85,6 +87,16 @@ a) Ordenemos los datos en forma ascendente:
 0.4 & 0.4 & 0.4 & 0.5 & 0.5 & 0.5 & 0.5 & 0.7 & 0.7 & 1.0\\
 \end{tabular}
 \end{center}
+
+**\underline{En R:}**
+
+Usando el comando `sort()` ordenamos los datos en una forma ascendente:
+
+```{r,comment=''}
+arreglo<-c(0.7,0.4,-0.3,0.2,-0.1,0.1,0.3,0.7,0.0,-0.4,0.1,0.5,0.2,0.3,1.0,-0.3
+,0.0,0.2,0.5,0.1,-0.5,-0.3,0.1,0.5,0.4,0.0,0.2,0.3,0.5,0.4)
+sort(arreglo)
+```
 
 b) Utilizando las cuatro clases de igual tamaño, construyamos una distribución de frecuencias:
 
@@ -122,8 +134,6 @@ Sistemas asociados & 11$\frac{1}{2}$ & 10$\frac{7}{8}$ & 11$\frac{1}{4}$ & +$\fr
 3) de \textit{extremo} abierto o cerrado?
 
 ¿Respondería de manera diferente al inciso c) si el cambio fuera expresado sólo como "mayor","menor" o "sin cambio"?
-
-\newpage
 
 **\underline{Solución:}**
 
@@ -168,8 +178,6 @@ kable(df)
 
 a) Construyamos las distribuciones de frecuencias relativas acumuladas,
 
-\newpage
-
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{|l|c|c|}
@@ -211,16 +219,16 @@ mayor que 109 \$ & 0 & 0 \\ \hline
 b) Graficando las dos ojivas tenemos:
 
 ```{r,echo=FALSE,fig.height=4}
-clase<-c(70,75,80,85,90,95,100,105,110)
-facum.menor<-c(0,2/50,7/50,17/50,31/50,42/50,45/50,48/50,1)
-plot(clase,facum.menor,xlab = 'Ojiva "Menor que"', ylab = 'Frecuencia relativa acumulada',type = 'b',col='blue',pch=16)
+dat<-data.frame(clase=c(70,75,80,85,90,95,100,105,110),facum.menor=c(0,2/50,7/50,17/50,31/50,42/50,45/50,48/50,1))
+ggplot(dat,mapping=aes(clase,facum.menor))+geom_point(colour='blue')+geom_line(colour='blue')+labs(x = 'Ojiva "Menor que"', y = 'Frecuencia relativa acumulada')
 ```
 
 ```{r,echo=FALSE,fig.height=4}
-clase1<-c(69,74,79,84,89,94,99,104,109)
-facum.menor1<-c(1,48/50,43/50,33/50,19/50,8/50,5/50,2/50,0)
-plot(clase1,facum.menor1,xlab = 'Ojiva "Mayor que"', ylab = 'Frecuencia relativa acumulada',type = 'b',col='blue',pch=16)
+dat1<-data.frame(clase1=c(69,74,79,84,89,94,99,104,109),facum.menor1=c(1,48/50,43/50,33/50,19/50,8/50,5/50,2/50,0))
+ggplot(dat1,mapping=aes(clase1,facum.menor1))+geom_point(colour='blue')+geom_line(colour='blue')+labs(x = 'Ojiva "Mayor que"', y = 'Frecuencia relativa acumulada')
 ```
+
+Podemos ver en las dos ojivas que el punto medio es cercano a los 90$.
 
 \newpage
 
@@ -270,17 +278,16 @@ mayor que 50.000 \$ & 7 & 7/130 = 0.053\\ \hline
 Graficando tenemos:
 
 ```{r,echo=FALSE,fig.height=4}
-clase2<-c(0,5000,10000,15000,20000,30000,40000,50000)
-facum.menor2<-c(1,125/130,116/130,105/130,72/130,35/130,16/130,7/130)
-plot(clase2,facum.menor2,xlab = 'Ojiva "Mayor que"', ylab = 'Frecuencia relativa acumulada',type = 'b',col='blue',pch=16)
+dat2<-data.frame(clase2=c(0,5000,10000,15000,20000,30000,40000,50000),facum.menor2=c(1,125/130,116/130,105/130,72/130,35/130,16/130,7/130))
+ggplot(dat2,mapping=aes(clase2,facum.menor2))+geom_point(colour='blue')+geom_line(colour='blue')+labs(x = 'Ojiva "Mayor que"', y = 'Frecuencia relativa acumulada')
 ```
 
 
-a) Entre un 27% y 55% de vendedores ganan más de $25.000.
+a) Podemos asegurar que alrededor del 27% de los vendedores ganan mas de \$25.000, pues se pierde información para los vendedores que ganan mas de $20.000.
 
-b) El vendedor medio gana alrededor de $25.000.
+b) El vendedor medio gana alrededor de $20.000.
 
-c) El ingreso anual aproximado de un vendedor cuyo desempeño es cercano al 25% del ingreso máximo anual es de alrededor de $20.000.
+c) El ingreso anual aproximado de un vendedor cuyo desempeño es cercano al 25% del ingreso máximo anual es de alrededor de $30.000.
 
 \newpage
 
@@ -328,15 +335,31 @@ e) Con base en la ojiva del inciso d. ¿qué fracción de los estados tiene un n
 
 **\underline{Solución:}**
 
-a) Para organizar los datos en 10 clases de igual ancho, tomemos el valor unitario siguiente después del valor más grande de los datos que en este caso es California con 12.324,4 y le restamos el valor más pequeño de los datos que corresponden a las Islas Vírgenes con 42,4 para luego dividirlo entre la cantidad de clases deseadas, en nuestro caso 10 clases, por lo que:
+a) Para organizar los datos en 10 clases de igual ancho, usarmos la siguiente ecuación:
+\begin{equation*}
+\textit{Ancho del intervalo} = \frac{x_{max} - x_{min}}{k}
+\end{equation*}
+
+donde $x_{max}$ es el valor más grande de los datos, que en este caso es California con 12.324,3 , $x_{min}$ es el valor más pequeño de los datos que le corresponde a las Islas Vírgenes con 42,4 y $k$ la cantidad de clases deseadas. Así sustituyendo estos valores en la ecuación nos queda:
+
 \begin{equation*}
 \begin{split}
-\textit{Ancho de los intervalos} &= \frac{12.324,4 - 42,4}{10} \\
-&= 1.228,2
+\textit{Ancho del intervalo} &= \frac{12.324,3 - 42,4}{10}\\
+&=1.228,2
 \end{split}
 \end{equation*}
 
-Organizando nuestros datos tenemos en diez clases tenemos:
+**\underline{En R:}**
+```{r,comment=''}
+x_max<-12324.3
+x_min<-42.4
+k<-10
+Ancho_Intervalo<-round((x_max-x_min)/k,1)
+Ancho_Intervalo
+```
+
+
+Organizando nuestros datos en diez clases tenemos:
 \
 \begin{small}
 \begin{center}
@@ -356,6 +379,9 @@ Clase & Estados \\ \hline
 \end{tabular}
 \end{center}
 \end{small}
+
+\newpage
+
 b) Las frecuencias absolutas y relativas que caen en cada clase son:
 
 \begin{small}
@@ -378,6 +404,30 @@ Clase & Frecuencia & Frecuencia Relativa \\ \hline \hline
 \end{center}
 \end{table}
 \end{small}
+
+**\underline{En R:}**
+
+Construyamos ahora en **R** la distribución de frecuencias absolutas y relativas. 
+
+```{r}
+empleos<-c(rep(50,26),rep(2000,14),rep(3000,5),rep(4000,2),rep(5000,3),7000,8000,12000)
+Intervalos<-cut(empleos,breaks = c(42.4,1270.5,2498.7,3726.9,4955.1,6183.3,7411.5,8639.7,9867.9,11096.1,12324.3),include.lowest = T,right = T)
+conteo<-table(Intervalos)
+df<-data.frame(conteo)
+colnames(df)<-c('Intervalos','Frecuencia')
+kable(df)
+```
+
+Añadiendo las frecuencias relativas tenemos:
+
+\newpage
+
+```{r}
+fr<-transform(df,Fr=prop.table(Frecuencia))
+colnames(fr)<-c('Intervalos','Frecuencia','Frecuencia Relativa')
+kable(fr)
+```
+
 
 c) Los datos presentados en el enunciado son continuos, ya que estos son mediciones númericas.
 
@@ -406,11 +456,10 @@ menor que  12.324,4 & 53 & 53/53 \\ \hline
 Graficando tenemos:
 
 ```{r,echo=FALSE,fig.height=4}
-clase3<-c(42.4,1270.6,2498.8,3727,4955.2,6183.4,7411.6,8639.8,9868,11096.2,12324.4)
-facum.menor3<-c(0,26/53,40/53,45/53,47/53,50/53,51/53,52/53,52/53,52/53,1)
-plot(clase3,facum.menor3,xlab = 'Ojiva "Menor que"', ylab = 'Frecuencia relativa acumulada',type = 'b',col='blue',pch=16)
+dat3<-data.frame(clase3=c(42.4,1270.6,2498.8,3727,4955.2,6183.4,7411.6,8639.8,9868,11096.2,12324.4),facum.menor3=c(0,26/53,40/53,45/53,47/53,50/53,51/53,52/53,52/53,52/53,1))
+ggplot(dat3,mapping=aes(clase3,facum.menor3))+geom_point(colour='blue')+geom_line(colour='blue')+labs(x = 'Ojiva "Mayor que"', y = 'Frecuencia relativa acumulada')
 ```
-e) Alrededor de un 20% de los estados de Estados Unidos tienen un nivel de empleo no agrícola mayor a los tres millones de trabajadores.
+e) Alrededor de un 15% de los estados de Estados Unidos tienen un nivel de empleo no agrícola mayor a los tres millones de trabajadores.
 
 \newpage
 
@@ -515,6 +564,15 @@ Núm. de ventas \\ \midrule
 
 \newpage
 
+**\underline{En R:}**
+
+Usamos el comando `sort()` para ordenar los datos en una forma descendente con el parámetro `decreasing=TRUE`:
+
+```{r,comment=''}
+ventas<-c(3,1,1,8,3,5,4,9,5,1,3,7,1,1,5,6,6,2,2,1,1,1,1,7,3,1,1,5)
+sort(ventas,decreasing = TRUE)
+```
+
 b) Construyamos dos distribuciones de frecuencias relativas, una de 3 clases y otra de 9 clases, esto es:
 \
 \begin{table}[h]
@@ -545,6 +603,50 @@ Clase & Frecuencia Relativa \\ \hline \hline
 \end{table}
 \
 Podemos notar en las dos distribuciones que los menores números de ventas de equipos tienen la mayor proporción de ventas de los 28 países. Las conclusiones que podría sacar Slayden son que entre menos equipos se vendan por país, estas tendran una mayor proporción de ventas.
+
+**\underline{En R:}**
+
+Construyamos primero la distribución de frecuencias con 3 clases:
+
+```{r}
+ventas<-c(3,1,1,8,3,5,4,9,5,1,3,7,1,1,5,6,6,2,2,1,1,1,1,7,3,1,1,5)
+Intervalos<-cut(ventas,breaks = c(1,3,6,9),include.lowest = T,right = T)
+conteo<-table(Intervalos)
+df<-data.frame(conteo)
+colnames(df)<-c('Intervalos','Frecuencia')
+kable(df)
+```
+
+Añadiendo las frecuencias relativas tenemos:
+
+```{r}
+fr<-transform(df,Fr=prop.table(Frecuencia))
+colnames(fr)<-c('Intervalos','Frecuencia','Frecuencia Relativa')
+kable(fr)
+```
+
+Ahora construyamos la distribución de frecuencias con 9 clases:
+
+```{r}
+ventas<-c(3,1,1,8,3,5,4,9,5,1,3,7,1,1,5,6,6,2,2,1,1,1,1,7,3,1,1,5)
+Intervalos<-cut(ventas,breaks = c(0,1,2,3,4,5,6,7,8,9),include.lowest = T,right = T)
+conteo<-table(Intervalos)
+df<-data.frame(conteo)
+colnames(df)<-c('Intervalos','Frecuencia')
+kable(df)
+```
+
+Añadiendo las frecuencias relativas tenemos:
+
+\newpage
+
+```{r}
+fr<-transform(df,Fr=prop.table(Frecuencia))
+colnames(fr)<-c('Intervalos','Frecuencia','Frecuencia Relativa')
+kable(fr)
+```
+
+\newpage
 
 8. El gerente de Fresh Foods, una tienda de abarrotes en Utah, piensa ampliar las horas de servicio de la tienda del horario actual de 7 A.M. a 11 P.M., a 24 horas. Con base en la información de Information Resources, Inc., una empresa de investigación de mercados a nivel nacional, el número estimado de clientes por hora sería el mostrado en la siguiente tabla. Presente los datos de manera que ayude al consejo directivo a tomar una decisión acerca de la propuesta. ¿Existen limitaciones sobre el uso de estos datos para la decisión de negocios?
 \
@@ -585,8 +687,6 @@ Media día & 252 \\
 \end{center}
 \end{table}
 
-\newpage
-
 **\underline{Solución:}**
 
 Construyamos una distribución de frecuencias absolutas y relativas con los datos proporcionados por la empresa Information Resources Inc, para poder tomar una desición acerca de la propuesta, consideremos 4 clases formadas por el horario de atención para el estimado de clientes por hora formadas de la siguiente manera: 12 A.M. - 6 A.M. , 7 A.M. - 12 P.M. , 1 P.M. - 6 P.M. , 7 P.M. - 11 P.M.
@@ -605,6 +705,27 @@ Clase & Frecuencia & Frecuencia Relativa \\ \hline \hline
 \end{table}
 \
 Como podemos observar en la tabla, con base en la información suministrada por la empresa, menos del 1% del estimado de clientes se dirigen a los establecimientos entre las 12 A.M. - 6 A.M. por lo que podemos concluir que no es recomendable extender el horario de atención al cliente para la tienda de abarrotes.
+
+**\underline{En R:}**
+
+Para este ejercicio en **R** usaremos el formato 24hrs para el horario de la tienda de abarrotes.
+
+```{r}
+hora<-c(rep(5,21),rep(8,987),rep(14,1204),rep(20,213))
+Intervalos<-cut(hora,breaks = c(0,7,13,19,23),include.lowest = T,right = F)
+conteo<-table(Intervalos)
+df<-data.frame(conteo)
+colnames(df)<-c('Intervalos','Frecuencia')
+kable(df)
+```
+
+Añadiendo las frecuencias relativas tenemos:
+
+```{r}
+fr<-transform(df,Fr=prop.table(Frecuencia))
+colnames(fr)<-c('Intervalos','Frecuencia','Frecuencia Relativa')
+kable(fr)
+```
 
 \newpage
 
@@ -633,23 +754,32 @@ Tokio & 3.619,02 & n.a. \\
 a) La mejor forma de presentar a los 3 mercados mas importantes es con un diagrama de barras. Veamos mediante R
 
 ```{r,fig.height=3}
-mercados<-as.matrix(data.frame(Londres=1221.86,NYSE=4279.63,Tokio=3619.02))
-barplot(mercados,col='blue')
+mercados<-data.frame(ciudades=c('Londres','NYSE','Tokio'),valores=c(1221.86
+,4279.63,3619.02))
+ggplot(mercados,aes(x=ciudades,y=valores))+
+geom_bar(stat = 'identity',color='black',fill='blue',alpha=0.5)+
+labs(x = 'Ciudades', y = 'Valores Estadounidenses')
 ```
+
 
 b) Análogo al inciso a) podemos mostrar dos diagramas de barras para mostrar las diferencia entre los valores estadounidenses y de otros países entre las bolsas de Estados Unidos y Reino Unido. Por ejemplo para la bolsa de estados unidos tenemos:
 
 ```{r,fig.height=3}
-bolsa1<-as.matrix(data.frame('Valores Estadounidenses'=4279.63,'Valores Otros'=218.56,check.names = FALSE))
-barplot(bolsa1,col='blue')
+bolsa1<-data.frame(valores=c('Valores Estadounidenses','Valores Otros')
+,valor=c(4279.63,218.56))
+ggplot(bolsa1,aes(x=valores,y=valor))+
+geom_bar(stat = 'identity',color='black',fill='blue',alpha=0.5)+
+labs(x = 'Valores estadounidenses y otros', y = 'Valores en el mercado')
 ```
 
 Para la bolsa del Reino Unido tenemos:
 
 ```{r,fig.height=3}
-bolsa2<-as.matrix(data.frame('Valores Estadounidenses'=1221.86
-,'Valores Otros'=3127.93,check.names = FALSE))
-barplot(bolsa2,col='blue')
+bolsa2<-data.frame(valores=c('Valores Estadounidenses','Valores Otros')
+,valor=c(1221.86,3127.93))
+ggplot(bolsa2,aes(x=valores,y=valor))+
+geom_bar(stat = 'identity',color='black',fill='blue',alpha=0.5)+
+labs(x = 'Valores estadounidenses y otros', y = 'Valores en el mercado')
 ```
 
 \newpage
@@ -661,8 +791,8 @@ barplot(bolsa2,col='blue')
 \begin{tabular}{l r c r r}
  & 1er. trimestre & 2do. trimestre & 3er. trimestre & 4to. trimestre \\ \midrule
 Año 1 & \$ 10.000 & \$ 5.000 & \$ 25.000 & \$ 15.000 \\
-Año 2 & 20.000 & 10.000 & 20.000 & 10.000 \\
-Año 3 & 30.000 & 15.000 & 45.000 & 50.000 \\
+Año 2 & \$ 20.000 & \$ 10.000 & \$ 20.000 & \$ 10.000 \\
+Año 3 & \$ 30.000 & \$ 15.000 & \$ 45.000 & \$ 50.000 \\
 \end{tabular}
 \end{center}
 \end{table}
@@ -691,12 +821,16 @@ Por lo que la media por trimestre son:
 colMeans(ganancias)
 ```
 
+En promedio el tercer trimestre de cada año la Sra Smith obtiene sus mayores ganancias.
+
 \newpage
 
 b) Ahora calculemos el promedio trimestral por año, esto da:
 ```{r,comment=''}
 rowMeans(ganancias)
 ```
+
+En el tercer año la Sra. Smith obtuvo en promedio sus mayores ganancias.
 
 c) Primero calculemos la media de los valores que nos dio el inciso a), esto es:
 ```{r,comment=''}
@@ -713,7 +847,7 @@ Finalmente calculemos la media para todos los valores de las ganancias de la rep
 mean(c(ganancias[,1],ganancias[,2],ganancias[,3],ganancias[,4]))
 ```
 
-Así podemos observar que las tres cantidades son iguales.
+Así podemos observar que las tres cantidades son iguales, es decir, el promedio de las ganancias de la Sra. Smith es de $21.250.
 
 \newpage
 
@@ -759,6 +893,16 @@ Año & Presupuesto\\ \midrule
 
 **\underline{Solución:}**
 
+Construyamos en **R** un `data.frame()` para guardar los datos:
+
+```{r,comment=''}
+registro<-data.frame(Año=c(1992,1991,1990,1989,1988,1987,1986,1985,1984,1983,1982
+,1981,1980,1979,1978),Presupuesto=c(30000,28000,25000,27000,26000,24000
+,19000,21000,22000,24000,30000,20000,15000,10000,9000))
+registro
+```
+
+
 a) Calculemos la media aritmética para los últimos 5 años de su gestión,
 
 **\underline{En R:}**
@@ -767,6 +911,14 @@ ultimos<-c(30000,28000,25000,27000,26000)
 promedio_ultimos<-mean(ultimos)
 promedio_ultimos
 ```
+
+Desde el `data.frame()` tenemos:
+
+```{r,comment=''}
+mean(registro[1:5,'Presupuesto'])
+```
+
+El promedio de los últimos 5 años de gestión es de $27.200.
 
 b) Calculemos la media aritmética para los primeros 5 años de su gestión,
 
@@ -777,6 +929,14 @@ promedio_primeros<-mean(primeros)
 promedio_primeros
 ```
 
+Desde el `data.frame()` tenemos:
+
+```{r,comment=''}
+mean(registro[6:10,'Presupuesto'])
+```
+
+El promedio de los primeros 5 años de gestión es de $22.000.
+
 c) Calculemos la media aritmética para los 5 años anteriores a su gestión,
 
 **\underline{En R:}**
@@ -786,6 +946,13 @@ promedio_anterior<-mean(anteriores)
 promedio_anterior
 ```
 
+Desde el `data.frame()` tenemos:
+
+```{r,comment=''}
+mean(registro[11:15,'Presupuesto'])
+```
+
+El promedio para los 5 años anteriores a su gestión es de $16.800.
 
 d) En base a los resultados de los incisos a),b) y c) podemos observar que ha habido una tendencia de aumento del presupuesto anual.
 Por esto, se puede concluir que la presidenta NO ha ahorrado dinero al municipio.
@@ -799,6 +966,17 @@ Veamos que tasa de interés es la apropiada,
 
 El costo total del trabajo realizado es 81.000$, cuyas horas invertidas fueron 3589,96 horas. Por lo que la tasa promedio que debe cobrar a los clientes es de $\frac{81000}{3589,96}=22,56\$/h$.
 
+**\underline{En R:}**
+
+Usamos el comando `weighted.mean()` para calcular la media ponderada:
+
+```{r,comment=''}
+x<-c(75,40,30,15)
+w<-c(106.6/3589.9,350/3589.9,800/3589.9,2333.3/3589.9) #pesos
+weighted.mean(x,w)
+```
+
+
 \newpage
 
 13. Bob Headen desea calcular el factor de crecimiento promedio de su tienda de aparatos de sonido en los últimos 6 años; utilizando una media geométrica, llega a un resultado de 1.24. Los factores de crecimiento individuales de los últimos 5 años fueron 1.19, 1.35, 1.23, 1.19 y 1.30, pero Bob perdió los registros del sexto año después de haber calculado la media. ¿Cuál era ese factor de crecimiento?
@@ -809,15 +987,23 @@ Usando la media geométrica, tenemos:
 
 \begin{equation*}
 \begin{split}
-MG &= \sqrt[n]{f_1 \cdot f_2 \cdot ... \cdot f_n}\\
-(1,24) &= \sqrt[6]{1,19 \cdot 1,35 \cdot 1,23 \cdot 1,19 \cdot 1,30 \cdot Y}\\
-(1,24)^6 &= 1,19 \cdot 1,35 \cdot 1,23 \cdot 1,19 \cdot 1,30 \cdot Y \\
-(1,24)^6 &= 3,056864 \cdot Y \\
-3,635215 &= 3,056864 \cdot Y \\
+G &= \sqrt[n]{f_1 \times f_2 \times ... \times f_n}\\
+(1,24) &= \sqrt[6]{1,19 \times 1,35 \times 1,23 \times 1,19 \times 1,30 \times Y}\\
+(1,24)^6 &= 1,19 \times 1,35 \times 1,23 \times 1,19 \times 1,30 \times Y \\
+(1,24)^6 &= 3,056864 \times Y \\
+3,635215 &= 3,056864 \times Y \\
 Y &=\frac{3,635215}{3,056864} \\
 Y &= 1,189197
 \end{split}
 \end{equation*}
+
+Comprobemos en **R** si en efecto  $Y=1,18$ es el factor de crecimiento:
+
+```{r,comment=''}
+factores<-c(1.19,1.35,1.23,1.19,1.30,1.18)
+prod(factores)^(1/6)
+```
+
 
 14. Lisa's Quick Stop atrae a sus clientes con la venta de leche a un precio 2% menor que la tienda de abarrotes más grande del pueblo. Los siguientes son los precios de un galón de leche durante un periodo de 2 meses. ¿Cuál es el cambio porcentual promedio del precio en la tienda de Lisa?
 
@@ -833,14 +1019,14 @@ Semana 1 & Semana 2 & Semana 3 & Semana 4 & Semana 5 & Semana 6 & Semana 7 & Sem
 
 **\underline{Solución:}**
 
-Calculemos el cambio de porcentaje promedio usando la media geom?trica como medida de tendencia central.
+Calculemos el cambio de porcentaje promedio usando la media geométrica como medida de tendencia central.
 
 **\underline{En R:}**
 ```{r,comment=''}
 MG<-(2.30*2.42*2.36*2.49*2.24*2.36*2.42*2.49)^(1/8)
 MG
 ```
- EL cambio de porcentaje promedio de los precios en la tienda en 2 meses es de 2,38%.
+El cambio de porcentaje promedio de los precios en la tienda de Lisa en 2 meses es de 2,38%.
 
 \newpage
 
