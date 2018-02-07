@@ -470,7 +470,7 @@ Larsen Equipment Rental proporciona a los contratistas las herramientas que nece
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{c c c}
-Grupo de equipos & Días descompuesto & Piezas de maquinarias\\ \midrule
+Grupo de equipos & Piezas de maquinarias & Días descompuesto \\ \midrule
 1 & 1 & 2\\ 
 2 & 3 & 19\\ 
 3 & 1 & 14\\
@@ -485,7 +485,7 @@ Grupo de equipos & Días descompuesto & Piezas de maquinarias\\ \midrule
 \begin{table}[h]
 \begin{center}
 \begin{tabular}{c c c}
-Grupo de equipos & Días descompuesto & Piezas de maquinarias\\ \midrule
+Grupo de equipos & Piezas de maquinarias & Días descompuesto\\ \midrule
 8 & 5 & 8\\ 
 9 & 8 & 29\\
 10 & 2 & 6\\ 
@@ -505,13 +505,22 @@ Grupo de equipos & Días descompuesto & Piezas de maquinarias\\ \midrule
 
 \textbf{\underline{Solución:}}
 
-a) Calculemos la media para calcular el promedio de descompostura por pieza de maquinaria,
+a) Calculemos la media ponderada para calcular el promedio de descompostura por pieza de maquinaria,
+
+\begin{equation*}
+\begin{split}
+\bar{x}_w &=\frac{(\frac{1}{105}x1)+(\frac{2}{105}x3)+(\frac{3}{105}x1)+...+(\frac{13}{105}x1)+(\frac{1}{105}x1)}{\frac{1+2+3+4+5+6+7+8+9+10+11+12+13+14}{105}}\\
+&=\frac{302}{105}\\
+&=2.87619
+\end{split}
+\end{equation*}
 
 **\underline{En R:}**
 
 ```{r,comment=""}
+pesos<-c(1,2,3,4,5,6,7,8,9,10,11,12,13,14)/105
 maquinarias<-c(1,3,1,4,2,1,1,5,8,2,2,6,1,1)
-media<-mean(maquinarias)
+media<-weighted.mean(maquinarias,pesos)
 media
 ```
 
@@ -706,8 +715,9 @@ h<-ggplot(dat,aes(x=demanda))+
 geom_histogram(aes(y=..density..),closed="left",bins=8,fill="blue",col="black",alpha=0.7)+
 labs(title="Histograma",x="Demanda",y="Frecuencia Relativa")
 h
-a<-sort(unique(demanda))
-plot(fa[,3]~a,xlab="Demanda",ylab="Frecuencia Acumulada", col="red",type="o")
+a<-data.frame(sort(unique(demanda)))
+b<-ggplot(a,mapping=aes(sort(unique(demanda)),fa[,3]))+geom_line(colour="blue")+geom_point(colour="blue")+labs(x="Demanda",y="Frecuencia Acumulada")
+b
 ```
 
 b) Calculemos los tres cuantiles con la frecuencia acumulada,
@@ -907,23 +917,14 @@ a) Calculemos la anchura del segundo y séptimo intervalo de clase,
 **\underline{En R:}**
 
 ```{r,comment=""}
-#Calculemos primeramente las fronteras superior e inferior
-fsup2<-1/2*(4999+5000) #promedio del lim superior con lim inferior de la siguiente clase.
-fsup2
-finf2<-1/2*(2499+2500) #promedio del lim inferior con lim superior con el anterior intervalo clase.
-finf2
-fsup7<-1/2*(249999+250000)
-fsup7
-finf7<-1/2*(99999+100000)
-finf7
-# Las anchuras son:
-anchura2<-fsup2-finf2
+# Las anchuras son la diferencia  entre limite superior e inferior de los respectivos intervalos:
+anchura2<-4999-2500
 anchura2
-anchura7<-fsup7-finf7
+anchura7<-249000-100000
 anchura7
 ```
 
-La anchura o tamaño del intervalo 2 es de 2500 dólares y la anchura del séptimo es de 150000 dólares.
+La anchura o tamaño del intervalo 2 es de 2499 dólares y la anchura del séptimo es de 149000 dólares.
 
 b) Siete intervalos de clase tienen diferentes tamaños, ya que el primero y el último no tienen tamaños especificados.
 
@@ -932,21 +933,21 @@ Calculemos los tamaños de los intervalos 3, 4, 5, 6, y 8,
 **\underline{En R,}**
 
 ```{r,comment=""}
-anchura3<-(10000+9999)/2-(4999+5000)/2
+anchura3<-9999-5000
 anchura3
-anchura4<-(19999+20000)/2-(10000+9999)/2
+anchura4<-19999-10000
 anchura4
-anchura5<-(39999+40000)/2-(19999+20000)/2
+anchura5<-39999-20000
 anchura5
-anchura6<-(99999+100000)/2-(39999+40000)/2
+anchura6<-99999-40000
 anchura6
-anchura8<-(499999+500000)/2-(250000+249000)
+anchura8<-499999-250000
 anchura8
 ```
 
 c) Hay dos intervalos de clase abiertos que son: Menos de 2,500 que no posee límite inferior y 500,000 o más que no posee límite superior.
 
-d) La anchura del segundo intervalo de clase es de 2,500 dólares por lo que habría que escribir el primer intervalo como: $$0-2,499$$
+d) La anchura del segundo intervalo de clase es de 2499 dólares por lo que habría que escribir el primer intervalo como: $$0-2,499$$
 
 e) Calculemos la marca (punto medio) del segundo y séptimo intervalo de clase,
 
@@ -978,17 +979,25 @@ h) El porcentaje de plantaciones con ventas de al menos \$10,000, pero no mayore
 
 i) Si la muestra es aleatoria, consideremos la siguiente ojiva de porcentajes,
 
+\newpage
+
 **\underline{En R:}**
 ```{r,comment=""}
 ptomedio<-c(2500,3749.5,7499.5,14999.5,29999.5,69999.5,174999.5,374999.5,500000)
 #ptos medios de las clases
-porcetanjes<-c(25.9,39.1,52.1,63.8,74.8,89.2,97.7,99.5,100.1) #frecuencia acumulada
-ojiva<-plot(porcetanjes~ptomedio,type="b",xlab="Ventas",ylab="Porcentajes",main="Ojiva",col="red")
+porcentajes<-c(25.9,39.1,52.1,63.8,74.8,89.2,97.7,99.5,100.1) #frecuencia acumulada
+d<-data.frame(ptomedio,porcentajes)
+b1<-ggplot(d,mapping=aes(ptomedio,porcentajes))+geom_line(colour="blue")+
+  geom_point(colour="blue")+
+  labs(x="Ventas",y="Porcentajes")
+b1
 ```
+
+
 
 Debido a los diferentes tamaños de los intervalos de clase, es dificil interpretar los datos, sin embargo podemos decir que el porcentaje que tuvo ventas entre  \$15,000 y \$25,000 oscila entre $8-10$, que es la diferencia entre $\$78-\$68$, las cuales son los porcentajes de ventas de \$25,000 y \$15,000 respectivamente.
 
-j) Todos los porcentajes suman $25.9+13.2+13.0+11.7+11.0+14.4+8.5+1.8+0.6=100.1\%$, es decir, hay un 0.1% de porcentaje que está de más, esto podría ser debido a los errores de redondeo al calcular porcentajes.
+j) Todos los porcentajes suman $25.9+13.2+13.0+11.7+11.0+14.4+8.5+1.8+0.6=100.1\%$, es decir, hay un 0.1% de porcentaje que está de más, esto podría ser debido a los errores de redondeo al calcular porcentajes.También los tamaños de los intervalos no son iguales y hay dos intervalos que poseen el mismo límite, que son el primero y el segundo.
 
 \newpage
 
@@ -1008,7 +1017,7 @@ a) Se imposibilita debido a los diferentes tamaños de los intervalos de clase. 
 
 b) Se modificaría cambiando los intervalos de clase a intervalos de clase con anchuras iguales.
 
-c) Veamos la siguiente modificación de la distribución anterior, donde escogimos la anchura de los intervalos de 250000\$.
+c) Veamos la siguiente modificación de la distribución anterior, donde escogimos la anchura de los dos primeros intervalos de 250000\$. Para el primer intervalo sumamos todos los porcentajes desde 0-249999 que son $25.9+13.2+13.0+11.7+11.0+14.4+8.5= 97.7\%$
 
 \begin{table}[htpb]
 \begin{center}
@@ -1018,7 +1027,7 @@ Ventas (dólares) & Explotaciones (\%)\\
 \hline \hline
 0-249,999 & 97.7\\ \hline
 250,000-499,999 & 1.8\\ \hline
-500,000 o 750,000 & 0.6\\ \hline
+500,000 o más & 0.6\\ \hline
 \end{tabular}
 \end{center}
 \end{table}
