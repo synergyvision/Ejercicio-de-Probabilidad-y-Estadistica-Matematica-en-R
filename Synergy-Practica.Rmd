@@ -507,45 +507,55 @@ Grupo de equipos & Piezas de maquinarias & Días descompuesto\\ \midrule
 
 a) Calculemos la media ponderada para calcular el promedio de descompostura por pieza de maquinaria,
 
-\begin{equation*}
-\begin{split}
-\bar{x}_w &=\frac{(\frac{1}{105}x1)+(\frac{2}{105}x3)+(\frac{3}{105}x1)+...+(\frac{13}{105}x1)+(\frac{1}{105}x1)}{\frac{1+2+3+4+5+6+7+8+9+10+11+12+13+14}{105}}\\
-&=\frac{302}{105}\\
-&=2.87619
-\end{split}
-\end{equation*}
+$$
+\begin{array}{rl}
+\overline{X}_w & = \displaystyle \frac{\sum_{i=1}^{14} \omega_i x_i}{\sum_{i=1}^{14} \omega_i}\\
+& = \displaystyle \frac{(1\times 2)+(3\times 19)+(1\times 14)+...+(1\times 10)}{1+3+1+...+1}\\
+& = \displaystyle \frac{507}{38}\\
+\overline{X}_w & = 13.34211
+\end{array}
+$$
+
 
 **\underline{En R:}**
 
 ```{r,comment=""}
-pesos<-c(1,2,3,4,5,6,7,8,9,10,11,12,13,14)/105
-maquinarias<-c(1,3,1,4,2,1,1,5,8,2,2,6,1,1)
+pesos<-c(1,3,1,4,2,1,1,5,8,2,2,6,1,1)
+maquinarias<-c(2,19,14,21,5,7,11,8,29,6,0,4,4,10)
 media<-weighted.mean(maquinarias,pesos)
 media
 ```
 
 b) Calculemos la media de descompostura por pieza de maquinaria para cada grupo al clasificarlas por grupo.
 
-Los grupos serían 1, 2, 3, 4, 5, 6 y 8, por lo que las medias están dadas por,
+Los grupos que consideraremos son por la cantidad de piezas de descompostura que tengan, es decir, $\text{Grupo}_1=\text{Días de descompuesto cuando las piezas de maquinarias son 1}$ este consta de los datos 2, 14, 7, 11, 4 y 10. Los grupos serán 
+
+- $\text{Grupo}_1=\text{Días de descompuesto cuando las piezas de maquinarias son 1}= \{2,14,7,11,4,10\}$
+- $\text{Grupo}_2=\text{Días de descompuesto cuando las piezas de maquinarias son 2}= \{5,6,0\}$
+- $\text{Grupo}_3=\text{Días de descompuesto cuando las piezas de maquinarias son 3}= \{19\}$
+- $\text{Grupo}_4=\text{Días de descompuesto cuando las piezas de maquinarias son 4}= \{21\}$
+- $\text{Grupo}_5=\text{Días de descompuesto cuando las piezas de maquinarias son 5}= \{8\}$
+- $\text{Grupo}_6=\text{Días de descompuesto cuando las piezas de maquinarias son 6}= \{4\}$
+- $\text{Grupo}_8=\text{Días de descompuesto cuando las piezas de maquinarias son 8}= \{29\}$
 
 **\underline{En R:}**
 
 ```{r,comment=""}
-grupo1<-c(1,3,6,7,13,14)
+grupo1<-c(2,14,7,11,4,10)
 m_g1<-mean(grupo1)
 m_g1
-grupo2<-c(5,10,11)
+grupo2<-c(5,6,0)
 m_g2<-mean(grupo2)
 m_g2
-m_g3<-2
+m_g3<-19
 m_g3
-m_g4<-4
+m_g4<-21
 m_g4
 m_g5<-8
 m_g5
-m_g6<-12
+m_g6<-4
 m_g6
-m_g8<-9
+m_g8<-29
 m_g8
 ```
 
@@ -557,13 +567,13 @@ En la siguiente tabla mostraremos la media de decompostura por pieza de maquinar
 \hline
 Grupos&Media\\
 \hline \hline
-1&7.33\\ \hline
-2&8.66\\ \hline
-3&2\\ \hline
-4&4\\ \hline
-5&8\\ \hline
-6&12\\ \hline
-8&9\\ \hline
+1 & 8\\ \hline
+2 & 3.666667\\ \hline
+3 & 19\\ \hline
+4 & 21\\ \hline
+5 & 8\\ \hline
+6 & 4\\ \hline
+8 & 29\\ \hline
 \end{tabular}
 \end{center}
 \end{table}
@@ -573,12 +583,12 @@ c) Veamos cuántos grupos tienen un tiempo de descompostura por encima de la med
 **\underline{En R:}**
 
 ```{r,comment=""}
-grupos_media<-c(7.33,8.66,2,4,8,12,9)
+grupos_media<-c(8, 3.666667, 19, 21, 8, 4, 29)
 grupos_mayores<-which(grupos_media>media)
 grupos_mayores
 ```
 
-Los grupos 1,2,4,5,6,8 están por encima del promedio por piezas de maquinaria.
+Los grupos 3,4 y 8 están por encima del promedio de días descompuestos por piezas de maquinaria.
 
 \newpage
 
