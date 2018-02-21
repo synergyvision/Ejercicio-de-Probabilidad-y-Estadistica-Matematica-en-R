@@ -1,0 +1,129 @@
+---
+title: "Ejercicios de Análisis Técnico"
+subtitle: "Diplomado de Probabilidad y Estadística Matemática en R"
+author: "http://synergy.vision/"
+output:
+  pdf_document:
+      toc: yes
+      toc_depth: 4
+      includes:
+        in_header: ./preambulo.tex
+  html_document: default
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+\newpage
+
+# Ejercicio 1
+
+Una suposición de análisis técnico es que los precios de mercado:
+
+A. exhibir tendencias y patrones identificables que persisten y se repiten.
+
+B. son la única información necesaria para analizar un mercado de libre 
+comercio.
+
+C. reflejar las condiciones de oferta y demanda porque las transacciones reales reflejan decisiones racionales de compradores y vendedores.
+
+\newpage
+
+# Ejercicio 2
+
+¿De cuál de las siguientes tablas puede un analista leer el precio de apertura para el período de negociación?
+
+A. Gráfico de líneas.
+
+B. Gráfico de velas.
+
+C. Gráfico de punto y figura.
+
+\newpage
+
+# Ejercicio 3
+
+Una acción ha estado en una tendencia bajista durante varios días. Cuando su precio disminuye en \$30, muchos inversores ingresan órdenes para comprar las acciones y el precio aumenta a \$31. Esto es muy probablemente un ejemplo de esto:
+
+A. nivel de soporte.
+
+B. nivel de resistencia.
+
+C. cambio en la polaridad.
+
+
+
+\newpage
+
+# Ejercicio 4
+
+Un analista que usa la desviación estándar de los precios recientes para identificar condiciones de sobrecompra o de sobreventa es más probable que emplee:
+
+A. Bandas de Bollinger.
+
+B. un índice de fuerza relativa.
+
+C. un oscilador de tasa de cambio.
+
+\newpage
+
+# Ejercicio 5
+
+Un indicador de impulso basado en la relación entre los aumentos de precios y el aumento de los precios en los últimos 14 días probablemente sea un:
+
+A. oscilador estocástico.
+
+B. Índice de fuerza relativa.
+
+C. oscilador de convergencia / divergencia promedio móvil.
+
+\newpage
+
+# Ejercicio 6
+
+¿Un aumento en cuál de los siguientes es más probable cuando el sentimiento del mercado bursátil se está volviendo más alcista?
+
+A. Tasa de interés corta.
+
+B. Deuda de margen pendiente.
+
+C. Proporción de poner / llamar para un índice de acciones.
+
+\newpage
+
+# Ejercicio 7
+
+La ola de Kondratieff es un ciclo de:
+
+A. 1 8 años.
+
+B. 36 años.
+
+C. 54 años.
+
+\newpage
+
+# Ejercicio 8
+
+Para un activo con un precio actual de 100, ¿cuál de los siguientes objetivos de precio se basa probablemente en una relación de Fibonacci?
+
+A. 129.40.
+
+B. 145.60.
+
+C. 161.80.
+
+\newpage
+
+# Ejercicio 9
+
+Si la relación de resistencia relativa de una acción aumenta, la acción es:
+
+A. aumentando en precio.
+
+B. superando su punto de referencia.
+
+C. aumentando en volumen alto o disminuyendo en volumen bajo.
+
