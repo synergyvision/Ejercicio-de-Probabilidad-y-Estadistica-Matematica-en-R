@@ -360,4 +360,214 @@ C. Un investigador desea determinar si las varianzas poblacionales de dos variab
 
 D. Un investigador quiere probar si la varianza de una población distribuida normalmente es igual a 0.00165. Como pregunta adicional aquí, ¿cómo deberían calcularse los grados de libertad?
 
+\newpage
+
+# Ejercicio 28
+
+De un total de 10,200 préstamos otorgados por una unión de crédito de empleados del Estado en el último periodo de cinco años, se muestrearon 350 para determinar qué proporción de los préstamos se otorgaron a mujeres.  Esta muestra indicó que el 39% de los créditos fue dado a empleadas.  Un censo completo de préstamos de hace cinco años mostraba que el 41% de los prestarios eran mujeres.  A un nivel de significancia del 0.02, ¿puede concluir que la proporción de préstamos otorgados a mujeres ha cambiado significativamente en los últimos cinco años?
+
+\newpage
+
+# Ejercicio 29
+
+Algunos teóricos financieros creen que los precios diarios del mercado de valores constituyen una "caminata aleatoria con tendencia positiva".  Si esto es correcto, entonces el promedio industrial Dow Jones debería mostrar una ganancia en más del 50% de todos los días de actividad financiera.  Si el promedio se incrementó en 101 de 175 días escogidos aleatoriamente, ¿qué piensa de la teoría sugerida?  Use un nivel de significancia de 0.01.
+
+\newpage
+
+# Ejercicio 30
+
+Rick Douglas, el nuevo gerente de Food Barn, está interesado en el porcentaje de clientes totalmente satisfechos con la tienda.  El gerente anterior tenía el 86% de clientes totalmente satisfechos y Rick asegura que lo mismo se cumple hoy.  Rick obtuvo una muestra de 187 clientes y encontró que 157 estaban satisfechos por completo.  Con un nivel de significancia del 1%, ¿existe evidencia de que la afirmación de Rick es válida?
+
+\newpage
+
+# Ejercicio 31
+
+La corredora de bienes raíces Elaine Snyderman tomó una muestra aleatoria de 12 hogares de un prestigiado suburbio de Chicago y encontró que el valor de mercado promedio estimado era \$780,000 con una desviación estándar de \$49,000.  Pruebe la hipótesis de que para todas las casas del área, el valor estimado medio es \$825,000, hipótesis alternativa de que es menor que \$825,000.  Utilice el nivel de significancia de 0.05.
+
+\newpage
+
+# Ejercicio 32
+
+Con la caída del mercado petrolero de principios de 1986, los educadores del Texas se preocuparon por la forma en que las pérdidas resultantes en los ingresos del Estado (estimadas en cerca de \$100 millones por cada disminución de un dólar en el precio del barril de petróleo) afectarían sus presupuestos.  La directiva estatal de educación pensaba que la situación no sería crítica en tanto pudieran estar razonablemente seguros de que el precio permanecería arriba de \$18 por barril.  Encuestaron a 13 economistas especializados en el mercado del petróleo, elegidos al azar, y les pidieron que predijeran qué tanto bajarían los precios antes de repuntar.  Las 13 predicciones promediaron \$21.60, con una desviación estándar de \$4.65.  Para un nivel $\alpha=0.01,$ ¿es la predicción promedio significativamente mayor que \$18.00? ¿Debe la directiva de educación concluir que es improbable una crisis presupuestaria? Explique su respuesta.
+
+\newpage
+
+# Ejercicio 33
+
+En un día promedio. alrededor del 5% de las acciones de la Bolsa de Valores de Nueva York muestran una nueva alza para ese año.  El viernes 18 de septiembre de 1992, el promedio industrial Dow Jones cerró en 3,282 con un fuerte volumen de más de 136 millones de títulos negociados.  Una muestra aleatoria de 120 títulos derterminó que 16 de ellos habían mostrado nuevas alzas anuales ese día.  Usando un nivel de significancia de 0.01, ¿deberíamos concluir que más títulos de los habituales tuvieron nuevas alzas anuales ese día?
+
+\newpage
+
+# Ejercicio 34
+
+¿Cúal es la probabilidad de que estemos rechazando una hipótesis nula verdadera cuando rechazamos el valor hipotético debido a que
+
+a) La estadística de muestra difiere del valor hipotético en más de 2.15 errores estándar en cualquier dirección.
+
+b)El valor del estadístico de la muestra es mayor en más de 1.6 errores estándar.
+
+c) El valor del estadístico de la muestra es menor que el valor hipotético en más de 2.33 errores estándar.  Los distribuidores de fondo de inversión mutua *abiertos* venden acciones adicionales a  los individuos que desean invertir en estos fondos.  Estas acciones están valuadas como *valores de activo neto*, el valor de estos títulos representados por las acciones de los fondos, más una comisión (o cargo) en el intervalo de 0 a 8%.  los fondos *cerrados*, por otra parte, tienen un número fijo de acciones.  Estas acciones se negocian en varias bolsas de valores a precios determinados por el mercado.  Si el precio es mayor que el valor activo neto, se dice que la acción se vende con *prima*: si sucede lo contrario se vende con *descuento*.  Una muestra aleatoria de 15 fondos cerrados el 4 de junio de 1993, encontró los descuentos (valores negativos) y las primas (valores positivos) expresados en porcentajes y enumerados en la tabla MR8-1.  Utilice esta información para responder los ejercicios 35 y 36.
+
+| Tabla MR8-1          | Nombre del título               | Descuento/prima |
+|----------------------|---------------------------------|:---------------:|
+| Descuentos y primas  | Blue Chip Value                 |       +4.7      |
+| para una muesta      | Gabelli Equity Trust            |       -0.7      |
+| de 15 fondos         | Liberty All-Star                |       +5.3      |
+| mutualistas cerrados | Central Fund of Canada          |       +9.2      |
+|                      | Global Health Sciences          |       -0.3      |
+|                      | Patriot Global Dividend         |       -0-3      |
+|                      | Preferred Income                |       +5.0      |
+|                      | Austria Fund                    |       +0.4      |
+|                      | Emerging Mexico                 |       -1.9      |
+|                      | First Australia                 |       +0.5      |
+|                      | Germany Fund                    |       +5.8      |
+|                      | Japan Equity                    |       -8.2      |
+|                      | Latin America Equity            |       -9.4      |
+|                      | Morgan Stanley Emerging Markets |      +10.3      |
+|                      | Turkish Investment              |       +1.7      |
+
+\newpage
+
+# Ejercicio 35
+
+¿Se vende significativamente menos fondos de acciones de interés variable con descuentos que con primas? Pruebe a un nivel $\alpha=0.01.$
+
+\newpage
+
+# Ejercicio 36
+
+Un profesor de finanzas desarrolló una teoría que predice que los fondos de acciones de interés variable cerrados se deberían vender con una prima cercana al 5% en promedio.  Suponiendo que la población descuento/prima tiene una distribución aproximadamente normal, ¿apoya la información muestreada esta teoría? Pruebe con $\alpha=0.05.$
+
+\newpage
+
+# Ejercicio 37
+
+Una corredora de bolsa afirma que puede predecir, con el 85% de certeza, el ascenso o caída, durante el mes siguiente, de un valor del mercado de valores.  Para probarlo, predice el resultado de 60 valores y acierta en 45 de sus predicciones ¿Presentan estos datos evidencia concluyente $(con\quad\alpha=0.04)$ de que la exactitud de sus predicciones es significativamente menor que el 85% declarado?
+
+\newpage
+
+# Ejercicio 38
+
+En 1993, el Consejo de Estándares para Contabilidad Financiera (CECF) consideró una propuesta para requerir que las compañías informaran el efecto potencial de la opción de compra de acciones de los empleados sobre los ingresos por acción (IPA).  Una muestra aleatoria de 41 empresas de alta tecnología (AT) reveló que la nueva propuesta reduciría el IPA en un promedio del 13.8%, con una desviación estándar del 18.9%.  Una muestra aleatoria de 35 productores de bienes de consumo (BC) mostró que la propuesta reduciría el IPA en 9.1% en promedio, con desviación estándar del 8.7%.  Con base en estas muestras, ¿es razonable concluir $(para\quad\alpha=0.10)$ que la propuesta de la CECF causaría una mayor reducción en el IPA para las empresas de alta tecnología que para los productores de bienes de consumo?
+
+\newpage
+
+# Ejercicio 39
+
+El 1 de enero de 1996 se tomó una muestra de 32 fondos mutualistas de la bolsa de valores, y se encontró que la tasa promedio de rendimiento anual durante los 30 días anteriores fue del 3,23%, con una desviación estándar de la muestra del 0.51%.  Un año antes, una muestra de 38 fondos mutualistas indicó una tasa promedio de rendimiento del 4.36%, con una desviación estándar de la muestra del 0.84%.  ¿Es razonable llegar a la conclusión (a un nivel$\alpha=0.05)$ de que las tasas de interés del mercado de dinero declinaron durante 1995?
+
+\newpage
+
+# Ejercicio 40
+
+Una organización de crédito y seguros ha desarrollado un nuevo método de alta tecnología para capacitar al nuevo personal de ventas.  La compañía obtuvo una muestra de 16 empleados capacitados de la manera original y encontró ventas diarias promedio de \$688 con desviación estándar de la muestra de \$32.63.  También tomaron una muestra de 11 empleados capacitados con el método nuevo y encontraron un promedio de ventas diarias de \$706 con desviación estándar de la muestra de \$24.84.  Para $\alpha=0.05$, ¿puede la compañía concluir que el promedio diario de ventas aumenta con el nuevo plan?
+
+\newpage
+
+# Ejercicio 41
+
+Los datos de la tabla corresponden a una muestra aleatoria de nueve empresas tomadas de la sección "Digest of Earnings Reports" (Resumen de Informes de Ingresos) del the Wall Street Journal del 6 de febrero de 1992:
+
+a) Encuentre el cambio medio en los ingresos por acción, entre 1991 y 1992.
+
+b) Encuentre la desviación estándar del cambio y la desviación estándar del error de la media.
+
+c) ¿Fueron diferentes los ingresos medios por acción en 1991 y 1992? Pruebe con un nivel $\alpha=0.02.$
+
+
+| Empresa         | 1    | 2    | 3    | 4    | 5    | 6    | 7    | 8    | 9    |
+|-----------------|------|------|------|------|------|------|------|------|------|
+| Ingreso de 1991 | 1.38 | 1.26 | 3.64 | 3.50 | 2.47 | 3.21 | 1.05 | 1.98 | 2.72 |
+| Ingreso de 1992 | 2.48 | 1.50 | 4.59 | 3.06 | 2.11 | 2.80 | 1.59 | 0.92 | 0.47 |
+
+\newpage
+ 
+# Ejercicio 42
+
+El viernes, aumento el precio (avanzaron) de 11 acciones de una muestra aleatoria de 40 tomada de las 2,500 acciones negociadas en la Bolsa de Valores de Nueva York.  En una muestra tomada el jueves, de 60 acciones de la misma Bolsa, 24 acciones avanzaron.  A un nivel $\alpha=0.10,$ ¿puede llegar a la conclusión de que una proporción menor de las acciones de la Bolsa de Valores avanzaron el viernes con respecto al jueves?
+
+\newpage
+
+# Ejercicio 43
+
+MacroSwift acaba de liberar al mercado un nuevo procesador de textos y la compañía está interesada en determinar si las personas en el grupo de edad 30-39 califican al programa de manera distintas a las del grupo 40-49.  MacroSwift muestreó al azar a 175 personas del grupo 30-39 que compraron el producto  y encontró que 87 calificaron al programa como excelente; de ellos 52 comprarían una actualización.  También muestreó a 220 personas del grupo 40-49 y encontró que 94 calificaron al software como excelente; de ellos 37 comprarían una actualización.  ¿Hay una diferencia significativa en las proporciones de personas en los dos grupos de edad que califican al programa como excelente al nivel $\alpha=0.05$? ¿Es cierto el mismo resultado en cuanto a las proporciones de personas que planean comprar una actualización?
+
+\newpage
+
+# Ejercicio 44
+
+La compañía Ben & Jerry´s Homemade, es una empresa que se dedica a la venta de helados no convencionales, con sabores extravagantes como el de galleta con chispas de chocolate.  En un artículo en The Wall Street Journal se consigna que parte del éxito de la compañía se debe a que atrae a los adultos jóvenes (quienes presumiblemente serán fieles a la compañía durante su periodo pico de consumo de helados).  Suponga que un investigador de mercado lleva a cabo una encuesta a la salida de un supermercado y hace una solo pregunta a 200 compradores consecutivos del helado Ben & Jerry´s y a 200 compradores de la marca competidora de Haagen-Daz de Grand Metropolitan: "¿Tiene usted menos de 25 años?" Si el 7% de los aficionados al helado de Ben & Jerry´s dice "sí" y solamente el 3% de los aficionados al otro helado dice "sí", ¿esto confirma la conclusión del artículo, para 10% de nivel de significancia?
+
+\newpage
+
+# Ejercicio 45
+
+Considere los datos de la tabla que sigue.  En los primeros tres meses 1993, la venta de automóviles de lujo en Estados Unidos disminuyó ligeramente, pero la proporción de automóviles de lujo que fueron importados se incrementó.  Las cifras se muestran en la siguiente tabla. ¿Es significativo el cambio en el porcentanje de mercado de automóviles importados con respecto a los domésticos, al nivel del 5%?
+
+|                                | Ventas de autos de lujo 1992 | Primer trimestre 1993 |
+|--------------------------------|:----------------------------:|:---------------------:|
+| Porcentaje de autos nacionales |             47.5             |          46.2         |
+| Porcentaje de autos importados |             52.5             |          53.8         |
+| Total de unidades vendidas     |            373,842           |        372,442        |
+
+\newpage
+
+# Ejercicio 46
+
+En octubre de 1992, una investigación entre 120 macroeconomistas indicó que 87 de ellos creían que la recesión ya había terminado.  Una investigación de 150 agentes de adquisiones encontró que 89 de éstos creían que la recesión ya había terminado.  Al nivel $\alpha=0.10,$ ¿se puede concluir que los agentes de adquisiones eran más pesimistas acerca de la economía de Estados Unidos que los macroeconomistas?
+
+\newpage
+
+# Ejercicio 47
+
+Los largometrajes de animación proporciona grandes ganancias a The Walt Disney Company.  Las películas de éxito, como *Aladdin*, pueden producir ingresos mayores a los 300 millones de dólares después de sus costos de producción.  Pero cada año, además de estos éxitos espectaculares, algunas películas de animación más modestas llegan a las pantallas.  Un analista obtuvo un listado de los ingresos totales (la suma de boletos vendidos) de la primera presentación de todas las películas de animación exhibidas entre 1986 y 1992, los datos reunidos son los siguientes (en millones de dólares):
+
+| Un Cuento Americano                | Universal             | 44.9 |
+|------------------------------------|-----------------------|:----:|
+| Los Perros Van al Cielo            | MGM/UA                | 26.2 |
+| Ferngully: El Bosque Perdido       | Twentieth Century Fox | 20.9 |
+| Fievel va al Oeste                 | Universal             | 20.2 |
+| Mundo Cool                         | Paramount             | 13.7 |
+| Rock-a-Doddle                      | Twentieth Century Fox | 11.6 |
+| Bebe´s Kids                        | Paramount             | 7.5  |
+| Ositos Cariñositos II              | Columbia              | 5.4  |
+| Pinocho y el Emperador de la Noche | New World             | 2.7  |
+| Ositos Cariñositos                 | Cineplex              | 2.2  |
+| Babar: la Película                 | New Line              | 1.4  |
+| Oliver y Compañía                  | Disney                | 52.6 |
+| Rescuers Down Under                | Disney                | 27.8 |
+| El Gran Ratón Detective            | Disney                | 24,2 |
+| Los Rescatadores                   | Disney                | 21.1 |
+| Patoaventuras                      | Disney                | 18.1 |
+
+\newpage
+
+# Ejercicio 48
+
+El promedio de Transporte Dow-Jones está basado en los precios de cierre de las acciones comunes de 20 compañías aéreas, ferrocarriles y de fletes.  El 24 de mayo de 1993, el precio promedio de estas 20 acciones disminuyó de \$47.156 a \$47.150 .  Tomando estas acciones como una muestra aleatoria de todas las acciones relacionadas con el transporte, ¿es significativa la disminución observada? Explique su respuesta.
+
+
+| Acciones                 | Cierre 5/21/93 | Cierre 5/24/93 |
+|--------------------------|:--------------:|:--------------:|
+| Airborne Freight         |     23.500     |     23.375     |
+| Alaska Airlines          |     16.750     |     16.625     |
+| American President       |     50.750     |     52.000     |
+| AMR                      |     71.625     |     71.875     |
+| Burlington Northern      |     53.875     |     54.000     |
+| Carolina Freightways     |     13.125     |     13.000     |
+| Conrail                  |     51.375     |     51,875     |
+| Consolidated Freightways |     15.375     |     15.625     |
+| CSX                      |     71.125     |     70.750     |
+| Delta Airlines           |     60.250     |     60.750     |
+| Federal Express          |     49.750     |     49.375     |
+| Norfolk and Southern     |     61.875     |     61.250     |
+| Roadway                  |     54.750     |     55.000     |
+| Ryder System             |     27.250     |     27.125     |
+|  Santa Fe Pacific        |     16.750     |     17.000     |
+| Southwest Airline        |     40.375     |     40.500     |
+| UAL                      |     138.750    |     138.750    |
+| Union Pacific            |     63.250     |     63.000     |
+| USAir Group              |     22.500     |     22.625     |
+| XTRA                     |     40.125     |     38.500     |
+| Average Price            |     47.156     |     47.150     |
 
