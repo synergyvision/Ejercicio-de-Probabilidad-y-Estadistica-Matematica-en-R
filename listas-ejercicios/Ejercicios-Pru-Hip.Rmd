@@ -17,3 +17,347 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 \newpage
+
+# Ejercicio 1
+
+¿Cuál de las siguientes afirmaciones sobre la prueba de hipótesis es más precisa?
+
+A. Un error Tipo II rechaza el nulo cuando es realmente verdadero.
+
+B. El nivel de significancia es igual a uno menos la probabilidad de un error de Tipo I.
+
+C. Una prueba de dos vías con un nivel de significancia del 5% tiene valores $z$-críticos de $\pm1.96.$
+
+\newpage
+    
+# Ejercicio 2
+
+¿Cuál de las siguientes afirmaciones sobre la prueba de hipótesis es menos precisa?
+
+A. El poder de la prueba = 1 - P $(error Tipo II).
+
+B. Si la estadística $z-computada = -2$ y el valor $z-crítico = -1 .96$, la hipótesis es rechazada.
+
+C. La estadística $z-calculada$ para una prueba de una muestra simple cuando la varianza poblacional es conocida:
+
+$$z=\displaystyle\frac{\overline X-\mu_0}{\frac{\sigma^2}{\sqrt{n}}}$$
+
+\newpage
+
+Use la siguiente información para responder las preguntas 3 a 7.
+
+Austin Roberts cree que el precio promedio de las casas en el área es mayor a \$145,000.
+
+Una muestra aleatoria de 36 casas en el área tiene un precio promedio de \$149,750.  La desviación estándar La población es de \$24,000, y Roberts quiere realizar una prueba de hipótesis a un nivel de 1% del significado.
+
+# Ejercicio 3
+
+La hipótesis alternativa apropiada es:
+
+A. $H_a: \mu < \$145,000.$
+
+B. $H_a: \mu \ge \$145,000.$
+
+C. $H_a: \mu > \$145,000.$
+
+\newpage
+
+# Ejercicio 4
+
+El valor de la estadística de prueba calculada es más cercano a:
+
+A. 0.67.
+
+B. 1.19.
+
+C. 4.00.
+
+\newpage
+
+# Ejercicio 5
+
+¿Cuál de los siguientes describe con más precisión la estructura de prueba adecuada?
+
+A. Prueba de dos colas.
+
+B. Prueba de una cola.
+
+C. Prueba Chi-cuadrado.
+
+\newpage
+
+# Ejercicio 6
+
+El valor crítico de la estadística z es:
+
+A. $\pm1.96.$
+
+B. $+2.33.$
+
+C. $\pm2.33.$
+
+\newpage
+
+# Ejercicio 7
+
+Con un nivel de importancia del 1%, Roberts debería:
+
+A. rechaza la hipótesis nula.
+
+B. no puede rechazar la hipótesis nula.
+
+C. ni acepto ni rechazo la hipótesis nula.
+
+\newpage
+
+Use la siguiente información para responder las preguntas 8 a 13.
+
+Un analista está realizando una prueba de hipótesis para determinar si el tiempo medio empleado en la investigación de inversión es diferente de tres horas por día. La prueba se realiza en el 5% nivel de significancia y utiliza una muestra aleatoria de 64 administradores de cartera, donde el tiempo medio dedicado a la investigación es de 2.5 horas.La desviación estándar de la población  es 1. 5 horas.
+
+# Ejercicio 8
+
+La hipótesis nula apropiada para la prueba descrita es:
+
+A. $H_0:\mu=3hours.$
+
+B. $H_0:\mu\le3hours.$
+
+C. $H_0:\mu\ge3hours.$
+
+\newpage
+
+# Ejercicio 9
+
+Esto es un:
+
+A. prueba de una cola.
+
+B. Prueba de dos colas.
+
+C. prueba de comparaciones pareadas.
+
+\newpage
+
+# Ejercicio 10
+
+La estadística z calculada es:
+
+A. $-2.67.$
+
+B. $+0.33.$
+
+C. $+2.67.$
+
+\newpage
+
+# Ejercicio 11
+
+El valor z crítico de la estadística de prueba es (son):
+
+A. $-1.96.$
+
+B. $+1.96.$
+
+C. $\pm1.96.$
+
+\newpage
+
+# Ejercicio 12
+
+El intervalo de confianza del 95% para la media de la población es:
+
+A. ${1.00<\mu<3.50}.$
+
+B. ${0.54<\mu<4.46}.$
+
+C. ${2.13<\mu<2.87}.$
+
+\newpage
+
+# Ejercicio 13
+
+El analista debería más apropiadamente:
+
+A. rechaza la hipótesis nula.
+
+B. no puede rechazar la hipótesis nula.
+
+C. no llegar a ninguna conclusión porque no se dio la desviación estándar de la muestra.
+
+\newpage
+
+# Ejercicio 14
+
+Se realizó un estudio para determinar si la desviación estándar de la información mensual los costos de mantenimiento de un avión Pepper III son de \$300. Una muestra de 30 Pepper IIIs tuvo un costo de mantenimiento mensual promedio de \$3,025 y una desviación estándar de \$325. Usando un nivel de significancia del 5%, cuál de los siguientes es la más apropiada con respecto a la diferencia entre el valor hipotético de la varianza poblacional y la varianza muestral?
+
+A. La población y las variaciones de muestra son significativamente diferentes.
+
+B. La población y las variaciones de muestra no son significativamente diferentes.
+
+C. No hay muestras que puedan usarse para probar las diferencias de varianza en pequeñas muestras.
+
+\newpage
+
+Use la siguiente información para responder las preguntas 1 a la 18.
+Se tomaron dos muestras de dos poblaciones normalmente distribuidas. Para la primera muestra, el promedio fue de \$50 y la desviación estándar fue de \$5. Para la segunda muestra, el promedio fue \$55 y la desviación estándar fue de \$6. La primera muestra consiste en 25 observaciones y la segunda muestra consiste en 36 observaciones. (Nota: en las preguntas a continuación, los subíndices "1" y "2" indica la primera y la segunda muestra, respectivamente)
+
+# Ejercicio 15
+
+Considere la hipótesis estructurada como $H_0:\mu_1=\$48$ frente a $H_a:\mu_1\$48.$ A un nivel de significación del 1%, la hipótesis nula:
+
+A. no puede ser rechazado.
+
+B. debe ser rechazado.
+
+C. no puede ser probado usando esta muestra de información provista.
+
+\newpage
+
+# Ejercicio 16
+
+Utilizando un nivel de significancia del 5% y una estructura de prueba de hipótesis de $H_0:\sigma^2_1\le24$ contra $H_a:\sigma^2_1>24$, la hipótesis nula:
+
+A. no puede ser rechazado.
+
+B. debe ser rechazado.
+
+C. no puede ser probado usando esta muestra de información provista.
+
+\newpage
+
+# Ejercicio 17
+
+Considere la hipótesis estructurada como $H_0:\mu_1\le\$48$ frente a $H_a:\mu_1> \$ 48$. Con un nivel de significancia del 5%, la hipótesis nula:
+
+A. no puede ser rechazado.
+
+B. debe ser rechazado.
+
+C. no puede ser probado usando la información de muestra proporcionada.
+
+\newpage
+
+# Ejercicio 18
+
+Utilizando un nivel de significancia del 5% para una prueba del nulo de $H_0:\sigma^2_1=\sigma^2_2,$ contra la alternativa de $H_a:\sigma^2_1\ne\sigma^2_2,$ la hipótesis nula:
+
+A. no puede ser rechazado.
+
+B. debe ser rechazado.
+
+C. no puede ser probado usando la información de muestra proporcionada.
+
+\newpage
+
+# Ejercicio 19
+
+Si el nivel de significancia de una prueba es 0.05 y la probabilidad de un error de Tipo II es 0.15, ¿cuál es el poder de la prueba?
+
+A. 0.850.
+
+B. 0.950.
+
+C. 0.975.
+
+\newpage
+
+# Ejercicio 20
+
+¿Cuál de las siguientes afirmaciones sobre la distribución F y la distribución de Chi cuadrado  es menos precisa? Ambas distribuciones:
+
+A. son asimétricos.
+
+B. están limitados por cero a la izquierda.
+
+C. tienen medios que son menores que sus desviaciones estándar.
+
+\newpage
+
+# Ejercicio 21
+
+El estadístico de prueba apropiado para una prueba de igualdad de varianzas para dos variables aleatorias distribuidas normalmente, basadas en dos muestras aleatorias independientes, es el:
+
+A. $t-test.$
+
+B. $F-test.$
+
+C. $X^2test.$
+
+\newpage
+
+# Ejercicio 22
+
+La estadística de prueba apropiada para probar la hipótesis de que la varianza de un la población normalmente distribuida es igual a 13 es la:
+
+A. $t-test.$
+
+B. $F-test.$
+
+C. $X^2test.$
+
+\newpage
+
+# Ejercicio 23
+
+William Adams quiere probar si los rendimientos mensuales medios en los últimos cinco años son iguales para dos acciones. Si él supone que las distribuciones de devoluciones son normales y tienen las mismas variaciones, el tipo de prueba y la estadística de prueba son las mejores descritas como:
+
+A. prueba de comparaciones pareadas, estadística-t.
+
+B. prueba de comparaciones pareadas, estadística-F.
+
+C. diferencia en la prueba de medios, estadística-t.
+
+\newpage
+
+# Ejercicio 24
+
+¿Cuál de las siguientes suposiciones es menos probable que se requiera para la diferencia en la prueba de medios basada en dos muestras?
+
+A. Las dos muestras son independientes.
+
+B. Las dos poblaciones se distribuyen normalmente.
+
+C. Las dos poblaciones tienen varianzas iguales.
+
+\newpage
+
+# Ejercicio 25
+
+Para una prueba de hipótesis con una probabilidad de un error tipo II del 60% y una probabilidad de un error Tipo I de 5%, ¿cuál de las siguientes afirmaciones es más precisa?
+
+A. El poder de la prueba es del 40%, y hay un 5% de probabilidad de que la prueba la estadística excederá los valores críticos.
+
+B. Hay un 95% de probabilidad de que la estadística de prueba se encuentre 
+entre el valor critico si esta es una prueba de dos colas.
+
+C. Hay un 5% de probabilidad de que la hipótesis nula sea rechazada cuando
+es realmente cierto, y la probabilidad de rechazar el nulo cuando es falso es 40%.
+
+\newpage
+
+# Ejercicio 26
+
+Ralph Rollins, un investigador, cree que las acciones de las empresas que han aparecido en un periódico financiero determinado con un titular positivo y la historia regresan más sobre una base ajustada al riesgo. Recopila datos sobre el rendimiento ajustado al riesgo para estas
+existencias durante los seis meses posteriores a su aparición en la portada, y los datos sobre el riesgo ajustados retornos para una muestra del mismo tamaño de empresas con características similares a las empresas de portada combinadas por período de tiempo.
+
+A. Indique las probables hipótesis nula y alternativa para una prueba de su creencia.
+
+B. ¿Es esta una prueba de una o dos colas?
+
+C. Describe los pasos para probar una hipótesis como la nula que indicaste en la parte A.
+
+\newpage
+
+# Ejercicio 27
+
+Para cada una de las siguientes hipótesis, describa la prueba apropiada, identifique la estadística de prueba apropiada y explique en qué condiciones debe rechazarse la hipótesis nula.
+
+A. Un investigador tiene rendimientos de más de 52 semanas para un índice de gas natural y para un índice de reservas de petróleo y quiere saber si los retornos semanales son iguales. Supongamos que los rendimientos son aproximadamente normales repartido.
+
+B. Un investigador tiene dos muestras independientes que están distribuidas de manera aproximadamente normal. Ella desea comprobar si los valores medios de las dos variables aleatorias son iguales y supone que las varianzas de las poblaciones de las que se extrajeron las dos muestras son iguales. Como pregunta adicional aquí, ¿cómo se deben calcular los grados de libertad?
+
+C. Un investigador desea determinar si las varianzas poblacionales de dos variables aleatorias normalmente distribuidas son iguales en función de dos tamaños de tamaños $n_1$ y $n_2$. Como una pregunta adicional aquí, ¿cómo deberían calcularse los grados de libertad?
+
+D. Un investigador quiere probar si la varianza de una población distribuida normalmente es igual a 0.00165. Como pregunta adicional aquí, ¿cómo deberían calcularse los grados de libertad?
+
+
