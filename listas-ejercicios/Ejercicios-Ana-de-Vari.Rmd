@@ -1,0 +1,312 @@
+---
+title: "Análisis de Varianza"
+subtitle: "Diplomado de Probabilidad y Estadística Matemática en R"
+author: "http://synergy.vision/"
+output:
+  pdf_document:
+      toc: yes
+      toc_depth: 4
+      includes:
+        in_header: ./preambulo.tex
+  html_document: default
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+\newpage
+
+# Ejercicio 1
+
+Para ver si las ventas de chips de silicio son independientes del punto del ciclo de negocios en que se encuentre la economía de Estados Unidos se han recogido datos de las ventas semanales de Zippy Chippy, una empresa de Silicon Valley, y datos acerca de si la economía de Estados Unidos subía al pico del ciclo, estaba en el pico, iba a la baja o estaba en el punto bajo.  Los resultados son los siguientes:
+
+**VENTAS SEMANAL DE CHIPS**
+
+|                  | Alta | Mediana | Baja | TOTAL |
+|------------------|:----:|:-------:|:----:|------:|
+| Economía         |      |         |      |       |
+| En el pico       |  20  |    7    |   3  |    30 |
+| En el punto bajo |  30  |    40   |  30  |   100 |
+| Subiendo         |  20  |    8    |   2  |    30 |
+| Bajando          |  30  |    5    |   5  |    40 |
+|------------------|------|---------|------|-------|
+| Total            |  100 |    60   |  40  |   200 |
+
+Calcule una tabla de frecuencias observadas y esperadas para este problema.
+
+\newpage
+
+# Ejercicio 2
+
+Para el ejercicio 1:
+
+a) Establezca las hipótesis nula y alternativa.
+
+b) Calcule el valor $X^2$ de la muestra.
+
+c) Al nivel de significancia de 0.10, ¿cuál es su conclusión?
+
+\newpage
+
+# Ejercicio 3
+
+Un ascensor financiero está interesado en las diferencias de estructura de capital respecto a compañías de distintos tamaños dentro de cierta industria.  El ascensor investiga un grupo de empresas con activos de diferentes cantidades y las organiza en tres grupos.  Calsifica cada compañía según si su débito total es mayor que la cantidad de acciones ordinarias de los accionistas o si menor que éstas.  Los resultados de la investigación son:
+
+
+*Tamaño del activo de la compañía (en miles de dólares)*
+
+|                                      | <500 | 500-2,000 |   2,000+ |    Total |
+|--------------------------------------|:----:|:---------:|:--------:|:--------:|
+| Deuda menor que cantidad de acciones |   7  |     10    |     8    |    25    |
+| Deuda mayor que cantidad de acciones |  10  |     18    |     9    |    37    |
+|                                Total |  17  |     28    |    17    |    62    |
+ 
+
+\newpage
+
+# Ejercicio 4
+
+El gerente de un supermercado lleva un registro de la llegada de clientes a las cajas para determinar cuántas debe mantener abiertas para manejar el flujo.  En una muestra de 500 periodos de cinco minutos, hubo 22, 74, 115, 95, 94, 80 y 20 periodos con 0, 1, 2, 3, 4, 5, 6 o más clientes, respectivamente.  ¿Son esto de datos consistentes con una distribución de Poisson con $\lambda=3$, para un nivel de significancia de 0.05?
+
+\newpage
+
+# Ejercicio 5
+
+Un estudio compara los efectos sobre las ventas de 4 promociones de un mes en el punto de venta.  Presentamos las ventas unitarias de 5 tiendas que utilizaron las 4 promociones en meses distintos:
+
+| Muestras gratis | Regalo de un paquete | Descuento | Reembolso por correo |
+|:---------------:|:--------------------:|:---------:|:--------------------:|
+|        78       |          94          |     73    |          79          |
+|        87       |          91          |     78    |          83          |
+|        81       |          87          |     69    |          78          |
+|        89       |          90          |     83    |          69          |
+|        85       |          88          |     76    |          81          |
+
+a) Calcule las unitarias medias para cada promoción y luego determine la gran media.
+
+b) Estime la varianza de la población utilizando la varianza entre columnas.
+
+c) Estime la varianza de la población utilizando la varianza dentro de columnas calculada a partir de la varianza dentro de muestras.
+
+d) Calcule el cociente F. Al nivel de significancia de 0.01, ¿las promociones producen diferentes efectos sobre las ventas?
+
+\newpage
+
+# Ejercicio 6
+
+Los datos siguientes indican el número de solicitudes de pago de seguro procesadas diariamente por un grupo de cuatro empleados de aseguradoras observados durante cierto número de días.  Pruebe la hipótesis de que las solicitudes medias de los empleados por día son las mismas.  Utilice un nivel de significancia de 0.05.
+
+| Empleado 1 | Empleado 2 | Empleado 3 | Empleado 4 |
+|:----------:|:----------:|:----------:|:----------:|
+|     15     |     12     |     11     |     13     |
+|     17     |     10     |     14     |     12     |
+|     14     |     13     |     13     |     12     |
+|     12     |     17     |     15     |     14     |
+|            |            |     12     |     10     |
+|            |            |            |      9     |
+
+\newpage
+
+
+# Ejercicio 7
+
+Una compañía maderera está preocupada por saber cómo las tasas de interés crecientes afectan a la construcción de casas nuevas en el área.  Para explorar esta cuestión, la compañía ha reunido datos con respecto a nuevas construcciones durante los tres primeros trimestres pasados en tres los municipios circundantes.  Esta información se presenta en la siguiente tabla.  Al nivel de significancia de 0.05, ¿existen diferencias en el número de nuevas construcciones de casas durante los tres trimestres?
+
+
+| Trimestre 1 | Trimestre 2 | Trimestre 3 |
+|:-----------:|:-----------:|:-----------:|
+|      41     |      45     |      34     |
+|      53     |      51     |      44     |
+|      54     |      48     |      46     |
+|      55     |      43     |      45     |
+|      43     |      39     |      51     |
+
+\newpage
+
+# Ejercicio 8
+
+La Oficina de Contabilidad del Gobierno (OCG) de Estados Unidos está interesada en ver si las oficinas de tamaño parecido gastan cantidades similares en personal y equipo.  (Las oficinas que gastan más tendrán una auditoria especial.)  Se examinaron los gastos mensuales de tre oficinas: una de ellas en el Departamento de Agricultura, otra en el Departamento de Estado y a última en el Departamento del Interior.  Los datos se presentan en la tabla.  Al nivel de significancia de 0.01, ¿existen diferencias en los gastos de las distintas oficinas?
+
+**Gastos mensuales (en miles de dólares) durante algunos meses**
+
+| Agricultura | Estado | Interior |
+|:-----------:|:------:|:--------:|
+|      10     |   15   |     8    |
+|      8      |    9   |    16    |
+|      11     |    8   |    12    |
+|      9      |   10   |          |
+|      12     |   13   |          |
+|             |   13   |          |
+
+\newpage 
+
+# Ejercicio 9
+
+Un banco está considerando estrategias de reducción de costos asociados con las cuentas de ahorro.  Ha encontrado que la varianza en el número de días entre transacciones para esas cuentas es 80 días al cuadrado.  El banco desea reducir la varianza desalentando el uso de las cuentas para guardar dinero por poco tiempo.  Por tanto, después de implantar una nueva política que penaliza al cliente con cargos de servicio por más de un retiro al mes, el banco decide probar si hubo un cambio en la varianza de los días entre transacciones.  Para una muestra de 25 cuentas de ahorro, se encuentra que la varianza entre transacciones es 28 días al cuadrado.  ¿Está justificado el banco al asegurar que la nueva política reduce la varianza de días entre trasacciones? Pruebe la hipótesis al nivel de significancia de 0.05.
+
+\newpage
+
+# Ejercicio 10
+
+Sam Bogart, dueño de la compañía de aparatos de audio, Play-It-Again, ofrece un año de garantía en todos los estéreos que vende su compañía.  Para los 30 aparatos a los que se les dio servicio de garantía el año anterior, el costo promedio de compostura fue \$75 y la desviación estándar de la muestra fue \$15.  Calcule un intervalo de confianza del 95% para la desviación estándar real del costo de reparación.  Sam ha decidido que ha menos que la desviación estándar verdadera sea menor que \$20, comprará sus aparatos de audio a otro mayorista.  Ayude a Sam a probar las hipótesis adecuadas, utilizando un nivel de significancia de 0.01. ¿Debe cambiar de proveedor?
+
+\newpage
+
+# Ejercicio 11
+
+El señor Raj, un inversionista, ha reducido su búsqueda de un fondo mutualista a los fondos Oppy y MLPFS.  La tasa de rendimiento de Oppy es más baja, pero parece más estable que la de MLPFS.  Si la variabilidad en la tasa de rendimiento de Opyy es, en efecto, significativamente más baja que la de MLPFS, entonces invertirá su dinero en la primera.  Si no hay diferencia significativa en la variabilidad, hará la inversión en MLPFS.  Para tomar una decisión, Raj ha obtenido una muestra de 21 tasas mensuales de rendimiento de ambas empresas.  Para Oppy la desviación estándar fue 2, y para MLPFS fue 3. ¿En qué empresa invertirá su dinero el señor Raj? Pruebe para $\alpha=0.05.$
+
+\newpage
+
+# Ejercicio 12
+
+Una compañía de seguros está interesada en la duración de la hospitalización por varias enfermedades.  Seleccionaron una muestra aleatoria de 20 pacientes del hospital A y 25 del hospital B internados por la misma enfermedad.  El tiempo que pasaron en el hospital A tuvo un promedio de 2.4 días con desviación estándar de 0.6 días.  El tiempo de tratamiento en el hospital B promedió 2.3 días con desviación estándar de 0.9 días. ¿Los pacientes del hospital A tiene significativamente menor variabilidad en su tiempo de recuperación? Pruebe para un nivel de significancia de 0.01.
+
+\newpage
+
+# Ejercicio 13
+
+Los vendedores saben que los gustos difieren en las diferentes regiones del país.  En el negocio de renta de automóviles, un experto de la industria opina que existen fuertes preferencias regionales en cuanto al tamaño del auto y da los siguientes datos para apoyar ese punto de vista:
+
+| Tipo de auto preferido | Noreste | Sureste | Noroeste | Suroeste |
+|------------------------|:-------:|:-------:|:--------:|:--------:|
+| Grande                 |   105   |   120   |    105   |    70    |
+| Mediano                |   120   |   100   |    130   |    150   |
+| Todos los demás        |    25   |    30   |    15    |    30    |
+
+a) Establezca las hipótesis nula y alternativas apropiadas.
+
+b) ¿Apoyan los datos la opinión del experto para un nivel de significancia de 0.05?
+
+c) ¿Y para un nivel de significancia de 0.20?
+
+
+\newpage
+
+# Ejercicio 14
+
+¿Qué distribución de probabilidad se utiliza en cada uno de los siguientes tipos de pruebas estadíticas?
+
+a) Comparación de dos proprociones de población.
+
+b) Valor de una sola varianza de población.
+
+c) Comparación de tres o más medias de población.
+
+d) Comparación de dos medias de población a partir de muestras dependientes pequeñas.
+
+\newpage
+
+# Ejercicio 15
+
+Gap vende ropa informal para adulto con una estrategia de "valor": buena calidad a un precio razonable.  En 1986, la compañía inició una nueva división, Gap Kids, con tiendas separadas que ofrecen ropa similar para niños de entre 2 y 12 años.  Después de varios años de expansión rápida en Estados Unidos, Gap empezó a abrir tiendas en  Canadá y el Reino Unido.  Para el tercer trimestre de 1992, el número de tiendas en operación era:
+
+|               | Estados Unidos | Inglaterra | Canadá |
+|---------------|:--------------:|:----------:|:------:|
+| Gap (adultos) |       822      |     20     |   31   |
+| Gap Kids      |       240      |      8     |   14   |
+
+Pruebe para $\alpha=0.01$ si Gap está poniendo el mismo énfasis al abrir tiendas Gap Kids en los tres países. ¿Por qué tiene sentido esta estrategia de negocios?
+
+\newpage
+
+# Ejercicio 16
+
+Los inventores y las compañías internacionales saben del valor de una patente estadounidense para proteger sus ideas, y en años recientes, han recibido casi la  mitad de las patentes otorgadas.  A partir de los datos de la siguiente tabla, ¿ha habido un cambio significativo en la proporción de patentes orifginadas fuera de Estados Unidos en los últimos 19 años? Pruebe par $\alpha=0.05.$
+
+| Patentes concedidas     |  1981  |  1991  |
+|-------------------------|:------:|:------:|
+| Originadas en EUA       | 39,223 | 51,183 |
+| Originadas fuera de EUA | 26,548 | 45,331 |
+
+\newpage
+
+# Ejercicio 17
+
+Las tiendas establecen sus precios, pero los fabricantes tienen interés en el precio de venta final como parte de su estrategia de promoción.  El gerente de mercadotecnia de los bolígrafos marca C se queja de que el resultado de un recorte de precios excesivos en las tiendas es que la marca C se percibe como una "pluma corriente".  El gerente de ventas contesta que "todos dan descuentos, todas las marcas, hasta cierto punto".  durante las llamadas ventas recolectaron datos del precio final de cuatro marcas de bolígrafos, incluyendo la de ellos, en cinco tiendas diferentes.  Para un nivel de confianza de 0.05, ¿existe una variación significativa en el precio entre las marcas?
+
+\begin{center}Precio (en centavo de dólar)**\end{center}
+
+| Marca A | Marca B | Marca C | Marca D |
+|:-------:|:-------:|:-------:|:-------:|
+|    61   |    52   |    47   |    67   |
+|    55   |    58   |    52   |    63   |
+|    57   |    54   |    49   |    68   |
+|    60   |    55   |    49   |    59   |
+|    62   |    58   |    57   |    65   |
+
+\newpage
+
+# Ejercicio 18
+
+Una compañía publicitaria de espectaculares debe saber si hay volúmenes de tránsito significativamente distinto que pasen frente a anuncios situados en tres lugares en Newark, debido a que la compañía cobra precios diferentes dependiendo de la cantidad de autos que pasan frente al anuncio. Se mide el volumen del tránsito en los tres sitios durante intervalos de 5 minutos elegidos aleatoriamente.  La tabla muestra los datos obtenidos.  Al nivel de significancia de 0.05, ¿son iguales los volúmenes de autos que pasan frente los tres anuncios?
+
+
+\begin{center}Volumen de tránsito\end{center}
+
+| Anuncio 1 | Anuncio 2 | Anuncio 3 |
+|:---------:|:---------:|:---------:|
+|     30    |     29    |     32    |
+|     45    |     38    |     44    |
+|     26    |     36    |     40    |
+|     44    |     21    |     43    |
+|     18    |     36    |     24    |
+|     38    |     18    |     28    |
+|     42    |     17    |     18    |
+|     29    |     30    |           |
+|           |     32    |           |
+
+
+\newpage
+
+# Ejercicio 19
+
+Un inversionista está interesado en ver si existen diferencias significativas en las tasas de rendimiento de acciones, bonos y fondos mutuos.  Ha tomado muestras aleatorias de cada tipo de inversión y ha registrado los siguientes datos:
+
+\begin{center}Tasa de rendimiento (porcentaje)\end{center}
+
+| Acciones | Bonos | Fondos  mutuos |
+|:--------:|:-----:|:--------------:|
+|    2.0   |  4.0  |       3.5      |
+|    6.0   |  3.1  |       3.1      |
+|    2.0   |  2.2  |       2.9      |
+|    2.1   |  5.3  |       6.0      |
+|    6.2   |  5.9  |                |
+|    2.9   |       |                |
+
+\newpage
+
+# Ejercicio 20
+
+Para la siguiente contigencia:
+
+a) Construya una tabla de frecuencias observadas y esperadas.
+
+b) Calcule el estadístico ji-cuadrada.
+
+c) Establezca las hipótesis nula y alternativa.
+
+d) Al nivel de significancia de 0.05, ¿deberá rechazarse la hipótesis nula?
+
+
+                                   Nivel de ingresos
+
+| Concurrencia a la iglesia | Bajo |  Mediano | Alto |
+|---------------------------|:----:|:--------:|:----:|
+| Nunca                     |  27  |    48    |  15  |
+| Ocasionalmente            |  25  |    63    |  14  |
+| Regularmente              |  22  |    74    |  12  |
+
+
+\newpage
+
+# Ejercicio 21
+
+Los promedios Dow-Jones para la industria, el transporte y los servicios de luz, agua y gas se basan en el precio de las acciones de 30 empresas industriales, 20 empresas de transporte y 15 de servicios de luz, agua y gas, de la bolsa de Valores de Nueva York, que se consideran representativas  de todas las compañías que forman parte de sus grupos.  La tabla de una lista de los cambios en los precios de las acciones para estas 65 compañías el día 21 de junio de 1993.  Para $\alpha=0.05,$ ¿es razonable concluir que los  grupos tuvieron cambios promedios significativamente diferentes en los precios de sus acciones ese día?
+
+\begin{center}Promedio industrial\end{center}
+
+Falta la tabla...
+

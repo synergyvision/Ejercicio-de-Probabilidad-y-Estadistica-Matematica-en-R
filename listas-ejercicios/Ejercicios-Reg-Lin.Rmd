@@ -1,0 +1,311 @@
+---
+title: "Regresión Líneal"
+subtitle: "Diplomado de Probabilidad y Estadística Matemática en R"
+author: "http://synergy.vision/"
+output:
+  pdf_document:
+      toc: yes
+      toc_depth: 4
+      includes:
+        in_header: ./preambulo.tex
+  html_document: default
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+\newpage
+
+# Ejercicio 1 
+
+William Hawkins, vicepresidente de personal de la International Motors, trabaja en la relación entre el salario de un trabajador y el porcentaje de ausentismo.  Hawkins dividió el intervalo de salarios de International en 12 grados o niveles (1 es el de menor grado, 12 el más alto) y después muestreó aleatoriamente a un grupo de trabajadores.  Determinó el grado de salario de cada trabajador y el número de días que ese empleado había faltado en los últimos 3 años.
+
+| Categoría de salario | Ausencias | Categoría de salario | Ausencias |
+|:--------------------:|:---------:|:--------------------:|:---------:|
+|          11          |     18    |          11          |     14    |
+|          10          |     17    |           8          |     20    |
+|           8          |     29    |           7          |     32    |
+|           5          |     36    |           2          |     39    |
+|           9          |     11    |           9          |     16    |
+|           9          |     26    |           8          |     26    |
+|           7          |     28    |           6          |     31    |
+|           3          |     35    |           3          |     40    |
+
+\newpage
+
+# Ejercicio 2
+
+Las ventas de línea blanca varían según el estado del mercado de casas nuevas: cuando las ventas de casas nuevas son buenas, también lo son las de lavaplatos, lavadoras de ropa, secadoras y refrigeradores.  Una asociación de comercio compiló los siguientes datos históricos (en miles de unidades) de las ventas de línea blanca y la construcción de casas.
+
+| Construcción de  casas (miles) | Ventas de línea blanca (miles) |
+|:------------------------------:|:------------------------------:|
+|               2.0              |               5.0              |
+|               2.5              |               5.5              |
+|               3.2              |               6.0              |
+|               3.6              |               7.0              |
+|               3.3              |               7.2              |
+|               4.0              |               7.7              |
+|               4.2              |               8.4              |
+|               4.6              |               9.0              |
+|               4.8              |               9.7              |
+|               5.0              |              10.0              |
+
+\newpage
+
+# Ejercicio 3
+
+Una compañía administra a sus vendedores en capacitación una prueba de ventas antes de salir a trabajar.  La administración de la compañía está interesada en determinar la relación entre las calificaciones de la prueba y las ventas logradas por esos vendedores al final de un año de trabajo.  Se recolectaron los siguientes datos de 10 agentes de ventas que han estado en el campo un año.
+
+| Núm. de vendedor | Calif. de la prueba (T) | Núm. de unidades vendidas (S) |
+|:----------------:|:-----------------------:|:-----------------------------:|
+|         1        |           2.6           |               95              |
+|         2        |           3.7           |              140              |
+|         3        |           2.4           |               85              |
+|         4        |           4.5           |              180              |
+|         5        |           2.6           |              100              |
+|         6        |           5.0           |              195              |
+|         7        |           2.8           |              115              |
+|         8        |           3.0           |              136              |
+|         9        |           4.0           |              175              |
+|        10        |           3.4           |              150              |
+
+a) Encuentre la recta de regresión de mínimos cuadrados que podría usarse para predecir las ventas a partir de las calificaciones en la prueba de capacitación.
+
+b) ¿En cuánto se incrementa el número esperado de unidades vendidas por cada incremento de 1 punto en una calificación de la prueba?
+
+c) Utilice la recta de regresión de mínimos cuadrados para predecir el número de unidades que vendería un capacitando que obtuvo una calificación promedio en la prueba.
+
+
+\newpage
+
+# Ejercicio 4
+
+En economía, la función de demanda de un producto a menudo se estima mediante una regresión de la cantidad vendida *(Q)* sobre el precio *(P)*. La compañía Bamsy está tratando de estimar la función de demanda para su nueva muñeca "Ma´am", y ha recabado los siguientes datos:
+
+|   P   |  Q  |
+|:-----:|:---:|
+|  20.0 | 125 |
+|  17.5 | 156 |
+|  16.0 | 183 |
+|  14.0 | 190 |
+| 12.05 | 212 |
+|  10.0 | 238 |
+|  8.0  | 250 |
+|  6.5  | 276 |
+
+a) Grafique estos datos.
+
+b) Calcule la recta de regresión de mínimos cuadrados.
+
+c) Trace la recta de regresión ajustada en su gráfica del inciso a).
+
+\newpage
+
+# Ejercicio 5
+
+El Bank of Lincoln está interesado en reducir el tiempo que las personas esperan para ver a su banquero personal.  También  le interesa la relación entre el tiempo de espera *(Y)* en minutos y el número de banqueros atendiendo *(X)*.  Los clientes se seleccionaron al azar con los datos siguientes:
+
+| X |   Y  |
+|:-:|:----:|
+| 2 | 12.8 |
+| 3 | 11.3 |
+| 5 |  3.2 |
+| 4 |  6.4 |
+| 2 | 11.6 |
+| 6 |  3.2 |
+| 1 |  8.7 |
+| 3 | 10.5 |
+| 4 |  8.2 |
+| 3 | 11.3 |
+| 3 |  9.4 |
+| 2 | 12.8 |
+| 4 |  8.2 |
+
+a) Calcule la ecuación de regresión que mejor se ajusta a estos datos.
+
+b) Calcule el coeficiente de determinación de la muestra y el coeficiente de correlación de muestra.
+
+\newpage
+
+# Ejercicio 6
+
+Zippy Cola está estudiando el efecto de su última campaña publicitaria.  Se escogieron personas al azar y se les llamó para preguntarles cuántas latas de Zippy Cola habían comprado la semana anterior y cuántos anuncios de Zippy Cola habían leído o visto durante el mismo periodo.
+
+| X (número de anuncios) | Y (latas compradas) |
+|:----------------------:|:-------------------:|
+|            3           |          11         |
+|            7           |          18         |
+|            4           |          9          |
+|            2           |          4          |
+|            0           |          7          |
+|            4           |          6          |
+|            1           |          3          |
+|            2           |          8          |
+
+a) Desarrolle la ecuación de estimación que mejor ajuste los datos.
+
+b) Calcule el coeficiente de determinación de la muestra y el coeficiente de correlación.
+
+
+\newpage
+
+# Ejercicio 7
+
+En finanzas, es de interés observar la relación entre *Y*, el rendimiento promedio de las acciones, y *X*, el rendimiento global del mercado.  El coeficiente de la pendiente calculada por una regresión lineal se conoce como la *beta* de las acciones pormloa analistas de inversiones.  Una beta mayor que 1 indica que la acción es relativamente sensible a cambios en el mercado, mientras que una beta menor que 1 indica que la acción es relativamente insensible.  Para los datos siguientes, calcule la beta y pruebe si ésta es significativamente insensible.  Para los datos siguientes, calcule la beta y pruebe si ésta es significativamente menor que 1. Use $\alpha=0.05.$
+
+| Y (%) | X (%) |
+|:-----:|:-----:|
+|   10  |   11  |
+|   12  |   15  |
+|   8   |   3   |
+|   15  |   18  |
+|   9   |   10  |
+|   11  |   12  |
+|   8   |   6   |
+|   10  |   7   |
+|   13  |   18  |
+|   11  |   13  |
+
+\newpage
+
+# Ejercicio 8
+
+Ned´s Beds está considerando contratar a una compañía de publicidad para estimular el negocio.  Fred, el hermano de Ned, investigó el campo de la publicidad de camas y recolectó los siguientes datos de la cantidad de ganancias *(Y)* que logra una compañía de camas y la cantidad gastada en publicidad *(X)*.  Si Fred calcula la ecuación de regresión, la pendiente de la recta indicará el incremento en la ganancia por dólar gastado en publicidad.  Ned hará la publicidad sólo si la ganancia de cada \$1 invertido excede \$1.50.  Calcule la pendiente de la ecuación de regresión y pruebe si es mayor que 1.50.  Para un nivel de significancia de 0.05, ¿debe Ned hacer la publicidad?
+
+| Cantidades de   publicidad (X), en cientos de dólares | Ganancia (Y), en cientos de dólares | Cantidad de  publicidad (X), en cientos de dólares | Ganancia (Y), en cientos de dólares |
+|:-----------------------------------------------------:|:-----------------------------------:|:--------------------------------------------------:|:-----------------------------------:|
+|                          3.6                          |                12.13                |                        14.6                        |                 33.6                |
+|                          4.8                          |                 14.7                |                        18.2                        |                 40.8                |
+|                          9.7                          |                22.83                |                         3.7                        |                 9.4                 |
+|                          12.6                         |                 28.4                |                         9.8                        |                24.84                |
+|                          11.5                         |                28.33                |                        12.4                        |                30.17                |
+|                          10.9                         |                27.05                |                        16.9                        |                 34.7                |
+
+\newpage
+
+# Ejercicio 9
+
+Un corredor de una empresa de inversión local ha estudiado la relación entre el incremento en el precio del oro *(X)* y las peticiones de sus clientes de liquidar las acciones *(Y)*.  Del conjunto de datos basado en 15 observaciones, se encontró que la pendiente de la muestra era 2.9.  Si el error estándar del coeficiente de la pendiente de regresión es 0.18, ¿existe una razón para pensar (a 0.05 de nivel de significancia) que la pendiente cambió de su valor anterior de 3.2?
+
+\newpage
+
+# Ejercicio 10
+
+Los corredores de bienes raíces a menudo están interesados en ver cómo el avaluó de una casa varía de acuerdo con su tamaño.  A continuación se muestran algunos datos del área (en miles de pies cuadrados) y el evaluó (en miles de dólares) para una muestra de 11 casas.
+
+| Área | Valor |
+|:----:|:-----:|
+|  1.1 |   75  |
+|  1.5 |   95  |
+|  1.6 |  110  |
+|  1.6 |  102  |
+|  1.4 |   95  |
+|  1.3 |   87  |
+|  1.1 |   82  |
+|  1.7 |  115  |
+|  1.9 |  122  |
+|  1.5 |   98  |
+|  1.3 |   90  |
+
+a) Estime la regresión de mínimos cuadrados para predecir el valor según el avaluó a partir del tamaño.
+
+b) Generalmente, los corredores de bienes raíce sienten que el valor de una casa sube 50,000 dólares por cada 1,000 pies cuadrados de área.  Para esta muestra, ¿se cumple esta relación? Utilice $\alpha=0.10.$
+
+\newpage
+
+# Ejercicio 11
+
+Un gerente de operaciones está interesado en predecir los costos *C* (en miles de dólares) con base en la cantidad de materia prima de entrada *R* (en miles de libras) para un fabricante de pantalones de mezclilla.  Si la pendiente es significativamente mayor que 0.5 en los siguientes datos muestrales, entonces algo marcha mal con el proceso de producción y la maquinaria de la línea de ensamble debe ajustarse.  Al nivel de significancia de 0.05, ¿debe ajustarse la maquinaria?  Establezca explícitamente las hipótesis y una conclusión.
+
+|  C |  R |
+|:--:|:--:|
+| 10 | 25 |
+|  7 | 20 |
+|  5 | 16 |
+|  6 | 17 |
+|  7 | 19 |
+|  6 | 18 |
+
+\newpage
+
+# Ejercicio 12
+
+A menudo, quienes planean la comercialización deben estimar la demanda geográfica de un producto de una compañía.  La demanda no depende sólo del número de personas de una comunidad, sino también de la cantidad de dinero que tienen para gastar.  La revista *Sales & Marketing Management* utiliza los datos de censos de Estados Unidos para estimar el "ingreso de compra efectivo (ICE)" de hogares típicos estadounidenses en áreas metropolitanas del país.  El ICE es la suma de sueldos y otros ingresos, menos impuestos y multas; en resumen, es una buena medida de lo que los economistas llaman "ingreso disponible".  La cantidad total de dinero disponible para gastar en una comunidad es aproximadamente proporcional al producto del ICE por la población.
+
+Calcule una nueva variable TD = (POB X ICE)/1,000. Calcule los coeficientes de determinación de la muestra entre VENTAS y TD. ¿Cuál de estas variables explica una parte mayor de la variación en VENTAS?
+
+\newpage
+
+# Ejercicio 13
+
+Muchas compañías pequeñas compran publicidad sin analizar sus efectos.  La "guerra de las hamburguesas" (rivalidad sustancial de precios entre compañías de comida rápida) ha reducido las ganancias de Ethiopian Burguers en Santa Cruz, California, una cadena regional pequeña.  El gerente de mercadotecnia intenta demostrar que "hay que gastar dinero para ganar dinero".  Gastar en publicidad en espectaculares, en su opinión, tiene resultados directos en las ventas.  Se tienen registros de 7 meses:
+
+| Gasto mensual en espectaculares (miles de dólares) | Rendimiento de las ventas mensuales (miles de dólares) |
+|:--------------------------------------------------:|:------------------------------------------------------:|
+|                         25                         |                           34                           |
+|                         16                         |                           14                           |
+|                         42                         |                           48                           |
+|                         34                         |                           32                           |
+|                         10                         |                           26                           |
+|                         21                         |                           29                           |
+|                         19                         |                           20                           |
+
+a) Desarrolle al ecuación de estimación que mejor describa estos datos.
+
+b) Calcule el error estándar de la estimación para esta relación.
+
+c) Para un mes con gastos de \$28,000 en espectaculares, desarrolle un intervalo de confianza del 95% para las ventas mensuales esperadas ese mes.
+
+\newpage
+
+# Ejercicio 14
+
+En 1992, las ventas totales de cereales para desayuno en Estados Unidos se estimaron en \$3.842 miles de millones.  Considere la siguiente información de los 10 cereales más vendidos.  Encuentre la ecuación de mínimos cuadrados que usa el precio promedio al menudeo para predecir las participaciones en el mercado. ¿Cuál de las siguientes tres generalizaciones describe mejor la relación entre estas dos variables?
+
+a) Un precio menor incrementa las ventas.
+
+b) Un porcentaje de mercado mayor significa que se puede cobrar un precio más alto.
+
+c) El porcentaje de mercado no parece depender del precio.
+
+|    Compañía   |        Cereal       | Porcentaje del mercado | Volumen (millones de dólares) | Precio promedio al menudeo |
+|:-------------:|:-------------------:|:----------------------:|:-----------------------------:|:--------------------------:|
+| General Mills |       Cheerios      |          4.58          |             175.96            |            $2.18           |
+|   Kellogg´s   |    Frosted Flakes   |          4.08          |             156.75            |            $2.83           |
+| General Mills |  Honey Nut Cheerios |          3.28          |             126.02            |            $2.99           |
+|   Kellogg´s   |    Rice Krispies    |          2.99          |             114.88            |            $1.94           |
+|   Kellogg´s   |     Corn Flakes     |          2.97          |             114.11            |            $1.47           |
+|   Kellogg´s   |     Raisin Bran     |          2.77          |             106.42            |            $2.74           |
+|   Kellogg´s   | Frosted Mini-Wheats |          2.77          |             106.42            |            $2.91           |
+|   Kellogg´s   |     Froot Loops     |          2.33          |             89.52             |            $2.64           |
+| General Mills |     Lucky Charms    |          1.85          |             71.08             |            $3.15           |
+| General Mills |        Total        |          1.84          |             70.69             |            $2.86           |
+
+\newpage
+
+# Ejercicio 15
+
+Dave Proffitt, estudiante de segundo año de la maestría en administración, elabora un estudio de compañías que entran a la bolsa de valores por primera vez.  Tiene curiosidad por ver si existe o no una relación significativa entre el tamaño de la oferta (en millones de dólares) y el precio por acción.
+
+a) Dados los siguientes datos, desarrolle la ecuación de estimación que mejor ajuste los datos.
+
+| Tamaño (millones de dólares) | Precio (dólares) |
+|:----------------------------:|:----------------:|
+|            108.00            |       12.00      |
+|             4.40             |       4.00       |
+|             3.50             |       5.00       |
+|             3.60             |       6.00       |
+|             39.00            |       13.00      |
+|             68.40            |       19.00      |
+|             7.50             |       8.50       |
+|             5.50             |       5.00       |
+|            375.00            |       15.00      |
+|             12.00            |       6.00       |
+|             51.00            |       12.00      |
+|             66.00            |       12.00      |
+|             10.40            |       6.50       |
+|             4.00             |       3.00       |
+
+b) Calcule el coeficiente de determinación de la muestra. ¿Debe Dave usar esta ecuación de regresión para pronosticar o debe buscar en otra parte variables explicativas adicionales?
