@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Para ver si las ventas de chips de silicio son independientes del punto del ciclo de negocios en que se encuentre la economía de Estados Unidos se han recogido datos de las ventas semanales de Zippy Chippy, una empresa de Silicon Valley, y datos acerca de si la economía de Estados Unidos subía al pico del ciclo, estaba en el pico, iba a la baja o estaba en el punto bajo.  Los resultados son los siguientes:
 
-**VENTAS SEMANAL DE CHIPS**
+\begin{center}VENTAS SEMANAL DE CHIPS\end{center}
 
 |                  | Alta | Mediana | Baja | TOTAL |
 |------------------|:----:|:-------:|:----:|------:|
@@ -55,7 +55,7 @@ c) Al nivel de significancia de 0.10, ¿cuál es su conclusión?
 Un ascensor financiero está interesado en las diferencias de estructura de capital respecto a compañías de distintos tamaños dentro de cierta industria.  El ascensor investiga un grupo de empresas con activos de diferentes cantidades y las organiza en tres grupos.  Calsifica cada compañía según si su débito total es mayor que la cantidad de acciones ordinarias de los accionistas o si menor que éstas.  Los resultados de la investigación son:
 
 
-*Tamaño del activo de la compañía (en miles de dólares)*
+\begin{center}Tamaño del activo de la compañía (en miles de dólares)\end{center}
 
 |                                      | <500 | 500-2,000 |   2,000+ |    Total |
 |--------------------------------------|:----:|:---------:|:--------:|:--------:|
@@ -129,7 +129,7 @@ Una compañía maderera está preocupada por saber cómo las tasas de interés c
 
 La Oficina de Contabilidad del Gobierno (OCG) de Estados Unidos está interesada en ver si las oficinas de tamaño parecido gastan cantidades similares en personal y equipo.  (Las oficinas que gastan más tendrán una auditoria especial.)  Se examinaron los gastos mensuales de tre oficinas: una de ellas en el Departamento de Agricultura, otra en el Departamento de Estado y a última en el Departamento del Interior.  Los datos se presentan en la tabla.  Al nivel de significancia de 0.01, ¿existen diferencias en los gastos de las distintas oficinas?
 
-**Gastos mensuales (en miles de dólares) durante algunos meses**
+\begin{center}Gastos mensuales (en miles de dólares) durante algunos meses\end{center}
 
 | Agricultura | Estado | Interior |
 |:-----------:|:------:|:--------:|
@@ -227,7 +227,7 @@ Los inventores y las compañías internacionales saben del valor de una patente 
 
 Las tiendas establecen sus precios, pero los fabricantes tienen interés en el precio de venta final como parte de su estrategia de promoción.  El gerente de mercadotecnia de los bolígrafos marca C se queja de que el resultado de un recorte de precios excesivos en las tiendas es que la marca C se percibe como una "pluma corriente".  El gerente de ventas contesta que "todos dan descuentos, todas las marcas, hasta cierto punto".  durante las llamadas ventas recolectaron datos del precio final de cuatro marcas de bolígrafos, incluyendo la de ellos, en cinco tiendas diferentes.  Para un nivel de confianza de 0.05, ¿existe una variación significativa en el precio entre las marcas?
 
-\begin{center}Precio (en centavo de dólar)**\end{center}
+\begin{center}Precio (en centavo de dólar)\end{center}
 
 | Marca A | Marca B | Marca C | Marca D |
 |:-------:|:-------:|:-------:|:-------:|
@@ -291,7 +291,7 @@ c) Establezca las hipótesis nula y alternativa.
 d) Al nivel de significancia de 0.05, ¿deberá rechazarse la hipótesis nula?
 
 
-                                   Nivel de ingresos
+                                      Nivel de ingresos
 
 | Concurrencia a la iglesia | Bajo |  Mediano | Alto |
 |---------------------------|:----:|:--------:|:----:|
@@ -309,4 +309,49 @@ Los promedios Dow-Jones para la industria, el transporte y los servicios de luz,
 \begin{center}Promedio industrial\end{center}
 
 Falta la tabla...
+
+
+
+\newpage
+
+# Ejercicio 22
+
+La siguiente tabla presenta las estimaciones de un índice del costo de la vida en cuatro zonas de Caracas hechas por cinco investigadores.
+
+|  |  | Zonas |  |  |
+|:------------:|:---:|:-----:|:---:|:---:|
+| Investigador |  |  |  |  |
+|  | 1 | 2 | 3 | 4 |
+| 1 | 106 | 110 | 107 | 109 |
+| 2 | 107 | 111 | 110 | 112 |
+| 3 | 105 | 109 | 108 | 108 |
+| 4 | 104 | 108 | 104 | 114 |
+| 5 | 109 | 105 | 109 | 111 |
+
+a) ¿Existe diferencia en los índices de costo de la vida en cuanto a cada investigador independientemente de la zona?
+
+b) ¿Existe diferencia en los índices de cada zona independientemente del investigador que lo realiza? $\alpha=0,05.$
+
+\newpage
+
+# Ejercicio 23
+
+Los datos de la tabla se refieren al sueldo diario de 36 profesionales, agrupados según su profesión y según el sector económico en que prestan sus servicios.
+
+|  | Abogados | Economistas | Contadores |
+|-----------|:--------------:|:----------------:|:--------------:|
+| Gobierno | 4.000    3.750 | 3.700    3.600 | 3.500    4.000 |
+|  | 3.500    4.400 | 4.000    4.500 | 4.250    3.850 |
+|  |  |  |  |
+| Industria | 4.200    3.950 | 3.800    3.750 | 4.000    4.100 |
+|  | 3.700    4.400 |   4.200    4.600 | 4.500    3.900 |
+|  |  |  |  |
+| Banca | 4.100    4.700 | 4.300    3.900 | 4.400    4.200 |
+|  | 3.700    4.500 | 4.000   4.600 | 3.950    4.000 |
+
+a) Contrastar la hipótesis de igualdad en los sueldos medios de las distintas profesiones.
+
+b) Contrastar la hipótesis de igualdad de los sueldos medios en los distintos sectores.
+
+c) Contrastar la hipótesis de no interacción.
 

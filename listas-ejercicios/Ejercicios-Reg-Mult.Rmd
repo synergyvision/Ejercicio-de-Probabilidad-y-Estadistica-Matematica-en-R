@@ -1,0 +1,426 @@
+---
+title: "Ejercicios de Regresión Múltiple"
+subtitle: "Diplomado de Probabilidad y Estadística Matemática en R"
+author: "http://synergy.vision/"
+output:
+  pdf_document:
+      toc: yes
+      toc_depth: 4
+      includes:
+        in_header: ./preambulo.tex
+  html_document: default
+fontsize: 12
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+\newpage
+
+# Ejercicio 1
+
+Sam Spade, dueño y gerente de Stationery Store, está preocupado por el comportamiento de las ventas de un modelo de reproductor de CD y casetes que se venden en la tienda.  Se da cuenta de que existen muchos factores  que podrían ayudar a explicarlo, pero cree que la publicidad y el precio son los principales determinantes.  Sam reunió los siguientes datos:
+
+| Ventas (unidades vend.) | Publicidad (núm. de anuncios) | Precio (dólares) |
+|:-----------------------:|:-----------------------------:|:----------------:|
+|            33           |               3               |        125       |
+|            61           |               6               |        115       |
+|            70           |               10              |        140       |
+|            82           |               13              |        130       |
+|            17           |               9               |        145       |
+|            24           |               6               |        140       |
+
+a) Calcule la ecuación de mínimos cuadrados para predecir las ventas a partir de la publicidad y el precio. 
+
+b) Si la publicidad es 7 y el precio \$132, ¿qué ventas podría pronosticar?
+
+\newpage
+
+# Ejercicio 2
+
+La Reserva Federal de Estados Unidos realiza un estudio preliminar para determinar la relación entre ciertos indicadores económicos y el cambio porcentual anual en el producto interno bruto (PIB).  Dos de los indicadores examinados son el monto del déficit del gobierno federal (en miles de millones de dólares) y el promedio industrial Dow Jones (el valor medio del año).  Los datos correspondientes a seis años son:
+
+| Y Cambio en el PIB | $X_1$ Déficit federal | $X_2$ Dow Jones |
+|:------------------:|:-----------------:|:-----------:|
+|         2.5        |        100        |    2,850    |
+|        -1.0        |        400        |    2,100    |
+|         4.0        |        120        |    3,300    |
+|         1.0        |        200        |    2,400    |
+|         1.5        |        180        |    2,550    |
+|         3.0        |         80        |    2,700    |
+
+a) Encuentre (calcule) la ecuación de mínimos cuadrados que mejor describa los datos.
+
+b) ¿Qué porcentaje de cambio en el PIB se esperaría en un año en el cual el déficit federal fue 240,000 millones de dólares y el promedio Dow Jones fue 3,000?
+
+\newpage
+
+# Ejercicio 3
+
+Estamos intentando predecir la demanda anual (DEMAND) de cierto producto, utilizando las siguientes variables independientes:
+
+$$
+\begin{array}{rl}
+&\text{PRECIO}=\text{precio del producto (en dólares)}\\ 
+&\text{INGRESO}=\text{ingreso del consumidor (en dólares)}\\
+&\text{SUB}=\text{precio de un bien sustituto (en dólares)}
+\end{array}
+$$
+
+Se recolectaron datos correspondientes al periodo 1982-1996:
+
+|  Año | Demanda | Precio ($) | Ingreso ($) | Sub ($) |
+|:----:|:-------:|:----------:|:-----------:|:-------:|
+| 1982 |    40   |      9     |     400     |    10   |
+| 1983 |    45   |      8     |     500     |    14   |
+| 1984 |    50   |      9     |     600     |    12   |
+| 1985 |    55   |      8     |     700     |    13   |
+| 1986 |    60   |      7     |     800     |    11   |
+| 1987 |    70   |      6     |     900     |    15   |
+| 1988 |    65   |      6     |    1,000    |    16   |
+| 1989 |    65   |      8     |    1,100    |    17   |
+| 1990 |    75   |      5     |    1,200    |    22   |
+| 1991 |    75   |      5     |    1,300    |    19   |
+| 1992 |    80   |      5     |    1,400    |    20   |
+| 1993 |   100   |      3     |    1,500    |    23   |
+| 1994 |    90   |      4     |    1,600    |    18   |
+| 1995 |    95   |      3     |    1,700    |    24   |
+| 1996 |    85   |      4     |    1,800    |    21   |
+
+a) Utilice el paquete de software que tenga disponible para encontrar la ecuación de regresión de mejor ajuste para estos datos.
+
+b) ¿Son los signos(+ o -) de los coeficientes de regresión de las variables independientes los que se esperan? Dé una explicación breve.  (Nota: Ésta no es una pregunta estadística; sólo necesita pensar qué significan los coeficientes de regresión.)
+
+c) Establezca e interprete el coeficiente de determinación múltiple del problema.
+
+d) Establezca e interprete el error estándar de la estimación para el problema.
+
+e) Según la ecuación de regresión obtenida, ¿qué valor de DEMAND predeciría si el precio de los productos fue \$6, el ingreso del consumidor \$1,200 y el precio del bien sustituto \$17?
+
+\newpage
+
+# Ejercicio 4
+
+Rick Blackburn está pensando en vender su casa.  Con el fin de decidir el precio que pedirá por ella, ha reunido datos de 12 ventas recientes.  Registro el precio de venta (en miles de dólares), el número de pies cuadrados de construcción (en cientos de pies cuadrados), el número de pisos, el número de baños y  la atigüedad de la casa (en años).
+
+| Precio de venta | Pies cuad. | Pisos | Baños | Antigüedad |
+|:---------------:|:----------:|:-----:|:-----:|:----------:|
+|      49.65      |     8.9    |   1   |  1.0  |      2     |
+|      67.95      |     9.5    |   1   |  1.0  |      6     |
+|      81.15      |    12.6    |   2   |  1.5  |     11     |
+|      81.60      |    12.9    |   2   |  1.5  |      8     |
+|      91.50      |    19.0    |   2   |  1.0  |     22     |
+|      95.25      |    17.6    |   1   |  1.0  |     17     |
+|      100.35     |    20.0    |   2   |  1.5  |     12     |
+|      104.25     |    20.6    |   2   |  1.5  |     11     |
+|      112.65     |    20.5    |   1   |  2.0  |      9     |
+|      149.70     |    25.1    |   2   |  2.0  |      8     |
+|      160.65     |    22.7    |   2   |  2.0  |     18     |
+|      232.50     |    40.8    |   3   |  4.0  |     12     |
+
+a) Utilice cualquier paquete de software que tenga disponble para determinar la ecuación de regresión de mejor ajuste para los datos.
+
+b) ¿Cuál es el valor de $R_2$ para esta ecuación?
+
+c) Si la casa de Rick tiene 1,800 pies cuadrados (=18.0 cientos de pies cuadrados), un piso, 1.5 baños y seis años de antigüedad, ¿qué precio de venta puede esperar Rick?
+
+\newpage
+
+# Ejercicio 5
+
+La Allegheny Steel Corporation ha estado buscando los factores que influyen en la cantidad de acero (en millones de toneladas) que puede vender cada año.  La administración sospecha que los siguientes son los factores principales: la tasa anual de inflación del país, el precio promedio por tonelada del acero importado que acota los precios (en dólares) de Allegheny, y el número de automóviles (en millones) que los fabricantes de autos de Estados Unidos planean ese año.  Se recolectaron los datos de los últimos siete años:
+
+|  Año | Y Millones  de tons. Vendidas | $X_1$ Tasa de inflación | $X_2$ Cota de Importaciones | $X_3$ Número de automóviles |
+|:----:|:-----------------------------:|:-------------------:|:-----------------------:|:-----------------------:|
+| 1993 |              4.2              |         3.1         |           3.10          |           6.2           |
+| 1992 |              3.1              |         3.9         |           5.00          |           5.1           |
+| 1991 |              4.0              |         7.5         |           2.20          |           5.7           |
+| 1990 |              4.7              |         10.7        |           4.50          |           7.1           |
+| 1989 |              4.3              |         15.5        |           4.35          |           6.5           |
+| 1988 |              3.7              |         13.0        |           2.60          |           6.1           |
+| 1987 |              3.5              |         11.0        |           3.05          |           5.9           |
+
+a) Utilice cualquier paquete de software que tenga disponible para determinar la ecuación de regresión de mejor ajuste para los datos.
+
+b) ¿Qué porcentaje de variación total de la cantidad de acero vendido (en millones de toneladas) por Allegheny cada año explica esta ecuación?
+
+c) ¿Cuántas toneladas de acero deberá esperar Allegheny vender en un año en el que la tasa de inflación es 7.1, los fabricantes de automóviles norteamericanos planean producir 6.0 millones de autos y la cota promedio del acero importado por tonelada es \$3.50?
+
+\newpage
+
+# Ejercicio 6
+
+Cindy´s, una popular cadena de comida rápida, ha experimentado un cambio importante en sus ventas como resultado de una campaña de publicidad muy exitosa.  En consecuencia, la gerencia ahora necesita un nuevo modelo de regresión para sus ventas.  Los siguientes datos se recolectaron en las 12 semanas posteriores al inicio de la campaña de publicidad.
+
+| Tiempo | Ventas (en miles de dólares) | Tiempo | Ventas (en miles de dólares) |
+|:------:|:----------------------------:|:------:|:----------------------------:|
+| 1 | 4,618 | 7 | 19,746 |
+| 2 | 3,741 | 8 | 34,215 |
+| 3 | 5,836 | 9 | 50,306 |
+| 4 | 4,367 | 10 | 65,717 |
+| 5 | 5,118 | 11 | 86,434 |
+| 6 | 8,887 | 12 | 105,464 |
+
+a) Use la siguiente tabla para determinar la regresión que mejor se ajuste a VENTAS sobre TIEMPO.
+
+La ecuación de regresión es
+
+VENTAS 0 -26233 + 9093 TIEMPO
+
+| Tiempo | Ventas (en miles de dólares) | Tiempo | Ventas (en miles de dólares) |
+|:------:|:----------------------------:|:------:|:----------------------------:|
+| 1 | 4,618 | 7 | 19,746 |
+| 2 | 3,741 | 8 | 34,215 |
+| 3 | 5,836 | 9 | 50,306 |
+| 4 | 4,367 | 10 | 65,717 |
+| 5 | 5,118 | 11 | 86,434 |
+| 6 | 8,887 | 12 | 105,464 |
+
+s = 15518       R-sq = 83.1%
+
+| RENGLON | VENTAS | AJUST1 | RESI1 |
+|:-------:|:------:|:------:|-------:|
+| 1 | 4618 | -17140 | 21758 |
+| 2 | 3741 | -8047 | 11788 |
+| 3 | 5836 | 1046 | 4790 |
+| 4 | 4367 | 10139 | -5772 |
+| 5 | 5118 | 19231 | -14113 |
+| 6 | 8887 | 28324 | -19437 |
+| 7 | 19746 | 37417 | -17671 |
+| 8 | 34215 | 46510 | -12295 |
+| 9 | 50306 | 55603 | -5297 |
+| 10 | 65717 | 64696 | 1021 |
+| 11 | 86434 | 73789 | 12645 |
+| 12 | 105464 | 82881 | 22583 |
+
+b) ¿Está satisfecho con el modelo como pronosticador de VENTAS? Explique.
+
+c) La siguiente salida usa TIEMPO y TIEMPOSCUAD (TIEMPOS al cuadrado) como variable explicativas. ¿Es este modelo cuadrático un mejor ajuste para los datos? Explique.
+
+La ecuación de regresión es
+
+VENTAS = 13981 - 8142 TIEMPO + 1326 TIEMPOSCUAD
+
+| Pronosticador | Coef | DesvEst | Cociente-t | p |
+|---------------|:-------:|:-------:|:----------:|:-----:|
+| Constante | 13981 | 2720 | 5.14 | 0.000 |
+| TIEMPO | -8141.5 | 961.9 | -8.46 | 0.000 |
+| TIEMPOSCUAD | 1325.72 | 72.03 | 18.41 | 0.000 |
+
+s = 2631        R-sq = 99,6%
+
+| RENGLÓN | VENTAS | AJUST1 | RES1 |
+|:-------:|:------:|:------:|------:|
+| 1 | 4618 | 7165 | -2547 |
+| 2 | 3741 | 3001 | 740 |
+| 3 | 5836 | 1488 | 4348 |
+| 4 | 4367 | 2626 | 1741 |
+| 5 | 5118 | 6416 | -1298 |
+| 6 | 8887 | 12858 | -3971 |
+| 7 | 19746 | 21950 | -2204 |
+| 8 | 34215 | 33695 | 520 |
+| 9 | 50306 | 48090 | 2216 |
+| 10 | 65717 | 65138 | 579 |
+| 11 | 86434 | 84836 | 1598 |
+| 12 | 105464 | 107186 | -1722 |
+
+\newpage
+
+# Ejercicio 7
+
+La siguiente tabla contiene datos de gastos de consumo, CONSUMO; ingreso disponible, INGRESO; y sexo de la cabeza de la casa, SEXO, de 12 familias elegidas al azar.  La variable GÉNERO  se ha codificado como sigue:
+
+$$\text{GÉNERO}=\left \{ \begin{matrix} 1 & \text{si SEXO = M (masculino)}
+\\ 0 &\text{si SEXO = F (femenino)}\end{matrix}\right. $$
+
+| Consumo | Ingreso (dólares) | Sexo | Género |
+|:-------:|:-----------------:|:----:|:------:|
+| 37,070 | 45,100 | M | 1 |
+| 22,,700 | 28,070 | M | 1 |
+| 24,260 | 26,080 | F | 0 |
+| 30,420 | 35,000 | M | 1 |
+| 17,360 | 18,860 | F | 0 |
+| 33,520 | 41,270 | M | 1 |
+| 26,960 | 32,940 | M | 1 |
+| 19,360 | 21,440 | F | 0 |
+| 35,680 | 44,700 | M | 1 |
+| 22,360 | 24,400 | F | 0 |
+| 28,640 | 33,620 | F | 0 |
+| 39,720 | 46,000 | M | 1 |
+
+a) Utilice la siguiente tabla para determinar la regresión de mejor ajuste para pronosticar CONSUMO a partir de INGRESO y GÉNERO.
+
+La ecuación de regresión es
+
+CONSUMO = 2036  + 0.818 INGRESO - 1664 GÉNERO
+
+| Pronosticador | Coef | DesvEst | Cociente-t | p |
+|:-------------:|:-------:|:-------:|:----------:|------:|
+| Constante | 2036 | 1310 | 1.55 | 0.155 |
+| INGRESO | 0.81831 | 0.04940 | 16.56 | 0.000 |
+| GÉNERO | -1664.2 | 916.9 | -1.82 | 0.103 |
+
+b) Si el ingreso disponible se mantiene constante, ¿existe una diferencia significativa en el consumo entre las casas cuya cabeza es masculina comparada con aquéllas cuya cabeza es femenina? Establezca las hipótesis explícitas, pruébelas para un nivel de 0.10 y establezca una conclusión explícita.
+
+c) Proporcione un intervalo de confianza para la estimación del 95% para el consumo en una casa con ingreso disponible de \$40,000 cuya cabeza de familia es masculina.
+
+\newpage
+
+# Ejercicio 8
+
+Los siguientes datos corresponden a las ventas brutas (VENTAS) de la pizzería local, el dinero que gastan en promociones (PROMO) y el tipo de promoción que incluye radio, peródicos y volantes.  Suponga que la pizzería usa un solo tipo de promoción en una semana dada.  Las variables TIPO1 y TIPO2 se han codificado como sigue:
+
+\begin{center}TIPO1 = 1 si se usó radio, 0 de otra manera\end{center}
+\begin{center}TIPO2 = 2 si se usaron volantes, 0 de otra manera\end{center}
+
+(cuando las dos, TIPO1 y TIPO2, son 0, el presupuestos de la promoción de esa semana se gastó en anuncios de periódico).
+
+| VENTAS (cientos) | PROMO (cientos) | TIPO1 | TIPO2 |
+|:----------------:|:---------------:|:-----:|:-----:|
+| 12.1 | 3.8 | 0 | 1 |
+| 19.1 | 6.4 | 0 | 1 |
+| 26.9 | 7.9 | 0 | 0 |
+| 24.8 | 8.7 | 1 | 0 |
+| 37.1 | 12.4 | 1 | 0 |
+| 39.4 | 15.9 | 0 | 1 |
+| 32.5 | 11.3 | 0 | 0 |
+| 28.9 | 9.4 | 0 | 0 |
+| 28.8 | 8.6 | 1 | 0 |
+| 34.7 | 12.7 | 0 | 1 |
+| 38.4 | 14.3 | 0 | 0 |
+| 26.3 | 6.7 | 1 | 0 |
+
+a) Utilice un paquete de software para ajustar un modelo de regresión que pronostique VENTAS a partir de PROMO, TIPO1 y TIPO2.
+
+b) Establezca la función de regresión ajustada.
+
+c) Si PROMO se mantiene constante, ¿existe una diferencia significativa entre el radio y el periódico? Establezca las hipótesis adecuadas y pruebe con un nivel de significancia de 0.05.
+
+d) Si PROMO se mantiene constante, ¿existe una diferencia significativa entre los volantes y el periódico? Establezca las hipótesis adecuadas y prueba con un nivel de significancia de 0.05.
+
+e) Calcule un intervalo de confianza del 90% para VENTAS en una semana en la que se gastaron \$800 usando anuncios de radio como el único tipo de promoción.
+
+\newpage
+
+# Ejercicio 9
+
+La venta exitosa es tanto un arte como una ciencia, pero muchos gerentes de ventas piensan que los atributos personales son importantes para pronosticar el éxito en esa actividad.  Desing Alley es una tienda de diseño de interiores con servicio completo que vende persianas, alfombras y papel tapiz a la medida.  El gerente de la tienda, Dee Dempsey, contrató a una compañía de selección de personal para realizar pruebas de cuatro aptitudes antes de contratar.  Dee recolectó los datos de crecimiento en ventas de 25 agentes que contrató, junto con las calificaciones de las cuatro pruebas de actitud: creatividad, habilidad motriz, pensamiento abstracto y cálculo matemático.  Por medio de una PC, Dee generó la siguiente salida utilizando un programa estadístico:
+
+La ecuación de regresión es:
+
+CRECIMIENTO = 70.1 + 0.422 CREAT + 0.271 MOTR + 0.745 ABST = 0.420 MATE
+
+| Pronosticador | Coef | DesvEst | Cociente-t | p |
+|---------------|:-------:|:-------:|:----------:|------:|
+| Constante | 70.066 | 2.130 | 32.89 | 0.000 |
+| CREAT | 0.42160 | 0.17192 | 2.45 | 0.024 |
+| MOTR | 0.27140 | 0.21840 | 1.24 | 0.228 |
+| ABST | 0.74504 | 0.28982 | 2.57 | 0.018 |
+| MATE | 0.41955 | 0.06871 | 6.11 | 0.000 |
+
+Análisis de varianza
+
+| FUENTE | GL | SC | MC | F | p |
+|-----------|---:|--------:|-------:|------:|------:|
+| Regresión | 4 | 1050.78 | 262.70 | 62.64 | 0.000 |
+| Error | 20 | 83.88 | 4.19 |  |  |
+| Total | 24 | 1134.66 |  |  |
+
+a) Escriba la ecuación de regresión para el crecimiento en ventas en términos de los cuatro factores de las pruebas.
+
+b) ¿Cuánta variación en el crecimiento en ventas explican las pruebas de aptitud?
+
+c) Para un nivel de significancia de 0.05, ¿cuáles de las pruebas de aptitud son variables explicativas significativas para el crecimiento en ventas?
+
+d) ¿Es significativo el modelo como un todo?
+
+e) Jay es un nuevo aspirante; tiene las siguientes calificaciones: CREAT = 12, MOTR = 14, ABST = 18 y MATE = 30. ¿Qué crecimiento en ventas pronostica el modelo para ese candidato?
+
+\newpage
+
+# Ejercicio 10
+
+The Money Bank desea abrir nuevas cuentas de cheques para clientes que emitirán al menos 30 cheques al mes.  Como ayuda en la sección de los nuevos clientes, el banco ha estudiado la relación entre el número de cheques expedidos y la edad y el ingreso anual de ocho de sus clientes actuales.  La variable EDAD se registró al año más cercano, y la variable INGRESO anual se registró en miles de dólares.  Los datos se presentan a continuación:
+
+| Cheques | Edad | Ingreso |
+|:-------:|:----:|:-------:|
+| 29 | 37 | 16.2 |
+| 42 | 34 | 25.4 |
+| 9 | 48 | 12.4 |
+| 56 | 38 | 25.0 |
+| 2 | 43 | 8.0 |
+| 10 | 25 | 18.3 |
+| 48 | 33 | 24.2 |
+| 4 | 45 | 7.9 |
+
+a) Desarrolle una ecuación de estimación que utilice las variables edad e ingreso para predecir el número de cheques emitidos por mes.
+
+b) ¿Cuántos cheques al mes se esperaría de un cliente de 35 años de edad con un ingreso anual de \$22,500?
+
+\newpage
+
+# Ejercicio 11
+
+La cooperativa National Cranberry, una organización formada por cultivadores de arándanos que se dedica a procesar y comercializar su producto, está tratando de establecer una relación entre el precio promedio por barril recibido em cualquier año dado, y el número total de barriles vendidos el año anterior (dividido en ventas del producto fresco y del producto para procesar).
+
+a) Calcule la ecuación de mínimos cuadrados para predecir el precio a partir de las siguientes cifras:
+
+**Ventas (en cientos de barriles)**
+
+| Fresco | Para proceso | Precios del año anterior |
+|:------:|:------------:|:------------------------:|
+| 844 | 256 | 15.50 |
+| 965 | 335 | 17.15 |
+| 470 | 672 | 11.71 |
+| 320 | 60 | 9.79 |
+| 528 | 860 | 10.90 |
+| 340 | 761 | 15.88 |
+
+b) Prediga el precio por barril para el siguiente año si las ventas de éste son 980 (fresco) y 360 (para proceso).
+
+\newpage
+
+# Ejercicio 12
+
+Home Depot es una cadena en crecimiento de centros de descuentos en materiales para mejorar las casas.  La tabla proporciona información de los reportes anuales, que son los datos típicos que usan los analistas financieros para predecir el ingreso futuro de la compañía.
+
+a)  Desarrolle la ecuación de regresión múltiple que describa el ingreso total como función del número de tiendas y el tamaño promedio de la tienda.  ¿Qué factor parece ser más importantes para determinar el crecimiento en los ingresos?  Como consultor, ¿recomendaría una estrategia de expansión enfocada a una dispersión geográfica amplia (aumentando el número de tiendas) o la construcción de un número menor de tiendas muy grandes (que aumenta el tamaño de las tiendas)?
+
+b) Desarrolle una columna de ingreso promedio por empleado.  Encuentre la recta de regresión que mejor describa esa variable como función del año (con 1984 codificado como 1, 1985 como 2, etc.) y el tamaño promedio de la tienda.  ¿Son más productivos los empleados en tiendas más grandes o es la recta de tendencia (el factor de regresión AÑO) un factor más importante? Como analista, 'calificaría la tendencia a poner tiendas más grandes como una estrategia exitosa, o juzgaría que la inflación y otros factores son más importantes.
+
+| Año | Número de tiendas | Tamaño promedio de tienda (miles de pies) | Ingreso total (millones de dólares) | Número de  empleados |
+|:----:|:-----------------:|:-----------------------------------------:|:-----------------------------------:|:--------------------:|
+| 1984 | 31 | 77 | 433 | 4,000 |
+| 1985 | 50 | 80 | 701 | 5,400 |
+| 1986 | 60 | 80 | 1,001 | 6,600 |
+| 1987 | 75 | 82 | 1,454 | 9,100 |
+| 1988 | 96 | 86 | 2,000 | 13,000 |
+| 1989 | 118 | 88 | 2,758 | 17,500 |
+| 1990 | 145 | 92 | 3,815 | 21,500 |
+| 1991 | 174 | 95 | 5,136 | 28,000 |
+| 1992 | 214 | 98 | 7,148 | 38,900 |
+| 1993 | 264 | 100 | 9,239 | 50,600 |
+| 1994 | 340 | 103 | 12,477 | 67,300 |
+
+\newpage
+
+# Ejercicio 13
+
+Wal-Mart es una de las compañías más grandes y exitosas de Estados Unidos, con más de 2,400 tiendas en operación y ventas anuales por \$82 mil millones de dólares.  En el inicio la compañía daba una excelente tasa de rendimiento (ROE) a sus accionistas, pero su desempeño en este rubro ha decaído.  Junto con el, crecimiento rápido la empresa se ha expandido más allá de original de tienda y ahora incluye Sam´s Club que es una operación de margen muy bajo con fuerte rotación de inventario.  Los siguientes datos muestran cifras para los años fiscales que terminan en enero de la fecha mostrada, el inventario, el porcentaje de tiendas que eran Sam´s Club y ROE:
+
+| Año | Inventario (miles de millones de dólares) | Porcentaje de  Sam´s Club | ROE |
+|------|:-----------------------------------------:|:-------------------------:|-------|
+| 1985 | 1.2 | 1.5 | 36.7% |
+| 1986 | 1.5 | 2.6 | 33.3 |
+| 1987 | 2.2 | 4.8 | 35.2 |
+| 1988 | 2.8 | 7.0 | 37.1 |
+| 1989 | 3.6 | 7.7 | 37.1 |
+| 1990 | 4.7 | 8.1 | 35.8 |
+| 1991 | 6.2 | 8.6 | 32.6 |
+| 1992 | 7.8 | 10.8 | 30.0 |
+| 1993 | 9.8 | 12.2 | 28.5 |
+| 1994 | 11.5 | 17.7 | 26.6 |
+| 1995 | 14.4 | 17.7| 24.9 |
+
+Desarrolle una ecuación de regresión múltiple para pronosticar la ROE para Wal Mart con base en las dos variables dadas. ¿Qué consejo daría a los administradores de la empresa para aumentar la ROE?

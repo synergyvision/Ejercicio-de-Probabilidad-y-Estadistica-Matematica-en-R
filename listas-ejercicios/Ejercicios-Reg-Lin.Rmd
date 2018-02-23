@@ -309,3 +309,111 @@ a) Dados los siguientes datos, desarrolle la ecuación de estimación que mejor 
 |             4.00             |       3.00       |
 
 b) Calcule el coeficiente de determinación de la muestra. ¿Debe Dave usar esta ecuación de regresión para pronosticar o debe buscar en otra parte variables explicativas adicionales?
+
+\newpage
+
+# Ejercicio 16
+
+Se pretende describir en un modelo el comportamiento del producto interno real en Venezuela (YNR); el cual se hace depender de las siguientes variables: Gasto Fiscal interno real de período anterior (GFR); Liquidez monetaria en términos reales (LMR); exportaciones reales de petróleo e hierro (XTP) y Tasa de inflación (VCOV).  Las variables YNR, GFR, LMR, XTP están medidas en millones de bolívares.  Los datos trimestrales de las variables son los siguientes:
+
+| Trimestre | YNR | LMR | GFR | XTP | VCOV |
+|:---------:|:------:|:------:|:-----:|:-----:|:------:|
+| 1974-01 | 11.840 | 19.146 | 5.165 | 3.050 | 0,055 |
+| 1974-02 | 11.980 | 19.224 | 6.787 | 2.858 | 0,056 |
+| 1974-03 | 12.290 | 18.952 | 3.670 | 2.950 | 0,112 |
+| 1974-04 | 13.400 | 21.266 | 4.839 | 3.249 | 0,119 |
+| 1975-01 | 12.990 | 22.770 | 7.029 | 2.317 | 0,121 |
+| 1975-02 | 13.480 | 24.570 | 6.017 | 1.905 | 0,132 |
+| 1975-03 | 14.300 | 25.363 | 3.676 | 1.845 | 0,079 |
+| 1975-04 | 13.810 | 29.019 | 2.114 | 1.729 | 0,071 |
+| 1976-01 | 13.930 | 28.614 | 7.779 | 1.343 | 0.069 |
+| 1976-02 | 14.340 | 29.620 | 4.198 | 1.584 | 0,076 |
+| 1976-03 | 15.240 | 29.655 | 4.640 | 1.704 | 0,082 |
+| 1976-04 | 15.970 | 33.327 | 7.543 | 1.675 | 0,076 |
+| 1977-01 | 16.360 | 33.804 | 4.220 | 2.362 | 0,084 |
+| 1977-02 | 16.060 | 36.933 | 7.617 | 1.636 | 0,078 |
+| 1977-03 | 15.680 | 35.666 | 5.170 | 1.802 | 0,075 |
+| 1977-04 | 16.250 | 41.367 | 5.860 | 1.636 | 0,076 |
+| 1978-01 | 16.410 | 38.098 | 4.139 | 1.943 | 0,075 |
+| 1978-02 | 16.070 | 34.488 | 6.195 | 1.636 | 0,068 |
+| 1978-03 | 17.420 | 39.250 | 5.141 | 1.595 | 0,070 |
+| 1978-04 | 18.560 | 44.271 | 4.754 | 1.836 | 0,071 |
+| 1979-01 | 16.760 | 39.751 | 6.236 | 2.514 | 0,076 |
+| 1979-02 | 16.900 | 38.881 | 2.740 | 1.729 | 0,099 |
+| 1979-03 | 16.560 | 38.796 | 4.088 | 1.846 | 0,126 |
+| 1979-04 | 18.060 | 39.867 | 6.107 | 2.177 | 0,190 |
+| 1980-01 | 16.840 | 37.898 | 3.435 | 2.102 | 0,218 |
+| 1980-02 | 16.170 | 39.152 | 4.096 | 1.631 | 0,227 |
+| 1980-03 | 17.110 | 39.019 | 4.020 | 1.513 | 0,217 |
+
+
+a) Determinar la ecuación que relaciona el producto interno real con las variables explicativas.
+
+b) Calcular el estimador de la varianza de los términos de perturbación.
+
+c) Calcular los errores estándar de los estimadores.
+
+d) Calcular $R_2$ y $R^{-2}.$
+
+e) Construir intervalos de confianza para los coeficientes.
+
+f) ¿Cuál es el significado de los coeficientes y en qué unidades están medidos?
+
+\newpage
+
+# Ejercicio 17
+
+En un modelo econométrico se hizo depender la demanda monetaria ($Y_i$) de tres variables explicativas: nivel de ingreso privado ($X_{2i}$}), exportaciones ($X_{3i}$) y gasto público ($X_{4i}$); los resultados fueron los siguientes:
+
+$$\hat{Y_i} =-1.029+0.785X_{2i}+0.2703X_{3i}+0.2638X_{4i}$$
+$$
+\begin{array}{rl}
+&X_{2i}=0.1641\\
+&X_{3i}=0.5281\\
+&X_{4i}=0.2301
+\end{array}
+$$
+$$R^2=0.495;\quad s=0.6604;\quad F(3,31)=10.13$$
+
+Cuando se hizo depender la demanda monetaria sólo del nivel de ingreso privado, se obtuvieron los siguientes resultados:
+
+$$Y_i=1.839+0.8298X_{2i}$$
+
+$$
+\begin{array}{rl}
+&X_{2i}=0.2503
+\end{array}
+$$
+
+$$R^2=0.4725;\quad s=0.6543;\quad F(1,33)=29.56$$
+
+a) Considerando los resultados del primer modelo. ¿Qué opina Ud. de la siguiente afirmación?.  El nivel de ingreso privado tiene influencia sifnificativa en la demanda monetaria. $\alpha=0.05.$ 
+
+b) Comparando los resultados de los dos modelos, ¿Qué opina Ud.  de la siguiente afirmación?: El segundo modelo es tan eficiente como el primero en la explicación de las variables de la demanda monetaria. $\alpha=0,05$.
+
+\newpage
+
+# Ejercicio 18
+
+En un modelo se analizó una función de demanda de un bien:
+
+$$D=\beta_1+\beta_2X_2+\beta_3X_3+\beta_4X_4+\mu$$
+
+Siendo D=Cantidades demandadas en miles de unidades; $X_2$=Ingreso per capita en miles de Bolívares; $X_3$=Indice de precios del bien (1.973=100); $X_4$=Indice de precios de un bien sustitutivo (1973=100).  Se ajustó el modelo a las observaciones anuales de las variables desde 1.973 a 1.992 y seobtuvieron los siguientes resultados:
+
+$$\hat{D}=1.46+0.18X_2-0.37X_3+0.12X_4$$
+$$
+\begin{array}{rl}
+&X_2=0.13\\
+&X_3=0.16\\
+&X_4=0.16
+\end{array}
+$$
+
+$$R^2=0.69;\quad s=0.159;\quad F=11,87;\quad Y´Y=40$$
+
+Dé su opinión acerca de las siguientes afirmaciones:
+
+a) Un incremento unitario en el índice de precios del bien provoca, ceteris paribus, una disminución en la cantidad demandada de por lo menos 500 unidades.
+
+b) Los precios del bien sustitutivo no tienen influencia significativa en la demanda. $\alpha=0,05.$

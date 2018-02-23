@@ -1,5 +1,5 @@
 ---
-title: "Ejercicio de Prueba de Hipotesis"
+title: "Ejercicio de Prueba de Hipótesis"
 subtitle: "Diplomado de Probabilidad y Estadística Matemática en R"
 author: "http://synergy.vision/"
 output:
@@ -570,4 +570,39 @@ El promedio de Transporte Dow-Jones está basado en los precios de cierre de las
 | USAir Group              |     22.500     |     22.625     |
 | XTRA                     |     40.125     |     38.500     |
 | Average Price            |     47.156     |     47.150     |
+
+\newpage
+
+# Ejercicio 49
+
+En un estudio económico se trata de determinar si los proyectos industriales textiles generan un mayor empleo que los proyectos en industrias de manufacturas de muebles.
+
+Una muestra tomada de 16 industrias textiles, indicó que los nuevos empleos por cada millón de bolívares de inversión fueron 400, con desviación típica de 20.  En una muestra de 14 industrias de muebles se generaron 380 empleos por cada millón de bolívares invertidos, con desviación típica de 18.  Suponiendo $\sigma^2_x=\sigma^2_y=\sigma^2$ el estudio concluyó que los proyectos textiles generaban un 6% más de empleos que los otros.  ¿Se justifica la conclusión? ¿Podría ser rechazada la hipótesis de igualdad de la creación media de empleos con $\sigma=0.05$?
+
+\newpage
+
+# Ejercicio 50
+
+Se desea saber si los mercados de Maracaibo y Caracas son iguales respecto al precio que los consumidores están dispuestos a pagar por un cierto producto.  Suponga las varianzas iguales.  Una muestra de 10 consumidores en Maracaibo dio un precio medio de Bs. 5, con una desviación típica de Bs. 2; en Caracas una muestra de 15 consumidores dio un precio medio de Bs. 5,50, con una desviación típica de Bs. 2,10. $\alpha=0,05.$
+
+\newpage
+
+# Ejercicio 51
+
+En una ciudad se escogió una muestra aleatoria de 121 personas para preguntarles el precio que estarían dispuestas a pagar por un determinado artículo, dando una media de Bs. 5,50, con una desviación típica de Bs. 0,50.  En otra ciudad una muestra de 61 personas dio una media de Bs. 5, con una desviación típica de Bs. 0,37. ¿Hay diferencia significativa en las varianzas de los precios? $\alpha=o,05.$
+
+\newpage
+
+# Ejercicio 52
+
+Los siguientes datos corresponden a la clasificación de empresas vendedoras de un mismo producto según dos criterios: El área de la zona metropolitana en que están ubicadas, y el volumen de ventas con relación al promedio de éstas:
+
+|  | Sabana Grande | Centro | Otras zonas | Total |
+|---------------------------------|:-------------:|:------:|:-----------:|:-----:|
+| Ventas menores que  el promedio | 58 | 46 | 38 | 142 |
+| Ventas en el promedio | 102 | 160 | 84 | 346 |
+| Ventas mayores que el promedio | 34 | 51 | 60 | 145 |
+| Total | 194 | 257 | 182 | 633 |
+
+a) ¿Según estos datos se podría decir que  la ubicación influye en el volumen de ventas? $\alpha=0.05.$ Calcular el coeficiente de contigencia.
 
