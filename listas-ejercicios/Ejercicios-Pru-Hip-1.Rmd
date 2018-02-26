@@ -1,0 +1,330 @@
+---
+title: "Ejercicios de Prueba de Hipótesis 1"
+
+subtitle: "Diplomado de Probabilidad y Estadística Matemática en R"
+author: "http://synergy.vision/"
+output:
+  pdf_document:
+      toc: yes
+      toc_depth: 4
+      includes:
+        in_header: ./preambulo.tex
+  html_document: default
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+\newpage
+
+# Ejercicio 1
+
+El gerente de Danvers-Hilton Resort Hotel afirma que la cantidad media que gastan los huéspedes en un fin de semana es de $600 o menos.  Un miembro del equipo de contadores observó que en los últimos meses habían aumentado tales cantidades.  El contador emplea una muestra de las cuentas de fin de semana de los huéspedes para probar la afirmación del gerente.  
+
+a) ¿Qué forma de hipótesis deberá usar para probar la afirmación del gerente? Explique.
+
+
+$$\begin{matrix}H_0:\mu\ge600\quad    H_0:\mu\le600\quad    H_0:\mu=600\\
+H_a:\mu<600\quad    H_a:\mu>600\quad    H_a:\mu\ne600\end{matrix}$$
+
+
+b) ¿Cuál es la conclusión apropiada cuando no se puede rechazar la hipótesis nula $H_0$?
+
+c)  ¿Qué conclusión es adecuada cuando se puede rechazar la hipótesis nula $H_0$?
+
+\newpage
+
+# Ejercicio 2
+
+El gerente de un negocio de  ventas de automóviles piensa en un nuevo plan de bono diseñado para incrementar el volumen de ventas.  En el momento actual, el volumen medio de ventas es 14 automóviles por mes.  El gerente desea realizar un estudio para ver si el plan de bono incrementa el volumen de ventas.  Para recolectar los datos, se le permitirá a una muestra de vendedores vender bajo el nuevo plan de bono durante un mes.
+
+a) Desarrolle las hipótesis nula y alternativa más adecuadas para esta situación.
+
+b) Comente la conclusión en caso de que no pueda rechazarse $H_0.$
+
+c) Comente la conclusión en caso de que pueda rechazarse $H_0.$
+
+\newpage
+
+# Ejercicio 3
+
+Una operación de la línea de producción está diseñada para llenar cajas con un peso medio de 32 onzas de detergente para lavar.  Con periodicidad se selecciona una muestra de los empaques y se pesan para determinar si se están llenando de manera insuficiente o en demasía.  Si los datos muestrales llevan a la conclusión de que hay llenado insuficiente o excesivo, la producción se suspende y se ajusta al llenado correcto.
+
+a) Formule las hipótesis nula y alternativa que ayudarán a determinar si se debe detener la produción y ajustar el peso.
+
+b) Comente sobre la conclusión y la decisión en caso de que $H_0$ no se pueda rechazar.
+
+c) Comente acerca de la conclusión y la decisión en caso de que $H_0$ se pueda rechazar.
+
+\newpage
+
+# Ejercicio 4
+
+Antes de implantar un método de fabricación propuesto, y debido a los costos y al tiempo de adaptación de la producción, un director de manufactura debe convencer a la dirección de que ese método nuevo reducirá los costos.  El costo medio del actual método de producción es \$220 por hora.  Un estudio de investigación medirá el costo del método nuevo durante un periodo muestral de producción.
+
+a) Formule las hipótesis nula y alternativa más adecuada para este estudio.
+
+b) Comente acerca de la conclusión cuando $H_0$ no pueda rechazarse.
+
+c) Comente acerca de la conclusión cuando $H_0$ pueda rechazarse.
+
+\newpage
+
+# Ejercicio 5
+
+Nielse informó que los hombres jóvenes estadounidenses ven diariamente 56.2 minutos de televisión en las horas de mayor audiencia (The Wall Street Journal Europe, 18 de noviembre de 2003).  Un investigador cree que en Alemania los jóvenes ver más tiempo la televisión en las horas de mayor audiencia.  Este investigador toma una muestra de hombres jóvenes alemanes y registra el tiempo que ven televisión en un día.  Los resultados muestrales se usan para probar  las siguientes hipótesis nula y alternativa.
+
+$$\begin{matrix}H_0:\mu\le56.2\\
+H_a:\mu>56.2\end{matrix}$$
+
+a) ¿Cuál es el error tipo I en esta situación? ¿Qué consecuencia tiene comertelo?
+
+b) ¿Cuál es el error tipo II en esta sitiación? ¿Qué consecuencia tiene comertelo?
+
+\newpage
+
+# Ejercicio 6
+
+Las declaraciones de impuestos presentadas antes del 31 de marzo obtienen un reembolso que en promedio es de \$1056.  Considere la población de los contribuyentes de "última hora"  que presentan su declaración en los últimos cinco días del periodo para este trámite (normalmente del 10 al 15 de abril).
+
+a) Un investigador sugiere que la razón por la que estos declarantes esperan hasta los últimos días se debe a que en promedio obtienen un reembolso menor que los que declaran antes del 31 de marzo.  Establezca las hipótesis apropiadas de manera que el rechazo de $H_0$ favorezca la sugerencia de este investigador.
+
+b) En una muestra de 400 personas que presentaron su declaración entre el 10 y el 15 de abril, la media muestral de los reembolsos fue \$910.  Por experiencia se sabe que es posible considerar que la desviación estándar poblacional es $\sigma=\$1600$.  ¿Cuál es el valor-p?
+
+c) Con $\sigma=0.05,$ ¿cuál es su conclusión?
+
+d) Repita la prueba de hipótesis anterior usando el método del valor crítico?.
+
+\newpage
+
+# Ejercicio 7
+
+En un estudio acerca de cómo utilizan las tarjetas de crédito los estudiantes no titulados, se reportó que este tipo de población tiene un saldo medio en su tarjeta de crédito de \$3173 (*Sallie Mae,* abril de 2009).  Tal cifra fue la más alta de todos los tiempos y tuvo un incremento de 44% sobre la de los cinco años previos.  Suponga que se realiza un estudio actual para determinar si es posible concluir que el saldo medio en la tarjeta de crédito de estudiantes no titulados ha continuado en aumento comparado con el informe de abril de 2009.  Con base en reportes previos, utilice una desviación estándar poblacional de $\sigma=\$1000$.
+
+a) Establezca las hipótesis nula y alternativa.
+
+b) ¿Cuál es el valor*-p* de una muestra de 180 estudiantes no titulados con un saldo medio muestral en su tarjeta de crédito de \$3325?
+ 
+c) Usando un nivel de significancia de 0.05, ¿cuál es su conclusión?.
+
+\newpage
+
+# Ejercicio 8
+
+Las sociedades de valores de Wall Street pagaron en 2005 gratificaciones de fin de año de \$125 500 por empleado (*Fortune,* 6 de febrero de 2006).  Suponga que se desea tomar una muestra de los empleados de la empresa de valores Jones & Ryan para ver si la media de la gratificación de fin de año es diferente de la media de \$125500 reportada por la población.
+
+a) Establezca la hipótesis nula y alternativa que se usarían para probar si las gratificaciones de fin de año de Jones & Ryan difieren de la media poblacional.
+
+b) Suponga que una muestra de 40 empleados de Jones & Ryan exhibió una media muestral de las gratificaciones de \$118000.  Suponga que la desviación estándar poblacional es $\sigma=\$30000$ y calcule el valor*-p*.
+
+c) Con $\sigma=0.05$ como nivel de significancia, ¿cuál es su conclusión?.
+
+d) Repita esta prueba de hipótesis usando el método del valor crítico.
+
+\newpage
+
+# Ejercicio 9
+
+La rentabilidad total anual promedio de los fondos de inversión de U.S. Diversified Equity de 1999 a 2003 fue de 4.1% (*BusinessWeek,* 26 de enero de 2004). Un investigador desea realizar una prueba de hipótesis para saber si los rendimientos de determinados fondos de crecimiento (mid-cap growth funds) difieren de manera significativa del promedio de los fondos de U.S. Diversified Equity.
+
+a) Establezca las hipótesis que se pueden usar para determinar si la rentabilidad anual media de estos fondos difiere de la media de los fondos de U.S. Diversified Equity.
+
+b) En una muestra de 40 fondos el rendimiento medio fue de $\hat{x}=3.4\%$. Suponga que por estudios anteriores se sabe que la desviación estándar poblacional de estos fondos es $\sigma=2\%$.  Use los resultados muestrales para calcular el estadístico de prueba y el *p*-valor para la prueba de hipótesis.
+
+c) Con $\sigma=0.05,$ ¿cuál es su conclusión?.
+
+\newpage
+
+# Ejercicio 10
+
+El U.S. Departament fo labor informó que los ingresos promedio para los trabajadores estadounidenses de la producción en 2001 era \$14.32 por hora (*The World Almanac*, 2003).  En una muestra de 75 trabajadores tomada en 2003, la media muestral fue \$14.68 por hora.  Si la desviación estándar poblacional es $\sigma=\$1.45$, ¿se puede concluir que ha habido un aumento en la media de las ganancias por hora? Use $\sigma=0.05.$
+
+\newpage
+
+# Ejercicio 11
+
+En Estados Unidos, un hogar paga en promedio \$32.79 mensuales por el servicio de Internet (CNBC, 8 de enero de 2006).  En una muestra de 50 hogares de un estado del sur la media muestral fue \$30.63.  Use la desviaciación estándar poblacional de $\sigma=\$5.60$.
+
+a) Formule las hipótesis para una prueba en la que se quiere determinar si los datos muestrales favorecen la conclusión de que la cantidad media mensual pagada por el servicio de Internet en este estado del sur es menor a la media de todo el país, que es de \$32.79.
+
+b) ¿Cuál es el valor del estadístico de prueba?
+
+c) ¿Cuál es el *p*-valor?
+
+d) Con $\sigma=0.01,$ ¿qué concluye?
+
+\newpage
+
+# Ejercicio 12
+
+Fowle Marketing Research, Inc.  tasa la tarifa que cobra a sus clientes en el supuesto de que una encuesta por teléfono se realiza en un promedio de 15 minutos o menos.  Si se requiere más tiempo en promedio, se cobra una cantidad adicional.  La duración de las encuestas en una muestra de 35 de ellas se presentan en el archivo Fowle.  Por estudios anteriores se puede considerar que la desviación estándar poblacional es conocida y que es $\sigma=4$ minutos.  ¿El cobro de la cantidad adicional está justificado? 
+
+a) Formule las hipótesis nula y alternativa para esta aplicación.
+
+b) Calcule el valor del estadísticos de prueba.
+
+c) ¿Cuál es el *p*-valor?
+
+d) Con $\sigma=0.01$, ¿cuál es su conclusión?
+
+\newpage
+
+# Ejercicio 13
+
+CNN y ActMedia presentaron un canal de televisión dirigido a las personas que esperan en las colas delos supermercados.  En este canal se transmitían noticias, reportajes cortos y publicidad.  La duración de la programación se basaba en el supuesto de que la media poblacional del tiempo que los clientes esperan en la fila de la caja es 8 minutos.  Se utilizará una muestra de tiempos de espera reales para probar ese supuesto y determinar si el tiempo medio de espera difiere de ese estándar.
+
+a) Formule las hipótesis para esta aplicación.
+
+b) En una muestra de 120 clientes,la media muestral de tiempo de espera fue de 8.5 minutos.  Suponga que la desviación estándar poblacional es $\sigma=3.2$ minutos. ¿Cuál es el *p*-valor?
+
+c) Con $\sigma=0.05,$ ¿cuál es su conclusión?
+
+d) Calcule un intervalo de 95% de confianza para la media poblacional. ¿Esto sustenta su conclusión?
+
+\newpage
+
+# Ejercicio 14
+
+Las declaraciones de impuestos presentadas antes del 31 de marzo obtienen un reembolso que en promedio es de \$1056.  Considere la población de los contribuyentes de "última hora" que presentan su declaración en los últimos cinco días del periodo para este trámite (normalmente del 10 al 15 de abril).
+
+a) Un investigador sugiere que la razón por la que estos declarantes esperan hasta los últimos días se debe a que en promedio obtienen un reembolso menor que los que declaran antes del 31 de marzo.  Establezcan las hipótesis apropiadas de manera que el rechazo de $H_0$ favorezca la sugerencia de este investigador.
+
+b) En una muestra de 400 personas que presentaron su declaración entre el 10 y el 15 de abril, la media muestral de los reembolsos fue \$910.  Por experiencia se sabe que es posible considerar que la desviación estándar poblacional es $\sigma=\$1600$. ¿Cuál es el *p*-valor?
+
+c) Con $\sigma=0.05$, ¿cuál es su conclusión?
+
+d) Repita la prueba de hipótesis anterior usando el método del valor crítico.
+
+\newpage
+
+# Ejercicio 15
+
+En un estudio acerca de cómo utilizan las tarjetas de crédito los estudiantes no titulados, se reportó que este tipo de población tiene un saldo medio en su tarjeta de crédito de \$3173 (*Sallie Mae*, abril de 2009).  Tal cifra fue la más alta de todos los tiempos y tuvo un incremento de 44% sobre la de los cinco años previos.  Suponga que se realiza un estudio actual para determinar si es posible concluir que el saldo medio en la tarjeta de crédito de estudiantes no titulados ha continuado en aumento comparado con el informe de abril de 2009.  Con base en reportes previos, utilice una desviación estándar poblacional de $\sigma=\$1000$.
+
+a) Establezca las hipótesis nula y alternativa.
+
+b) ¿Cuál es el *p*-valor de una muestra de 180 estudiantes no titulados con un saldo medio muestral en su tarjeta de crédito de \$3325?
+
+c) Usando un nivel de significancia de 0.05, ¿cuál es su conclusión?
+
+\newpage
+
+# Ejercicio 16
+
+Las sociedades de valores de Wall Street pagaron en 2005 gratificaciones de fin de año de \$125500 por empleado (*Fortune,* 6 de febrero de 2006). Suponga que se desea tomar una muestra de los empleados de la empresa de valores Jones & Ryan para ver si la media de la gratificación de fin de año es diferente de la media de \$125500 reportada de la población.
+
+a) Establezca las hipótesis nula y alternativa que se usarían para probar si las gratificaciones de fin de año de Jones & Ryan difieren de la media poblacional.
+
+b) Suponga que una muestra de 40 empleados de Jones & Ryan exhibió una media muestral de las gratificaciones de \$118000.  Suponga que la desviación estándar poblacional es $\sigma=\$30000$ y calcule el *p*-valor.
+
+c) Con $\sigma=0.05$ como nivel de significancia, ¿cuál es su conclusión?
+
+d) Repita esta prueba de hipótesis usando el método del valor crítico.
+
+\newpage
+
+# Ejercicio 17
+
+La rentabilidad total anual promedio de los fondos de inversión de U.S. Diversified Equity de 1999 a 2003 fue de 4.1% (*BusinessWeek*, 26 de enero de 2004).  Un investigador desea realizar una prueba de hipótesis para saber si los rendimientos de determinados fondos de crecimiento (mid-cap growth funds) difieren de manera significativa del promedio de los fondos de U.S. Diversified Equity.
+
+a) Establezca las hipótesis que se pueden usar para determinar si la rentabilidad anual media de estos fondos difiere de la media de los fondos de U.S. Diversified Equity.
+
+b) En una muestra de 40 fondos el rendimiento medio fue de $\hat{x}=3.4\%$.  Suponga que por estudios anteriores sa sabe que la desviación estándar poblacional de estos fondos es $\sigma=2\%$.  Use los resultados muestrales para calcular el estadístico de prueba y el *p*-valor para la prueba de hipótesis.
+
+c) Con $\sigma=0.05,$ ¿cuál es su conclusión?
+
+\newpage
+
+# Ejercicio 18
+
+El U.S. Department of Labor informó que los ingresos promedio para los trabajadores estadounidense de la producción en 2001 era \$14.32 por hora (*The World Almanac*, 2003).  En una muestra de 75 trabajadores tomada en 2003, la media muestral fue \$14.68 por horas.  Si la desviación estándar poblacional es $\sigma=\$1.45$, ¿se puede concluir que ha habido un aumento en la media de las ganancias por hora? Use $\sigma=0.05$.
+
+\newpage
+
+# Ejercicio 19
+
+En Estados Unidos, un hogar paga promedio \$32.79 mensuales por el servicio de Internet (CNBC, 18 de enero de 2006).  En una muestra de 50 hogares de un estado del sur la media muestral fue \$30.63.  Use la desviación estándar poblacional de $\sigma=\$5.60$.
+
+a) Formule las hipótesis para una prueba en la que se quiere determinar si los datos muestrales favorecen la conclusión de que la cantidad media mensual pagada por el servicio de Internet en este estado del sur es menor a la media de todo el país, que es de \$32.79.
+
+b) ¿Cuál es el valor estadístico de prueba?
+
+c) ¿Cuál es el *p*-valor?
+
+d) Con $\sigma=0.01$ ¿qué concluye?
+
+\newpage
+
+# Ejercicio 20
+
+Fowle Marketing Research, Inc. tasa la tarifa que cobra a sus clientes en el supuesto de que una encuesta por teléfono se realiza en un promedio de 15 minutos o menos.  Si se requiere más tiempo en promedio, se cobra una cantidad adicional.  La duración de las encuestas en una muestra de 35 de ellas se presentan en el archivo Fowle.  Por estudios anteriores se puede considerar que la desviación estándar poblacional es conocida y que es $\sigma=4$ minutos. ¿El cobro de la cantidad adicional está justificado?
+
+a) Formule las hipótesis nula y alternativa para esta aplicación.
+
+b) Calcule el valor estadístico de prueba.
+
+c) ¿Cuál es el *p*-valor?
+
+d) Con $\sigma=0.01,$ ¿cuál es su conclusión?
+
+\newpage
+
+# Ejercicio 21
+
+CNN y ActMedia presentaron un cnal de televisión dirigido a las personas que esperan en las colas de los supermercados.  En este canal se transmitían noticias, esportajes cortos y publicidad.  La duración de la programación se basaba en el supuesto de que la media poblacional del tiempo que los clientes esperan en la fila de la caja es 8 minutos.  Se utilizará una muestra de tiempos de espera reales para probar ese supuesto y determinar si el tiempo medio de espera difiere de ese estándar.
+
+a) Formule las hipótesis para esta aplicación.
+
+b) En una muestra de 120 clientes, la media muestral de tiempo de espera fue de 8.5 minutos.  Suponga que la desviación estándar poblacional es $\sigma=3.2$. ¿Cuál es el *p-*valor?
+
+c) Con $\sigma=0.05,$ ¿cuál es su conclusión?
+
+d) Calcule un intervalo de 95% de confianza para la media poblacional.  ¿Esto sustenta su conclusión?.
+
+\newpage
+
+# Ejercicio 22
+
+En un estudio se encontró quem en 2005, el 12.5% de los trabajadores estadounidenses pertenecía a un sindicato (*The Wall Street Journal*, 21 de enero de 2006).  El caso es que en 2006 se toma una muestra de 400 trabajadores para ver si el esfuerzo realizado por los sindicatos por organizarse ha hecho que aumente el número de sus miembros.
+
+a) Formule las hipótesis que puedan ser usadas para determinar si la afiliación a los sindicatos ha aumentado en 2006.
+
+b) Si los resultados muestrales indican que 52 de los trabajadores pertenecen a los sindicatos, ¿cuál es el *p*-valor de esta prueba de hipótesis?
+
+c) Con $\sigma=0.05,$ ¿cuál es su conclusión?
+
+\newpage
+
+# Ejercicio 23
+
+Un estudio realizado por *Consumer Reports* indica que 64% de los clientes de los supermercados piensa que las marcas de esos establecimientos son tan buenas como las marcas nacionales.  Para investigar si estos resultados aplican a sus propios productos, un fabricante de salsa de tomate de una marca nacional preguntó a los integrantes de una muestra si consideraban las salsas de tomate de marca propia de los supermercados tan buenas como la de marca nacional.
+
+a) Formule las hipótesis para determinar si el porcentaje de clientes de los supermercados que considera las salsas de tomate de marca propia de estos establecimientos tan buenas como la de marca nacional difiere de 64%.
+
+b) Si en una muestra de 100 clientes, 52 opinan que las marcas de los supermercados son tan buenas como las nacionales, ¿cuál es el *p*-valor?
+
+c) Con $\sigma=0.05$, ¿cuál es la conclusión?
+
+d) ¿Le dará gusto esta conclusión al fabricante de la marca naciaonal de salsa de tomate? Explique.
+
+\newpage
+
+# Ejercicio 24
+
+Según el Pew Internet & American Life Project, 75% de los estadounidenses adultos una Internet (sitio web de Pew Internet, 19 de abril de 2008).  Los autores del projecto Pew también reportaron el porcentaje de estadounidenses que usa Internet por grupo de edad.  Los datos en el archivo AgeGroup son congruentes con sus hallazgos.  Esos datos fueron obtenidos de una muestra de 100 usuarios en el grupo de edad de 30 a 49 años y 200 usuarios en el grupo de edad de 50 a 64 años.  Un Yes (Sí) indica que el encuestado usa Internet; un No indica que el encuestado no lo hace.
+
+a) Establezca las hipótesis que pueden utilizarse para determinar si el porcentaje de usuarios de Internet en ambos grupos de edad difieren del promedio general de 75%.
+
+b) Estime la proporción de usuarios en el grupo de edad de 30 a 49 años. ¿Está  proporción difiere significativamente de la proporción general de 0.75? Utilice $\sigma=0.05.$
+
+c) Determine la proporción de usuarios en el grupo de edad de 50 a 64 años. ¿Esta proporción difiere significativamente de la proporción general de 0.75? Utilice $\sigma=0.05.$
+
+d) ¿Esperaría que la proporción de usuarios en el grupo de 18 a 29 años sea más grande o más pequeña que la proporción del grupo de edad de 30 a 49 años? Sustente su conclusión con los resultados obtenidos en los incisos b) y c).
+
+\newpage
+
+# Ejercicio 25
+
+
