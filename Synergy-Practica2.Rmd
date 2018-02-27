@@ -1,0 +1,48 @@
+---
+title: "Ejercicios 2"
+author: "Yoselin Arvelaiz"
+date: "26 de febrero de 2018"
+output: pdf_document
+---
+
+## Ejercicios 12.
+
+Una agencia de rentas, que alquila equipo pesado por día, ha encontrado que, en promedio, se renta una costosa máquina sólo un día de cada cinco. Si la renta en un día es independiente de la renta en cualquier otro día, encuentre la distribución de probabilidad de $Y$, el número de días entre un par de rentas. 
+
+**\underline{Solución:}**
+
+## Ejercicio 13.
+
+Una compañia de seguros expide una póliza de un año por $\$1000$ dólares contra el suceso $A$ que históricamente le ocurre a 2 de cada 100 propietarios de la póliza. Las tarifas administrativas son de $\$15$ por póliza y no son parte de la "utilidad" de la compañia. ¿Cuánto debe cobrar la compañia por póliza si requiere que la utilidad esperada por póliza sea de $\$50$? [Sugerencia: si $C$ es la prima por la póliza, la "utilidad" de la compañia es $C-15$ si $A$ no ocurre y $C-15-1000$ si $A$ ocurre.]
+
+**\underline{Solución:}**
+
+Sea $U$ la variable aleatoria "utilidad", usando la definición de valor esperado tenemos, 
+
+$$\mathbb{E}(U)= (C-15)0.98$$ si $A$ ocurre.
+$$\mathbb{E}(U)= (C-15-1000)0.02$$ si $A$ no ocurre.
+
+Se requiere que la utilidad esperada por póliza sea de $\$50$, por lo que, $$\mathbb{E}(U)=50$$
+
+Asi para ambos casos, tenemos:
+
+$$\mathbb{E}(U)= (C-15)0.98 + (C-15-1000)0.02=50$$
+Despejando el valor de $C$, se obtiene,
+
+$$C=85$$ Esto significa que la compañia debe cobrar $\$85$ por póliza para que la utilidad por póliza sea de $\$50$.
+
+
+## Ejercicio 14.
+
+Un cliente potencial para una póliza de seguro contra incendio por $\$85,000$ es propietario de una casa en una zona que, de acuerdo con la experiencia, puede sostener una pérdida total en un año determinado con probabilidad de $.001$ y un $50\%$ de pérdida con probabilidad de $.01$. Si se ignoran todas las otrás pérdidas parciales, ¿qué prima debe cobrar la compañia de seguros por una póliza anual para que no haya pérdida ni ganancia en todas las pólizas de $\$85,000$ en esta zona?
+
+**\underline{Solución:}**
+
+Sea $Y$ una variable aleatoria por póliza de seguro para cada cliente, tenemos que, $$\mathbb{P}(Y=85000)=0.001$$ y $$\mathbb{P}(Y=42500)=0.01$$
+
+Luego, la pérdida y ganancia de una compañia está dada por $C-Y$. Sí, $\mathbb{E}(C-Y)=0$ entonces $\mathbb{E}(Y)=C$
+
+Así, usando la definición del valor esperado, tenemos que, 
+$$C=\mathbb{E}(Y)= 85000(0.001)+42500(0.01)=510$$
+
+La prima que debe cobrar la compañia de seguros es de $\$510$ por una póliza anual para que no haya pérdida ni ganancia en todas las pólizas en esta zona.
