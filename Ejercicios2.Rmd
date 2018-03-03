@@ -1,0 +1,400 @@
+---
+title: "Ejercicios 2"
+author: "Synergy Vision"
+date: "Febrero de 2018"
+output: pdf_document
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library('ggplot2')
+```
+
+### Ejercicio 1
+
+El general Buck Turgldson se encuentra preparando la presentación de su presupuesto anual al Senado de Estados Unidos y especula sobre las posibilidades de obtener aprobación de todo el presupuesto solicitado o de parte de él. Con base en sus 20 años de experiencia en hacer ese tipo de petición anual, ha deducido que sus posibilidades de obtener la aprobación de entre 50 y 74% de su presupuesto son del doble de las posibilidades que tiene de obtener la aprobación de entre 75 y 99%, y dos y media veces que las posibilidades de obtener la aprobación de entre 25 y 49%. Además, el general tiene la creencia de que no hay posibilidad alguna de obtener menos del 25% del presupuesto solicitado. Por último, el presupuesto total solamente ha sido aprobado una vez durante la carrera del general y éste no espera que haya cambios en este patrón. ¿Cuál es la probabilidad de obtener entre 0-24%, 25-49%, 50-74%, 75-99% y 100%, de acuerdo con las estimaciones del general?
+
+\textbf{\underline{Solución:}}
+
+Consideremos los eventos \textit{H}='Obtener entre un 0-24% del presupuesto', \textit{Y}='Obtener entre un 25-49% del presupuesto', \textit{X}='Obtener entre un 50-74% del presupuesto', \textit{Z}='Obtener entre un 75-99% del presupuesto', \textit{W}='Obtener el 100% del presupuesto'.
+
+La probabilidad de que algún evento ocurra es del $100\%$, es decir, $P(H)+P(Y)+P(X)+P(Z)+P(W)=1$
+
+De acuerdo con las estimaciones del general, la probabilidad de que obtenga menos del $25\%$ del presupuesto es nula, es decir, $P(H)=0$. La probabilidad de obtener entre un $50-74\%$ del presupuesto es el doble de la probabilidad de obtener entre un $75-99\%$, es decir, $P(X)=2P(Z)$ y dos veces y media mas que la probabilidad de obtener entre un $25-49\%$, es decir, $P(X)=\frac{5}{2}P(Y)$. Como el general no espera que el $100\%$ del presupuesto sea aprobado, ignoremos por un momento la propabilidad de este evento, es decir, supongamos $P(W)=0$. Sustituyendo estos valores en función de $P(X)$ tenemos:
+
+\begin{equation*}
+\begin{split}
+\frac{2}{5}P(X) + P(X) + \frac{1}{2}P(X) &= 1 \\
+\frac{19}{10}P(X) &= 1 \\
+P(X) &= \frac{10}{19} \\
+P(X) &= 0,526\\
+\end{split}
+\end{equation*}
+
+\newpage
+
+Así, la probabilidad de que se obtenga entre un $50-74\%$ del presupuesto, es de $0,526$ ó $52,6\%$. Lo que implica que la probabilidad  de que se obtenga entre un $75-99\%$ es de $0,263$ ó $26,3\%$, la probabilidad de obtener entre un $25-49\%$ del presupuesto es de $0,2104$ ó $21,04\%$ y por último la probabilidad de que se apruebe el $100\%$ del presupuesto es del $0,06\%$.
+
+### Ejercicio 2
+
+Martin Coleman, gerente del departamento de crédito de Beck's, sabe que la compañía utiliza tres métodos para conminar a pagar a los clientes morosos. De los datos que se tienen registrados, él sabe que el 70% de los deudores son visitados personalmente, 20% se le sugiere que paguen vía telefónica y al restante 10% se le envía una carta. Las probabilidades de recibir algún pago como consecuencia de tres métodos son 0.75, 0.60 y 0.65, respectivamente. El señor Coleman acaba de recibir el pago de una de las cuentas vencidas. ¿Cúal es la probabilidad de que la petición de pago se haya echo
+
+a) personalmente?
+
+b) por teléfono?
+
+c) por correo?
+
+\textbf{\underline{Solución:}}
+
+Consideremos los siguientes eventos: \textit{B1} = 'Deudores contactados personalmente', \textit{B2} = 'Deudores contactados vía teléfonica', \textit{B3} = 'Deudores contactados por carta' y \textit{A} = 'Recibir un pago'.
+
+Las probabilidades de que los eventos \textit{B1, B2 y B3} ocurran respectivamente son: $P(B1)=0.7$, $P(B2)=0.2$ y $P(B3)=0.1$. Las probabilidades del evento \textit{A} dado los eventos \textit{B1, B2 y B3} respectivamente son: $P(A|B1)=0.75$, $P(A|B2)=0.60$ y $P(A|B3)=0.65$, esto significa que la probabilidadad de que se reciba un pago dado de que provenga de un deudor contactado personalmente es de $0.75$ y así sucesivamente con los otros eventos.
+
+a) Queremos conocer la probabilidad de que un deudor que haya sido contactado personalmente haya hecho el pago, o lo que es lo mismo queremos conocer la probabilidad condicional $P(B1|A)$, esto es:
+
+\begin{equation*}
+\begin{split}
+P(B1|A) &= \frac{P(B1 \cap A)}{P(A)} \\
+&= \frac{P(B1) P(A|B1)}{P(A)} \\
+&= \frac{P(B1) P(A|B1)}{P(B1)P(A|B1)+P(B2)P(A|B2)+P(B3)P(A|B3)}
+\end{split}
+\end{equation*}
+
+\newpage
+
+Sustituyendo los valores en la ecuación, tenemos que la probabilidad $P(B1|A)$ es de:
+
+\begin{equation*}
+\begin{split}
+P(B1|A) &= \frac{0.7 \times 0.75}{0.7 \times 0.75 + 0.2 \times 0.60 + 0.1 \times 0.65} \\
+&= \frac{0,525}{0,71} \\
+&= 0.739
+\end{split}
+\end{equation*}
+
+Así la probabilidad de que un deudor que haya sido contactado personalmente haya hecho el pago es de $0,739$ ó $73,9\%$.
+
+b) Análogo al inciso a), calculamos la probabilidad de que un deudor que haya sido contactado vía teléfonica haya hecho el pago. Esto es:
+
+
+\begin{equation*}
+\begin{split}
+P(B2|A) &=  \frac{P(B2) P(A|B2)}{P(A)} \\
+&= \frac{0.2 \times 0.60}{0,71} \\
+&= 0,169
+\end{split}
+\end{equation*}
+
+Así la probabilidad de que un deudor que haya sido contactado vía teléfonica es de $0,169$ ó $16,9\%$.
+
+c) Análogo al inciso a) y b), calculamos la probabilidad de que un deudor que haya sido contactado vía carta haya hecho el pago. Esto es:
+
+\begin{equation*}
+\begin{split}
+P(B3|A) &=  \frac{P(B3) P(A|B3)}{P(A)} \\
+&= \frac{0.1 \times 0.65}{0,71} \\
+&= 0,0915
+\end{split}
+\end{equation*}
+
+Así la probabilidad de que un deudor que haya sido contactado vía carta es de $0,0915$ ó $9,15\%$.
+
+\newpage
+
+### Ejercicio 3
+
+Un grupo de interés público está planeando impugnar las primas de seguro de automóviles en una de tres ciudades: Atlanta, Baltimore o Cleveland. La probabilidad que se escoja Atlanta es de 0.40; Baltimore, 0.35, y Cleveland, 0.25. El grupo sabe también que tiene una posibilidad de 60% de recibir un dictamen a su favor si escogen Baltimore, de 45% si eligen Atlanta y de 35% si se decide por Cleveland. Si el grupo ha recibido un dictamen favorable ¿qué ciudad es más probable que haya escogido?
+
+\textbf{\underline{Solución:}}
+
+Consideremos los siguientes eventos: \textit{B1} = 'Escoger Atlanta', \textit{B2} = 'Escoger Baltimore', \textit{B3} = 'Escoger Cleveland' y \textit{A} = 'Recibir un dictamen favorable'.
+
+Las probabilidades de que escojan a la ciudad de Atlanta, Baltimore o Cleveland son: $P(B1)=0.40$, $P(B2)=0.35$ y $P(B3)=0.25$. Las probabilidades de recibir un dictamen favorable dado alguna de estas ciudades son: $P(A|B1)=0.45$, $P(A|B2)=0.60$ y $P(A|B3)=0.35$.
+
+Queremos conocer la ciudad con mayor probabilidad de que haya sido escogida dado que el dictamen salió favorable, es decir, calculemos cada una de las probababilidades que se haya escogido Atlanta, Baltimore o Cleveland dado un dictamen favorable y veamos cual de esta probabilidad es mayor.
+
+Calculemos primero la probabilidad de haber escogido Atlanta dado que el dictamen es favorable, es decir, $P(B1|A)$, esto es:
+
+\begin{equation*}
+\begin{split}
+P(B1|A) &= \frac{P(B1 \cap A)}{P(A)} \\
+&= \frac{P(B1) P(A|B1)}{P(A)} \\
+&= \frac{P(B1) P(A|B1)}{P(B1)P(A|B1)+P(B2)P(A|B2)+P(B3)P(A|B3)}
+\end{split}
+\end{equation*}
+
+Sustituyendo los valores en la ecuación, tenemos que la probabilidad $P(B1|A)$ es de:
+
+\begin{equation*}
+\begin{split}
+P(B1|A) &= \frac{0.40 \times 0.45}{0.40 \times 0.45 + 0.35 \times 0.60 + 0.25 \times 0.35} \\
+&= \frac{0.18}{0.4775} \\
+&= 0.376
+\end{split}
+\end{equation*}
+
+Así la probabilidad de escoger a Atlanta dado que el dictamen fue favorable es de $0.376$ ó $37.6\%$.
+
+Análogo calculamos las otra probabilidades, para $P(B2|A)$ tenemos:
+
+\begin{equation*}
+\begin{split}
+P(B2|A) &=  \frac{P(B2) P(A|B2)}{P(A)} \\
+&= \frac{0.35 \times 0.60}{0.4775} \\
+&= 0.439
+\end{split}
+\end{equation*}
+
+Así la probabilidad de escoger a Baltimore dado que el dictamen fue favorable es de $0.439$ ó $43.9\%$.
+
+Para la última probabilidad, $P(B3|A)$, tenemos:
+
+\begin{equation*}
+\begin{split}
+P(B3|A) &=  \frac{P(B3) P(A|B3)}{P(A)} \\
+&= \frac{0.25 \times 0.35}{0.4775} \\
+&= 0.183
+\end{split}
+\end{equation*}
+
+Así la probabilidad de escoger a Cleveland dado que el dictamen fue favorable es de $0.183$ ó $18.3\%$.
+
+Por lo que la ciudad con más probabilidad de ser escogida es Baltimore.
+
+\newpage
+
+### Ejercicio 4
+
+Las pólizas de seguros de vida son más altas para las personas mayores que para los Jóvenes. ¿Qué le sugiere esto sobre los riesgos y probabilidades asociadas con estas dos porciones de mercado del negocio de los seguros?
+
+\textbf{\underline{Solución:}}
+
+La probabilidad de que para una persona jovén la poliza de seguro sea más accesible y le pueda cubrir los diferentes riesgos de vida es mayor a la que tiene una persona mayor, pues estas representan un riesgo más alto para los negocios de seguros, pues tienen una esperanza de vida más corta y están propensos a más enfermedades de las que puede tener una persona jovén.
+
+\newpage
+
+### Ejercicio 5
+
+La tabla que se presenta a continuación es un arreglo de las 25 organizaciones bancarias de Illinois, clasificadas por ganancias para accionistas en equidad (ROE, Return On Equity), para el periodo del 31/3/91 al 31/3/92. Utilice esta información para responder las preguntas siguientes. Suponga que la ROE es independiente del activo total y dependiente de la equidad como porcentaje de activos (E/A). Suponga también que los ingresos netos dependen de los activos totales.
+
+*Table*
+
+a) ¿Cuál es la probabilidad de que una compañía escogida al azar tenga un ROE mayor que 16%, dado que su cociente E/A es menor que 7%?
+
+b) ¿Cúal es la probabilidad de que una compañía elegida al azar tenga un ROE entre 14 y 16% (inclusive), dado que su cociente E/A es mayor que el 7%?
+
+c) Determine la probabilidad de que una compañía elegida al azar tenga un ingreso neto payor que 50 millones de dólares, dado que sus activos totales son mayores a 2 mil millones de dólares.
+
+d) ¿Cúal es la probabilidad de que una compañía elegida al azar tenga un ROE mayor al 15%?
+
+e) Calcule la probabilidad de que una compañía elegida al azar tenga un ROE mayor a 15% y tenga al menos 2 millones de dólares de activos totales.
+
+f) Determine la probabilidad de que una compañía elegida al azar tenga un ROE mayor a 20%, dado que sus activos totales son mayores o iguales a mil millones de dólares.
+
+\newpage
+
+### Ejercicio 6
+
+En una junta convocada para abordar el problema de cheques devueltos en un supermercado donde usted hace prácticas como analista financiero, el banco informa que 12% de todos los cheques se regresan por fondos insuficientes y, de ellos, en 50% de los casos se había dado cambio en efectivo a los clientes. En general, 10% de los clientes piden cambio en efectivo al final de su transacción con la tienda. Para 1,000 visitas de clientes, encuentre el número de transacciones que incluyen
+
+a) fondos insuficientes.
+
+b) cambio en efectivo para el cliente.
+
+c) tanto fondos insuficientes como cambio en efectivo.
+
+d) fondos insuficientes, o bien cambio en efectivo
+
+\textbf{\underline{Solución:}}
+
+a) Si para 1,000 visitas de clientes sabemos que el 12% de todos los cheques seran devueltos por fondos insufucientes, entonces si suponemos que las 1,000 visitas de clientes pagaron con cheques, entonces 120 clientes tendran transacciones por cheques con fondos insuficientes.
+
+b) El 10% de los clientes piden cambio en efectivo al final de su transacción con la tienda, asi que para 1,000 visitas de clientes, 100 clientes tendran una sola transacción que incluya el cambio en efectivo.
+
+c) Sabemos que de las 1,000 visitas de clientes, 120 tendran una transacción por cheque con fondo insuficiente, de esos 120 clientes el 50% efectúa una transacción de cambio en efectivo, es decir 60 clientes realizan dos tipos de transacciones tanto fondos insifucientes como cambio en efectivo. 
+
+d) En total de las 1,000 visitas de clientes, 120 realizan una transacción por cheques con fondos insuficientes y 160 clientes realizan transacciones de cambio en efectivo.
+
+\newpage
+
+### Ejercicio 7
+
+Dos quintos de los clientes de la inmobiliaria Show Me provienen de una red de referencia en otra ciudad, el resto son locales. Las posibilidades de vender una casa en cada exhibición son 0.075 y 0.053 para los clientes de fuera y locales respectivamente. Si un agente de ventas entra a la oficina de Show Me y anuncia "cerré el trato", ¿es más probable que el agente haya mostrado una casa a un cliente de fuera o local?
+
+\textbf{\underline{Solución:}}
+
+Consideremos los siguientes eventos: \textit{B1} = 'Clientes de fuera', \textit{B2} = 'Clientes locales' y \textit{A} = 'Vender una casa'.
+
+Las probabilidades de que un cliente sea de fuera o sea local para la compañía son de $P(B1)=0.4$ y $P(B2)=0.6$ respectivamente. Las probabilidades de vender una casa dado que el cliente sea de fuera o local son: $P(A|B1)=0.075$ y $P(A|B2)=0.053$.
+
+Queremos conocer a que tipo de cliente es más probable al que se le haya vendido la casa.
+
+Primero calculemos la probabilidad de que el cliente que se le vendió la casa sea de fuera, es decir calculemos $P(B1|A)$, esto es:
+
+\begin{equation*}
+\begin{split}
+P(B1|A) &= \frac{P(B1 \cap A)}{P(A)} \\
+&= \frac{P(B1) P(A|B1)}{P(A)} \\
+&= \frac{P(B1) P(A|B1)}{P(B1)P(A|B1)+P(B2)P(A|B2)}
+\end{split}
+\end{equation*}
+
+Sustituyendo los valores en la ecuación, tenemos que la probabilidad $P(B1|A)$ es de:
+
+\begin{equation*}
+\begin{split}
+P(B1|A) &= \frac{0.4 \times 0.075}{0.4 \times 0.075 + 0.6 \times 0.053} \\
+&= \frac{0.03}{0.0618} \\
+&= 0.485
+\end{split}
+\end{equation*}
+
+Así la probabilidad de que se haya vendido una casa a un cliente que sea de fuera es de $0.485$ ó $48.5\%$
+
+Análogo calculemos la probabilidad de que se haya vendido una casa a un cliente local, es decir calculemos $P(B2|A)$, esto es:
+
+\begin{equation*}
+\begin{split}
+P(B2|A) &=  \frac{P(B2) P(A|B2)}{P(A)} \\
+&= \frac{0.6 \times 0.053}{0.0618} \\
+&= 0.514
+\end{split}
+\end{equation*}
+
+Así la probabilidad de que se haya vendido una casa a un cliente local es de $0.514$ ó $51.4\%$.
+
+Por lo que es más probable que el agente de ventas le haya mostrado una casa a un cliente local.
+
+\newpage
+
+### Ejercicio 8
+
+Una oficina de finanzas solicita suministros de papel de uno de tres vendedores, $V_1$, $V_2$ o $V_3$. Los pedidos han de colocarse en dos días sucesivos, un pedido por día. Así, $(V_2, V_3)$ podría denotar que el vendedor $V_2$ obtiene el pedido en el primer día y el vendedor $V_3$ obtiene el pedido en el segundo día.
+
+a) Indique los puntos muestrales en este experimento de solicitar papel en dos días sucesivos.
+
+b) Suponga que los vendedores se seleccionan al azar cada día y se asigna probabilidad a cada punto muestral.
+
+c) Denote con $A$ el evento de que el mismo vendedor obtenga ambos pedidos y $B$ el evento de que $V_2$ obtenga al menos un pedido. Encuentre $P(A)$, $P(B)$, $P(A \cup B)$ y $P(A \cap B)$ al suponer las probabilidades de los puntos muestrales en estos eventos.
+
+\textbf{\underline{Solución:}}
+
+a) Los puntos muestrales en este experimento están dados por: $(V_1,V_1), (V_1,V_2), (V_1,V_3), (V_2,V_1),$
+$(V_2,V_2), (V_2,V_3), (V_3,V_1), (V_3,V_2), (V_3,V_3)$
+
+b) Cada punto muestral posee la misma probabilidad de ser escogido de 1/9.
+
+c) Sea $A$ el evento de que el mismo vendedor obtenga ambos pedidos, entonces $P(A)=3/9$ pues de los nueve resultados posibles, tres resultados corresponden a que el mismo vendedor obtenga ambos pedidos en dos días consecutivos. Para el evento $B$, la probabilidad de que al vendedor $V_2$ le toque al menos un pedido, es decir $P(B)$ es de $P(B)=5/9$. La probabilidad de alguno de estos eventos ocurran, es decir $P(A \cup B)$, es de $P(A \cup B)=7/9$. Por último la probabilidad de que el mismo vendedor obtenga ambos pedidos y el vendedor $V_2$ tenga al menos un pedido es de $P(A \cap B)=1/9$.
+
+\newpage
+
+### Ejercicio 9
+
+La oficina del Censo reporta que el ingreso familiar mediano para todas las familias en Estados Unidos, durante el año 2003, fue \$43,318. Esto es, la mitad de todas las familias estadounidenses tuvo ingresos que rebasaban esta cantidad y la mitad tuvo ingresos iguales o menores a esta cantidad. Suponga que se hace una encuesta a cuatro familias y que cada una de ellas revela si su ingreso rebasó los \$43,318 en 2003.
+
+a) Indique los puntos del espacio muestral.
+
+b) Identifique los eventos simples en cada uno de los eventos siguientes: $A$: al menos dos tuvieron ingresos de más de \$43,318. $B$: exactamente dos tuvieron ingresos de más de \$43,318. $C$: exactamente una tuvo ingresos menores o iguales a \$43,318.
+
+c) Haga uso de la interpretación dada para la mediana para asignar probabilidades a los eventos simples y encuentre $P(A)$, $P(B)$ y $P(C)$.
+
+\textbf{\underline{Solución:}}
+
+a) Definamos los siguientes eventos: $R$: 'Ingresos de las familias estadounidenses que rebasan \$43,318', $N$: 'Ingresos de las familias estadounidenses menores o iguales a \$43,318'. 
+
+El espacio muestral que esta conformado por los puntos muestrales de las diferentes combinaciones de que si las 4 familias rebasaron o no el ingreso está dado por:
+
+$S$={$(RRRR),(RRRN),(RRNN),(RNNN),(RRNR),(RNRR),(RNNR),(RNRN),$
+$(NRRR),(NNRR),(NNNR),(NRNN),(NRRN),(NNRN),(NRNR),(NNNN)$}
+
+b) Los eventos simples para el evento $A$ están dados por:
+
+$A$={$(RRRR),(RRRN),(RRNN),(RRNR),(RNRR),(RNNR),(RNRN),$
+
+$(NRRR),(NNRR),(NRRN),(NRNR)$}
+
+Para el evento $B$ tenemos:
+
+$B$={$(RRNN),(RNNR),(RNRN),(NNRR),(NRRN),(NRNR)$}
+
+Para el evento $C$ tenemos:
+
+$C$={$(RNNN),(NNNR),(NRNN),(NNRN)$}
+
+c) Las probabilidades correspondienten para los eventos $A$, $B$ y $C$ seran los cardinales de los respectivos eventos entre el cardinal del espacio muestral, en esta caso |S|=16, así para el evento $A$ tenemos:
+
+$P(A)=\frac{|A|}{|S|}=\frac{11}{16}$
+
+Para el evento $B$ tenemos:
+
+$P(B)=\frac{|B|}{|S|}=\frac{6}{16}=\frac{3}{8}$
+
+Para el evento $C$ nos queda: $P(C)=\frac{|C|}{|S|}=\frac{4}{16}=\frac{1}{4}$
+
+\newpage
+
+### Ejercicio 10
+
+Cinco compañías, $F_1$, $F_2$,...,$F_5$, ofrecen cotizaciones para tres contratos separados $C_1$, $C_2$ y $C_3$. A cualquiera de las firmas se le otorgará un contrato a lo sumo. Los contratos son muy diferentes, de modo que una asignación de $C_1$ a $F_1$, por ejemplo, debe ser distinta a una asignación de $C_2$ a $F_1$.
+
+a) ¿Cuántos puntos muestrales hay en total en este experimento que involucra la asignación de contratos a las firmas? (No es necesario indicarlos todos.)
+
+b) Dada la suposición de puntos muestrales igualmente probables, encuentre la probabilidad de que a $F_3$ se le conceda un contrato.
+
+\textbf{\underline{Solución:}}
+
+a) De las 5 compañías a tres se les asignará un contrato distinto y sin posibilidad de repetir un contrato, así que los puntos muestrales en total de este experimento está dado por una permutación de $P^5_3$, es decir, 60.
+
+b) El número de formas de asignar a una compañía en este caso $F_3$ tres contratos distintos es de $P^3_1$, esto al multiplicarlo por las formas de que a las otras 4 compañías le asignamos los otros 2 contratos distintos, nos da los puntos muestrales a los que la compañía $F_3$ le tocó un contrato. Esto es:
+
+$$ P^3_1 \times P^4_2 =36 $$ 
+Así la probabilidad de que a $F_3$ le tocó un contrato es de $\frac{36}{60}=0.6$
+
+\newpage
+
+### Ejercicio 11
+
+Para verificar la exactitud de sus cuentas financieras, las empresas emplean regularmente auditores para verificar asientos de contabilidad. Los empleados de la compañía hacen asientos erróneos 5% de las veces. Suponga que un auditor verifica al azar tres asientos.
+
+a) Encuentre la distribución de probabilidad para $Y$, el número de errores detectados por el auditor.
+
+b) Construya un histograma de probabilidad para $p(y)$.
+
+c) Encuentre la probabilidad de que el auditor detecte más de un error.
+
+\textbf{\underline{Solución:}}
+
+a) Sea $Y$ la variable aleatoria dada por el número de errores detectados por el auditor, esta variable aleatoria toma 4 valores, 0, 1, 2 y 3. Consideremos los eventos $E$='Error en un asiento' y $N$='Ningún error', las probabilidades respectivas de estos eventos son: $P(E)=0.05$ y $P(N)=0.95$.
+
+Por otro el espacio muestral que está conformado por los puntos muestrales es:
+
+$S$={$(EEE),(EEN),(ENE),(NEE),(ENN),(NEN),(NNE),(NNN)$}
+
+Así la distribución de probabilidad para $Y$ esta dado por:
+
+$$P(Y=3) = (0.005)^3 = 0.000125$$
+$$P(Y=2) = 3 \times 0.05 \times 2 \times 0.95 = 0.007125$$
+$$P(Y=1) = 3 \times (0.05)^2 \times 0.95 = 0.135375$$
+$$P(Y=0) = (0.95)^3 = 0.857375$$
+b) 
+
+
+```{r,fig.height=3,echo=FALSE}
+probabilidades<-data.frame(Y=c(0,1,2,3),p=c(0.85,0.13,0.007125,0.000125))
+
+ggplot(probabilidades,aes(x=Y,y=p)) +
+  geom_bar(stat ='identity',color='black',fill='blue',alpha=0.5)+
+  labs(x = 'Valores Y', y = 'Probabilidad')
+```
+
+\newpage
+
+c) Calculemos la probabilidad de que el auditor detecte más de un error, esto es, $P(Y>1)$, por lo que:
+
+$$P(Y>1) = P(Y=2)+P(Y=3)=0.00725$$
+Así la probabilidad de que el auditor detecte más de un error es de $0.00725$.
+
+
+
