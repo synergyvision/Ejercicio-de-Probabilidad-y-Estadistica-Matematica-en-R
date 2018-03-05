@@ -7,60 +7,62 @@ output: pdf_document
 
 ## Ejercicio 12.
 
-Una agencia de rentas, que alquila equipo pesado por día, ha encontrado que, en promedio, se renta una costosa máquina sólo un día de cada cinco. Si la renta en un día es independiente de la renta en cualquier otro día, encuentre la distribución de probabilidad de $Y$, el número de días entre un par de rentas. 
+Una agencia de rentas, que alquila equipo pesado por dÃ­a, ha encontrado que, en promedio, se renta una costosa mÃ¡quina sÃ³lo un dÃ­a de cada cinco. Si la renta en un dÃ­a es independiente de la renta en cualquier otro dÃ­a, encuentre la distribuciÃ³n de probabilidad de $Y$, el nÃºmero de dÃ­as entre un par de rentas. 
 
-**\underline{Solución:}**
+**\underline{SoluciÃ³n:}**
 
-Sea $Y$ el número de días entre un par de renta. sean los eventos $R$ y $N$ que representan las rentas en un día y el día que no hay rentas. Los días máximos que pueden tener un par de rentas en cinco días es de tres días, por lo  que,  $$\mathbf{P}(Y=0)=\frac{{2\choose2}{3\choose0}}{5}=\frac{1}{5}=0.2$$ Luego, la probabilidad de que halla al menos un día en medio de un par de rentas es, $$\mathbf{P}(N)=\mathbf{P}(Y>0)=1-\mathbf{P}(Y=0)=1-0.2=0.8$$
+Sea $Y$ el nÃºmero de dÃ­as entre un par de renta. sean los eventos $R$ y $N$ que representan las rentas en un dÃ­a y el dÃ­a que no hay rentas. Los dÃ­as mÃ¡ximos que pueden tener un par de rentas en cinco dÃ­as es de tres dÃ­as, por lo  que,  $$\mathbf{P}(Y=0)=\frac{{2\choose2}{3\choose0}}{5}=\frac{1}{5}=0.2$$ Luego, la probabilidad de que halla al menos un dÃ­a en medio de un par de rentas es, $$\mathbf{P}(N)=\mathbf{P}(Y>0)=1-\mathbf{P}(Y=0)=1-0.2=0.8$$
 
 Luego,la probabilidad de que halla un dia entre dos rentas, esta dado por,  $$\mathbf{P}(Y=1)=(0.8)(0.2)$$
 
-Así,$$\mathbf{P}(Y=2)=(0.8)^2(0.2)$$
+AsÃ­,$$\mathbf{P}(Y=2)=(0.8)^2(0.2)$$
 
-Por lo que, la distribución de probabilidad de $Y$ está dada por, $$\mathbf{P}(Y=y)=(0.8)^y(0.2)$$ para $y=0,1,2,...$
+Por lo que, la distribuciÃ³n de probabilidad de $Y$ estÃ¡ dada por, $$\mathbf{P}(Y=y)=(0.8)^y(0.2)$$ para $y=0,1,2,...$
 
 \newpage
 
 ## Ejercicio 13.
 
-Una compañia de seguros expide una póliza de un año por $\$1000$ dólares contra el suceso $A$ que históricamente le ocurre a 2 de cada 100 propietarios de la póliza. Las tarifas administrativas son de $\$15$ por póliza y no son parte de la "utilidad" de la compañia. ¿Cuánto debe cobrar la compañia por póliza si requiere que la utilidad esperada por póliza sea de $\$50$? [Sugerencia: si $C$ es la prima por la póliza, la "utilidad" de la compañia es $C-15$ si $A$ no ocurre y $C-15-1000$ si $A$ ocurre.]
+Una compaÃ±ia de seguros expide una pÃ³liza de un aÃ±o por $\$1000$ dÃ³lares contra el suceso $A$ que histÃ³ricamente le ocurre a 2 de cada 100 propietarios de la pÃ³liza. Las tarifas administrativas son de $\$15$ por pÃ³liza y no son parte de la "utilidad" de la compaÃ±ia. Â¿CuÃ¡nto debe cobrar la compaÃ±ia por pÃ³liza si requiere que la utilidad esperada por pÃ³liza sea de $\$50$? [Sugerencia: si $C$ es la prima por la pÃ³liza, la "utilidad" de la compaÃ±ia es $C-15$ si $A$ no ocurre y $C-15-1000$ si $A$ ocurre.]
 
-**\underline{Solución:}**
+**\underline{SoluciÃ³n:}**
 
-Sea $U$ la variable aleatoria "utilidad", usando la definición de valor esperado tenemos, 
+Sea $U$ la variable aleatoria "utilidad", usando la definiciÃ³n de valor esperado tenemos, 
 
 $$\mathbb{E}(U)= (C-15)0.98$$ si $A$ ocurre.
 $$\mathbb{E}(U)= (C-15-1000)0.02$$ si $A$ no ocurre.
 
-Se requiere que la utilidad esperada por póliza sea de $\$50$, por lo que, $$\mathbb{E}(U)=50$$
+Se requiere que la utilidad esperada por pÃ³liza sea de $\$50$, por lo que, $$\mathbb{E}(U)=50$$
 
 Asi para ambos casos, tenemos:
 
 $$\mathbb{E}(U)= (C-15)0.98 + (C-15-1000)0.02=50$$
 Despejando el valor de $C$, se obtiene,
 
-$$C=85$$ Esto significa que la compañia debe cobrar $\$85$ por póliza para que la utilidad por póliza sea de $\$50$.
+$$C=85$$ Esto significa que la compaÃ±ia debe cobrar $\$85$ por pÃ³liza para que la utilidad por pÃ³liza sea de $\$50$.
 
 \newpage
+
 ## Ejercicio 14.
 
-Un cliente potencial para una póliza de seguro contra incendio por $\$85,000$ es propietario de una casa en una zona que, de acuerdo con la experiencia, puede sostener una pérdida total en un año determinado con probabilidad de $.001$ y un $50\%$ de pérdida con probabilidad de $.01$. Si se ignoran todas las otrás pérdidas parciales, ¿qué prima debe cobrar la compañia de seguros por una póliza anual para que no haya pérdida ni ganancia en todas las pólizas de $\$85,000$ en esta zona?
+Un cliente potencial para una pÃ³liza de seguro contra incendio por $\$85,000$ es propietario de una casa en una zona que, de acuerdo con la experiencia, puede sostener una pÃ©rdida total en un aÃ±o determinado con probabilidad de $.001$ y un $50\%$ de pÃ©rdida con probabilidad de $.01$. Si se ignoran todas las otrÃ¡s pÃ©rdidas parciales, Â¿quÃ© prima debe cobrar la compaÃ±ia de seguros por una pÃ³liza anual para que no haya pÃ©rdida ni ganancia en todas las pÃ³lizas de $\$85,000$ en esta zona?
 
-**\underline{Solución:}**
+**\underline{SoluciÃ³n:}**
 
-Sea $Y$ una variable aleatoria por póliza de seguro para cada cliente, tenemos que, $$\mathbf{P}(Y=85000)=0.001$$ y $$\mathbf{P}(Y=42500)=0.01$$
+Sea $Y$ una variable aleatoria por pÃ³liza de seguro para cada cliente, tenemos que, $$\mathbf{P}(Y=85000)=0.001$$ y $$\mathbf{P}(Y=42500)=0.01$$
 
-Luego, la pérdida y ganancia de una compañia está dada por $C-Y$. Sí, $\mathbb{E}(C-Y)=0$ entonces $\mathbb{E}(Y)=C$
+Luego, la pÃ©rdida y ganancia de una compaÃ±ia estÃ¡ dada por $C-Y$. SÃ­, $\mathbb{E}(C-Y)=0$ entonces $\mathbb{E}(Y)=C$
 
-Así, usando la definición del valor esperado, tenemos que, 
+AsÃ­, usando la definiciÃ³n del valor esperado, tenemos que, 
 $$C=\mathbb{E}(Y)= 85000(0.001)+42500(0.01)=510$$
 
-La prima que debe cobrar la compañia de seguros es de $\$510$ por una póliza anual para que no haya pérdida ni ganancia en todas las pólizas en esta zona.
+La prima que debe cobrar la compaÃ±ia de seguros es de $\$510$ por una pÃ³liza anual para que no haya pÃ©rdida ni ganancia en todas las pÃ³lizas en esta zona.
 
 \newpage
+
 ## Ejercicio 15.
 
-El gerente del almacén de una fábrica ha construido la siguiente distribución de probabilidad para la demanda diaria (número de veces que se usa) de una herramienta en particular.
+El gerente del almacÃ©n de una fÃ¡brica ha construido la siguiente distribuciÃ³n de probabilidad para la demanda diaria (nÃºmero de veces que se usa) de una herramienta en particular.
 
 \begin{center}
 \begin{tabular}{c|c c r}
@@ -69,9 +71,9 @@ $p(y)$ & .1 & .5 & .4 \\
 \end{tabular}
 \end{center}
 
-Cuesta a la fábrica \$10 cada vez que la herramienta se usa. Encuentre la media y la varianza del costo diario por usar la herramienta.
+Cuesta a la fÃ¡brica \$10 cada vez que la herramienta se usa. Encuentre la media y la varianza del costo diario por usar la herramienta.
 
-\textbf{\underline{Solución:}}
+\textbf{\underline{SoluciÃ³n:}}
 
 Usando las definiciones y sabiendo que cada vez que la herramienta se usa tiene un costo de \$10, tenemos,
 
@@ -81,17 +83,18 @@ Luego,
 
 $$\mathbb{E}(10^2Y^2)=10^2\sum_{y=0}^{2}y^2p(y)=0(0.1)+100(0.5)+400(0.4)=210$$
 
-Tenemos que la varianza está dada por,
+Tenemos que la varianza estÃ¡ dada por,
 
 $$\sigma^2=\mathbb{E}(10^2Y^2)-\mu^2=210-(13)^2=41$$
 
 \newpage
-##Ejercicio 16.
 
-Un inversionista está pensando en comprar un número muy grande de acciones de una compañia. La cotización de las acciones de la bolsa, durante los seis meses anteriores, es de gran interés para el inversionista. Con base en esta información, se observa que la cotización se relaciona con el producto nacional bruto. Si el PNB aumenta, la probabilidad de que el valor de las acciones aumente es de 0.8. Si el PNB es el mismo, la probabilidad de que las acciones aumenten su valor es de 0.2. Si el PNB disminuye, la probabilidad es de sólo 0.1. Si para los siguientes seis meses se asignan las probabilidades 0.4, 0.3 y 0.3 a los eventos, el PNB aumenta,es el mismo y disminuye, respectivamente, determinar la probabilidad de que las acciones aumenten su valor en los próximos seis meses.
+## Ejercicio 16.
+
+Un inversionista estÃ¡ pensando en comprar un nÃºmero muy grande de acciones de una compaÃ±ia. La cotizaciÃ³n de las acciones de la bolsa, durante los seis meses anteriores, es de gran interÃ©s para el inversionista. Con base en esta informaciÃ³n, se observa que la cotizaciÃ³n se relaciona con el producto nacional bruto. Si el PNB aumenta, la probabilidad de que el valor de las acciones aumente es de 0.8. Si el PNB es el mismo, la probabilidad de que las acciones aumenten su valor es de 0.2. Si el PNB disminuye, la probabilidad es de sÃ³lo 0.1. Si para los siguientes seis meses se asignan las probabilidades 0.4, 0.3 y 0.3 a los eventos, el PNB aumenta,es el mismo y disminuye, respectivamente, determinar la probabilidad de que las acciones aumenten su valor en los prÃ³ximos seis meses.
 
 
-\textbf{\underline{Solución:}}
+\textbf{\underline{SoluciÃ³n:}}
 
 Sea $A$ el evento "las acciones aumentan su valor" y los eventos $B_1,B_2,B_3$ el PNB aumenta, el PNB es el mismo y el PNB disminuye, respectivamente. Luego, 
 $$\mathbf{P}(A)= \mathbf{P}(A\cap{B_1})+\mathbf{P}(A\cap{B_2})+\mathbf{P}(A\cap{B_3})$$
@@ -108,23 +111,25 @@ en donde se conocen, $\mathbf{P}(B_1)=0.4$ , $\mathbf{P}(A|B_1)=0.8$ , $\mathbf{
 \end{split}
 \end{equation*}
 
-La probabilidad de que las acciones aumenten su valor en los próximos seis meses es de 0.41.
+La probabilidad de que las acciones aumenten su valor en los prÃ³ximos seis meses es de 0.41.
 
 \newpage
-##Ejercicio 17.
 
-Una compañia de seguros debe determinar la cuota anual a cobrarse por un seguro de \$50 mil para hombres cuya edad se encuentra entre los 30 y 35 años. Con base en las tablas actuariales el número de fallecimientos al año, para este grupo, es de 5 por cada mil. Si $X$ es la variable aleatoria que representa la ganancia de la compañia de seguros, determinar el monto de la cuota anual para que la compañia no pierda, a pesar de tener un número grande de tales seguros.
+## Ejercicio 17.
 
-\textbf{\underline{Solución:}}
+Una compaÃ±ia de seguros debe determinar la cuota anual a cobrarse por un seguro de \$50 mil para hombres cuya edad se encuentra entre los 30 y 35 aÃ±os. Con base en las tablas actuariales el nÃºmero de fallecimientos al aÃ±o, para este grupo, es de 5 por cada mil. Si $X$ es la variable aleatoria que representa la ganancia de la compaÃ±ia de seguros, determinar el monto de la cuota anual para que la compaÃ±ia no pierda, a pesar de tener un nÃºmero grande de tales seguros.
 
-El seguro cubre a los hombres durante cinco años por un monto de \$50 mil. Anualmente el número de fallecimientos es de 5 por cada mil, representando un 0.5\% de fallecidos anual. Luego, la pérdida y ganancia está dado por, $C-X$, donde $C$ es la cuota anual. 
+\textbf{\underline{SoluciÃ³n:}}
+
+El seguro cubre a los hombres durante cinco aÃ±os por un monto de \$50 mil. Anualmente el nÃºmero de fallecimientos es de 5 por cada mil, representando un 0.5\% de fallecidos anual. Luego, la pÃ©rdida y ganancia estÃ¡ dado por, $C-X$, donde $C$ es la cuota anual. 
  
 Si $\mathbb{E}(C-X)=0$ entonces $\mathbb{E}(X)=C$. entonces, $$C=(50000)(0.005)=250$$
 
 \newpage
-##Ejercicio 18.
 
-1. Dadas las probabilidades condicional en la tabla siguiente y las no condicionales $\mathbf{P}(Y=1)=0.3$ y $\mathbf{P}(Y=2)=0.7$, ¿cuál es el valor esperado de X?
+## Ejercicio 18.
+
+1. Dadas las probabilidades condicional en la tabla siguiente y las no condicionales $\mathbf{P}(Y=1)=0.3$ y $\mathbf{P}(Y=2)=0.7$, Â¿cuÃ¡l es el valor esperado de X?
 
 \begin{table}[htpb]
 \begin{center}
@@ -146,7 +151,7 @@ Si $\mathbb{E}(C-X)=0$ entonces $\mathbb{E}(X)=C$. entonces, $$C=(50000)(0.005)=
 \item[C.] 5.7
 \end{itemize}
 
-\textbf{\underline{Solución:}}
+\textbf{\underline{SoluciÃ³n:}}
 
 La respuesta correcta es la $B$, ya que $$\mathbb{E}(X|Y=1)=0(0.2)+5(0.4)+10(0.4)=6$$ y $$\mathbb{E}(X|Y=2)=0(0.1)+5(0.8)+10(0.1)=5$$
 Por lo que, $$\mathbb{E}(X)=6(0.3)+5(0.7)=5.3$$
@@ -164,7 +169,7 @@ $R_A$=0.3 & 0 & 0 & 0.3\\
 \end{tabular}
 \end{center}
 
-2. Dada la tabla de probabilidades, el valor esperado de la rentabilidad del valor A está cercano a:
+2. Dada la tabla de probabilidades, el valor esperado de la rentabilidad del valor A estÃ¡ cercano a:
 
 \begin{itemize}
 \item[A.] 0.08
@@ -172,11 +177,11 @@ $R_A$=0.3 & 0 & 0 & 0.3\\
 \item[C.] 0.15
 \end{itemize}
 
-\textbf{\underline{Solución:}}
+\textbf{\underline{SoluciÃ³n:}}
 
- La respuesta correcta es la opción A., ya que el valor esperado del valor A es $(-0.1)(0.4)+(0.1)(0.3)+(0.3)(0.3)=0.08$
+ La respuesta correcta es la opciÃ³n A., ya que el valor esperado del valor A es $(-0.1)(0.4)+(0.1)(0.3)+(0.3)(0.3)=0.08$
 
-3. La desviación estándar del valor B es cercano a:
+3. La desviaciÃ³n estÃ¡ndar del valor B es cercano a:
 
 \begin{itemize}
 \item[A.] 0.11
@@ -184,9 +189,9 @@ $R_A$=0.3 & 0 & 0 & 0.3\\
 \item[C.] 0.33
 \end{itemize}
 
-\textbf{\underline{Solución:}}
+\textbf{\underline{SoluciÃ³n:}}
 
-La respuesta correcta es la C., ya que, el valor esperado de la rentabilidad del valor de B es $(0.5)(0.4)+(0.2)(0.3)+(-0.3)(0.3)=0.17$. La varianza esta dada por $(0.4)(0.5-0.17)^2+(0.3)(0.2-0.17)^2+(0.3)(-0.3-0.17)^2=0.1101$ y la desviación estándar $\sqrt{0.1101}=0.33$
+La respuesta correcta es la C., ya que, el valor esperado de la rentabilidad del valor de B es $(0.5)(0.4)+(0.2)(0.3)+(-0.3)(0.3)=0.17$. La varianza esta dada por $(0.4)(0.5-0.17)^2+(0.3)(0.2-0.17)^2+(0.3)(-0.3-0.17)^2=0.1101$ y la desviaciÃ³n estÃ¡ndar $\sqrt{0.1101}=0.33$
 
 4. La varianza del valor B es cercano a:
 
@@ -196,9 +201,9 @@ La respuesta correcta es la C., ya que, el valor esperado de la rentabilidad del
 \item[C.] 0.17
 \end{itemize}
 
-\textbf{\underline{Solución:}}
+\textbf{\underline{SoluciÃ³n:}}
 
-La varianza de la rentabilidad del valor de A es $(0.4)(-0.1-0.08)^2+(0.3)(0.1-0.08)^2+(0.3)(0.3-0.08)^2=0.0276$. La respuest es la opción A.
+La varianza de la rentabilidad del valor de A es $(0.4)(-0.1-0.08)^2+(0.3)(0.1-0.08)^2+(0.3)(0.3-0.08)^2=0.0276$. La respuest es la opciÃ³n A.
 
 5. La covarianza entre los valores A y B es cercano a:
 
@@ -208,7 +213,7 @@ La varianza de la rentabilidad del valor de A es $(0.4)(-0.1-0.08)^2+(0.3)(0.1-0
 \item[C.] 0.004
 \end{itemize}
 
-\textbf{\underline{Solución:}}
+\textbf{\underline{SoluciÃ³n:}}
 
 $Cov(R_A,R_B)=(0.4)(-0.1-0.08)(0.5-0.17)+(0.3)(0.1-0.08)(0.2-0.17)+(0.3)(0.3-0.08)(-0.3-0.17)=-0.0546$.La respuesta es la B.
 
@@ -220,11 +225,11 @@ $Cov(R_A,R_B)=(0.4)(-0.1-0.08)(0.5-0.17)+(0.3)(0.1-0.08)(0.2-0.17)+(0.3)(0.3-0.0
 \item[C.] 0.86
 \end{itemize}
 
-\textbf{\underline{Solución:}}
+\textbf{\underline{SoluciÃ³n:}}
 
 $\rho(R_A,R_B)=\frac{Cov(R_A,R_B)}{\sigma_{R_A}\sigma_{R_B}}=\frac{-0.0546}{0.33(0.17)}=-0.9907$. La respuesta es la A.
 
-7. La probabilidad que DJIA aumente mañana es de  2/3. La probabilidad de un aumento en el DJIA declarado como probabilidades es:
+7. La probabilidad que DJIA aumente maÃ±ana es de  2/3. La probabilidad de un aumento en el DJIA declarado como probabilidades es:
 
 \begin{itemize}
 \item[A.] Dos a uno.
@@ -232,11 +237,11 @@ $\rho(R_A,R_B)=\frac{Cov(R_A,R_B)}{\sigma_{R_A}\sigma_{R_B}}=\frac{-0.0546}{0.33
 \item[C.] Dos a tres.
 \end{itemize}
 
-\textbf{\underline{Solución:}}
+\textbf{\underline{SoluciÃ³n:}}
 
 Las probabilidades son $\frac{2/3}{1-2/3}=2/1$ que es igual a dos a uno. La respuesta es la A.
 
-8. Una distribución uniforme discreta (cada evento tiene igual probabilidad de ocurrencia) tiene los siguientes posibles resultados para $X:[1,2,3,4]$. La varianza de esta distribución es cercana a:
+8. Una distribuciÃ³n uniforme discreta (cada evento tiene igual probabilidad de ocurrencia) tiene los siguientes posibles resultados para $X:[1,2,3,4]$. La varianza de esta distribuciÃ³n es cercana a:
 
 \begin{itemize}
 \item[A.] 1.00
@@ -244,7 +249,7 @@ Las probabilidades son $\frac{2/3}{1-2/3}=2/1$ que es igual a dos a uno. La resp
 \item[C.] 2.00
 \end{itemize}
 
-\textbf{\underline{Solución:}}
+\textbf{\underline{SoluciÃ³n:}}
  
 La respuesta correcta es la B. El valor esperado de $X$
 es $(1/4)(1+2+3+4)=2.5$.La varianza es $(1/4)[(1-2.5)^2+(2-2.5)^2+(3-2.5)^2+(4-2.5)^2)]=1.25$
@@ -259,11 +264,11 @@ es $(1/4)(1+2+3+4)=2.5$.La varianza es $(1/4)[(1-2.5)^2+(2-2.5)^2+(3-2.5)^2+(4-2
 \item[C.] $\mathbf{P}(A\cup{B})=\mathbf{P}(A) + \mathbf{P}(B)$
 \end{itemize}
 
-\textbf{\underline{Solución:}}
+\textbf{\underline{SoluciÃ³n:}}
 
-La respuesta correcta es la opción C.
+La respuesta correcta es la opciÃ³n C.
 
-10. En una bola de caridad, 800 nombres son introducidos. Cuatro de los nombres son idénticos. En una extracción aleatoria, ¿cuál es la probabilidad de que uno de estos cuatro nombres sea extraido?
+10. En una bola de caridad, 800 nombres son introducidos. Cuatro de los nombres son idÃ©nticos. En una extracciÃ³n aleatoria, Â¿cuÃ¡l es la probabilidad de que uno de estos cuatro nombres sea extraido?
 
 \begin{itemize}
 \item[A.] 0.004
@@ -271,7 +276,7 @@ La respuesta correcta es la opción C.
 \item[C.] 0.010
 \end{itemize}
 
-\textbf{\underline{Solución:}}
+\textbf{\underline{SoluciÃ³n:}}
 
 $\mathbf{P}(n1\cup{n2}\cup{n3}\cup{n4})=1/800+1/800+1/800+1/800=0.005$. La respuest es la B.
 
@@ -283,12 +288,12 @@ $\mathbf{P}(n1\cup{n2}\cup{n3}\cup{n4})=1/800+1/800+1/800+1/800=0.005$. La respu
 \item[C.] 0.350
 \end{itemize}
 
-\textbf{\underline{Solución:}}
+\textbf{\underline{SoluciÃ³n:}}
 
 La probabilidad es $\frac{35}{900}=0.038$. La respuesta es la A.
 
 
-12. ¿cuáles de los siguientes valores no puede ser la probabilidad de un evento?
+12. Â¿cuÃ¡les de los siguientes valores no puede ser la probabilidad de un evento?
 
 \begin{itemize}
 \item[A.] 0.000
@@ -296,7 +301,7 @@ La probabilidad es $\frac{35}{900}=0.038$. La respuesta es la A.
 \item[C.] 1.25
 \end{itemize}
 
-\textbf{\underline{Solución:}}
+\textbf{\underline{SoluciÃ³n:}}
 
 La respuesta es la C, ya que el rango de la probabilidad es de 0 hasta 1. 
 
@@ -308,13 +313,14 @@ La respuesta es la C, ya que el rango de la probabilidad es de 0 hasta 1.
 \item[C.] Pueden algunas veces ocurrir ambos.
 \end{itemize}
 
-\textbf{\underline{Solución:}}
+\textbf{\underline{SoluciÃ³n:}}
  La respuesta es la B. Puede ocurrir uno de los dos pero no ambos.
 
 \newpage
-##Ejercicio 19.
 
-1. Dados los siguientes datos de probabilidad para la rentabilidad del mercado y la rentabilidad del mejor petróleo, calcule la covarianza de la rentabilidad entre el mercado y el mejor petróleo.
+## Ejercicio 19.
+
+1. Dados los siguientes datos de probabilidad para la rentabilidad del mercado y la rentabilidad del mejor petrÃ³leo, calcule la covarianza de la rentabilidad entre el mercado y el mejor petrÃ³leo.
 
 \begin{center}
 \begin{tabular}{l c c r}
@@ -326,7 +332,7 @@ $R_m$=0\% & 0 & 0 & 0.4\\
 \end{tabular}
 \end{center}
 
-\textbf{\underline{Solución:}}
+\textbf{\underline{SoluciÃ³n:}}
 
 Calcularemos primeramente el valor esperado a cada rentabilidad,
 
@@ -345,9 +351,9 @@ cov(R_p,R_m) &= 0.4(0.05-0.12)(0.0-0.08)+0.2(0.10-0.12)(0.10-0.08)+0.4(0.20-0.12
 
 Por lo que la covarianza de ambas rentabilidades es de 0.0044.
 
-2. La correlación de rentabilidades de la rentabilidad de Productos Cape y de la Industria Dogger es de 0.6. La desviación estándar de rentabilidad de los productos Cape es de 15\% y de los Dogger es de 20\%.La rentabilidad esperada para Dogger es de 18\%, y la rentabilidad esperada para Cape es de 12\%. Calcular la rentabilidad esperada y la desviación estándar de una carpeta que tiene \$300,000 invertidos en Dogger y \$200,000 invertidos en Cape.
+2. La correlaciÃ³n de rentabilidades de la rentabilidad de Productos Cape y de la Industria Dogger es de 0.6. La desviaciÃ³n estÃ¡ndar de rentabilidad de los productos Cape es de 15\% y de los Dogger es de 20\%.La rentabilidad esperada para Dogger es de 18\%, y la rentabilidad esperada para Cape es de 12\%. Calcular la rentabilidad esperada y la desviaciÃ³n estÃ¡ndar de una carpeta que tiene \$300,000 invertidos en Dogger y \$200,000 invertidos en Cape.
 
-\textbf{\underline{Solución:}}
+\textbf{\underline{SoluciÃ³n:}}
 
 Los pesos de la carpeta para Dogger y Cape, estan dados por,
 
@@ -365,9 +371,9 @@ $$\mathbb{E}(R_{car})=w_D\mathbb{E}(R_D)+w_C\mathbb{E}(R_C)$$ donde $\mathbb{E}(
 \end{equation*}
 
 La rentabilidad esperada es de 15.6\%. 
-Calculemos ahora la desviación estándar de la rentabilidad de la carpeta,
+Calculemos ahora la desviaciÃ³n estÃ¡ndar de la rentabilidad de la carpeta,
 
-La varianza de la carpeta está dada por, $$Var(R_{car})=w_D^2\sigma^2_{R_D}+w_C^2\sigma^2_{R_C}+2w_Dw_CCov(R_D,R_C)$$, esto es equivalente a,
+La varianza de la carpeta estÃ¡ dada por, $$Var(R_{car})=w_D^2\sigma^2_{R_D}+w_C^2\sigma^2_{R_C}+2w_Dw_CCov(R_D,R_C)$$, esto es equivalente a,
 $$Var(R_{car})=w_D^2\sigma^2_{R_D}+w_C^2\sigma^2_{R_C}+2w_Dw_C\sigma_{R_D}\sigma_{R_C}\rho(R_D,R_C)$$
  donde conocemos lo siguiente, $\sigma_{R_D}=0.20$, $\sigma_{R_C}=0.15$ y $\rho(R_D,R_C)=0.6$
 
@@ -379,14 +385,14 @@ Var(R_{car})&=(0.6)^2(0.20)^2+(0.4)^2(0.15)^2+2(0.6)(0.4)(0.20)(0.15)(0.6)\\
 \end{equation*}
 
 
-La desviación estándar de la rentabilidad de la carpeta es $\sigma_{R_{car}}=\sqrt{0.02664}=0.1632$, que representa un 16.32\% de desviación.
+La desviaciÃ³n estÃ¡ndar de la rentabilidad de la carpeta es $\sigma_{R_{car}}=\sqrt{0.02664}=0.1632$, que representa un 16.32\% de desviaciÃ³n.
 
 
-3. M. Atwood, un analísta, ha desarrollado un sistema de puntaje para bonos y descubrió que si el puntaje de un bono es menor que 20, hay un 85\% de probabilidad de que incumpla dentro de cinco años. Si el puntaje del bono es mayor o igual a 20, hay sólo un 40\% de probabilidad que incumpla dentro de cinco años. Dado que una opción elegida al azar actualmente tiene un 25\% de probabilidad de una puntuación menor a 20, ¿cuál es la probabilidad de que un bono que incumpla en los próximos cinco años tenga un puntaje de 20 o superior?
+3. M. Atwood, un analÃ­sta, ha desarrollado un sistema de puntaje para bonos y descubriÃ³ que si el puntaje de un bono es menor que 20, hay un 85\% de probabilidad de que incumpla dentro de cinco aÃ±os. Si el puntaje del bono es mayor o igual a 20, hay sÃ³lo un 40\% de probabilidad que incumpla dentro de cinco aÃ±os. Dado que una opciÃ³n elegida al azar actualmente tiene un 25\% de probabilidad de una puntuaciÃ³n menor a 20, Â¿cuÃ¡l es la probabilidad de que un bono que incumpla en los prÃ³ximos cinco aÃ±os tenga un puntaje de 20 o superior?
 
-\textbf{\underline{Solución:}}
+\textbf{\underline{SoluciÃ³n:}}
 
-Sea $A$ un evento "puntaje del bono menor que 20" y sea B el evento "incumple dentro de cinco años". Así, tenemos lo siguiente, 
+Sea $A$ un evento "puntaje del bono menor que 20" y sea B el evento "incumple dentro de cinco aÃ±os". AsÃ­, tenemos lo siguiente, 
 
 $\mathbf{P}(A)=0.25$, $\mathbf{P}(A^c)=0.75$, $\mathbf{P}(B|A)=0.85$ y $\mathbf{P}(B|A^c)=0.40$
 
@@ -402,23 +408,23 @@ $$\mathbf{P}(A^c|B)=\frac{\mathbf{P}(A^c)\mathbf{P}(B|A^c)}{\mathbf{P}(A^c)\math
 \end{split}
 \end{equation*}
 
-Esto significa que si el bono incumple en los próximos cinco años hay un 58.53\% de probabilidad de que el bono tenga un puntaje de 20 o superior.
+Esto significa que si el bono incumple en los prÃ³ximos cinco aÃ±os hay un 58.53\% de probabilidad de que el bono tenga un puntaje de 20 o superior.
 
-4. Un bono  que vence en un año tiene un precio de \$950 hoy. Estima que tiene una probabilidad de 10\% de incumplimiento. Si el bono incumple, espera recuperar \$600. Si no lo hace por defecto, pagará \$1,080 al vencimiento. La tasa nominal libre de riesgo de un año es de 7.5\%.
+4. Un bono  que vence en un aÃ±o tiene un precio de \$950 hoy. Estima que tiene una probabilidad de 10\% de incumplimiento. Si el bono incumple, espera recuperar \$600. Si no lo hace por defecto, pagarÃ¡ \$1,080 al vencimiento. La tasa nominal libre de riesgo de un aÃ±o es de 7.5\%.
 
 \begin{itemize}
-\item[A.] ¿Cuáles son las probabilidades de incumplimiento de este bono?
-\item[B.] ¿Cuál es el beneficio esperado del bono en un año?
-\item[C.] ¿Cuál es la rentabilidad esperada de un bono?
-\item[D.] ¿Cuál podría ser el precio del bono si la rentabilidad esperada fuera igual a la tasa libre de riesgo?
+\item[A.] Â¿CuÃ¡les son las probabilidades de incumplimiento de este bono?
+\item[B.] Â¿CuÃ¡l es el beneficio esperado del bono en un aÃ±o?
+\item[C.] Â¿CuÃ¡l es la rentabilidad esperada de un bono?
+\item[D.] Â¿CuÃ¡l podrÃ­a ser el precio del bono si la rentabilidad esperada fuera igual a la tasa libre de riesgo?
 \end{itemize}
 
 
-\textbf{\underline{Solución:}}
+\textbf{\underline{SoluciÃ³n:}}
 
 A. Las probabilidades de incumplimiento del bono son, $\frac{0.10}{1-0.10}=\frac{1}{9}$ 
 
-B. El beneficio esperado del bono en un año es, 
+B. El beneficio esperado del bono en un aÃ±o es, 
 
 Sea $B$ el evento del beneficio del bono, y sea $C$ el evento de incumplimiento, entonces, 
 
@@ -427,19 +433,19 @@ donde $\mathbf{P}(C)=\frac{1}{9}=0.1$, sustituyendo,
 
 $$\mathbb{E}(B)=(0.1)(600)+(0.9)(1080)=1032$$
 
-El beneficio esperado del bono en un año es de \$1,032.
+El beneficio esperado del bono en un aÃ±o es de \$1,032.
 
 C. La rentabilidad esperada es, $\frac{1032}{950}-1=0.0863$, que representa el 8.63\% de rentabilidad.
 
-D. Si $\frac{1032}{precio}-1=0.075$ entonces $precio=\frac{1032}{0.075+1}=960$, el precio sería de \$960.
+D. Si $\frac{1032}{precio}-1=0.075$ entonces $precio=\frac{1032}{0.075+1}=960$, el precio serÃ­a de \$960.
 
 
 5. Considere una carpeta de tres valores: 
 
 \begin{itemize}
-\item[Valor A] (55\% de la carpeta) tiene una rentabilidad esperada de 8\%, con una desviación estándar de  24\%. 
-\item[Valor B] (25\% de la carpeta) tiene una rentabilidad esperada de 4\%, con una desviación estándar de  18\%. 
-\item[Valor C] (20\% de la carpeta) tiene una rentabilidad esperada de 3\%, con una desviación estándar de  15\%. 
+\item[Valor A] (55\% de la carpeta) tiene una rentabilidad esperada de 8\%, con una desviaciÃ³n estÃ¡ndar de  24\%. 
+\item[Valor B] (25\% de la carpeta) tiene una rentabilidad esperada de 4\%, con una desviaciÃ³n estÃ¡ndar de  18\%. 
+\item[Valor C] (20\% de la carpeta) tiene una rentabilidad esperada de 3\%, con una desviaciÃ³n estÃ¡ndar de  15\%. 
 \end{itemize}
 
 Las correlaciones entre la rentabilidad de valores son, 
@@ -453,12 +459,12 @@ Las correlaciones entre la rentabilidad de valores son,
 
 \begin{itemize}
 \item[A.] En base a estos datos, construya una matriz de covarianza para los tres valores de rentabilidad de la carpeta.
-\item[B.] Calcule la rentabilidad esperada y la desviación estándar de la carpeta.
-\item[C.] Proporcione un conjunto de tres eventos mutuamente excluyentes y exhaustivos con respecto a la relación entre la rentabilidad realizada de la carpeta y su respectiva rentabilidad.
-\item[D.] Si le añade tres valores a la carpeta, ¿cuántas varianzas y únicas covarianzas necesitará para calcular la varianza de la carpeta?.
+\item[B.] Calcule la rentabilidad esperada y la desviaciÃ³n estÃ¡ndar de la carpeta.
+\item[C.] Proporcione un conjunto de tres eventos mutuamente excluyentes y exhaustivos con respecto a la relaciÃ³n entre la rentabilidad realizada de la carpeta y su respectiva rentabilidad.
+\item[D.] Si le aÃ±ade tres valores a la carpeta, Â¿cuÃ¡ntas varianzas y Ãºnicas covarianzas necesitarÃ¡ para calcular la varianza de la carpeta?.
 \end{itemize}
 
-\textbf{\underline{Solución:}}
+\textbf{\underline{SoluciÃ³n:}}
 
 A. Primero, calculemos las varianzas de los valores A,B y C. 
 
@@ -467,7 +473,7 @@ $$Var(A)=(0.24)^2=0.0576$$ $$Var(B)=(0.18)^2=0.0324$$ $$Var(C)=(0.15)^2=0.0225$$
 Ahora calculemos las covarianzas de los tres valores, 
 
 $$\rho(A,B)=\frac{Cov(A,B)}{\sigma_A\sigma_B}$$
-Por lo que, $Cov(A,B)=\rho(A,B)\sigma_A\sigma_B$. Así, tenemos lo siguiente, 
+Por lo que, $Cov(A,B)=\rho(A,B)\sigma_A\sigma_B$. AsÃ­, tenemos lo siguiente, 
 
 $$Cov(A,B)=(0.85)(0.24)(0.18)=0.0367$$ $$Cov(A,C)=(0.30)(0.24)(0.15)=0.0108$$ $$Cov(B,C)=(-0.15)(0.18)(0.15)=-0.0041$$
 
@@ -489,7 +495,7 @@ Valor C & 0.0108 & -0.0041 & 0.0225 \\ \hline
 
 B. Calculemos primero la rentabilidad esperada, donde los pesos de la carpeta para los valores A, B y C, son 
 
-$w_A=0.55$, $w_B=0.25$ y $w_C=0.20$. Así, el valor esperado esta dado por, 
+$w_A=0.55$, $w_B=0.25$ y $w_C=0.20$. AsÃ­, el valor esperado esta dado por, 
 
 $$\mathbb{E}(R_c)=w_A\mathbb{E}(R_A)+w_B\mathbb{E}(R_B)+w_C\mathbb{E}(R_C)$$
 
@@ -500,7 +506,7 @@ $$Var(R_c)=w_A^2\sigma^2_{A}+w_B^2\sigma^2_{B} + w_C^2\sigma^2_C+2w_Aw_BCov(A,B)
 Sustituyendo nos queda lo siguiente,
 
 $$Var(R_c)=(0.55)^2(0.0576)+(0.25)^2(0.0324) + (0.20)^2(0.0225)+2(0.55)(0.25)(0.0367)+2(0.55)(0.20)(0.0108)+2(0.25)(0.20)(-0.0041)=0.0324$$
-La desviación estándar de la carpeta es $\sqrt{0.0324}=0.18$, representando el 18\% de desviación.
+La desviaciÃ³n estÃ¡ndar de la carpeta es $\sqrt{0.0324}=0.18$, representando el 18\% de desviaciÃ³n.
 
 C. Los eventos pueden ser, 
 
@@ -511,14 +517,14 @@ C. Los eventos pueden ser,
 \end{itemize}
 
 
-D. Si le añadimos tres valores a la carpeta, la carpeta tendrá seis valores, las cuales se calcularían seis varianzas, y se calcularián quince únicas covarianzas para calcular la varianza de la carpeta.
+D. Si le aÃ±adimos tres valores a la carpeta, la carpeta tendrÃ¡ seis valores, las cuales se calcularÃ­an seis varianzas, y se calculariÃ¡n quince Ãºnicas covarianzas para calcular la varianza de la carpeta.
 
 
-6. Usted está pronosticando las ventas de un proveedor de materiales de construcción mediante la evaluación de los planes de expansión de su cliente más grande, un constructor de viviendas. Se estima que la probabilidad de que el cliente aumente sus pedidos de materiales de construcción es de 25\%. Si el cliente incrementa sus pedido, la probabilidad que el constructor de vivienda comience una nueva construcción es de 70\%. Si el cliente no aumenta sus pedidos desde un proveedor, hay sólo un 20\% de probabilidad de que el constructor inicie la edificación. Más tarde, descubres que el constructor iniciará la nueva construcción. Debido a esta información, ¿cuál es su probabilidad nueva (actualizada) de que el cliente aumente sus pedidos desde un proveedor ? 
+6. Usted estÃ¡ pronosticando las ventas de un proveedor de materiales de construcciÃ³n mediante la evaluaciÃ³n de los planes de expansiÃ³n de su cliente mÃ¡s grande, un constructor de viviendas. Se estima que la probabilidad de que el cliente aumente sus pedidos de materiales de construcciÃ³n es de 25\%. Si el cliente incrementa sus pedido, la probabilidad que el constructor de vivienda comience una nueva construcciÃ³n es de 70\%. Si el cliente no aumenta sus pedidos desde un proveedor, hay sÃ³lo un 20\% de probabilidad de que el constructor inicie la edificaciÃ³n. MÃ¡s tarde, descubres que el constructor iniciarÃ¡ la nueva construcciÃ³n. Debido a esta informaciÃ³n, Â¿cuÃ¡l es su probabilidad nueva (actualizada) de que el cliente aumente sus pedidos desde un proveedor ? 
 
-\textbf{\underline{Solución:}}
+\textbf{\underline{SoluciÃ³n:}}
 
-Sea $A$ el evento "comienza una nueva construcción" y $B$ el evento "incrementa sus pedidos desde un proveedor", entonces tenemos la siguiente información, 
+Sea $A$ el evento "comienza una nueva construcciÃ³n" y $B$ el evento "incrementa sus pedidos desde un proveedor", entonces tenemos la siguiente informaciÃ³n, 
 
 $\mathbf{P}(B)=0.25$, $\mathbf{P}(A|B)=0.70$ y $\mathbf{P}(A|B^c)=0.20$. Entonces, usando el teorema de Bayes, tenemos lo siguiente, 
 
@@ -532,4 +538,4 @@ $$\mathbf{P}(B|A)=\frac{\mathbf{P}(B)\mathbf{P}(A|B)}{\mathbf{P}(B)\mathbf{P}(A|
 \end{split}
 \end{equation*}
 
-En base a la nueva información la probabilidad de que el cliente aumente sus pedidos a un proveedor es de 53.8\%.
+En base a la nueva informaciÃ³n la probabilidad de que el cliente aumente sus pedidos a un proveedor es de 53.8\%.
