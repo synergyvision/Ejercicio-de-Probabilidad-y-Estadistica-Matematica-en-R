@@ -1,0 +1,62 @@
+---
+title: "Correcciones de Segunda Ronda de Ejercicios"
+author: "http://synergy.vision/"
+output: pdf_document
+subtitle: JosÃ©
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Hacer pull a tus ejercicios.
+
+Si las fórmulas tienen fracciones colocar antes `\displaystyle`
+
+Las fórmulas colocarlas entre `$$aqui$$` y son varias colocarlas entre 
+
+`\begin{array}{}{}`
+
+`colocar aqui las fórmulas`
+
+`\end{array}`
+
+De hecho en tu ejercicio ya yo modifique varias fórmulas, revisa los cambios.
+
+1. En el enunciado dice:
+
+"El presupuesto total solamente ha sido aprobado una vez durante la carrera del general y éste no espera que haya cambios en este patrón"
+
+También dice que el general tiene 20 años de experiencia.
+
+Por lo tanto no puedes asumir que $P(W)=0$, sino que es $\frac{1}{20}$ una vez durante los 20 años de experiencia del general.
+
+2. 
+- Si vas a colocar B1 debes colocar el 1 como sub indice `$B_1$`. Terminar de modificar los que quedan.
+
+- Para los decimales usar. no ,
+
+3. 
+- Si vas a colocar B1 debes colocar el 1 como sub indice `$B_1$`. Terminar de modificar los que quedan.
+
+- Para los decimales usar. no ,
+
+5. Falta la tabla y la respuesta.
+
+6. Colocar las multiplicaciones para obtener los valores que colocaste, por ejemplo en el caso a) 1000x12% = 1000x0.12 = 120.  En cada uno de los casos. d) Como calculaste el valor de clientes que realizan transacciones de cambio de efectivo? ¿suma? en c) y d)
+
+7. 
+- Si vas a colocar B1 debes colocar el 1 como sub indice `$B_1$`. Terminar de modificar los que quedan.
+
+- Para los decimales usar. no ,
+
+8. ¿Cómo calculaste $P(A)$, $P(B)$, $P(A\cup B)$ y $P(A\cap B)$? Explicar que se hace contando los valores del espacio muestral que corresponden a cada evento en particular.
+
+9. Las fórmulas colocarlas dentro de `$$` no separarlas 
+
+10. a) Colocar fórmula para la permutación, como sacas el valor de 60
+
+b) Colocar fórmula para la permutación, como sacas el valor de 60
+
+11. Colocarle un título al histograma.
