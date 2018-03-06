@@ -17,22 +17,32 @@ El general Buck Turgldson se encuentra preparando la presentación de su presupu
 
 \textbf{\underline{Solución:}}
 
-Consideremos los eventos \textit{H}='Obtener entre un 0-24% del presupuesto', \textit{Y}='Obtener entre un 25-49% del presupuesto', \textit{X}='Obtener entre un 50-74% del presupuesto', \textit{Z}='Obtener entre un 75-99% del presupuesto', \textit{W}='Obtener el 100% del presupuesto'.
+Consideremos los eventos 
 
-La probabilidad de que algún evento ocurra es del $100\%$, es decir, $P(H)+P(Y)+P(X)+P(Z)+P(W)=1$
+$H$=Obtener entre un 0-24% del presupuesto.
 
-De acuerdo con las estimaciones del general, la probabilidad de que obtenga menos del $25\%$ del presupuesto es nula, es decir, $P(H)=0$. La probabilidad de obtener entre un $50-74\%$ del presupuesto es el doble de la probabilidad de obtener entre un $75-99\%$, es decir, $P(X)=2P(Z)$ y dos veces y media mas que la probabilidad de obtener entre un $25-49\%$, es decir, $P(X)=\frac{5}{2}P(Y)$. Como el general no espera que el $100\%$ del presupuesto sea aprobado, ignoremos por un momento la propabilidad de este evento, es decir, supongamos $P(W)=0$. Sustituyendo estos valores en función de $P(X)$ tenemos:
+$Y$=Obtener entre un 25-49% del presupuesto.
 
-\begin{equation*}
-\begin{split}
-\frac{2}{5}P(X) + P(X) + \frac{1}{2}P(X) &= 1 \\
-\frac{19}{10}P(X) &= 1 \\
-P(X) &= \frac{10}{19} \\
-P(X) &= 0,526\\
-\end{split}
-\end{equation*}
+$X$=Obtener entre un 50-74% del presupuesto.
 
-\newpage
+$Z$=Obtener entre un 75-99% del presupuesto.'
+
+$W$=Obtener el 100% del presupuesto.
+
+La probabilidad de que algún evento ocurra es del $100\%$, es decir, 
+
+$$P(H)+P(Y)+P(X)+P(Z)+P(W)=1$$
+
+De acuerdo con las estimaciones del general, la probabilidad de que obtenga menos del $25\%$ del presupuesto es nula, es decir, $P(H)=0$. La probabilidad de obtener entre un $50-74\%$ del presupuesto es el doble de la probabilidad de obtener entre un $75-99\%$, es decir, $P(X)=2P(Z)$ y dos veces y media mas que la probabilidad de obtener entre un $25-49\%$, es decir, $P(X)=\displaystyle \frac{5}{2}P(Y)$. Como el general no espera que el $100\%$ del presupuesto sea aprobado, ignoremos por un momento la propabilidad de este evento, es decir, supongamos $P(W)=0$. Sustituyendo estos valores en función de $P(X)$ tenemos:
+
+$$
+\begin{array}{rl}
+\displaystyle \frac{2}{5}P(X) + P(X) + \frac{1}{2}P(X) &= 1 \\
+\displaystyle\frac{19}{10}P(X) &= 1 \\
+P(X) &= \displaystyle \frac{10}{19} \\
+P(X) &= 0.526
+\end{array}
+$$
 
 Así, la probabilidad de que se obtenga entre un $50-74\%$ del presupuesto, es de $0,526$ ó $52,6\%$. Lo que implica que la probabilidad  de que se obtenga entre un $75-99\%$ es de $0,263$ ó $26,3\%$, la probabilidad de obtener entre un $25-49\%$ del presupuesto es de $0,2104$ ó $21,04\%$ y por último la probabilidad de que se apruebe el $100\%$ del presupuesto es del $0,06\%$.
 
@@ -48,23 +58,45 @@ c) por correo?
 
 \textbf{\underline{Solución:}}
 
-Consideremos los siguientes eventos: \textit{B1} = 'Deudores contactados personalmente', \textit{B2} = 'Deudores contactados vía teléfonica', \textit{B3} = 'Deudores contactados por carta' y \textit{A} = 'Recibir un pago'.
+Consideremos los siguientes eventos: 
 
-Las probabilidades de que los eventos \textit{B1, B2 y B3} ocurran respectivamente son: $P(B1)=0.7$, $P(B2)=0.2$ y $P(B3)=0.1$. Las probabilidades del evento \textit{A} dado los eventos \textit{B1, B2 y B3} respectivamente son: $P(A|B1)=0.75$, $P(A|B2)=0.60$ y $P(A|B3)=0.65$, esto significa que la probabilidadad de que se reciba un pago dado de que provenga de un deudor contactado personalmente es de $0.75$ y así sucesivamente con los otros eventos.
+$B1$ = Deudores contactados personalmente.
 
-a) Queremos conocer la probabilidad de que un deudor que haya sido contactado personalmente haya hecho el pago, o lo que es lo mismo queremos conocer la probabilidad condicional $P(B1|A)$, esto es:
+$B2$ = Deudores contactados vía teléfonica.
 
-\begin{equation*}
-\begin{split}
-P(B1|A) &= \frac{P(B1 \cap A)}{P(A)} \\
-&= \frac{P(B1) P(A|B1)}{P(A)} \\
-&= \frac{P(B1) P(A|B1)}{P(B1)P(A|B1)+P(B2)P(A|B2)+P(B3)P(A|B3)}
-\end{split}
-\end{equation*}
+$B3$ = Deudores contactados por carta.
 
-\newpage
+$A$ = Recibir un pago.
 
-Sustituyendo los valores en la ecuación, tenemos que la probabilidad $P(B1|A)$ es de:
+Las probabilidades de que los eventos $B_1, B_2$ y $B_3$ ocurran respectivamente son: 
+
+$P(B_1)=0.7$
+
+$P(B_2)=0.2$ y
+
+$P(B_3)=0.1$.
+
+Las probabilidades del evento $A$ dado los eventos $B_1, B_2$ y $B_3$ respectivamente son: 
+
+$P(A|B_1)=0.75$
+
+$P(A|B_2)=0.60$ y 
+
+$P(A|B_3)=0.65$.
+
+Esto significa que la probabilidadad de que se reciba un pago dado de que provenga de un deudor contactado personalmente es de $0.75$ y así sucesivamente con los otros eventos.
+
+a) Queremos conocer la probabilidad de que un deudor que haya sido contactado personalmente haya hecho el pago, o lo que es lo mismo queremos conocer la probabilidad condicional $P(B_1|A)$, esto es:
+
+$$
+\begin{array}{rl}
+P(B_1|A) &= \displaystyle \frac{P(B_1 \cap A)}{P(A)} \\
+&= \displaystyle \frac{P(B_1) P(A|B_1)}{P(A)} \\
+&= \displaystyle \frac{P(B_1) P(A|B_1)}{P(B_1)P(A|B_1)+P(B_2)P(A|B_2)+P(B_3)P(A|B_3)}
+\end{array}
+$$
+
+Sustituyendo los valores en la ecuación, tenemos que la probabilidad $P(B_1|A)$ es de:
 
 \begin{equation*}
 \begin{split}
@@ -197,7 +229,7 @@ f) Determine la probabilidad de que una compañía elegida al azar tenga un ROE 
 
 ### Ejercicio 6
 
-En una junta convocada para abordar el problema de cheques devueltos en un supermercado donde usted hace prácticas como analista financiero, el banco informa que 12% de todos los cheques se regresan por fondos insuficientes y, de ellos, en 50% de los casos se había dado cambio en efectivo a los clientes. En general, 10% de los clientes piden cambio en efectivo al final de su transacción con la tienda. Para 1,000 visitas de clientes, encuentre el número de transacciones que incluyen
+En una junta convocada para abordar el problema de cheques devueltos en un supermercado donde usted hace prácticas como analista financiero, el banco informa que 12% de todos los cheques se regresan por fondos insuficientes y, de ellos, en 50% de los casos se había dado cambio en efectivo a los clientes. En general, 10% de los clientes piden cambio en efectivo al final de su transacción con la tienda. Para 1000 visitas de clientes, encuentre el número de transacciones que incluyen
 
 a) fondos insuficientes.
 
@@ -209,13 +241,13 @@ d) fondos insuficientes, o bien cambio en efectivo
 
 \textbf{\underline{Solución:}}
 
-a) Si para 1,000 visitas de clientes sabemos que el 12% de todos los cheques seran devueltos por fondos insufucientes, entonces si suponemos que las 1,000 visitas de clientes pagaron con cheques, entonces 120 clientes tendran transacciones por cheques con fondos insuficientes.
+a) Si para 1000 visitas de clientes sabemos que 12% de todos los cheques serán devueltos por fondos insufucientes, entonces si suponemos que las 1000 visitas de clientes pagaron con cheques, entonces 120 clientes tendrán transacciones por cheques con fondos insuficientes.
 
-b) El 10% de los clientes piden cambio en efectivo al final de su transacción con la tienda, asi que para 1,000 visitas de clientes, 100 clientes tendran una sola transacción que incluya el cambio en efectivo.
+b) El 10% de los clientes piden cambio en efectivo al final de su transacción con la tienda, asi que para 1000 visitas de clientes, 100 clientes tendrán una sola transacción que incluya el cambio en efectivo.
 
-c) Sabemos que de las 1,000 visitas de clientes, 120 tendran una transacción por cheque con fondo insuficiente, de esos 120 clientes el 50% efectúa una transacción de cambio en efectivo, es decir 60 clientes realizan dos tipos de transacciones tanto fondos insifucientes como cambio en efectivo. 
+c) Sabemos que de las 1000 visitas de clientes, 120 tendrán una transacción por cheque con fondo insuficiente, de esos 120 clientes el 50% efectúa una transacción de cambio en efectivo, es decir, 60 clientes realizan dos tipos de transacciones tanto fondos insifucientes como cambio en efectivo. 
 
-d) En total de las 1,000 visitas de clientes, 120 realizan una transacción por cheques con fondos insuficientes y 160 clientes realizan transacciones de cambio en efectivo.
+d) En total de las 1000 visitas de clientes, 120 realizan una transacción por cheques con fondos insuficientes y 160 clientes realizan transacciones de cambio en efectivo.
 
 \newpage
 
@@ -225,9 +257,17 @@ Dos quintos de los clientes de la inmobiliaria Show Me provienen de una red de r
 
 \textbf{\underline{Solución:}}
 
-Consideremos los siguientes eventos: \textit{B1} = 'Clientes de fuera', \textit{B2} = 'Clientes locales' y \textit{A} = 'Vender una casa'.
+Consideremos los siguientes eventos: 
 
-Las probabilidades de que un cliente sea de fuera o sea local para la compañía son de $P(B1)=0.4$ y $P(B2)=0.6$ respectivamente. Las probabilidades de vender una casa dado que el cliente sea de fuera o local son: $P(A|B1)=0.075$ y $P(A|B2)=0.053$.
+$B_1$ = Clientes de fuera.
+
+$B_2$ = Clientes locales.
+
+$A$ = Vender una casa.
+
+Las probabilidades de que un cliente sea de fuera o sea local para la compañía son de $P(B1)=0.4$ y $P(B2)=0.6$. 
+
+Las probabilidades de vender una casa dado que el cliente sea de fuera o local son: $P(A|B1)=0.075$ y $P(A|B2)=0.053$.
 
 Queremos conocer a que tipo de cliente es más probable al que se le haya vendido la casa.
 
@@ -281,10 +321,17 @@ c) Denote con $A$ el evento de que el mismo vendedor obtenga ambos pedidos y $B$
 
 \textbf{\underline{Solución:}}
 
-a) Los puntos muestrales en este experimento están dados por: $(V_1,V_1), (V_1,V_2), (V_1,V_3), (V_2,V_1),$
-$(V_2,V_2), (V_2,V_3), (V_3,V_1), (V_3,V_2), (V_3,V_3)$
+a) Los puntos muestrales en este experimento están dados por: 
 
-b) Cada punto muestral posee la misma probabilidad de ser escogido de 1/9.
+$$
+\begin{array}{rl}
+(V_1,V_1), (V_1,V_2), (V_1,V_3),\\
+(V_2,V_1),(V_2,V_2), (V_2,V_3),\\
+(V_3,V_1), (V_3,V_2), (V_3,V_3)
+\end{array}
+$$
+
+b) Suponiendo que cada punto muestral posee la misma probabilidad de ser seleccionado, entonces cada uno tendrá la siguiente probabilidad de 1/9.
 
 c) Sea $A$ el evento de que el mismo vendedor obtenga ambos pedidos, entonces $P(A)=3/9$ pues de los nueve resultados posibles, tres resultados corresponden a que el mismo vendedor obtenga ambos pedidos en dos días consecutivos. Para el evento $B$, la probabilidad de que al vendedor $V_2$ le toque al menos un pedido, es decir $P(B)$ es de $P(B)=5/9$. La probabilidad de alguno de estos eventos ocurran, es decir $P(A \cup B)$, es de $P(A \cup B)=7/9$. Por último la probabilidad de que el mismo vendedor obtenga ambos pedidos y el vendedor $V_2$ tenga al menos un pedido es de $P(A \cap B)=1/9$.
 
@@ -302,18 +349,24 @@ c) Haga uso de la interpretación dada para la mediana para asignar probabilidad
 
 \textbf{\underline{Solución:}}
 
-a) Definamos los siguientes eventos: $R$: 'Ingresos de las familias estadounidenses que rebasan \$43,318', $N$: 'Ingresos de las familias estadounidenses menores o iguales a \$43,318'. 
+a) Definamos los siguientes eventos: 
 
-El espacio muestral que esta conformado por los puntos muestrales de las diferentes combinaciones de que si las 4 familias rebasaron o no el ingreso está dado por:
+$R$: Ingresos de las familias estadounidenses que rebasan \$43,318.
 
-$S$={$(RRRR),(RRRN),(RRNN),(RNNN),(RRNR),(RNRR),(RNNR),(RNRN),$
-$(NRRR),(NNRR),(NNNR),(NRNN),(NRRN),(NNRN),(NRNR),(NNNN)$}
+$N$: Ingresos de las familias estadounidenses menores o iguales a \$43,318. 
+
+El espacio muestral que está conformado por los puntos muestrales de las diferentes combinaciones de que si las 4 familias rebasaron o no el ingreso está dado por:
+
+$$
+\begin{array}{rl}
+S=\{(RRRR),(RRRN),(RRNN),(RNNN),(RRNR),(RNRR),(RNNR),(RNRN),\\
+(NRRR),(NNRR),(NNNR),(NRNN),(NRRN),(NNRN),(NRNR),(NNNN)\}
+\end{array}
+$$
 
 b) Los eventos simples para el evento $A$ están dados por:
 
-$A$={$(RRRR),(RRRN),(RRNN),(RRNR),(RNRR),(RNNR),(RNRN),$
-
-$(NRRR),(NNRR),(NRRN),(NRNR)$}
+$A=\{(RRRR),(RRRN),(RRNN),(RRNR),(RNRR),(RNNR),(RNRN),(NRRR),(NNRR),(NRRN),(NRNR)\}$
 
 Para el evento $B$ tenemos:
 
@@ -325,13 +378,15 @@ $C$={$(RNNN),(NNNR),(NRNN),(NNRN)$}
 
 c) Las probabilidades correspondienten para los eventos $A$, $B$ y $C$ seran los cardinales de los respectivos eventos entre el cardinal del espacio muestral, en esta caso |S|=16, así para el evento $A$ tenemos:
 
-$P(A)=\frac{|A|}{|S|}=\frac{11}{16}$
+$$P(A)=\frac{|A|}{|S|}=\frac{11}{16}$$
 
 Para el evento $B$ tenemos:
 
-$P(B)=\frac{|B|}{|S|}=\frac{6}{16}=\frac{3}{8}$
+$$P(B)=\frac{|B|}{|S|}=\frac{6}{16}=\frac{3}{8}$$
 
-Para el evento $C$ nos queda: $P(C)=\frac{|C|}{|S|}=\frac{4}{16}=\frac{1}{4}$
+Para el evento $C$ nos queda: 
+
+$$P(C)=\frac{|C|}{|S|}=\frac{4}{16}=\frac{1}{4}$$
 
 \newpage
 
@@ -370,16 +425,19 @@ a) Sea $Y$ la variable aleatoria dada por el número de errores detectados por e
 
 Por otro el espacio muestral que está conformado por los puntos muestrales es:
 
-$S$={$(EEE),(EEN),(ENE),(NEE),(ENN),(NEN),(NNE),(NNN)$}
+$S=\{(EEE),(EEN),(ENE),(NEE),(ENN),(NEN),(NNE),(NNN)\}$
 
 Así la distribución de probabilidad para $Y$ esta dado por:
 
 $$P(Y=3) = (0.005)^3 = 0.000125$$
-$$P(Y=2) = 3 \times 0.05 \times 2 \times 0.95 = 0.007125$$
-$$P(Y=1) = 3 \times (0.05)^2 \times 0.95 = 0.135375$$
-$$P(Y=0) = (0.95)^3 = 0.857375$$
-b) 
 
+$$P(Y=2) = 3 \times 0.05 \times 2 \times 0.95 = 0.007125$$
+
+$$P(Y=1) = 3 \times (0.05)^2 \times 0.95 = 0.135375$$
+
+$$P(Y=0) = (0.95)^3 = 0.857375$$
+
+b) 
 
 ```{r,fig.height=3,echo=FALSE}
 probabilidades<-data.frame(Y=c(0,1,2,3),p=c(0.85,0.13,0.007125,0.000125))
@@ -393,7 +451,8 @@ ggplot(probabilidades,aes(x=Y,y=p)) +
 
 c) Calculemos la probabilidad de que el auditor detecte más de un error, esto es, $P(Y>1)$, por lo que:
 
-$$P(Y>1) = P(Y=2)+P(Y=3)=0.00725$$
+$$P(Y>1) = P(Y=2)+P(Y=3)=0.000125+ 0.007125=0.00725$$
+
 Así la probabilidad de que el auditor detecte más de un error es de $0.00725$.
 
 

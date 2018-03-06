@@ -156,6 +156,7 @@ Si $\mathbb{E}(C-X)=0$ entonces $\mathbb{E}(X)=C$. entonces, $$C=(50000)(0.005)=
 La respuesta correcta es la $B$, ya que $$\mathbb{E}(X|Y=1)=0(0.2)+5(0.4)+10(0.4)=6$$ y $$\mathbb{E}(X|Y=2)=0(0.1)+5(0.8)+10(0.1)=5$$
 Por lo que, $$\mathbb{E}(X)=6(0.3)+5(0.7)=5.3$$
 
+----
 
 Use los siguientes datos para responder las preguntas 2 hasta la 6.
 
@@ -215,7 +216,14 @@ La varianza de la rentabilidad del valor de A es $(0.4)(-0.1-0.08)^2+(0.3)(0.1-0
 
 \textbf{\underline{Solución:}}
 
-$Cov(R_A,R_B)=(0.4)(-0.1-0.08)(0.5-0.17)+(0.3)(0.1-0.08)(0.2-0.17)+(0.3)(0.3-0.08)(-0.3-0.17)=-0.0546$.La respuesta es la B.
+$$
+\begin{array}{rl}
+Cov(R_A,R_B) & = (0.4)(-0.1-0.08)(0.5-0.17)+(0.3)(0.1-0.08)(0.2-0.17)+(0.3)(0.3-0.08)(-0.3-0.17)\\
+& =-0.0546
+\end{array}
+$$
+
+La respuesta es la B.
 
 6. Las correlaciones entre $R_A$ y $R_B$ es cercano a:
 
@@ -357,11 +365,17 @@ Por lo que la covarianza de ambas rentabilidades es de 0.0044.
 
 Los pesos de la carpeta para Dogger y Cape, estan dados por,
 
-$$w_D=\frac{300000}{300000+200000}=\frac{300000}{500000}=0.6$$ y
+$$w_D=\frac{300000}{300000+200000}=\frac{300000}{500000}=0.6$$ 
+
+y
 
 $$w_C=\frac{200000}{300000+200000}=\frac{200000}{500000}=0.4$$
+
 EL valor esperado de la rentabilidad de la carpeta, viene dado,
-$$\mathbb{E}(R_{car})=w_D\mathbb{E}(R_D)+w_C\mathbb{E}(R_C)$$ donde $\mathbb{E}(R_D)=0.18$ y $\mathbb{E}(R_C)=0.12$, sustituyendo,
+
+$$\mathbb{E}(R_{car})=w_D\mathbb{E}(R_D)+w_C\mathbb{E}(R_C)$$ 
+
+Donde $\mathbb{E}(R_D)=0.18$ y $\mathbb{E}(R_C)=0.12$, sustituyendo,
 
 \begin{equation*}
 \begin{split}
@@ -371,11 +385,18 @@ $$\mathbb{E}(R_{car})=w_D\mathbb{E}(R_D)+w_C\mathbb{E}(R_C)$$ donde $\mathbb{E}(
 \end{equation*}
 
 La rentabilidad esperada es de 15.6\%. 
+
 Calculemos ahora la desviación estándar de la rentabilidad de la carpeta,
 
-La varianza de la carpeta está dada por, $$Var(R_{car})=w_D^2\sigma^2_{R_D}+w_C^2\sigma^2_{R_C}+2w_Dw_CCov(R_D,R_C)$$, esto es equivalente a,
+La varianza de la carpeta está dada por, 
+
+$$Var(R_{car})=w_D^2\sigma^2_{R_D}+w_C^2\sigma^2_{R_C}+2w_Dw_CCov(R_D,R_C)$$
+
+esto es equivalente a,
+
 $$Var(R_{car})=w_D^2\sigma^2_{R_D}+w_C^2\sigma^2_{R_C}+2w_Dw_C\sigma_{R_D}\sigma_{R_C}\rho(R_D,R_C)$$
- donde conocemos lo siguiente, $\sigma_{R_D}=0.20$, $\sigma_{R_C}=0.15$ y $\rho(R_D,R_C)=0.6$
+
+donde conocemos lo siguiente, $\sigma_{R_D}=0.20$, $\sigma_{R_C}=0.15$ y $\rho(R_D,R_C)=0.6$
 
 \begin{equation*}
 \begin{split}
@@ -384,9 +405,7 @@ Var(R_{car})&=(0.6)^2(0.20)^2+(0.4)^2(0.15)^2+2(0.6)(0.4)(0.20)(0.15)(0.6)\\
 \end{split}
 \end{equation*}
 
-
 La desviación estándar de la rentabilidad de la carpeta es $\sigma_{R_{car}}=\sqrt{0.02664}=0.1632$, que representa un 16.32\% de desviación.
-
 
 3. M. Atwood, un analísta, ha desarrollado un sistema de puntaje para bonos y descubrió que si el puntaje de un bono es menor que 20, hay un 85\% de probabilidad de que incumpla dentro de cinco años. Si el puntaje del bono es mayor o igual a 20, hay sólo un 40\% de probabilidad que incumpla dentro de cinco años. Dado que una opción elegida al azar actualmente tiene un 25\% de probabilidad de una puntuación menor a 20, ¿cuál es la probabilidad de que un bono que incumpla en los próximos cinco años tenga un puntaje de 20 o superior?
 
