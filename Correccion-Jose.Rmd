@@ -10,6 +10,7 @@ fontsize: 12pt
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
 Hacer pull a tus ejercicios.
 
 Si las fórmulas tienen fracciones colocar antes `\displaystyle`

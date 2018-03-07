@@ -6,9 +6,7 @@ subtitle: JosÃ©
 fontsize: 12pt
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+
 
 Hacer pull a tus ejercicios.
 
