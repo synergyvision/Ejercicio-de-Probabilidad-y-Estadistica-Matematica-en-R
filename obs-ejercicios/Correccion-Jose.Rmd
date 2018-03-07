@@ -2,7 +2,7 @@
 title: "Correcciones de Segunda Ronda de Ejercicios"
 author: "http://synergy.vision/"
 output: pdf_document
-subtitle: JosÃ©
+subtitle: José
 fontsize: 12pt
 ---
 

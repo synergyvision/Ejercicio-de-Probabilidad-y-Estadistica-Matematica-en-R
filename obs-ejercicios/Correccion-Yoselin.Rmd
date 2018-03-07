@@ -2,7 +2,7 @@
 title: "Correcciones de Segunda Ronda de Ejercicios"
 author: "http://synergy.vision/"
 output: pdf_document
-subtitle: JosÃ©
+subtitle: Yoselin
 fontsize: 12pt
 ---
 
@@ -107,7 +107,7 @@ $P(A)= P(B_1)P(A_1B_1)+P(B_2)P(A_1B_2)+P(B_3)P(A_1B_3)$
 
 7. Definir una variable aleatoria como DJIA aumente y colocar la fórmula.
 
-8. Colocar los conjuntos entre {} no[]
+8. Colocar los conjuntos entre {} no []
 Colocar fórmulas en cada caso.
 
 9. ¿por qué?
