@@ -294,7 +294,7 @@ f) Determine la probabilidad de que una compañía elegida al azar tenga un ROE 
 
 \textbf{\underline{Solución:}}
 
-a) Consideremos los eventos \textit{A} = 'Compañía con ROE > 16%' y \textit{B} = 'Compañía con E/A < 7%'. Calculemos $P(A|B)$, esto es:
+a) Consideremos los eventos $A = \text{Compañía con ROE} > 16\%$ y $B =\text{Compañía con E/A} < 7\%$. Calculemos $P(A|B)$, esto es:
 
 $$
 \begin{array}{rl}
@@ -302,13 +302,13 @@ P(A|B) &= \displaystyle \frac{P(A \cap B)}{P(B)} \\
 \\
 &= \displaystyle \frac{\displaystyle \frac{5}{25}}{\displaystyle \frac{12}{25}} \\
 \\
-&= \displaystyle \frac{5}{12} \\
+&= \displaystyle \frac{5}{12}
 \end{array}
 $$
 
 Así la probabilidad de que una compañía escogida al azar tenga un ROE mayor que 16%, dado que su cociente E/A es menor que 7% es de $0.416$ ó $41.6\%$.
 
-b) Consideremos los eventos \textit{A} = 'Compañía con ROE entre 14% y 16%' y \textit{B} = 'Compañía con E/A > 7%'. Calculemos $P(A|B)$, esto es:
+b) Consideremos los eventos $A = \text{Compañía con ROE entre}\ 14\%\ \text{y}\ 16\%$ y $B = \text{Compañía con E/A}\ > 7\%$. Calculemos $P(A|B)$, esto es:
 
 $$
 \begin{array}{rl}
@@ -316,13 +316,13 @@ P(A|B) &= \displaystyle \frac{P(A \cap B)}{P(B)} \\
 \\
 &= \displaystyle \frac{\displaystyle \frac{5}{25}}{\displaystyle \frac{13}{25}} \\
 \\
-&= \displaystyle \frac{5}{13} \\
+&= \displaystyle \frac{5}{13}
 \end{array}
 $$
 
 Así la probabilidad de que una compañía elegida al azar tenga un ROE entre 14 y 16%, dado que su cociente E/A es mayor que el 7% es de $0.384$ ó $38.4\%$.
 
-c) Consideremos los eventos \textit{A} = 'Compañía con ingreso neto mayor a 50 Millones de dólares' y \textit{B} = 'Compañía con activos totales mayor a 2 mil millones de dólares'. Calculemos $P(A|B)$, esto es:
+c) Consideremos los eventos $A =$ 'Compañía con ingreso neto mayor a 50 Millones de dólares' y $B =$ 'Compañía con activos totales mayor a 2 mil millones de dólares'. Calculemos $P(A|B)$, esto es:
 
 $$
 \begin{array}{rl}
@@ -330,25 +330,25 @@ P(A|B) &= \displaystyle \frac{P(A \cap B)}{P(B)} \\
 \\
 &= \displaystyle \frac{\displaystyle \frac{1}{25}}{\displaystyle \frac{2}{25}} \\
 \\
-&= \displaystyle \frac{1}{2} \\
+&= \displaystyle \frac{1}{2}
 \end{array}
 $$
 
 Así la probabilidad de que una compañía elegida al azar tenga un ingreso neto mayor que 50 millones de dólares, dado que sus activos totales son mayores a 2 mil millones de dólares es de $0.5$ ó $50\%$.
 
-d) Consideremos el evento \textit{A} = 'Compañía con ROE > 15%', de las 25 compañías, 15 tienen un ROE mayor al 15%, así que la probabilidad de que una compañía tenga un ROE mayor al 15%, es decir $P(A)$, es de:
+d) Consideremos el evento $A=$ 'Compañía con ROE > 15%', de las 25 compañías, 15 tienen un ROE mayor al 15%, así que la probabilidad de que una compañía tenga un ROE mayor al 15%, es decir $P(A)$, es de:
 
 $$
 \begin{array}{rl}
 P(A) &= \displaystyle\frac{15}{25} \\
 \\
-&= 0.6 \\
+&= 0.6
 \end{array}
 $$
 
 Así $P(A)$ es de $0.6$ ó $60\%$.
 
-e) Consideremos los eventos \textit{A} = 'Compañía con ROE > 15%' y \textit{B} = 'Al menos 2 millones de dólares de activos totales', calculemos $P(A \cap B)$, como los eventos $A$ y $B$ son independientes entonces:
+e) Consideremos los eventos $A =$ 'Compañía con ROE > 15%' y $B =$ 'Al menos 2 millones de dólares de activos totales', calculemos $P(A \cap B)$, como los eventos $A$ y $B$ son independientes entonces:
 
 $$P(A \cap B) = P(A) \times P(B)$$
 Por otro lado por en el inciso d) sabemos que $P(A) = 0.6$, como todas las compañías tienen activos totales mayores a 2 millones entonces $P(B)=1$, así sustituyendo los valores tenemos:
@@ -356,11 +356,10 @@ Por otro lado por en el inciso d) sabemos que $P(A) = 0.6$, como todas las compa
 $$P(A \cap B) = P(A) \times P(B) = 0.6 \times 1 = 0.6$$
 Así la probabilidad de que una compañía elegida al azar tenga un ROE mayor a 15% y tenga al menos 2 millones de dólares de activos totales es de $0.6$ ó $60\%$.
 
-f) Consideremos los eventos \textit{A} = 'Compañía con ROE > 20%' y \textit{B} = 'Activos totales mayores o iguales a mil millones de dólares', calculemos $P(A|B)$, como los eventos $A$ y $B$ son independientes entonces:
+f) Consideremos los eventos $A=$ 'Compañía con ROE > 20%' y $B =$ 'Activos totales mayores o iguales a mil millones de dólares', calculemos $P(A|B)$, como los eventos $A$ y $B$ son independientes entonces:
 
 $$P(A|B) = P(A) = \frac{5}{25} = 0.2$$
 Así la probabilidad de que una compañía elegida al azar tenga un ROE mayor a 20%, dado que sus activos totales son mayores o iguales a mil millones de dólares es de $0.2$ ó $20\%$
-
 
 \newpage
 
@@ -379,15 +378,21 @@ d) fondos insuficientes, o bien cambio en efectivo
 \textbf{\underline{Solución:}}
 
 a) Si para 1000 visitas de clientes sabemos que 12% de todos los cheques serán devueltos por fondos insufucientes, entonces si suponemos que las 1000 visitas de clientes pagaron con cheques, entonces el 12% de los 1000 clientes es: 
+
 $$1000 \times 12\% = 1000 \times 0.12 = 120$$ 
+
 Por lo que 120 clientes tendrán transacciones por cheques con fondos insuficientes.
 
 b) El 10% de los clientes piden cambio en efectivo al final de su transacción con la tienda, asi que para 1000 visitas de clientes, el 10% de los 1000 clientes es:
+
 $$1000 \times 10\% = 1000 \times 0.1 = 100$$
+
 Por lo que 100 clientes tendrán una sola transacción que incluya el cambio en efectivo.
 
 c) Sabemos que de las 1000 visitas de clientes, 120 tendrán una transacción por cheque con fondo insuficiente, de esos 120 clientes el 50% efectúa una transacción de cambio en efectivo, así el 50% de 120 clientes es:
+
 $$120 \times 50\% = 120 \times 0.5 = 60$$
+
 Por lo que 60 clientes realizan dos tipos de transacciones tanto fondos insifucientes como cambio en efectivo. 
 
 d) De las 1000 visitas de clientes, 120 realizan una transacción por cheques con fondos insuficientes, de esos 120 clientes, 60 tambien hacen una transacción que incluye el cambio en efectivo, lo que representa el 60% de los clientes totales que hacen cambio en efectivo. Por lo que 40 clientes solo realizan cambio en efectivo y 60 solo tienen una transacción por fondos insuficientes, así tenemos 100 clientes que realizan cambio en efectivo más 60 clientes que solo tienen una transacción por fondos insuficientes lo que nos da un total de 160 clientes que hacen tanto fondos insuficientes o bien cambio en efectivo.
@@ -529,17 +534,17 @@ El espacio muestral que está conformado por los puntos muestrales de las difere
 
 $$
 \begin{array}{rl}
-S=\{(RRRR),(RRRN),(RRNN),(RNNN),(RRNR),(RNRR),(RNNR),(RNRN),\\
-(NRRR),(NNRR),(NNNR),(NRNN),(NRRN),(NNRN),(NRNR),(NNNN)\}
+S = & \{(RRRR),(RRRN),(RRNN),(RNNN),(RRNR),(RNRR),(RNNR),(RNRN),\\
+& \ (NRRR),(NNRR),(NNNR),(NRNN),(NRRN),(NNRN),(NRNR),(NNNN)\}
 \end{array}
 $$
 
 b) Los eventos simples para el evento $A$ están dados por:
 
 $$
-\begin{array}{l}
-A=\{(RRRR),(RRRN),(RRNN),(RRNR),(RNRR),(RNNR),(RNRN),(NRRR),\\
-(NNRR),(NRRN),(NRNR)\}
+\begin{array}{rl}
+A = & \{(RRRR),(RRRN),(RRNN),(RRNR),(RNRR),(RNNR),(RNRN),(NRRR),\\
+& \ (NNRR),(NRRN),(NRNR)\}
 \end{array}
 $$
 
@@ -575,13 +580,14 @@ b) Dada la suposición de puntos muestrales igualmente probables, encuentre la p
 
 \textbf{\underline{Solución:}}
 
-a) De las 5 compañías a tres se les asignará un contrato distinto y sin posibilidad de repetir un contrato, así que los puntos muestrales en total de este experimento está dado por una permutación de $P^5_3$, esto es:
+a) De las 5 compañías a tres se les asignará un contrato distinto y sin posibilidad de repetir un contrato, así que los puntos muestrales en total de este experimento está dado por una permutación de $P^5_3$, es decir, de cuantas maneras podemos seleccionar tres de cinco, esto es:
 
 $$P^5_3 = \frac{5!}{(5-3)!} = \frac{5!}{2!} = 60$$
 
 b) El número de formas de asignar a una compañía en este caso $F_3$ tres contratos distintos es de $P^3_1$, esto al multiplicarlo por las formas de que a las otras 4 compañías le asignamos los otros 2 contratos distintos, nos da los puntos muestrales a los que la compañía $F_3$ le tocó un contrato. Esto es:
 
 $$ P^3_1 \times P^4_2 = \frac{3!}{(3-1)!} \frac{4!}{(4-2)!} = \frac{3!}{2!} \frac{4!}{2!} = 36$$ 
+
 Así la probabilidad de que a $F_3$ le toque un contrato es de $\displaystyle \frac{36}{60}=0.6$
 
 \newpage
@@ -689,9 +695,18 @@ La respuesta correcta es la B. Observando la tabla en la parte pobre del estado 
 
 \textbf{\underline{Solución:}}
 
-La respuesta correcta es la A. Consideremos los eventos $X$ = Buen estado económico y $Y$ = Rendimiento neutral del mercado. Sabemos que $P(Y|X) = \displaystyle \frac{P( Y \cap X)}{P(X)}$, despejando tenemos que:
+La respuesta correcta es la A. Consideremos los eventos 
+
+$X$ = Buen estado económico
+
+$Y$ = Rendimiento neutral del mercado.
+
+Sabemos que $P(Y|X) = \displaystyle \frac{P( Y \cap X)}{P(X)}$, despejando tenemos que:
+
 $$P( Y \cap X) = P(Y|X) \times P(X)$$
+
 La probabilidad de tener un rendimiento neutral dado un buen estado económico es de $P(Y|X)=0.30$ y la probabilidad de tener un buen estado económico es de $P(X)=0.30$. Sustituyendo estos valores tenemos:
+
 $$P(Y \cap X) = 0.30 \times 0.30 = 0.09$$
 
 ### Ejercicio 17
@@ -714,13 +729,16 @@ $Y_2$ = Estado económico neutral.
 $Y_3$ = Pobre estado económico.
 
 Por lo que,
+
 $$
 \begin{array}{rl}
 P(X) &= P(X \cap Y_1) + P(X \cap Y_2) + P(X \cap Y_3) \\
 &= P(X|Y_1) \times P(Y_1) + P(X|Y_2) \times P(Y_2) +P(X|Y_3) \times P(Y_3)
 \end{array}
 $$
+
 Observando las respectivas probabilidades en la tabla y sustituyendo nos queda:
+
 $$P(X) = 0.60 \times 0.30 + 0.30 \times 0.50 + 0.10 \times 0.20 = 0.35$$
 
 ### Ejercicio 18
@@ -735,9 +753,18 @@ Dado que el rendimiento del mercado fue bueno, la probabilidad de que el estado 
 
 \textbf{\underline{Solución:}}
 
-La respuesta correcta es la C. Consideremos los eventos $X$ = Buen rendimiento del mercado. y $Y_1$ = Buen estado económico. La probabilidad de que el estado económico es bueno dado un buen rendimiento del mercado esta dado por:
+La respuesta correcta es la C. Consideremos los eventos 
+
+$X$ = Buen rendimiento del mercado. 
+
+$Y_1$ = Buen estado económico. 
+
+La probabilidad de que el estado económico es bueno dado un buen rendimiento del mercado esta dado por:
+
 $$P(Y_1|X) = \frac{P(Y_1 \cap X)}{P(X)} = \frac{P(X|Y_1) \times P(Y_1)}{P(X)}$$
+
 Por el ejercicio anterior sabemos que $P(X)=0.35$, por la tabla vemos que $P(X|Y_1)=0.60$ y $P(Y_1)=0.30$, así sustituyendo los valores tenemos:
+
 $$P(Y_1|X) = \frac{0.60 \times 0.30}{0.35} = 0.51$$
 
 ### Ejercicio 19
@@ -753,6 +780,7 @@ Considere el universo de 10 bonos de los cuales un inversionista comprará 6 bon
 \textbf{\underline{Solución:}}
 
 La respuesta correcta es la B. Las formas de combinar 6 bonos sin importar el orden de 10 en total están dadas por una combinatoria de 10 en 6, esto es:
+
 $$C^{10}_6 = \frac{10!}{(10-6)!6!} = \frac{10!}{4!6!} = 210$$
 
 ### Ejercicio 20
@@ -768,14 +796,21 @@ La correlación entre la renta de dos mercados A y B es de 0.50. La covarianza e
 \textbf{\underline{Solución:}}
 
 La respuesta correcta es la A. La correlación entre A y B esta dada por:
+
 $$Corr(A,B) = \frac{Cov(A,B)}{sd(A) \times sd(B)}$$
 despejando la desviación estándar $sd(A)$ nos queda:
+
 $$sd(A) = \frac{Cov(A,B)}{Corr(A,B) \times sd(B)}$$
+
 Sustituyendo los respectivos valores tenemos que:
+
 $$sd(A) = \frac{0.0043}{0.50 \times 0.26} = \frac{0.0043}{0.13} = 0.033$$
+
 La varianza de A esta dada por:
+
 $$Var(A) = (sd(A))^2$$
 Por lo que la varianza de la rentabilidad del mercado A es:
+
 $$Var(A) = 0.033^2 = 0.0011$$
 
 ### Ejercicio 21
@@ -791,6 +826,7 @@ Hay 10 corredores en la final de una carrera. ¿Cuántas maneras diferentes las 
 \textbf{\underline{Solución:}}
 
 La respuesta correcta es la B. La forma de combinar los 3 corredores que ganen la medalla de oro, plata y bronce de los 10 en carrera es mediante una permutación de 10 en 3, pues el orden en la que se obtienen las medallas importa, esto es:
+
 $$P{10}_3 = \frac{10!}{(10-3)!} = \frac{10!}{7!} = 720$$
 
 \newpage
@@ -800,9 +836,9 @@ $$P{10}_3 = \frac{10!}{(10-3)!} = \frac{10!}{7!} = 720$$
 ¿Cúal de las siguientes es menos probable a ser una distribución de probabilidad?
 
 \begin{itemize}
-\item[A.] X=[1,2,3,4]; Prob[$X_i$] = $\displaystyle \frac{X_i^2}{30}$
-\item[B.] X=[5,10]; Prob[$X_i$] = $\displaystyle \frac{8-X_i}{5}$
-\item[C.] X=[5,10]; Prob[$X_i$] = $\displaystyle \frac{X_i-3}{9}$
+\item[A.] $X=[1,2,3,4];\ P(X_i) = \displaystyle \frac{X_i^2}{30}$
+\item[B.] $X=[5,10];\ P(X_i) = \displaystyle \frac{8-X_i}{5}$
+\item[C.] $X=[5,10];\ P(X_i) = \displaystyle \frac{X_i-3}{9}$
 \end{itemize}
 
 \textbf{\underline{Solución:}}

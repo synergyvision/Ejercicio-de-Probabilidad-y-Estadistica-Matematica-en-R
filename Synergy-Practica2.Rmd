@@ -11,7 +11,9 @@ Una agencia de rentas, que alquila equipo pesado por día, ha encontrado que, en
 
 **\underline{Solución:}**
 
-Sea $Y$ el número de días entre un par de renta. sean los eventos $R$ y $N$ que representan las rentas en un día y el día que no hay rentas. Los días máximos que pueden tener un par de rentas en cinco días es de tres días, por lo  que,  $$\mathbf{P}(Y=0)=\displaystyle \frac{{2\choose2}{3\choose0}}{5}=\frac{1}{5}=0.2$$ Luego, la probabilidad de que halla al menos un día en medio de un par de rentas es, $$\mathbf{P}(N)=\mathbf{P}(Y>0)=1-\mathbf{P}(Y=0)=1-0.2=0.8$$
+Sea $Y$ el número de días entre un par de renta. Sean los eventos $R$ y $N$ que representan las rentas en un día y el día que no hay rentas. Los días máximos que pueden tener un par de rentas en cinco días es de tres días, por lo  que,  $$\mathbf{P}(Y=0)=\displaystyle \frac{{2\choose2}{3\choose0}}{5}=\frac{1}{5}=0.2$$ Luego, la probabilidad de que halla al menos un día en medio de un par de rentas es,
+
+$$\mathbf{P}(N)=\mathbf{P}(Y>0)=1-\mathbf{P}(Y=0)=1-0.2=0.8$$
 
 Luego,la probabilidad de que halla un dia entre dos rentas, esta dado por,  $$\mathbf{P}(Y=1)=(0.8)(0.2)$$
 
@@ -27,17 +29,20 @@ Una compañia de seguros expide una póliza de un año por $\$1000$ dólares con
 
 **\underline{Solución:}**
 
-Sea $$U=\left\{
+Sea 
+
+$$U=\left\{
 \begin{matrix}
 C-15-1000 & si & \text{A  ocurre}\\
 C-15 & si & \text{A no ocurre}
 \end{matrix}
 \right .$$
+
 la variable aleatoria "utilidad", tenemos por otro lado que, 
 
-$\mathbf{P}(A)=\displaystyle \frac{2}{100}=0.02$
+$P(A)=\displaystyle \frac{2}{100}=0.02$
 
-$\mathbf{P}(A^c)=0.98$
+$P(A^c)=0.98$
 
 Se requiere que la utilidad esperada por póliza sea de $\$50$, por lo que, $$\mathbb{E}(U)=50$$
 
@@ -45,7 +50,8 @@ Asi usando la definición del valor esperado, tenemos:
 
 $$\mathbb{E}(U)= (C-15)\mathbf{P}(A) + (C-15-1000)\mathbf{P}(A^2)=50$$
 Sustituyendo nos queda, 
-$$(C-15)0.02 + (C-15-1000)0.98=50$$
+
+$$\mathbb{E}(U)=(C-15)0.02 + (C-15-1000)0.98=50$$
 
 Despejando el valor de $C$, se obtiene,
 
@@ -72,6 +78,7 @@ $$y=\left\{
 Luego, la pérdida y ganancia de una compañia está dada por $C-Y$. Sí, $\mathbb{E}(C-Y)=0$ entonces $\mathbb{E}(Y)=C$
 
 Así, usando la definición del valor esperado, tenemos que, 
+
 $$C=\mathbb{E}(Y)= 85000(0.001)+42500(0.01)=510$$
 
 La prima que debe cobrar la compañia de seguros es de $\$510$ por una póliza anual para que no haya pérdida ni ganancia en todas las pólizas en esta zona.
@@ -125,8 +132,11 @@ Un inversionista está pensando en comprar un número muy grande de acciones de 
 \textbf{\underline{Solución:}}
 
 Sea $A$ el evento "las acciones aumentan su valor" y los eventos $B_1,B_2$ y $B_3$, el PNB aumenta, el PNB es el mismo y el PNB disminuye, respectivamente. Luego, como los eventos $B_1,B_2$ y $B_3$ son disjuntos, tenemos, 
+
 $$\mathbf{P}(A)= \mathbf{P}(A\cap{B_1})+\mathbf{P}(A\cap{B_2})+\mathbf{P}(A\cap{B_3})$$
-Pero por probabilidad condicional, $$\mathbf{P}(A)=\mathbf{P}(B_1)\mathbf{P}(A|B_1)+\mathbf{P}(B_2)\mathbf{P}(A|B_2)+\mathbf{P}(B_3)\mathbf{P}(A|B_3)$$
+Pero por probabilidad condicional,
+
+$$\mathbf{P}(A)=\mathbf{P}(B_1)\mathbf{P}(A|B_1)+\mathbf{P}(B_2)\mathbf{P}(A|B_2)+\mathbf{P}(B_3)\mathbf{P}(A|B_3)$$
 
 en donde se conocen, $\mathbf{P}(B_1)=0.4$ , $\mathbf{P}(A|B_1)=0.8$ , $\mathbf{P}(B_2)=0.3$ , $\mathbf{P}(A|B_2)=0.2$ ,$\mathbf{P}(B_3)=0.3$ , $\mathbf{P}(A|B_3)=0.1$ ; sustituyendo,
 
@@ -170,7 +180,6 @@ Si $\mathbb{E}(C-X)=0$ entonces $\mathbb{E}(X)=C$. entonces, $$C=(50000)(0.005)=
 \end{tabular}
 \end{center}
 \end{table}
-
 
 \begin{itemize}
 \item[A.] 5.0
@@ -264,7 +273,7 @@ La varianza de la rentabilidad del valor de A es $(0.4)(-0.1-0.08)^2+(0.3)(0.1-0
 
 $$
 \begin{array}{rl}
-Cov(R_A,R_B) &= \sum_{i=1}^{3}\mathbf{P}(R_{A_i},R_{B_i})[(R_{A_i}-\mathbb{E}(R_A))][(R_{B_i}-\mathbb{E}(R_B))]\\
+Cov(R_A,R_B) &= \displaystyle \sum_{i=1}^{3}\mathbf{P}(R_{A_i},R_{B_i})[(R_{A_i}-\mathbb{E}(R_A))][(R_{B_i}-\mathbb{E}(R_B))]\\
 & = (0.4)(-0.1-0.08)(0.5-0.17)+(0.3)(0.1-0.08)(0.2-0.17)+(0.3)(0.3-0.08)(-0.3-0.17)\\
 & =-0.0546
 \end{array}
@@ -301,9 +310,13 @@ La respuesta es la A.
 
 \textbf{\underline{Solución:}}
 
-Sea $X=$ DJIA aumenta mañana. Se tiene que $\mathbf{P}(X)= \displaystyle \frac{2}{3}$ . Las probabilidades que los eventos ocurran son $\displaystyle \frac{\mathbf{P}(X)}{1-\mathbf{P}(X)}=\displaystyle \frac{2/3}{1-2/3}=2/1$ que es igual a dos a uno. La respuesta es la A.
+Sea $X=$ DJIA aumenta mañana.
 
-8. Una distribución uniforme discreta (cada evento tiene igual probabilidad de ocurrencia) tiene los siguientes posibles resultados para $X:{1,2,3,4}$. La varianza de esta distribución es cercana a:
+Se tiene que $\mathbf{P}(X)= \displaystyle \frac{2}{3}$ . 
+
+Las probabilidades que los eventos ocurran son $\displaystyle \frac{\mathbf{P}(X)}{1-\mathbf{P}(X)}=\displaystyle \frac{2/3}{1-2/3}=2/1$ que es igual a dos a uno. La respuesta es la A.
+
+8. Una distribución uniforme discreta (cada evento tiene igual probabilidad de ocurrencia) tiene los siguientes posibles resultados para $X={1,2,3,4}$. La varianza de esta distribución es cercana a:
 
 \begin{itemize}
 \item[A.] 1.00
@@ -316,8 +329,6 @@ Sea $X=$ DJIA aumenta mañana. Se tiene que $\mathbf{P}(X)= \displaystyle \frac{
 La respuesta correcta es la B. El valor esperado de $X$
 es $\mathbb{E}(X)=\sum_{x=1}^{4}xp(X=x)=(1+2+3+4)(1/4)=2.5$.
 La varianza es $Var(X)=\sum_{x=1}^{4}[(x-\mathbb{E}(X))^2]p(X=x)=[(1-2.5)^2+(2-2.5)^2+(3-2.5)^2+(4-2.5)^2)](1/4)=1.25$
-
-
 
 9. Si los eventos A y B son mutuamente exclusivos, entonces, 
 
@@ -354,8 +365,7 @@ $\mathbf{P}(n1\cup{n2}\cup{n3}\cup{n4})=1/800+1/800+1/800+1/800=0.005$. La respu
 
 \textbf{\underline{Solución:}}
 
-900 contribuyentes tienen ingresos por debajo de \$100,000 y 35 sólo fueron auditados por IRS, por lo que la probabilidad de escoger un individuo al azar de 900 contribuyente es $\displaystyle \frac{35}{900}=0.038$. La respuesta es la A.
-
+900 contribuyentes tienen ingresos por debajo de \$100,000 y 35 sólo fueron auditados por IRS, por lo que la probabilidad de escoger un individuo al azar de 900 contribuyente es $\displaystyle \frac{35}{900}=0.03888889$. La respuesta es la A.
 
 12. ¿cuáles de los siguientes valores no puede ser la probabilidad de un evento?
 
@@ -401,8 +411,10 @@ $R_m$=0\% & 0 & 0 & 0.4\\
 Calcularemos primeramente el valor esperado a cada rentabilidad,
 
 $$\mathbb{E}(R_p)=0.4(0.05)+0.2(0.10)+0.4(0.20)=0.12$$ y
+
 $$\mathbb{E}(R_m)=0.4(0.0)+0.2(0.10)+0.4(0.15)=0.08$$
 La covarianza esta dada por,
+
 $$cov(R_p,R_m)=\sum_{i=1}^3\mathbf{P}_i(R_{p_i}-\mathbb{E}(R_p))(R_{m_i}-\mathbb{E}(R_m))$$ Asi,
 
 $$
