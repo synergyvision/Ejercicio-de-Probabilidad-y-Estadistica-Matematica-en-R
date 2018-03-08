@@ -25,7 +25,7 @@ $Y$=Obtener entre un 25-49% del presupuesto.
 
 $X$=Obtener entre un 50-74% del presupuesto.
 
-$Z$=Obtener entre un 75-99% del presupuesto.'
+$Z$=Obtener entre un 75-99% del presupuesto.
 
 $W$=Obtener el 100% del presupuesto.
 
@@ -33,18 +33,19 @@ La probabilidad de que algún evento ocurra es del $100\%$, es decir,
 
 $$P(H)+P(Y)+P(X)+P(Z)+P(W)=1$$
 
-De acuerdo con las estimaciones del general, la probabilidad de que obtenga menos del $25\%$ del presupuesto es nula, es decir, $P(H)=0$. La probabilidad de obtener entre un $50-74\%$ del presupuesto es el doble de la probabilidad de obtener entre un $75-99\%$, es decir, $P(X)=2P(Z)$ y dos veces y media mas que la probabilidad de obtener entre un $25-49\%$, es decir, $P(X)=\displaystyle \frac{5}{2}P(Y)$. Como el general no espera que el $100\%$ del presupuesto sea aprobado, ignoremos por un momento la propabilidad de este evento, es decir, supongamos $P(W)=0$. Sustituyendo estos valores en función de $P(X)$ tenemos:
+De acuerdo con las estimaciones del general, la probabilidad de que obtenga menos del $25\%$ del presupuesto es nula, es decir, $P(H)=0$. La probabilidad de obtener entre un $50-74\%$ del presupuesto es el doble de la probabilidad de obtener entre un $75-99\%$, es decir, $P(X)=2P(Z)$ y dos veces y media mas que la probabilidad de obtener entre un $25-49\%$, es decir, $P(X)=\displaystyle \frac{5}{2}P(Y)$. Como el $100\%$ del presupuesto ha sido aprobado una sola vez durante toda la carrera del general en 20 años, entonces la probabilidad de obtener el $100\%$ del presupuesto es de $P(W)=\displaystyle \frac{1}{20}$. Sustituyendo estos valores tenemos:
 
 $$
 \begin{array}{rl}
-\displaystyle \frac{2}{5}P(X) + P(X) + \frac{1}{2}P(X) &= 1 \\
-\displaystyle\frac{19}{10}P(X) &= 1 \\
-P(X) &= \displaystyle \frac{10}{19} \\
-P(X) &= 0.526
+\displaystyle \frac{2}{5}P(X) + P(X) + \frac{1}{2}P(X) + \displaystyle \frac{1}{20} &= 1 \\
+\\
+\displaystyle\frac{19}{10}P(X) &= 0.95 \\
+P(X) &= \displaystyle \frac{10 \times 0.95}{19} \\
+P(X) &= 0.5
 \end{array}
 $$
 
-Así, la probabilidad de que se obtenga entre un $50-74\%$ del presupuesto, es de $0,526$ ó $52,6\%$. Lo que implica que la probabilidad  de que se obtenga entre un $75-99\%$ es de $0,263$ ó $26,3\%$, la probabilidad de obtener entre un $25-49\%$ del presupuesto es de $0,2104$ ó $21,04\%$ y por último la probabilidad de que se apruebe el $100\%$ del presupuesto es del $0,06\%$.
+Así, la probabilidad de que se obtenga entre un $50-74\%$ del presupuesto, es de $0.5$ ó $50\%$. Lo que implica que la probabilidad  de que se obtenga entre un $75-99\%$ es de $0.25$ ó $25\%$, la probabilidad de obtener entre un $25-49\%$ del presupuesto es de $0.2$ ó $20\%$ y por último la probabilidad de que se apruebe el $100\%$ del presupuesto es de $0.05$ ó $5\%$.
 
 ### Ejercicio 2
 
@@ -60,11 +61,11 @@ c) por correo?
 
 Consideremos los siguientes eventos: 
 
-$B1$ = Deudores contactados personalmente.
+$B_1$ = Deudores contactados personalmente.
 
-$B2$ = Deudores contactados vía teléfonica.
+$B_2$ = Deudores contactados vía teléfonica.
 
-$B3$ = Deudores contactados por carta.
+$B_3$ = Deudores contactados por carta.
 
 $A$ = Recibir un pago.
 
@@ -98,40 +99,45 @@ $$
 
 Sustituyendo los valores en la ecuación, tenemos que la probabilidad $P(B_1|A)$ es de:
 
-\begin{equation*}
-\begin{split}
-P(B1|A) &= \frac{0.7 \times 0.75}{0.7 \times 0.75 + 0.2 \times 0.60 + 0.1 \times 0.65} \\
-&= \frac{0,525}{0,71} \\
+$$
+\begin{array}{rl}
+P(B_1|A) &= \displaystyle \frac{0.7 \times 0.75}{0.7 \times 0.75 + 0.2 \times 0.60 + 0.1 \times 0.65} \\
+\\
+&= \displaystyle \frac{0.525}{0.71} \\
+\\
 &= 0.739
-\end{split}
-\end{equation*}
+\end{array}
+$$
 
-Así la probabilidad de que un deudor que haya sido contactado personalmente haya hecho el pago es de $0,739$ ó $73,9\%$.
+Así la probabilidad de que un deudor que haya sido contactado personalmente haya hecho el pago es de $0.739$ ó $73.9\%$.
 
 b) Análogo al inciso a), calculamos la probabilidad de que un deudor que haya sido contactado vía teléfonica haya hecho el pago. Esto es:
 
+$$
+\begin{array}{rl}
+P(B_2|A) &= \displaystyle \frac{P(B_2) P(A|B_2)}{P(A)} \\
+\\
+&= \displaystyle \frac{0.2 \times 0.60}{0.71} \\
+\\
+&= 0.169
+\end{array}
+$$
 
-\begin{equation*}
-\begin{split}
-P(B2|A) &=  \frac{P(B2) P(A|B2)}{P(A)} \\
-&= \frac{0.2 \times 0.60}{0,71} \\
-&= 0,169
-\end{split}
-\end{equation*}
-
-Así la probabilidad de que un deudor que haya sido contactado vía teléfonica es de $0,169$ ó $16,9\%$.
+Así la probabilidad de que un deudor que haya sido contactado vía teléfonica es de $0.169$ ó $16.9\%$.
 
 c) Análogo al inciso a) y b), calculamos la probabilidad de que un deudor que haya sido contactado vía carta haya hecho el pago. Esto es:
 
-\begin{equation*}
-\begin{split}
-P(B3|A) &=  \frac{P(B3) P(A|B3)}{P(A)} \\
-&= \frac{0.1 \times 0.65}{0,71} \\
-&= 0,0915
-\end{split}
-\end{equation*}
+$$
+\begin{array}{rl}
+P(B_3|A) &= \displaystyle \frac{P(B_3) P(A|B_3)}{P(A)} \\
+\\
+&= \displaystyle \frac{0.1 \times 0.65}{0.71} \\
+\\
+&= 0.0915
+\end{array}
+$$
 
-Así la probabilidad de que un deudor que haya sido contactado vía carta es de $0,0915$ ó $9,15\%$.
+Así la probabilidad de que un deudor que haya sido contactado vía carta es de $0.0915$ ó $9.15\%$.
 
 \newpage
 
@@ -141,55 +147,82 @@ Un grupo de interés público está planeando impugnar las primas de seguro de a
 
 \textbf{\underline{Solución:}}
 
-Consideremos los siguientes eventos: \textit{B1} = 'Escoger Atlanta', \textit{B2} = 'Escoger Baltimore', \textit{B3} = 'Escoger Cleveland' y \textit{A} = 'Recibir un dictamen favorable'.
+Consideremos los siguientes eventos: 
 
-Las probabilidades de que escojan a la ciudad de Atlanta, Baltimore o Cleveland son: $P(B1)=0.40$, $P(B2)=0.35$ y $P(B3)=0.25$. Las probabilidades de recibir un dictamen favorable dado alguna de estas ciudades son: $P(A|B1)=0.45$, $P(A|B2)=0.60$ y $P(A|B3)=0.35$.
+$B_1$ = Escoger Atlanta. 
+
+$B_2$ = Escoger Baltimore. 
+
+$B_3$ = Escoger Cleveland. 
+
+$A$ = Recibir un dictamen favorable.
+
+Las probabilidades de que escojan a la ciudad de Atlanta, Baltimore o Cleveland respectivamente son: 
+
+$P(B_1)=0.40$ 
+
+$P(B_2)=0.35$ y 
+
+$P(B_3)=0.25$. 
+
+Las probabilidades de recibir un dictamen favorable dado alguna de estas ciudades son: 
+$P(A|B_1)=0.45$ 
+
+$P(A|B_2)=0.60$ y 
+
+$P(A|B_3)=0.35$.
 
 Queremos conocer la ciudad con mayor probabilidad de que haya sido escogida dado que el dictamen salió favorable, es decir, calculemos cada una de las probababilidades que se haya escogido Atlanta, Baltimore o Cleveland dado un dictamen favorable y veamos cual de esta probabilidad es mayor.
 
-Calculemos primero la probabilidad de haber escogido Atlanta dado que el dictamen es favorable, es decir, $P(B1|A)$, esto es:
+Calculemos primero la probabilidad de haber escogido Atlanta dado que el dictamen es favorable, es decir, $P(B_1|A)$, esto es:
 
-\begin{equation*}
-\begin{split}
-P(B1|A) &= \frac{P(B1 \cap A)}{P(A)} \\
-&= \frac{P(B1) P(A|B1)}{P(A)} \\
-&= \frac{P(B1) P(A|B1)}{P(B1)P(A|B1)+P(B2)P(A|B2)+P(B3)P(A|B3)}
-\end{split}
-\end{equation*}
+$$
+\begin{array}{rl}
+P(B_1|A) &= \displaystyle \frac{P(B_1 \cap A)}{P(A)} \\
+&= \displaystyle \frac{P(B_1) P(A|B_1)}{P(A)} \\
+&= \displaystyle \frac{P(B_1) P(A|B_1)}{P(B_1)P(A|B_1)+P(B_2)P(A|B_2)+P(B_3)P(A|B_3)}
+\end{array}
+$$
 
-Sustituyendo los valores en la ecuación, tenemos que la probabilidad $P(B1|A)$ es de:
+Sustituyendo los valores en la ecuación, tenemos que la probabilidad $P(B_1|A)$ es de:
 
-\begin{equation*}
-\begin{split}
-P(B1|A) &= \frac{0.40 \times 0.45}{0.40 \times 0.45 + 0.35 \times 0.60 + 0.25 \times 0.35} \\
-&= \frac{0.18}{0.4775} \\
+$$
+\begin{array}{rl}
+P(B_1|A) &= \displaystyle \frac{0.40 \times 0.45}{0.40 \times 0.45 + 0.35 \times 0.60 + 0.25 \times 0.35} \\
+\\
+&= \displaystyle \frac{0.18}{0.4775} \\
+\\
 &= 0.376
-\end{split}
-\end{equation*}
+\end{array}
+$$
 
 Así la probabilidad de escoger a Atlanta dado que el dictamen fue favorable es de $0.376$ ó $37.6\%$.
 
-Análogo calculamos las otra probabilidades, para $P(B2|A)$ tenemos:
+Análogo calculamos las otra probabilidades, para $P(B_2|A)$ tenemos:
 
-\begin{equation*}
-\begin{split}
-P(B2|A) &=  \frac{P(B2) P(A|B2)}{P(A)} \\
-&= \frac{0.35 \times 0.60}{0.4775} \\
+$$
+\begin{array}{rl}
+P(B_2|A) &= \displaystyle \frac{P(B_2) P(A|B_2)}{P(A)} \\
+\\
+&= \displaystyle \frac{0.35 \times 0.60}{0.4775} \\
+\\
 &= 0.439
-\end{split}
-\end{equation*}
+\end{array}
+$$
 
 Así la probabilidad de escoger a Baltimore dado que el dictamen fue favorable es de $0.439$ ó $43.9\%$.
 
-Para la última probabilidad, $P(B3|A)$, tenemos:
+Para la última probabilidad, $P(B_3|A)$, tenemos:
 
-\begin{equation*}
-\begin{split}
-P(B3|A) &=  \frac{P(B3) P(A|B3)}{P(A)} \\
-&= \frac{0.25 \times 0.35}{0.4775} \\
+$$
+\begin{array}{rl}
+P(B_3|A) &= \displaystyle \frac{P(B_3) P(A|B_3)}{P(A)} \\
+\\
+&= \displaystyle \frac{0.25 \times 0.35}{0.4775} \\
+\\
 &= 0.183
-\end{split}
-\end{equation*}
+\end{array}
+$$
 
 Así la probabilidad de escoger a Cleveland dado que el dictamen fue favorable es de $0.183$ ó $18.3\%$.
 
@@ -211,7 +244,41 @@ La probabilidad de que para una persona jovén la poliza de seguro sea más acce
 
 La tabla que se presenta a continuación es un arreglo de las 25 organizaciones bancarias de Illinois, clasificadas por ganancias para accionistas en equidad (ROE, Return On Equity), para el periodo del 31/3/91 al 31/3/92. Utilice esta información para responder las preguntas siguientes. Suponga que la ROE es independiente del activo total y dependiente de la equidad como porcentaje de activos (E/A). Suponga también que los ingresos netos dependen de los activos totales.
 
-*Table*
+\begin{table}[h]
+	\begin{footnotesize}
+		\begin{center}
+			\begin{tabular}{c l c c r r}
+				\multicolumn{1}{p{2cm}}{\centering \textbf{} \\ \textbf{Rango}} & \multicolumn{1}{p{2cm}}{\centering \textbf{} \\ \textbf{Compañía Financiera}} & \multicolumn{1}{p{3cm}}{\centering \textbf{} \\ \textbf{ROE de} \\ \textbf{accionistas (\%)}} & \multicolumn{1}{p{2cm}}{\centering \textbf{} \\ \textbf{} \\ \textbf{E/A(\%)}} & \multicolumn{1}{p{2cm}}{ \centering \textbf{Activos} \\ \textbf{totales} \\ \textbf{(miles de dls.)}} & \multicolumn{1}{p{2cm}}{\centering \textbf{Ingresos } \\ \textbf{netos} \\ \textbf{(miles de dls.)}} \\ \hline
+				1 & United Community Bancorp & 27.20 & 5.61 & 157,492 & 1,784 \\
+				2 & Illinois Financial Services & 25.16 & 6.72 & 306,048 & 3,846 \\
+				3 & FBOP Corp. & 24.44 & 6.39 & 560,770 & 7,780 \\
+				4 & Alpine Bancorp, Inc. & 24.12 & 7.18 & 170,382 & 2,248 \\ 
+				5 & River Forest Bancorp, Inc. & 20.92 & 4.42 & 1,313,797 & 20,339 \\
+				6 & Pinnacle Banc Group Inc. & 18.81 & 8.58 & 728,167 & 10,328 \\
+				7 & FNBC of La Grange Inc. & 18.68 & 8.92 & 180,671 & 2,459 \\
+				8 & First Park Ridge Corp. & 17.72 & 9.91 & 314,145 & 5,025 \\
+				9 & Palmer Bancorp Inc. & 17.01 & 8.61 & 225,016 & 3,462 \\
+				10 & Northern Trust Corp. & 16.66 & 5.83 & 13,154,522 & 132,246 \\
+				11 & West Suburban Bancorp & 16.02 & 7.58 & 1,005,485 & 11,940 \\
+				12 & Parkway Bancorp Inc. & 15.93 & 7.51 & 550,559 & 6,716 \\
+				13 & First Evergreen Corp. & 15.70 & 7.39 & 1,583,884 & 17,187 \\
+				14 & \multicolumn{1}{p{2cm}}{\centering \text{LaSalle Community} \\ \text{Bancorporation Inc.}} & 15.30 & 7.08 & 2,814,118 & 27,144 \\
+				15 & Premier Financial Services & 15.01 & 6.95 & 369,503 & 3,908 \\
+				16 & Riverdale Bancorp & 14.95 & 5.28 & 221,426 & 2,039 \\
+				17 & Town \& Country Bancorp Inc. & 14.90 & 4.30 & 133,000 & No disponible \\
+				18 & Standard Bancshares Inc. & 14.83 & 8.87 & 426,025 & 5,267 \\
+				19 & Heritage Financial Services & 14.35 & 7.57 & 738,726 & 8,200 \\
+				20 & National Bancorp Inc. & 14.25 & 5.58 & 275,856 & 2,863 \\
+				21 & Firstbank of Illinois Co. & 13.94 & 6.32 & 1,494,060 & 14,906 \\
+				22 & Banterra Corp. & 13.77 & 6.91 & 393,158 & 3,461 \\
+				23 & \multicolumn{1}{p{2cm}}{\centering \text{Northern Illinois} \\ \text{Financial Corp.}} & 13.67 & 8.46 & 784,260 & 8,658 \\
+				24 & Heartland Bancorp Inc. & 13.52 & 8.69 & 159,767 & 1,704 \\
+				25 & Sandwich Banco Inc. & 13.51 & 6.60 & 308,290 & 2,892 \\
+			\end{tabular}
+		\end{center}
+	\end{footnotesize}
+\end{table}
+
 
 a) ¿Cuál es la probabilidad de que una compañía escogida al azar tenga un ROE mayor que 16%, dado que su cociente E/A es menor que 7%?
 
@@ -224,6 +291,76 @@ d) ¿Cúal es la probabilidad de que una compañía elegida al azar tenga un ROE
 e) Calcule la probabilidad de que una compañía elegida al azar tenga un ROE mayor a 15% y tenga al menos 2 millones de dólares de activos totales.
 
 f) Determine la probabilidad de que una compañía elegida al azar tenga un ROE mayor a 20%, dado que sus activos totales son mayores o iguales a mil millones de dólares.
+
+\textbf{\underline{Solución:}}
+
+a) Consideremos los eventos \textit{A} = 'Compañía con ROE > 16%' y \textit{B} = 'Compañía con E/A < 7%'. Calculemos $P(A|B)$, esto es:
+
+$$
+\begin{array}{rl}
+P(A|B) &= \displaystyle \frac{P(A \cap B)}{P(B)} \\
+\\
+&= \displaystyle \frac{\displaystyle \frac{5}{25}}{\displaystyle \frac{12}{25}} \\
+\\
+&= \displaystyle \frac{5}{12} \\
+\end{array}
+$$
+
+Así la probabilidad de que una compañía escogida al azar tenga un ROE mayor que 16%, dado que su cociente E/A es menor que 7% es de $0.416$ ó $41.6\%$.
+
+b) Consideremos los eventos \textit{A} = 'Compañía con ROE entre 14% y 16%' y \textit{B} = 'Compañía con E/A > 7%'. Calculemos $P(A|B)$, esto es:
+
+$$
+\begin{array}{rl}
+P(A|B) &= \displaystyle \frac{P(A \cap B)}{P(B)} \\
+\\
+&= \displaystyle \frac{\displaystyle \frac{5}{25}}{\displaystyle \frac{13}{25}} \\
+\\
+&= \displaystyle \frac{5}{13} \\
+\end{array}
+$$
+
+Así la probabilidad de que una compañía elegida al azar tenga un ROE entre 14 y 16%, dado que su cociente E/A es mayor que el 7% es de $0.384$ ó $38.4\%$.
+
+c) Consideremos los eventos \textit{A} = 'Compañía con ingreso neto mayor a 50 Millones de dólares' y \textit{B} = 'Compañía con activos totales mayor a 2 mil millones de dólares'. Calculemos $P(A|B)$, esto es:
+
+$$
+\begin{array}{rl}
+P(A|B) &= \displaystyle \frac{P(A \cap B)}{P(B)} \\
+\\
+&= \displaystyle \frac{\displaystyle \frac{1}{25}}{\displaystyle \frac{2}{25}} \\
+\\
+&= \displaystyle \frac{1}{2} \\
+\end{array}
+$$
+
+Así la probabilidad de que una compañía elegida al azar tenga un ingreso neto mayor que 50 millones de dólares, dado que sus activos totales son mayores a 2 mil millones de dólares es de $0.5$ ó $50\%$.
+
+d) Consideremos el evento \textit{A} = 'Compañía con ROE > 15%', de las 25 compañías, 15 tienen un ROE mayor al 15%, así que la probabilidad de que una compañía tenga un ROE mayor al 15%, es decir $P(A)$, es de:
+
+$$
+\begin{array}{rl}
+P(A) &= \displaystyle\frac{15}{25} \\
+\\
+&= 0.6 \\
+\end{array}
+$$
+
+Así $P(A)$ es de $0.6$ ó $60\%$.
+
+e) Consideremos los eventos \textit{A} = 'Compañía con ROE > 15%' y \textit{B} = 'Al menos 2 millones de dólares de activos totales', calculemos $P(A \cap B)$, como los eventos $A$ y $B$ son independientes entonces:
+
+$$P(A \cap B) = P(A) \times P(B)$$
+Por otro lado por en el inciso d) sabemos que $P(A) = 0.6$, como todas las compañías tienen activos totales mayores a 2 millones entonces $P(B)=1$, así sustituyendo los valores tenemos:
+
+$$P(A \cap B) = P(A) \times P(B) = 0.6 \times 1 = 0.6$$
+Así la probabilidad de que una compañía elegida al azar tenga un ROE mayor a 15% y tenga al menos 2 millones de dólares de activos totales es de $0.6$ ó $60\%$.
+
+f) Consideremos los eventos \textit{A} = 'Compañía con ROE > 20%' y \textit{B} = 'Activos totales mayores o iguales a mil millones de dólares', calculemos $P(A|B)$, como los eventos $A$ y $B$ son independientes entonces:
+
+$$P(A|B) = P(A) = \frac{5}{25} = 0.2$$
+Así la probabilidad de que una compañía elegida al azar tenga un ROE mayor a 20%, dado que sus activos totales son mayores o iguales a mil millones de dólares es de $0.2$ ó $20\%$
+
 
 \newpage
 
@@ -241,13 +378,19 @@ d) fondos insuficientes, o bien cambio en efectivo
 
 \textbf{\underline{Solución:}}
 
-a) Si para 1000 visitas de clientes sabemos que 12% de todos los cheques serán devueltos por fondos insufucientes, entonces si suponemos que las 1000 visitas de clientes pagaron con cheques, entonces 120 clientes tendrán transacciones por cheques con fondos insuficientes.
+a) Si para 1000 visitas de clientes sabemos que 12% de todos los cheques serán devueltos por fondos insufucientes, entonces si suponemos que las 1000 visitas de clientes pagaron con cheques, entonces el 12% de los 1000 clientes es: 
+$$1000 \times 12\% = 1000 \times 0.12 = 120$$ 
+Por lo que 120 clientes tendrán transacciones por cheques con fondos insuficientes.
 
-b) El 10% de los clientes piden cambio en efectivo al final de su transacción con la tienda, asi que para 1000 visitas de clientes, 100 clientes tendrán una sola transacción que incluya el cambio en efectivo.
+b) El 10% de los clientes piden cambio en efectivo al final de su transacción con la tienda, asi que para 1000 visitas de clientes, el 10% de los 1000 clientes es:
+$$1000 \times 10\% = 1000 \times 0.1 = 100$$
+Por lo que 100 clientes tendrán una sola transacción que incluya el cambio en efectivo.
 
-c) Sabemos que de las 1000 visitas de clientes, 120 tendrán una transacción por cheque con fondo insuficiente, de esos 120 clientes el 50% efectúa una transacción de cambio en efectivo, es decir, 60 clientes realizan dos tipos de transacciones tanto fondos insifucientes como cambio en efectivo. 
+c) Sabemos que de las 1000 visitas de clientes, 120 tendrán una transacción por cheque con fondo insuficiente, de esos 120 clientes el 50% efectúa una transacción de cambio en efectivo, así el 50% de 120 clientes es:
+$$120 \times 50\% = 120 \times 0.5 = 60$$
+Por lo que 60 clientes realizan dos tipos de transacciones tanto fondos insifucientes como cambio en efectivo. 
 
-d) En total de las 1000 visitas de clientes, 120 realizan una transacción por cheques con fondos insuficientes y 160 clientes realizan transacciones de cambio en efectivo.
+d) De las 1000 visitas de clientes, 120 realizan una transacción por cheques con fondos insuficientes, de esos 120 clientes, 60 tambien hacen una transacción que incluye el cambio en efectivo, lo que representa el 60% de los clientes totales que hacen cambio en efectivo. Por lo que 40 clientes solo realizan cambio en efectivo y 60 solo tienen una transacción por fondos insuficientes, así tenemos 100 clientes que realizan cambio en efectivo más 60 clientes que solo tienen una transacción por fondos insuficientes lo que nos da un total de 160 clientes que hacen tanto fondos insuficientes o bien cambio en efectivo.
 
 \newpage
 
@@ -265,43 +408,47 @@ $B_2$ = Clientes locales.
 
 $A$ = Vender una casa.
 
-Las probabilidades de que un cliente sea de fuera o sea local para la compañía son de $P(B1)=0.4$ y $P(B2)=0.6$. 
+Las probabilidades de que un cliente sea de fuera o sea local para la compañía son de $P(B_1)=0.4$ y $P(B_2)=0.6$. 
 
-Las probabilidades de vender una casa dado que el cliente sea de fuera o local son: $P(A|B1)=0.075$ y $P(A|B2)=0.053$.
+Las probabilidades de vender una casa dado que el cliente sea de fuera o local son: $P(A|B_1)=0.075$ y $P(A|B_2)=0.053$.
 
 Queremos conocer a que tipo de cliente es más probable al que se le haya vendido la casa.
 
-Primero calculemos la probabilidad de que el cliente que se le vendió la casa sea de fuera, es decir calculemos $P(B1|A)$, esto es:
+Primero calculemos la probabilidad de que el cliente que se le vendió la casa sea de fuera, es decir calculemos $P(B_1|A)$, esto es:
 
-\begin{equation*}
-\begin{split}
-P(B1|A) &= \frac{P(B1 \cap A)}{P(A)} \\
-&= \frac{P(B1) P(A|B1)}{P(A)} \\
-&= \frac{P(B1) P(A|B1)}{P(B1)P(A|B1)+P(B2)P(A|B2)}
-\end{split}
-\end{equation*}
+$$
+\begin{array}{rl}
+P(B_1|A) &= \displaystyle \frac{P(B_1 \cap A)}{P(A)} \\
+&= \displaystyle \frac{P(B_1) P(A|B_1)}{P(A)} \\
+&= \displaystyle \frac{P(B_1) P(A|B_1)}{P(B_1)P(A|B_1)+P(B_2)P(A|B_2)}
+\end{array}
+$$
 
-Sustituyendo los valores en la ecuación, tenemos que la probabilidad $P(B1|A)$ es de:
+Sustituyendo los valores en la ecuación, tenemos que la probabilidad $P(B_1|A)$ es de:
 
-\begin{equation*}
-\begin{split}
-P(B1|A) &= \frac{0.4 \times 0.075}{0.4 \times 0.075 + 0.6 \times 0.053} \\
-&= \frac{0.03}{0.0618} \\
+$$
+\begin{array}{rl}
+P(B_1|A) &= \displaystyle \frac{0.4 \times 0.075}{0.4 \times 0.075 + 0.6 \times 0.053} \\
+\\
+&= \displaystyle \frac{0.03}{0.0618} \\
+\\
 &= 0.485
-\end{split}
-\end{equation*}
+\end{array}
+$$
 
 Así la probabilidad de que se haya vendido una casa a un cliente que sea de fuera es de $0.485$ ó $48.5\%$
 
-Análogo calculemos la probabilidad de que se haya vendido una casa a un cliente local, es decir calculemos $P(B2|A)$, esto es:
+Análogo calculemos la probabilidad de que se haya vendido una casa a un cliente local, es decir calculemos $P(B_2|A)$, esto es:
 
-\begin{equation*}
-\begin{split}
-P(B2|A) &=  \frac{P(B2) P(A|B2)}{P(A)} \\
-&= \frac{0.6 \times 0.053}{0.0618} \\
+$$
+\begin{array}{rl}
+P(B_2|A) &= \displaystyle \frac{P(B_2) P(A|B_2)}{P(A)} \\
+\\
+&= \displaystyle \frac{0.6 \times 0.053}{0.0618} \\
+\\
 &= 0.514
-\end{split}
-\end{equation*}
+\end{array}
+$$
 
 Así la probabilidad de que se haya vendido una casa a un cliente local es de $0.514$ ó $51.4\%$.
 
@@ -333,7 +480,30 @@ $$
 
 b) Suponiendo que cada punto muestral posee la misma probabilidad de ser seleccionado, entonces cada uno tendrá la siguiente probabilidad de 1/9.
 
-c) Sea $A$ el evento de que el mismo vendedor obtenga ambos pedidos, entonces $P(A)=3/9$ pues de los nueve resultados posibles, tres resultados corresponden a que el mismo vendedor obtenga ambos pedidos en dos días consecutivos. Para el evento $B$, la probabilidad de que al vendedor $V_2$ le toque al menos un pedido, es decir $P(B)$ es de $P(B)=5/9$. La probabilidad de alguno de estos eventos ocurran, es decir $P(A \cup B)$, es de $P(A \cup B)=7/9$. Por último la probabilidad de que el mismo vendedor obtenga ambos pedidos y el vendedor $V_2$ tenga al menos un pedido es de $P(A \cap B)=1/9$.
+c) Sean los eventos: 
+
+$A$ = Mismo vendedor obtiene ambos pedidos.
+
+$B$ = El vendedor $V_2$ obtiene al menos un pedido.
+
+Estos eventos tienen los siguientes elementos:
+
+$$A=\{(V_1,V_1),(V_2,V_2),(V_3,V_3)\}$$
+$$B=\{(V_1,V_2),(V_2,V_1),(V_2,V_2),(V_2,V_3),(V_3,V_2)\}$$
+La unión e intersección de estos conjuntos están dados por:
+
+$$A \cup B = \{(V_1,V_1),(V_2,V_2),(V_3,V_3),(V_1,V_2),(V_2,V_1),(V_2,V_3),(V_3,V_2)\}$$
+$$A \cap B = \{(V_2,V_2)\}$$
+
+Las probabilidades $P(A)$, $P(B)$, $P(A \cup B)$ y $P(A \cap B)$, seran el cardinal de cada uno de los respectivos conjuntos entre el cardinal del espacio muestral que en este caso es de 9. Por lo que las probabilidades son:
+
+$$P(A) = \frac{|A|}{9} = \frac{3}{9}$$
+
+$$P(B) = \frac{|B|}{9} = \frac{5}{9}$$
+
+$$P(A \cup B) = \frac{|A \cup B|}{9} = \frac{7}{9}$$
+
+$$P(A \cap B) = \frac{|A \cap B|}{9} = \frac{1}{9}$$
 
 \newpage
 
@@ -366,15 +536,20 @@ $$
 
 b) Los eventos simples para el evento $A$ están dados por:
 
-$A=\{(RRRR),(RRRN),(RRNN),(RRNR),(RNRR),(RNNR),(RNRN),(NRRR),(NNRR),(NRRN),(NRNR)\}$
+$$
+\begin{array}{l}
+A=\{(RRRR),(RRRN),(RRNN),(RRNR),(RNRR),(RNNR),(RNRN),(NRRR),\\
+(NNRR),(NRRN),(NRNR)\}
+\end{array}
+$$
 
 Para el evento $B$ tenemos:
 
-$B$={$(RRNN),(RNNR),(RNRN),(NNRR),(NRRN),(NRNR)$}
+$$B=\{(RRNN),(RNNR),(RNRN),(NNRR),(NRRN),(NRNR)\}$$
 
 Para el evento $C$ tenemos:
 
-$C$={$(RNNN),(NNNR),(NRNN),(NNRN)$}
+$$C=\{(RNNN),(NNNR),(NRNN),(NNRN)\}$$
 
 c) Las probabilidades correspondienten para los eventos $A$, $B$ y $C$ seran los cardinales de los respectivos eventos entre el cardinal del espacio muestral, en esta caso |S|=16, así para el evento $A$ tenemos:
 
@@ -400,12 +575,14 @@ b) Dada la suposición de puntos muestrales igualmente probables, encuentre la p
 
 \textbf{\underline{Solución:}}
 
-a) De las 5 compañías a tres se les asignará un contrato distinto y sin posibilidad de repetir un contrato, así que los puntos muestrales en total de este experimento está dado por una permutación de $P^5_3$, es decir, 60.
+a) De las 5 compañías a tres se les asignará un contrato distinto y sin posibilidad de repetir un contrato, así que los puntos muestrales en total de este experimento está dado por una permutación de $P^5_3$, esto es:
+
+$$P^5_3 = \frac{5!}{(5-3)!} = \frac{5!}{2!} = 60$$
 
 b) El número de formas de asignar a una compañía en este caso $F_3$ tres contratos distintos es de $P^3_1$, esto al multiplicarlo por las formas de que a las otras 4 compañías le asignamos los otros 2 contratos distintos, nos da los puntos muestrales a los que la compañía $F_3$ le tocó un contrato. Esto es:
 
-$$ P^3_1 \times P^4_2 =36 $$ 
-Así la probabilidad de que a $F_3$ le tocó un contrato es de $\frac{36}{60}=0.6$
+$$ P^3_1 \times P^4_2 = \frac{3!}{(3-1)!} \frac{4!}{(4-2)!} = \frac{3!}{2!} \frac{4!}{2!} = 36$$ 
+Así la probabilidad de que a $F_3$ le toque un contrato es de $\displaystyle \frac{36}{60}=0.6$
 
 \newpage
 
@@ -444,16 +621,193 @@ probabilidades<-data.frame(Y=c(0,1,2,3),p=c(0.85,0.13,0.007125,0.000125))
 
 ggplot(probabilidades,aes(x=Y,y=p)) +
   geom_bar(stat ='identity',color='black',fill='blue',alpha=0.5)+
-  labs(x = 'Valores Y', y = 'Probabilidad')
+  labs(title='Distribución de probabilidad P(Y)', x = 'Valores Y', y = 'Probabilidad')
 ```
-
-\newpage
 
 c) Calculemos la probabilidad de que el auditor detecte más de un error, esto es, $P(Y>1)$, por lo que:
 
 $$P(Y>1) = P(Y=2)+P(Y=3)=0.000125+ 0.007125=0.00725$$
 
 Así la probabilidad de que el auditor detecte más de un error es de $0.00725$.
+
+\newpage
+
+## Concept Checkers
+
+### Ejercicio 14
+
+Dos eventos se dicen independientes si la ocurrencia de un evento:
+
+\begin{itemize}
+\item[A.] Significa que el segundo evento no puede ocurrir.
+\item[B.] Significa que el segundo evento es seguro que ocurra.
+\item[C.] No afecta la probabilidad de la ocurrencia del otro evento.
+\end{itemize}
+
+\textbf{\underline{Solución:}}
+
+La respuesta correcta es la C. Dos eventos son independientes si la ocurrencia de un evento no afecta la probabilidad de la ocurrencia del otro evento.
+
+Use la siguiente tabla de probabilidad condicional para responder la pregunta 15 hasta la 18.
+
+\begin{center}
+\begin{tabular}{c c p{1cm} p{1cm}}
+\hline
+\multicolumn{1}{p{3cm}}{\centering \textit{Estado de la} \\ \textit{Economía}} & \multicolumn{1}{p{3.5cm}}{\centering \textit{Probabilidad del} \\ \textit{estado económico}} & \multicolumn{1}{p{3cm}}{\centering \textit{Rendimiento del} \\ \textit{Mercado}} & \multicolumn{1}{p{5cm}}{\centering \textit{Probabilidad condicional} \\ \textit{del rendimiento del mercado}} \\ \hline
+\\
+Buena & 0.30 & Buena \newline Neutral \newline Pobre & 0.60 \newline 0.30 \newline 0.10 \\
+\\
+Neutral & 0.50 & Buena \newline Neutral \newline Pobre & 0.30 \newline 0.40 \newline 0.30 \\
+\\
+Pobre & 0.20 & Buena \newline Neutral \newline Pobre & 0.10 \newline 0.60 \newline 0.30 \\ \hline
+\end{tabular}
+\end{center}
+
+### Ejercicio 15
+
+¿Cúal es la probabilidad condicional de tener un buen rendimiento del mercado en un pobre estado económico?
+
+\begin{itemize}
+\item[A.] 0.02.
+\item[B.] 0.10.
+\item[C.] 0.30.
+\end{itemize}
+
+\textbf{\underline{Solución:}}
+
+La respuesta correcta es la B. Observando la tabla en la parte pobre del estado económico, vemos que la probabilidad condicional de un buen rendimiento del mercado es de 0.10.
+
+### Ejercicio 16
+
+¿Cúal es la probabilidad conjunta de tener una buena economía y un rendimiento neutral del mercado?
+
+\begin{itemize}
+\item[A.] 0.09.
+\item[B.] 0.20.
+\item[C.] 0.30.
+\end{itemize}
+
+\textbf{\underline{Solución:}}
+
+La respuesta correcta es la A. Consideremos los eventos $X$ = Buen estado económico y $Y$ = Rendimiento neutral del mercado. Sabemos que $P(Y|X) = \displaystyle \frac{P( Y \cap X)}{P(X)}$, despejando tenemos que:
+$$P( Y \cap X) = P(Y|X) \times P(X)$$
+La probabilidad de tener un rendimiento neutral dado un buen estado económico es de $P(Y|X)=0.30$ y la probabilidad de tener un buen estado económico es de $P(X)=0.30$. Sustituyendo estos valores tenemos:
+$$P(Y \cap X) = 0.30 \times 0.30 = 0.09$$
+
+### Ejercicio 17
+
+¿Cúal es la probabilidad total de tener un buen rendimiento del mercado?
+
+\begin{itemize}
+\item[A.] 0.35.
+\item[B.] 0.65.
+\item[C.] 1.00.
+\end{itemize}
+
+\textbf{\underline{Solución:}}
+
+La respuesta correcta es la A. La probabilidad de tener un buen rendimiento del mercado depende del estado económico, así la probabilidad total será la suma de las probabilidades conjuntas entre tener un buen rendimiento del mercado y los diferentes estados económicos esto es:
+
+$X$ = Buen rendimiento del mercado.
+$Y_1$ = Buen estado económico.
+$Y_2$ = Estado económico neutral.
+$Y_3$ = Pobre estado económico.
+
+Por lo que,
+$$
+\begin{array}{rl}
+P(X) &= P(X \cap Y_1) + P(X \cap Y_2) + P(X \cap Y_3) \\
+&= P(X|Y_1) \times P(Y_1) + P(X|Y_2) \times P(Y_2) +P(X|Y_3) \times P(Y_3)
+\end{array}
+$$
+Observando las respectivas probabilidades en la tabla y sustituyendo nos queda:
+$$P(X) = 0.60 \times 0.30 + 0.30 \times 0.50 + 0.10 \times 0.20 = 0.35$$
+
+### Ejercicio 18
+
+Dado que el rendimiento del mercado fue bueno, la probabilidad de que el estado económico haya sido bueno es cercana a:
+
+\begin{itemize}
+\item[A.] 0.35.
+\item[B.] 0.46.
+\item[C.] 0.51.
+\end{itemize}
+
+\textbf{\underline{Solución:}}
+
+La respuesta correcta es la C. Consideremos los eventos $X$ = Buen rendimiento del mercado. y $Y_1$ = Buen estado económico. La probabilidad de que el estado económico es bueno dado un buen rendimiento del mercado esta dado por:
+$$P(Y_1|X) = \frac{P(Y_1 \cap X)}{P(X)} = \frac{P(X|Y_1) \times P(Y_1)}{P(X)}$$
+Por el ejercicio anterior sabemos que $P(X)=0.35$, por la tabla vemos que $P(X|Y_1)=0.60$ y $P(Y_1)=0.30$, así sustituyendo los valores tenemos:
+$$P(Y_1|X) = \frac{0.60 \times 0.30}{0.35} = 0.51$$
+
+### Ejercicio 19
+
+Considere el universo de 10 bonos de los cuales un inversionista comprará 6 bonos para su cartera. Si el orden en la cual el compra los bonos no es importante, ¿cuántas posibles combinaciones de 6 bonos existen?
+
+\begin{itemize}
+\item[A.] 7.
+\item[B.] 210.
+\item[C.] 5,040.
+\end{itemize}
+
+\textbf{\underline{Solución:}}
+
+La respuesta correcta es la B. Las formas de combinar 6 bonos sin importar el orden de 10 en total están dadas por una combinatoria de 10 en 6, esto es:
+$$C^{10}_6 = \frac{10!}{(10-6)!6!} = \frac{10!}{4!6!} = 210$$
+
+### Ejercicio 20
+
+La correlación entre la renta de dos mercados A y B es de 0.50. La covarianza entre la renta de estos dos mercados es de 0.0043 y la desviación estándar de la rentabilidad del mercado B es de 26%. La varianza de la rentibilidad del mercado A es de:
+
+\begin{itemize}
+\item[A.] 0.0011.
+\item[B.] 0.0331.
+\item[C.] 0.2656.
+\end{itemize}
+
+\textbf{\underline{Solución:}}
+
+La respuesta correcta es la A. La correlación entre A y B esta dada por:
+$$Corr(A,B) = \frac{Cov(A,B)}{sd(A) \times sd(B)}$$
+despejando la desviación estándar $sd(A)$ nos queda:
+$$sd(A) = \frac{Cov(A,B)}{Corr(A,B) \times sd(B)}$$
+Sustituyendo los respectivos valores tenemos que:
+$$sd(A) = \frac{0.0043}{0.50 \times 0.26} = \frac{0.0043}{0.13} = 0.033$$
+La varianza de A esta dada por:
+$$Var(A) = (sd(A))^2$$
+Por lo que la varianza de la rentabilidad del mercado A es:
+$$Var(A) = 0.033^2 = 0.0011$$
+
+### Ejercicio 21
+
+Hay 10 corredores en la final de una carrera. ¿Cuántas maneras diferentes las medallas de oro, plata y bronce pueden darse?
+
+\begin{itemize}
+\item[A.] 120.
+\item[B.] 720.
+\item[C.] 1,440.
+\end{itemize}
+
+\textbf{\underline{Solución:}}
+
+La respuesta correcta es la B. La forma de combinar los 3 corredores que ganen la medalla de oro, plata y bronce de los 10 en carrera es mediante una permutación de 10 en 3, pues el orden en la que se obtienen las medallas importa, esto es:
+$$P{10}_3 = \frac{10!}{(10-3)!} = \frac{10!}{7!} = 720$$
+
+\newpage
+
+### Ejercicio 22
+
+¿Cúal de las siguientes es menos probable a ser una distribución de probabilidad?
+
+\begin{itemize}
+\item[A.] X=[1,2,3,4]; Prob[$X_i$] = $\displaystyle \frac{X_i^2}{30}$
+\item[B.] X=[5,10]; Prob[$X_i$] = $\displaystyle \frac{8-X_i}{5}$
+\item[C.] X=[5,10]; Prob[$X_i$] = $\displaystyle \frac{X_i-3}{9}$
+\end{itemize}
+
+\textbf{\underline{Solución:}}
+
+La respuesta correcta es la B. Pues para $X_2=10$, $P[X_2]=\displaystyle \frac{8-10}{5} = \displaystyle \frac{-2}{5}$, lo que nos da una probabilidad negativa lo cual no puede ocurrir y además $\sum P[X_i] = \displaystyle \frac{1}{5}$ lo que implica que esta distribución de probabilidad no cumple las propiedades de ser una distribución. Por otro lado las otras distribuciones de probabilidad tienen probabilidad entre 0 y 1 y la suma de cada una de las probabilidades es 1 es decir $\sum P[X_i] = 1$ por lo que estas satisfacen las propiedades de una distribución de probabilidad
 
 
 
