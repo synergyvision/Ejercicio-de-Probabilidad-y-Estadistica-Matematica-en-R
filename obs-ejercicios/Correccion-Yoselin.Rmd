@@ -12,110 +12,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Hacer pull a tus ejercicios.
 
-Si las fórmulas tienen fracciones colocar antes `\displaystyle`
+Respuesta #18
 
-Las fórmulas colocarlas entre `$$ colocarm aqui la fórmula $$` y son varias colocarlas entre 
+2. Colocar la fórmula de la esperanza y definir la variable a la rentabilidad del valor A.  Así como esta en el 3) del 18)
 
-`$$`
+4. Colocar fórmula de varianza en la respuesta (ver ejercicio 2)
 
-`\begin{array}{}{}`
+9. Dar explicación en base a la propiedad $P(A\cup B)=P(A)+P(B)-P(A\cap B)$.
 
-`colocar aqui las fórmulas`
-
-`\end{array}`
-
-`$$`
-
-Para los decimales usar . (punto) no , (coma).
-
-De hecho en tu ejercicio ya yo modifique varias fórmulas, revisa los cambios.
-
-1. 
-
-Piensalo como una distribución Geometrica.
-
-2.
-
-Sea 
-
-$$
-U=\left\{
-\begin{matrix}
-C-15-1000 & si & \text{A  ocurre}\\
-C-15 & si & \text{A no ocurre}
-\end{matrix}
-\right .
-$$
-
-
-$P(A)=\frac{2}{100}=0.02$
-
-$P(A^c)=0.98$
-
-Por definición del valor esperado tenemos:
-
-$E(U)=(C-15-1000)\quad P(A)+(C-15)\quad (A^c)$
-
-3. 
-
-$Y=$ pérdidas de una póliza de seguros de 85.000
-
-$$y=\left\{
-\begin{matrix}
-85.000 & \text{con probabilidad}& 0.001\\
-42.500 & \text{con probabilidad}& 0.01
-\end{matrix}
-\right .
-$$
-
-4. 
-
-Definir la variable
-
-$X \quad como\quad  10^y$ y $y={0,1,2}$
-
-Así $x={0,10,20}$
-
-$\mu=E(x)= \sum xP(X=x)$
-
-$\sigma^2=E[(x-\mu)^2]=E(x^2)-\mu^2$
-
-5. 
-
-Como los eventos $B_1, B_2, B_3$ son disjuntos tenemos
-
-$P(A)=P(A\cup B_1) + P(A\cup B_2) + P(A\cup B_3)$
-
-Por probabilidad condicional
-
-$P(A)= P(B_1)P(A_1B_1)+P(B_2)P(A_1B_2)+P(B_3)P(A_1B_3)$
-
-18).
-
-1. Cambiar $P(x_i+y=2)$ en la segunda columna de la tabla. Colocar la fórmula del valor esperado condicionado.
-
-2. Arreglar la tabla colocar en la primera columna retornos y arriba probabilidad conjunta.
-
-3. Colocar las fórmulas y especificar que valores toma $R_A$ y $R_B$ de esperanza y varianza que se usaron para el cálculo.
-
-4. Modificar el enunciado. La varianza de la rentabilidad de A es cercana a colocar fórmulas.
-
-
-5. Colocar fórmulas y además escribir las fórmulas como lo hice en este ejercicio.
-
-6. Colocar fórmulas y además escribirlas como las indicaciones del ejercicio numero 5.
-
-7. Definir una variable aleatoria como DJIA aumente y colocar la fórmula.
-
-8. Colocar los conjuntos entre {} no []
-Colocar fórmulas en cada caso.
-
-9. ¿por qué?
-
-10. Qué es $n_1,n_2,n_3$ explicar con detalles porque esas esta fórmula.
-
-11. Explicar.
-
-19).
-
-5. Modificar las fórmulas $Var(R_c)$ para que no se salga de la hoja.
