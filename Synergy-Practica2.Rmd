@@ -11,15 +11,23 @@ Una agencia de rentas, que alquila equipo pesado por día, ha encontrado que, en
 
 **\underline{Solución:}**
 
-Sea $Y$ el número de días entre un par de renta. Sean los eventos $R$ y $N$ que representan las rentas en un día y el día que no hay rentas. Los días máximos que pueden tener un par de rentas en cinco días es de tres días, por lo  que,  $$\mathbf{P}(Y=0)=\displaystyle \frac{{2\choose2}{3\choose0}}{5}=\frac{1}{5}=0.2$$ Luego, la probabilidad de que halla al menos un día en medio de un par de rentas es,
+Sea $Y$ el número de días entre un par de renta.
 
-$$\mathbf{P}(N)=\mathbf{P}(Y>0)=1-\mathbf{P}(Y=0)=1-0.2=0.8$$
+Según el enunciado tenemos que el promedio una renta de la costosa maquina es un día de cada cinco días, por lo tanto la probabilidad de que se rente la maquina es $p=\displaystyle \frac{1}{5}=0.2$, de este modo tenemos que la probabilidad de que no ocurra una renta en un día cualquiera es $1-p=1-0.2=0.8$.
 
-Luego,la probabilidad de que halla un dia entre dos rentas, esta dado por,  $$\mathbf{P}(Y=1)=(0.8)(0.2)$$
+Podemos pensar estas probabilidades en base a la distribución Geometrica, donde los eventos entre evento son los fracasos y cuando se consigue alquilar la maquina es el éxito. Entonces la probabilidad de que halla un dia entre dos rentas, está dado por, 
 
-Así,$$\mathbf{P}(Y=2)=(0.8)^2(0.2)$$
+$$P(Y=1)=(0.8)(0.2)$$
 
-Por lo que, la distribución de probabilidad de $Y$ es una distribución geométrica que está dada por, $$\mathbf{P}(Y=y)=(0.8)^y(0.2)$$ para $y=0,1,2,...$
+De que hallan dos días
+
+$$P(Y=2)=(0.8)^2(0.2)$$
+
+Así sucesivamente, Por lo que, la distribución de probabilidad de $Y$ es una distribución geométrica que está dada por,
+
+$$P(Y=y)=(0.8)^y(0.2)$$
+
+para $y=0,1,2,...$
 
 \newpage
 
@@ -48,14 +56,17 @@ Se requiere que la utilidad esperada por póliza sea de $\$50$, por lo que, $$\m
 
 Asi usando la definición del valor esperado, tenemos:
 
-$$\mathbb{E}(U)= (C-15)\mathbf{P}(A) + (C-15-1000)\mathbf{P}(A^2)=50$$
+$$\mathbb{E}(U)= (C-15)P(A) + (C-15-1000)P(A^2)=50$$
+
 Sustituyendo nos queda, 
 
 $$\mathbb{E}(U)=(C-15)0.02 + (C-15-1000)0.98=50$$
 
 Despejando el valor de $C$, se obtiene,
 
-$$C=85$$ Esto significa que la compañia debe cobrar $\$85$ por póliza para que la utilidad por póliza sea de $\$50$.
+$$C=85$$
+
+Esto significa que la compañia debe cobrar $\$85$ por póliza para que la utilidad por póliza sea de $\$50$.
 
 \newpage
 
@@ -67,7 +78,7 @@ Un cliente potencial para una póliza de seguro contra incendio por $\$85,000$ e
 
 Sea $Y=$ pérdidas de una póliza de seguro de \$85.000 para cada cliente, donde, 
 
-$$y=\left\{
+$$Y=\left\{
 \begin{matrix}
 85.000 & \text{con probabilidad} & 0.001\\
 42.500 & \text{con probabilidad} & 0.01
@@ -102,21 +113,21 @@ Cuesta a la fábrica \$10 cada vez que la herramienta se usa. Encuentre la media
 
 Sabiendo que cada vez que la herramienta se usa tiene un costo de \$10, definamos $X=10Y$, donde:
 
-$$x=\left\{
+$$X=\left\{
 \begin{matrix}
-0 & \text{para} & y=0\\
-10 & \text{para} & y=1\\
-20 & \text{para} & y=2
+0 & \text{para} & Y=0\\
+10 & \text{para} & Y=1\\
+20 & \text{para} & Y=2
 \end{matrix}
 \right .$$
 
 Usando la definición del valor esperado, tenemos,
 
-$$\mu=\mathbb{E}(X)=\sum xp(X=x)=0(0.1)+10(0.5)+20(0.4)=13$$
+$$\mu=\mathbb{E}(X)=\sum_{i=1}^3 x_i P(X=x_i)=0(0.1)+10(0.5)+20(0.4)=13$$
 
 Luego,
 
-$$\mathbb{E}(X^2)=\sum x^2p(X=x)=0(0.1)+100(0.5)+400(0.4)=210$$
+$$\mathbb{E}(X^2)=\sum_{i=1}^3 x_i^2 P(X=x_i)=0(0.1)+100(0.5)+400(0.4)=210$$
 
 Tenemos que la varianza está dada por,
 
@@ -133,16 +144,17 @@ Un inversionista está pensando en comprar un número muy grande de acciones de 
 
 Sea $A$ el evento "las acciones aumentan su valor" y los eventos $B_1,B_2$ y $B_3$, el PNB aumenta, el PNB es el mismo y el PNB disminuye, respectivamente. Luego, como los eventos $B_1,B_2$ y $B_3$ son disjuntos, tenemos, 
 
-$$\mathbf{P}(A)= \mathbf{P}(A\cap{B_1})+\mathbf{P}(A\cap{B_2})+\mathbf{P}(A\cap{B_3})$$
+$$P(A)=  P(A\cap B_1)+P(A\cap B_2)+P(A\cap B_3)$$
+
 Pero por probabilidad condicional,
 
-$$\mathbf{P}(A)=\mathbf{P}(B_1)\mathbf{P}(A|B_1)+\mathbf{P}(B_2)\mathbf{P}(A|B_2)+\mathbf{P}(B_3)\mathbf{P}(A|B_3)$$
+$$P(A)=P(B_1)P(A|B_1)+P(B_2)P(A|B_2)+P(B_3)P(A|B_3)$$
 
-en donde se conocen, $\mathbf{P}(B_1)=0.4$ , $\mathbf{P}(A|B_1)=0.8$ , $\mathbf{P}(B_2)=0.3$ , $\mathbf{P}(A|B_2)=0.2$ ,$\mathbf{P}(B_3)=0.3$ , $\mathbf{P}(A|B_3)=0.1$ ; sustituyendo,
+Donde se conocen, $P(B_1)=0.4$ , $P(A|B_1)=0.8$ , $P(B_2)=0.3$ , $P(A|B_2)=0.2$ ,$P(B_3)=0.3$ , $P(A|B_3)=0.1$ ; sustituyendo,
 
 $$
 \begin{array}{rl}
-\mathbf{P}(A)&=\mathbf{P}(B_1)\mathbf{P}(A|B_1)+\mathbf{P}(B_2)\mathbf{P}(A|B_2)+\mathbf{P}(B_3)\mathbf{P}(A|B_3)\\
+P(A)&=P(B_1)P(A|B_1)+P(B_2)P(A|B_2)+P(B_3)P(A|B_3)\\
 &=0.4(0.8)+0.3(0.2)+0.3(0.1)\\
 &=0.41\\
 \end{array}
@@ -166,13 +178,13 @@ Si $\mathbb{E}(C-X)=0$ entonces $\mathbb{E}(X)=C$. entonces, $$C=(50000)(0.005)=
 
 ## Ejercicio 18.
 
-1. Dadas las probabilidades condicional en la tabla siguiente y las no condicionales $\mathbf{P}(Y=1)=0.3$ y $\mathbf{P}(Y=2)=0.7$, ¿cuál es el valor esperado de X?
+1. Dadas las probabilidades condicional en la tabla siguiente y las no condicionales $P(Y=1)=0.3$ y $P(Y=2)=0.7$, ¿cuál es el valor esperado de X?
 
 \begin{table}[htpb]
 \begin{center}
 \begin{tabular}{l c r}
 \hline 
- $x_i$ & $\mathbf{P}(x_i|Y=1)$ & $\mathbf{P}(x_i|Y=2)$ \\
+ $x_i$ & $P(x_i|Y=1)$ & $P(x_i|Y=2)$ \\
 \hline \hline
 0 & 0.2 & 0.1 \\
 5 & 0.4 & 0.8  \\
@@ -189,7 +201,12 @@ Si $\mathbb{E}(C-X)=0$ entonces $\mathbb{E}(X)=C$. entonces, $$C=(50000)(0.005)=
 
 \textbf{\underline{Solución:}}
 
-La respuesta correcta es la $B$, ya que $$\mathbb{E}(X|Y=1)=\sum_{x=0}^{2}x_ip(x_i|Y=1)=0(0.2)+5(0.4)+10(0.4)=6$$ y $$\mathbb{E}(X|Y=2)=\sum_{x=0}^{2}x_ip(x_i|Y=2)=0(0.1)+5(0.8)+10(0.1)=5$$
+La respuesta correcta es la $B$, ya que
+
+$$\mathbb{E}(X|Y=1)=\sum_{x=1}^{3}x_i P(x_i|Y=1)=0(0.2)+5(0.4)+10(0.4)=6$$ y 
+
+$$\mathbb{E}(X|Y=2)=\sum_{x=1}^{3}x_i P(x_i|Y=2)=0(0.1)+5(0.8)+10(0.1)=5$$
+
 Por lo que, $$\mathbb{E}(X)=6(0.3)+5(0.7)=5.3$$
 
 ----
@@ -229,25 +246,28 @@ $R_A$=0.3 & 0 & 0 & 0.3\\
 
 \textbf{\underline{Solución:}}
 
-La respuesta correcta es la C., ya que, el valor esperado de la rentabilidad del valor de B es
+La respuesta correcta es la C., ya que, el valor esperado de la rentabilidad del valor de B, $R_B =\{0.5,0.2,-0.3\}$ es
+
 $$
 \begin{array}{rl}
-\mathbb{E}(R_B) &= \sum_{i=1}^{3}R_{B_i}\mathbf{P}(R_{A_i},R_{B_i})\\
+\mathbb{E}(R_B) &= \sum_{i=1}^{3}R_{B_i}P(R_{B_i}|R_{A_i})\\
 &=(0.5)(0.4)+(0.2)(0.3)+(-0.3)(0.3)\\
-&=0.17
+\mathbb{E}(R_B) &=0.17
 \end{array}
 $$ 
+
 La varianza esta dada por
 
 $$
 \begin{array}{rl}
-Var(R_B) &= \sum_{i=1}^{3}\mathbf{P}(R_{A_i},R_{B_i})[(R_{B_i}-\mathbb{E}(R_B))^2]\\
+Var(R_B) &= \mathbb E[(R_B-\mathbb E[R_B])^2]\\
+&= \sum_{i=1}^{3} P(R_{B_i}|R_{A_i}) (R_{B_i}-\mathbb{E}[R_{B_i}])^2\\
 &=(0.4)(0.5-0.17)^2+(0.3)(0.2-0.17)^2+(0.3)(-0.3-0.17)^2\\
-&=0.1101
+Var(R_B)&=0.1101
 \end{array}
 $$
 
-y la desviación estándar $\sqrt{0.1101}=0.33$
+y la desviación estándar $\sigma=\sqrt{Var(R_b)}=\sqrt{0.1101}=0.33$
 
 4. La varianza del valor A es cercano a:
 
@@ -273,9 +293,9 @@ La varianza de la rentabilidad del valor de A es $(0.4)(-0.1-0.08)^2+(0.3)(0.1-0
 
 $$
 \begin{array}{rl}
-Cov(R_A,R_B) &= \displaystyle \sum_{i=1}^{3}\mathbf{P}(R_{A_i},R_{B_i})[(R_{A_i}-\mathbb{E}(R_A))][(R_{B_i}-\mathbb{E}(R_B))]\\
+Cov(R_A,R_B) &= \displaystyle \sum_{i=1}^{3}P(R_{A_i},R_{B_i})(R_{A_i}-\mathbb{E}[R_A])(R_{B_i}-\mathbb{E}[R_B])\\
 & = (0.4)(-0.1-0.08)(0.5-0.17)+(0.3)(0.1-0.08)(0.2-0.17)+(0.3)(0.3-0.08)(-0.3-0.17)\\
-& =-0.0546
+Cov(R_A,R_B) & =-0.0546
 \end{array}
 $$
 
@@ -293,9 +313,9 @@ La respuesta es la B.
 
 $$
 \begin{array}{rl}
-\rho(R_A,R_B) &=\displaystyle \frac{Cov(R_A,R_B)}{\sigma_{R_A}\sigma_{R_B}}\\
+Corr(R_A,R_B) &=\displaystyle \frac{Cov(R_A,R_B)}{\sigma_{R_A}\sigma_{R_B}}\\
 &=\displaystyle \frac{-0.0546}{0.33(0.17)}\\
-&=-0.9907
+Corr(R_A,R_B)&=-0.9907
 \end{array}
 $$
 La respuesta es la A.
@@ -312,9 +332,9 @@ La respuesta es la A.
 
 Sea $X=$ DJIA aumenta mañana.
 
-Se tiene que $\mathbf{P}(X)= \displaystyle \frac{2}{3}$ . 
+Se tiene que $P(X)= \displaystyle \frac{2}{3}$ . 
 
-Las probabilidades que los eventos ocurran son $\displaystyle \frac{\mathbf{P}(X)}{1-\mathbf{P}(X)}=\displaystyle \frac{2/3}{1-2/3}=2/1$ que es igual a dos a uno. La respuesta es la A.
+Las probabilidades que los eventos ocurran son $\displaystyle \frac{P(X)}{1-P(X)}=\displaystyle \frac{2/3}{1-2/3}=2/1$ que es igual a dos a uno. La respuesta es la A.
 
 8. Una distribución uniforme discreta (cada evento tiene igual probabilidad de ocurrencia) tiene los siguientes posibles resultados para $X={1,2,3,4}$. La varianza de esta distribución es cercana a:
 
@@ -326,21 +346,25 @@ Las probabilidades que los eventos ocurran son $\displaystyle \frac{\mathbf{P}(X
 
 \textbf{\underline{Solución:}}
  
-La respuesta correcta es la B. El valor esperado de $X$
-es $\mathbb{E}(X)=\sum_{x=1}^{4}xp(X=x)=(1+2+3+4)(1/4)=2.5$.
-La varianza es $Var(X)=\sum_{x=1}^{4}[(x-\mathbb{E}(X))^2]p(X=x)=[(1-2.5)^2+(2-2.5)^2+(3-2.5)^2+(4-2.5)^2)](1/4)=1.25$
+La respuesta correcta es la B. El valor esperado de $X$ es
+
+$$\mathbb{E}(X)=\sum_{x=1}^{4}x P(X=x)=(1+2+3+4)(1/4)=2.5$$
+
+La varianza es 
+
+$$Var(X)=\sum_{x=1}^{4} (x-\mathbb{E}[X])^2 P(X=x)=[(1-2.5)^2+(2-2.5)^2+(3-2.5)^2+(4-2.5)^2)](1/4)=1.25$$
 
 9. Si los eventos A y B son mutuamente exclusivos, entonces, 
 
 \begin{itemize}
-\item[A.] $\mathbf{P}(A|B)=\mathbf{P}(A)$
-\item[B.] $\mathbf{P}(AB)=\mathbf{P}(A)\mathbf{P}(B)$
-\item[C.] $\mathbf{P}(A\cup{B})=\mathbf{P}(A) + \mathbf{P}(B)$
+\item[A.] $P(A|B)=P(A)$
+\item[B.] $P(AB)=P(A)P(B)$
+\item[C.] $P(A\cup B)=P(A) + P(B)$
 \end{itemize}
 
 \textbf{\underline{Solución:}}
 
-La respuesta correcta es la opción C. Ya que $\mathbf{P}(AB)=\mathbf{P}(A)\mathbf{P}(B)$ sí los eventos son independientes y cómo los eventos son mutuamente exclusivos, ambos no pueden ocurrir así que tanto $\mathbf{P}(A|B)$ como $\mathbf{P}(AB)$ pueden ser cero.
+La respuesta correcta es la opción C. Ya que $P(AB)=P(A)P(B)$ sí los eventos son independientes y cómo los eventos son mutuamente exclusivos, ambos no pueden ocurrir así que tanto $P(A|B)$ como $P(AB)$ pueden ser cero.
 
 10. En una bola de caridad, 800 nombres son introducidos. Cuatro de los nombres son idénticos. En una extracción aleatoria, ¿cuál es la probabilidad de que uno de estos cuatro nombres sea extraido?
 
@@ -352,10 +376,13 @@ La respuesta correcta es la opción C. Ya que $\mathbf{P}(AB)=\mathbf{P}(A)\math
 
 \textbf{\underline{Solución:}}
 
-Sean $n_1,n_2,n_3$ y $n_4$ los cuatro nombres idénticos, entonces, la probabilidad de que alguno de estos nombres sea escogido es,
-$\mathbf{P}(n1\cup{n2}\cup{n3}\cup{n4})=1/800+1/800+1/800+1/800=0.005$. La respuest es la B.
+Sean $n_1,n_2,n_3$ y $n_4$ los cuatro nombres idénticos, entonces, la probabilidad de que alguno de estos nombres sea escogido es
 
-11. Casi 900 contribuyentes con ingresos por debajo de  \$100,000, 35 fueron auditados por IRS. La probabilidad de que un individuo escogido al azar con ingreso por debajo de \$100,000 fuese auditado es cercano a:
+$$P(n_1\cup n_2\cup n_3\cup n_4)=1/800+1/800+1/800+1/800=0.005$$
+
+La respuesta correcta es la B.
+
+11. Casi 900 contribuyentes con ingresos por debajo de  \$100000, 35 fueron auditados por IRS. La probabilidad de que un individuo escogido al azar con ingreso por debajo de \$100000 fuese auditado es cercano a:
 
 \begin{itemize}
 \item[A.] 0.039
@@ -365,7 +392,7 @@ $\mathbf{P}(n1\cup{n2}\cup{n3}\cup{n4})=1/800+1/800+1/800+1/800=0.005$. La respu
 
 \textbf{\underline{Solución:}}
 
-900 contribuyentes tienen ingresos por debajo de \$100,000 y 35 sólo fueron auditados por IRS, por lo que la probabilidad de escoger un individuo al azar de 900 contribuyente es $\displaystyle \frac{35}{900}=0.03888889$. La respuesta es la A.
+900 contribuyentes tienen ingresos por debajo de \$100000 y 35 sólo fueron auditados por IRS, por lo que la probabilidad de escoger un individuo al azar de 900 contribuyente es $\displaystyle \frac{35}{900}=0.03888889$. La respuesta es la A.
 
 12. ¿cuáles de los siguientes valores no puede ser la probabilidad de un evento?
 
@@ -388,7 +415,8 @@ La respuesta es la C, ya que el rango de la probabilidad es de 0 hasta 1.
 \end{itemize}
 
 \textbf{\underline{Solución:}}
- La respuesta es la B. Puede ocurrir uno de los dos pero no ambos.
+
+La respuesta es la B. Puede ocurrir uno de los dos pero no ambos.
 
 \newpage
 
@@ -415,19 +443,19 @@ $$\mathbb{E}(R_p)=0.4(0.05)+0.2(0.10)+0.4(0.20)=0.12$$ y
 $$\mathbb{E}(R_m)=0.4(0.0)+0.2(0.10)+0.4(0.15)=0.08$$
 La covarianza esta dada por,
 
-$$cov(R_p,R_m)=\sum_{i=1}^3\mathbf{P}_i(R_{p_i}-\mathbb{E}(R_p))(R_{m_i}-\mathbb{E}(R_m))$$ Asi,
+$$Cov(R_p,R_m)=\sum_{i=1}^3 P(R_{p_i},R_{m_i})(R_{p_i}-\mathbb{E}[R_p])(R_{m_i}-\mathbb{E}[R_m])$$ Asi,
 
 $$
 \begin{array}{rl}
-cov(R_p,R_m) &= 0.4(0.05-0.12)(0.0-0.08)+0.2(0.10-0.12)(0.10-0.08)+0.4(0.20-0.12)(0.15-0.08) \\
+Cov(R_p,R_m) &= 0.4(0.05-0.12)(0.0-0.08)+0.2(0.10-0.12)(0.10-0.08)+0.4(0.20-0.12)(0.15-0.08) \\
 &=0.4(-0.07)(-0.08)+0.2(-0.02)(0.02)+0.4(0.08)(0.07)\\
-&=0.0044
+Cov(R_p,R_m) &=0.0044
 \end{array}
 $$
 
 Por lo que la covarianza de ambas rentabilidades es de 0.0044.
 
-2. La correlación de rentabilidades de la rentabilidad de Productos Cape y de la Industria Dogger es de 0.6. La desviación estándar de rentabilidad de los productos Cape es de 15\% y de los Dogger es de 20\%.La rentabilidad esperada para Dogger es de 18\%, y la rentabilidad esperada para Cape es de 12\%. Calcular la rentabilidad esperada y la desviación estándar de una carpeta que tiene \$300,000 invertidos en Dogger y \$200,000 invertidos en Cape.
+2. La correlación de rentabilidades de la rentabilidad de Productos Cape y de la Industria Dogger es de 0.6. La desviación estándar de rentabilidad de los productos Cape es de 15\% y de los Dogger es de 20\%.La rentabilidad esperada para Dogger es de 18\%, y la rentabilidad esperada para Cape es de 12\%. Calcular la rentabilidad esperada y la desviación estándar de una carpeta que tiene \$300000 invertidos en Dogger y \$200000 invertidos en Cape.
 
 \textbf{\underline{Solución:}}
 
@@ -448,7 +476,7 @@ Donde $\mathbb{E}(R_D)=0.18$ y $\mathbb{E}(R_C)=0.12$, sustituyendo,
 $$
 \begin{array}{rl}
 \mathbb{E}(R_{car})&=0.6(0.18)+0.4(0.12)\\
-&=0.156\\
+\mathbb{E}(R_{car})&=0.156
 \end{array}
 $$
 
@@ -469,7 +497,7 @@ donde conocemos lo siguiente, $\sigma_{R_D}=0.20$, $\sigma_{R_C}=0.15$ y $\rho(R
 $$
 \begin{array}{rl}
 Var(R_{car})&=(0.6)^2(0.20)^2+(0.4)^2(0.15)^2+2(0.6)(0.4)(0.20)(0.15)(0.6)\\
-&=0.02664\\
+Var(R_{car})&=0.02664\\
 \end{array}
 $$
 
@@ -479,23 +507,21 @@ La desviación estándar de la rentabilidad de la carpeta es $\sigma_{R_{car}}=\
 
 \textbf{\underline{Solución:}}
 
-Sea $A$ un evento "puntaje del bono menor que 20" y sea B el evento "incumple dentro de cinco años". Así, tenemos lo siguiente, 
+Sea $A$ un evento "puntaje del bono menor que 20" y sea $B$ el evento "incumple dentro de cinco años". Así, tenemos lo siguiente, 
 
-$\mathbf{P}(A)=0.25$, $\mathbf{P}(A^c)=0.75$, $\mathbf{P}(B|A)=0.85$ y $\mathbf{P}(B|A^c)=0.40$
+$P(A)=0.25$, $P(A^c)=0.75$, $P(B|A)=0.85$ y $P(B|A^c)=0.40$
 
 Usando el teorema de Bayes, obtenemos lo siguiente,
 
-$$\mathbf{P}(A^c|B)=\frac{\mathbf{P}(A^c)\mathbf{P}(B|A^c)}{\mathbf{P}(A^c)\mathbf{P}(B|A^c)+\mathbf{P}(A)\mathbf{P}(B|A)}$$
+$$P(A^c|B)=\frac{P(A^c)P(B|A^c)}{P(A^c)P(B|A^c)+P(A)P(B|A)}$$
 
 $$
 \begin{array}{rl}
-\mathbf{P}(A^c|B) &=\displaystyle  \frac{0.75(0.40)}{0.75(0.40)+0.25(0.85)}\\
+P(A^c|B) &=\displaystyle  \frac{0.75(0.40)}{0.75(0.40)+0.25(0.85)}\\
 &=\displaystyle \frac{0.3}{0.5125}\\
-&=0.5853
+P(A^c|B) &=0.5853
 \end{array}
 $$
-
-
 
 Esto significa que si el bono incumple en los próximos cinco años hay un 58.53\% de probabilidad de que el bono tenga un puntaje de 20 o superior.
 
@@ -517,8 +543,8 @@ B. El beneficio esperado del bono en un año es,
 
 Sea $B$ el evento del beneficio del bono, y sea $C$ el evento de incumplimiento, entonces, 
 
-$$\mathbb{E}(B)=\mathbf{P}(C)(600)+\mathbf{P}(C^c)(1080)$$
-donde $\mathbf{P}(C)=\displaystyle \frac{1}{9}=0.1$, sustituyendo,
+$$\mathbb{E}(B)=P(C)(600)+P(C^c)(1080)$$
+donde $P(C)=\displaystyle \frac{1}{9}=0.1$, sustituyendo,
 
 $$\mathbb{E}(B)=(0.1)(600)+(0.9)(1080)=1032$$
 
@@ -561,10 +587,14 @@ $$Var(A)=(0.24)^2=0.0576$$ $$Var(B)=(0.18)^2=0.0324$$ $$Var(C)=(0.15)^2=0.0225$$
 
 Ahora calculemos las covarianzas de los tres valores, 
 
-$$\rho(A,B)=\frac{Cov(A,B)}{\sigma_A\sigma_B}$$
+$$Corr(A,B)=\frac{Cov(A,B)}{\sigma_A\sigma_B}$$
 Por lo que, $Cov(A,B)=\rho(A,B)\sigma_A\sigma_B$. Así, tenemos lo siguiente, 
 
-$$Cov(A,B)=(0.85)(0.24)(0.18)=0.0367$$ $$Cov(A,C)=(0.30)(0.24)(0.15)=0.0108$$ $$Cov(B,C)=(-0.15)(0.18)(0.15)=-0.0041$$
+$$Cov(A,B)=(0.85)(0.24)(0.18)=0.0367$$
+
+$$Cov(A,C)=(0.30)(0.24)(0.15)=0.0108$$ 
+
+$$Cov(B,C)=(-0.15)(0.18)(0.15)=-0.0041$$
 
 La matrix de covarianza es la siguiente, 
 
@@ -616,24 +646,21 @@ C. Los eventos pueden ser,
 
 D. Si le añadimos tres valores a la carpeta, la carpeta tendrá seis valores, las cuales se calcularían seis varianzas, y se calcularián quince únicas covarianzas para calcular la varianza de la carpeta.
 
-
 6. Usted está pronosticando las ventas de un proveedor de materiales de construcción mediante la evaluación de los planes de expansión de su cliente más grande, un constructor de viviendas. Se estima que la probabilidad de que el cliente aumente sus pedidos de materiales de construcción es de 25\%. Si el cliente incrementa sus pedido, la probabilidad que el constructor de vivienda comience una nueva construcción es de 70\%. Si el cliente no aumenta sus pedidos desde un proveedor, hay sólo un 20\% de probabilidad de que el constructor inicie la edificación. Más tarde, descubres que el constructor iniciará la nueva construcción. Debido a esta información, ¿cuál es su probabilidad nueva (actualizada) de que el cliente aumente sus pedidos desde un proveedor ? 
 
 \textbf{\underline{Solución:}}
 
 Sea $A$ el evento "comienza una nueva construcción" y $B$ el evento "incrementa sus pedidos desde un proveedor", entonces tenemos la siguiente información, 
 
-$\mathbf{P}(B)=0.25$, $\mathbf{P}(A|B)=0.70$ y $\mathbf{P}(A|B^c)=0.20$. Entonces, usando el teorema de Bayes, tenemos lo siguiente, 
-
-$$\mathbf{P}(B|A)=\displaystyle \frac{\mathbf{P}(B)\mathbf{P}(A|B)}{\mathbf{P}(B)\mathbf{P}(A|B)+\mathbf{P}(B^c)\mathbf{P}(A|B^c)}$$
+$P(B)=0.25$, $P(A|B)=0.70$ y $P(A|B^c)=0.20$. Entonces, usando el teorema de Bayes, tenemos lo siguiente, 
 
 $$
 \begin{array}{rl}
-\mathbf{P}(B|A) &= \displaystyle  \frac{0.25(0.70)}{0.25(0.70)+0.75(0.20)}\\
+P(B|A) & =\displaystyle \frac{P(B)P(A|B)}{P(B)P(A|B)+P(B^c)P(A|B^c)}\\
+& = \displaystyle  \frac{0.25(0.70)}{0.25(0.70)+0.75(0.20)}\\
 &=\displaystyle \frac{0.175}{0.325}\\
-&=0.538
+P(B|A) &=0.538
 \end{array}
 $$
-
 
 En base a la nueva información la probabilidad de que el cliente aumente sus pedidos a un proveedor es de 53.8\%.
