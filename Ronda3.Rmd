@@ -50,6 +50,8 @@ Bill Johnson acaba de comprar una videograbadora en Jim´s Videotape Service a u
 
 Encuentre el valor esperado de los costos de mantenimiento pronosticados.  ¿Debe Bill pagar $100 por la garantía?
 
+\textbf{\underline{Solución:}}
+
 \newpage
 
 # Ejercicio 3
