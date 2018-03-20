@@ -301,6 +301,7 @@ Una comerciante tiene en existencia cierto artículo perecedero.  Ella sabe que 
 
 Se observó que la cantidad semanal de dinero gastado por una compañía durante largo tiempo en mantenimiento y reparaciones, está normalmente distribuida en forma aproximada con media de \$400 y desviación estándar de \$20.  Si están presupuestados \$450 para la próxima semana, ¿cuál es la probabilidad de que los costos reales rebasen la cantidad presupuestada?
 
+\textbf{\underline{Solución:}}
 
 \newpage
 
