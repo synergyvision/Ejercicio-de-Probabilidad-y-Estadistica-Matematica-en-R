@@ -410,7 +410,12 @@ muestra la demanda mensual de la empresa.
 | 500 | 0.35 |
 | 600 | 0.15 |
 
+a. Si la empresa basa las órdenes mensuales en el valor esperado de la demanda mensual, ¿cuál
+será la cantidad ordenada mensualmente por la empresa para este producto?
 
+b. Suponga que cada unidad demandada genera $70 de ganancia y que cada unidad ordenada
+cuesta $50. ¿Cuánto ganará o perderá la empresa en un mes si coloca una orden con base en
+su respuesta al inciso a y la demanda real de este artículo es de 300 unidades?
 
 \newpage
 
