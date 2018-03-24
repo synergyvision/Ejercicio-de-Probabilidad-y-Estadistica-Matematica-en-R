@@ -302,6 +302,35 @@ Una comerciante tiene en existencia cierto artículo perecedero.  Ella sabe que 
 Se observó que la cantidad semanal de dinero gastado por una compañía durante largo tiempo en mantenimiento y reparaciones, está normalmente distribuida en forma aproximada con media de \$400 y desviación estándar de \$20.  Si están presupuestados \$450 para la próxima semana, ¿cuál es la probabilidad de que los costos reales rebasen la cantidad presupuestada?
 
 \textbf{\underline{Solución:}}
+Sea $X$ la variable aleatoria que representa la cantidad semanal de dinero gastado por una compañia durante largo tiempo en mantenimiento y reparaciones, donde $X$ está normalmente distribuida con media \$450 y desviación estándar \$20, $X\sim N(400,400)$
+
+Queremos calcular $\mathbb{P}(X>450)$. Para eso, normalizaremos la variable $X$, usando la variable normal estándar $Z=\displaystyle \frac{X-\mu}{\sigma}=\displaystyle \frac{X-400}{20} \sim N(0,1)$.
+
+Usando propiedades de una función de distribución, se tiene:
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X>450) &=\mathbb{P}(\frac{X-400}{20}>\frac{450-400}{20})\\
+&=\mathbb{P}(Z>\frac{5}{2})\\
+&=1-\mathbb{P}(Z\leq\frac{5}{2})\\
+&=1-\Phi(\frac{5}{2})\\
+\end{array}
+$$
+
+Usando la tabla de Área de curvas normal, se tiene que $1-\Phi(\frac{5}{2})=0.0062$.
+
+En R, podemos calcular $\mathbb{P}(Z\leq\frac{5}{2})$ de esta manera,
+
+```{r,comment=""}
+normal<-pnorm(5/2,0,1)
+normal
+
+```
+
+Luego, $\mathbb{P}(X>450)=1-0.9937$
+
+Esto implica que, $\mathbb{P}(X>450)=0.0062$.
+
 
 \newpage
 
@@ -315,6 +344,33 @@ b) ¿Esperaría hallar muchos ingresos de más de \$30,000 en esta sección de l
 
 c) ¿Qué proporción de jefes de familia de esta sección de la ciudad tienen ingresos de  más de \$30,000?
 
+\textbf{\underline{Solución:}}
+
+Sea $X$ una variable aleatotia que representa los ingresos anuales de los jefes de la familia. Tenemos que $X$ tiene una distribución gamma de $\alpha=20$ y $\beta=1000$.
+
+a) Calculemos la media y la varianza de $X$. La media y varianza de una variable aleatoria con distribución gamma son,
+
+$$\mu=\mathbb{E}(X)=\alpha\beta$$ y $$\sigma^2=V(X)=\alpha\beta^2$$
+Luego, $\mu=\mathbb{E}(X)=\alpha\beta=(20)(1000)=20000$ y $\sigma^2=V(X)=\alpha\beta^2=(20)(1000)^2=20000000$.
+
+La media de $X$ es de \$20,000 y la varianza de \$20,000,000.
+
+b) Para esto calculemos primeramente la desviación estándar, $\sigma=\sqrt{20000000}=4472.14$. Luego, el valor estándar es, $\displaystyle \frac{30000-20000}{\sqrt{20000000}}=2.2361$. Lo que representa el 2.23\% de los ingresos anuales. Es decir, no hay muchos ingresos por encima de \$30,000.
+
+c) Calculemos $\mathbb{P}(X>30000)$, donde por definición de una función de distribución se tiene que,
+
+$$\mathbb{P}(X>30000)=1-\mathbb{P}(X\leq30000)$$
+Calculemos $\mathbb{P}(X\leq30000)$ en R,
+
+\textbf{\underline{En R:}}
+```{r,comment=""}
+gamma<-pgamma(30000,20,1/1000)
+gamma
+```
+
+Por lo que , $\mathbb{P}(X\leq30000)=0.9781265$. Asi, $$\mathbb{P}(X>30000)=1-0.9781265= 0.02187347$$.
+
+Que representa el 2.2\%  los jefes de familia de esta sección de la ciudad.
 
 \newpage
 
@@ -328,6 +384,121 @@ $$f(y) = \left\{
 0, & \text{en cualquier otro punto}
 \end{matrix}\right.$$
 
+El costo (en cientos de dólares) de este tiempo improductivo, debido a producción perdida y costo de mantenimiento y reparación, está dado por $C=10+20Y+4Y^2$. Encuentre la media y la varianza de $C$.
+
+
+\textbf{\underline{Solución:}}
+
+Sea $Y$ la proporción de tiempo durante ocho horas de una máquina troqueladora de láminas metálicas.
+
+Cómo $Y$ es una variable aleatoria con distribución beta, entonces la media y varianza de $X$, estan dadas por,
+
+$$\mu=\mathbb{E}(Y)=\displaystyle \frac{\alpha}{\alpha+\beta}$$ y $$\sigma^2=V(Y)=\displaystyle \frac{\alpha\beta}{(\alpha+\beta^2)(\alpha+\beta+1)}$$
+
+El costo de este tiempo improductivo, debido a la producción perdida y al costo de reparaciones y mantenimiento es $C=10+20Y+4Y^2$. Calculemos la media y la varianza de $C$.
+
+Por linealidad del valor esperado y de la varianza se tiene que,
+
+$$
+\begin{array}{rl}
+\mu&=\mathbb{E}(C)\\
+&=\mathbb{E}(10+20Y+4Y^2)\\
+&=\mathbb{E}(10)+\mathbb{E}(20Y)+\mathbb{E}(4Y^2)\\
+&=10+20\mathbb{E}(Y)+4\mathbb{E}(Y^2)\\
+&=10+20(\frac{1}{1+2})+4\mathbb{E}(Y^2)\\
+\end{array}
+$$
+
+Donde por definición $\mathbb{E}(Y^2)$, está dado por, 
+
+$$
+\begin{array}{rl}
+\mathbb{E}(Y^2)&=\displaystyle \int_{0}^1y^2f(y)dy\\
+&=\displaystyle \int_{0}^1y^22(1-y)dy\\
+&=2\displaystyle \int_{0}^1(y^2-y^3)dy\\
+&=2\left[\displaystyle \frac{y^3}{3}|_0^1-\displaystyle \frac{y^4}{4}|_0^1\right]\\
+&=2(\displaystyle \frac{1}{3}-\frac{1}{4})\\
+&=\displaystyle \frac{1}{6}
+\end{array}
+$$
+Sustituyendo, nos queda lo siguiente,
+
+$$
+\begin{array}{rl}
+\mu&=\mathbb{E}(C)\\
+&=10+20(\frac{1}{1+2})+4\mathbb{E}(Y^2)\\
+&=10+20(\frac{1}{3})+4(\frac{1}{6})\\
+&=\displaystyle \frac{52}{3}
+\end{array}
+$$
+
+Luego, usando propiedades de la varianza, tenemos que, 
+
+$$
+\begin{array}{rl}
+\sigma^2&=\mathbb{V}(C)\\
+&=\mathbb{E}[(C)^2]-(\mathbb{E}(C))^2\\
+&=\mathbb{E}[(C)^2]-\left(\displaystyle \frac{52}{3}\right)^2\\\\
+&=\mathbb{E}[(C)^2]-\left(\displaystyle \frac{2704}{9}\right)\\
+\end{array}
+$$
+
+Donde por definición $\mathbb{E}[(C^2)]$, está dado por,
+
+$$
+\begin{array}{rl}
+\mathbb{E}[(C^2)]&=\mathbb{E}[(10+20Y+4Y^2)^2]\\
+&=\mathbb{E}[(100+400Y+480Y^2+160Y^3+16Y^4)]\\
+&=\mathbb{E}(100)+\mathbb{E}(400Y)+\mathbb{E}(480Y^2)+\mathbb{E}(160Y^3)+\mathbb{E}(16Y^4)\\
+&=100+400\mathbb{E}(Y)+480\mathbb{E}(Y^2)+160\mathbb{E}(Y^3)+16\mathbb{E}(Y^4)\\
+&=100+400(\frac{1}{3})+480(\frac{1}{6})+160\mathbb{E}(Y^3)+16\mathbb{E}(Y^4)\\
+\end{array}
+$$
+
+Donde,
+
+$$
+\begin{array}{rl}
+\mathbb{E}(Y^3)&=\displaystyle \int_{0}^1y^3f(y)dy\\
+&=\displaystyle \int_{0}^1y^32(1-y)dy\\
+&=2\displaystyle \int_{0}^1(y^3-y^4)dy\\
+&=2\left[\displaystyle \frac{y^4}{4}|_0^1-\displaystyle \frac{y^5}{5}|_0^1\right]\\
+&=2(\displaystyle \frac{1}{4}-\frac{1}{5})\\
+&=\displaystyle \frac{1}{10}
+\end{array}
+$$
+
+y 
+$$
+\begin{array}{rl}
+\mathbb{E}(Y^4)&=\displaystyle \int_{0}^1y^4f(y)dy\\
+&=\displaystyle \int_{0}^1y^42(1-y)dy\\
+&=2\displaystyle \int_{0}^1(y^4-y^5)dy\\
+&=2\left[\displaystyle \frac{y^5}{5}|_0^1-\displaystyle \frac{y^6}{6}|_0^1\right]\\
+&=2(\displaystyle \frac{1}{5}-\frac{1}{6})\\
+&=\displaystyle \frac{1}{15}
+\end{array}
+$$
+
+Sustituyendo estos valores, tenemos que,
+
+$$
+\begin{array}{rl}
+\mathbb{E}[(C^2)]&=100+400(\frac{1}{3})+480(\frac{1}{6})+160\mathbb{E}(Y^3)+16\mathbb{E}(Y^4)\\
+&=100+400(\frac{1}{3})+480(\frac{1}{6})+160(\frac{1}{10})+16(\frac{1}{15})\\
+&=\displaystyle \frac{1652}{5}
+\end{array}
+$$
+
+Finalmente, se tiene que, 
+
+$$
+\begin{array}{rl}
+\sigma^2&=\mathbb{E}[(C)^2]-\left(\displaystyle \frac{2704}{9}\right)\\\\
+&=\displaystyle \frac{1652}{5}-\displaystyle \frac{2704}{9}\\\\
+&=\displaystyle \frac{1348}{45}\\
+\end{array}
+$$
 
 \newpage
 
@@ -360,6 +531,61 @@ superior a \$7000?
 c) ¿De que ninguno tenga un balance en su tarjeta de crédito superior a \$7000?
 
 d) ¿De que por lo menos tres tengan un balance en su tarjeta de crédito superior a \$7000?
+
+
+\textbf{\underline{Solución:}}
+
+a) Sea $Y$ el número de estudiantes que tienen un balance en su tarjeta de crédito mayor a \$7000. Si denotamos $E$ el evento éxito de tener un balance en la tarjeta de crédito mayor a \$7000, donde el 9\% de los estudiantes tienen un balance en su tarjeta de crétito superior a \$7000, esto es, $\mathbb{P}(E)=p=0.09$ y seleccionamos 10 estudiantes aleatorios para entrevistarlos con respecto al balance de sus tarjetas de crédito entonces estariamos determinando un experimento binomial con  $n=10$, $p=0.09$ y $q=\mathbb{P}(E^c)=(1-p)=0.91$ que es la probabilidad de no tener un balance en la tarjeta de crédito mayor a \$7000.
+
+b) Calculemos la probabilidad de que dos estudiantes sean exitosos usando la definición de una distribución binomial,
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X=2)&=p(2)\\
+&=\displaystyle {10\choose2}p^{10}q^{10-2}\\
+&=\displaystyle \frac{10}{(10-2)!2!}(0.09)^{2}(0.91)^8\\
+&=0.1714\\
+\end{array}
+$$
+
+En R, lo calculamos de ésta manera,
+
+```{r,comment=""}
+bi2<-dbinom(2,10,0.09)
+bi2
+```
+
+
+c) Calculemos la probabilidad de que ningún estudiantes sea exitoso.
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X=0)&=p(0)\\
+&=\displaystyle {10\choose0}p^{0}q^{10-0}\\
+&=\displaystyle \frac{10}{(10-0)!0!}(0.09)^{0}(0.91)^{10}\\
+&=0.3894\\
+\end{array}
+$$
+
+Luego, en R,
+
+```{r,comment=""}
+bi0<-dbinom(0,10,0.09)
+bi0
+```
+
+
+d) Calculemos la probabilidad de que al menos tres estudiantes sean exitosos.
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X\geq3)&=1-\mathbb{P}(X<3)\\
+&=1-(\mathbb{P}(X=0)+\mathbb{P}(X=1)+\mathbb{P}(X=2))\\
+&=1-\left(0.3894+\displaystyle {10\choose1}p^{1}q^9+0.1714\right)\\
+&=1-0.9459\\
+&=0.0541\\
+\end{array}
+$$
 
 
 \newpage
