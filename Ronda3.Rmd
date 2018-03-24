@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #  Ejercicio 1
 
-Bob Walters, quien invierte con frecuencia en el mercado de valores, estudia con detenimiento cualquier inversión potencial.  En la actualidad examina la posibilidad de invertir en la Trinity Power Company.  Mediante el estudio del rendimiento en el pasado, Walters ha desglosado los resultados potenciales en cinco resultados posibles con sus probabilidades asociadas.  Los resultados son tasas de rendimiento sobre la inversión en una sola acción de Trinity Power.
+Bob Walters, quien invierte con frecuencia en el mercado de valores, estudia con detenimiento cualquier inversión potencial.  En la actualidad examina la posibilidad de invertir en la Trinity Power Company.  Mediante el estudio del rendimiento en el pasado, Walters ha desglosado los resultados potenciales en cinco resultados posibles con sus probabilidades asociadas.  Los resultados son tasas de rendimiento sobre la inversión en una sola acción de Trinity Power que hoy cuesta 150$.
 
 | Rendimiento de la inversión | Probabilidad |
 |:---------------------------:|:------------:|
@@ -31,6 +31,24 @@ Bob Walters, quien invierte con frecuencia en el mercado de valores, estudia con
 | 50.00 | 0.10 |
 
 Si Walters compra acciones siempre que la tasa de rendimiento esperada exceda al 10%, ¿comprará la acción, de acuerdo con estos datos?
+
+\textbf{\underline{Solución:}}
+
+Sea $X$ = Rendimiento de la inversión, una variable aleatoria discreta. El valor esperado de la variable aleatoria viene dado por:
+
+$$\mathbb{E}(X)=\sum_{n \geq 1} x_n P(X=x_n)$$
+donde $\{x_n\}$ son los valores que toma la v.a discreta y $P(X=x_n)$ la probabilidad de que la v.a tome ese valor. Sustituyendo los valores que nos muestra la tabla tenemos:
+
+$$
+\begin{array}{rl}
+\mathbb{E}(X) &= 0 \times P(X=0) + 10 \times P(X=10) + 15 \times P(X=15) + 25 \times P(X=25) +  50 \times P(X=50) \\
+\\
+&= 0 \times 0.20 + 10 \times 0.25 + 15 \times 0.30 + 25 \times 0.15 + 50 \times 0.10 \\
+\\
+&= 15.75
+\end{array}
+$$
+Por lo que el rendimiento esperado es de 15.75\$, lo que implica que Bob Walters comprará la acción de la compañía pues esta supera el 10%  del precio de compra de 150\$ que corresponde a 15\$.
 
 \newpage
 
@@ -52,6 +70,22 @@ Encuentre el valor esperado de los costos de mantenimiento pronosticados.  ¿Deb
 
 \textbf{\underline{Solución:}}
 
+Sea $X$ = Gastos en mantenimiento, una variable aleatoria discreta. El valor esperado de la variable aleatoria viene dado por:
+
+$$\mathbb{E}(X)=\sum_{n \geq 1} x_n P(X=x_n)$$
+donde $\{x_n\}$ son los valores que toma la v.a discreta y $P(X=x_n)$ la probabilidad de que la v.a tome ese valor. Sustituyendo los valores que nos muestra la tabla tenemos:
+
+$$
+\begin{array}{rl}
+\mathbb{E}(X) &= 0 \times 0.35 + 50 \times 0.25 + 100 \times 0.15 + 150 \times 0.10 + 200 \times 0.08 + 250 \times 0.05 + 300 \times 0.02 \\
+\\
+&= 77 \\
+\end{array}
+$$
+Por lo que los gastos en mantenimiento esperado son de \$77, lo que implica que Bill Johnson ahorrará \$23 en gastos de mantenimiento que por pagar la garantía de \$100.
+
+
+
 \newpage
 
 # Ejercicio 3
@@ -66,6 +100,38 @@ c) ¿Cuál es la probabilidad de que ninguna de las personas que curiosean compr
 
 d) ¿Cuál es la probabilidad de que no más de cuatro personas que curiosean compren algo durante una hora dada?
 
+\textbf{\underline{Solución:}}
+
+Definamos la siguiente variable aleatoria con distribución binomial como: 
+
+$X$ = Número de clientes que curioseando compraron algo.
+
+Cuya probabilidad de éxito es de $p=0.3$, probabilidad de fracaso es de $q= 1-p = 0.7$ y $n=15$
+
+a) Calculemos la probabilidad de que al menos un cliente que curiosea compre algo, esto es:
+
+$$P(X \geq 1) = 1 - P(x <1) = 1 - P(X=0)$$
+donde,
+
+$$
+\begin{array}{rl}
+P(X=0) &= \displaystyle \frac{15!}{0!(15-0)!} \times 0.3^0 \times 0.7^{15} \\
+\\
+&= 0.7^{15} \\
+&= 0.00474
+\end{array}
+$$
+Por lo que la probabilidad de que al menos un cliente que curiosea compre algo es de:
+
+$$P(x \geq 1) = 1 - P(X=0) = 1 - 0.00474 = 0.9952$$
+\textbf{\underline{En R:}}
+
+Usamos la función `dbinom()` para calcular la probabilidad de que la variable aleatoria tome un valor, así:
+```{r,comment=''}
+1-dbinom(0,15,0.3)
+```
+
+b)
 \newpage
 
 # Ejercicio 4
