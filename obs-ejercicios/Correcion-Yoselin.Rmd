@@ -1,0 +1,165 @@
+---
+title: "Correcciones de Segunda Ronda de Ejercicios" 
+Unstage line	
+author: "http://synergy.vision/"
+output: pdf_document
+subtitle: Yoselin
+fontsize: 12pt
+---
+
+ 
+```{r setup, include=FALSE}
+ 
+knitr::opts_chunk$set(echo = TRUE)
+ 
+```
+ 
+- Colocar `\displaystyle` en las fórmulas que tienen fracciones.}
+
+ 
+- Colocar paréntesis con `\left` y `\right` para que queden acorde a la fórmula.
+
+ 
+- Las variables aleatorias deben colocarse en mayúscula y cursiva con `\mathcal{X}`
+
+ 
+- Cuando se colocan comandos en R se deben colocar los parámetros que usan, especificarlos en cada caso.
+
+ 
+**Ejercicio 19**
+
+ 
+- Especificar los parámetros $\mu$ y $\sigma^2$ en $\mathcal{N} (900,400)$
+
+ 
+$$\mathcal{N}(\mu=400,\sigma^2=400)$$
+
+ 
+- Especificar igualmente los parámetros de los comandos usados
+
+ 
+pnorm(q=   , mean=   , sd=   )
+
+- Describir palabras que significan los resultados obtenidos.
+
+ 
+**Ejercicio 20**
+
+ 
+b) Responder de acuerdo a la esperanza encontrada en la parte a) quitar lo del valor estándar ¿Por qué lo colocaste?
+
+ 
+**Ejercicio 21**
+
+
+$$
+\begin{array}{rl}
+E(y^2)= &\int_\infty^\infty y^2 f(y) d(y)\\
+= & \int_0^1 y^2 2(1-y)dy
+\end{array}
+$$
+
+ 
+- Cuando se hace evaluación de la integral colocar la barra | de la siguiente forma
+
+ 
+`\Big|`
+
+ 
+- El operador varianza y esperanza colocarlos con [] no con paréntesis.
+
+
+**Ejercicio 22**
+
+ 
+- Cuando coloques sumatorias colocarlas con `\displaystyle`
+
+ 
+- La P que representa probabilidad colocarla como **P**
+
+ 
+**Ejercicio 23**
+
+ 
+- Sea Y el número de estudiantes con tarjetas de crédito mayor a $7000 y sea X una variable aleatoria Bernoulli de la siguiente forma
+
+ 
+$$
+\mathcal{X}=\left\{
+\begin{array}{rl}
+1 & \text{si el estudiante tiene tarjeta de crédito mayor a 7000 dólares}\\
+0 & \text{si no}
+\end{array}\right.
+$$
+
+
+$P(X=1)=0.09$ (Probabilidad de tener un balance en sus tarjetas de crédito mayor a $7000)
+
+$P(X=0)=0.91$ (Probabilidad de tener un balance inferior a $7000)
+
+**Ejercicio 24**
+
+Definir una variable aleatoria hipergeometrica que consta de dos grupos, los trabajadores de Hawai y los trabajadores de Texas (dos grupos disjuntos) y definirla como el número de trababjadores que trabajan en a fábrica de Hawai.
+ 
+donde $$P(X=x)\frac{\displaystyle\binom{r}{x}\displaystyle\binom{n-r}{k-x}}{\displaystyle\binom{n}{k}}$$
+
+y $n=$ Tamaño de la población
+
+$r=$ Cantidad de trabajadores 
+
+$n-r=$ Cantidad de trabajadores de Hawai
+
+$k=$ tamaño de la muestra
+
+y en base a esto responder los incisos.
+
+**Ejercicio 25**
+
+¿Qué puedes decir con respecto a la esperanza?
+
+**Ejercicio 26**
+
+a) Explicar como calculaste las probabilidades de la distribución de probabilidades.
+
+b) Colocar la fórmula de la varianza.
+
+c) Explicar las probabilidades de los 18 fondos de acciones.
+
+**Ejercicio 27**
+
+Decir con palabras que representan los valores obtenidos en b) y c).
+Dividir la fórmula de la varianza (esá fuera de la hoja) y
+colocar las fórmulas generales.
+
+**Ejercicio 29**
+
+a) la probabilidad de que su oferta sea aceptada es $P(10.000\le x <12000)$, observe que es menor estricta del lado derecho, ya que así el otro comprador ofrece menos de su oferta.
+
+b) Redactar igual que la corrección del inciso a)
+
+**Ejercicio 30**
+
+- Agregar también el cálculo si no se estándariza usando pnorm()
+
+**Ejercicio 31**
+
+c)¿Cómo hacer el cálculo en R?
+
+En ese caso se quiere calcular el quantil que da esa probabilidad.
+
+**Ejercicio 32**
+
+a) Separar la fracción en el caso de la varianza
+
+b) y c) hacerlo de igual anera sin estandarizar a la variable
+
+d) Piden el quantil tal que se tiene esa probabilidad $P(X\ge x)=0.05$
+
+
+Luego estandarizarlos y consigues el valor de X.  No partiendo de la estandarización como lo hiciste
+
+
+**Ejercicio 36**
+
+ 
+Explicar estandarización.

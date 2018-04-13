@@ -662,7 +662,7 @@ d) ¿De que nueve de los empleados de la muestra trabajen en la fábrica de Texa
 
 \textbf{\underline{Solución:}}
 
-Sea $X$ el número de empleados que trabajan en  la fábrica de Hawai y $Y$ el número de empleados que trabajan en la fábrica de Texas. $X$ y $Y$ tienen distribución hipergeométrica con $N=60$, $n=20$,  $r_x=20$ y $r_y=40$. Por definicón la distribución hipergeométrica para $X$ y $Y$ es de la forma,
+Sea $X$ el número de empleados que trabajan en  la fábrica de Hawai y $Y$ el número de empleados que trabajan en la fábrica de Texas. $X$ y $Y$ tienen distribución hipergeométrica con $N=60$, $n=20$,  $r_x=20$ y $r_y=40$. Por definición la distribución hipergeométrica para $X$ y $Y$ es de la forma,
 
 $$\mathbb{P}(Y=y)=\displaystyle \frac{{r_y\choose y}{N-r_y\choose {n-y}}}{{N\choose n}}$$
 
