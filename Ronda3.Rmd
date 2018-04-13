@@ -1,0 +1,1810 @@
+---
+title: "Ejercicios de Distribuciones Continuas y Discretas"
+subtitle: "Diplomado de Probabilidad y Estadística Matemática en R"
+author: "http://synergy.vision/"
+output:
+  pdf_document:
+      toc: yes
+      toc_depth: 4
+      includes:
+        in_header: ./preambulo.tex
+  html_document: default
+fontsize: 12pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+\newpage
+
+#  Ejercicio 1
+
+Bob Walters, quien invierte con frecuencia en el mercado de valores, estudia con detenimiento cualquier inversión potencial.  En la actualidad examina la posibilidad de invertir en la Trinity Power Company.  Mediante el estudio del rendimiento en el pasado, Walters ha desglosado los resultados potenciales en cinco resultados posibles con sus probabilidades asociadas.  Los resultados son tasas de rendimiento sobre la inversión en una sola acción de Trinity Power.
+
+| Rendimiento de la inversión | Probabilidad |
+|:---------------------------:|:------------:|
+| 0.00 | 0.20 |
+| 10.00 | 0.25 |
+| 15.00 | 0.30 |
+| 25.00 | 0.15 |
+| 50.00 | 0.10 |
+
+Si Walters compra acciones siempre que la tasa de rendimiento esperada exceda al 10%, ¿comprará la acción, de acuerdo con estos datos?
+
+\newpage
+
+# Ejercicio 2
+
+Bill Johnson acaba de comprar una videograbadora en Jim´s Videotape Service a un costo de $300.  Ahora tiene la opción de comprar una póliza de servicio extendido que ofrece cinco años de cobertura por $100. Después de hablar con sus amigos y leer los informes, Bill cree que  puede incurrir en los siguientes gastos de manteniemiento durante los próximos cinco años.
+
+| Gasto | Probabilidad |
+|:-----:|:------------:|
+| 0 | 0.35 |
+| 50 | 0.25 |
+| 100 | 0.15 |
+| 150 | 0.10 |
+| 200 | 0.08 | 
+| 250 | 0.05 |
+| 300 | 0.02 |
+
+Encuentre el valor esperado de los costos de mantenimiento pronosticados.  ¿Debe Bill pagar $100 por la garantía?
+
+\textbf{\underline{Solución:}}
+
+\newpage
+
+# Ejercicio 3
+
+Harry Ohme está a cargo de la sección de electrónica de una gran tienda departamental.  Se ha dado cuenta de que la probabilidad de que un cliente que solamente se encuentre curioseando compre algo es de 0.3.  Suponga que 15 clientes visitan la sección de electrónica cada hora.  Utilice la tabla 3 del apéndice para responder a las siguientes preguntas:
+
+a) ¿Cuál es la probabilidad de que al menos una de las personas que curiosea compre algo durante una hora dada?
+
+b) ¿Cuál es la probabilidad de que al menos cuatro personas que curiosean compren algo en una hora dada?
+
+c) ¿Cuál es la probabilidad de que ninguna de las personas que curiosean compren algo durante una hora dada?
+
+d) ¿Cuál es la probabilidad de que no más de cuatro personas que curiosean compren algo durante una hora dada?
+
+\newpage
+
+# Ejercicio 4
+
+Si los precios de los automóviles nuevos se incrementan en un promedio de cuatro veces cada 3 años, encuentre la probabilidad de que
+
+a) ningún precio se incremente en un periodo de 3 años seleccionado de manera aleatoria.
+
+b) dos precios aumenten.
+
+c) cuatro precios aumenten.
+
+d) aumenten cinco o más.
+
+
+\newpage
+
+# Ejercicio 5
+
+La compañía Southwestern Electronics ha diseñado una nueva calculadora de bolsillo con una serie de funciones que otras calculadoras todavía no tienen.  El Departamento de Comercialización está planeando hacer una demostración de la calculadora a un grupo de clientes potenciales, pero está preocupado por algunos problemas iniciales: el 4% de las calculadoras nueva produce ciertas incongruencias matemáticas.  El vicepresidente de Comercialización planea seleccionar aleatoriamente un grupo de calculadoras para su demostración y está preocupado por la posibilidad de elegir una que empiece a funcionar mal.  Tiene la creencia de que el hecho de que una calculadora funcione o no es un proceso de Bernoulli, y está convencido de que la probabilidad de que se presente un mal funcionamiento es en realidad de alrededor de 0.04.
+
+a) Suponiendo que el vicepresidente elija exactamente 50 calculadoras para ser utilizadas en la demostración y utilizando la distribución de Poisson como aproximación de la binominal, ¿cuál es la probabilidad de obtener al menos tres calculadoras que no funcionen bien?
+
+b) ¿Cuál es la probabilidad de no tener ninguna calculadora que funcione mal?
+
+\newpage
+
+# Ejercicio 6
+
+La compañía Quickie Sales acaba de recibir dos estimaciones de ventas para el trimestre que se avecina contradictorias entre sí.  La estimación I dice que las ventas (en millones de dólares) estarán normalmente distribuidas con $\mu$ = 325 y $\sigma$ = 60. La estimación II dice que las ventas estarán normalmente distribuidas con $\mu$ = 300 y $\sigma$ = 50. El consejo directivo encuentra que cada estimación deberá utilizarse para hecer predicciones, la junta de directores ha decidido reunirse de nuevo al final de trimestre y utilizar información actualizada sobre las ventas para tomar una determinación sobre la credibilidad de cada estimación.
+
+a) Suponiendo que la estimación I es precisa, ¿cuál es la probabilidad de que la compañía tenga ventas trimestrales mayores a 350 millones de dólares?
+
+b) Rehaga el inciso anterior suponiendo que la estimación II es la correcta.
+
+c) Al final del trimestre, la junta de directores encuentra que la compañía tiene ventas mayores a $350,000,000.  Dada esta información actualizada, ¿cuál es la probabilidad de que originalmente la estimación I haya sido la correcta?  (Sugerencia: recuerde el teorema de Bayes.)
+
+d) Rehaga el inciso c) para la estimación II.
+
+\newpage
+
+# Ejercicio 7
+
+Producir el pan francés que hornea la Fleur de Farine cuesta \$8 por docena de baguettes.  El pan fresco se vende a un precio premium de \$16 por docena, pero tiene una vida de anaquel corta.  Si la Fleur de Farine hornea más pan del que compran sus clientes en un día dado, lo que queda se vende con descuento al día siguiente a los restaurantes, para cubos de pan tostado, a $7 por docena.  Por el contrario, producir menos que la demanda la llevará a ventas perdidas.  La Fleur de Farine hornea su pan francés por lotes de 350 docenas de baguettes.  La demanda diaria de pan es una variable aleatoria que toma los valores 2,3,4 o 5, con probabilidades respectivas de 0.2, 0.25, 0.4 y 0.15.  Si la Fleur de Farine dessea maximixar las ganancias esperadas, ¿cuánto pan debe hornear cada mañana?
+
+\newpage
+
+# Ejercicio 8
+
+El City Bank de Durham inició un nuevo programa de créditos recientemente.  Los clientes que cumplan con ciertos requisitos pueden obtener una tarjeta de crédito que es aceptada por los comerciantes del área.  Los registros anteriores indican que el 25% de todos los solicitantes de este tipo de tarjeta es rechazado.  Dado que la solicitud es un proceso de Bernoulli; de 15 solicitantes, ¿cuál es la probabilidad de que ocurra lo siguiente?
+
+a) Exactamente cuatro sean rechazados.
+
+b) Exactamente ocho sean rechazados.
+
+c) Sean rechazados menos de tres.
+
+d) Sean rechazados más de cinco.
+
+
+\newpage
+
+# Ejercicio 9
+
+La compañía Executive Camera proporciona gastos completos a sus agentes de ventas.  Cuando tiene la intención de asignar gastos de automóvil a sus empleados, el departamento de finanzas utiliza cantidades de millas para estimar los gastos de gasolina, neumáticos y mantenimiento.  Los agentes de ventas recorren un promedio de 5,650 millas al mes, con una desviación estándar de 120.  Con el fin de ahorrar, el departamento de finanzas desea que su estimación de gastos y el correspondiente presupuesto sean adecuadamente suficientes y, por tanto, no quiere usar, para la estimación, los datos de ningún agente de ventas cuyo kilometraje sea menor que 5,500 kilómetros.  ¿Qué porcentanje de los agentes de ventas recorren 5,500 kilómetro o más?
+
+
+\newpage
+
+# Ejercicio 10
+
+Considere la siguiente información de graduados de los 20 mejores programas de maestría en administración (MBA) de Estados Unidos.
+
+| Clasificación  de Programas  MBA en 1994 | Universidad | Salario promedio antes de MBA \$ | Salario promedio después del MBA \$ | Número promedio de ofertas de trabajo |
+|:----------------------------------------:|:----------------------------------------:|:-----------------------------:|:--------------------------------:|:-------------------------------------:|
+| 1 | Pennsylvania (Wharton) | 48,240  | 89,930 | 3.02 |
+| 2 | Northwestern (Kellogg) | 44,000 | 84,640 | 2.96 |
+| 3 | Chicago | 42,690 | 83,210 | 2.92 |
+| 4 | Stanford | 49,610 | 100,800 | 3.47 |
+| 5 | Harvard | 53,910 | 102,630 | 3.60 | 
+| 6 | Michigan | 36,050 | 67,820 | 2.68 | 
+| 7 | Indiana | 34,320 | 58,520 | 2.45 | 
+| 8 | Columbia | 44,470 | 100,480 | 2.43 |
+| 9 | UCLA (Anderson) | 44,620 | 74,010 | 2.74 | 
+| 10 | MIT (Sloan) | 41,820 | 80,500 | 3.25 | 
+| 11 | Duke (Fuqua) | 40,960 | 70,490 | 2.78 | 
+| 12 | Virginia (Darden) | 38,530 | 74,280 | 2.69 | 
+| 13 | Dartmouth (Tuck) | 45,300 | 95,410 | 2.40 |
+| 14 | Carnegie-Mellon | 38,250 | 69,890 | 2,69 | 
+| 15 | Cornell (Johnson) | 40,740 | 71,970 | 2.40 |
+| 16 | NYU (Stern) | 38,960 | 70,660 | 2.12 |
+| 17 | Texas | 36,620 | 61,890 | 2.58 |
+| 18 | UNC (Kenan-Flagler) | 38,690 | 69,880 | 3.09 | 
+| 19 | California (Haas) | 43,570 | 71,970 | 2.34 | 
+| 20 | Purdue (Krannert) | 30,600 | 54,720 | 2.19 | 
+
+a) Calcule la media y la desviación estándar de los salarios después de la maestría.
+
+b) Asuma que los salarios después de la maestría tienen una distribución normal, y la media y la desviación estándar son como las calculadas en a); encuentre la probabilidad de que un graduado de maestría en 1994 elegido al azar esté en la siguiente situación:
+
+1) Gane más de \$100,000.
+
+2) Gane menos de \$60,000.
+
+3) Gane entre \$75,000 y $95,000.
+
+c) Calcule la media para el número promedio de ofertas de trabajo.
+
+d) Si las ofertas de trabajo para los graduados de maestría tienen una distribución de Poisson con una media como la calculada en c), encuentre la probabilidad de que un graduado seleccionado al azar reciba lo siguiente:
+
+1) Menos de dos ofertas.
+
+2) Dos o tres ofertas.
+
+3) Más de tres ofertas.
+
+
+\newpage
+
+# Ejercicio 11
+
+Ansel Fearrington desea solicitar un préstamo de \$75,000 al banco para adquirir un nuevo tractor para su granja.  El funcionario de crédito no tiene ningún dato específico sobre la historia del banco acerca de préstamos para equipo, pero le dice a Ansel que a través de los años, el banco ha recibido aproximandamente 1,460 solicitudes de préstamo por año y que la probabilidad de que sean aceptadas fue, en promedio, de aproximadamente 0.8.
+
+a) Ansel tiene curiosidad acerca del promedio y de la desviación estándar del número de préstamos aceptados por año.  Encuentre esas cantidades.
+
+b) Suponga que después de una minuciosa investigación el funcionario de crédito le dice a Ansel que en realidad las cantidades correctas son de 1,327 solicitudes al año con una probabilidad de aprobación de 0.77. ¿Cuáles son ahora la media y la desviación estándar?
+
+
+\newpage
+
+# Ejercicio 12
+
+La Encuesta de Salarios Ejecutivos 1995 de *The Wall Street Journal* encontró los siguientes cambios porcentuales en los salarios (salario base más bonos) pagados a los directores ejecutivos de 39 compañías industriales:
+
+| Compañía | Cambio porcentual | Compañía | Cambio porcentual |
+|:---------|:-----------------:|:---------|:-----------------:|
+| AMP | 11.2 | Owens-Corning | 22.7 |
+| Allied Signal | 20.0 | Owena-Illinois | -6.5 | 
+| Armstrong | 31.9 | PPG Industries | 5.3 |
+| Briggs & Stratton | -2.9 | Paccar | 17.6 |
+| Browning-Ferris | 29.7 | Pentair | 64.1 |
+| CSX | 19.1 | Premark | -33.5 |
+| Caterpilar | -0.6 | Raychem | 5.2 |
+| Consolidated Freight | -42.3 | Ryder System | -34.1 |
+| Crown Cork & Seal | -8.5 | Sonoco Products | 26.3 |
+| Deere | 10.7 | Stanley Works | -16.9 |
+| Donnelley (R.R) | 12.4 | Tecumseh Products | -3.8 |
+| Dun & Bradstreet | 9.7 | Temple-Inland | 35.6 |
+| Emerson Electric | 1.3 | Thomas & Betts | 28.7 |
+| Engelhard | 24.8 | Trinova | 13.1 |
+| Federal Express | 8.5 | Tyco | 26.2 | 
+| Fluor | 12.5 | Union Pacific | 7.6 | 
+| Harnischfeger | 10.9 | WMX Technologies | 26.7 |
+| Hillenbrand | 3.1 | Westinghouse | 47.1 | 
+| Ingersoll-Rand | 25.3 | Yellow | -0.8 |
+| Norfolk Southern | 20.3 | 
+
+a) ¿Qué parte de esos ejecutivos experimentaron un recorte salarial en 1995? Asumiendo que estos resultados son representativos de los cambios salariales para los directores de todas las empresas industriales, encuentre la posibilidad de que de seis directores elegidos al azar:
+
+1) Exactamente cinco sufrieran un recorte en su salario en 1995.
+
+2) Por lo menos cinco obtuvieran aumentos en 1995.
+
+3) Menos de cuatro obtuvieran aumentos en 1995.
+
+b) Calcule la media y la desviación estándar para estos 39 cambios en salarios.
+
+C) Asuma que los cambios porcentaules de 1995 en los salarios de ejecutivos de todas las empresas industriales tienen una distribución normal, y media y desviación estándar como las calculadas en el inciso b).  Encuentre las probabilidades de que un director elegido al azar haya tenido un cambio en su paga en 1995 de:
+
+1) Incremento de al menos 25%.
+
+2) Incremento de menos del 5%.
+
+3) Entre el 15% de recorte y el 15% de incremento.
+
+
+\newpage
+
+# Ejercicio 13
+
+Diez motores se empacan para su venta en cierto almacén.  Los motores se venden en \$100 cada uno, pero una garantía de devolución del doble de su dinero es efectiva por cualquier unidad defectuosa que el comprador pueda recibir.  Encuentre la ganancia neta esperada para el vendedor si la probabilidad de que cualquier motor sea defectuoso es 0.8. (Suponga que la calidad de cualquier motor es independiente de la de los otros.)
+
+
+\newpage
+
+# Ejercico 14
+
+La probabilidad de que llegue un cliente al mostrador de servicio de una tienda en un segundo cualquiera es igual a .1.  Suponga que llegan clientes en forma aleatoria y por tanto que una llegada en un segundo cualquiera es independiente de las otras.  Encuentre la probabilidad de que la primera llegada
+
+a) ocurra durante el tercer intervalo de un segundo.
+
+b) no ocurra hasta al menos el tercer intervalo de un segundo.
+
+
+\newpage
+
+# Ejercicio 15
+
+Las líneas telefónicas que dan servicio a la oficina de reservaciones de una aerolínea están todas ocupadas alrededor de 60% del tiempo.
+
+a) Si una persona llama a esta oficina, ¿cuál es la probabilidad de que complete su llamada en el primer intento? ¿En el segundo intento? ¿En el tercero?
+
+b) Si usted y un amigo deben ambos completar llamadas a esta oficina, ¿cuál es la probabilidad de que un total de cuatro intentos sean necesarios para que los dos terminen su comunicación?
+
+
+\newpage
+
+# Ejercicio 16
+
+Suponga que ocurren llegadas de acuerdo con un proceso de Poisson con un promedio de siete por hora.  ¿Cuál es la probabilidad de que exactamente dos clientes lleguen en dos horas entre
+
+a) las 2:00 p.m. y  las 4:00 p.m.(un periodo continuo de dos horas)?,
+
+b)la 1:00 p.m. y las 2:00 p.m. o entre las 3:00 p.m. y las 4:00 p.m. (dos periodos de una hora separados que totalizan dos horas)?
+
+
+\newpage
+
+# Ejercicio 17
+
+El propietario de una tienda ha abarrotado cierto artículo y decide usar la siguiente promoción para disminuir la oferta.  El artículo tiene un precio marcado de \$100.  Por cada cliente que compre el artículo durante un día en particular, el propietario reducirá el precio en un factor de un medio.  Entonces, el primer cliente pagará \$50 por el artículo, el segundo pagará \$25 y así sucesivamente.  Suponga que el número de clientes que compren el artículo durante el día tiene una distribución de Poisson con media 2.  Encuentre el costo esperado del artículo al final del día. [*Sugerencia*: el costo al final del día es $100(1/2)^{y}$, donde *Y* es el número de clientes que han comprado el artículo.]
+
+\newpage
+
+# Ejercicio 18
+
+Una comerciante tiene en existencia cierto artículo perecedero.  Ella sabe que en cualquier día determinado tendrá una demanda de dos, tres o cuatro de estos artículos con probabilidades .1, .4 y .5, respectivamente.  Compra los artículos en \$1.00 cada uno y  lod vende en \$1.20 cada uno.  Si quedan algunos al final del día. representan pérdida total.  ¿Cuántos artículos debe tener en existencia para maximizar su utilidad diaria esperada?
+
+
+\newpage
+
+# Ejercicio 19
+
+Se observó que la cantidad semanal de dinero gastado por una compañía durante largo tiempo en mantenimiento y reparaciones, está normalmente distribuida en forma aproximada con media de \$400 y desviación estándar de \$20.  Si están presupuestados \$450 para la próxima semana, ¿cuál es la probabilidad de que los costos reales rebasen la cantidad presupuestada?
+
+\textbf{\underline{Solución:}}
+Sea $X$ la variable aleatoria que representa la cantidad semanal de dinero gastado por una compañia durante largo tiempo en mantenimiento y reparaciones, donde $X$ está normalmente distribuida con media \$400 y desviación estándar \$20, $X\sim N(400,400)$
+
+Queremos calcular $\mathbb{P}(X>450)$.
+
+Para eso, normalizaremos la variable $X$, usando la variable normal estándar 
+
+$$Z=\displaystyle \frac{X-\mu}{\sigma}=\displaystyle \frac{X-400}{20} \sim N(0,1)$$
+
+Usando propiedades de una función de distribución, se tiene:
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X>450) &=\mathbb{P}(\frac{X-400}{20}>\frac{450-400}{20})\\
+&=\mathbb{P}(Z>\frac{5}{2})\\
+&=1-\mathbb{P}(Z\leq\frac{5}{2})\\
+&=1-\Phi(\frac{5}{2})
+\end{array}
+$$
+
+Usando la tabla de Área de curvas normal, se tiene que $1-\Phi(\frac{5}{2})=0.0062$.
+
+En R, podemos calcular $\mathbb{P}(Z\leq\frac{5}{2})$ de esta manera,
+
+```{r,comment=""}
+normal<-pnorm(5/2,0,1)
+normal
+
+```
+
+Luego, $\mathbb{P}(X>450)=1-0.9937$
+
+Esto implica que, $\mathbb{P}(X>450)=0.0062$.
+
+
+\newpage
+
+# Ejercicio 20
+
+Los ingresos anuales de jefes de familia en una parte de una ciudad tienen aproximadamente una distribuición gamma con $\alpha = 20$ y $\beta = 1000$.
+
+a) Encuentre la media y la varianza de estos ingresos.
+
+b) ¿Esperaría hallar muchos ingresos de más de \$30.000 en esta sección de la ciudad?
+
+c) ¿Qué proporción de jefes de familia de esta sección de la ciudad tienen ingresos de  más de \$30.000?
+
+\textbf{\underline{Solución:}}
+
+Sea $X$ una variable aleatotia que representa los ingresos anuales de los jefes de la familia. Tenemos que $X$ tiene una distribución gamma de $\alpha=20$ y $\beta=1000$.
+
+a) Calculemos la media y la varianza de $X$. La media y varianza de una variable aleatoria con distribución gamma son,
+
+$$\mu=\mathbb{E}(X)=\alpha\beta$$ y $$\sigma^2=V(X)=\alpha\beta^2$$
+
+Luego
+
+$$\mu=\mathbb{E}(X)=\alpha\beta=(20)(1000)=20000$$
+
+$$\sigma^2=V(X)=\alpha\beta^2=(20)(1000)^2=20000000$$
+
+La media de $X$ es de \$20.000 y la varianza de \$20.000.000.
+
+b) Para esto calculemos primeramente la desviación estándar, $\sigma=\sqrt{20000000}=4472.14$. Luego, el valor estándar es, $\displaystyle \frac{30000-20000}{\sqrt{20000000}}=2.2361$. Lo que representa el 2.23\% de los ingresos anuales. Es decir, no hay muchos ingresos por encima de \$30.000.
+
+c) Calculemos $\mathbb{P}(X>30000)$, donde por definición de una función de distribución se tiene que,
+
+$$\mathbb{P}(X>30000)=1-\mathbb{P}(X\leq30000)$$
+Calculemos $\mathbb{P}(X\leq30000)$ en R,
+
+\textbf{\underline{En R:}}
+
+```{r}
+gamma<-pgamma(q = 30000, shape = 20,scale = 1000)
+gamma
+```
+
+Por lo que , $\mathbb{P}(X\leq30000)=0.9781265$. Asi, 
+
+$$\mathbb{P}(X>30000)=1-0.9781265= 0.02187347$$.
+
+Que representa el 2.2\%  los jefes de familia de esta sección de la ciudad.
+
+\newpage
+
+# Ejercicio 21
+
+Durante un turno de ocho horas la proporción de tiempo $\mathcal Y$  que una máquina troqueladora de láminas metálicas está sin operar por mantenimiento o reparaciones tiene una distribución beta con $\alpha = 1$ y $\beta = 2$.  Esto es, 
+
+$$f(y) = \left\{
+\begin{matrix}
+2(1 - y) & 0 \le y \le 1,\\
+0 & \text{en cualquier otro punto}
+\end{matrix}\right.$$
+
+El costo (en cientos de dólares) de este tiempo improductivo, debido a producción perdida y costo de mantenimiento y reparación, está dado por $\mathcal C=10+20\mathcal Y+4 \mathcal Y^2$. Encuentre la media y la varianza de $\mathcal C$.
+
+\textbf{\underline{Solución:}}
+
+Sea $Y$ la proporción de tiempo durante ocho horas de una máquina troqueladora de láminas metálicas.
+
+Cómo $Y$ es una variable aleatoria con distribución beta, entonces la media y varianza de $X$, estan dadas por,
+
+$$\mu=\mathbb{E}(Y)=\displaystyle \frac{\alpha}{\alpha+\beta}$$ 
+
+$$\sigma^2=V(Y)=\displaystyle \frac{\alpha\beta}{(\alpha+\beta^2)(\alpha+\beta+1)}$$
+
+El costo de este tiempo improductivo, debido a la producción perdida y al costo de reparaciones y mantenimiento es $C=10+20Y+4Y^2$. Calculemos la media y la varianza de $C$.
+
+Por linealidad del valor esperado y de la varianza se tiene que,
+
+$$
+\begin{array}{rl}
+\mu&=\mathbb{E}(C)\\
+&=\mathbb{E}(10+20Y+4Y^2)\\
+&=\mathbb{E}(10)+\mathbb{E}(20Y)+\mathbb{E}(4Y^2)\\
+&=10+20\mathbb{E}(Y)+4\mathbb{E}(Y^2)\\
+&=10+20(\frac{1}{1+2})+4\mathbb{E}(Y^2)
+\end{array}
+$$
+
+Donde por definición $\mathbb{E}(Y^2)$, está dado por, 
+
+$$
+\begin{array}{rl}
+\mathbb{E}(Y^2)&=\displaystyle \int_{0}^1y^2f(y)dy\\
+&=\displaystyle \int_{0}^1y^22(1-y)dy\\
+&=2\displaystyle \int_{0}^1(y^2-y^3)dy\\
+&=2\left[\displaystyle \frac{y^3}{3}|_0^1-\displaystyle \frac{y^4}{4}|_0^1\right]\\
+&=2(\displaystyle \frac{1}{3}-\frac{1}{4})\\
+&=\displaystyle \frac{1}{6}
+\end{array}
+$$
+
+Sustituyendo, nos queda lo siguiente,
+
+$$
+\begin{array}{rl}
+\mu&=\mathbb{E}(C)\\
+&=10+20(\frac{1}{1+2})+4\mathbb{E}(Y^2)\\
+&=10+20(\frac{1}{3})+4(\frac{1}{6})\\
+&=\displaystyle \frac{52}{3}
+\end{array}
+$$
+
+Luego, usando propiedades de la varianza, tenemos que, 
+
+$$
+\begin{array}{rl}
+\sigma^2&=\mathbb{V}(C)\\
+&=\mathbb{E}[C^2]-(\mathbb{E}(C))^2\\
+&=\mathbb{E}[C^2]-\left(\displaystyle \frac{52}{3}\right)^2\\\\
+&=\mathbb{E}[C^2]-\left(\displaystyle \frac{2704}{9}\right)
+\end{array}
+$$
+
+Donde por definición $\mathbb{E}[C^2]$, está dada por,
+
+$$
+\begin{array}{rl}
+\mathbb{E}[(C^2)]&=\mathbb{E}[(10+20Y+4Y^2)^2]\\
+&=\mathbb{E}[100+400Y+480Y^2+160Y^3+16Y^4]\\
+&=\mathbb{E}(100)+\mathbb{E}(400Y)+\mathbb{E}(480Y^2)+\mathbb{E}(160Y^3)+\mathbb{E}(16Y^4)\\
+&=100+400\mathbb{E}(Y)+480\mathbb{E}(Y^2)+160\mathbb{E}(Y^3)+16\mathbb{E}(Y^4)\\
+&=100+400(\frac{1}{3})+480(\frac{1}{6})+160\mathbb{E}(Y^3)+16\mathbb{E}(Y^4)\\
+\end{array}
+$$
+
+Donde,
+
+$$
+\begin{array}{rl}
+\mathbb{E}(Y^3)&=\displaystyle \int_{0}^1y^3f(y)dy\\
+&=\displaystyle \int_{0}^1y^32(1-y)dy\\
+&=2\displaystyle \int_{0}^1(y^3-y^4)dy\\
+&=2\left[\displaystyle \frac{y^4}{4}|_0^1-\displaystyle \frac{y^5}{5}|_0^1\right]\\
+&=2(\displaystyle \frac{1}{4}-\frac{1}{5})\\
+&=\displaystyle \frac{1}{10}
+\end{array}
+$$
+
+y 
+$$
+\begin{array}{rl}
+\mathbb{E}(Y^4)&=\displaystyle \int_{0}^1y^4f(y)dy\\
+&=\displaystyle \int_{0}^1y^42(1-y)dy\\
+&=2\displaystyle \int_{0}^1(y^4-y^5)dy\\
+&=2\left[\displaystyle \frac{y^5}{5}\Big |_0^1-\displaystyle \frac{y^6}{6}\Big |_0^1\right]\\
+&=2(\displaystyle \frac{1}{5}-\frac{1}{6})\\
+&=\displaystyle \frac{1}{15}
+\end{array}
+$$
+
+Sustituyendo estos valores, tenemos que,
+
+$$
+\begin{array}{rl}
+\mathbb{E}[C^2]&=100+400(\frac{1}{3})+480(\frac{1}{6})+160\mathbb{E}(Y^3)+16\mathbb{E}(Y^4)\\
+&=100+400(\frac{1}{3})+480(\frac{1}{6})+160(\frac{1}{10})+16(\frac{1}{15})\\
+&=\displaystyle \frac{1652}{5}
+\end{array}
+$$
+
+Finalmente, se tiene que, 
+
+$$
+\begin{array}{rl}
+\sigma^2&=\mathbb{E}[C^2]-\left(\displaystyle \frac{2704}{9}\right)\\\\
+&=\displaystyle \frac{1652}{5}-\displaystyle \frac{2704}{9}\\\\
+&=\displaystyle \frac{1348}{45}\\
+\end{array}
+$$
+
+\newpage
+
+# Ejercicio 22
+
+La demanda de un producto de una empresa varía enormemente de mes a mes. La distribución de
+probabilidad que se presenta en la tabla siguiente, basada en los datos de los dos últimos años,
+muestra la demanda mensual de la empresa.
+
+| Demanda | Unitaria Probabilidad |
+|:-------:|:---------------------:|
+| 300 | 0.20 |
+| 400 | 0.30 |
+| 500 | 0.35 |
+| 600 | 0.15 |
+
+a. Si la empresa basa las órdenes mensuales en el valor esperado de la demanda mensual, ¿cuál
+será la cantidad ordenada mensualmente por la empresa para este producto?
+
+b. Suponga que cada unidad demandada genera $70 de ganancia y que cada unidad ordenada
+cuesta $50. ¿Cuánto ganará o perderá la empresa en un mes si coloca una orden con base en
+su respuesta al inciso a y la demanda real de este artículo es de 300 unidades?
+
+
+\textbf{\underline{Solución:}}
+
+Sea $X$ una variable aleatoria que representa la demanda mensual de un producto.
+
+a) Para esto calculemos el valor esperado $X$.
+
+$$
+\begin{array}{rl}
+\mathbb{E}(X)&=\sum_{x=1}^4xp(x)\\
+&=300(0.20)+400(0.30)+500(0.35)+600(0.15)\\
+&=445
+\end{array}
+$$
+
+La cantidad ordenada mensualmente por la empresa para este producto es de 445.
+
+b) La ganancia de la demanda real de este artículo es de 
+
+$$G=300(70)=21000$$
+
+La ganancia es de \$21.000.
+
+El costo de de la cantidad ordenada mensualmente es de 
+
+$$C=445(50)=22250$$
+
+El costo es \$22,250.
+
+Entonces, 
+
+$$G-C=21000-22250=-1250$$
+
+Esto quiero decir, que la empresa perderá \$1250 en un mes si coloca una orden de 445 y la demanda real de 300 unidades.
+
+\newpage
+
+# Ejercicio 23
+
+Nueve por ciento de los estudiantes tienen un balance en su tarjeta de crédito mayor a \$7000 (*Reader’s Digest*, julio de 2002). Suponga que selecciona aleatoriamente 10 estudiantes para entrevistarlos respecto del uso de su tarjeta de crédito
+
+a) ¿Es la selección de 10 estudiantes un experimento binomial? Explique.
+
+b) ¿Cuál es la probabilidad de que dos de los estudiantes tengan un balance en su tarjeta de crédito
+superior a \$7000?
+
+c) ¿De que ninguno tenga un balance en su tarjeta de crédito superior a \$7000?
+
+d) ¿De que por lo menos tres tengan un balance en su tarjeta de crédito superior a \$7000?
+
+
+\textbf{\underline{Solución:}}
+
+a) Sea $Y$ el número de estudiantes que tienen un balance en su tarjeta de crédito mayor a \$7000. Si denotamos $E$ el evento éxito de tener un balance en la tarjeta de crédito mayor a \$7000, donde el 9\% de los estudiantes tienen un balance en su tarjeta de crétito superior a \$7000, esto es, $\mathbb{P}(E)=p=0.09$ y seleccionamos 10 estudiantes aleatorios para entrevistarlos con respecto al balance de sus tarjetas de crédito entonces estariamos determinando un experimento binomial con  $n=10$, $p=0.09$ y $q=\mathbb{P}(E^c)=(1-p)=0.91$ que es la probabilidad de no tener un balance en la tarjeta de crédito mayor a \$7000.
+
+b) Calculemos la probabilidad de que dos estudiantes sean exitosos usando la definición de una distribución binomial,
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X=2)&=p(2)\\
+&=\displaystyle {10\choose2}p^{10}q^{10-2}\\
+&=\displaystyle \frac{10}{(10-2)!2!}(0.09)^{2}(0.91)^8\\
+&=0.1714\\
+\end{array}
+$$
+
+En R, lo calculamos de ésta manera,
+
+```{r,comment=""}
+bi2<-dbinom(x=2,size=10,prob=0.09)
+bi2
+```
+
+
+c) Calculemos la probabilidad de que ningún estudiantes sea exitoso.
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X=0)&=p(0)\\
+&=\displaystyle {10\choose0}p^{0}q^{10-0}\\
+&=\displaystyle \frac{10}{(10-0)!0!}(0.09)^{0}(0.91)^{10}\\
+&=0.3894\\
+\end{array}
+$$
+
+Luego, en R,
+
+```{r,comment=""}
+bi0<-dbinom(0,10,0.09)
+bi0
+```
+
+
+d) Calculemos la probabilidad de que al menos tres estudiantes sean exitosos.
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X\geq3)&=1-\mathbb{P}(X<3)\\
+&=1-(\mathbb{P}(X=0)+\mathbb{P}(X=1)+\mathbb{P}(X=2))\\
+&=1-\left(0.3894+\displaystyle {10\choose1}p^{1}q^9+0.1714\right)\\
+&=1-0.9459\\
+&=0.0541
+\end{array}
+$$
+
+
+\newpage
+
+# Ejercicio 24
+
+Una empresa fabrica computadoras personales en dos fábricas, una en Texas y la otra en Hawai.
+La fábrica de Texas tiene 40 empleados; la fábrica de Hawai tiene 20 empleados. A una muestra
+aleatoria de 20 empleados se le pide que llene un cuestionario sobre prestaciones.
+
+a) ¿Cuál es la probabilidad de que ninguno de los empleados de la muestra trabaje en la fábrica
+de Hawai?
+
+b) ¿De que uno de los empleados de la muestra trabaje en la fábrica de Hawai?
+
+c) ¿De que dos o más de los empleados de la muestra trabajen en la fábrica de Hawai?
+
+d) ¿De que nueve de los empleados de la muestra trabajen en la fábrica de Texas?
+
+
+\textbf{\underline{Solución:}}
+
+Sea $X$ el número de empleados que trabajan en  la fábrica de Hawai y $Y$ el número de empleados que trabajan en la fábrica de Texas. $X$ y $Y$ tienen distribución hipergeométrica con $N=60$, $n=20$,  $r_x=20$ y $r_y=40$. Por definicón la distribución hipergeométrica para $X$ y $Y$ es de la forma,
+
+$$\mathbb{P}(Y=y)=\displaystyle \frac{{r_y\choose y}{N-r_y\choose {n-y}}}{{N\choose n}}$$
+
+$$\mathbb{P}(X=x)=\displaystyle \frac{{r_x\choose x}{N-r_x\choose {n-x}}}{{N\choose n}}$$
+
+a) La empresa en total tiene 60 empleados y se puede seleccionar 20 empleados de 60 en ${N\choose n}={60\choose20}$ formas, entonces calculemos la probabilidad de que ninguno de los empleados de la muestra trabaje en la fábrica de Hawai usando la distribución hipergeométrica.
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X=0)&=\displaystyle \frac{{20\choose0}{40\choose20}}{{60\choose20}}\\
+&=\displaystyle \frac{{40\choose20}}{{60\choose20}}\\
+&=0.00003288\\
+\end{array}
+$$
+
+La probabilidad de que todos trabajen en la fábrica de Texas o que ninguno trabaje en Hawai es muy pequeña con $0.00003288$.
+
+En R, calculamos esta probabilidad de la siguiente forma,
+
+```{r,comment=""}
+hyper1<-dhyper(0,20,40,20)
+hyper1
+```
+
+b) Calculemos la probabilidad de que uno de los empleados de la muestra trabaje en la fábrica de Hawai.
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X=1)&=\displaystyle \frac{{20\choose1} {40\choose19}}{{60\choose20}}\\
+&=\displaystyle \frac{20{40\choose19}}{{60\choose20}}\\
+&=0.0006267
+\end{array}
+$$
+
+La probabilidad de que un empleado trabaje en la fábrica de Hawai es un poco mas alta que ninguno trabaje en esa fábrica. La probabilidad es de $0.0006263$.
+
+En R, tenemos:
+
+```{r,comment=""}
+hyper2<-dhyper(1,20,40,20)
+hyper2
+```
+
+c) Calculemos la probabilidad de que dos o más empleados de la muestra trabaje en la fábrica de Hawai.
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X\geq2)&= 1-\mathbb{P}(X<2)\\
+&=1-[\mathbb{P}(X=0)+\mathbb{P}(X=1)]\\
+&=1-[0.00003288+0.0006263]\\
+&=0.99\\
+\end{array}
+$$
+
+Podemos ver que es muy probable que dos o más empleados trabajen en la fábrica de Hawai de una muestra de 20 empleados.
+
+d) Calculemos la probabilidad de que nueve de los empleados de la muestra trabaje en la fábrica de Texas.
+
+$$
+\begin{array}{rl}
+\mathbb{P}(Y=9)&=\displaystyle \frac{ {40\choose9}{20\choose11}}{{60\choose20}}\\
+&=0.01095
+\end{array}
+$$
+
+La probabilidad que nueve empleados trabajen en la fábrica de Texas es de $0.0109$ 
+
+En R,
+
+```{r,comment=""}
+hyper3<-dhyper(9,40,20,20)
+hyper3
+
+```
+
+
+\newpage
+
+# Ejercicio 25
+
+El *Barron´s* Big Money Poll preguntó a 131 gerentes de inversiones de Estados Unidos acerca de sus puntos de vista sobre las inversiones a corto plazo (*Barron´s*, 28 de octubre de 2002). De acuerdo con las respuestas 4% se encontraban muy optimistas, 39 % se encontraban optimistas, 29% se encontraban neutrales, 21% se encontraban pesimistas y 7% se encontraban muy pesimistas. Sea *x* la variable aleatoria que refleje el grado de optimismo y que vaya desde *x* = 1 para muy pesimista hasta *x* = 5 para muy optimista.
+
+a) Elabore una distribución de probabilidad para el grado de optimismo de los gerentes de inversiones.
+
+b) Calcule el valor esperado del grado de optimismo.
+
+c) Calcule la varianza y la desviación estándar del grado de optimismo.
+
+d) Haga un comentario sobre lo que le dicen sus resultados acerca del grado de optimismo y
+su variabilidad.
+
+
+\textbf{\underline{Solución:}}
+
+a) Construyamos la distribución de probabilidad para $X$,
+
+\begin{center}
+\begin{tabular}{|r c c l|}
+\hline 
+x & & & p(x)\\ \hline 
+1 & & & 0.07 \\
+2 & & & 0.21\\
+3 & & & 0.29\\
+4 & & & 0.39\\
+5 & & & 0.04\\ \hline
+\end{tabular}
+\end{center}
+
+b) Calculemos el valor esperado de $X$, 
+
+
+$$
+\begin{array}{rl}
+\mathbb{E}(X)&=\sum_{x=1}^5xp(x)\\
+&=1p(1)+2p(2)+3p(3)+4p(4)+5p(5)\\
+&=1(0.07)+2(0.21)+3(0.29)+4(0.39)+5(0.04)\\
+&=\displaystyle \frac{78}{25}\\
+&=3.12\\
+\end{array}
+$$
+
+c) La varianza de X, está dada por,
+
+$$V(X)=\mathbb{E}[(X-\mu)^2]=\sum_{x=1}^5(x-\mu)^2p(x)$$
+$$
+\begin{array}{rl}
+\mathbb{V}(X)&=(1-3.12)^2p(1)+(2-3.12)^2p(2)+(3-3.12)^2p(3)+(4-3.12)^2p(4)+(5-3.12)^2p(5)\\
+&=(4.49)(0.07)+(1.25)(0.21)+(0.01)(0.29)+(0.77)(0.39)+(3.53)(0.04)\\
+&=\displaystyle \frac{2553}{2500}\\
+&=1.02\\
+\end{array}
+$$
+
+La desviación estándar es la raiz cuadrada de $V(X)$, entonces, $$\sigma=\sqrt{1.02}=1.0105$$
+
+
+d) La variabilidad de X es pequeña es decir, los grados de optimismo en una empresa no varian demasiado.
+
+
+\newpage
+
+# Ejercicio 26
+
+La American Association of Individual Investors publica una guía anual con los principales fondos mutualistas (The Individual Investor´s Guide to the Top Mutual Founds, 22ª ed., American Association of Individual Investors, 2003). En la siguiente tabla se presenta la clasificación de 29 fondos mutualistas de acuerdo con el riesgo.
+
+a) Sea *x* una variable que va desde *x* = 1 con el menor riesgo hasta el mayor riesgo con *x* = 5. Elabore una distribución de probabilidad para el nivel de riesgo.
+
+b) ¿Cuál es el valor esperado y la varianza del nivel de riesgo?
+
+c) Se encontró que 11 de éstos eran fondos de renta fija. De ellos siete se clasificaron como bajos
+y cuatro como abajo del promedio. Compare el riesgo de los fondos de renta fija con los
+18 fondos de acciones.
+
+__Nivel de riesgo:__
+
+| **Categorías ** | **Número de fondos** |
+|:-------------------- |:-------------------------------:|
+| Bajo | 7 |
+| Bajo el promedio| 6 |
+| Promedio | 3 |
+| Sobre el promedio | 6 |
+| Alto | 7 |
+
+
+\textbf{\underline{Solución:}}
+
+a) Contruyamos una distribución de probabilidad para el nivel de riesgo.
+
+\begin{center}
+\begin{tabular}{|r c l|}
+\hline 
+$x$ & \textbf{Número de fondos} & $p(x)$\\ \hline 
+1 & 7 & 0.2414 \\
+2 & 6 & 0.2069\\
+3 & 3 & 0.1034\\
+4 & 6 & 0.2069\\
+5 & 7 & 0.2414\\ \hline
+\end{tabular}
+\end{center}
+
+
+b) Calculemos el valor esperado y la varianza de $X.$
+
+$$
+\begin{array}{rl}
+\mathbb{E}(X)&=\sum_{x=1}^5xp(x)\\
+&=1p(1)+2p(2)+3p(3)+4p(4)+5p(5)\\
+&=1(0.2414)+2(0.2069)+3(0.1034)+4(0.2069)+5(0.2414)\\
+&=3\\
+\end{array}
+$$
+
+$$
+\begin{array}{rl}
+\mathbb{V}(X)&=(1-3)^2p(1)+(2-3)^2p(2)+(3-3)^2p(3)+(4-3)^2p(4)+(5-3)^2p(5)\\
+&=(4)(0.2414)+(1)(0.2069)+ (1)(0.2069)+(4)(0.2414)\\
+&=2.345\\
+\end{array}
+$$
+
+c) 11 de los 29 fondos son de renta fija donde siete se clasificaron bajos y cuatro como abajo del promedio, veamos algunas características de este conjunto,
+
+Sea $Y$ los fondos de renta fija, entonces,
+
+\begin{center}
+\begin{tabular}{|r c l|}
+\hline 
+$y$ & \textbf{Número de fondos} & $p(y)$\\ \hline 
+1 & 7 & 0.6363 \\
+2 & 4 & 0.3636\\ \hline
+\end{tabular}
+\end{center}
+
+ El valor esperado y la varianza son,
+
+$$
+\begin{array}{rl}
+\mathbb{E}(Y)&=\sum_{y=1}^2yp(y)\\
+&=1p(1)+2p(2)\\
+&=1(0.6363)+2(0.3636)\\
+&=1.3636\\
+\end{array}
+$$
+
+$$
+\begin{array}{rl}
+\mathbb{V}(Y)&=(1-1.3636)^2p(1)+(2-1.3636)^2p(2)\\
+&=(0.1322)(0.6363)+(0.4050)(0.3636)\\
+&=0.2314\\
+\end{array}
+$$
+
+Los 18 fondos de acciones, tienen la siguiente característica,
+
+$$
+\begin{array}{rl}
+\mathbb{E}(Z)&=\sum_{z=3}^5zp(z)\\
+&=3p(3)+4p(4)+5p(5)\\
+&=3(0.2778)+4(0.3333)+5(0.3889)\\
+&=4\\
+\end{array}
+$$
+$$
+\begin{array}{rl}
+\mathbb{V}(Z)&=(3-4)^2p(3)+(4-4)^2p(4)+(5-4)^2p(5)\\
+&=(1.21)(0.2778)+(0.81)(0.3889)\\
+&=0.6411\\
+\end{array}
+$$
+
+\newpage
+
+# Ejercicio 27
+
+Al hacer el presupuesto de gastos para el próximo año en una universidad, se obtuvieron los siguientes
+pronósticos de gastos (dados en millones de dólares) \$9, \$10, \$11, \$12 y \$13. Como no se sabe cuáles son los gastos actuales, a los gastos calculados se les asignaron las probabilidades 0.3, 0.2, 0.25, 0.05 y 0.2.
+
+a) Dé la distribución de probabilidad para estos pronósticos de gastos.
+
+b) ¿Cuál es el valor esperado en estos pronósticos de gastos?
+
+c) ¿Cuál es la varianza en el pronóstico de gastos para el año próximo?
+
+d) Si las proyecciones de ingreso estiman que éste será de \$12 millones, ¿cómo será la situación
+financiera de la universidad?
+
+
+\textbf{\underline{Solución:}}
+
+a) Sea $X$ el pronóstico de gastos para el próximo año (en millones de dólares) de la universidad, entonces la distribución de probabilidad de $X$ está dada por, 
+
+\begin{center}
+\begin{tabular}{|r c c l|}
+\hline 
+$x$ & & & $p(x)$\\ \hline 
+\$9 & & & 0.3 \\
+\$10 & & & 0.2\\
+\$11 & & & 0.25\\
+\$12 & & & 0.05\\
+\$13 & & & 0.2\\ \hline
+\end{tabular}
+\end{center}
+
+b) Calculemos el valor esperado de $X$,
+
+$$
+\begin{array}{rl}
+\mathbb{E}(X)&=\sum_{x=9}^{13}xp(x)\\
+&=9p(9)+10p(10)+11p(11)+12p(12)+13p(13)\\
+&=9(0.3)+10(0.2)+11(0.25)+12(0.05)+13(0.2)\\
+&=10.65\\
+\end{array}
+$$
+
+c) Calculemos la varianza,
+
+$$
+\begin{array}{rl}
+\mathbb{V}(X)&=(9-10.65)^2p(9)+(10-10.65)^2p(10)+(11-10.65)^2p(11)+(12-10.65)^2p(12)+(13-10.65)^2p(13)\\
+&=(9-10.65)^2(0.3)+(10-10.65)^2(0.2)+(11-10.65)^2(0.25)+(12-10.65)^2(0.05)+(13-10.65)^2(0.2)\\
+&=2.1275\\
+\end{array}
+$$
+
+d) Si las proyecciones de ingreso estimadas para el año son \$12 millones de dólares y la media de los gastos es de \$10.65 millones, entonces la ganancia de la universidad es, $$\$12-\mathbb{E}(X)=\$12-\$10.65=\$1.3$$
+
+Por lo que podemos decir que la situación financiera de la universidad es estable con una ganancia estimada de \$1.3 millones de dólares.
+
+
+\newpage
+
+# Ejercicio 28
+
+Las llegadas de los clientes a un banco son aleatorias e independientes; la probabilidad de una llegada
+en un lapso cualquiera de un minuto es la misma que la probabilidad de una llegada en otro lapso cualquiera de un minuto. Conteste las preguntas siguientes suponiendo que la tasa media de llegadas en un lapso de un minuto es tres clientes.
+
+a) ¿Cuál es la probabilidad de exactamente tres llegadas en un minuto?
+
+b) ¿Cuál es la probabilidad de por lo menos tres llegadas en un minuto?
+
+\textbf{\underline{Solución:}}
+
+Sea $X$ el número de llegadas de los clientes a un banco en un lapso de un minuto. Cómo la probabilidad de una llegada en un lapso cualquiera de un minuto es la misma que la probabilidad de una llegada en otro lapso cualquiera de un minuto, entonces $X$ tienen una distribución de Poisson con $\mu=3$. 
+
+a) Calculemos la probabilidad de exactamente tres llegadas en un minuto usando la distribución de Poisson,
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X=3)&=\displaystyle \frac{\mu^3e^{-\mu}}{3!}\\ \\
+&=\displaystyle \frac{(3)^3e^{-3}}{6}\\
+&=0.2240\\
+\end{array}
+$$
+
+
+En R, calculamos la probabilidad de esta manera,
+
+```{r,comment=""}
+poiss1<-dpois(3,3)
+poiss1
+```
+
+La probabilidad de tres llegadas en un minuto al banco es de 0.2240.
+
+b) Calculemos la probabilidad de por los menos tres llegadas en un minuto,
+
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X\geq3)&= 1-\mathbb{P}(X<3)\\
+&=1-\mathbb{P}(X=0)-\mathbb{P}(X=1)-\mathbb{P}(X=2)\\
+&=1-\displaystyle \frac{3^0e^{-3}}{0!}-\displaystyle \frac{3^1e^{-3}}{1!}-\displaystyle \frac{3^2e^{-3}}{2!}\\
+&=05768\\
+\end{array}
+$$
+
+En R, 
+
+```{r,comment=""}
+poiss2<-ppois(2,3,lower.tail = FALSE)
+poiss2
+```
+
+
+
+\newpage
+
+# Ejercicio 29
+
+Suponga que quiere comprar un terreno y sabe que también hay otros compradores interesados. El vendedor revela que aceptará la oferta mayor que sea superior a \$10,000. Si la oferta del competidor *x* es una variable aleatoria que está uniformemente distribuida entre \$10,000 y \$15,000.
+
+a) Asuma que usted ofrece \$12,000. ¿Cuál es la probabilidad de que su oferta sea aceptada?
+
+b) Si usted ofrece \$14,000. ¿Cuál es la probabilidad de que su oferta sea aceptada?
+
+c) ¿Cuál es la cantidad que deberá ofrecer para maximizar la probabilidad de obtener la propiedad?
+
+d) Suponga que conoce a quien está dispuesto a pagar \$16,000 por la propiedad. ¿Consideraría
+la posibilidad de ofrecer una cantidad menor que la del inciso c?
+
+
+\textbf{\underline{Solución:}}
+
+Para la variable aleatoria $X$ se define la función de densidad de la siguiente manera,
+
+$$f(x) = \left\{
+\begin{matrix}
+\frac{1}{\$5000}, & \$10000 \le x \le \$15000,\\
+0, & \text{en cualquier otro punto}
+\end{matrix}\right.$$
+
+a) El vendedor revela que aceptará la oferta mayor que sea superior a \$10,000 y se asume que usted ofrece \$12,000, entonces la probabilidad de que la oferta sea aceptada es $\mathbb{P}(10000\leq{x}\leq12000)$. Así,
+
+$$
+\begin{array}{rl}
+\mathbb{P}(10000\leq{x}\leq12000)&=(12000-10000)\displaystyle \frac{1}{5000}\\ 
+&=\displaystyle \frac{2}{5}\\
+&=0.4\\
+\end{array}
+$$
+
+En R, 
+
+```{r,comment=""}
+unif1<-punif(12000,10000,15000)
+unif1
+```
+
+
+La probabilidad de que la oferta sea aceptada es 0.4.
+
+b) Si usted ofrece \$14,000, entonces la probabilidad de que la oferta sea aceptada es $\mathbb{P}(10000\leq{x}\leq14000)$. Así,
+
+$$
+\begin{array}{rl}
+\mathbb{P}(10000\leq{x}\leq14000)&=(14000-10000)\displaystyle \frac{1}{5000}\\ 
+&=\displaystyle \frac{4}{5}\\
+&=0.8\\
+\end{array}
+$$
+
+En R, 
+
+```{r,comment=""}
+unif2<-punif(14000,10000,15000)
+unif2
+
+```
+
+La probabilidad de que sea aceptada la oferta es 0.8, es decir, es muy probable que suceda.
+
+c) La cantidad que debará ofrecer es \$15,000 porque la probabilidad de que sea aceptada la oferta es de 1. Por lo cuál la oferta será aceptada.
+
+
+d) No, ya que posiblemente el vendedor le acepte la oferta de \$16,000. Si se desea comprar el terreno entonces se optaría por ofrecer más de \$16,000. 
+
+\newpage
+
+# Ejercicio 30
+
+Una persona con una buena historia crediticia tiene una deuda promedio de \$15,015 (*BusinessWeek*, 20 de marzo de 2006). Suponga que la desviación estándar es de \$3,540 y que los montos de las deudas están distribuidos normalmente.
+
+a) ¿Cuál es la probabilidad de que la deuda de una persona con buena historia crediticia sea mayor a \$18,000?
+
+b) ¿De que la deuda de una persona con buena historia crediticia sea de menos de \$10,000?
+
+c) ¿De que la deuda de una persona con buena historia crediticia esté entre \$12,000 y \$18,000?
+
+d) ¿De que la deuda de una persona con buena historia crediticia sea mayor a \$14,000?
+
+
+\textbf{\underline{Solución:}}
+
+Sea $X$ la variable aleatoria que representa los montos de las deudas de una persona con buena historia crediticia, donde $X$ está normalmente distribuida con media \$15,015 y desviación estándar \$3,540, $X\sim N(15015,12531600)$
+
+a) Queremos calcular $\mathbb{P}(X>18000)$. Para eso, normalizaremos la variable $X$, usando la variable normal estándar $Z=\displaystyle \frac{X-\mu}{\sigma}=\displaystyle \frac{X-15015}{3540} \sim N(0,1)$.
+
+Usando propiedades de una función de distribución, se tiene:
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X>18000) &=\mathbb{P}(\frac{X-15015}{3540}>\frac{18000-15015}{3540})\\
+&=\mathbb{P}(Z>\frac{199}{236})\\
+\end{array}
+$$
+
+En R calculamos $\mathbb{P}(Z>\frac{199}{236})$ , 
+
+```{r,comment=""}
+norm2<-pnorm(199/236,0,1,lower.tail=FALSE)
+norm2
+```
+
+ Asi, $\mathbb{P}(X>18000)$ es 0.1995.
+ 
+ b)  Calculemos $\mathbb{P}(X<10000)$,
+ 
+$$
+\begin{array}{rl}
+\mathbb{P}(X<10000) &=\mathbb{P}(\frac{X-15015}{3540}<\frac{10000-15015}{3540})\\
+&=\mathbb{P}(Z<-\frac{17}{12})\\
+\end{array}
+$$
+
+Calculemos en R $\mathbb{P}(Z < -\frac{17}{12})$,
+
+```{r,comment=""}
+norm1<-pnorm(-17/12,0,1,lower.tail = FALSE)
+norm1
+```
+
+Entonces la probabilidad de que la deuda de una persona con buena historia crediticia sea de menos de \$10,000 es de 0.92, es decir, muy probable.
+
+
+c) Calculemos $\mathbb{P}(12000\leq X \leq 18000)$,
+
+$$
+\begin{array}{rl}
+\mathbb{P}(12000\leq X \leq 18000) &=\mathbb{P}(\frac{12000-15015}{3540} \leq \frac{X-15015}{3540} \leq \frac{18000-15015}{3540})\\
+&=\mathbb{P}(-\frac{201}{236} \leq Z \leq \frac{199}{236})\\
+&=\mathbb{P}(Z \leq \frac{199}{236})-\mathbb{P}(Z  \leq -\frac{201}{236})\\
+\end{array}
+$$
+
+Calculemos las dos probabilidades en R, 
+```{r,comment=""}
+norm3<-pnorm(199/236,0,1)
+norm3
+
+norm4<-pnorm(-201/236,0,1)
+norm4
+```
+ 
+
+Asi tenemos que, $\mathbb{P}(12000\leq X \leq 18000)=0.6032557$
+ 
+d) Calculemos, $\mathbb{P}(X>14000)$.
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X>14000) &=\mathbb{P}(\frac{X-15015}{3540}>\frac{14000-15015}{3540})\\
+&=\mathbb{P}(Z>-\frac{203}{708})\\
+\end{array}
+$$
+ En R tenemos,
+ 
+```{r,comment=""}
+norm5<-pnorm(-203/708,0,1,lower.tail = FALSE)
+norm5
+
+```
+ 
+Por lo que $\mathbb{P}(X>14000)=0.6128379$.
+
+
+
+
+
+\newpage
+
+# Ejercicio 31
+
+El precio promedio de las acciones que pertenecen a S&P500 es de \$30 y la desviación estándar es \$8.20 (*BusinessWeek*, Special Annual Issue, primavera de 2003). Suponga que los precios de las acciones están distribuidos normalmente.
+
+a) ¿Cuál es la probabilidad de que el precio de las acciones de una empresa sea por lo menos de \$40?
+
+b) ¿De que el precio de las acciones de una empresa no sea mayor a \$20?
+
+c) ¿De cuánto deben ser los precios de las acciones de una empresa para que esté entre las 10% mejores?
+
+
+\textbf{\underline{Solución:}}
+
+Sea $X$ la variable aleatoria que representa los precios de las acciones en una empresa, donde $X$ está normalmente distribuida con media \$30 y desviación estándar \$8.20, $X\sim N(30,67.24)$.
+
+a) Calculemos $\mathbb{P}(X \geq 40)$,
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X \geq 40) &=\mathbb{P}(\frac{X-30}{8.20} \geq \frac{40-30}{8.20})\\
+&=\mathbb{P}(Z \geq \frac{50}{41})\\
+\end{array}
+$$
+Calculamos en R $\mathbb{P}(Z \geq \frac{50}{41})$,
+
+```{r,comment=""}
+norm6<-pnorm(50/41,0,1,lower.tail = FALSE)
+norm6
+```
+
+Entonces la probabilidad de que el precio de las acciones de una empresa sea por lo menos de \$40 es de 0.1113.
+
+b) Calculemos $\mathbb{P}(X \leq 20)$,
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X \leq 20) &=\mathbb{P}(\frac{X-30}{8.20} \leq \frac{20-30}{8.20})\\
+&=\mathbb{P}(Z \leq -\frac{50}{41})\\
+\end{array}
+$$
+
+Calculamos en R $\mathbb{P}(Z \leq -\frac{50}{41})$,
+
+```{r,comment=""}
+norm7<-pnorm(-50/41,0,1)
+norm7
+
+```
+
+
+La probabilidad de que el precio de las acciones de una empresa no sea mayor a \$20 es de 0.1113.
+
+c) Queremos saber de cuánto deben ser los precios de las acciones de una empresa para que esté entre las 10% mejores, esto es, 
+
+$$\mathbb{P}(Z \geq z)=0.1$$
+
+$$
+\begin{array}{rl}
+\mathbb{P}(Z \geq z) &= 1-\mathbb{P}(Z < z)=0.1\\
+&=\mathbb{P}(Z < z)=1-0.1\\
+&=\mathbb{P}(Z < z)=0.9\\
+\end{array}
+$$
+
+Usando la tabla de área de curvas normal tenemos que $z=1.28$ para que la probabilidad de que los precios de las acciones sea de 0.1.
+
+Como este valor es estandarizado $z=\frac{x-30}{8.20}=1.28$ entonces el precio de las acciones es de $$x=8.20(1.28)+30=40.50$$.
+
+Así el precio de las acciones de una empresa para que esté entre las 10\% mejores es de al menos \$40.50.
+\newpage
+
+# Ejercicio 32
+
+El volumen de negociaciones en la Bolsa de Nueva York es más intenso en la primera media hora (en la mañana temprano) y la última media hora (al final de la tarde) de un día de trabajo. A continuación se presentan los volúmenes (en millones de acciones) de 13 días de enero y febrero.
+
+| Días | Volumenes |
+|:----:|:---------:|
+| 1 | 214 | 
+| 2 | 163 | 
+| 3 | 265 |
+| 4 | 194 |
+| 5 | 202 |
+| 6 | 198 | 
+| 7 | 212 |
+| 8 | 201 |
+| 9 | 174 |
+| 10 | 171 |
+| 11 | 211 |
+| 12 | 211 |
+| 13 | 180 |
+
+La distribución de probabilidad de los volúmenes de negociaciones es aproximadamente normal.
+
+a) Calcule la media y la desviación estándar a usar como estimaciones de la media y de la desviación estándar de la población.
+
+b) ¿Cuál es la probabilidad de que, en un día elegido al azar, el volumen de negociaciones en la mañana temprano sea superior a 180 millones de acciones?
+
+c) ¿Cuál es la probabilidad de que, en un día elegido al azar, el volumen de negociaciones en la mañana temprano sea superior a 230 millones de acciones?
+
+d) ¿Cuántas acciones deberán ser negociadas para que el volumen de negociaciones en la mañana temprano de un día determinado pertenezca al 5% de los días de mayor movimiento?
+
+
+\textbf{\underline{Solución:}}
+
+
+Sea $X$ una variable aleatoria que representa los volúmenes de las negociaciones de la Bolsa de New York.
+
+a) Calculemos la media y la desviación estándar de los vólumenes de negociaciones de la Bolsa de New York.
+
+
+$$\mu=\sum_{i=1}^{n}\frac{x_i}{n}$$
+$$
+\begin{array}{rl}
+\mu &=\sum_{i=1}^{13}\frac{x_i}{13}\\\\
+&= \displaystyle \frac{214+163+265+194+202+198+212+201+174+171+211+211+180}{13}\\
+&= \displaystyle \frac{2596}{13}\\
+&= 199.69
+\end{array}
+$$
+
+La media de los volúmenes de las negociaciones es de 199.69.
+
+La varianza está dada por:
+
+$$\sigma^2=\sum_{i=1}^{n}\frac{(x_i-\mu)^2}{n-1}$$
+$$
+\begin{array}{rl}
+\sigma^2 &=\sum_{i=1}^{13}\frac{(x_i-\mu)^2}{13}\\
+&= \displaystyle \frac{(214-199.69)^2+(163-199.69)^2+(265-199.69)^2+(194-199.69)^2+(202-199.69)^2}{12} \\ \\
+&+ \displaystyle \frac{(198-199.69)^2+(212-199.69)^2+(201-199.69)^2}{12} \\ \\
+&+\displaystyle \frac{(174-199.69)^2+(171-199.69)^2+(211-199.69)^2+(211-199.69)^2+(180-199.69)^2}{12}\\
+&= \displaystyle \frac{8136.769}{12}\\ \\
+&= 678.0641\\
+\end{array}
+$$
+ Asi la desviación estándar de los volúmenes de las negociaciones $\sigma=\sqrt{678.0641}=26.03966$.
+ 
+Calculemos la media y la desviación estándar en R,
+
+```{r,comment=""}
+volumen<-c(214,163,265,194,202,198,212,201,174,171,211,211,180)
+media<-mean(volumen)
+media
+
+desviacion<-sd(volumen)
+desviacion
+
+```
+
+b) $X$ está distribuido normalmente con media 199.69 y desviación estándar 26.04. 
+Calculemos ahora $\mathbb{P}(X>180)$. Esto es,
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X > 180) &=\mathbb{P}(\frac{X-199.69}{26.04} > \frac{180-199.69}{26.04})\\
+&=\mathbb{P}(Z > -\frac{1969}{2604})\\
+\end{array}
+$$
+En R, 
+
+```{r,comment=""}
+b<-pnorm(-1969/2604,0,1,lower.tail = F)
+b
+
+```
+
+Por lo tanto, la probabilidad de que, en un día elegido al azar, el volumen de negociaciones en la mañana temprano sea superior a 180 millones de acciones es de 0.77.
+
+
+
+
+c) Calculemos ahora $\mathbb{P}(X>230)$. Esto es,
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X > 230) &=\mathbb{P}(\frac{X-199.69}{26.04} > \frac{230-199.69}{26.04})\\
+&=\mathbb{P}(Z > \frac{433}{372})\\ \\
+\end{array}
+$$
+
+En R, 
+
+```{r,comment=""}
+nor<-pnorm(433/372,0,1,lower.tail = F)
+nor
+```
+
+Por lo tanto, la probabilidad de que, en un día elegido al azar, el volumen de negociaciones en la mañana temprano sea superior a 230 millones de acciones es de 0.12.
+
+d) Queremos saber las acciones que deberán ser negociadas para que el volumen de negociaciones en la mañana temprano de un día determinado pertenezca al 5% de los días de mayor movimiento. Esto es,
+
+$$\mathbb{P}(Z \geq z)=0.05$$
+
+$$
+\begin{array}{rl}
+\mathbb{P}(Z \geq z) &= 1-\mathbb{P}(Z < z)=0.05\\
+&=\mathbb{P}(Z < z)=1-0.05\\
+&=\mathbb{P}(Z < z)=0.95\\
+\end{array}
+$$
+
+Usando la tabla de área de curvas normal tenemos que $z=1.64$ para que la probabilidad del volumen de negociaciones en la mañana temprano de un día determinado pertenezca al 5% de los días de mayor movimiento.
+
+Como este valor es estandarizado $z=\frac{x-199.69}{26.04}=1.64$ entonces el volúmen de las negociaciones es de $$x=26.04(1.64)+199.64=242.3456$$.
+
+Así el volúmen de las negociaciones es de \$242.35 millones.
+
+\newpage
+
+# Ejercicio 33
+
+El presidente Bush propuso eliminar los impuestos sobre los dividendos que pagan los accionistas debido a que esto resulta en un doble pago de impuestos. Las ganancias que se usan para pagar los dividendos ya han sido grabadas. En un sondeo sobre este tema se encontró que 47% de los estadounidenses estaban a favor de esta propuesta. La posición de los partidos políticos era 64% de los republicanos y 29% de los demócratas a favor de la propuesta (*Investor´s Business Daily*, 13 de enero de 2003). Suponga que 250 estadounidenses se reúnen para una conferencia acerca de la propuesta.
+
+a) ¿Cuál es la probabilidad de que por lo menos la mitad del grupo esté a favor de la propuesta?
+
+b) Más tarde se entera de que en el grupo hay 150 republicanos y 100 demócratas. Ahora, ¿cuál
+es su estimación del número esperado a favor de la propuesta?
+
+c) Ahora que conoce la composición del grupo, ¿cree que un conferencista a favor de la propuesta
+sea mejor recibido que uno que esté en contra de la propuesta?
+
+\textbf{\underline{Solución:}}
+
+Sea $X$ una variable aleatoria que representa el que se esté a favor de la propuesta. Sabemos que 47% de los estadounidenses estaban a favor de esta propuesta y la posición de los partidos políticos era 64% de los republicanos y 29% de los demócratas a favor. Para este problema se tomó una muestra 250 estadounidenses en una conferencia acerca de la propuesta.
+
+a) Se quiere calcular la probabilidad de que al menos la mitad del grupo esté a favor de la muestra. Es decir, se desea determinar la probabilidad binomial al menos 125 éxitos en 250 ensayos. Al aplicar la aproximación normal en este caso, se tienes que:
+
+$$\mu=np$$ y $$\sigma=\sqrt{np(1-p)}$$
+donde $p$ es la probabilidad del éxito. Es decir, la probabilidad que se esté a favor de la propuesta. Siendo así $p=0.47$. Luego, sustituyendo, tenemos:
+
+$$
+\begin{array}{rl}
+\mu &=np\\
+&=250(0.47)\\
+&=117.5
+\end{array}
+$$
+
+$$
+\begin{array}{rl}
+\sigma &=\sqrt{np(1-p)}\\
+&=\sqrt{250(0.47)(1-0.47)}\\
+&=7.89
+\end{array}
+$$
+
+Así, $X$ tiene una distribución normal con $\mu=117.5$ y $\sigma=7.89$.
+
+Calculemos ahora $\mathbb{P}(X \geq 125)$.
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X \geq 125) &=\mathbb{P}(\frac{X-117.5}{7.89} \geq \frac{125-117.5}{7.89})\\
+&=\mathbb{P}(Z \geq \frac{250}{263})\\ \\
+\end{array}
+$$
+
+En R, 
+
+```{r,comment=""}
+norm8<-pnorm(250/263,0,1,lower.tail = FALSE)
+norm8
+
+```
+
+Entonces la probabilidad de que al menos 125 estadounidenses estés a favor es de 17\%.
+
+
+b) Ahora sabemos que en el grupo hay 150 republicanos y 100 demócrata, donde la probabilidad de que estén a favor es de 64\% y 29\% respectivamente ($p(R)$, $p(D)$). Calculemos el valos esperado de $X$.
+
+$$
+\begin{array}{rl}
+\mathbb{E}(X)&=150p(R)+100p(D)\\
+&=150(0.69)+100(0.29)\\
+&=132.5\\
+\end{array}
+$$
+
+El número esperado a favor de la propuesta es de 132.5 estadounidenses.
+
+
+c) No, ya que a pesar de haber más personas a favor, el número de personas en contra es la media de la población 117.5. 
+
+
+
+
+
+
+
+
+\newpage
+
+# Ejercicio 34
+
+Sparagowsky & Associates hace un estudio sobre los tiempos necesarios para atender a un cliente en la ventanilla de su automóvil en los restaurantes de comida rápida. En McDonald´s el tiempo medio para atender a un cliente fue 2.78 minutos (*The Cincinnati Enquirer*, 9 de julio de 2000). Tiempos de servicio como los de estos restaurantes suelen seguir una distribución exponencial.
+
+a) ¿Cuál es la probabilidad de que el tiempo para atender a un cliente sea menor que 2 minutos?
+
+b) ¿De que el tiempo para atender a un cliente sean más de 5 minutos?
+
+c) ¿De que el tiempo para atender a un cliente sean más de 2.78 minutos?
+
+
+\textbf{\underline{Solución:}}
+
+Sea $X$ una variable aleatoria que representa el tiempo para atender un cliente en la ventanilla de su automóvil en los restaurantes de comida rápida. En McDonald´s el tiempo medio para atender a un cliente fue 2.78 minutos. Así $X$ tiene una distribución exponencial con $\mu=2.78$.
+
+a) Calculemos $\mathbb{P}(X<2)$. Esto es,
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X < 2) &= 1-e^{-2/\mu}\\ 
+&= 1-e^{-2/2.78}\\
+&=0.51\\
+\end{array}
+$$
+
+La probabilidad de que el tiempo para atender a un cliente sea menor que 2 minutos es de 0.51.
+
+En R, 
+
+```{r,comment=""}
+exp2<-pexp(2,1/2.78)
+exp2
+```
+
+
+
+b) Calculemos $\mathbb{P}(X>5)$. Esto es,
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X >5) &= 1- \mathbb{P}(X \leq 5)\\
+&=1-(1-e^{-5/\mu})\\ 
+&=e^{-5/2.78} \\
+&=0.17\\
+\end{array}
+$$
+
+La probabilidad de que el tiempo para atender a un cliente sea mayor que 5 minutos es 0.17.
+
+En R,
+
+```{r,comment=""}
+exp1<-pexp(5,1/2.78,lower.tail = F)
+exp1
+```
+
+
+c) Calculemos $\mathbb{P}(X>2.78)$. Esto es,
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X >2.78) &= 1- \mathbb{P}(X \leq 2.78)\\
+&=1-(1-e^{-2.78/\mu})\\ 
+&=e^{-278/2.78} \\
+&=0.37\\
+\end{array}
+$$
+
+La probabilidad de que el tiempo para atender a un cliente sea mayor que 2.78 minutos es 0.37.
+
+
+En R, 
+
+```{r,comment=""}
+exp3<-pexp(2.78,1/2.78,lower.tail = F)
+exp3
+
+```
+
+\newpage
+
+# Ejercicio 35
+
+Una ejecutiva de negocios se va a mudar de Chicago a Atlanta y necesita vender rápidamente su casa en Chicago. Un empleado le ofrece comprársela en \$210,000, pero la oferta expira al final de esa semana. En este momento la ejecutiva no tiene otra oferta mejor, pero piensa que puede dejar la casa en el mercado un mes más. De acuerdo con las conversaciones que ha tenido con su agente inmobiliario la ejecutiva cree que los precios que pueden ofrecerle dejando la casa un mes más en el mercado están distribuidos uniformemente entre \$200,000 y \$225,000.
+
+a) Si deja la casa en el mercado un mes más, ¿cuál es la expresión matemática para la función de densidad de probabilidad de los precios de venta que le sean ofrecidos?
+
+b) Si la deja en el mercado un mes más, ¿cuál es la probabilidad de que venda la casa en por lo menos \$215,000?
+
+c) Si la deja en el mercado un mes más, ¿cuál es la probabilidad de que venda la casa en menos de \$210,000?
+
+d) ¿Deberá dejar la ejecutiva su casa en el mercado un mes más? ¿Por qué sí o por qué no?
+
+\textbf{\underline{Solución:}}
+
+Sea $X$ una variable aleatoria que representa la venta de la casa de la ejecutiva. Si está deja la venta de la casa un més más entonces $X$ está distriuida uniformemente entre \$200,000 y \$225,000.
+
+a) Para la variable aleatoria $X$ se define la función de densidad de la siguiente manera,
+
+$$f(x) = \displaystyle\left\{
+\begin{matrix}
+\frac{1}{\$25000}, & \$200000 \le x \le \$225000,\\
+0, & \text{en cualquier otro punto}
+\end{matrix}\right.$$
+
+b) Si la deja en el mercado un mes más, calculemos $\mathbb{P}(215000 \leq X \leq 225000)$. Esto es,
+
+
+$$
+\begin{array}{rl}
+\mathbb{P}( 215000 \leq x \leq 225000)&=(225000-215000)\displaystyle \frac{1}{25000}\\ 
+&=\displaystyle \frac{2}{5}\\
+&=0.4\\
+\end{array}
+$$
+
+La probabilidad de que venda la casa en por lo menos \$215,000 es de 0.4.
+
+
+En R, 
+
+```{r,comment=""}
+unif3<-punif(215000,200000,225000,lower.tail = F)
+unif3
+```
+
+
+c) Si la deja en el mercado un mes más, calculemos la probabilidad de que venda la casa en menos de \$210,000. Esto es, $\mathbb{P}(200000 \leq X \leq 210000)$.
+
+$$
+\begin{array}{rl}
+\mathbb{P}( 200000 \leq x \leq 210000)&=(210000-200000)\displaystyle \frac{1}{25000}\\ 
+&=\displaystyle \frac{2}{5}\\
+&=0.4\\
+\end{array}
+$$
+
+La probabilidad de que venda la casa en menos de \$210,000 es de 0.4.
+
+En R, 
+
+```{r,comment=""}
+unif4<-punif(210000,200000,225000)
+unif4
+```
+
+
+
+d) No, ya que hay un 40\% de que se venda la casa por debajo de \$210,000.
+
+
+
+
+\newpage
+
+# Ejercicio 36
+
+El promedio anual de gastos de una familia estadounidense en transporte diario es \$6312 (*Money*, agosto de 2001). Suponga que dicha cantidad está distribuida normalmente.
+
+a) Si sabe que 5% de las familias estadounidenses gastan menos de $1000 en el transporte diario. ¿Cuál es la desviación estándar en esta cantidad de gasto?
+
+b) ¿Cuál es la probabilidad de que un hogar gaste entre \$4000 y \$6000?
+
+c) ¿En que intervalo se encuentran los gastos de las familias que constituyen 3% de las familias
+con los gastos más altos en transporte?
+
+\textbf{\underline{Solución:}}
+
+
+Sea $X$ una variable aleatoria que representa el gasto anual de una familia estadounidense en transporte diario. $X$ está distribuido normalmente con media \$6312.
+
+
+a) Si sabe que 5% de las familias estadounidenses gastan menos de $1000 en el transporte diario, calculemos la desviación estándar de está cantidad de gasto. Así, tenemos lo siguiente:
+
+$$\mathbb{P}(Z< \frac{1000-6312}{\sigma})=0.05$$
+
+Usando la tabla de áreas de curvas normal tenemos que $z=-1.65$. Luego, 
+
+$$\frac{1000-6312}{\sigma}=z=-1.65$$
+
+Por lo tanto, $$\sigma=\frac{1000-6312}{-1.65}=3219.4$$
+
+
+
+b) Calculemos $$\mathbb{P}(4000 \leq X \leq 6000)$$
+
+
+$$
+\begin{array}{rl}
+\mathbb{P}(4000 \leq X \leq 6000) &=\mathbb{P}(\frac{4000-6312}{3219.4} \leq \frac{X-6312}{3219.4} \leq \frac{6000-6312}{32219.4})\\\\
+&=\mathbb{P}(-0.72 \leq Z \leq -0.097)\\ 
+&=\mathbb{P}(Z \leq -0.097)-\mathbb{P}(Z \leq -0.72)
+\end{array}
+$$
+
+En R calculamos estás probabilidades,
+
+```{r,comment=""}
+norm9<-pnorm(-0.72,0,1)
+norm10<-pnorm(-0.097,0,1)
+norm10-norm9
+```
+
+
+Así, $\mathbb{P}(4000 \leq X \leq 6000)=0.22$. El 22\% de las familias gastan entre \$4000 y \$6000 en transporte.
+
+
+c) Queremos calcular en que intervalo se encuentran los gastos de las familias que constituyen 3% de las familias con los gastos más altos en transporte. Esto es, $$\mathbb{P}(Z \geq z)=0.03$$
+
+$$
+\begin{array}{rl}
+\mathbb{P}(Z \geq z) &= 1-\mathbb{P}(Z < z)=0.03\\
+&=\mathbb{P}(Z < z)=1-0.03\\
+&=\mathbb{P}(Z < z)=0.97\\
+\end{array}
+$$
+Usando la tabla de áreas de curvas normal tenemos que $z=1.88$. Luego, 
+
+$$\frac{x-6312}{3219.4}=z=1.88$$
+
+Despejando $x$, se tiene que $x=1.88(3219.4)+6312=122364.5$. En al menos \$12364.5 se encuentran los gastos de las familias que constituyen 3% de las familias con los gastos más altos en transporte.
+
+\newpage
+
+# Ejercicio 37
+
+El tiempo (en minutos) entre dos llamadas telefónicas en la oficina de solicitud de servicios de una aseguradora tiene la siguiente distribución de probabilidad exponencial.
+
+$$f(x)= 0.50e^{-0.50x} \quad  \text{para} \quad x \geq 0$$
+
+
+a) ¿Cuál es el tiempo medio entre las llamadas telefónicas?
+
+b) ¿Cuál es la probabilidad de que pasen 30 segundos o menos entre llamadas telefónicas?
+
+c) ¿De que pase 1 minuto o menos entre las llamadas telefónicas?
+d. ¿Cuál es la probabilidad de que pasen 5 minutos o más sin que haya llamadas telefónicas?
+
+\textbf{\underline{Solución:}}
+
+Sea $X$ una variable aleatoria que representa el tiempo (en minutos) de dos llamadas telefónicas. 
+
+a) Cómo $X$ tiene la siguiente distribución de probabilidad exponencial.
+
+$$f(x)= 0.50e^{-0.50x} \quad  \text{para} \quad x \geq 0$$
+Así, $\frac{1}{\mu}=0.50$
+ 
+Entonces el tiempo medio entre las llamadas telefónicas es de $\mu=2$.
+
+b) Cómo $X$ representa el tiempo en minutos entonces calculemos $\mathbb{P}(X \leq 0.5)$.
+
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X \leq 0.5) &= 1-e^{-0.5/\mu}\\ 
+&= 1-e^{-0.5/2}\\
+&=0.22\\
+\end{array}
+$$
+
+La probabilidad de que pasen 30 segundos o menos entre llamadas telefónicas es de 0.22.
+
+En R,
+
+```{r,comment=""}
+exp4<-pexp(0.5,1/2)
+exp4
+```
+
+
+
+c) Calculemos $\mathbb{P}(X \leq 1)$.
+
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X \leq 1) &= 1-e^{-1/\mu}\\ 
+&= 1-e^{-1/2}\\
+&=0.39\\
+\end{array}
+$$
+
+La probabilidad de que pasen 1 minuto o menos entre llamadas telefónicas es de 0.39.
+
+En R, 
+
+```{r,comment=""}
+exp5<-pexp(1,1/2)
+exp5
+```
+
+
+d) Calculemos $\mathbb{P}(X \geq 5)$.
+
+
+$$
+\begin{array}{rl}
+\mathbb{P}(X \geq 5) &= 1- \mathbb{P}(X < 5)\\
+&= 1-(1-e^{-5/\mu})\\ 
+&= e^{-5/2}\\
+&=0.08\\
+\end{array}
+$$
+
+La probabilidad de que pasen 5 minutos o más sin que haya llamadas telefónicas es de 0.08.
+
+En R,
+
+```{r,comment=""}
+exp6<-pexp(5,1/2, lower.tail = FALSE)
+exp6
+```
+
