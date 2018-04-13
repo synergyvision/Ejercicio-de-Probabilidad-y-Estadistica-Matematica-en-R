@@ -304,7 +304,11 @@ Se observó que la cantidad semanal de dinero gastado por una compañía durante
 \textbf{\underline{Solución:}}
 Sea $X$ la variable aleatoria que representa la cantidad semanal de dinero gastado por una compañia durante largo tiempo en mantenimiento y reparaciones, donde $X$ está normalmente distribuida con media \$400 y desviación estándar \$20, $X\sim N(400,400)$
 
-Queremos calcular $\mathbb{P}(X>450)$. Para eso, normalizaremos la variable $X$, usando la variable normal estándar $Z=\displaystyle \frac{X-\mu}{\sigma}=\displaystyle \frac{X-400}{20} \sim N(0,1)$.
+Queremos calcular $\mathbb{P}(X>450)$.
+
+Para eso, normalizaremos la variable $X$, usando la variable normal estándar 
+
+$$Z=\displaystyle \frac{X-\mu}{\sigma}=\displaystyle \frac{X-400}{20} \sim N(0,1)$$
 
 Usando propiedades de una función de distribución, se tiene:
 
@@ -313,7 +317,7 @@ $$
 \mathbb{P}(X>450) &=\mathbb{P}(\frac{X-400}{20}>\frac{450-400}{20})\\
 &=\mathbb{P}(Z>\frac{5}{2})\\
 &=1-\mathbb{P}(Z\leq\frac{5}{2})\\
-&=1-\Phi(\frac{5}{2})\\
+&=1-\Phi(\frac{5}{2})
 \end{array}
 $$
 
@@ -340,9 +344,9 @@ Los ingresos anuales de jefes de familia en una parte de una ciudad tienen aprox
 
 a) Encuentre la media y la varianza de estos ingresos.
 
-b) ¿Esperaría hallar muchos ingresos de más de \$30,000 en esta sección de la ciudad?
+b) ¿Esperaría hallar muchos ingresos de más de \$30.000 en esta sección de la ciudad?
 
-c) ¿Qué proporción de jefes de familia de esta sección de la ciudad tienen ingresos de  más de \$30,000?
+c) ¿Qué proporción de jefes de familia de esta sección de la ciudad tienen ingresos de  más de \$30.000?
 
 \textbf{\underline{Solución:}}
 
@@ -351,11 +355,16 @@ Sea $X$ una variable aleatotia que representa los ingresos anuales de los jefes 
 a) Calculemos la media y la varianza de $X$. La media y varianza de una variable aleatoria con distribución gamma son,
 
 $$\mu=\mathbb{E}(X)=\alpha\beta$$ y $$\sigma^2=V(X)=\alpha\beta^2$$
-Luego, $\mu=\mathbb{E}(X)=\alpha\beta=(20)(1000)=20000$ y $\sigma^2=V(X)=\alpha\beta^2=(20)(1000)^2=20000000$.
 
-La media de $X$ es de \$20,000 y la varianza de \$20,000,000.
+Luego
 
-b) Para esto calculemos primeramente la desviación estándar, $\sigma=\sqrt{20000000}=4472.14$. Luego, el valor estándar es, $\displaystyle \frac{30000-20000}{\sqrt{20000000}}=2.2361$. Lo que representa el 2.23\% de los ingresos anuales. Es decir, no hay muchos ingresos por encima de \$30,000.
+$$\mu=\mathbb{E}(X)=\alpha\beta=(20)(1000)=20000$$
+
+$$\sigma^2=V(X)=\alpha\beta^2=(20)(1000)^2=20000000$$
+
+La media de $X$ es de \$20.000 y la varianza de \$20.000.000.
+
+b) Para esto calculemos primeramente la desviación estándar, $\sigma=\sqrt{20000000}=4472.14$. Luego, el valor estándar es, $\displaystyle \frac{30000-20000}{\sqrt{20000000}}=2.2361$. Lo que representa el 2.23\% de los ingresos anuales. Es decir, no hay muchos ingresos por encima de \$30.000.
 
 c) Calculemos $\mathbb{P}(X>30000)$, donde por definición de una función de distribución se tiene que,
 
@@ -363,12 +372,15 @@ $$\mathbb{P}(X>30000)=1-\mathbb{P}(X\leq30000)$$
 Calculemos $\mathbb{P}(X\leq30000)$ en R,
 
 \textbf{\underline{En R:}}
-```{r,comment=""}
-gamma<-pgamma(30000,20,1/1000)
+
+```{r}
+gamma<-pgamma(q = 30000, shape = 20,scale = 1000)
 gamma
 ```
 
-Por lo que , $\mathbb{P}(X\leq30000)=0.9781265$. Asi, $$\mathbb{P}(X>30000)=1-0.9781265= 0.02187347$$.
+Por lo que , $\mathbb{P}(X\leq30000)=0.9781265$. Asi, 
+
+$$\mathbb{P}(X>30000)=1-0.9781265= 0.02187347$$.
 
 Que representa el 2.2\%  los jefes de familia de esta sección de la ciudad.
 
@@ -376,16 +388,15 @@ Que representa el 2.2\%  los jefes de familia de esta sección de la ciudad.
 
 # Ejercicio 21
 
-Durante un turno de ocho horas la proporción de tiempo *Y*  que una máquina troqueladora de láminas metálicas está sin operar por mantenimiento o reparaciones tiene una distribución beta con $\alpha = 1$ y $\beta = 2$.  Esto es, 
+Durante un turno de ocho horas la proporción de tiempo $\mathcal Y$  que una máquina troqueladora de láminas metálicas está sin operar por mantenimiento o reparaciones tiene una distribución beta con $\alpha = 1$ y $\beta = 2$.  Esto es, 
 
 $$f(y) = \left\{
 \begin{matrix}
-2(1 - y), & 0 \le y \le 1,\\
-0, & \text{en cualquier otro punto}
+2(1 - y) & 0 \le y \le 1,\\
+0 & \text{en cualquier otro punto}
 \end{matrix}\right.$$
 
-El costo (en cientos de dólares) de este tiempo improductivo, debido a producción perdida y costo de mantenimiento y reparación, está dado por $C=10+20Y+4Y^2$. Encuentre la media y la varianza de $C$.
-
+El costo (en cientos de dólares) de este tiempo improductivo, debido a producción perdida y costo de mantenimiento y reparación, está dado por $\mathcal C=10+20\mathcal Y+4 \mathcal Y^2$. Encuentre la media y la varianza de $\mathcal C$.
 
 \textbf{\underline{Solución:}}
 
@@ -393,7 +404,9 @@ Sea $Y$ la proporción de tiempo durante ocho horas de una máquina troqueladora
 
 Cómo $Y$ es una variable aleatoria con distribución beta, entonces la media y varianza de $X$, estan dadas por,
 
-$$\mu=\mathbb{E}(Y)=\displaystyle \frac{\alpha}{\alpha+\beta}$$ y $$\sigma^2=V(Y)=\displaystyle \frac{\alpha\beta}{(\alpha+\beta^2)(\alpha+\beta+1)}$$
+$$\mu=\mathbb{E}(Y)=\displaystyle \frac{\alpha}{\alpha+\beta}$$ 
+
+$$\sigma^2=V(Y)=\displaystyle \frac{\alpha\beta}{(\alpha+\beta^2)(\alpha+\beta+1)}$$
 
 El costo de este tiempo improductivo, debido a la producción perdida y al costo de reparaciones y mantenimiento es $C=10+20Y+4Y^2$. Calculemos la media y la varianza de $C$.
 
@@ -405,7 +418,7 @@ $$
 &=\mathbb{E}(10+20Y+4Y^2)\\
 &=\mathbb{E}(10)+\mathbb{E}(20Y)+\mathbb{E}(4Y^2)\\
 &=10+20\mathbb{E}(Y)+4\mathbb{E}(Y^2)\\
-&=10+20(\frac{1}{1+2})+4\mathbb{E}(Y^2)\\
+&=10+20(\frac{1}{1+2})+4\mathbb{E}(Y^2)
 \end{array}
 $$
 
@@ -421,6 +434,7 @@ $$
 &=\displaystyle \frac{1}{6}
 \end{array}
 $$
+
 Sustituyendo, nos queda lo siguiente,
 
 $$
@@ -437,18 +451,18 @@ Luego, usando propiedades de la varianza, tenemos que,
 $$
 \begin{array}{rl}
 \sigma^2&=\mathbb{V}(C)\\
-&=\mathbb{E}[(C)^2]-(\mathbb{E}(C))^2\\
-&=\mathbb{E}[(C)^2]-\left(\displaystyle \frac{52}{3}\right)^2\\\\
-&=\mathbb{E}[(C)^2]-\left(\displaystyle \frac{2704}{9}\right)\\
+&=\mathbb{E}[C^2]-(\mathbb{E}(C))^2\\
+&=\mathbb{E}[C^2]-\left(\displaystyle \frac{52}{3}\right)^2\\\\
+&=\mathbb{E}[C^2]-\left(\displaystyle \frac{2704}{9}\right)
 \end{array}
 $$
 
-Donde por definición $\mathbb{E}[(C^2)]$, está dado por,
+Donde por definición $\mathbb{E}[C^2]$, está dada por,
 
 $$
 \begin{array}{rl}
 \mathbb{E}[(C^2)]&=\mathbb{E}[(10+20Y+4Y^2)^2]\\
-&=\mathbb{E}[(100+400Y+480Y^2+160Y^3+16Y^4)]\\
+&=\mathbb{E}[100+400Y+480Y^2+160Y^3+16Y^4]\\
 &=\mathbb{E}(100)+\mathbb{E}(400Y)+\mathbb{E}(480Y^2)+\mathbb{E}(160Y^3)+\mathbb{E}(16Y^4)\\
 &=100+400\mathbb{E}(Y)+480\mathbb{E}(Y^2)+160\mathbb{E}(Y^3)+16\mathbb{E}(Y^4)\\
 &=100+400(\frac{1}{3})+480(\frac{1}{6})+160\mathbb{E}(Y^3)+16\mathbb{E}(Y^4)\\
@@ -474,7 +488,7 @@ $$
 \mathbb{E}(Y^4)&=\displaystyle \int_{0}^1y^4f(y)dy\\
 &=\displaystyle \int_{0}^1y^42(1-y)dy\\
 &=2\displaystyle \int_{0}^1(y^4-y^5)dy\\
-&=2\left[\displaystyle \frac{y^5}{5}|_0^1-\displaystyle \frac{y^6}{6}|_0^1\right]\\
+&=2\left[\displaystyle \frac{y^5}{5}\Big |_0^1-\displaystyle \frac{y^6}{6}\Big |_0^1\right]\\
 &=2(\displaystyle \frac{1}{5}-\frac{1}{6})\\
 &=\displaystyle \frac{1}{15}
 \end{array}
@@ -484,7 +498,7 @@ Sustituyendo estos valores, tenemos que,
 
 $$
 \begin{array}{rl}
-\mathbb{E}[(C^2)]&=100+400(\frac{1}{3})+480(\frac{1}{6})+160\mathbb{E}(Y^3)+16\mathbb{E}(Y^4)\\
+\mathbb{E}[C^2]&=100+400(\frac{1}{3})+480(\frac{1}{6})+160\mathbb{E}(Y^3)+16\mathbb{E}(Y^4)\\
 &=100+400(\frac{1}{3})+480(\frac{1}{6})+160(\frac{1}{10})+16(\frac{1}{15})\\
 &=\displaystyle \frac{1652}{5}
 \end{array}
@@ -494,7 +508,7 @@ Finalmente, se tiene que,
 
 $$
 \begin{array}{rl}
-\sigma^2&=\mathbb{E}[(C)^2]-\left(\displaystyle \frac{2704}{9}\right)\\\\
+\sigma^2&=\mathbb{E}[C^2]-\left(\displaystyle \frac{2704}{9}\right)\\\\
 &=\displaystyle \frac{1652}{5}-\displaystyle \frac{2704}{9}\\\\
 &=\displaystyle \frac{1348}{45}\\
 \end{array}
@@ -533,27 +547,29 @@ $$
 \begin{array}{rl}
 \mathbb{E}(X)&=\sum_{x=1}^4xp(x)\\
 &=300(0.20)+400(0.30)+500(0.35)+600(0.15)\\
-&=445\\
+&=445
 \end{array}
 $$
 
 La cantidad ordenada mensualmente por la empresa para este producto es de 445.
 
-b) La ganancia de la demanda real de este artículo es de $$G=300(70)=21000$$
+b) La ganancia de la demanda real de este artículo es de 
 
-La gancia es de \$21,000.
+$$G=300(70)=21000$$
 
-El costo de de la cantidad ordenada mensualmente es de $$C=445(50)=22250$$
+La ganancia es de \$21.000.
+
+El costo de de la cantidad ordenada mensualmente es de 
+
+$$C=445(50)=22250$$
+
 El costo es \$22,250.
 
-Entonces, $$G-C=21000-22250=-1250$$
+Entonces, 
 
-Esto quiero decir, que la empresa perderá \$1250 en un mes si coloca una
-orden de 445 y la demanda real de 300 unidades.
+$$G-C=21000-22250=-1250$$
 
-
-
-
+Esto quiero decir, que la empresa perderá \$1250 en un mes si coloca una orden de 445 y la demanda real de 300 unidades.
 
 \newpage
 
@@ -589,7 +605,7 @@ $$
 En R, lo calculamos de ésta manera,
 
 ```{r,comment=""}
-bi2<-dbinom(2,10,0.09)
+bi2<-dbinom(x=2,size=10,prob=0.09)
 bi2
 ```
 
@@ -621,7 +637,7 @@ $$
 &=1-(\mathbb{P}(X=0)+\mathbb{P}(X=1)+\mathbb{P}(X=2))\\
 &=1-\left(0.3894+\displaystyle {10\choose1}p^{1}q^9+0.1714\right)\\
 &=1-0.9459\\
-&=0.0541\\
+&=0.0541
 \end{array}
 $$
 
@@ -649,6 +665,7 @@ d) ¿De que nueve de los empleados de la muestra trabajen en la fábrica de Texa
 Sea $X$ el número de empleados que trabajan en  la fábrica de Hawai y $Y$ el número de empleados que trabajan en la fábrica de Texas. $X$ y $Y$ tienen distribución hipergeométrica con $N=60$, $n=20$,  $r_x=20$ y $r_y=40$. Por definicón la distribución hipergeométrica para $X$ y $Y$ es de la forma,
 
 $$\mathbb{P}(Y=y)=\displaystyle \frac{{r_y\choose y}{N-r_y\choose {n-y}}}{{N\choose n}}$$
+
 $$\mathbb{P}(X=x)=\displaystyle \frac{{r_x\choose x}{N-r_x\choose {n-x}}}{{N\choose n}}$$
 
 a) La empresa en total tiene 60 empleados y se puede seleccionar 20 empleados de 60 en ${N\choose n}={60\choose20}$ formas, entonces calculemos la probabilidad de que ninguno de los empleados de la muestra trabaje en la fábrica de Hawai usando la distribución hipergeométrica.
@@ -668,9 +685,7 @@ En R, calculamos esta probabilidad de la siguiente forma,
 ```{r,comment=""}
 hyper1<-dhyper(0,20,40,20)
 hyper1
-
 ```
-
 
 b) Calculemos la probabilidad de que uno de los empleados de la muestra trabaje en la fábrica de Hawai.
 
@@ -678,7 +693,7 @@ $$
 \begin{array}{rl}
 \mathbb{P}(X=1)&=\displaystyle \frac{{20\choose1} {40\choose19}}{{60\choose20}}\\
 &=\displaystyle \frac{20{40\choose19}}{{60\choose20}}\\
-&=0.0006267\\
+&=0.0006267
 \end{array}
 $$
 
@@ -690,7 +705,6 @@ En R, tenemos:
 hyper2<-dhyper(1,20,40,20)
 hyper2
 ```
-
 
 c) Calculemos la probabilidad de que dos o más empleados de la muestra trabaje en la fábrica de Hawai.
 
@@ -710,7 +724,7 @@ d) Calculemos la probabilidad de que nueve de los empleados de la muestra trabaj
 $$
 \begin{array}{rl}
 \mathbb{P}(Y=9)&=\displaystyle \frac{ {40\choose9}{20\choose11}}{{60\choose20}}\\
-&=0.01095\\
+&=0.01095
 \end{array}
 $$
 
@@ -802,8 +816,9 @@ c) Se encontró que 11 de éstos eran fondos de renta fija. De ellos siete se cl
 y cuatro como abajo del promedio. Compare el riesgo de los fondos de renta fija con los
 18 fondos de acciones.
 
+__Nivel de riesgo:__
 
-| **Nivel de riesgo: categorías** | **Número de fondos** |
+| **Categorías ** | **Número de fondos** |
 |:-------------------- |:-------------------------------:|
 | Bajo | 7 |
 | Bajo el promedio| 6 |
@@ -815,7 +830,6 @@ y cuatro como abajo del promedio. Compare el riesgo de los fondos de renta fija 
 \textbf{\underline{Solución:}}
 
 a) Contruyamos una distribución de probabilidad para el nivel de riesgo.
-
 
 \begin{center}
 \begin{tabular}{|r c l|}
