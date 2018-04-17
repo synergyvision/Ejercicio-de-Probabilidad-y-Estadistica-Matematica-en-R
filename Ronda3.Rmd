@@ -34,10 +34,13 @@ Si Walters compra acciones siempre que la tasa de rendimiento esperada exceda al
 
 \textbf{\underline{Solución:}}
 
-Sea $X$ = Rendimiento de la inversión, una variable aleatoria discreta. El valor esperado de la variable aleatoria viene dado por:
+Sea $X$ = Rendimiento de la inversión, una variable aleatoria discreta. 
+
+El valor esperado de la variable aleatoria viene dado por:
 
 $$\mathbb{E}(X)=\sum_{n \geq 1} x_n P(X=x_n)$$
-donde $\{x_n\}$ son los valores que toma la v.a discreta y $P(X=x_n)$ la probabilidad de que la v.a tome ese valor. Sustituyendo los valores que nos muestra la tabla tenemos:
+
+donde $x_n$ son los valores que toma la v.a discreta y $P(X=x_n)$ la probabilidad de que la variable aleatoria tome ese valor. Sustituyendo los valores que nos muestra la tabla tenemos:
 
 $$
 \begin{array}{rl}
@@ -45,19 +48,19 @@ $$
 \\
 &= 0 \times 0.20 + 10 \times 0.25 + 15 \times 0.30 + 25 \times 0.15 + 50 \times 0.10 \\
 \\
-&= 15.75
+\mathbb{E}(X) &= 15.75
 \end{array}
 $$
-Por lo que el rendimiento esperado es de 15.75\$, lo que implica que Bob Walters comprará la acción de la compañía pues esta supera el 10%  del precio de compra de 150\$ que corresponde a 15\$.
+Por lo que el rendimiento esperado es de 15.75\$, lo que implica que Bob Walters comprará la acción de la compañía, pues ésta supera el 10%  del precio de compra de 150\$ que corresponde a 15\$.
 
 \newpage
 
 # Ejercicio 2
 
-Bill Johnson acaba de comprar una videograbadora en Jim´s Videotape Service a un costo de $300.  Ahora tiene la opción de comprar una póliza de servicio extendido que ofrece cinco años de cobertura por $100. Después de hablar con sus amigos y leer los informes, Bill cree que  puede incurrir en los siguientes gastos de manteniemiento durante los próximos cinco años.
+Bill Johnson acaba de comprar una videograbadora en Jim´s Videotape Service a un costo de 300\$.  Ahora tiene la opción de comprar una póliza de servicio extendido que ofrece cinco años de cobertura por 100\$. Después de hablar con sus amigos y leer los informes, Bill cree que puede incurrir en los siguientes gastos de manteniemiento durante los próximos cinco años.
 
-| Gasto | Probabilidad |
-|:-----:|:------------:|
+| Gasto \$ | Probabilidad |
+|:--------:|:------------:|
 | 0 | 0.35 |
 | 50 | 0.25 |
 | 100 | 0.15 |
@@ -73,7 +76,8 @@ Encuentre el valor esperado de los costos de mantenimiento pronosticados.  ¿Deb
 Sea $X$ = Gastos en mantenimiento, una variable aleatoria discreta. El valor esperado de la variable aleatoria viene dado por:
 
 $$\mathbb{E}(X)=\sum_{n \geq 1} x_n P(X=x_n)$$
-donde $\{x_n\}$ son los valores que toma la v.a discreta y $P(X=x_n)$ la probabilidad de que la v.a tome ese valor. Sustituyendo los valores que nos muestra la tabla tenemos:
+
+donde $x_n$ son los valores que toma la v.a discreta y $P(X=x_n)$ la probabilidad de que la v.a tome ese valor. Sustituyendo los valores que nos muestra la tabla tenemos:
 
 $$
 \begin{array}{rl}
@@ -82,15 +86,14 @@ $$
 &= 77 \\
 \end{array}
 $$
+
 Por lo que los gastos en mantenimiento esperado son de \$77, lo que implica que Bill Johnson ahorrará \$23 en gastos de mantenimiento que por pagar la garantía de \$100.
-
-
 
 \newpage
 
 # Ejercicio 3
 
-Harry Ohme está a cargo de la sección de electrónica de una gran tienda departamental.  Se ha dado cuenta de que la probabilidad de que un cliente que solamente se encuentre curioseando compre algo es de 0.3.  Suponga que 15 clientes visitan la sección de electrónica cada hora.  Utilice la tabla 3 del apéndice para responder a las siguientes preguntas:
+Harry Ohme está a cargo de la sección de electrónica de una gran tienda departamental.  Se ha dado cuenta de que la probabilidad de que un cliente que solamente se encuentre curioseando compre algo es de 0.3.  Suponga que 15 clientes visitan la sección de electrónica cada hora.
 
 a) ¿Cuál es la probabilidad de que al menos una de las personas que curiosea compre algo durante una hora dada?
 
@@ -110,7 +113,8 @@ Cuya probabilidad de éxito es de $p=0.3$, probabilidad de fracaso es de $q= 1-p
 
 a) Calculemos la probabilidad de que al menos un cliente que curiosea compre algo, esto es:
 
-$$P(X \geq 1) = 1 - P(x <1) = 1 - P(X=0)$$
+$$P(X \geq 1) = 1 - P(X <1) = 1 - P(X=0)$$
+
 donde,
 
 $$
@@ -121,6 +125,7 @@ P(X=0) &= \displaystyle \frac{15!}{0!(15-0)!} \times 0.3^0 \times 0.7^{15} \\
 &= 0.00474
 \end{array}
 $$
+
 Por lo que la probabilidad de que al menos un cliente que curiosea compre algo es de:
 
 $$P(x \geq 1) = 1 - P(X=0) = 1 - 0.00474 = 0.9952$$
@@ -131,6 +136,7 @@ Usamos la función `dbinom()` para calcular la probabilidad de que la variable a
 ```{r,comment=''}
 1-dbinom(0,15,0.3)
 ```
+
 También podemos usar la función `pbinom()` para calcular la probabilidad de $P(X>i)$ colocando el argumento `lower.tail=FALSE`, esto es:
 
 ```{r,comment=''}
@@ -138,10 +144,9 @@ pbinom(0,15,0.3,lower.tail = FALSE)
 ```
 
 
-
 b) Calculemos la probabilidad de que al menos cuatro clientes que curiosean compren algo, esto es:
 
-$$P(X \geq 4) = 1 - P(x <4) = 1 - P(X=0) -  P(X=1) -  P(X=2) -  P(X=3)$$
+$$P(X \geq 4) = 1 - P(x <4) = 1 - \left[P(X=0) + P(X=1) +  P(X=2) +  P(X=3)\right]$$
 donde,
 
 $$
@@ -151,18 +156,23 @@ P(X=i) &= \displaystyle \frac{15!}{i!(15-i)!} \times 0.3^i \times 0.7^{15-i} \\
 &; \text{con } i=0,..,3
 \end{array}
 $$
+
 sustituyendo los valores de $i$ tenemos las siguientes probabilidades: $P(X=0) = 0.00474$, $P(X=1) = 0.0305$, $P(X=2) = 0.0915$ y $P(X=3) = 0.1700$. Así, la probabilidad de que al menos cuatro clientes que curiosean compren algo es de:
 
 $$P(X \geq 4) = 1 - P(x <4) = 1 - 0.00474 - 0.0305 - 0.0915 - 0.1700 = 0.703$$
+
 \textbf{\underline{En R:}}
 
 Usando la función `dbinom()` y `pbinom()`tenemos:
+
 ```{r,comment=''}
 1-dbinom(0,15,0.3)-dbinom(1,15,0.3)-dbinom(2,15,0.3)-dbinom(3,15,0.3)
+
 pbinom(3,15,0.3,lower.tail = FALSE)
 ```
 
-c) La probabilidad de que ningún cliente que curiosea compre algo, es decir $P(X=0)$, esta dada por:
+c) La probabilidad de que ningún cliente que curiosea compre algo, es decir $P(X=0)$, está dada por:
+
 $$
 \begin{array}{rl}
 P(X=0) &= \displaystyle \frac{15!}{0!(15-0)!} \times 0.3^0 \times 0.7^{15} \\
@@ -171,16 +181,18 @@ P(X=0) &= \displaystyle \frac{15!}{0!(15-0)!} \times 0.3^0 \times 0.7^{15} \\
 &= 0.00474
 \end{array}
 $$
+
 \textbf{\underline{En R:}}
 
 Usamos la función `dbinom()` para calcular $P(X=0)$:
+
 ```{r,comment=''}
 dbinom(0,15,0.3)
 ```
 
 d) Calculemos la probabilidad de que no más de cuatro clientes que curiosean compren algo, esto es:
 
-$$P(X \leq 4) = P(X=0) + P(X=1) + P(X=2) + P(X=3) + P(X=4) $$
+$$P(X \leq 4) = P(X=0) + P(X=1) + P(X=2) + P(X=3) + P(X=4)$$
 
 calculando $P(X=4)$ tenemos:
 
@@ -194,7 +206,7 @@ P(X=4) &= \displaystyle \frac{15!}{4!(15-4)!} \times 0.3^4 \times 0.7^{11} \\
 $$
 Así $P(X=4) = 0.2186$ y por el inciso b) tenemos: $P(X=0) = 0.00474$, $P(X=1) = 0.0305$, $P(X=2) = 0.0915$ y $P(X=3) = 0.1700$. Por lo que la probabilidad de que no más de cuatro clientes que curiosean compren algo es de:
 
-$$P(X \leq 4) = 0.00474 + 0.0305 + 0.0915 + 0.1700 + 0.2186 = 0.5153 $$
+$$P(X \leq 4) = 0.00474 + 0.0305 + 0.0915 + 0.1700 + 0.2186 = 0.5153$$
 
 \textbf{\underline{En R:}}
 
@@ -202,9 +214,9 @@ Usando la función `dbinom()` y `pbinom()` con el argumento `lower.tail = TRUE` 
 
 ```{r,comment=''}
 dbinom(0,15,0.3)+dbinom(1,15,0.3)+dbinom(2,15,0.3)+dbinom(3,15,0.3)+dbinom(4,15,0.3)
+
 pbinom(4,15,0.3,lower.tail = TRUE)
 ```
-
 
 \newpage
 
@@ -212,13 +224,13 @@ pbinom(4,15,0.3,lower.tail = TRUE)
 
 Si los precios de los automóviles nuevos se incrementan en un promedio de cuatro veces cada 3 años, encuentre la probabilidad de que
 
-a) ningún precio se incremente en un periodo de 3 años seleccionado de manera aleatoria.
+a) Ningún precio se incremente en un periodo de 3 años seleccionado de manera aleatoria.
 
-b) dos precios aumenten.
+b) Dos precios aumenten.
 
-c) cuatro precios aumenten.
+c) Cuatro precios aumenten.
 
-d) aumenten cinco o más.
+d) Aumenten cinco o más.
 
 
 \textbf{\underline{Solución:}}
@@ -233,10 +245,9 @@ a) Calculemos la probabilidad de que ningún precio se incremente en un período
 
 $$
 \begin{array}{rl}
-P(X=0) &= \displaystyle \frac{4^0 \times e^{-4}}{0!} \\
-\\
-&= e^{-4} \\
-&= 0.018
+\vspace{3mm} P(\mathcal X=0) &= \displaystyle \frac{4^0 \times e^{-4}}{0!}\\
+\vspace{3mm} &= e^{-4}\\
+P(\mathcal X=0)  &= 0.018
 \end{array}
 $$
 
@@ -246,10 +257,9 @@ Por lo que la probabilidad de que ningún precio se incremente en un período de
 
 Usando la función `dpois()` calculamos la probabilidad de que una variable aleatoria con distribución de Poisson tome un valor, así:
 
-```{r,comment=''}
+```{r}
 dpois(0,4)
 ```
-
 
 b) Calculemos la probabilidad de que dos precios se incrementen, es decir, calculemos $P(X=2)$, esto es:
 
@@ -309,6 +319,7 @@ P(X=1) &= \displaystyle \frac{4^1 \times e^{-4}}{1!} \\
 &= 0.073
 \end{array}
 $$
+
 Por otro lado,
 
 $$
@@ -331,6 +342,7 @@ Usando las funciones `dpois()` y `ppois()` con el argumento `lower.tail=FALSE` t
 
 ```{r,comment=''}
 1 - (dpois(0,4) + dpois(1,4) + dpois(2,4) + dpois(3,4) + dpois(4,4))
+
 ppois(4,4,lower.tail = FALSE)
 ```
 
@@ -339,7 +351,7 @@ ppois(4,4,lower.tail = FALSE)
 
 # Ejercicio 5
 
-La compañía Southwestern Electronics ha diseñado una nueva calculadora de bolsillo con una serie de funciones que otras calculadoras todavía no tienen.  El Departamento de Comercialización está planeando hacer una demostración de la calculadora a un grupo de clientes potenciales, pero está preocupado por algunos problemas iniciales: el 4% de las calculadoras nueva produce ciertas incongruencias matemáticas.  El vicepresidente de Comercialización planea seleccionar aleatoriamente un grupo de calculadoras para su demostración y está preocupado por la posibilidad de elegir una que empiece a funcionar mal.  Tiene la creencia de que el hecho de que una calculadora funcione o no es un proceso de Bernoulli, y está convencido de que la probabilidad de que se presente un mal funcionamiento es en realidad de alrededor de 0.04.
+La compañía Southwestern Electronics ha diseñado una nueva calculadora de bolsillo con una serie de funciones que otras calculadoras todavía no tienen. El Departamento de Comercialización está planeando hacer una demostración de la calculadora a un grupo de clientes potenciales, pero está preocupado por algunos problemas iniciales: el 4% de las calculadoras nueva produce ciertas incongruencias matemáticas. El vicepresidente de Comercialización planea seleccionar aleatoriamente un grupo de calculadoras para su demostración y está preocupado por la posibilidad de elegir una que empiece a funcionar mal. Tiene la creencia de que el hecho de que una calculadora funcione o no es un proceso de Bernoulli, y está convencido de que la probabilidad de que se presente un mal funcionamiento es en realidad de alrededor de 0.04.
 
 a) Suponiendo que el vicepresidente elija exactamente 50 calculadoras para ser utilizadas en la demostración y utilizando la distribución de Poisson como aproximación de la binominal, ¿cuál es la probabilidad de obtener al menos tres calculadoras que no funcionen bien?
 
@@ -353,7 +365,7 @@ $X$ = Número de calculadoras con mal funcionamiento.
 
 a) Calculemos la probabilidad de que al menos tres calculadoras tengan un mal funcionamiento, esto es:
 
-$$P(X \geq 3) = 1 - P(X < 3) = 1 - P(X=0) - P(X= 1) - P(X=2)$$
+$$P(X \geq 3) = 1 - P(X < 3) = 1 - \left[P(X=0) + P(X= 1) + P(X=2)\right]$$
 
 Para calcular esta probabilidad usando la distribución de Poisson como una aproximación de la distribucion Binomial, definimos $\lambda = np$, con $n=50$ y $p=0.04$, así calculando $P(X=0,1,2)$ tenemos:
 
@@ -370,12 +382,14 @@ $$
 sustituyendo los valores de $i$ tenemos las siguientes probabilidades: $P(X=0) = 0.1353$, $P(X=1) = 0.2706$ y $P(X=2) = 0.2706$. Así, la probabilidad de que al menos tres calculadoras tengan un mal funcionamiento es de:
 
 $$P(X \geq 3) = 1 - P(X < 3) = 1 - 0.1353 - 0.2706 - 0.2706 = 0.3235$$
+
 \textbf{\underline{En R:}}
 
 Usando las funciones `dpois()` y `ppois()` con el argumento `lower.tail=FALSE` tenemos:
 
 ```{r,comment=''}
 1-dpois(0,2)-dpois(1,2)-dpois(2,2)
+
 ppois(2,2,lower.tail = FALSE)
 ```
 
@@ -389,6 +403,7 @@ P(X=0) &= \displaystyle \frac{2^0 \times e^{-2}}{0!} \\
 &= 0.1353
 \end{array}
 $$
+
 Podemos también calcular esta probabilidad mediante una distribución Binomial, esto es:
 
 $$
@@ -408,21 +423,21 @@ Usando las funciones `dpois()` y `dbinom()` tenemos:
 
 ```{r,comment=''}
 dpois(0,2)
+
 dbinom(0,50,0.04)
 ```
-
 
 \newpage
 
 # Ejercicio 6
 
-La compañía Quickie Sales acaba de recibir dos estimaciones de ventas para el trimestre que se avecina contradictorias entre sí.  La estimación I dice que las ventas (en millones de dólares) estarán normalmente distribuidas con $\mu$ = 325 y $\sigma$ = 60. La estimación II dice que las ventas estarán normalmente distribuidas con $\mu$ = 300 y $\sigma$ = 50. El consejo directivo encuentra que cada estimación deberá utilizarse para hecer predicciones, la junta de directores ha decidido reunirse de nuevo al final de trimestre y utilizar información actualizada sobre las ventas para tomar una determinación sobre la credibilidad de cada estimación.
+La compañía Quickie Sales acaba de recibir dos estimaciones de ventas para el trimestre que se avecina contradictorias entre sí. La estimación I dice que las ventas (en millones de dólares) estarán normalmente distribuidas con $\mu$ = 325 y $\sigma$ = 60. La estimación II dice que las ventas estarán normalmente distribuidas con $\mu$ = 300 y $\sigma$ = 50. El consejo directivo encuentra que cada estimación deberá utilizarse para hecer predicciones, la junta de directores ha decidido reunirse de nuevo al final de trimestre y utilizar información actualizada sobre las ventas para tomar una determinación sobre la credibilidad de cada estimación.
 
 a) Suponiendo que la estimación I es precisa, ¿cuál es la probabilidad de que la compañía tenga ventas trimestrales mayores a 350 millones de dólares?
 
 b) Rehaga el inciso anterior suponiendo que la estimación II es la correcta.
 
-c) Al final del trimestre, la junta de directores encuentra que la compañía tiene ventas mayores a $350,000,000.  Dada esta información actualizada, ¿cuál es la probabilidad de que originalmente la estimación I haya sido la correcta?  (Sugerencia: recuerde el teorema de Bayes.)
+c) Al final del trimestre, la junta de directores encuentra que la compañía tiene ventas mayores a $350.000.000.  Dada esta información actualizada, ¿cuál es la probabilidad de que originalmente la estimación I haya sido la correcta?  (Sugerencia: recuerde el teorema de Bayes.)
 
 d) Rehaga el inciso c) para la estimación II.
 
@@ -449,6 +464,7 @@ P(X>350)
 &= 0.3372 \\
 \end{array}
 $$
+
 Por lo que la probabilidad de que la compañía tenga ventas trimestrales superiores a 350 millones de dólares suponiendo que la estimación I es correcta es de $0.3372$ ó $33 \%$.
 
 \newpage
@@ -482,6 +498,7 @@ Así a probabilidad de que la compañía tenga ventas trimestrales superiores a 
 \textbf{\underline{En R:}}
 
 Usando `pnorm()` nos queda:
+
 ```{r,comment=''}
 pnorm(350,300,50,lower.tail = FALSE)
 ```
@@ -648,10 +665,10 @@ Usamos la función `dbinom()`, así:
 dbinom(8,15,0.25)
 ```
 
-
 c) Calculemos la probabilidad de que a menos de tres clientes se les rechaze la tarjeta, esto es:
 
 $$P(X<3) = P(X=0) + P(X=1) + P(X=2)$$
+
 Calculando cada una de estas probabilidades tenemos:
 
 $$
@@ -709,8 +726,6 @@ Usamos la función `pbinom()` con el argumento `lower.tail=FALSE` para calcular 
 ```{r,comment=''}
 pbinom(5,15,0.25,lower.tail = FALSE)
 ```
-
-
 
 \newpage
 
@@ -838,6 +853,7 @@ P(X > 100,000)
 &= 0.0571
 \end{array}
 $$
+
 \textbf{\underline{En R:}}
 
 Usamos la función `pnorm()` con el argumento `lower.tail=FALSE` para calcular la probabilidad $P(X > i)$, por lo que tenemos:
@@ -860,6 +876,7 @@ P(X < 60,000)
 &= 0.1056
 \end{array}
 $$
+
 \textbf{\underline{En R:}}
 
 Usamos la función `pnorm()` , por lo que nos queda:
@@ -886,6 +903,7 @@ $$
 \textbf{\underline{En R:}}
 
 Usamos la función `pnorm()` , así:
+
 ```{r,comment=''}
 pnorm(95000,77685,14108.26)-pnorm(75000,77685,14108.26)
 ```
@@ -919,6 +937,7 @@ P(X=0) &= \displaystyle \frac{(2.74)^0 \times e^{-2.74}}{0!} \\
 &= 0.0645
 \end{array}
 $$
+
 y,
 
 $$
@@ -929,9 +948,11 @@ P(X=1) &= \displaystyle \frac{(2.74)^1 \times e^{-2.74}}{1!} \\
 &= 0.1769 \\
 \end{array}
 $$
+
 Por lo que la probabilidad de que un graduado de la maestría reciba menos de dos ofertas de trabajo es de:
 
 $$P(X < 2) = P(X=0) + P(X=1) = 0.0645 + 0.1769 = 0.2414$$
+
 \textbf{\underline{En R:}}
 
 Usando la función `ppois()` tenemos:
@@ -943,6 +964,7 @@ ppois(1,2.74)
 2) Ahora calculemos la probabilidad de que un graduado de la maestría reciba dos ó tres ofertas de trabajo, así:
 
 $$P(X = 2,3) = P(X = 2) + P(X=3)$$
+
 donde,
 
 $$
@@ -953,6 +975,7 @@ P(X=2) &= \displaystyle \frac{(2.74)^2 \times e^{-2.74}}{2!} \\
 &= 0.2423 \\
 \end{array}
 $$
+
 y,
 
 $$
@@ -963,9 +986,11 @@ P(X=3) &= \displaystyle \frac{(2.74)^3 \times e^{-2.74}}{3!} \\
 &= 0.2213 \\
 \end{array}
 $$
+
 Por lo que la probabilidad de que un graduado de la maestría reciba dos ó tres ofertas de trabajo es de:
 
 $$P(X = 2,3) = P(X = 2) + P(X=3) = 0.2423 + 0.2213 = 0.4636$$
+
 \textbf{\underline{En R:}}
 
 Usando la función `dpois()` tenemos:
@@ -977,6 +1002,7 @@ dpois(2,2.74)+dpois(3,2.74)
 3)  Por último calculemos la probabilidad de que un graduado reciba más de tres ofertas:
 
 $$P(X > 3) = 1 - P(X\leq 3) = 1 - P(X=0) - P(X=1) - P(X=2) - P(X=3)$$
+
 Sustituyendo las probabilidades ya calculadas anteriormente tenemos que la probabilidad de que un graduado reciba más de tres ofertas es de:
 
 $$
@@ -986,6 +1012,7 @@ P(X > 3) = 1 - P(X\leq 3) &= 1 - P(X=0) - P(X=1) - P(X=2) - P(X=3) \\
 &= 0.295 \\
 \end{array}
 $$
+
 \textbf{\underline{En R:}}
 
 Usando la función `ppois()` con el argumento `lower.tail=FALSE` tenemos:
@@ -993,7 +1020,6 @@ Usando la función `ppois()` con el argumento `lower.tail=FALSE` tenemos:
 ```{r,comment=''}
 ppois(3,2.74,lower.tail = FALSE)
 ```
-
 
 
 \newpage
