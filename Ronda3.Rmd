@@ -124,14 +124,88 @@ $$
 Por lo que la probabilidad de que al menos un cliente que curiosea compre algo es de:
 
 $$P(x \geq 1) = 1 - P(X=0) = 1 - 0.00474 = 0.9952$$
+
 \textbf{\underline{En R:}}
 
 Usamos la función `dbinom()` para calcular la probabilidad de que la variable aleatoria tome un valor, así:
 ```{r,comment=''}
 1-dbinom(0,15,0.3)
 ```
+También podemos usar la función `pbinom()` para calcular la probabilidad de $P(X>i)$ colocando el argumento `lower.tail=FALSE`, esto es:
 
-b)
+```{r,comment=''}
+pbinom(0,15,0.3,lower.tail = FALSE)
+```
+
+
+
+b) Calculemos la probabilidad de que al menos cuatro clientes que curiosean compren algo, esto es:
+
+$$P(X \geq 4) = 1 - P(x <4) = 1 - P(X=0) -  P(X=1) -  P(X=2) -  P(X=3)$$
+donde,
+
+$$
+\begin{array}{rl}
+P(X=i) &= \displaystyle \frac{15!}{i!(15-i)!} \times 0.3^i \times 0.7^{15-i} \\
+\\
+&; \text{con } i=0,..,3
+\end{array}
+$$
+sustituyendo los valores de $i$ tenemos las siguientes probabilidades: $P(X=0) = 0.00474$, $P(X=1) = 0.0305$, $P(X=2) = 0.0915$ y $P(X=3) = 0.1700$. Así, la probabilidad de que al menos cuatro clientes que curiosean compren algo es de:
+
+$$P(X \geq 4) = 1 - P(x <4) = 1 - 0.00474 - 0.0305 - 0.0915 - 0.1700 = 0.703$$
+\textbf{\underline{En R:}}
+
+Usando la función `dbinom()` y `pbinom()`tenemos:
+```{r,comment=''}
+1-dbinom(0,15,0.3)-dbinom(1,15,0.3)-dbinom(2,15,0.3)-dbinom(3,15,0.3)
+pbinom(3,15,0.3,lower.tail = FALSE)
+```
+
+c) La probabilidad de que ningún cliente que curiosea compre algo, es decir $P(X=0)$, esta dada por:
+$$
+\begin{array}{rl}
+P(X=0) &= \displaystyle \frac{15!}{0!(15-0)!} \times 0.3^0 \times 0.7^{15} \\
+\\
+&= 0.7^{15} \\
+&= 0.00474
+\end{array}
+$$
+\textbf{\underline{En R:}}
+
+Usamos la función `dbinom()` para calcular $P(X=0)$:
+```{r,comment=''}
+dbinom(0,15,0.3)
+```
+
+d) Calculemos la probabilidad de que no más de cuatro clientes que curiosean compren algo, esto es:
+
+$$P(X \leq 4) = P(X=0) + P(X=1) + P(X=2) + P(X=3) + P(X=4) $$
+
+calculando $P(X=4)$ tenemos:
+
+$$
+\begin{array}{rl}
+P(X=4) &= \displaystyle \frac{15!}{4!(15-4)!} \times 0.3^4 \times 0.7^{11} \\
+\\
+&= 1365 \times 0.3^4 \times 0.7^{11} \\
+&= 0.2186
+\end{array}
+$$
+Así $P(X=4) = 0.2186$ y por el inciso b) tenemos: $P(X=0) = 0.00474$, $P(X=1) = 0.0305$, $P(X=2) = 0.0915$ y $P(X=3) = 0.1700$. Por lo que la probabilidad de que no más de cuatro clientes que curiosean compren algo es de:
+
+$$P(X \leq 4) = 0.00474 + 0.0305 + 0.0915 + 0.1700 + 0.2186 = 0.5153 $$
+
+\textbf{\underline{En R:}}
+
+Usando la función `dbinom()` y `pbinom()` con el argumento `lower.tail = TRUE` para calcular $P(X \leq i)$ tenemos:
+
+```{r,comment=''}
+dbinom(0,15,0.3)+dbinom(1,15,0.3)+dbinom(2,15,0.3)+dbinom(3,15,0.3)+dbinom(4,15,0.3)
+pbinom(4,15,0.3,lower.tail = TRUE)
+```
+
+
 \newpage
 
 # Ejercicio 4
@@ -147,6 +221,120 @@ c) cuatro precios aumenten.
 d) aumenten cinco o más.
 
 
+\textbf{\underline{Solución:}}
+
+Definamos la siguiente variable aleatoria con distribución de Poisson como: 
+
+$X$ = Número de incremento de precios de automóviles nuevos.
+
+Con $\lambda = 4$.
+
+a) Calculemos la probabilidad de que ningún precio se incremente en un período de 3 años, es decir, calculemos $P(X=0)$, esto es:
+
+$$
+\begin{array}{rl}
+P(X=0) &= \displaystyle \frac{4^0 \times e^{-4}}{0!} \\
+\\
+&= e^{-4} \\
+&= 0.018
+\end{array}
+$$
+
+Por lo que la probabilidad de que ningún precio se incremente en un período de 3 años es de $0.018$.
+
+\textbf{\underline{En R:}}
+
+Usando la función `dpois()` calculamos la probabilidad de que una variable aleatoria con distribución de Poisson tome un valor, así:
+
+```{r,comment=''}
+dpois(0,4)
+```
+
+
+b) Calculemos la probabilidad de que dos precios se incrementen, es decir, calculemos $P(X=2)$, esto es:
+
+$$
+\begin{array}{rl}
+P(X=2) &= \displaystyle \frac{4^2 \times e^{-4}}{2!} \\
+\\
+&= \displaystyle \frac{16 \times e^{-4}}{2} \\
+\\
+&= 0.146
+\end{array}
+$$
+
+Así la probabilidad de que $P(X=2)$ es de $0.146$
+
+\textbf{\underline{En R:}}
+
+Usando la función `dpois()` tenemos:
+
+```{r,comment=''}
+dpois(2,4)
+```
+
+c) Calculemos la probabilidad de que cuatro precios se incrementen, esto es:
+
+$$
+\begin{array}{rl}
+P(X=4) &= \displaystyle \frac{4^4 \times e^{-4}}{4!} \\
+\\
+&= \displaystyle \frac{256 \times e^{-4}}{24} \\
+\\
+&= 0.1953
+\end{array}
+$$
+
+Así la probabilidad de que $P(X=4)$ es de $0.1953$
+
+\textbf{\underline{En R:}}
+
+Usando la función `dpois()` tenemos:
+
+```{r,comment=''}
+dpois(4,4)
+```
+
+d) Calculemos la probabilidad de que el número de incremento de precios sea de cinco o más, esto es:
+
+$$P(X \geq 5) = 1 - P(X<5) = 1- \left(\sum_{i=0}^{4} P(X=i)\right)$$
+
+Calculemos $P(X=1)$ y $P(X=3)$, pues las probabilidades $P(X=0,2,4)$ se calcularon anteriomente, así:
+
+$$
+\begin{array}{rl}
+P(X=1) &= \displaystyle \frac{4^1 \times e^{-4}}{1!} \\
+\\
+&= 4 \times e^{-4} \\
+&= 0.073
+\end{array}
+$$
+Por otro lado,
+
+$$
+\begin{array}{rl}
+P(X=3) &= \displaystyle \frac{4^3 \times e^{-4}}{3!} \\
+\\
+&= \displaystyle \frac{64 \times e^{-4}}{6} \\
+\\
+&= 0.1953
+\end{array}
+$$
+
+Sustituyendo los valores tenemos que la probabilidad de que el número de incremento de precios sea de cinco o más es de:
+
+$$ P(X \geq 5) = 1 -(0.018 + 0.073 + 0.146 + 0.1953 + 0.1953) = 1 - 0.6276 = 0.3724$$
+
+\textbf{\underline{En R:}}
+
+Usando las funciones `dpois()` y `ppois()` con el argumento `lower.tail=FALSE` tenemos:
+
+```{r,comment=''}
+1 - (dpois(0,4) + dpois(1,4) + dpois(2,4) + dpois(3,4) + dpois(4,4))
+ppois(4,4,lower.tail = FALSE)
+```
+
+
 \newpage
 
 # Ejercicio 5
@@ -156,6 +344,73 @@ La compañía Southwestern Electronics ha diseñado una nueva calculadora de bol
 a) Suponiendo que el vicepresidente elija exactamente 50 calculadoras para ser utilizadas en la demostración y utilizando la distribución de Poisson como aproximación de la binominal, ¿cuál es la probabilidad de obtener al menos tres calculadoras que no funcionen bien?
 
 b) ¿Cuál es la probabilidad de no tener ninguna calculadora que funcione mal?
+
+\textbf{\underline{Solución:}}
+
+Definamos la siguientes variable aleatoria como:
+
+$X$ = Número de calculadoras con mal funcionamiento.
+
+a) Calculemos la probabilidad de que al menos tres calculadoras tengan un mal funcionamiento, esto es:
+
+$$P(X \geq 3) = 1 - P(X < 3) = 1 - P(X=0) - P(X= 1) - P(X=2)$$
+
+Para calcular esta probabilidad usando la distribución de Poisson como una aproximación de la distribucion Binomial, definimos $\lambda = np$, con $n=50$ y $p=0.04$, así calculando $P(X=0,1,2)$ tenemos:
+
+$$
+\begin{array}{rl}
+P(X=i) &= \displaystyle \frac{(np)^i \times e^{-np}}{i!} \\
+\\
+&= \displaystyle \frac{2^i \times e^{-2}}{i!} \\
+\\
+&; \text{con } i=0,1,2
+\end{array}
+$$
+
+sustituyendo los valores de $i$ tenemos las siguientes probabilidades: $P(X=0) = 0.1353$, $P(X=1) = 0.2706$ y $P(X=2) = 0.2706$. Así, la probabilidad de que al menos tres calculadoras tengan un mal funcionamiento es de:
+
+$$P(X \geq 3) = 1 - P(X < 3) = 1 - 0.1353 - 0.2706 - 0.2706 = 0.3235$$
+\textbf{\underline{En R:}}
+
+Usando las funciones `dpois()` y `ppois()` con el argumento `lower.tail=FALSE` tenemos:
+
+```{r,comment=''}
+1-dpois(0,2)-dpois(1,2)-dpois(2,2)
+ppois(2,2,lower.tail = FALSE)
+```
+
+b) Calculemos la probabilidad de no tener ninguna calculadora que funcione mal, esto es, $P(X=0)$. Usando la distribución de Poisson como una aproximación de una distribución Binomial tenemos:
+
+$$
+\begin{array}{rl}
+P(X=0) &= \displaystyle \frac{2^0 \times e^{-2}}{0!} \\
+\\
+&= e^{-2} \\
+&= 0.1353
+\end{array}
+$$
+Podemos también calcular esta probabilidad mediante una distribución Binomial, esto es:
+
+$$
+\begin{array}{rl}
+P(X=0) &= \displaystyle \frac{50!}{0!(50-0)!} \times 0.04^0 \times (1-0.04)^{50} \\
+\\
+&= 0.96^{50} \\
+&= 0.1298
+\end{array}
+$$
+
+Notamos que la diferencia entre las dos distribuciones de probabilidad es bastante pequeña, por lo que se tiene una buena aproximación entre estas.
+
+\textbf{\underline{En R:}}
+
+Usando las funciones `dpois()` y `dbinom()` tenemos:
+
+```{r,comment=''}
+dpois(0,2)
+dbinom(0,50,0.04)
+```
+
 
 \newpage
 
@@ -171,11 +426,161 @@ c) Al final del trimestre, la junta de directores encuentra que la compañía ti
 
 d) Rehaga el inciso c) para la estimación II.
 
+\textbf{\underline{Solución:}}
+
+Definamos la siguiente variable aleatoria con distribución normal como:
+
+$X$ = Ventas trimestrales en millones de dólares de la compañía.
+
+a) Calculemos la probabilidad de que la compañía tenga ventas trimestrales mayores a 350 millones de dólares distribuida normalmente con $\mu = 325$ y $\sigma = 60$, esto es:
+
+$$
+\begin{array}{rl}
+P(X>350) 
+&= 1 - P(X \leq 350) \\
+\\
+&= 1 - P\left(\displaystyle \frac{X - \mu}{\sigma} \leq \displaystyle \frac{350 - \mu}{\sigma}\right) \\
+\\
+&= 1 - P\left(\displaystyle \frac{X - 325}{60} \leq \displaystyle \frac{350 - 325}{60}\right) \\
+\\
+&= 1 - P(Z \leq 0.42) \\ 
+&= 1-\Phi(0.42) \\
+&= 1-0.6628 \\
+&= 0.3372 \\
+\end{array}
+$$
+Por lo que la probabilidad de que la compañía tenga ventas trimestrales superiores a 350 millones de dólares suponiendo que la estimación I es correcta es de $0.3372$ ó $33 \%$.
+
+\newpage
+\textbf{\underline{En R:}}
+
+Usamos la función `pnorm()` para calcular $P(X >i)$ con el argumento `lower.tail=FALSE`, tenemos:
+
+```{r,comment=''}
+pnorm(350,325,60,lower.tail = FALSE)
+```
+
+
+b) Ahora calculemos la probabilidad de que la compañía tenga ventas trimestrales mayores a 350 millones de dólares distribuida normalmente con $\mu = 300$ y $\sigma = 50$, por lo que:
+
+$$
+\begin{array}{rl}
+P(X>350) 
+&= 1 - P(X \leq 350) \\
+\\
+&= 1 - P\left(\displaystyle \frac{X - 300}{50} \leq \displaystyle \frac{350 - 300}{50}\right) \\
+\\
+&= 1 - P(Z \leq 1) \\ 
+&= 1-\Phi(1) \\
+&= 1-0.8413 \\
+&= 0.1587 \\
+\end{array}
+$$
+
+Así a probabilidad de que la compañía tenga ventas trimestrales superiores a 350 millones de dólares suponiendo que la estimación II es correcta es de $0.1587$ ó $15 \%$.
+
+\textbf{\underline{En R:}}
+
+Usando `pnorm()` nos queda:
+```{r,comment=''}
+pnorm(350,300,50,lower.tail = FALSE)
+```
+
+c) Definamos los siguientes eventos:
+
+$E_1$ = Estimación I correcta.
+
+$E_2$ = Estimación II correcta.
+
+$V$ = Ventas mayores a 350 millones de dólares.
+
+Caculemos la probabilidad de que la estimación I haya sido correcta dado que las ventas fueron mayores a 350 millones de dólares, esto es:
+
+$$
+\begin{array}{rl}
+P(E_1|V) &= \displaystyle \frac{P(E_1 \cap V)}{P(V)} \\
+\\
+&= \displaystyle \frac{P(E_1 \cap V)}{P(V \cap E_1) + P(V \cap E_2)} \\
+\\
+&= \displaystyle \frac{0.3372}{0.3372 + 0.1587} \\
+\\
+&= \displaystyle \frac{0.3372}{0.4959} \\
+\\
+&= 0.679
+\end{array}
+$$
+
+La probabilidad de que la estimación I haya sido correcta dado que las ventas fueron mayores a 350 millones de dólares es de $0.679$.
+
+d) Análogo al inciso c) calculamos la probabilidad de que la estimación II haya sido correcta, por lo que tenemos:
+
+$$
+\begin{array}{rl}
+P(E_2|V) &= \displaystyle \frac{P(E_2 \cap V)}{P(V)} \\
+\\
+&= \displaystyle \frac{P(E_2 \cap V)}{P(V \cap E_1) + P(V \cap E_2)} \\
+\\
+&= \displaystyle \frac{0.1587}{0.3372 + 0.1587} \\
+\\
+&= \displaystyle \frac{0.1587}{0.4959} \\
+\\
+&= 0.32
+\end{array}
+$$
+
+Así la probabilidad de que la estimación II haya sido correcta dado que las ventas fueron mayores a 350 millones de dólares es de $0.32$.
+
 \newpage
 
 # Ejercicio 7
 
 Producir el pan francés que hornea la Fleur de Farine cuesta \$8 por docena de baguettes.  El pan fresco se vende a un precio premium de \$16 por docena, pero tiene una vida de anaquel corta.  Si la Fleur de Farine hornea más pan del que compran sus clientes en un día dado, lo que queda se vende con descuento al día siguiente a los restaurantes, para cubos de pan tostado, a $7 por docena.  Por el contrario, producir menos que la demanda la llevará a ventas perdidas.  La Fleur de Farine hornea su pan francés por lotes de 350 docenas de baguettes.  La demanda diaria de pan es una variable aleatoria que toma los valores 2,3,4 o 5, con probabilidades respectivas de 0.2, 0.25, 0.4 y 0.15.  Si la Fleur de Farine dessea maximixar las ganancias esperadas, ¿cuánto pan debe hornear cada mañana?
+
+\textbf{\underline{Solución:}}
+
+Sea $X$ = Demanda diaria por lotes de pan, una variable aleatoria discreta. Calcularemos el valor esperado de vender 2, 3, 4 ó 5 lotes de pan diarios, para luego obtener las ganancias en cada caso de donde obtendremos en cual caso se encuentra la máxima ganancia.
+
+Cada lote de pan corresponden a 350 docenas de baguettes, por lo que se tiene un precio de venta de 5,600\$ por lote de pan (16\$ $\times$ 350 = 5,600\$). Consideremos la siguiente tabla de las ventas por 2, 3, 4 ó 5 lotes de pan:
+
+\begin{table}[h]
+	\begin{center}
+	\begin{tabular}{|l|l|l|l|l|}
+		\hline
+		& \multicolumn{4}{c|}{Existencias de lotes de pan}        \\ \hline
+		\begin{tabular}[c]{@{}l@{}}Posibles Peticiones\\ de lotes de pan\end{tabular} & 2        & 3        & 4        & 5 \\ \hline
+		2                                                                             & 11,200\$ & 11,200\$ & 11,200\$ & 11,200\$               \\ \hline
+		3                                                                             & 11,200\$ & 16,800\$ & 16,800\$ & 16,800\$               \\ \hline
+		4                                                                             & 11,200\$ & 16,800\$ & 22,400\$ & 22,400\$               \\ \hline
+		5                                                                             & 11,200\$ & 16,800\$ & 22,400\$ & 28,000\$               \\ \hline
+	\end{tabular}
+\end{center}
+\end{table}
+
+Calculemos las ventas esperadas por 2 lotes de pan, esto es:
+
+$E_1 = 11,200\$ \times (0.2 + 0.25 + 0.4 + 0.15) = 11,200\$$
+
+Análogamente calculamos las ventas esperadas por 3, 4 y 5 lotes de pan:
+
+$E_2 = 11,200\$ \times 0.2 + 16,800\$ \times (0.25 + 0.4 + 0.15) = 15,680\$$
+
+$E_3 = 11,200\$ \times 0.2 + 16,800\$ \times 0.25 + 22,400\$ \times (0.4 + 0.15) = 18,760\$$
+
+$E_4 = 11,200\$ \times 0.2 + 16,800\$ \times 0.25 + 22,400\$ \times 0.4 + 28,000\$ \times 0.15 = 19,600\$$
+
+Cada lote de pan de 350 baguettes tiene un costo de producción de 2,800\$ (8\$ $\times$ 350 = 2,800\$). Restando el precio de venta de los lotes de pan con el costo de producción obtendremos la ganancia neta por los lotes de pan vendidos, así tenemos:
+
+\newpage
+
+$\text{Ganancias por 2 lotes de pan vendidos en el día} = 11,200\$-5,600\$ = 5,600\$$
+
+$\text{Ganancias por 3 lotes de pan vendidos en el día} = 15,680\$-8,400\$ = 7,280\$$
+
+$\text{Ganancias por 4 lotes de pan vendidos en el día} = 18,760\$-11,200\$ = 7,560\$$
+
+$\text{Ganancias por 5 lotes de pan vendidos en el día} = 19,600\$-14,000\$ = 5,600\$$
+
+Así la Fleur de Farine para maximizar sus ganancias tiene que hornear 4 lotes de pan cada mañana, pues esta representa una utilidad de 7,560\$
 
 \newpage
 
@@ -191,12 +596,163 @@ c) Sean rechazados menos de tres.
 
 d) Sean rechazados más de cinco.
 
+\textbf{\underline{Solución:}}
+
+Definamos la siguiente variable aleatoria con distribución binomial como: 
+
+$X$ = Número de rechazos de tarjetas a los solicitantes.
+
+Cuya probabilidad es de $p=0.25$, $q=0.75$ y $n=15$.
+
+a) Calculemos la probabilidad de que exactamente a cuatro clientes se les rechaze la tarjeta, esto es:
+
+$$
+\begin{array}{rl}
+P(X=4) &= \displaystyle \frac{15!}{4!(15-4)!} \times 0.25^4 \times (0.75)^{15-4} \\
+\\
+&= \displaystyle \frac{15!}{4!11!} \times 0.25^4 \times (0.75)^{11} \\
+\\
+&= 0.2251
+\end{array}
+$$
+
+Por lo que la probabilidad de que a exactamente cuatro clientes les sea rechazada la tarjeta es de $0.2251$ o $22.51\%$.
+
+\textbf{\underline{En R:}}
+
+Usamos la función `dbinom()`, por lo que nos queda:
+
+```{r,comment=''}
+dbinom(4,15,0.25)
+```
+
+
+b) Análogamente al inciso a) calculamos la probabilidad de que exactamente a ocho clientes se les rechaze la tarjeta, así:
+
+$$
+\begin{array}{rl}
+P(X=8) &= \displaystyle \frac{15!}{8!(15-8)!} \times 0.25^8 \times (0.75)^{15-8} \\
+\\
+&= \displaystyle \frac{15!}{8!7!} \times 0.25^8 \times (0.75)^{7} \\
+\\
+&= 0.013
+\end{array}
+$$
+Por lo que la probabilidad de que a exactamente ocho clientes les sea rechazada la tarjeta es de $0.013$ o $1.3\%$.
+
+\textbf{\underline{En R:}}
+
+Usamos la función `dbinom()`, así:
+
+```{r,comment=''}
+dbinom(8,15,0.25)
+```
+
+
+c) Calculemos la probabilidad de que a menos de tres clientes se les rechaze la tarjeta, esto es:
+
+$$P(X<3) = P(X=0) + P(X=1) + P(X=2)$$
+Calculando cada una de estas probabilidades tenemos:
+
+$$
+\begin{array}{rl}
+P(X=i) &= \displaystyle \frac{15!}{i!(15-i)!} \times 0.25^i \times 0.75^{15-i} \\
+\\
+&; \text{con } i=0,..,2
+\end{array}
+$$
+Reemplazando los valores de $i$ obtenemos las siguientes probabilidades: $P(X=0) = 0.0133$, $P(X=1) = 0.0668$ y $P(X=2) = 0.1559$.
+
+Así la probabilidad de que a menos de tres clientes se les rechaze la tarjeta es de:
+
+$$P(X<3) = P(X=0) + P(X=1) + P(X=2) = 0.0133 + 0.0668 + 0.1559 = 0.236$$
+
+\textbf{\underline{En R:}}
+
+Usamos la función `pbinom()` para calcular la probabilidad $P(X \leq i)$, así:
+
+```{r,comment=''}
+pbinom(2,15,0.25)
+```
+
+\newpage
+
+d) Calculemos la probabilidad de que sean rechazadas más de cinco tarjetas, esto es:
+
+$$P(X>5) = 1 - P(X \leq 5) = 1 - \left(\sum_{i=0}^{5} P(X=i) \right)$$
+Calculemos $P(X=3)$ y $P(X=5)$, pues las probabilidades $P(X=0,1,2,4)$ se calcularon anteriomente, así:
+
+$$
+\begin{array}{rl}
+P(X=3) &= \displaystyle \frac{15!}{3!12!} \times 0.25^3 \times (0.75)^{12} \\
+\\
+&= 0.2251
+\end{array}
+$$
+Por otro lado,
+
+$$
+\begin{array}{rl}
+P(X=5) &= \displaystyle \frac{15!}{5!10!} \times 0.25^5 \times (0.75)^{10} \\
+\\
+&= 0.1651
+\end{array}
+$$
+
+Sustituyendo estos valores tenemos que la probabilidad de que a más de cinco clientes se les rechaze la tarjeta es de:
+
+$$P(X>5) = 1 - (0.0133 + 0.0668 + 0.1559 + 0.2251 + 0.2251 + 0.1651) = 1 - 0.8513 = 0.1487$$
+\textbf{\underline{En R:}}
+
+Usamos la función `pbinom()` con el argumento `lower.tail=FALSE` para calcular la probabilidad $P(X > i)$, por lo que tenemos:
+
+```{r,comment=''}
+pbinom(5,15,0.25,lower.tail = FALSE)
+```
+
+
 
 \newpage
 
 # Ejercicio 9
 
 La compañía Executive Camera proporciona gastos completos a sus agentes de ventas.  Cuando tiene la intención de asignar gastos de automóvil a sus empleados, el departamento de finanzas utiliza cantidades de millas para estimar los gastos de gasolina, neumáticos y mantenimiento.  Los agentes de ventas recorren un promedio de 5,650 millas al mes, con una desviación estándar de 120.  Con el fin de ahorrar, el departamento de finanzas desea que su estimación de gastos y el correspondiente presupuesto sean adecuadamente suficientes y, por tanto, no quiere usar, para la estimación, los datos de ningún agente de ventas cuyo kilometraje sea menor que 5,500 kilómetros.  ¿Qué porcentanje de los agentes de ventas recorren 5,500 kilómetro o más?
+
+\textbf{\underline{Solución:}}
+
+Definamos la siguiente variable aleatoria con distribución normal como:
+
+$X$ = Kilómetros recorridos por los agentes de ventas.
+
+Cuya media y desviación estándar son de $\mu = 5,650$ y $\sigma = 120$ respectivamente.
+
+Calculemos la probabilidad de que un agente de ventas recorra 5,500 km o más, esto es:
+
+$$
+\begin{array}{rl}
+P(X \geq 5,500) 
+&= 1 - P(X < 5,500) \\
+\\
+&= 1 - P\left(\displaystyle \frac{X - 5,650}{120} < \displaystyle \frac{5,500 - 5,650}{120}\right) \\
+\\
+&= 1 - P(Z < -1.25) \\ 
+&= 1-\Phi(-1.25) \\
+&= 1-(1- \Phi(1.25) ) \\
+&= 1 - 1 + \Phi(1.25) \\
+&= \Phi(1.25) \\
+&= 0.8944 \\
+\end{array}
+$$
+
+Por lo que la probabilidad de que los agentes de ventas recorran 5.500km o más es de $0.8944$ ó $89.44\%$.
+
+\textbf{\underline{En R:}}
+
+Usamos la función `pnorm()` con el argumento `lower.tail=FALSE` para calcular la probabilidad $P(X > i)$, por lo que tenemos:
+
+```{r,comment=''}
+pnorm(5500,5650,120,lower.tail = FALSE)
+```
 
 
 \newpage
@@ -248,6 +804,197 @@ d) Si las ofertas de trabajo para los graduados de maestría tienen una distribu
 
 3) Más de tres ofertas.
 
+\textbf{\underline{Solución:}}
+
+a) Calculemos la media y la desviación estándar del salario promedio después del MBA mediante **R**, esto es:
+
+```{r,comment=''}
+spdMBA<-c(89930,84640,83210,100800,102630,67820,58520,100480,74010,80500,70490,
+          74280,95410,69890,71970,70660,61890,69880,71970,54720)
+mean(spdMBA)
+sd(spdMBA)
+```
+
+Por lo que la media y la desviación estándar del salario promedio después del MBA son de 77,685\$ y 14,108.26\$ respectivamente.
+
+b) Definamos la siguiente variable aleatoria con distribución normal como:
+
+$X$ = Salario promedio de un graduado del MBA.
+
+Cuya media y desviación estándar se calcularon en el inciso a).
+
+1) Calculemos la probabilidad de que un graduado tenga un salario promedio de más de 100,000\$, esto es:
+
+$$
+\begin{array}{rl}
+P(X > 100,000) 
+&= 1 - P(X \leq 100,000) \\
+\\
+&= 1 - P\left(\displaystyle \frac{X - 77,685}{14,108.26} < \displaystyle \frac{100,000 - 77,685}{14,108.26}\right) \\
+\\
+&= 1 - P(Z < 1.58) \\ 
+&= 1-\Phi(1.58) \\
+&= 1-0.9429 \\
+&= 0.0571
+\end{array}
+$$
+\textbf{\underline{En R:}}
+
+Usamos la función `pnorm()` con el argumento `lower.tail=FALSE` para calcular la probabilidad $P(X > i)$, por lo que tenemos:
+
+```{r,comment=''}
+pnorm(100000,77685,14108.26,lower.tail = FALSE)
+```
+
+2) Ahora calculemos las probabilidad de que un graduado tenga un salario promedio menor a 60,000\$, así:
+
+$$
+\begin{array}{rl}
+P(X < 60,000) 
+&= P\left(\displaystyle \frac{X - 77,685}{14,108.26} < \displaystyle \frac{60,000 - 77,685}{14,108.26}\right) \\
+\\
+&= P(Z < -1.25) \\ 
+&= \Phi(-1.25) \\
+&= 1 - \Phi(1.25) \\
+&= 1 - 0.8944 \\
+&= 0.1056
+\end{array}
+$$
+\textbf{\underline{En R:}}
+
+Usamos la función `pnorm()` , por lo que nos queda:
+
+```{r,comment=''}
+pnorm(60000,77685,14108.26)
+```
+
+3) Por último calculemos la probabilidad de que un graduado tenga un salario promedio entre 75,000\$ y 95,000\$, tenemos:
+
+$$
+\begin{array}{rl}
+P(75,000 < X < 95,000) 
+&= P\left(\displaystyle \frac{75,000 - 77,685}{14,108.26} < \displaystyle \frac{X - 77,685}{14,108.26} < \displaystyle \frac{95,000 - 77,685}{14,108.26}\right) \\
+\\
+&= P(-0.19 < Z < 1.22) \\
+&= \Phi(1.22) - \Phi(-0.19) \\
+&= \Phi(1.22) - 1 + \Phi(0.19) \\
+&= 0.8888 - 1 + 0.5753 \\
+&= 0.4641 \\
+\end{array}
+$$
+
+\textbf{\underline{En R:}}
+
+Usamos la función `pnorm()` , así:
+```{r,comment=''}
+pnorm(95000,77685,14108.26)-pnorm(75000,77685,14108.26)
+```
+
+c) Calculemos la media para el número promedio de ofertas de trabajo mediante **R**, esto es:
+
+```{r,comment=''}
+Ofertas<-c(3.02,2.96,2.92,3.47,3.60,2.68,2.45,2.43,2.74,3.25,2.78,2.69,2.40,
+           2.69,2.40,2.12,2.58,3.09,2.34,2.19)
+mean(Ofertas)
+```
+
+Por lo que la media para el número promedio de ofertas de trabajo es de 2.74.
+
+d) Definamos la siguiente variable aleatoria con distribución de Poisson como:
+
+$X$ = Ofertas de trabajo para los graduados de la maestría.
+
+Con $\lambda = 2.74$.
+
+1) Calculemos la probabilidad de que un graduado de la maestría reciba menos de dos ofertas de trabajo. Por lo que tenemos lo siguiente:
+
+$$P(X < 2) = P(X=0) + P(X=1)$$
+donde,
+
+$$
+\begin{array}{rl}
+P(X=0) &= \displaystyle \frac{(2.74)^0 \times e^{-2.74}}{0!} \\
+\\
+&= e^{-2.74} \\
+&= 0.0645
+\end{array}
+$$
+y,
+
+$$
+\begin{array}{rl}
+P(X=1) &= \displaystyle \frac{(2.74)^1 \times e^{-2.74}}{1!} \\
+\\
+&= 2.74 \times e^{-2.74} \\
+&= 0.1769 \\
+\end{array}
+$$
+Por lo que la probabilidad de que un graduado de la maestría reciba menos de dos ofertas de trabajo es de:
+
+$$P(X < 2) = P(X=0) + P(X=1) = 0.0645 + 0.1769 = 0.2414$$
+\textbf{\underline{En R:}}
+
+Usando la función `ppois()` tenemos:
+
+```{r,comment=''}
+ppois(1,2.74)
+```
+
+2) Ahora calculemos la probabilidad de que un graduado de la maestría reciba dos ó tres ofertas de trabajo, así:
+
+$$P(X = 2,3) = P(X = 2) + P(X=3)$$
+donde,
+
+$$
+\begin{array}{rl}
+P(X=2) &= \displaystyle \frac{(2.74)^2 \times e^{-2.74}}{2!} \\
+\\
+&= \displaystyle \frac{7.5076 \times e^{-2.74}}{2} \\
+&= 0.2423 \\
+\end{array}
+$$
+y,
+
+$$
+\begin{array}{rl}
+P(X=3) &= \displaystyle \frac{(2.74)^3 \times e^{-2.74}}{3!} \\
+\\
+&= \displaystyle \frac{20.5708 \times e^{-2.74}}{6} \\
+&= 0.2213 \\
+\end{array}
+$$
+Por lo que la probabilidad de que un graduado de la maestría reciba dos ó tres ofertas de trabajo es de:
+
+$$P(X = 2,3) = P(X = 2) + P(X=3) = 0.2423 + 0.2213 = 0.4636$$
+\textbf{\underline{En R:}}
+
+Usando la función `dpois()` tenemos:
+
+```{r,comment=''}
+dpois(2,2.74)+dpois(3,2.74)
+```
+
+3)  Por último calculemos la probabilidad de que un graduado reciba más de tres ofertas:
+
+$$P(X > 3) = 1 - P(X\leq 3) = 1 - P(X=0) - P(X=1) - P(X=2) - P(X=3)$$
+Sustituyendo las probabilidades ya calculadas anteriormente tenemos que la probabilidad de que un graduado reciba más de tres ofertas es de:
+
+$$
+\begin{array}{rl}
+P(X > 3) = 1 - P(X\leq 3) &= 1 - P(X=0) - P(X=1) - P(X=2) - P(X=3) \\
+&= 1 - 0.0645 - 0.1769 - 0.2423 - 0.2213 \\
+&= 0.295 \\
+\end{array}
+$$
+\textbf{\underline{En R:}}
+
+Usando la función `ppois()` con el argumento `lower.tail=FALSE` tenemos:
+
+```{r,comment=''}
+ppois(3,2.74,lower.tail = FALSE)
+```
+
+
 
 \newpage
 
@@ -259,6 +1006,30 @@ a) Ansel tiene curiosidad acerca del promedio y de la desviación estándar del 
 
 b) Suponga que después de una minuciosa investigación el funcionario de crédito le dice a Ansel que en realidad las cantidades correctas son de 1,327 solicitudes al año con una probabilidad de aprobación de 0.77. ¿Cuáles son ahora la media y la desviación estándar?
 
+\textbf{\underline{Solución:}}
+
+Definamos la siguiente variable aleatoria con distribución normal como:
+
+$X$ = Número de solicitudes de préstamos aceptadas por año.
+
+Cuya probabilidad es de $p=0.8$, $q=0.2$ y $n=1,460$.
+
+a) La media y la desviación estándar de esta variable aleatoria están dadas por $\mu = np$ y $\sigma = \sqrt{npq}$. Así sustituyendo los valores tenemos:
+
+$$\mu = np = 1,460 \times 0.8 = 1,168$$
+y,
+
+$$\sigma = \sqrt{npq} = \sqrt{1,460 \times 0.8 \times 0.2} = 15.2839$$
+Por lo que la media y la desviación estándar son 1,168 y 15.2839 respectivamente.
+
+
+b) Ahora supongamos que la variable aleatoria tiene una probabilidad de $p = 0.77$, $q = 0.23$ y $n = 1,327$. Por lo que la media y la desviación estándar están dadas por:
+
+$$\mu = np = 1,327 \times 0.77 = 1,021.79$$
+y,
+
+$$\sigma = \sqrt{npq} = \sqrt{1,327 \times 0.77 \times 0.23} = 15.33$$
+Por lo que la media y la desviación estándar son 1,021.79 y 15.33 respectivamente.
 
 \newpage
 
@@ -307,6 +1078,162 @@ C) Asuma que los cambios porcentaules de 1995 en los salarios de ejecutivos de t
 
 3) Entre el 15% de recorte y el 15% de incremento.
 
+\textbf{\underline{Solución:}}
+
+a) De los 39 ejecutivos que experimentaron un cambio porcentual en sus salarios, 10 experimentaron un recorte salarial, es decir, el 25.64\% de los 39 ejecutivos. Definamos las siguientes variables aleatorias con distribución binomial como:
+
+$X$ = Número de ejecutivos que sufrieron un recorte.
+
+Cuya probabilidad es de $p_1 = 0.2564$ y $q_1=0.7435$.
+
+$Y$ = Número de ejecutivos que obtuvieron aumentos.
+
+Cuya probabilidad es de $p_2 = 0.7435$ y $q_2 = 0.2564$.
+
+Para 6 ejecutivos elegidos al azar, es decir, para $n=6$ calculemos las siguientes probabilidades:
+
+1) Probabilidad de que exactamente cinco ejecutivos sufrieran un recorte, esto es:
+
+$$
+\begin{array}{rl}
+P(X=5) &= \displaystyle \frac{6!}{5!(6-5)!} \times {p}^5_1 \times {q}^{6-5}_1 \\
+\\
+&= \displaystyle \frac{6!}{5!1!} \times 0.2564^5 \times 0.7435^1 \\
+\\
+&= 0.004943
+\end{array}
+$$
+\textbf{\underline{En R:}}
+
+Usando la función `dbinom()` tenemos:
+
+```{r,comment=''}
+dbinom(5,6,0.2564)
+```
+
+2) Probabilidad de que por lo menos 5 obtuvieran un aumento, esto es:
+
+$$P(Y \geq 5) = 1 - P(Y<5) = 1 - P(Y=0)-P(Y=1)-P(Y=2)-P(Y=3)-P(Y=4)$$
+donde,
+
+$$
+\begin{array}{rl}
+P(Y=i) &= \displaystyle \frac{6!}{i!(6-i)!} \times {p}^i_2 \times {q}^{6-i}_2 \\
+\\
+&= \displaystyle \frac{6!}{i!(6-i)!} \times 0.7435^i \times 0.2564^{6-i} \\
+\\
+&; \text{con } i=0,..,4
+\end{array}
+$$
+
+sustituyendo los valores de $i$ tenemos las siguientes probabilidades: $P(Y=0) = 0.000284$, $P(Y=1) = 0.00494$, $P(Y=2) = 0.0358$, $P(Y=3) = 0.1385$ y $P(Y=4) = 0.3013$. Así, la probabilidad de que por lo menos cinco ejecutivos obtuvieran un aumento es de:
+
+$$P(Y \geq 5) = 1 - P(Y<5) = 1 - 0.000284 - 0.00494 - 0.0358 - 0.1385 - 0.3013 = 0.5191$$
+\textbf{\underline{En R:}}
+
+Usando la función `pbinom()` con el argumento `lower.tail=FALSE` tenemos:
+
+```{r,comment=''}
+pbinom(4,6,0.7435,lower.tail = FALSE)
+```
+
+3) Por último calculemos la probabilidad de que menos de cuatro ejecutivos obtuvieran un aumento, esto es:
+
+$$P(Y < 4) = P(Y=0) + P(Y=1) + P(Y=2) + P(Y=3)$$
+Sustituyendo las probabilidades ya calculadas anteriormente, tenemos que la probabilidad de que menos de cuatro ejecutivos obtuvieran un aumento es de:
+
+$$P(Y < 4) = P(Y=0) + P(Y=1) + P(Y=2) + P(Y=3) = 0.000284 + 0.00494 + 0.0358 + 0.1385 = 0.1795$$
+\textbf{\underline{En R:}}
+
+Usando la función `pbinom()` nos queda:
+
+```{r,comment=''}
+pbinom(3,6,0.7435)
+```
+
+b) Calculemos la media y la desviación estándar de los cambios porcentuales en los salarios de los ejecutivos mediante **R**, así:
+
+```{r,comment=''}
+Cambios<-c(11.2,20.0,31.9,-2.9,29.7,19.1,-0.6,-42.3,-8.5,10.7,12.4,9.7,1.3,
+           24.8,8.5,12.5,10.9,3.1,25.3,20.3,22.7,-6.5,5.3,17.6,64.1,-33.5,
+           5.2,-34.1,26.3,-16.9,-3.8,35.6,28.7,13.1,26.2,7.6,26.7,47.1,-0.8)
+mean(Cambios)
+sd(Cambios)
+```
+Por lo que la media y la desviación estándar de los cambios porcentuales en los salarios de los ejecutivos son de 10.96 y 20.90 respectivamente.
+
+c) Definamos la siguiente variable aleatoria con distribución normal como:
+
+$X$ = Cambios porcentuales en los salarios de los ejecutivos.
+
+Cuya media y desviación estándar se calcularon en el inciso b).
+
+1) Calculemos la probabilidad de que el salario de un ejecutivo se haya incrementado al menos 25\%, esto es:
+
+$$
+\begin{array}{rl}
+P(X \geq 25) 
+&= 1 - P(X < 25) \\
+\\
+&= 1 - P\left(\displaystyle \frac{X - 10.96}{20.90} < \displaystyle \frac{25 - 10.96}{20.90}\right) \\
+\\
+&= 1 - P(Z < 0.671) \\
+&= 1 - \Phi(0.671) \\
+&= 1 - 0.7486 \\
+&= 0.2514 \\
+\end{array}
+$$
+\textbf{\underline{En R:}}
+
+Usamos la función `pnorm()` con el argumento `lower.tail=FALSE` por lo que nos queda:
+
+```{r,comment=''}
+pnorm(25,10.96,20.90,lower.tail = FALSE)
+```
+
+2) Ahora calculemos la probabilidad de que el incremento sea menor del 5\%, así:
+
+$$
+\begin{array}{rl}
+P(X < 5) 
+&= P\left(\displaystyle \frac{X - 10.96}{20.90} < \displaystyle \frac{5 - 10.96}{20.90}\right) \\
+\\
+&= P(Z < -0.285) \\ 
+&= \Phi(-0.285) \\
+&= 1 - \Phi(0.285) \\
+&= 1 - 0.6103 \\
+&= 0.3897 \\
+\end{array}
+$$
+\textbf{\underline{En R:}}
+
+Usamos la función `pnorm()` , por lo que nos queda:
+
+```{r,comment=''}
+pnorm(5,10.96,20.90)
+```
+
+3) Por último calculemos la probabilidad de que el cambio porcentual en los salarios de los ejecutivos se encuentre entre un -15\% y 15\%. Por lo que nos queda:
+
+$$
+\begin{array}{rl}
+P(-15 < X < 15) 
+&= P\left(\displaystyle \frac{-15 - 10.96}{20.90} < \displaystyle \frac{X - 10.96}{20.90} < \displaystyle \frac{15 - 10.96}{20.90}\right) \\
+\\
+&= P(-1.24 < Z < 0.19) \\
+&= \Phi(0.19) - \Phi(-1.24) \\
+&= \Phi(0.19) - 1 + \Phi(1.24) \\
+&= 0.5753 - 1 + 0.8925 \\
+&=  0.4678 \\
+\end{array}
+$$
+\textbf{\underline{En R:}}
+
+Usamos la función `pnorm()`, así:
+```{r,comment=''}
+pnorm(15,10.90,20.90)-pnorm(-15,10.90,20.90)
+```
+
 
 \newpage
 
@@ -314,6 +1241,30 @@ C) Asuma que los cambios porcentaules de 1995 en los salarios de ejecutivos de t
 
 Diez motores se empacan para su venta en cierto almacén.  Los motores se venden en \$100 cada uno, pero una garantía de devolución del doble de su dinero es efectiva por cualquier unidad defectuosa que el comprador pueda recibir.  Encuentre la ganancia neta esperada para el vendedor si la probabilidad de que cualquier motor sea defectuoso es 0.8. (Suponga que la calidad de cualquier motor es independiente de la de los otros.)
 
+\textbf{\underline{Solución:}}
+
+Definamos las sigueintes variables aleatorias con distribución binomial como:
+
+$X$ = Motor que sea defectuoso.
+
+$X^c$ = Motor que no sea defectuoso.
+
+Donde la probabilidad de que un motor sea defectuoso es de $p=0.08$, lo que implica que la probabilidad de que un motor no sea defectuoso es de $q=0.92$. Para 10 motores ($n=10$), el valor esperado de que un motor salga defectuoso es de:
+
+$$E_1(X) = n \times p = 10 \times 0.08 = 0.8$$
+Por otra parte, el valor esperado de que un motor no sea defectuoso es de:
+
+$$E_2(X^c) = n \times q = 10 \times 0.92 = 9.2$$
+
+Esto implica que el valor esperado de que un motor no salga defectuoso es de 9.2 motores de 10 en total, multiplicando por el precio de venta de cada motor (100\$) obtenemos la ganacia esperada para los motores no defectuosos, esto es:
+$$\text{Ganacia esperada para los motores no defectuosos} = E_2(X^c) \times 100\$ = 9.2 \times 100\$ = 920\$ $$
+
+Ahora, el valor esperado de que un motor salga defectuoso es de 0.8, si un motor sale defectuoso el vendedor le reembolsará 200\$ al comprador por lo que la pérdida esperada para los motores que sean defectuosos es de:
+$$\text{Pérdida esperada para los motores defectuosos} = E_1(X) \times 200\$ = 0.8 \times 200\$ = 160\$ $$
+
+Así, la ganacia neta esperada del vendedor será la diferencia entre la ganancia esperada para los motores no defectuosos y la pérdida esperada para los motores defectuosos, por lo que nos queda finalmente que la ganacia neta esperada es de:
+
+$$\text{Ganancia neta esperada} = 920\$-160\$ = 760\$ $$
 
 \newpage
 
@@ -324,6 +1275,46 @@ La probabilidad de que llegue un cliente al mostrador de servicio de una tienda 
 a) ocurra durante el tercer intervalo de un segundo.
 
 b) no ocurra hasta al menos el tercer intervalo de un segundo.
+
+\textbf{\underline{Solución:}}
+
+Definamos la siguiente variable aleatoria con distribución geométrica como:
+
+$X$= Número de intervalos de un segundo hasta la primera llegada de algún cliente.
+
+Donde la probabilidad de que un cliente llegue al mostrador en un segundo es de $p=0.1$, y la probabilidad de que no llegue es de $q=0.9$.
+
+a) Calculemos la probabilidad de que la primera llegada ocurra en el tercer intervalo de un segundo, esto es:
+
+$$P(X=3) = q^{3-1} \times p = 0.9^2 \times 0.1 = 0.081$$
+Así, la probabilidad de que la primera llegada ocurra en el tercer intervalo de un segundo es de $0.081$ ó $8.1\%$.
+
+\textbf{\underline{En R:}}
+
+Usamos la función `dgeom()`, así:
+```{r,comment=''}
+dgeom(2,0.1)
+```
+
+b)  Calculemos la probabilidad de que la primera llegada no ocurra hasta al menos el tercer intervalo de un segundo, o lo que es lo mismo, la probabilidad de que la primera llegada ocurra después de el tercer intervalo de un segundo, esto es:
+
+$$P(X>3) = 1 - P(X \leq 3) = 1 - P(X=1) - P(X=2) - P(X=3)$$
+
+donde,
+
+$$P(X=1) = 0.9^0 \times 0.1 = 0.1$$
+$$ P(X=2) = 0.9 \times 0.1 = 0.09$$
+Por lo que la probabilidad de que la primera llegada ocurra después de el tercer intervalo de un segundo,es de:
+
+$$P(X>3) = 1 - 0.1 - 0.09 - 0.081 = 0.729$$
+
+\textbf{\underline{En R:}}
+
+Usando la función `pgeom()` con el argumento `lower.tail=FALSE` tenemos:
+
+```{r,comment=''}
+pgeom(2,0.1,lower.tail = FALSE)
+```
 
 
 \newpage
@@ -336,6 +1327,47 @@ a) Si una persona llama a esta oficina, ¿cuál es la probabilidad de que comple
 
 b) Si usted y un amigo deben ambos completar llamadas a esta oficina, ¿cuál es la probabilidad de que un total de cuatro intentos sean necesarios para que los dos terminen su comunicación?
 
+\textbf{\underline{Solución:}}
+
+Definamos la siguiente variable aleatoria con distribución binomial negativa como:
+
+$X$ = Número de intentos hasta completar la llamada.
+
+donde la probabilidad de que se complete una llamada es de $p=0.4$, y la probabilidad de que esté ocupada es de $q=0.6$.
+
+a) Primero calculemos la probabilidad de que se complete la llamada al primer intento, es decir, para $X=1$ y $r=1$ tenemos:
+
+$$P(X=1) = {1-1 \choose 1-1} \times 0.4 \times 0.6^{1-1} = 0.4$$
+
+Ahora calculemos la probabilidad de que se complete la llamada al segundo intento, es decir, para $X=2$ y $r=1$ tenemos:
+
+$$P(X=2) = {2-1 \choose 1-1} \times 0.4 \times 0.6^{2-1} = 0.24$$
+
+Por último calculemos la probabilidad de que se complete la llamada al tercer intento, por lo que para $X=3$ y $r=1$ tenemos:
+
+$$P(X=3) = {3-1 \choose 1-1} \times 0.4 \times 0.6^{3-1} = 0.144$$
+
+\textbf{\underline{En R:}}
+
+Usamos la función `dnbinom()` para calcular las 3 probabilidades respectivas, así:
+
+```{r,comment=''}
+dnbinom(0,1,0.4)
+dnbinom(1,1,0.4)
+dnbinom(2,1,0.4)
+```
+
+b) Para 4 intentos queremos saber la probabilidad de que dos personas puedan completar la llamada, es decir, para $X=4$ y $r=2$ tenemos:
+
+$$P(X=4) = {4-1 \choose 2-1} \times 0.4^2 \times 0.6^{4-2} = 3 \times 0.16 \times 0.36 = 0.1728$$
+
+\textbf{\underline{En R:}}
+
+Usamos la función `dnbinom()`, tenemos:
+
+```{r,comment=''}
+dnbinom(2,2,0.4)
+```
 
 \newpage
 
@@ -345,7 +1377,59 @@ Suponga que ocurren llegadas de acuerdo con un proceso de Poisson con un promedi
 
 a) las 2:00 p.m. y  las 4:00 p.m.(un periodo continuo de dos horas)?,
 
-b)la 1:00 p.m. y las 2:00 p.m. o entre las 3:00 p.m. y las 4:00 p.m. (dos periodos de una hora separados que totalizan dos horas)?
+b) la 1:00 p.m. y las 2:00 p.m. o entre las 3:00 p.m. y las 4:00 p.m. (dos periodos de una hora separados que totalizan dos horas)?
+
+\textbf{\underline{Solución:}}
+
+Definamos la siguiente variable aleatoria con distribución de Poisson como:
+
+$X$ = Número de llegadas de clientes por hora.
+
+Con $\lambda=7$.
+
+a) Calculemos la probabilidad de que exactamente 2 clientes lleguen entre las 2:00 p.m. y las 4:00 p.m., es decir, entre dos horas continuas. Como el promedio de llegadas de clientes es 7 por hora, entonces para dos horas obtenemos un promedio de 14 clientes. Por lo que tenemos:
+
+$$
+\begin{array}{rl}
+P(X=2) &= \displaystyle \frac{14^2 \times e^{-14}}{2!} \\
+\\
+&= \displaystyle \frac{196 \times e^{-14}}{2} \\
+\\
+&= 0.0000814
+\end{array}
+$$
+\textbf{\underline{En R:}}
+
+Usamos la función `dpois()`, tenemos:
+
+```{r,comment=''}
+dpois(2,14)
+```
+
+b) Calculemos la probabilidad de que exactamente lleguen dos clientes entre la 1:00 p.m. y las 2:00 p.m. o entre las 3:00 p.m. y las 4:00 p.m., es decir, dos periodos de una hora por separado que totalizan 2 horas, esto es:
+
+$$
+\begin{array}{rl}
+P(X=2) &= \displaystyle \frac{7^2 \times e^{-7}}{2!} \\
+\\
+&= \displaystyle \frac{49 \times e^{-7}}{2} \\
+\\
+&= 0.0223
+\end{array}
+$$
+
+Por lo que la probabilidad de que lleguen exactamente 2 clientes en dos periodos de una hora seperados es de:
+
+$$P(X=2) + P(X=2) = 0.0223 + 0.0223 = 0.0446$$
+
+\textbf{\underline{En R:}}
+
+Usamos la función `dpois()`, tenemos:
+
+```{r,comment=''}
+dpois(2,7)+dpois(2,7)
+```
+
 
 
 \newpage
@@ -354,12 +1438,74 @@ b)la 1:00 p.m. y las 2:00 p.m. o entre las 3:00 p.m. y las 4:00 p.m. (dos period
 
 El propietario de una tienda ha abarrotado cierto artículo y decide usar la siguiente promoción para disminuir la oferta.  El artículo tiene un precio marcado de \$100.  Por cada cliente que compre el artículo durante un día en particular, el propietario reducirá el precio en un factor de un medio.  Entonces, el primer cliente pagará \$50 por el artículo, el segundo pagará \$25 y así sucesivamente.  Suponga que el número de clientes que compren el artículo durante el día tiene una distribución de Poisson con media 2.  Encuentre el costo esperado del artículo al final del día. [*Sugerencia*: el costo al final del día es $100(1/2)^{y}$, donde *Y* es el número de clientes que han comprado el artículo.]
 
+\textbf{\underline{Solución:}}
+
+Definamos la siguiente variable aleatoria con distribución de Poisson como:
+
+$Y$= Número de clientes que han comprado el artículo durante el día.
+
+Con $\lambda =2$. El costo al final del día es de $100(1/2)^{y}$, queremos hallar el costo esperado del artículo al final del día, es decir, queremos calcular $E(100(1/2)^{Y})$, usando el hecho de que $E(g(Y)) = \displaystyle \sum_{y \geq 0} g(y)p(y)$ tenemos:
+
+$$
+\begin{array}{rl}
+E(100(1/2)^{Y}) = 100E((1/2)^{Y}) &= 100 \displaystyle \sum_{y \geq 0} \frac{1}{2^y} \frac{\lambda^y e^{-\lambda}}{y!} \\
+\\
+&= 100 \displaystyle \sum_{y \geq 0} \frac{\displaystyle \left(\frac{\lambda}{2}\right)^y e^{-\lambda}}{y!} \\
+\\
+&= 100 e^{-\lambda/2} \displaystyle \sum_{y \geq 0} \frac{\displaystyle \left(\frac{\lambda}{2}\right)^y e^{-\lambda/2}}{y!} \\
+\\
+&= 100 e^{-\lambda/2} \\
+\end{array}
+$$
+
+Así, para $\lambda=2$, nos queda:
+
+$$E(100(1/2)^{Y}) = 100 e^{-\lambda/2} = 100 e^{-2/2} = 100 e^{-1} = 36.78$$
+
+Por lo que el costo esperado del artículo al final del día es de 36.78\$
+
 \newpage
 
 # Ejercicio 18
 
-Una comerciante tiene en existencia cierto artículo perecedero.  Ella sabe que en cualquier día determinado tendrá una demanda de dos, tres o cuatro de estos artículos con probabilidades .1, .4 y .5, respectivamente.  Compra los artículos en \$1.00 cada uno y  lod vende en \$1.20 cada uno.  Si quedan algunos al final del día. representan pérdida total.  ¿Cuántos artículos debe tener en existencia para maximizar su utilidad diaria esperada?
+Una comerciante tiene en existencia cierto artículo perecedero.  Ella sabe que en cualquier día determinado tendrá una demanda de dos, tres o cuatro de estos artículos con probabilidades .1, .4 y .5, respectivamente.  Compra los artículos en \$1.00 cada uno y  los vende en \$1.20 cada uno.  Si quedan algunos al final del día. representan pérdida total.  ¿Cuántos artículos debe tener en existencia para maximizar su utilidad diaria esperada?
 
+\textbf{\underline{Solución:}}
+
+Sea $X$= Demanda de los artículos en existencia, una variable aleatoria discreta. Cada artículo se vende en 1.20\$, consideremos la siguiente tabla de las ventas de los artículos:
+
+\begin{table}[h]
+	\begin{center}
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		& \multicolumn{3}{c|}{Existencias de los artículos} \\ \hline
+		\begin{tabular}[c]{@{}l@{}}Posibles Peticiones\\ de los artículos\end{tabular} & 2        & 3        & 4 \\ \hline
+		2                                                                             & 2.4\$ & 2.4\$ & 2.4\$ \\ \hline
+		3                                                                             & 2.4\$ & 3.6\$ & 3.6\$ \\ \hline
+		4                                                                             & 2.4\$ & 3.6\$ & 4.8\$ \\ \hline
+	\end{tabular}
+\end{center}
+\end{table}
+
+Calculemos las ventas esperadas por 2 artículos, esto es:
+
+$E_1 = 2.4\$ \times (0.1 + 0.4 + 0.5) = 2.4\$$
+
+Así mismo para 3 y 4 artículos las ventas esperadas son:
+
+$E_2 = 2.4\$ \times 0.1 + 3.6\$ \times (0.4 + 0.5) = 3.48\$$
+
+$E_3 = 2.4\$ \times 0.1 + 3.6\$ \times 0.4 + 4.8\$ \times 0.5 = 4.08\$$
+
+El costo de producción de cada artículo es de 1.0\$, así que para 2, 3 y 4 artículos los costes de producción son de 2\$, 3\$ y 4\$ respectivamente. Restando el precio de venta con el costo de producción de los artículos obtendremos la utilidad esperada por artículo, por lo que nos queda:
+
+$\text{Ganancias esperada por 2 artículos vendidos} = 2.4\$-2\$ = 0.4\$$
+
+$\text{Ganancias esperada por 3 artículos vendidos} = 3.48\$-3\$ = 0.48\$$
+
+$\text{Ganancias esperada por 4 artículos vendidos} = 4.08\$-4\$ = 0.08\$$
+
+Por lo tanto el comerciante deberá tener 3 artículos en existencia para maximizar sus ganacias diarias esperadas, pues esta representa una utilidad máxima de 0.48\$.
 
 \newpage
 
