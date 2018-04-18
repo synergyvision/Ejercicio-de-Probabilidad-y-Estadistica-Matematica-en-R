@@ -1,5 +1,5 @@
 ---
-title: "Correcciones de Segunda Ronda de Ejercicios"
+title: "Correcciones de Tercera Ronda de Ejercicios"
 author: "http://synergy.vision/"
 output: pdf_document
 subtitle: José
@@ -27,7 +27,7 @@ Hacer el calculo mediante comandos de R
 
 - Crear otro vector que guarde las correspondientes probabilidades, y calcular esta esperanza mediante la suma del producto de estos dos vectores.
 
-$$sum(\text{valores*probabilidades)}$$
+`sum(valores*probabilidades)`
 
 Ejercicio 3
 
@@ -35,20 +35,20 @@ a) Decir con tus propias palabras porque es una distribución binominal.
 
 Especificar los parámetros que usa cada comando
 
-Ejemplo: dbinom (q=0 size=15, prob=0.3)
+Ejemplo: `dbinom (q=0 size=15, prob=0.3)`
 
 b) Colocar cada uno de estos cálculos manuales
 
 $$
 \begin{array}{rl}
-P(X=0) & =\frac{15!}{0!(15-0)!}\quad 0.3^0\times 0.75^{15-0}\\
+P(\mathcal X=0) & =\frac{15!}{0!(15-0)!}\quad 0.3^0\times 0.75^{15-0}\\
 & =\frac{15!}{15!}0.75^{15}\\
 & =0.75^{15}\\
 & =0.00474
 \end{array}
 $$
 
-Nota: agregar que representa el comando dbinom() y pbinom().
+Nota: agregar que representa el comando `dbinom()` y `pbinom()`.
 
 Ejercicio 4
 
@@ -56,7 +56,7 @@ Explicar brevemente porque $\lambda=4$
 
 Para que las fórmulas no se vean tan pegadas colocar el comando `\vspace{3mm} en la fórmula prevía, no separarlas con \\.
 
-d) pues las probabilidades $P(X=0,2,4)$ quitarlo y colocarlas por separado $P(X=0), P(X=2),...$
+d) pues las probabilidades $P(\mathcal X=0,2,4)$ quitarlo y colocarlas por separado $P(\mathcal X=0), P(\mathcal X=2),...$
 
 Ejercicio 6)
 
@@ -66,7 +66,7 @@ Ejercicio 7)
 
 La página para hacer las tablas es tablesgenerator.com, luego seleccionar Markdowntables (tablesgenerator.com/markdown_tables) y allí creas la tabla
 
-Definir quien es E_1, E_2, E_3 y E_4. Te recomiendo definir E_2,E_3,E_4,E_5 acorde a los posibles peticiones de costos de pan, sea E_2 las ventas esperadas por 2 lotes de pan y así sucesivamente.
+Definir quien es $E_1$, $E_2$, $E_3$ y $E_4$. Te recomiendo definir $E_2$, $E_3$, $E_4$, $E_5$ acorde a los posibles peticiones de costos de pan, sea $E_2$ las ventas esperadas por 2 lotes de pan y así sucesivamente.
 
 Ejercicio 8)
 
