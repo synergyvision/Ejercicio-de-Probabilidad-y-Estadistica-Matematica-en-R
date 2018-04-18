@@ -1026,11 +1026,11 @@ ppois(3,2.74,lower.tail = FALSE)
 
 # Ejercicio 11
 
-Ansel Fearrington desea solicitar un préstamo de \$75,000 al banco para adquirir un nuevo tractor para su granja.  El funcionario de crédito no tiene ningún dato específico sobre la historia del banco acerca de préstamos para equipo, pero le dice a Ansel que a través de los años, el banco ha recibido aproximandamente 1,460 solicitudes de préstamo por año y que la probabilidad de que sean aceptadas fue, en promedio, de aproximadamente 0.8.
+Ansel Fearrington desea solicitar un préstamo de \$75,000 al banco para adquirir un nuevo tractor para su granja.  El funcionario de crédito no tiene ningún dato específico sobre la historia del banco acerca de préstamos para equipo, pero le dice a Ansel que a través de los años, el banco ha recibido aproximandamente 1460 solicitudes de préstamo por año y que la probabilidad de que sean aceptadas fue, en promedio, de aproximadamente 0.8.
 
 a) Ansel tiene curiosidad acerca del promedio y de la desviación estándar del número de préstamos aceptados por año.  Encuentre esas cantidades.
 
-b) Suponga que después de una minuciosa investigación el funcionario de crédito le dice a Ansel que en realidad las cantidades correctas son de 1,327 solicitudes al año con una probabilidad de aprobación de 0.77. ¿Cuáles son ahora la media y la desviación estándar?
+b) Suponga que después de una minuciosa investigación el funcionario de crédito le dice a Ansel que en realidad las cantidades correctas son de 1327 solicitudes al año con una probabilidad de aprobación de 0.77. ¿Cuáles son ahora la media y la desviación estándar?
 
 \textbf{\underline{Solución:}}
 
@@ -1038,24 +1038,24 @@ Definamos la siguiente variable aleatoria con distribución normal como:
 
 $X$ = Número de solicitudes de préstamos aceptadas por año.
 
-Cuya probabilidad es de $p=0.8$, $q=0.2$ y $n=1,460$.
+Cuya probabilidad es de $p=0.8$, $q=0.2$ y $n=1460$.
 
 a) La media y la desviación estándar de esta variable aleatoria están dadas por $\mu = np$ y $\sigma = \sqrt{npq}$. Así sustituyendo los valores tenemos:
 
-$$\mu = np = 1,460 \times 0.8 = 1,168$$
+$$\mu = np = 1460 \times 0.8 = 1168$$
 y,
 
-$$\sigma = \sqrt{npq} = \sqrt{1,460 \times 0.8 \times 0.2} = 15.2839$$
-Por lo que la media y la desviación estándar son 1,168 y 15.2839 respectivamente.
+$$\sigma = \sqrt{npq} = \sqrt{1460 \times 0.8 \times 0.2} = 15.2839$$
+Por lo que la media y la desviación estándar son 1168 y 15.2839 respectivamente.
 
 
-b) Ahora supongamos que la variable aleatoria tiene una probabilidad de $p = 0.77$, $q = 0.23$ y $n = 1,327$. Por lo que la media y la desviación estándar están dadas por:
+b) Ahora supongamos que la variable aleatoria tiene una probabilidad de $p = 0.77$, $q = 0.23$ y $n = 1327$. Por lo que la media y la desviación estándar están dadas por:
 
-$$\mu = np = 1,327 \times 0.77 = 1,021.79$$
+$$\mu = np = 1327 \times 0.77 = 1021.79$$
 y,
 
-$$\sigma = \sqrt{npq} = \sqrt{1,327 \times 0.77 \times 0.23} = 15.33$$
-Por lo que la media y la desviación estándar son 1,021.79 y 15.33 respectivamente.
+$$\sigma = \sqrt{npq} = \sqrt{1327 \times 0.77 \times 0.23} = 15.33$$
+Por lo que la media y la desviación estándar son 1021.79 y 15.33 respectivamente.
 
 \newpage
 
@@ -1096,7 +1096,7 @@ a) ¿Qué parte de esos ejecutivos experimentaron un recorte salarial en 1995? A
 
 b) Calcule la media y la desviación estándar para estos 39 cambios en salarios.
 
-C) Asuma que los cambios porcentaules de 1995 en los salarios de ejecutivos de todas las empresas industriales tienen una distribución normal, y media y desviación estándar como las calculadas en el inciso b).  Encuentre las probabilidades de que un director elegido al azar haya tenido un cambio en su paga en 1995 de:
+c) Asuma que los cambios porcentuales de 1995 en los salarios de ejecutivos de todas las empresas industriales tienen una distribución normal, y media y desviación estándar como las calculadas en el inciso b).  Encuentre las probabilidades de que un director elegido al azar haya tenido un cambio en su paga en 1995 de:
 
 1) Incremento de al menos 25%.
 
@@ -1269,7 +1269,7 @@ Diez motores se empacan para su venta en cierto almacén.  Los motores se venden
 
 \textbf{\underline{Solución:}}
 
-Definamos las sigueintes variables aleatorias con distribución binomial como:
+Definamos las siguienntes variables aleatorias con distribución binomial como:
 
 $X$ = Motor que sea defectuoso.
 
@@ -1296,7 +1296,7 @@ $$\text{Ganancia neta esperada} = 920\$-160\$ = 760\$ $$
 
 # Ejercico 14
 
-La probabilidad de que llegue un cliente al mostrador de servicio de una tienda en un segundo cualquiera es igual a .1.  Suponga que llegan clientes en forma aleatoria y por tanto que una llegada en un segundo cualquiera es independiente de las otras.  Encuentre la probabilidad de que la primera llegada
+La probabilidad de que llegue un cliente al mostrador de servicio de una tienda en un segundo cualquiera es igual a 0.1.  Suponga que llegan clientes en forma aleatoria y por tanto que una llegada en un segundo cualquiera es independiente de las otras.  Encuentre la probabilidad de que la primera llegada
 
 a) ocurra durante el tercer intervalo de un segundo.
 
@@ -2263,8 +2263,6 @@ En R,
 poiss2<-ppois(2,3,lower.tail = FALSE)
 poiss2
 ```
-
-
 
 \newpage
 
