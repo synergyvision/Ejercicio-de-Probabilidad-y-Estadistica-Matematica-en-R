@@ -103,7 +103,7 @@ La variable $\mathcal X$ que estas definiendo es Bernoulli con probabilidad de �
 
 Define una nueva variable aleatoria como el número de éxitos al realizar $n$ experimentos Bernoulli, en este caso los 10 motores con la muestra y el experimento Bernoulli indica si el motor es defectuoso o no.
 
-$y=#$ de motores defectuosos donde la prob. de que sea defectuoso es $p=0.08$
+$y=\#$ de motores defectuosos donde la prob. de que sea defectuoso es $p=0.08$
 
 $E(y)=np=10\times(0.08)=0.8$  se espera que aproximadamente en promedio 1 sea defectuoso.
 
