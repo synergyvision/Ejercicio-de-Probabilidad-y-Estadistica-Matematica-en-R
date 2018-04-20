@@ -1540,11 +1540,12 @@ Por lo tanto el comerciante deberá tener 3 artículos en existencia para maximi
 Se observó que la cantidad semanal de dinero gastado por una compañía durante largo tiempo en mantenimiento y reparaciones, está normalmente distribuida en forma aproximada con media de \$400 y desviación estándar de \$20.  Si están presupuestados \$450 para la próxima semana, ¿cuál es la probabilidad de que los costos reales rebasen la cantidad presupuestada?
 
 \textbf{\underline{Solución:}}
+
 Sea $\mathcal{X}$ la variable aleatoria que representa la cantidad semanal de dinero gastado por una compañia durante largo tiempo en mantenimiento y reparaciones, donde $\mathcal{X}$ está normalmente distribuida con media \$400 y desviación estándar \$20, $\mathcal{X}\sim \mathcal{N}(\mu=400,\sigma^2=400)$
 
 Queremos calcular $\textbf{P}(\mathcal{X}>450)$.
 
-Para eso, normalizaremos la variable $\mathcal{X}$, usando la variable normal estándar 
+Para eso, normalizaremos la variable $\mathcal{X}$, usando la variable normal estándar siguiente
 
 $$Z=\displaystyle \frac{\mathcal{X}-\mu}{\sigma}=\displaystyle \frac{\mathcal{X}-400}{20} \sim \mathcal{N}(0,1)$$
 
@@ -1552,31 +1553,35 @@ Usando propiedades de una función de distribución, se tiene:
 
 $$
 \begin{array}{rl}
-\textbf{P}(\mathcal{X}>450) &=\textbf{P}(\frac{\mathcal{X}-400}{20}>\frac{450-400}{20})\\
-&=\textbf{P}(Z>\frac{5}{2})\\
-&=1-\textbf{P}(Z\leq\frac{5}{2})\\
-&=1-\Phi(\frac{5}{2})
+\vspace{3mm} \textbf{P}(\mathcal{X}>450) &=\displaystyle \textbf{P}\left(\frac{\mathcal{X}-400}{20}>\frac{450-400}{20}\right)\\
+\vspace{3mm} &=\displaystyle \textbf{P}\left(Z>\frac{5}{2}\right)\\
+\vspace{3mm} &=1-\textbf{P}\left(Z\leq\frac{5}{2}\right)\\
+&=1-\Phi\left(\frac{5}{2}\right)
 \end{array}
 $$
 
 Usando la tabla de Área de curvas normal, se tiene que $1-\Phi(\frac{5}{2})=0.0062$.
 
-En R, podemos calcular $\textbf{P}(Z\leq\frac{5}{2})$ usando el siguiente comando `pnorm(q,mean,sd)`, donde `q` es el valor estandarizado.
+En R, podemos calcular $\textbf{P}(Z\leq\frac{5}{2})$ usando el siguiente comando `pnorm(q,mean,sd)`.
 
 \textbf{\underline{En R:}}
 
 ```{r,comment=""}
-normal<-pnorm(5/2,0,1)
+#Normal Estándar
+normal<-pnorm(q=5/2,mean=0,sd=1)
 normal
-
 ```
 
 Luego, $\textbf{P}(\mathcal{X}>450)=1-0.9937$
 
 Esto implica que, $\mathbf{P}(\mathcal{X}>450)=0.0062$.
 
-Esto significa que la probabilidad de que los costos reales rebasen la cantidad presupuestada de \$450 para la próxima semana es muy baja con 0.0062, esto representa apenas un 0.06\% de posibilidad.
+```{r}
+#Calculo directo
+pnorm(q=450,mean=400,sd=20, lower.tail = FALSE)
+```
 
+Esto significa que la probabilidad de que los costos reales rebasen la cantidad presupuestada de \$450 para la próxima semana es muy baja con 0.0062, esto representa apenas un 0.06\% de posibilidad.
 
 \newpage
 
@@ -1596,7 +1601,9 @@ Sea $\mathcal{X}$ una variable aleatoria que representa los ingresos anuales de 
 
 a) Calculemos la media y la varianza de $\mathcal{X}$. La media y varianza de una variable aleatoria con distribución gamma son,
 
-$$\mu=\mathbb{E}[\mathcal{X}]=\alpha\beta$$ y $$\sigma^2=V[\mathcal{X}]=\alpha\beta^2$$
+$$\mu=\mathbb{E}[\mathcal{X}]=\alpha\beta$$
+
+$$\sigma^2=V[\mathcal{X}]=\alpha\beta^2$$
 
 Luego
 
@@ -1606,11 +1613,12 @@ $$\sigma^2=V[\mathcal{X}]=\alpha\beta^2=(20)(1000)^2=20000000$$
 
 La media de $\mathcal{X}$ es de \$20.000 y la varianza de \$20.000.000.
 
-b) No, ya que el valor que se espera es de \$20,000 para los ingresos anuales de los jefes de familia.
+b) No, ya que el valor que se espera es de \$20.000 para los ingresos anuales de los jefes de familia.
 
 c) Calculemos $\textbf{P}(\mathcal{X}>30000)$, donde por definición de una función de distribución se tiene que,
 
 $$\textbf{P}(\mathcal{X}>30000)=1-\textbf{P}(\mathcal{X}\leq30000)$$
+
 Calculemos $\textbf{P}(\mathcal{X}\leq30000)$ en R, usando `pgamma(q,shape= `$\alpha$`,scale= `$\beta$`)`.
 
 \newpage
@@ -1622,18 +1630,17 @@ gamma<-pgamma(q = 30000, shape = 20,scale = 1000)
 gamma
 ```
 
-Por lo que , $\textbf{P}(\mathcal{X}\leq30000)=0.9781265$. Asi, 
+Por lo que, $\textbf{P}(\mathcal{X}\leq30000)=0.9781265$. Asi, 
 
 $$\textbf{P}(\mathcal{X}>30000)=1-0.9781265= 0.02187347$$.
 
-Que representa el 2.2\%  los jefes de familia de esta sección de la ciudad.
+Que representa el 2.2\% de los jefes de familia de esta sección de la ciudad.
 
 \newpage
 
 # Ejercicio 21
 
 Durante un turno de ocho horas la proporción de tiempo $\mathcal Y$  que una máquina troqueladora de láminas metálicas está sin operar por mantenimiento o reparaciones tiene una distribución beta con $\alpha = 1$ y $\beta = 2$.  Esto es, 
-
 $$f(y) = \left\{
 \begin{matrix}
 2(1 - y) & 0 \le y \le 1,\\
@@ -1646,7 +1653,7 @@ El costo (en cientos de dólares) de este tiempo improductivo, debido a producci
 
 Sea $\mathcal{Y}$ la proporción de tiempo durante ocho horas de una máquina troqueladora de láminas metálicas.
 
-Cómo $\mathcal{Y}$ es una variable aleatoria con distribución beta, entonces la media y varianza de $\mathcal{Y}$, estan dadas por,
+Cómo $\mathcal{Y}$ es una variable aleatoria con distribución beta, entonces la media y varianza de $\mathcal{Y}$, estan dadas por:
 
 $$\mu=\mathbb{E}[\mathcal{Y}]=\displaystyle \frac{\alpha}{\alpha+\beta}$$ 
 
@@ -1658,11 +1665,11 @@ Por linealidad del valor esperado y de la varianza se tiene que,
 
 $$
 \begin{array}{rl}
-\mu&=\mathbb{E}[\mathcal{C}]\\
+\mu &=\mathbb{E}[\mathcal{C}]\\
 &=\mathbb{E}[10+20\mathcal{Y}+4\mathcal{Y}^2]\\
 &=\mathbb{E}[10]+\mathbb{E}[20\mathcal{Y}]+\mathbb{E}[4\mathcal{Y}^2]\\
 &=10+20\mathbb{E}[\mathcal{Y}]+4\mathbb{E}[\mathcal{Y}^2]\\
-&=10+20 \left(\displaystyle \frac{1}{1+2} \right)+4\mathbb{E}[\mathcal{Y}^2]
+\mu&=\displaystyle 10+20 \left( \frac{1}{1+2} \right)+4\mathbb{E}[\mathcal{Y}^2]
 \end{array}
 $$
 
@@ -1670,13 +1677,13 @@ Donde por definición $\mathbb{E}[\mathcal{Y}^2]$, está dado por,
 
 $$
 \begin{array}{rl}
-\mathbb{E}[\mathcal{Y}^2] &=\displaystyle \int_{\infty}^{\infty}y^2f(y)dy\\
-&=\displaystyle \int_{0}^1y^2f(y)dy\\
-&=\displaystyle \int_{0}^1y^22(1-y)dy\\
-&=2\displaystyle \int_{0}^1(y^2-y^3)dy\\
-&=2\left[\displaystyle \frac{y^3}{3}\Big|_0^1-\displaystyle \frac{y^4}{4}\Big|_0^1\right]\\
-&=2\left(\displaystyle \frac{1}{3}-\frac{1}{4} \right)\\
-&=\displaystyle \frac{1}{6}
+\vspace{3mm} \mathbb{E}[\mathcal{Y}^2] &=\displaystyle \int_{\infty}^{\infty}y^2f(y)dy\\
+\vspace{3mm} &=\displaystyle \int_{0}^1y^2f(y)dy\\
+\vspace{3mm} &=\displaystyle \int_{0}^1y^22(1-y)dy\\
+\vspace{3mm} &=2\displaystyle \int_{0}^1(y^2-y^3)dy\\
+\vspace{3mm} &=2\left[\displaystyle \frac{y^3}{3}\Big|_0^1-\displaystyle \frac{y^4}{4}\Big|_0^1\right]\\
+\vspace{3mm} &=2\left(\displaystyle \frac{1}{3}-\frac{1}{4} \right)\\
+\mathbb{E}[\mathcal{Y}^2] &=\displaystyle \frac{1}{6}
 \end{array}
 $$
 
@@ -1684,10 +1691,10 @@ Sustituyendo, nos queda lo siguiente,
 
 $$
 \begin{array}{rl}
-\mu&=\mathbb{E}[\mathcal{C}]\\
-&=10+20\left(\frac{1}{1+2} \right)+4\mathbb{E}[\mathcal{Y}^2]\\
-&=10+20(\frac{1}{3})+4(\frac{1}{6})\\
-&=\displaystyle \frac{52}{3}
+\vspace{3mm} \mu &=\mathbb{E}[\mathcal{C}]\\
+\vspace{3mm} &=10+20\left(\frac{1}{1+2} \right)+4\mathbb{E}[\mathcal{Y}^2]\\
+\vspace{3mm} &=10+20(\frac{1}{3})+4(\frac{1}{6})\\
+\mu &=\displaystyle \frac{52}{3}
 \end{array}
 $$
 
@@ -1695,10 +1702,10 @@ Luego, usando propiedades de la varianza, tenemos que,
 
 $$
 \begin{array}{rl}
-\sigma^2&=\mathbb{V}[\mathcal{C}]\\
-&=\mathbb{E}[\mathcal{C}^2]-(\mathbb{E}[\mathcal{C}])^2\\
-&=\mathbb{E}[\mathcal{C}^2]-\left(\displaystyle \frac{52}{3}\right)^2\\\\
-&=\mathbb{E}[\mathcal{C}^2]-\left(\displaystyle \frac{2704}{9}\right)
+\vspace{3mm} \sigma^2&=\mathbb{V}[\mathcal{C}]\\
+\vspace{3mm} &=\mathbb{E}[\mathcal{C}^2]-(\mathbb{E}[\mathcal{C}])^2\\
+\vspace{3mm}&=\mathbb{E}[\mathcal{C}^2]-\left(\displaystyle \frac{52}{3}\right)^2\\
+\sigma^2 &=\mathbb{E}[\mathcal{C}^2]-\left(\displaystyle \frac{2704}{9}\right)
 \end{array}
 $$
 
@@ -1706,11 +1713,11 @@ Donde por definición $\mathbb{E}[\mathcal{C}^2]$, está dada por,
 
 $$
 \begin{array}{rl}
-\mathbb{E}[\mathcal{C}^2]&=\mathbb{E}[(10+20\mathcal{Y}+4\mathcal{Y}^2)^2]\\
-&=\mathbb{E}[100+400\mathcal{Y}+480\mathcal{Y}^2+160\mathcal{Y}^3+16\mathcal{Y}^4]\\
-&=\mathbb{E}[100]+\mathbb{E}[400\mathcal{Y}]+\mathbb{E}[480\mathcal{Y}^2]+\mathbb{E}[160\mathcal{Y}^3]+\mathbb{E}[16\mathcal{Y}^4]\\
-&=100+400\mathbb{E}[\mathcal{Y}]+480\mathbb{E}[\mathcal{Y}^2]+160\mathbb{E}[\mathcal{Y}^3]+16\mathbb{E}[\mathcal{Y}^4]\\
-&=100+400(\frac{1}{3})+480(\frac{1}{6})+160\mathbb{E}[\mathcal{Y}^3]+16\mathbb{E}[\mathcal{Y}^4]\\
+\vspace{3mm} \mathbb{E}[\mathcal{C}^2] &=\mathbb{E}[(10+20\mathcal{Y}+4\mathcal{Y}^2)^2]\\
+\vspace{3mm} &=\mathbb{E}[100+400\mathcal{Y}+480\mathcal{Y}^2+160\mathcal{Y}^3+16\mathcal{Y}^4]\\
+\vspace{3mm} &=\mathbb{E}[100]+\mathbb{E}[400\mathcal{Y}]+\mathbb{E}[480\mathcal{Y}^2]+\mathbb{E}[160\mathcal{Y}^3]+\mathbb{E}[16\mathcal{Y}^4]\\
+\vspace{3mm} &=100+400\mathbb{E}[\mathcal{Y}]+480\mathbb{E}[\mathcal{Y}^2]+160\mathbb{E}[\mathcal{Y}^3]+16\mathbb{E}[\mathcal{Y}^4]\\
+\mathbb{E}[\mathcal{C}^2] &= 100+400(\frac{1}{3})+480(\frac{1}{6})+160\mathbb{E}[\mathcal{Y}^3]+16\mathbb{E}[\mathcal{Y}^4]\\
 \end{array}
 $$
 
@@ -1718,26 +1725,27 @@ Donde,
 
 $$
 \begin{array}{rl}
-\mathbb{E}[\mathcal{Y}^3] &=\displaystyle \int_{\infty}^{\infty}y^3f(y)dy\\
-&=\displaystyle \int_{0}^1y^3f(y)dy\\
-&=\displaystyle \int_{0}^1y^32(1-y)dy\\
-&=2\displaystyle \int_{0}^1(y^3-y^4)dy\\
-&=2\left[\displaystyle \frac{y^4}{4}\Big|_0^1-\displaystyle \frac{y^5}{5}\Big|_0^1\right]\\
-&=2 \left(\displaystyle \frac{1}{4}-\frac{1}{5} \right)\\
-&=\displaystyle \frac{1}{10}
+\vspace{3mm} \mathbb{E}[\mathcal{Y}^3] &=\displaystyle \int_{\infty}^{\infty}y^3f(y)dy\\
+\vspace{3mm} &=\displaystyle \int_{0}^1y^3f(y)dy\\
+\vspace{3mm} &=\displaystyle \int_{0}^1y^32(1-y)dy\\
+\vspace{3mm} &=2\displaystyle \int_{0}^1(y^3-y^4)dy\\
+\vspace{3mm} &=2\left[\displaystyle \frac{y^4}{4}\Big|_0^1-\displaystyle \frac{y^5}{5}\Big|_0^1\right]\\
+\vspace{3mm} &=2 \left(\displaystyle \frac{1}{4}-\frac{1}{5} \right)\\
+\mathbb{E}[\mathcal{Y}^3] &=\displaystyle \frac{1}{10}
 \end{array}
 $$
 
 y 
+
 $$
 \begin{array}{rl}
-\mathbb{E}[\mathcal{Y}^4]&=\displaystyle \int_{\infty}^{\infty}y^4f(y)dy\\
-&=\displaystyle \int_{0}^1y^4f(y)dy\\
-&=\displaystyle \int_{0}^1y^42(1-y)dy\\
-&=2\displaystyle \int_{0}^1(y^4-y^5)dy\\
-&=2\left[\displaystyle \frac{y^5}{5}\Big |_0^1-\displaystyle \frac{y^6}{6}\Big |_0^1\right]\\
-&=2 \left(\displaystyle \frac{1}{5}-\frac{1}{6} \right)\\
-&=\displaystyle \frac{1}{15}
+\vspace{3mm} \mathbb{E}[\mathcal{Y}^4]&=\displaystyle \int_{\infty}^{\infty}y^4f(y)dy\\
+\vspace{3mm} &=\displaystyle \int_{0}^1y^4f(y)dy\\
+\vspace{3mm} &=\displaystyle \int_{0}^1y^42(1-y)dy\\
+\vspace{3mm} &=2\displaystyle \int_{0}^1(y^4-y^5)dy\\
+\vspace{3mm} &=2\left[\displaystyle \frac{y^5}{5}\Big |_0^1-\displaystyle \frac{y^6}{6}\Big |_0^1\right]\\
+\vspace{3mm} &=2 \left(\displaystyle \frac{1}{5}-\frac{1}{6} \right)\\
+\mathbb{E}[\mathcal{Y}^4] &=\displaystyle \frac{1}{15}
 \end{array}
 $$
 
@@ -1745,9 +1753,9 @@ Sustituyendo estos valores, tenemos que,
 
 $$
 \begin{array}{rl}
-\mathbb{E}[\mathcal{C}^2]&=100+400(\frac{1}{3})+480(\frac{1}{6})+160\mathbb{E}[\mathcal{Y}^3]+16\mathbb{E}[\mathcal{Y}^4]\\
-&=100+400(\frac{1}{3})+480(\frac{1}{6})+160(\frac{1}{10})+16(\frac{1}{15})\\
-&=\displaystyle \frac{1652}{5}
+\vspace{3mm} \mathbb{E}[\mathcal{C}^2] &= \displaystyle 100+400\left(\frac{1}{3}\right)+480\left(\frac{1}{6}\right)+ 160\mathbb{E}[\mathcal{Y}^3]+16\mathbb{E}[\mathcal{Y}^4]\\
+\vspace{3mm} &=\displaystyle 100+400\left(\frac{1}{3}\right)+480\left(\frac{1}{6}\right)+160\left(\frac{1}{10}\right)+16\left(\frac{1}{15}\right)\\
+\mathbb{E}[\mathcal{C}^2] &=\displaystyle \frac{1652}{5}
 \end{array}
 $$
 
@@ -1755,9 +1763,9 @@ Finalmente, se tiene que,
 
 $$
 \begin{array}{rl}
-\sigma^2&=\mathbb{E}[\mathcal{C}^2]-\left(\displaystyle \frac{2704}{9}\right)\\\\
-&=\displaystyle \frac{1652}{5}-\displaystyle \frac{2704}{9}\\\\
-&=\displaystyle \frac{1348}{45}\\
+\vspace{3mm} \sigma^2 &=\mathbb{E}[\mathcal{C}^2]-\left(\displaystyle \frac{2704}{9}\right)\\\\
+\vspace{3mm} &=\displaystyle \frac{1652}{5}-\displaystyle \frac{2704}{9}\\\\
+\sigma^2 &=\displaystyle \frac{1348}{45}\\
 \end{array}
 $$
 
@@ -1765,9 +1773,7 @@ $$
 
 # Ejercicio 22
 
-La demanda de un producto de una empresa varía enormemente de mes a mes. La distribución de
-probabilidad que se presenta en la tabla siguiente, basada en los datos de los dos últimos años,
-muestra la demanda mensual de la empresa.
+La demanda de un producto de una empresa varía enormemente de mes a mes. La distribución de probabilidad que se presenta en la tabla siguiente, basada en los datos de los dos últimos años, muestra la demanda mensual de la empresa.
 
 | Demanda | Unitaria Probabilidad |
 |:-------:|:---------------------:|
@@ -1776,13 +1782,9 @@ muestra la demanda mensual de la empresa.
 | 500 | 0.35 |
 | 600 | 0.15 |
 
-a. Si la empresa basa las órdenes mensuales en el valor esperado de la demanda mensual, ¿cuál
-será la cantidad ordenada mensualmente por la empresa para este producto?
+a. Si la empresa basa las órdenes mensuales en el valor esperado de la demanda mensual, ¿cuál será la cantidad ordenada mensualmente por la empresa para este producto?
 
-b. Suponga que cada unidad demandada genera $70 de ganancia y que cada unidad ordenada
-cuesta $50. ¿Cuánto ganará o perderá la empresa en un mes si coloca una orden con base en
-su respuesta al inciso a y la demanda real de este artículo es de 300 unidades?
-
+b. Suponga que cada unidad demandada genera \$70 de ganancia y que cada unidad ordenada cuesta \$50. ¿Cuánto ganará o perderá la empresa en un mes si coloca una orden con base en su respuesta al inciso a y la demanda real de este artículo es de 300 unidades?
 
 \textbf{\underline{Solución:}}
 
@@ -1792,9 +1794,9 @@ a) Para esto calculemos el valor esperado $\mathcal{X}$.
 
 $$
 \begin{array}{rl}
-\mathbb{E}[\mathcal{X}]&=\displaystyle \sum_{x=1}^4xp(x)\\
+\vspace{3mm} \mathbb{E}[\mathcal{X}]&=\displaystyle \sum_{x=1}^4x P(\mathcal X=x)\\
 &=300(0.20)+400(0.30)+500(0.35)+600(0.15)\\
-&=445
+\mathbb{E}[\mathcal{X}] &=445
 \end{array}
 $$
 
@@ -1836,16 +1838,27 @@ d) ¿De que por lo menos tres tengan un balance en su tarjeta de crédito superi
 
 \textbf{\underline{Solución:}}
 
-a) Sea $\mathcal{X}$ el número de estudiantes que tienen un balance en su tarjeta de crédito mayor a \$7000. Si denotamos $E$ el evento éxito de tener un balance en la tarjeta de crédito mayor a \$7000, donde el 9\% de los estudiantes tienen un balance en su tarjeta de crétito superior a \$7000, esto es, $\textbf{P}(E)=p=0.09$ y seleccionamos 10 estudiantes aleatorios para entrevistarlos con respecto al balance de sus tarjetas de crédito entonces estariamos determinando un experimento binomial con  $n=10$, $p=0.09$ y $q=\textbf{P}(E^c)=(1-p)=0.91$ que es la probabilidad de no tener un balance en la tarjeta de crédito mayor a \$7000.
+a) Sea $\mathcal Y$ como el número de estudiantes que tienen un balance en sus tarjetas de créduto mayor a \$7000, adicional a esto supongamos que tenemos una variable aleatoria Bernoulli de la siguiente manera
+
+$$
+\mathcal{X}=\left\{
+\begin{array}{rl}
+1 & \text{si el estudiante tiene tarjeta de crédito mayor a 7000 dólares}\\
+0 & \text{si no}
+\end{array}\right.
+$$
+
+Donde $p=P(\mathcal X=1)=0.09$ y $q=P(\mathcal X=0)=0.91$.
+
+Entonces podemos ver $\mathcal Y$ como una variable aleatoria Binomial, es decir, si seleccionamos 10 estudiantes al azar podemos tomar la cantidad de éxitos (estudiante que tienen tarjeta de crédito mayor a 7000 dólares), lo cúal sucede con probabilidad $p$ y guardar esto en la variable $\mathcal Y$.
 
 b) Calculemos la probabilidad de que dos estudiantes sean exitosos usando la definición de una distribución binomial,
 
 $$
 \begin{array}{rl}
-\textbf{P}(\mathcal{X}=2)&=p(2)\\
-&=\displaystyle {10\choose2}p^{10}q^{10-2}\\
-&=\displaystyle \frac{10}{(10-2)!2!}(0.09)^{2}(0.91)^8\\
-&=0.1714\\
+\vspace{3mm} P(\mathcal{X}=2) & =\displaystyle {10\choose2}p^{10}q^{10-2}\\
+\vspace{3mm} &=\displaystyle \frac{10}{(10-2)!2!}(0.09)^{2}(0.91)^8\\
+^(\mathcal{X}=2) &=0.1714
 \end{array}
 $$
 
@@ -1858,35 +1871,33 @@ bi2<-dbinom(x=2,size=10,prob=0.09)
 bi2
 ```
 
-
 c) Calculemos la probabilidad de que ningún estudiantes sea exitoso.
 
 $$
 \begin{array}{rl}
-\textbf{P}(\mathcal{X}=0)&=p(0)\\
-&=\displaystyle {10\choose0}p^{0}q^{10-0}\\
-&=\displaystyle \frac{10}{(10-0)!0!}(0.09)^{0}(0.91)^{10}\\
-&=0.3894\\
+\vspace{3mm} P(\mathcal{X}=0)&=p(0)\\
+\vspace{3mm} &=\displaystyle {10\choose0}p^{0}q^{10-0}\\
+\vspace{3mm} &=\displaystyle \frac{10}{(10-0)!0!}(0.09)^{0}(0.91)^{10}\\
+P(\mathcal{X}=0) &=0.3894\\
 \end{array}
 $$
 
 Luego, en R,
 
 ```{r,comment=""}
-bi0<-dbinom(0,10,0.09)
+bi0<-dbinom(x=0,size=10,prob=0.09)
 bi0
 ```
-
 
 d) Calculemos la probabilidad de que al menos tres estudiantes sean exitosos.
 
 $$
 \begin{array}{rl}
-\textbf{P}(\mathcal{X}\geq3)&=1-\textbf{P}(\mathcal{X}<3)\\
-&=1-\left(\textbf{P}(\mathcal{X}=0)+\textbf{P}(\mathcal{X}=1)+\textbf{P}(\mathcal{X}=2)\right)\\
-&=1-\left(0.3894+\displaystyle {10\choose1}p^{1}q^9+0.1714\right)\\
-&=1-0.9459\\
-&=0.0541
+\vspace{3mm} P(\mathcal{X}\geq3) &= 1-\textbf{P}(\mathcal{X}<3)\\
+\vspace{3mm} &= 1-\left(\textbf{P}(\mathcal{X}=0)+\textbf{P}(\mathcal{X}=1)+\textbf{P}(\mathcal{X}=2)\right)\\
+\vspace{3mm} &= 1-\left(0.3894+\displaystyle {10\choose1}p^{1}q^9+0.1714\right)\\
+\vspace{3mm} &= 1-0.9459\\
+P(\mathcal{X}\geq3) &= 0.0541
 \end{array}
 $$
 
@@ -1895,12 +1906,9 @@ $$
 
 # Ejercicio 24
 
-Una empresa fabrica computadoras personales en dos fábricas, una en Texas y la otra en Hawai.
-La fábrica de Texas tiene 40 empleados; la fábrica de Hawai tiene 20 empleados. A una muestra
-aleatoria de 20 empleados se le pide que llene un cuestionario sobre prestaciones.
+Una empresa fábrica computadoras personales en dos fábricas, una en Texas y la otra en Hawai. La fábrica de Texas tiene 40 empleados; la fábrica de Hawai tiene 20 empleados. A una muestra aleatoria de 20 empleados se le pide que llene un cuestionario sobre prestaciones.
 
-a) ¿Cuál es la probabilidad de que ninguno de los empleados de la muestra trabaje en la fábrica
-de Hawai?
+a) ¿Cuál es la probabilidad de que ninguno de los empleados de la muestra trabaje en la fábrica de Hawai?
 
 b) ¿De que uno de los empleados de la muestra trabaje en la fábrica de Hawai?
 
@@ -1911,37 +1919,30 @@ d) ¿De que nueve de los empleados de la muestra trabajen en la fábrica de Texa
 
 \textbf{\underline{Solución:}}
 
-Sea $\mathcal{X}$ el número de empleados que trabajan en la fábrica de Hawai. $\mathcal{X}$ tiene distribución hipergeométrica con $N=60$, $n=20$,  $r_x=20$. Por definición la distribución hipergeométrica para $\mathcal{X}$ es de la forma,
+Supongamos que nuestra población son los empleados de la fábrica de computadoras personales, la misma tiene dos cedes una en Texas y otra en Hawai. Definamos la variable $\mathcal{X}$ como el número de empleados que trabajan en la fábrica de Hawai. $\mathcal{X}$ tiene distribución hipergeométrica con $n=60$ (total de trabajadores), $r=20$ (Cantidad de trabajadores en Hawai),  $n-r=40$ (Cantidad de trabajadores en Texas). Por definición la distribución hipergeométrica para $\mathcal{X}$ es de la forma,
 
-
-$$\textbf{P}(\mathcal{X}=x)=\displaystyle \frac{{r_x\choose x}{N-r_x\choose {n-x}}}{{N\choose n}}$$
+$$P(\mathcal{X}=x)=\displaystyle \frac{{r\choose x}{n-r\choose {k-x}}}{{n\choose k}}$$
 
 Donde, 
 
-$N=$ Tamaño de la población.
+$k=$ es el tamaño de la muestra.
 
-$r_x=$ Cantidad de trabajadores en Hawai.
-
-$n=$ Tamaño de la muestra.
-
-$N-r_x$= Cantidad de trabajadores en Texas.
-
-a) La empresa en total tiene 60 empleados y se puede seleccionar 20 empleados de 60 en ${N\choose n}={60\choose20}$ formas, entonces calculemos la probabilidad de que ninguno de los empleados de la muestra trabaje en la fábrica de Hawai usando la distribución hipergeométrica.
+a) La empresa en total tiene 60 empleados y se puede seleccionar 20 empleados de 60 en ${n\choose k}={60\choose20}$ formas, entonces calculemos la probabilidad de que ninguno de los empleados de la muestra trabaje en la fábrica de Hawai usando la distribución hipergeométrica.
 
 $$
 \begin{array}{rl}
-\textbf{P}(\mathcal{X}=0)&=\displaystyle \frac{{20\choose0}{40\choose20}}{{60\choose20}}\\ \
-&=\displaystyle \frac{{40\choose20}}{{60\choose20}}\\ \
-&=0.00003288\\
+\vspace{3mm} P(\mathcal{X}=0) &=\displaystyle \frac{{20\choose0}{40\choose20}}{{60\choose20}}\\
+\vspace{3mm} &=\displaystyle \frac{{40\choose20}}{{60\choose20}}\\
+P(\mathcal{X}=0) &=0.00003288
 \end{array}
 $$
 
 La probabilidad de que ninguno trabaje en Hawai es muy pequeña con $0.00003288$.
 
-En R, calculamos esta probabilidad usando la siguiente forma, `dhyper(x,`$r_x$`,`$N-r_x$`,n)`
+En R, calculamos esta probabilidad usando la siguiente forma, `dhyper(x,m,n,k)`
 
 ```{r,comment=""}
-hyper1<-dhyper(0,20,40,20)
+hyper1<-dhyper(x=0,m=20,n=40,k=20)
 hyper1
 ```
 
@@ -1949,18 +1950,18 @@ b) Calculemos la probabilidad de que uno de los empleados de la muestra trabaje 
 
 $$
 \begin{array}{rl}
-\textbf{P}(\mathcal{X}=1)&=\displaystyle \frac{{20\choose1} {40\choose19}}{{60\choose20}}\\ \
-&=\displaystyle \frac{20{40\choose19}}{{60\choose20}}\\ \
-&=0.000626
+\vspace{3mm} P(\mathcal{X}=1) &=\displaystyle \frac{{20\choose1} {40\choose19}}{{60\choose20}}\\
+\vspace{3mm} &=\displaystyle \frac{20{40\choose19}}{{60\choose20}}\\
+P(\mathcal{X}=1) &=0.000626
 \end{array}
 $$
 
 La probabilidad de que un empleado trabaje en la fábrica de Hawai es un poco mas alta que ninguno trabaje en esa fábrica. La probabilidad es de $0.0006263$.
 
-En R, tenemos usando `dhyper()`:
+En R, tenemos usando `dhyper(x,m,n,k)`:
 
 ```{r,comment=""}
-hyper2<-dhyper(1,20,40,20)
+hyper2<-dhyper(x=1,m=20,n=40,k=20)
 hyper2
 ```
 
@@ -1968,20 +1969,19 @@ c) Calculemos la probabilidad de que dos o más empleados de la muestra trabaje 
 
 $$
 \begin{array}{rl}
-\textbf{P}(\mathcal{X}\geq2)&= 1-\textbf{P}(\mathcal{X}<2)\\
-&=1-[\textbf{P}(\mathcal{X}=0)+\textbf{P}(\mathcal{X}=1)]\\
-&=1-[0.00003288+0.0006263]\\
-&=0.99\\
+\vspace{3mm} P(\mathcal{X}\geq2) &= 1-\textbf{P}(\mathcal{X}<2)\\
+\vspace{3mm} &=1-[\textbf{P}(\mathcal{X}=0)+\textbf{P}(\mathcal{X}=1)]\\
+\vspace{3mm} &=1-[0.00003288+0.0006263]\\
+P(\mathcal{X}\geq2) &=0.99
 \end{array}
 $$
 
 Podemos ver que es muy probable que dos o más empleados trabajen en la fábrica de Hawai de una muestra de 20 empleados.
 
-
-En R, usando `phyper()` tenemos,
+En R, usando `phyper(q,m,n,k)` tenemos,
 
 ```{r,comment=""}
-hyper4<-phyper(2,20,40,20,lower.tail= FALSE )
+hyper4<-phyper(q=2,m=20,n=40,k=20,lower.tail= FALSE )
 hyper4
 ```
 
@@ -1989,19 +1989,18 @@ d) Calculemos la probabilidad de que nueve de los empleados de la muestra trabaj
 
 $$
 \begin{array}{rl}
-\textbf{P}(\mathcal{X}=11)&=\displaystyle \frac{ {20\choose11}{40\choose9}}{{60\choose20}}\\ \
-&=0.01096
+\vspace{3mm} P(\mathcal{X}=11) &= \displaystyle \frac{ {20\choose11}{40\choose9}}{{60\choose20}}\\
+P(\mathcal{X}=11) &= 0.01096
 \end{array}
 $$
 
 La probabilidad que nueve empleados trabajen en la fábrica de Texas es de $0.01096$ 
 
-En R, usando `dhyper()` tenemos,
+En R, usando `dhyper(x,m,n,k)` tenemos,
 
 ```{r,comment=""}
-hyper3<-dhyper(11,20,40,20)
+hyper3<-dhyper(x=11,m=20,n=40,k=20)
 hyper3
-
 ```
 
 
@@ -2009,7 +2008,7 @@ hyper3
 
 # Ejercicio 25
 
-El *Barron´s* Big Money Poll preguntó a 131 gerentes de inversiones de Estados Unidos acerca de sus puntos de vista sobre las inversiones a corto plazo (*Barron´s*, 28 de octubre de 2002). De acuerdo con las respuestas 4% se encontraban muy optimistas, 39 % se encontraban optimistas, 29% se encontraban neutrales, 21% se encontraban pesimistas y 7% se encontraban muy pesimistas. Sea $\mathcal{X}$ la variable aleatoria que refleje el grado de optimismo y que vaya desde *x* = 1 para muy pesimista hasta *x* = 5 para muy optimista.
+El *Barron´s* Big Money Poll preguntó a 131 gerentes de inversiones de Estados Unidos acerca de sus puntos de vista sobre las inversiones a corto plazo (*Barron´s*, 28 de octubre de 2002). De acuerdo con las respuestas 4% se encontraban muy optimistas, 39 % se encontraban optimistas, 29% se encontraban neutrales, 21% se encontraban pesimistas y 7% se encontraban muy pesimistas. Sea $\mathcal{X}$ la variable aleatoria que refleje el grado de optimismo y que vaya desde $x = 1$ para muy pesimista hasta $x = 5$ para muy optimista.
 
 a) Elabore una distribución de probabilidad para el grado de optimismo de los gerentes de inversiones.
 
@@ -2020,53 +2019,51 @@ c) Calcule la varianza y la desviación estándar del grado de optimismo.
 d) Haga un comentario sobre lo que le dicen sus resultados acerca del grado de optimismo y
 su variabilidad.
 
-
 \textbf{\underline{Solución:}}
 
 a) Construyamos la distribución de probabilidad para $\mathcal{X}$,
 
 \begin{center}
-\begin{tabular}{|r c c l|}
+\begin{tabular}{|r c|}
 \hline 
-$x$ & & & $p(x)$\\ \hline 
-1 & & & 0.07 \\
-2 & & & 0.21\\
-3 & & & 0.29\\
-4 & & & 0.39\\
-5 & & & 0.04\\ \hline
+$x$ & $P(\mathcal X=x)$\\ \hline 
+1 & 0.07 \\
+2 & 0.21\\
+3 & 0.29\\
+4 & 0.39\\
+5 & 0.04\\ \hline
 \end{tabular}
 \end{center}
 
 b) Calculemos el valor esperado de $\mathcal{X}$, 
 
-
 $$
 \begin{array}{rl}
-\mathbb{E}[\mathcal{X}]&= \displaystyle \sum_{x=1}^5xp(x)\\
-&=1p(1)+2p(2)+3p(3)+4p(4)+5p(5)\\
-&=1(0.07)+2(0.21)+3(0.29)+4(0.39)+5(0.04)\\
-&=\displaystyle \frac{78}{25}\\
-&=3.12\\
+\vspace{3mm} \mathbb{E}[\mathcal{X}] &= \displaystyle \sum_{x=1}^5xP(\mathcal X=x)\\
+\vspace{3mm} &= 1P(\mathcal X= 1)+2P(\mathcal X= 2)+3P(\mathcal X= 3)+4P(\mathcal X= 4)+5P(\mathcal X= 5)\\
+\vspace{3mm} &= 1(0.07)+2(0.21)+3(0.29)+4(0.39)+5(0.04)\\
+\vspace{3mm} &= \displaystyle \frac{78}{25}\\
+\mathbb{E}[\mathcal{X}] &= 3.12
 \end{array}
 $$
 
 Esto significa que el grado de optimismo esperado por los gerentes es de 3.12, es decir, se espera que sean neutrales con respecto a las inversiones a corto plazo.
 
-
 c) La varianza de $\mathcal{X}$, está dada por,
 
-$$V[\mathcal{X}]=\mathbb{E}[(\mathcal{X}-\mu)^2]= \displaystyle \sum_{x=1}^5(x-\mu)^2p(x)$$
 $$
 \begin{array}{rl}
-\mathbb{V}[\mathcal{X}]&=(1-3.12)^2p(1)+(2-3.12)^2p(2)+(3-3.12)^2p(3)+(4-3.12)^2p(4)+(5-3.12)^2p(5)\\
-&=(4.49)(0.07)+(1.25)(0.21)+(0.01)(0.29)+(0.77)(0.39)+(3.53)(0.04)\\\
-&=\displaystyle \frac{2553}{2500}\\\
-&=1.02\\
+\vspace{3mm} V[\mathcal{X}] & = \mathbb{E}[(\mathcal{X}-\mu)^2]\\
+\vspace{3mm} &= \displaystyle \sum_{x=1}^5(x-\mu)^2p(x)\\
+\vspace{3mm} \mathbb{V}[\mathcal{X}] &= (1-3.12)^2P(\mathcal X=1)+(2-3.12)^2P(\mathcal X=2)+(3-3.12)^2P(\mathcal X=3)\\
+\vspace{3mm} & \quad +(4-3.12)^2P(\mathcal X=4)+(5-3.12)^2P(\mathcal X=5)\\
+\vspace{3mm} &=(4.49)(0.07)+(1.25)(0.21)+(0.01)(0.29)+(0.77)(0.39)+(3.53)(0.04)\\\
+\vspace{3mm} &=\displaystyle \frac{2553}{2500}\\\
+\mathbb{V}[\mathcal{X}]  &=1.02
 \end{array}
 $$
 
-La desviación estándar es la raiz cuadrada de $V[\mathcal{X}]$, entonces, $$\sigma=\sqrt{1.02}=1.0105$$
-
+La desviación estándar es la raíz cuadrada de $V[\mathcal{X}]$, entonces, $$\sigma=\sqrt{1.02}=1.0105$$
 
 d) La variabilidad de $\mathcal{X}$ es pequeña es decir, los grados de optimismo en una empresa no varian demasiado.
 
@@ -2077,7 +2074,7 @@ d) La variabilidad de $\mathcal{X}$ es pequeña es decir, los grados de optimism
 
 La American Association of Individual Investors publica una guía anual con los principales fondos mutualistas (The Individual Investor´s Guide to the Top Mutual Founds, 22ª ed., American Association of Individual Investors, 2003). En la siguiente tabla se presenta la clasificación de 29 fondos mutualistas de acuerdo con el riesgo.
 
-a) Sea $\mathcal{X}$ una variable que va desde *x* = 1 con el menor riesgo hasta el mayor riesgo con *x* = 5. Elabore una distribución de probabilidad para el nivel de riesgo.
+a) Sea $\mathcal{X}$ una variable que va desde $x = 1$ con el menor riesgo hasta el mayor riesgo con $x = 5$. Elabore una distribución de probabilidad para el nivel de riesgo.
 
 b) ¿Cuál es el valor esperado y la varianza del nivel de riesgo?
 
@@ -2095,16 +2092,14 @@ __Nivel de riesgo:__
 | Sobre el promedio | 6 |
 | Alto | 7 |
 
-
 \textbf{\underline{Solución:}}
 
 a) Contruyamos una distribución de probabilidad para el nivel de riesgo.
 
-
 \begin{center}
 \begin{tabular}{|r c l|}
 \hline 
-$x$ & \textbf{Número de fondos} & $p(x)$\\ \hline 
+$x$ & \textbf{Número de fondos} & $P(\mathcal X=x)$\\ \hline 
 1 & 7 & 0.2414 \\
 2 & 6 & 0.2069\\
 3 & 3 & 0.1034\\
@@ -2113,26 +2108,27 @@ $x$ & \textbf{Número de fondos} & $p(x)$\\ \hline
 \end{tabular}
 \end{center}
 
-Donde la probabilidad de los riesgos viene dado por, $$p(x)=\displaystyle \frac{\text{fondos de x}}{29}$$
+Donde la probabilidad de los riesgos viene dado por, 
 
+$$P(\mathcal X=x)=\displaystyle \frac{\text{Número de fondos de x}}{29}$$
 
 b) Calculemos el valor esperado y la varianza de $\mathcal{X}$
 
 $$
 \begin{array}{rl}
-\mathbb{E}(\mathcal{X})&= \displaystyle \sum_{x=1}^5xp(x)\\
-&=1p(1)+2p(2)+3p(3)+4p(4)+5p(5)\\
-&=1(0.2414)+2(0.2069)+3(0.1034)+4(0.2069)+5(0.2414)\\
-&=3\\
+\vspace{3mm} \mathbb{E}(\mathcal{X})&= \displaystyle \sum_{x=1}^5xP(\mathcal X=x)\\
+\vspace{3mm} &=1P(\mathcal X=1)+2P(\mathcal X=2)+3P(\mathcal X=3)+4P(\mathcal X=4)+5P(\mathcal X=5)\\
+\vspace{3mm} &=1(0.2414)+2(0.2069)+3(0.1034)+4(0.2069)+5(0.2414)\\
+\mathbb{E}(\mathcal{X}) &=3
 \end{array}
 $$
 
 $$
 \begin{array}{rl}
-\mathbb{V}(\mathcal{X})&=\displaystyle \sum_{x=1}^5(x-\mu)^2p(x)\\
-&=(1-3)^2p(1)+(2-3)^2p(2)+(3-3)^2p(3)+(4-3)^2p(4)+(5-3)^2p(5)\\
-&=(4)(0.2414)+(1)(0.2069)+ (1)(0.2069)+(4)(0.2414)\\
-&=2.345\\
+\vspace{3mm} \mathbb{V}(\mathcal{X}) &=\displaystyle \sum_{x=1}^5(x-\mu)^2P(\mathcal X=x)\\
+\vspace{3mm} &=(1-3)^2P(\mathcal X=1)+(2-3)^2P(\mathcal X=2)+(3-3)^2P(\mathcal X=3)+(4-3)^2P(\mathcal X=4)+(5-3)^2P(\mathcal X=5)\\
+\vspace{3mm} &=(4)(0.2414)+(1)(0.2069)+ (1)(0.2069)+(4)(0.2414)\\
+\mathbb{V}(\mathcal{X}) &=2.345\\
 \end{array}
 $$
 
@@ -2143,7 +2139,7 @@ Sea $\mathcal{Y}$ los fondos de renta fija, entonces,
 \begin{center}
 \begin{tabular}{|r c l|}
 \hline 
-$y$ & \textbf{Número de fondos} & $p(y)$\\ \hline 
+$y$ & \textbf{Número de fondos} & $P(\mathcal Y=y)$\\ \hline 
 1 & 7 & 0.6363 \\
 2 & 4 & 0.3636\\ \hline
 \end{tabular}
@@ -2153,19 +2149,19 @@ $y$ & \textbf{Número de fondos} & $p(y)$\\ \hline
 
 $$
 \begin{array}{rl}
-\mathbb{E}(\mathcal{Y})&=\displaystyle \sum_{y=1}^2yp(y)\\
-&=1p(1)+2p(2)\\
-&=1(0.6363)+2(0.3636)\\
-&=1.3636\\
+\vspace{3mm} \mathbb{E}[\mathcal{Y}]&=\displaystyle \sum_{y=1}^2yP(\mathcal Y=y)\\
+\vspace{3mm} &=1P(\mathcal Y=1)+2P(\mathcal Y=2)\\
+\vspace{3mm} &=1(0.6363)+2(0.3636)\\
+\mathbb{E}[\mathcal{Y}]&=1.3636
 \end{array}
 $$
 
 $$
 \begin{array}{rl}
-\mathbb{V}(\mathcal{Y}) &= \displaystyle \sum_{y=1}^2(y-\mu)^2p(y)\\
-&=(1-1.3636)^2p(1)+(2-1.3636)^2p(2)\\
-&=(0.1322)(0.6363)+(0.4050)(0.3636)\\
-&=0.2314\\
+\vspace{3mm} \mathbb{V}[\mathcal{Y}] &= \displaystyle \sum_{y=1}^2(y-\mu)^2P(\mathcal Y=y)\\
+\vspace{3mm} &=(1-1.3636)^2P(\mathcal Y=1)+(2-1.3636)^2P(\mathcal Y=2)\\
+\vspace{3mm} &=(0.1322)(0.6363)+(0.4050)(0.3636)\\
+\mathbb{V}[\mathcal{Y}] &=0.2314
 \end{array}
 $$
 
@@ -2174,36 +2170,34 @@ Supongamos que los 18 fondos de acciones, tienen la siguiente distribución,
 \begin{center}
 \begin{tabular}{|r c l|}
 \hline 
-$z$ & \textbf{Número de fondos} & $p(z)$\\ \hline 
+$z$ & \textbf{Número de fondos} & $P(\mathcal Z=z)$\\ \hline 
 3 & 5 & $\frac{5}{18}$ \\ \\
 4 & 6 & $\frac{6}{18}$ \\ \\
 5 & 7 & $\frac{7}{18}$ \\ \hline
 \end{tabular}
 \end{center}
 
-
 $$
 \begin{array}{rl}
-\mathbb{E}(\mathcal{Z})&=\displaystyle \sum_{z=3}^5zp(z)\\
-&=3p(3)+4p(4)+5p(5)\\
-&=3(\frac{5}{18})+4(\frac{6}{18})+5(\frac{7}{18})\\
-&=4.1\\
-\end{array}
-$$
-$$
-\begin{array}{rl}
-\mathbb{V}(\mathcal{Z})&=(3-4.1)^2p(3)+(4-4.1)^2p(4)+(5-4.1)^2p(5)\\
-&=(3-4.1)^2(\frac{5}{18}) +(4-4.1)^2(\frac{6}{18})+(5-4.1)^2(\frac{7}{18})\\
-&=0.6544\\
+\vspace{3mm} \mathbb{E}[\mathcal{Z}] &=\displaystyle \sum_{z=3}^5zP(\mathcal Z=z)\\
+\vspace{3mm} &=3P(\mathcal Z=3)+4P(\mathcal Z=4)+5P(\mathcal Z=5)\\
+\vspace{3mm} &=3\left(\frac{5}{18}\right)+4\left(\frac{6}{18}\right)+5\left(\frac{7}{18}\right)\\
+\mathbb{E}[\mathcal{Z}] &=4.1
 \end{array}
 $$
 
+$$
+\begin{array}{rl}
+\vspace{3mm} \mathbb{V}[\mathcal{Z}] &= (3-4.1)^2P(\mathcal Z=3)+(4-4.1)^2P(\mathcal Z=4)+(5-4.1)^2P(\mathcal Z=5)\\
+\vspace{3mm} &=\displaystyle (3-4.1)^2\left(\frac{5}{18}\right) +(4-4.1)^2\left(\frac{6}{18}\right)+(5-4.1)^2\left(\frac{7}{18}\right)\\
+\mathbb{V}[\mathcal{Z}] &= 0.6544
+\end{array}
+$$
 \newpage
 
 # Ejercicio 27
 
-Al hacer el presupuesto de gastos para el próximo año en una universidad, se obtuvieron los siguientes
-pronósticos de gastos (dados en millones de dólares) \$9, \$10, \$11, \$12 y \$13. Como no se sabe cuáles son los gastos actuales, a los gastos calculados se les asignaron las probabilidades 0.3, 0.2, 0.25, 0.05 y 0.2.
+Al hacer el presupuesto de gastos para el próximo año en una universidad, se obtuvieron los siguientes pronósticos de gastos (dados en millones de dólares) \$9, \$10, \$11, \$12 y \$13. Como no se sabe cuáles son los gastos actuales, a los gastos calculados se les asignaron las probabilidades 0.3, 0.2, 0.25, 0.05 y 0.2.
 
 a) Dé la distribución de probabilidad para estos pronósticos de gastos.
 
@@ -2211,9 +2205,7 @@ b) ¿Cuál es el valor esperado en estos pronósticos de gastos?
 
 c) ¿Cuál es la varianza en el pronóstico de gastos para el año próximo?
 
-d) Si las proyecciones de ingreso estiman que éste será de \$12 millones, ¿cómo será la situación
-financiera de la universidad?
-
+d) Si las proyecciones de ingreso estiman que éste será de \$12 millones, ¿cómo será la situación financiera de la universidad?
 
 \textbf{\underline{Solución:}}
 
@@ -2222,7 +2214,7 @@ a) Sea $\mathcal{X}$ el pronóstico de gastos para el próximo año (en millones
 \begin{center}
 \begin{tabular}{|r c c l|}
 \hline 
-$x$ & & & $p(x)$\\ \hline 
+$x$ & & & $P(\mathcal X=x)$\\ \hline 
 \$9 & & & 0.3 \\
 \$10 & & & 0.2\\
 \$11 & & & 0.25\\
@@ -2235,10 +2227,10 @@ b) Calculemos el valor esperado de $\mathcal{X}$,
 
 $$
 \begin{array}{rl}
-\mathbb{E}(\mathcal{X})&=\displaystyle \sum_{x=9}^{13}xp(x)\\
-&=9p(9)+10p(10)+11p(11)+12p(12)+13p(13)\\
-&=9(0.3)+10(0.2)+11(0.25)+12(0.05)+13(0.2)\\
-&=10.65\\
+\vspace{3mm} \mathbb{E}[\mathcal{X}]&=\displaystyle \sum_{x=9}^{13}xP(\mathcal X=x)\\
+\vspace{3mm} &=9P(\mathcal X=9)+10P(\mathcal X=10)+11P(\mathcal X=11)+12P(\mathcal X=12)+13P(\mathcal X=13)\\
+\vspace{3mm} &=9(0.3)+10(0.2)+11(0.25)+12(0.05)+13(0.2)\\
+\mathbb{E}[\mathcal{X}] &=10.65
 \end{array}
 $$
 
@@ -2248,16 +2240,16 @@ c) Calculemos la varianza,
 
 $$
 \begin{array}{rl}
-\mathbb{V}(\mathcal{X})&= \displaystyle \sum_{x=9}^{13}(x-\mu)^2p(x)\\
-&=(9-10.65)^2p(9)+(10-10.65)^2p(10)+(11-10.65)^2p(11) \\
-& +(12-10.65)^2p(12)+(13-10.65)^2p(13)\\
-&=(9-10.65)^2(0.3)+(10-10.65)^2(0.2)+(11-10.65)^2(0.25) \\
-&+(12-10.65)^2(0.05)+(13-10.65)^2(0.2)\\
-&=2.1275\\
+\vspace{3mm} \mathbb{V}[\mathcal{X}] &= \displaystyle \sum_{x=9}^{13}(x-\mu)^2p(x)\\
+\vspace{3mm} &=(9-10.65)^2P(\mathcal X=9)+(10-10.65)^2P(\mathcal X=10)+(11-10.65)^2P(\mathcal X=11) \\
+\vspace{3mm} & \quad +(12-10.65)^2P(\mathcal X=12)+(13-10.65)^2P(\mathcal X=13)\\
+\vspace{3mm} &=(9-10.65)^2(0.3)+(10-10.65)^2(0.2)+(11-10.65)^2(0.25) \\
+\vspace{3mm} &\quad +(12-10.65)^2(0.05)+(13-10.65)^2(0.2)\\
+\mathbb V[\mathcal X]&=2.1275
 \end{array}
 $$
-El pronóstico de gasto varía de \$2.16 millones de dólares.
 
+El pronóstico de gasto varía de \$2.16 millones de dólares.
 
 d) Si las proyecciones de ingreso estimadas para el año son \$12 millones de dólares y la media de los gastos es de \$10.65 millones, entonces la ganancia de la universidad es, $$\$12-\mathbb{E}(\mathcal{X})=\$12-\$10.65=\$1.3$$
 
@@ -2268,8 +2260,7 @@ Por lo que podemos decir que la situación financiera de la universidad es estab
 
 # Ejercicio 28
 
-Las llegadas de los clientes a un banco son aleatorias e independientes; la probabilidad de una llegada
-en un lapso cualquiera de un minuto es la misma que la probabilidad de una llegada en otro lapso cualquiera de un minuto. Conteste las preguntas siguientes suponiendo que la tasa media de llegadas en un lapso de un minuto es tres clientes.
+Las llegadas de los clientes a un banco son aleatorias e independientes; la probabilidad de una llegada en un lapso cualquiera de un minuto es la misma que la probabilidad de una llegada en otro lapso cualquiera de un minuto. Conteste las preguntas siguientes suponiendo que la tasa media de llegadas en un lapso de un minuto es tres clientes.
 
 a) ¿Cuál es la probabilidad de exactamente tres llegadas en un minuto?
 
@@ -2283,17 +2274,17 @@ a) Calculemos la probabilidad de exactamente tres llegadas en un minuto usando l
 
 $$
 \begin{array}{rl}
-\textbf{P}(\mathcal{X}=3)&=\displaystyle \frac{\mu^3e^{-\mu}}{3!}\\ \\
-&=\displaystyle \frac{(3)^3e^{-3}}{6}\\
-&=0.2240\\
+\vspace{3mm} P(\mathcal{X}=3)&=\displaystyle \frac{\mu^3e^{-\mu}}{3!}\\ \\
+\vspace{3mm} &=\displaystyle \frac{(3)^3e^{-3}}{6}\\
+P(\mathcal{X}=3)&=0.2240
 \end{array}
 $$
 
 
-En R, calculamos la probabilidad usando `dpois(x,`$\mu$`)`,
+En R, calculamos la probabilidad usando `dpois(x,lambda)`,
 
 ```{r,comment=""}
-poiss1<-dpois(3,3)
+poiss1<-dpois(x=3,lambda=3)
 poiss1
 ```
 
@@ -2304,17 +2295,17 @@ b) Calculemos la probabilidad de por los menos tres llegadas en un minuto,
 
 $$
 \begin{array}{rl}
-\textbf{P}(\mathcal{X}\geq3)&= 1-\textbf{P}(\mathcal{X}<3)\\
-&=1-\textbf{P}(\mathcal{X}=0)-\textbf{P}(\mathcal{X}=1)-\textbf{P}(\mathcal{X}=2)\\
-&=1-\displaystyle \frac{3^0e^{-3}}{0!}-\displaystyle \frac{3^1e^{-3}}{1!}-\displaystyle \frac{3^2e^{-3}}{2!}\\
-&=05768\\
+\vspace{3mm}  P(\mathcal{X}\geq 3) &= 1-\textbf{P}(\mathcal{X}<3)\\
+\vspace{3mm} &=1-\textbf{P}(\mathcal{X}=0)-\textbf{P}(\mathcal{X}=1)-\textbf{P}(\mathcal{X}=2)\\
+\vspace{3mm} &=1-\displaystyle \frac{3^0e^{-3}}{0!}-\displaystyle \frac{3^1e^{-3}}{1!}-\displaystyle \frac{3^2e^{-3}}{2!}\\
+P(\mathcal{X}\geq 3) &=05768
 \end{array}
 $$
 
-En R, usamos lo siguiente `ppois(x, `$\mu$`,lower.tail=FALSE)`
+En R, usamos lo siguiente `ppois(x, lambda,lower.tail=FALSE)`
 
 ```{r,comment=""}
-poiss2<-ppois(2,3,lower.tail = FALSE)
+poiss2<-ppois(q=2,lambda=3,lower.tail = FALSE)
 poiss2
 ```
 
@@ -2322,7 +2313,7 @@ poiss2
 
 # Ejercicio 29
 
-Suponga que quiere comprar un terreno y sabe que también hay otros compradores interesados. El vendedor revela que aceptará la oferta mayor que sea superior a \$10,000. Si la oferta del competidor *x* es una variable aleatoria que está uniformemente distribuida entre \$10,000 y \$15,000.
+Suponga que quiere comprar un terreno y sabe que también hay otros compradores interesados. El vendedor revela que aceptará la oferta mayor que sea superior a \$10,000. Si la oferta del competidor $x$ es una variable aleatoria que está uniformemente distribuida entre \$10,000 y \$15,000.
 
 a) Asuma que usted ofrece \$12,000. ¿Cuál es la probabilidad de que su oferta sea aceptada?
 
@@ -2332,7 +2323,6 @@ c) ¿Cuál es la cantidad que deberá ofrecer para maximizar la probabilidad de 
 
 d) Suponga que conoce a quien está dispuesto a pagar \$16,000 por la propiedad. ¿Consideraría
 la posibilidad de ofrecer una cantidad menor que la del inciso c?
-
 
 \textbf{\underline{Solución:}}
 
@@ -2348,19 +2338,18 @@ a) El vendedor revela que aceptará la oferta mayor que sea superior a \$10,000 
 
 $$
 \begin{array}{rl}
-\textbf{P}(10000\leq{x}<12000)&=(12000-10000)\displaystyle \frac{1}{5000}\\ 
-&=\displaystyle \frac{2}{5}\\
-&=0.4\\
+\vspace{3mm} textbf{P}(10000\leq{x}<12000) &=(12000-10000)\displaystyle \frac{1}{5000}\\ 
+\vspace{3mm} &=\displaystyle \frac{2}{5}\\
+\textbf{P}(10000\leq{x}<12000) &=0.4
 \end{array}
 $$
 
 En R, usamos lo siguiente `punif(x,min,max)`,
 
 ```{r,comment=""}
-unif1<-punif(12000,10000,15000)
+unif1<-punif(q=12000,min=10000,max=15000)
 unif1
 ```
-
 
 La probabilidad de que la oferta sea aceptada es 0.4.
 
@@ -2368,8 +2357,8 @@ b) Si usted ofrece \$14,000, entonces la probabilidad de que la oferta sea acept
 
 $$
 \begin{array}{rl}
-\textbf{P}(10000\leq{x}<14000)&=(14000-10000)\displaystyle \frac{1}{5000}\\ 
-&=\displaystyle \frac{4}{5}\\
+\vspace{3mm} \textbf{P}(10000\leq{x}<14000)&=(14000-10000)\displaystyle \frac{1}{5000}\\ 
+\vspace{3mm} &=\displaystyle \frac{4}{5}\\
 &=0.8\\
 \end{array}
 $$
@@ -2377,15 +2366,13 @@ $$
 En R, 
 
 ```{r,comment=""}
-unif2<-punif(14000,10000,15000)
+unif2<-punif(q=14000,min=10000,max=15000)
 unif2
-
 ```
 
 La probabilidad de que sea aceptada la oferta es 0.8, es decir, es muy probable que suceda.
 
 c) La cantidad que debará ofrecer es \$15,000 porque la probabilidad de que sea aceptada la oferta es de 1. Por lo cuál la oferta será aceptada.
-
 
 d) No, ya que posiblemente el vendedor le acepte la oferta de \$16,000. Si se desea comprar el terreno entonces se optaría por ofrecer más de \$16,000. 
 
@@ -2403,10 +2390,9 @@ c) ¿De que la deuda de una persona con buena historia crediticia esté entre \$
 
 d) ¿De que la deuda de una persona con buena historia crediticia sea mayor a \$14,000?
 
-
 \textbf{\underline{Solución:}}
 
-Sea $\mathcal{X}$ la variable aleatoria que representa los montos de las deudas de una persona con buena historia crediticia, donde $\mathcal{X}$ está normalmente distribuida con media \$15,015 y desviación estándar \$3,540, $\mathcal{X}\sim \mathcal{N}(15015,12531600)$
+Sea $\mathcal{X}$ la variable aleatoria que representa los montos de las deudas de una persona con buena historia crediticia, donde $\mathcal{X}$ está normalmente distribuida con media \$15,015 y desviación estándar \$3,540, $\mathcal{X}\sim \mathcal{N}(\mu=15015,\sigma^2=12531600)$
 
 a) Queremos calcular $\textbf{P}(\mathcal{X}>18000)$. Para eso, normalizaremos la variable $\mathcal{X}$, usando la variable normal estándar $Z=\displaystyle \frac{\mathcal{X}-\mu}{\sigma}=\displaystyle \frac{\mathcal{X}-15015}{3540} \sim \mathcal{N}(0,1)$.
 
@@ -2414,41 +2400,39 @@ Usando propiedades de una función de distribución, se tiene:
 
 $$
 \begin{array}{rl}
-\textbf{P}(\mathcal{X}>18000) &=\textbf{P}(\frac{\mathcal{X}-15015}{3540}>\frac{18000-15015}{3540})\\
-&=\textbf{P}(Z>\frac{199}{236})\\
+\vspace{3mm} P(\mathcal{X}>18000) &= \displaystyle P\left(\frac{\mathcal{X}-15015}{3540}>\frac{18000-15015}{3540}\right)\\
+&=\displaystyle P\left(Z>\frac{199}{236}\right)\\
 \end{array}
 $$
 
-En R calculamos $\textbf{P}(Z>\frac{199}{236})$ usando `pnorm`, 
+En R calculamos $\displaystyle P\left(Z>\frac{199}{236}\right)$ usando `pnorm(q, mean, sd)`, 
 
 ```{r,comment=""}
-norm2<-pnorm(199/236,0,1,lower.tail=FALSE)
+norm2<-pnorm(q=199/236,mean=0,sd=1,lower.tail=FALSE)
 norm2
 ```
 
- Asi, $\textbf{P}(\mathcal{X}>18000)$ es 0.1995.
+Asi, $\textbf{P}(\mathcal{X}>18000)$ es 0.1995.
  
-También calculemos la probabilidad sin hacer la estándarización usando `pnorm`
+También calculemos la probabilidad sin hacer la estándarización usando `pnorm(q, mean, sd)`
 
 ```{r,comment=""}
-norm5<-pnorm(18000,15015,3540,lower.tail = FALSE)
+norm5<-pnorm(q=18000,mean=15015,sd=3540,lower.tail = FALSE)
 norm5
-
 ```
 
- 
 Podemos observar que la probabilidad es igual a la anterior con estándarización.
 
-b) Calculemos $\textbf{P}(\mathcal{X}<10000)$,
+b) Calculemos $P(\mathcal{X}<10000)$,
  
 $$
 \begin{array}{rl}
-\textbf{P}(\mathcal{X}<10000) &=\textbf{P}(\frac{\mathcal{X}-15015}{3540}<\frac{10000-15015}{3540})\\
-&=\textbf{P}(Z<-\frac{17}{12})\\
+\vspace{3mm} P(\mathcal{X}<10000) &=\displaystyle P\left(\frac{\mathcal{X}-15015}{3540}<\frac{10000-15015}{3540}\right)\\
+&=P\left(Z<-\frac{17}{12}\right)\\
 \end{array}
 $$
 
-Calculemos en R, $\textbf{P}(Z < -\frac{17}{12})$,
+Calculemos en R, $\displaystyle P\left(Z<-\frac{17}{12}\right)$,
 
 ```{r,comment=""}
 norm1<-pnorm(-17/12,0,1)
@@ -2465,36 +2449,34 @@ norm6
 
 Entonces la probabilidad de que la deuda de una persona con buena historia crediticia sea de menos de \$10,000 es de 0.08, es decir, muy poco probable.
 
-
-c) Calculemos $\textbf{P}(12000\leq \mathcal{X} \leq 18000)$,
+c) Calculemos $P(12000\leq \mathcal{X} \leq 18000)$,
 
 $$
 \begin{array}{rl}
-\textbf{P}(12000\leq \mathcal{X} \leq 18000) &=\textbf{P}(\frac{12000-15015}{3540} \leq \frac{\mathcal{X}-15015}{3540} \leq \frac{18000-15015}{3540})\\
-&=\textbf{P}(-\frac{201}{236} \leq Z \leq \frac{199}{236})\\
-&=\textbf{P}(Z \leq \frac{199}{236})-\textbf{P}(Z  \leq -\frac{201}{236})\\
+P(12000\leq \mathcal{X} \leq 18000) &=\displaystyle P\left(\frac{12000-15015}{3540} \leq \frac{\mathcal{X}-15015}{3540} \leq \frac{18000-15015}{3540}\right)\\
+&=\displaystyle P\left(-\frac{201}{236} \leq Z \leq \frac{199}{236}\right)\\
+&=\displaystyle P\left(Z \leq \frac{199}{236}\right)-P\left(Z  \leq -\frac{201}{236}\right)\\
 \end{array}
 $$
 
 Calculemos las dos probabilidades en R, 
 ```{r,comment=""}
-norm3<-pnorm(199/236,0,1)
+norm3<-pnorm(q=199/236,mean=0,sd=1)
 norm3
 
-norm4<-pnorm(-201/236,0,1)
+norm4<-pnorm(q=-201/236,mean=0,sd=1)
 norm4
+
+norm3-norm4
 ```
  
-
-Asi tenemos que, $\textbf{P}(12000\leq \mathcal{X} \leq 18000)=0.6032557$
-
+Asi tenemos que, $P(12000\leq \mathcal{X} \leq 18000)=0.6032557$
 
 Igualmente sin normalizar tenemos que,
 
-
 ```{r,comment=""}
-norm7<-pnorm(18000,15015,3540)
-norm8<-pnorm(12000,15015,3540)
+norm7<-pnorm(q=18000,mean=15015,sd=3540)
+norm8<-pnorm(q=12000,mean=15015,sd=3540)
 norm7-norm8           
 ```
 
@@ -2505,29 +2487,25 @@ d) Calculemos, $\textbf{P}(\mathcal{X}>14000)$.
 
 $$
 \begin{array}{rl}
-\textbf{P}(\mathcal{X}>14000) &=\textbf{P}(\frac{\mathcal{X}-15015}{3540}>\frac{14000-15015}{3540})\\
-&=\textbf{P}(Z>-\frac{203}{708})\\
+P(\mathcal{X}>14000) &= \displaystyle P\left(\frac{\mathcal{X}-15015}{3540}>\frac{14000-15015}{3540}\right)\\
+&=\displaystyle P\left(Z>-\frac{203}{708}\right)
 \end{array}
 $$
  En R tenemos,
  
 ```{r,comment=""}
-norm5<-pnorm(-203/708,0,1,lower.tail = FALSE)
+norm5<-pnorm(q=-203/708,mean=0,sd=1,lower.tail = FALSE)
 norm5
-
 ```
  
-Por lo que, $\textbf{P}(\mathcal{X}>14000)=0.6128379$.
+Por lo que, $P(\mathcal{X}>14000)=0.6128379$.
 
 Luego, sin normalizar;
 
 ```{r,comment=""}
-norm9<-pnorm(14000,15015,3540,lower.tail = FALSE)
+norm9<-pnorm(q=14000,mean=15015,sd=3540,lower.tail = FALSE)
 norm9
 ```
-
-
-
 
 \newpage
 
@@ -2541,62 +2519,65 @@ b) ¿De que el precio de las acciones de una empresa no sea mayor a \$20?
 
 c) ¿De cuánto deben ser los precios de las acciones de una empresa para que esté entre las 10% mejores?
 
-
 \textbf{\underline{Solución:}}
 
 Sea $\mathcal{X}$ la variable aleatoria que representa los precios de las acciones en una empresa, donde $\mathcal{X}$ está normalmente distribuida con media \$30 y desviación estándar \$8.20, $\mathcal{X}\sim \mathcal{N}(30,67.24)$.
 
-a) Calculemos $\textbf{P}(\mathcal{X} \geq 40)$,
+a) Calculemos $P(\mathcal{X} \geq 40)$,
 
 $$
 \begin{array}{rl}
-\textbf{P}(\mathcal{X} \geq 40) &=\textbf{P}(\frac{\mathcal{X}-30}{8.20} \geq \frac{40-30}{8.20})\\
-&=\textbf{P}(Z \geq \frac{50}{41})\\
+P(\mathcal{X} \geq 40) &=\displaystyle P\left(\frac{\mathcal{X}-30}{8.20} \geq \frac{40-30}{8.20}\right)\\
+P(\mathcal{X} \geq 40) &=\displaystyle P\left(Z \geq \frac{50}{41}\right)\\
 \end{array}
 $$
-Calculamos en R $\textbf{P}(Z \geq \frac{50}{41})$,
+Calculamos en R $P(\mathcal Z \geq \frac{50}{41})$,
 
 ```{r,comment=""}
-norm6<-pnorm(50/41,0,1,lower.tail = FALSE)
-norm6
+pnorm(q=50/41,mean=0,sd=1,lower.tail = FALSE)
 ```
 
 
-También se puede calcular directamente está probabilidad sin usar normalización usando `pnorm` como en el ejercicio anterior.
+También se puede calcular directamente está probabilidad sin usar normalización usando `pnorm(q,mean,sd)` como en el ejercicio anterior.
 
+```{r,comment=""}
+pnorm(q=40,mean=30,sd=8.20,lower.tail = FALSE)
+```
 
 Entonces la probabilidad de que el precio de las acciones de una empresa sea por lo menos de \$40 es de 0.1113.
 
-b) Calculemos $\text{P}(\mathcal{X} \leq 20)$,
+b) Calculemos $P(\mathcal{X} \leq 20)$,
 
 $$
 \begin{array}{rl}
-\textbf{P}(\mathcal{X} \leq 20) &=\textbf{P}(\frac{\mathcal{X}-30}{8.20} \leq \frac{20-30}{8.20})\\
-&=\textbf{P}(Z \leq -\frac{50}{41})\\
+P(\mathcal{X} \leq 20) &=\displaystyle P\left(\frac{\mathcal{X}-30}{8.20} \leq \frac{20-30}{8.20}\right)\\
+&=\displaystyle P\left(Z \leq -\frac{50}{41}\right)\\
 \end{array}
 $$
 
-Calculamos en R, $\textbf{P}(Z \leq -\frac{50}{41})$,
+Calculamos en R, $\displaystyle P\left(\mathcal Z \leq -\frac{50}{41}\right)$,
 
 ```{r,comment=""}
-norm7<-pnorm(-50/41,0,1)
-norm7
-
+pnorm(q=-50/41,mean=0,sd=1)
 ```
 
+El cálculo en R sin la estandarización es el siguiente
+
+```{r,comment=""}
+pnorm(q=20,mean=30,sd=8.20)
+```
 
 La probabilidad de que el precio de las acciones de una empresa no sea mayor a \$20 es de 0.1113.
 
-
 c) Queremos saber de cuánto deben ser los precios de las acciones de una empresa para que esté entre las 10% mejores, esto es, partiendo de una variable normalizada, lo siguiente:
 
-$$\textbf{P}(Z \geq z)=0.1$$
+$$P(\mathcal Z \geq z)=0.1$$
 
 $$
 \begin{array}{rl}
-\textbf{P}(Z \geq z) &= 1-\textbf{P}(Z < z)=0.1\\
-&=\textbf{P}(Z < z)=1-0.1\\
-&=\textbf{P}(Z < z)=0.9\\
+P(\mathcal Z \geq z) &= 1-P(\mathcal Z < z)=0.1\\
+&=P(\mathcal Z < z)=1-0.1\\
+&=P(\mathcal Z < z)=0.9\\
 \end{array}
 $$
 
@@ -2605,29 +2586,25 @@ Usando la tabla de área de curvas normal tenemos que $z=1.28$ para que la proba
 En R, también podemos hallar este valor con `qnorm(p=prob,mean,sd)`
 
 ```{r,comment=""}
-norm_1<-qnorm(0.9,0,1)
-norm_1
+qnorm(p=0.9,mean=0,sd=1)
 ```
-
 
 Como este valor es estandarizado $z=\frac{x-30}{8.20}=1.28$ entonces el precio de las acciones es de $$x=8.20(1.28)+30=40.50$$.
 
+Otra manera es, partiendo directamente de la variable aleatoria $\mathcal{X}$, esto es,
 
-Otra manera  es, partiendo directamente de la variable aleatoria $\mathcal{X}$,esto es,
+$$P(\mathcal{X}\geq x)=0.1$$
 
-$$\textbf{P}(\mathcal{X}\geq x)=0.1$$
-
-Esto es igual a $$\textbf{P}(\mathcal{X}< x)=0.9$$
+Esto es igual a $$P(\mathcal{X}< x)=0.9$$
 
 Así en R, tenemos:
 
 ```{r,comment=""}
-norm_2<-qnorm(0.9,30,8.20)
-norm_2
+qnorm(p=0.9,mean=30,sd=8.20)
 ```
 
-
 Así el precio de las acciones de una empresa para que esté entre las 10\% mejores es de al menos \$40.50.
+
 \newpage
 
 # Ejercicio 32
@@ -2660,22 +2637,19 @@ c) ¿Cuál es la probabilidad de que, en un día elegido al azar, el volumen de 
 
 d) ¿Cuántas acciones deberán ser negociadas para que el volumen de negociaciones en la mañana temprano de un día determinado pertenezca al 5% de los días de mayor movimiento?
 
-
 \textbf{\underline{Solución:}}
-
 
 Sea $\mathcal{X}$ una variable aleatoria que representa los volúmenes de las negociaciones de la Bolsa de New York.
 
 a) Calculemos la media y la desviación estándar de los vólumenes de negociaciones de la Bolsa de New York.
 
-
-$$\mu=\displaystyle \sum_{i=1}^{n}\frac{x_i}{n}$$
 $$
 \begin{array}{rl}
-\mu &=\displaystyle \sum_{i=1}^{13}\frac{x_i}{13}\\\\
-&= \displaystyle \frac{214+163+265+194+202+198+212+201+174+171+211+211+180}{13}\\
-&= \displaystyle \frac{2596}{13}\\
-&= 199.69
+\vspace{3mm} \mu &= \displaystyle \sum_{i=1}^{n}\frac{x_i}{n}\\
+\vspace{3mm} &= \displaystyle \frac{\sum_{i=1}^{13} x_i}{13}\\
+\vspace{3mm} &= \displaystyle \frac{214+163+265+194+202+198+212+201+174+171+211+211+180}{13}\\
+\vspace{3mm} &= \displaystyle \frac{2596}{13}\\
+\mu &= 199.69
 \end{array}
 $$
 
@@ -2683,16 +2657,16 @@ La media de los volúmenes de las negociaciones es de 199.69.
 
 La varianza está dada por:
 
-$$\sigma^2=\displaystyle \sum_{i=1}^{n}\frac{(x_i-\mu)^2}{n-1}$$
 $$
 \begin{array}{rl}
-\sigma^2 &=\displaystyle \sum_{i=1}^{13}\frac{(x_i-\mu)^2}{13-1}\\ \\
-&= \displaystyle \frac{(214-199.69)^2+(163-199.69)^2+(265-199.69)^2+(194-199.69)^2+(202-199.69)^2}{12} \\ \\
-&+ \displaystyle
-\frac{(198-199.69)^2+(212-199.69)^2+(201-199.69)^2+(174-199.69)^2+(171-199.69)^2}{12} \\ \\
-&+\displaystyle \frac{(211-199.69)^2+(211-199.69)^2+(180-199.69)^2}{12}\\
-&= \displaystyle \frac{8136.769}{12}\\ \\
-&= 678.0641\\
+\vspace{3mm} \sigma^2 &= \displaystyle \sum_{i=1}^{n}\frac{(x_i-\mu)^2}{n-1}\\
+\vspace{3mm} &=\displaystyle \frac{\sum_{i=1}^{13}(x_i-\mu)^2}{13-1}\\
+\vspace{3mm} &= \displaystyle \frac{(214-199.69)^2+(163-199.69)^2+(265-199.69)^2+(194-199.69)^2+(202-199.69)^2}{12} \\
+\vspace{3mm} & \quad + \displaystyle
+\frac{(198-199.69)^2+(212-199.69)^2+(201-199.69)^2+(174-199.69)^2+(171-199.69)^2}{12} \\
+\vspace{3mm} & \quad +\displaystyle \frac{(211-199.69)^2+(211-199.69)^2+(180-199.69)^2}{12}\\
+\vspace{3mm} &= \displaystyle \frac{8136.769}{12}\\
+\sigma^2 &= 678.0641
 \end{array}
 $$
 Así la desviación estándar de los volúmenes de las negociaciones es, $\sigma=\sqrt{678.0641}=26.03966$.
@@ -2706,96 +2680,87 @@ media
 
 desviacion<-sd(volumen)
 desviacion
-
 ```
 
 b) $\mathcal{X}$ está distribuido normalmente con media 199.69 y desviación estándar 26.04. 
 
-Calculemos ahora $\textbf{P}(\mathcal{X}>180)$. Esto es,
+Calculemos ahora $P(\mathcal{X}>180)$. Esto es,
 
 $$
 \begin{array}{rl}
-\textbf{P}(\mathcal{X} > 180) &=\textbf{P}(\frac{\mathcal{X}-199.69}{26.04} > \frac{180-199.69}{26.04})\\
-&=\textbf{P}(Z > -\frac{1969}{2604})\\
+\vspace{3mm} P(\mathcal{X} > 180) &=\displaystyle P\left(\frac{\mathcal{X}-199.69}{26.04} > \frac{180-199.69}{26.04}\right)\\
+P(\mathcal{X} > 180)&=\displaystyle P\left(Z > -\frac{1969}{2604}\right)\\
 \end{array}
 $$
 En R, 
 
 ```{r,comment=""}
-b<-pnorm(-1969/2604,0,1,lower.tail = F)
-b
-
+pnorm(q=-1969/2604,mean=0,sd=1,lower.tail = F)
 ```
 
 Sin normalizar la variable, tenemos,
 
 ```{r,comment=""}
-c<-pnorm(180,199.69,26.04,lower.tail = FALSE)
-c
+pnorm(q=180,mean=199.69,sd=26.04,lower.tail = FALSE)
 ```
-
 
 Por lo tanto, la probabilidad de que, en un día elegido al azar, el volumen de negociaciones en la mañana temprano sea superior a 180 millones de acciones es de 0.77.
 
-
-
-
-c) Calculemos ahora $\textbf{P}(\mathcal{X}>230)$. Esto es,
+c) Calculemos ahora $P(\mathcal{X}>230)$. Esto es,
 
 $$
 \begin{array}{rl}
-\textbf{P}(\mathcal{X} > 230) &=\textbf{P}(\frac{\mathcal{X}-199.69}{26.04} > \frac{230-199.69}{26.04})\\
-&=\textbf{P}(Z > \frac{433}{372})\\ \\
+P(\mathcal{X} > 230) &= \displaystyle P\left(\frac{\mathcal{X}-199.69}{26.04} > \frac{230-199.69}{26.04}\right)\\
+P(\mathcal{X} > 230) &= \displaystyle P\left(\mathcal Z > \frac{433}{372}\right)
 \end{array}
 $$
 
 En R, 
 
 ```{r,comment=""}
-nor<-pnorm(433/372,0,1,lower.tail = F)
-nor
+pnorm(q=433/372,mean=0,sd=1,lower.tail = F)
 ```
-
 
 De igual manera sin normalizar,
 
 ```{r,comment=""}
-d<-pnorm(230,199.69,26.04,lower.tail = F)
-d
+pnorm(q=230,mean=199.69,sd=26.04,lower.tail = F)
 ```
 
 Por lo tanto, la probabilidad de que, en un día elegido al azar, el volumen de negociaciones en la mañana temprano sea superior a 230 millones de acciones es de 0.12.
 
 d) Queremos saber las acciones que deberán ser negociadas para que el volumen de negociaciones en la mañana temprano de un día determinado pertenezca al 5% de los días de mayor movimiento. Esto es,
 
-$$\textbf{P}(Z \geq z)=0.05$$
+$$P(\mathcal Z \geq z)=0.05$$
 
 $$
 \begin{array}{rl}
-\textbf{P}(Z \geq z) &= 1-\textbf{P}(Z < z)=0.05\\
-&=\textbf{P}(Z < z)=1-0.05\\
-&=\textbf{P}(Z < z)=0.95\\
+\vspace{3mm} P(\mathcal Z \geq z) &= 1-P(\mathcal Z < z)=0.05\\
+\vspace{3mm} &\Rightarrow P(\mathcal Z < z)=1-0.05\\
+&\Rightarrow P(\mathcal Z < z)=0.95\\
 \end{array}
 $$
 
 Usando la tabla de área de curvas normal tenemos que $z=1.64$ para que la probabilidad del volumen de negociaciones en la mañana temprano de un día determinado pertenezca al 5% de los días de mayor movimiento.
 
-Como este valor es estandarizado $z=\displaystyle \frac{x-199.69}{26.04}=1.64$ entonces el volúmen de las negociaciones es de $$x=26.04(1.64)+199.64=242.3456$$.
+Como este valor es estandarizado $z=\displaystyle \frac{x-199.69}{26.04}=1.64$ entonces el volúmen de las negociaciones es de 
+
+$$x=26.04(1.64)+199.64=242.3456$$
 
 Así el volúmen de las negociaciones es de \$242.35 millones.
 
-
 Otra forma más sencilla de hallar el volúmen de las negociaciones, es:
 
-$$\textbf{P}(\mathcal{X}\geq x)=0.05$$
+$$P(\mathcal{X}\geq x)=0.05$$
 
-Esto es igual a $$\textbf{P}(\mathcal{X}< x)=0.95$$
+Esto es igual a 
+
+$$P(\mathcal{X}< x)=0.95$$
 
 Así en R, tenemos:
 
 ```{r,comment=""}
-norm_3<-qnorm(0.95,199.69,26.04)
-norm_3
+qnorm(p=0.95,mean=199.69,sd=26.04)
 ```
 
 
@@ -2825,62 +2790,52 @@ donde $p$ es la probabilidad del éxito. Es decir, la probabilidad que se esté 
 
 $$
 \begin{array}{rl}
-\mu &=np\\
-&=250(0.47)\\
-&=117.5
+\vspace{3mm} \mu &=np\\
+\vspace{3mm} &= 250(0.47)\\
+\mu &= 117.5
 \end{array}
 $$
 
 $$
 \begin{array}{rl}
-\sigma &=\sqrt{np(1-p)}\\
-&=\sqrt{250(0.47)(1-0.47)}\\
-&=7.89
+\vspace{3mm} \sigma &=\sqrt{np(1-p)}\\
+\vspace{3mm} &=\sqrt{250(0.47)(1-0.47)}\\
+\sigma &= 7.89
 \end{array}
 $$
 
 Así, $\mathcal{X}$ tiene una distribución normal con $\mu=117.5$ y $\sigma=7.89$.
 
-Calculemos ahora $\textbf{P}(\mathcal{X} \geq 125)$.
+Calculemos ahora $P(\mathcal{X} \geq 125)$.
 
 $$
 \begin{array}{rl}
-\textbf{P}(\mathcal{X} \geq 125) &=\textbf{P}(\frac{\mathcal{X}-117.5}{7.89} \geq \frac{125-117.5}{7.89})\\
-&=\textbf{P}(Z \geq \frac{250}{263})\\ \\
+P(\mathcal{X} \geq 125) &=\displaystyle P\left(\frac{\mathcal{X}-117.5}{7.89} \geq \frac{125-117.5}{7.89}\right)\\
+P(\mathcal{X} \geq 125)&=\displaystyle P\left(\mathcal Z \geq \frac{250}{263}\right)
 \end{array}
 $$
 
-En R, usando `pnorm` tenemos,
+En R, usando `pnorm(q,mean,sd)` tenemos,
 
 ```{r,comment=""}
-norm8<-pnorm(250/263,0,1,lower.tail = FALSE)
-norm8
-
+pnorm(q=250/263,mean=0,sd=1,lower.tail = FALSE)
 ```
 
 Entonces la probabilidad de que al menos 125 estadounidenses estés a favor es de 17\%.
-
 
 b) Ahora sabemos que en el grupo hay 150 republicanos y 100 demócrata, donde la probabilidad de que estén a favor es de 64\% y 29\% respectivamente ($p(R)$, $p(D)$). Calculemos el valos esperado de $\mathcal{X}$.
 
 $$
 \begin{array}{rl}
-\mathbb{E}(\mathcal{X})&=150p(R)+100p(D)\\
-&=150(0.69)+100(0.29)\\
-&=132.5\\
+\vspace{3mm} \mathbb{E}[\mathcal{X}] &= 150p(R)+100p(D)\\
+\vspace{3mm} &=150(0.69)+100(0.29)\\
+\mathbb{E}[\mathcal{X}] &=132.5
 \end{array}
 $$
 
 El número esperado a favor de la propuesta es de 132.5 estadounidenses.
 
-
 c) No, ya que a pesar de haber más personas a favor, el número de personas en contra es la media de la población 117.5. 
-
-
-
-
-
-
 
 
 \newpage
@@ -2900,35 +2855,32 @@ c) ¿De que el tiempo para atender a un cliente sean más de 2.78 minutos?
 
 Sea $\mathcal{X}$ una variable aleatoria que representa el tiempo para atender un cliente en la ventanilla de su automóvil en los restaurantes de comida rápida. En McDonald´s el tiempo medio para atender a un cliente fue 2.78 minutos. Así $\mathcal{X}$ tiene una distribución exponencial con $\mu=2.78$.
 
-a) Calculemos $\textbf{P}(\mathcal{X}<2)$. Esto es,
+a) Calculemos $P(\mathcal{X}<2)$. Esto es,
 
 $$
 \begin{array}{rl}
-\textbf{P}(\mathcal{X} < 2) &= 1-e^{-2/\mu}\\ 
-&= 1-e^{-2/2.78}\\
-&=0.51\\
+\vspace{3mm} P(\mathcal{X} < 2) &= 1-e^{-2/\mu}\\ 
+\vspace{3mm} &= 1-e^{-2/2.78}\\
+P(\mathcal{X} < 2) &=0.51
 \end{array}
 $$
 
 La probabilidad de que el tiempo para atender a un cliente sea menor que 2 minutos es de 0.51.
 
-En R, usando `pexp()` tenemos,
+En R, usando `pexp(q,rate)` tenemos,
 
 ```{r,comment=""}
-exp2<-pexp(2,1/2.78)
-exp2
+pexp(q=2,rate=1/2.78)
 ```
 
-
-
-b) Calculemos $\textbf{P}(\mathcal{X}>5)$. Esto es,
+b) Calculemos $P(\mathcal{X}>5)$. Esto es,
 
 $$
 \begin{array}{rl}
-\textbf{P}(\mathcal{X} >5) &= 1- \textbf{P}(\mathcal{X} \leq 5)\\
-&=1-(1-e^{-5/\mu})\\ 
-&=e^{-5/2.78} \\
-&=0.17\\
+\vspace{3mm} P(\mathcal{X} >5) &= 1- P(\mathcal{X} \leq 5)\\
+\vspace{3mm} &=1-(1-e^{-5/\mu})\\ 
+\vspace{3mm} &=e^{-5/2.78} \\
+P(\mathcal{X} >5) &=0.17
 \end{array}
 $$
 
@@ -2937,31 +2889,26 @@ La probabilidad de que el tiempo para atender a un cliente sea mayor que 5 minut
 En R,
 
 ```{r,comment=""}
-exp1<-pexp(5,1/2.78,lower.tail = F)
-exp1
+pexp(5,1/2.78,lower.tail = F)
 ```
 
-
-c) Calculemos $\textbf{P}(\mathcal{X}>2.78)$. Esto es,
+c) Calculemos $P(\mathcal{X}>2.78)$. Esto es,
 
 $$
 \begin{array}{rl}
-\textbf{P}(\mathcal{X} >2.78) &= 1- \textbf{P}(\mathcal{X} \leq 2.78)\\
-&=1-(1-e^{-2.78/\mu})\\ 
-&=e^{-278/2.78} \\
-&=0.37\\
+\vspace{3mm} P(\mathcal{X} >2.78) &= 1- \textbf{P}(\mathcal{X} \leq 2.78)\\
+\vspace{3mm} &=1-(1-e^{-2.78/\mu})\\ 
+\vspace{3mm} &=e^{-278/2.78} \\
+P(\mathcal{X} >2.78) &=0.37
 \end{array}
 $$
 
 La probabilidad de que el tiempo para atender a un cliente sea mayor que 2.78 minutos es 0.37.
 
-
 En R, 
 
 ```{r,comment=""}
-exp3<-pexp(2.78,1/2.78,lower.tail = F)
-exp3
-
+pexp(q=2.78,rate=1/2.78,lower.tail = F)
 ```
 
 \newpage
@@ -2990,53 +2937,45 @@ $$f(x) = \displaystyle\left\{
 0, & \text{en cualquier otro punto}
 \end{matrix}\right.$$
 
-b) Si la deja en el mercado un mes más, calculemos $\textbf{P}(215000 \leq \mathcal{X} \leq 225000)$. Esto es,
+b) Si la deja en el mercado un mes más, calculemos $P(215000 \leq \mathcal{X} \leq 225000)$. Esto es,
 
 
 $$
 \begin{array}{rl}
-\textbf{P}( 215000 \leq \mathcal{X} \leq 225000)&=(225000-215000)\displaystyle \frac{1}{25000}\\ 
-&=\displaystyle \frac{2}{5}\\
-&=0.4\\
+\vspace{3mm} P( 215000 \leq \mathcal{X} \leq 225000) &= (225000-215000)\displaystyle \frac{1}{25000}\\ 
+\vspace{3mm} &=\displaystyle \frac{2}{5}\\
+P( 215000 \leq \mathcal{X} \leq 225000) &=0.4
 \end{array}
 $$
 
 La probabilidad de que venda la casa en por lo menos \$215,000 es de 0.4.
 
-
-En R, usando `punif()` tenemos,
+En R, usando `punif(q,min,max)` tenemos,
 
 ```{r,comment=""}
-unif3<-punif(215000,200000,225000,lower.tail = F)
-unif3
+punif(q=215000,min=200000,max=225000,lower.tail = F)
 ```
 
 
-c) Si la deja en el mercado un mes más, calculemos la probabilidad de que venda la casa en menos de \$210,000. Esto es, $\textbf{P}(200000 \leq \mathcal{X} \leq 210000)$.
+c) Si la deja en el mercado un mes más, calculemos la probabilidad de que venda la casa en menos de \$210,000. Esto es, $P(200000 \leq \mathcal{X} \leq 210000)$.
 
 $$
 \begin{array}{rl}
-\textbf{P}( 200000 \leq \mathcal{X} \leq 210000)&=(210000-200000)\displaystyle \frac{1}{25000}\\ 
-&=\displaystyle \frac{2}{5}\\
-&=0.4\\
+\vspace{3mm} P( 200000 \leq \mathcal{X} \leq 210000) &= (210000-200000)\displaystyle \frac{1}{25000}\\ 
+\vspace{3mm} &=\displaystyle \frac{2}{5}\\
+P( 200000 \leq \mathcal{X} \leq 210000) &=0.4
 \end{array}
 $$
 
 La probabilidad de que venda la casa en menos de \$210,000 es de 0.4.
 
-En R, usando `punif` tenemos,
+En R, usando `punif(q,min,max)` tenemos,
 
 ```{r,comment=""}
-unif4<-punif(210000,200000,225000)
-unif4
+punif(q=210000,min=200000,max=225000)
 ```
 
-
-
 d) No, ya que hay un 40\% de que se venda la casa por debajo de \$210,000.
-
-
-
 
 \newpage
 
@@ -3053,13 +2992,11 @@ con los gastos más altos en transporte?
 
 \textbf{\underline{Solución:}}
 
-
 Sea $\mathcal{X}$ una variable aleatoria que representa el gasto anual de una familia estadounidense en transporte diario. $\mathcal{X}$ está distribuido normalmente con media \$6312.
-
 
 a) Si sabe que 5% de las familias estadounidenses gastan menos de $1000 en el transporte diario, calculemos la desviación estándar de está cantidad de gasto. Así, tenemos lo siguiente:
 
-$$\textbf{P}(Z< \frac{1000-6312}{\sigma})=0.05$$
+$$P\left(Z< \frac{1000-6312}{\sigma}\right)=0.05$$
 
 Usando la tabla de áreas de curvas normal tenemos que $z=-1.65$. Luego, 
 
@@ -3069,14 +3006,14 @@ Por lo tanto, $$\sigma=\displaystyle \frac{1000-6312}{-1.65}=3219.4$$
 
 
 
-b) Calculemos $$\textbf{P}(4000 \leq \mathcal{X} \leq 6000)$$
+b) Calculemos $P(4000 \leq \mathcal{X} \leq 6000)$
 
 
 $$
 \begin{array}{rl}
-\textbf{P}(4000 \leq \mathcal{X} \leq 6000) &=\textbf{P}(\frac{4000-6312}{3219.4} \leq \frac{\mathcal{X}-6312}{3219.4} \leq \frac{6000-6312}{32219.4})\\\\
-&=\textbf{P}(-0.72 \leq Z \leq -0.097)\\ 
-&=\textbf{P}(Z \leq -0.097)-\textbf{P}(Z \leq -0.72)
+P(4000 \leq \mathcal{X} \leq 6000) &=\displaystyle P \left(\frac{4000-6312}{3219.4} \leq \frac{\mathcal{X}-6312}{3219.4} \leq \frac{6000-6312}{32219.4}\right)\\
+&=P(-0.72 \leq \mathcal Z \leq -0.097)\\ 
+P(4000 \leq \mathcal{X} \leq 6000)&=P(\mathcal Z \leq -0.097)-P(\mathcal Z \leq -0.72)
 \end{array}
 $$
 
@@ -3088,17 +3025,15 @@ norm10<-pnorm(-0.097,0,1)
 norm10-norm9
 ```
 
+Así, $P(4000 \leq \mathcal{X} \leq 6000)=0.22$. El 22\% de las familias gastan entre \$4000 y \$6000 en transporte.
 
-Así, $\textbf{P}(4000 \leq \mathcal{X} \leq 6000)=0.22$. El 22\% de las familias gastan entre \$4000 y \$6000 en transporte.
-
-
-c) Queremos calcular en que intervalo se encuentran los gastos de las familias que constituyen 3% de las familias con los gastos más altos en transporte. Partiendo de una variable normalizada,esto es, $$\textbf{P}(Z \geq z)=0.03$$
+c) Queremos calcular en que intervalo se encuentran los gastos de las familias que constituyen 3% de las familias con los gastos más altos en transporte. Partiendo de una variable normalizada,esto es, $P(\mathcal Z \geq z)=0.03$
 
 $$
 \begin{array}{rl}
-\textbf{P}(Z \geq z) &= 1-\textbf{P}(Z < z)=0.03\\
-&=\textbf{P}(Z < z)=1-0.03\\
-&=\textbf{P}(Z < z)=0.97\\
+\vspace{3mm} P(\mathcal Z \geq z) &= 1-\textbf{P}(Z < z)=0.03\\
+\vspace{3mm} &\Rightarrow P(\mathcal Z < z)=1-0.03\\
+&\Rightarrow P(\mathcal Z < z)=0.97
 \end{array}
 $$
 Usando la tabla de áreas de curvas normal tenemos que $z=1.88$. Luego, 
@@ -3109,15 +3044,16 @@ Despejando $x$, se tiene que $x=1.88(3219.4)+6312=122364.5$. En al menos \$12364
 
 Otra forma más sencilla, es:
 
-$$\textbf{P}(\mathcal{X}\geq x)=0.03$$
+$$P(\mathcal{X}\geq x)=0.03$$
 
-Esto es igual a $$\textbf{P}(\mathcal{X}< x)=0.97$$
+Esto es igual a 
+
+$$P(\mathcal{X}< x)=0.97$$
 
 Así en R, tenemos:
 
 ```{r,comment=""}
-norm_4<-qnorm(0.97,6312,3219.4)
-norm_4
+qnorm(p=0.97,mean=6312,sd=3219.4)
 ```
 
 
@@ -3150,36 +3086,31 @@ Así, $\frac{1}{\mu}=0.50$
  
 Entonces el tiempo medio entre las llamadas telefónicas es de $\mu=2$.
 
-b) Cómo $\mathcal{X}$ representa el tiempo en minutos entonces calculemos $\textbf{P}(\mathcal{X} \leq 0.5)$.
-
+b) Cómo $\mathcal{X}$ representa el tiempo en minutos entonces calculemos $P(\mathcal{X} \leq 0.5)$.
 
 $$
 \begin{array}{rl}
-\textbf{P}(\mathcal{X} \leq 0.5) &= 1-e^{-0.5/\mu}\\ 
-&= 1-e^{-0.5/2}\\
-&=0.22\\
+\vspace{3mm} P(\mathcal{X} \leq 0.5) &= 1-e^{-0.5/\mu}\\ 
+\vspace{3mm} &= 1-e^{-0.5/2}\\
+P(\mathcal{X} \leq 0.5) &=0.22
 \end{array}
 $$
 
 La probabilidad de que pasen 30 segundos o menos entre llamadas telefónicas es de 0.22.
 
-En R, usando `pexp` tenemos,
+En R, usando `pexp(q,rate)` tenemos,
 
 ```{r,comment=""}
-exp4<-pexp(0.5,1/2)
-exp4
+pexp(q=0.5,rate=1/2)
 ```
 
-
-
-c) Calculemos $\textbf{P}(\mathcal{X} \leq 1)$.
-
+c) Calculemos $P(\mathcal{X} \leq 1)$
 
 $$
 \begin{array}{rl}
-\textbf{P}(\mathcal{X} \leq 1) &= 1-e^{-1/\mu}\\ 
-&= 1-e^{-1/2}\\
-&=0.39\\
+\vspace{3mm} P(\mathcal{X} \leq 1) &= 1-e^{-1/\mu}\\ 
+\vspace{3mm} &= 1-e^{-1/2}\\
+P(\mathcal{X} \leq 1) &=0.39
 \end{array}
 $$
 
@@ -3188,20 +3119,17 @@ La probabilidad de que pasen 1 minuto o menos entre llamadas telefónicas es de 
 En R, 
 
 ```{r,comment=""}
-exp5<-pexp(1,1/2)
-exp5
+pexp(q=1,rate=1/2)
 ```
 
-
-d) Calculemos $\textbf{P}(\mathcal{X} \geq 5)$.
-
+d) Calculemos $P(\mathcal{X} \geq 5)$.
 
 $$
 \begin{array}{rl}
-\textbf{P}(\mathcal{X} \geq 5) &= 1- \textbf{P}(\mathcal{X} < 5)\\
-&= 1-(1-e^{-5/\mu})\\ 
-&= e^{-5/2}\\
-&=0.08\\
+\vspace{3mm} P(\mathcal{X} \geq 5) &= 1- \textbf{P}(\mathcal{X} < 5)\\
+\vspace{3mm} &= 1-(1-e^{-5/\mu})\\ 
+\vspace{3mm} &= e^{-5/2}\\
+P(\mathcal{X} \geq 5) &=0.08
 \end{array}
 $$
 
@@ -3210,7 +3138,6 @@ La probabilidad de que pasen 5 minutos o más sin que haya llamadas telefónicas
 En R,
 
 ```{r,comment=""}
-exp6<-pexp(5,1/2, lower.tail = FALSE)
-exp6
+pexp(q=5,rate=1/2, lower.tail = FALSE)
 ```
 
