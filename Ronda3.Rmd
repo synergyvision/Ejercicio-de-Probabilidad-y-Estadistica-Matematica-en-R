@@ -90,18 +90,14 @@ donde $x_n$ son los valores que toma la v.a discreta y $P(\mathcal{X}=x_n)$ la p
 
 $$
 \begin{array}{rl}
-\mathbb{E}[\mathcal{X}] &= 0 \times P(\mathcal{X}=0) + 50 \times P(\mathcal{X}=50) + 100 \times P(\mathcal{X}=100) + 150 \times P(\mathcal{X}=150) \\ 
-&+ 200 \times P(\mathcal{X}=200) + 250 \times P(\mathcal{X}=250) + 300 \times P(\mathcal{X}=300) \\
-\\
-&= 0 \times 0.35 + 50 \times 0.25 + 100 \times 0.15 + 150 \times 0.10 + 200 \times 0.08 + 250 \times 0.05 + 300 \times 0.02 \\
-\\
-&= 77 \\
+\vspace{3mm} \mathbb{E}[\mathcal{X}] &= 0 \times P(\mathcal{X}=0) + 50 \times P(\mathcal{X}=50) + 100 \times P(\mathcal{X}=100) + 150 \times P(\mathcal{X}=150) \\ 
+\vspace{3mm} &+ 200 \times P(\mathcal{X}=200) + 250 \times P(\mathcal{X}=250) + 300 \times P(\mathcal{X}=300) \\
+\vspace{3mm} &= 0 \times 0.35 + 50 \times 0.25 + 100 \times 0.15 + 150 \times 0.10 + 200 \times 0.08 + 250 \times 0.05 + 300 \times 0.02 \\
+\mathbb{E}[\mathcal{X}] &= 77 
 \end{array}
 $$
 
 Por lo que los gastos en mantenimiento esperado son de \$77, lo que implica que Bill Johnson ahorrará \$23 en gastos de mantenimiento que por pagar la garantía de \$100.
-
-\newpage
 
 \textbf{\underline{En R:}}
 
@@ -110,8 +106,6 @@ Valores<-c(0,50,100,150,200,250,300)
 Probabilidades<-c(0.35,0.25,0.15,0.10,0.08,0.05,0.02)
 sum(Valores*Probabilidades)
 ```
-
-
 
 \newpage
 
@@ -145,12 +139,10 @@ donde,
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=0) &= \displaystyle \frac{15!}{0!(15-0)!} \times 0.3^0 \times 0.7^{15-0} \\
-\\
-&= \displaystyle \frac{15!}{15!} \times 0.7^{15} \\
-\\
-&= 0.7^{15} \\
-&= 0.00474
+\vspace{3mm} P(\mathcal{X}=0) &= \displaystyle \frac{15!}{0!(15-0)!} \times 0.3^0 \times 0.7^{15-0} \\
+\vspace{3mm} &= \displaystyle \frac{15!}{15!} \times 0.7^{15} \\
+\vspace{3mm} &= 0.7^{15} \\
+P(\mathcal{X}=0) &= 0.00474
 \end{array}
 $$
 
@@ -161,6 +153,7 @@ $$P(\mathcal{X} \geq 1) = 1 - P(\mathcal{X}=0) = 1 - 0.00474 = 0.9952$$
 \textbf{\underline{En R:}}
 
 Usamos la función `dbinom()` para calcular la probabilidad de que la variable aleatoria tome un valor, es decir, $P(\mathcal{X}=x_o)$. Así tenemos:
+
 ```{r,comment=''}
 1-dbinom(x=0,size=15,prob=0.3)
 ```
@@ -171,7 +164,6 @@ También podemos usar la función `pbinom()` para calcular la probabilidad de $P
 pbinom(q=0,size=15,prob=0.3,lower.tail = FALSE)
 ```
 
-
 b) Calculemos la probabilidad de que al menos cuatro clientes que curiosean compren algo, esto es:
 
 $$P(\mathcal{X} \geq 4) = 1 - P(\mathcal{X} <4) = 1 - \left[P(\mathcal{X}=0) + P(\mathcal{X}=1) +  P(\mathcal{X}=2) +  P(\mathcal{X}=3)\right]$$
@@ -179,45 +171,37 @@ donde,
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=0) &= \displaystyle \frac{15!}{0!(15-0)!} \times 0.3^0 \times 0.7^{15-0} \\
-\\
-&= \displaystyle \frac{15!}{15!} \times 0.7^{15} \\
-\\
-&= 0.7^{15} \\
-&= 0.00474
+\vspace{3mm} P(\mathcal{X}=0) &= \displaystyle \frac{15!}{0!(15-0)!} \times 0.3^0 \times 0.7^{15-0} \\
+\vspace{3mm} &= \displaystyle \frac{15!}{15!} \times 0.7^{15} \\
+\vspace{3mm} &= 0.7^{15} \\
+P(\mathcal{X}=0) &= 0.00474
 \end{array}
 $$
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=1) &= \displaystyle \frac{15!}{1!(15-1)!} \times 0.3^1 \times 0.7^{15-1} \\
-\\
-&= \displaystyle \frac{15!}{14!} \times 0.3 \times 0.7^{14} \\
-\\
-&= 15 \times 0.3 \times 0.006782 \\
-&= 0.0305
+\vspace{3mm} P(\mathcal{X}=1) &= \displaystyle \frac{15!}{1!(15-1)!} \times 0.3^1 \times 0.7^{15-1} \\
+\vspace{3mm} &= \displaystyle \frac{15!}{14!} \times 0.3 \times 0.7^{14} \\
+\vspace{3mm} &= 15 \times 0.3 \times 0.006782 \\
+P(\mathcal{X}=1) &= 0.0305
 \end{array}
 $$
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=2) &= \displaystyle \frac{15!}{2!(15-2)!} \times 0.3^2 \times 0.7^{15-2} \\
-\\
-&= \displaystyle \frac{15!}{2 \times 13!} \times 0.3^2 \times 0.7^{13} \\
-\\
-&= 105 \times 0.09 \times 0.009688 \\
-&= 0.09155
+\vspace{3mm} P(\mathcal{X}=2) &= \displaystyle \frac{15!}{2!(15-2)!} \times 0.3^2 \times 0.7^{15-2} \\
+\vspace{3mm} &= \displaystyle \frac{15!}{2 \times 13!} \times 0.3^2 \times 0.7^{13} \\
+\vspace{3mm} &= 105 \times 0.09 \times 0.009688 \\
+P(\mathcal{X}=2) &= 0.09155
 \end{array}
 $$
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=3) &= \displaystyle \frac{15!}{3!(15-3)!} \times 0.3^3 \times 0.7^{15-3} \\
-\\
-&= \displaystyle \frac{15!}{6 \times 12!} \times 0.3^3 \times 0.7^{12} \\
-\\
-&= 455 \times 0.027 \times 0.01384 \\
-&= 0.1700
+\vspace{3mm} P(\mathcal{X}=3) &= \displaystyle \frac{15!}{3!(15-3)!} \times 0.3^3 \times 0.7^{15-3} \\
+\vspace{3mm} &= \displaystyle \frac{15!}{6 \times 12!} \times 0.3^3 \times 0.7^{12} \\
+\vspace{3mm} &= 455 \times 0.027 \times 0.01384 \\
+P(\mathcal{X}=3) &= 0.1700
 \end{array}
 $$
 
@@ -240,12 +224,10 @@ c) La probabilidad de que ningún cliente que curiosea compre algo, es decir $P(
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=0) &= \displaystyle \frac{15!}{0!(15-0)!} \times 0.3^0 \times 0.7^{15-0} \\
-\\
-&= \displaystyle \frac{15!}{15!} \times 0.7^{15} \\
-\\
-&= 0.7^{15} \\
-&= 0.00474
+\vspace{3mm} P(\mathcal{X}=0) &= \displaystyle \frac{15!}{0!(15-0)!} \times 0.3^0 \times 0.7^{15-0} \\
+\vspace{3mm} &= \displaystyle \frac{15!}{15!} \times 0.7^{15} \\
+\vspace{3mm} &= 0.7^{15} \\
+P(\mathcal{X}=0) &= 0.00474
 \end{array}
 $$
 
@@ -265,12 +247,10 @@ calculando $P(\mathcal{X}=4)$ tenemos:
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=4) &= \displaystyle \frac{15!}{4!(15-4)!} \times 0.3^4 \times 0.7^{15-4} \\
-\\
-&= \displaystyle \frac{15!}{24 \times 11!} \times 0.3^4 \times 0.7^{11} \\
-\\
-&= 1365 \times 0.0081 \times 0.01977 \\
-&= 0.2186
+\vspace{3mm} P(\mathcal{X}=4) &= \displaystyle \frac{15!}{4!(15-4)!} \times 0.3^4 \times 0.7^{15-4} \\
+\vspace{3mm} &= \displaystyle \frac{15!}{24 \times 11!} \times 0.3^4 \times 0.7^{11} \\
+\vspace{3mm} &= 1365 \times 0.0081 \times 0.01977 \\
+P(\mathcal{X}=4) &= 0.2186
 \end{array}
 $$
 
@@ -284,7 +264,8 @@ Usando la función `dbinom()` y `pbinom()` con el argumento `lower.tail = TRUE` 
 
 ```{r,comment=''}
 dbinom(x=0,size=15,prob=0.3)+dbinom(x=1,size=15,prob=0.3)+dbinom(x=2,size=15,prob=0.3)+
-dbinom(x=3,size=15,prob=0.3)+dbinom(x=4,size=15,prob=0.3)                                    
+dbinom(x=3,size=15,prob=0.3)+dbinom(x=4,size=15,prob=0.3) 
+
 pbinom(q=4,size=15,prob=0.3,lower.tail = TRUE)
 ```
 
@@ -302,14 +283,13 @@ c) Cuatro precios aumenten.
 
 d) Aumenten cinco o más.
 
-
 \textbf{\underline{Solución:}}
 
 Definamos la siguiente variable aleatoria con distribución de Poisson como: 
 
 $\mathcal{X}$ = Número de incremento de precios de automóviles nuevos.
 
-Con $\lambda = 4$, pues éste parámetro es el que corresponde al promedio de la variable aleatoria.
+Con $\lambda = 4$, pues éste parámetro es el que corresponde al promedio de la variable aleatoria, es decir, el incremento de los precios de automóviles.
 
 a) Calculemos la probabilidad de que ningún precio se incremente en un período de 3 años, es decir, calculemos $P(\mathcal{X}=0)$, esto es:
 
@@ -335,11 +315,9 @@ b) Calculemos la probabilidad de que dos precios se incrementen, es decir, calcu
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=2) &= \displaystyle \frac{4^2 \times e^{-4}}{2!} \\
-\\
-&= \displaystyle \frac{16 \times e^{-4}}{2} \\
-\\
-&= 0.146
+\vspace{3mm} P(\mathcal{X}=2) &= \displaystyle \frac{4^2 \times e^{-4}}{2!} \\
+\vspace{3mm} &= \displaystyle \frac{16 \times e^{-4}}{2} \\
+P(\mathcal{X}=2) &= 0.146
 \end{array}
 $$
 
@@ -357,11 +335,9 @@ c) Calculemos la probabilidad de que cuatro precios se incrementen, esto es:
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=4) &= \displaystyle \frac{4^4 \times e^{-4}}{4!} \\
-\\
-&= \displaystyle \frac{256 \times e^{-4}}{24} \\
-\\
-&= 0.1953
+\vspace{3mm} P(\mathcal{X}=4) &= \displaystyle \frac{4^4 \times e^{-4}}{4!} \\
+\vspace{3mm} &= \displaystyle \frac{256 \times e^{-4}}{24} \\
+P(\mathcal{X}=4) &= 0.1953
 \end{array}
 $$
 
@@ -383,10 +359,9 @@ Calculemos $P(\mathcal{X}=1)$ y $P(\mathcal{X}=3)$, pues las probabilidades $P(\
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=1) &= \displaystyle \frac{4^1 \times e^{-4}}{1!} \\
-\\
-&= 4 \times e^{-4} \\
-&= 0.073
+\vspace{3mm} P(\mathcal{X}=1) &= \displaystyle \frac{4^1 \times e^{-4}}{1!} \\
+\vspace{3mm} &= 4 \times e^{-4} \\
+P(\mathcal{X}=1) &= 0.073
 \end{array}
 $$
 
@@ -394,11 +369,9 @@ Por otro lado,
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=3) &= \displaystyle \frac{4^3 \times e^{-4}}{3!} \\
-\\
-&= \displaystyle \frac{64 \times e^{-4}}{6} \\
-\\
-&= 0.1953
+\vspace{3mm} P(\mathcal{X}=3) &= \displaystyle \frac{4^3 \times e^{-4}}{3!} \\
+\vspace{3mm} &= \displaystyle \frac{64 \times e^{-4}}{6} \\
+P(\mathcal{X}=3) &= 0.1953
 \end{array}
 $$
 
@@ -442,41 +415,32 @@ Para calcular esta probabilidad usando la distribución de Poisson como una apro
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=0) &= \displaystyle \frac{(np)^0 \times e^{-np}}{0!} \\
-\\
-&= \displaystyle \frac{(50 \times 0.04)^0 \times e^{- 50 \times 0.04}}{0!} \\
-\\
-&= \displaystyle \frac{2^0 \times e^{-2}}{0!} \\
-\\
-&= e^{-2} \\
-&= 0.1353
+\vspace{3mm} P(\mathcal{X}=0) &= \displaystyle \frac{(np)^0 \times e^{-np}}{0!} \\
+\vspace{3mm} &= \displaystyle \frac{(50 \times 0.04)^0 \times e^{- 50 \times 0.04}}{0!} \\
+\vspace{3mm} &= \displaystyle \frac{2^0 \times e^{-2}}{0!} \\
+\vspace{3mm} &= e^{-2} \\
+P(\mathcal{X}=0) &= 0.1353
 \end{array}
 $$
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=1) &= \displaystyle \frac{(np)^1 \times e^{-np}}{1!} \\
-\\
-&= \displaystyle \frac{(50 \times 0.04)^1 \times e^{- 50 \times 0.04}}{1!} \\
-\\
-&= \displaystyle \frac{2^1 \times e^{-2}}{1!} \\
-\\
-&= 2 \times e^{-2} \\
-&= 0.2706
+\vspace{3mm} P(\mathcal{X}=1) &= \displaystyle \frac{(np)^1 \times e^{-np}}{1!} \\
+\vspace{3mm} &= \displaystyle \frac{(50 \times 0.04)^1 \times e^{- 50 \times 0.04}}{1!} \\
+\vspace{3mm} &= \displaystyle \frac{2^1 \times e^{-2}}{1!} \\
+\vspace{3mm} &= 2 \times e^{-2} \\
+P(\mathcal{X}=1) &= 0.2706
 \end{array}
 $$
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=2) &= \displaystyle \frac{(np)^2 \times e^{-np}}{2!} \\
-\\
-&= \displaystyle \frac{(50 \times 0.04)^2 \times e^{- 50 \times 0.04}}{2!} \\
-\\
-&= \displaystyle \frac{2^2 \times e^{-2}}{2!} \\
-\\
-&= \displaystyle \frac{4 \times e^{-2}}{2} \\
-&= 2 \times e^{-2} \\
-&= 0.2706
+\vspace{3mm} P(\mathcal{X}=2) &= \displaystyle \frac{(np)^2 \times e^{-np}}{2!} \\
+\vspace{3mm} &= \displaystyle \frac{(50 \times 0.04)^2 \times e^{- 50 \times 0.04}}{2!} \\
+\vspace{3mm} &= \displaystyle \frac{2^2 \times e^{-2}}{2!} \\
+\vspace{3mm} &= \displaystyle \frac{4 \times e^{-2}}{2} \\
+\vspace{3mm} &= 2 \times e^{-2} \\
+P(\mathcal{X}=2) &= 0.2706
 \end{array}
 $$
 
@@ -498,14 +462,11 @@ b) Calculemos la probabilidad de no tener ninguna calculadora que funcione mal, 
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=0) &= \displaystyle \frac{(np)^0 \times e^{-np}}{0!} \\
-\\
-&= \displaystyle \frac{(50 \times 0.04)^0 \times e^{- 50 \times 0.04}}{0!} \\
-\\
-&= \displaystyle \frac{2^0 \times e^{-2}}{0!} \\
-\\
-&= e^{-2} \\
-&= 0.1353
+\vspace{3mm} P(\mathcal{X}=0) &= \displaystyle \frac{(np)^0 \times e^{-np}}{0!} \\
+\vspace{3mm} &= \displaystyle \frac{(50 \times 0.04)^0 \times e^{- 50 \times 0.04}}{0!} \\
+\vspace{3mm} &= \displaystyle \frac{2^0 \times e^{-2}}{0!} \\
+\vspace{3mm} &= e^{-2} \\
+P(\mathcal{X}=0) &= 0.1353
 \end{array}
 $$
 
@@ -513,12 +474,10 @@ Podemos también calcular esta probabilidad mediante una distribución Binomial,
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=0) &= \displaystyle \frac{50!}{0!(50-0)!} \times 0.04^0 \times (1-0.04)^{50} \\
-\\
-&= \displaystyle \frac{50!}{50!} \times 0.96^{50} \\
-\\
-&= 0.96^{50} \\
-&= 0.1298
+\vspace{3mm} P(\mathcal{X}=0) &= \displaystyle \frac{50!}{0!(50-0)!} \times 0.04^0 \times (1-0.04)^{50} \\
+\vspace{3mm} &= \displaystyle \frac{50!}{50!} \times 0.96^{50} \\
+\vspace{3mm} &= 0.96^{50} \\
+P(\mathcal{X}=0) &= 0.1298
 \end{array}
 $$
 
@@ -558,23 +517,18 @@ a) Calculemos la probabilidad de que la compañía tenga ventas trimestrales may
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}>350) 
-&= 1 - P(\mathcal{X} \leq 350) \\
-\\
-&= 1 - P\left(\displaystyle \frac{\mathcal{X} - \mu}{\sigma} \leq \displaystyle \frac{350 - \mu}{\sigma}\right) \\
-\\
-&= 1 - P\left(\displaystyle \frac{\mathcal{X} - 325}{60} \leq \displaystyle \frac{350 - 325}{60}\right) \\
-\\
-&= 1 - P(\mathcal{Z} \leq 0.42) \\ 
-&= 1-\Phi(0.42) \\
-&= 1-0.6628 \\
-&= 0.3372 \\
+\vspace{3mm} P(\mathcal{X}>350) &= 1 - P(\mathcal{X} \leq 350) \\
+\vspace{3mm} &= 1 - P\left(\displaystyle \frac{\mathcal{X} - \mu}{\sigma} \leq \displaystyle \frac{350 - \mu}{\sigma}\right) \\
+\vspace{3mm} &= 1 - P\left(\displaystyle \frac{\mathcal{X} - 325}{60} \leq \displaystyle \frac{350 - 325}{60}\right) \\
+\vspace{3mm} &= 1 - P(\mathcal{Z} \leq 0.4166667) \\ 
+\vspace{3mm} &= 1-\Phi(0.4166667) \\
+\vspace{3mm} &= 1-0.6615389 \\
+P(\mathcal{X}>350) &= 0.3384611
 \end{array}
 $$
 
 Por lo que la probabilidad de que la compañía tenga ventas trimestrales superiores a 350 millones de dólares suponiendo que la estimación I es correcta es de $0.3372$ ó $33 \%$.
 
-\newpage
 \textbf{\underline{En R:}}
 
 Usamos la función `pnorm()` para calcular $P(\mathcal{X} >i)$ con el argumento `lower.tail=FALSE`, tenemos:
@@ -585,27 +539,23 @@ pnorm(q=350,mean=325,sd=60,lower.tail = FALSE)
 
 ```{r,comment=''}
 # Normal estándar
-pnorm(q=0.42,mean=0,sd=1,lower.tail = FALSE)
+pnorm(q=0.4166667,mean=0,sd=1,lower.tail = FALSE)
 ```
-
 
 b) Ahora calculemos la probabilidad de que la compañía tenga ventas trimestrales mayores a 350 millones de dólares distribuida normalmente con $\mu = 300$ y $\sigma = 50$, por lo que:
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}>350) 
-&= 1 - P(\mathcal{X} \leq 350) \\
-\\
-&= 1 - P\left(\displaystyle \frac{\mathcal{X} - 300}{50} \leq \displaystyle \frac{350 - 300}{50}\right) \\
-\\
-&= 1 - P(\mathcal{Z} \leq 1) \\ 
-&= 1-\Phi(1) \\
-&= 1-0.8413 \\
-&= 0.1587 \\
+\vspace{3mm} P(\mathcal{X}>350) &= 1 - P(\mathcal{X} \leq 350) \\
+\vspace{3mm} &= 1 - P\left(\displaystyle \frac{\mathcal{X} - 300}{50} \leq \displaystyle \frac{350 - 300}{50}\right) \\
+\vspace{3mm} &= 1 - P(\mathcal{Z} \leq 1) \\ 
+\vspace{3mm}  &= 1-\Phi(1) \\
+\vspace{3mm} &= 1-0.8413 \\
+P(\mathcal{X}>350) &= 0.1587 \\
 \end{array}
 $$
 
-Así a probabilidad de que la compañía tenga ventas trimestrales superiores a 350 millones de dólares suponiendo que la estimación II es correcta es de $0.1587$ ó $15 \%$.
+Así la probabilidad de que la compañía tenga ventas trimestrales superiores a 350 millones de dólares suponiendo que la estimación II es correcta es de $0.1587$ ó $15 \%$.
 
 \textbf{\underline{En R:}}
 
@@ -620,7 +570,6 @@ pnorm(q=350,mean=300,sd=50,lower.tail = FALSE)
 pnorm(q=1,mean=0,sd=1,lower.tail=FALSE)
 ```
 
-
 c) Definamos los siguientes eventos:
 
 $E_1$ = Estimación I correcta.
@@ -633,15 +582,11 @@ Caculemos la probabilidad de que la estimación I haya sido correcta dado que la
 
 $$
 \begin{array}{rl}
-P(E_1|V) &= \displaystyle \frac{P(E_1 \cap V)}{P(V)} \\
-\\
-&= \displaystyle \frac{P(E_1 \cap V)}{P(V \cap E_1) + P(V \cap E_2)} \\
-\\
-&= \displaystyle \frac{0.3372}{0.3372 + 0.1587} \\
-\\
-&= \displaystyle \frac{0.3372}{0.4959} \\
-\\
-&= 0.679
+\vspace{3mm} P(E_1|V) &= \displaystyle \frac{P(E_1 \cap V)}{P(V)} \\
+\vspace{3mm} &= \displaystyle \frac{P(E_1 \cap V)}{P(V \cap E_1) + P(V \cap E_2)} \\
+\vspace{3mm} &= \displaystyle \frac{0.3372}{0.3372 + 0.1587} \\
+\vspace{3mm} &= \displaystyle \frac{0.3372}{0.4959} \\
+P(E_1|V) &= 0.679
 \end{array}
 $$
 
@@ -651,15 +596,11 @@ d) Análogo al inciso c) calculamos la probabilidad de que la estimación II hay
 
 $$
 \begin{array}{rl}
-P(E_2|V) &= \displaystyle \frac{P(E_2 \cap V)}{P(V)} \\
-\\
-&= \displaystyle \frac{P(E_2 \cap V)}{P(V \cap E_1) + P(V \cap E_2)} \\
-\\
-&= \displaystyle \frac{0.1587}{0.3372 + 0.1587} \\
-\\
-&= \displaystyle \frac{0.1587}{0.4959} \\
-\\
-&= 0.32
+\vspace{3mm} P(E_2|V) &= \displaystyle \frac{P(E_2 \cap V)}{P(V)} \\
+\vspace{3mm} &= \displaystyle \frac{P(E_2 \cap V)}{P(V \cap E_1) + P(V \cap E_2)} \\
+\vspace{3mm} &= \displaystyle \frac{0.1587}{0.3372 + 0.1587} \\
+\vspace{3mm} &= \displaystyle \frac{0.1587}{0.4959} \\
+P(E_2|V) &= 0.32
 \end{array}
 $$
 
@@ -673,7 +614,9 @@ Producir el pan francés que hornea la Fleur de Farine cuesta \$8 por docena de 
 
 \textbf{\underline{Solución:}}
 
-Sea $\mathcal{X}$ = Demanda diaria por lotes de pan, una variable aleatoria discreta. Calcularemos el valor esperado de vender 2, 3, 4 ó 5 lotes de pan diarios, para luego obtener las ganancias en cada caso de donde obtendremos en cual caso se encuentra la máxima ganancia.
+Sea $\mathcal{X}$ = Demanda diaria por lotes de pan, una variable aleatoria discreta. 
+
+Calcularemos el valor esperado de vender 2, 3, 4 ó 5 lotes de pan diarios, para luego obtener las ganancias en cada caso de donde obtendremos en cual caso se encuentra la máxima ganancia.
 
 Cada lote de pan corresponden a 350 docenas de baguettes, por lo que se tiene un precio de venta de 5,600\$ por lote de pan (16\$ $\times$ 350 = 5,600\$). Consideremos la siguiente tabla de las ventas por 2, 3, 4 ó 5 lotes de pan:
 
@@ -706,8 +649,6 @@ $E_4 = 11,200\$ \times 0.2 + 16,800\$ \times 0.25 + 22,400\$ \times (0.4 + 0.15)
 $E_5 = 11,200\$ \times 0.2 + 16,800\$ \times 0.25 + 22,400\$ \times 0.4 + 28,000\$ \times 0.15 = 19,600\$$
 
 Cada lote de pan de 350 baguettes tiene un costo de producción de 2,800\$ (8\$ $\times$ 350 = 2,800\$). Restando el precio de venta de los lotes de pan con el costo de producción obtendremos la ganancia neta por los lotes de pan vendidos, así tenemos:
-
-\newpage
 
 $\text{Ganancias por 2 lotes de pan vendidos en el día} = 11,200\$-5,600\$ = 5,600\$$
 
@@ -745,12 +686,10 @@ a) Calculemos la probabilidad de que exactamente a cuatro clientes se les rechaz
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=4) &= \displaystyle \frac{15!}{4!(15-4)!} \times 0.25^4 \times (0.75)^{15-4} \\
-\\
-&= \displaystyle \frac{15!}{4!11!} \times 0.25^4 \times (0.75)^{11} \\
-\\
-&= 1365 \times 0.003906 \times 0.04223 \\
-&= 0.2251
+\vspace{3mm} P(\mathcal{X}=4) &= \displaystyle \frac{15!}{4!(15-4)!} \times 0.25^4 \times (0.75)^{15-4} \\
+\vspace{3mm} &= \displaystyle \frac{15!}{4!11!} \times 0.25^4 \times (0.75)^{11} \\
+\vspace{3mm} &= 1365 \times 0.003906 \times 0.04223 \\
+P(\mathcal{X}=4) &= 0.2251
 \end{array}
 $$
 
@@ -764,17 +703,14 @@ Usamos la función `dbinom()`, por lo que nos queda:
 dbinom(x=4,size=15,prob=0.25)
 ```
 
-
 b) Análogamente al inciso a) calculamos la probabilidad de que exactamente a ocho clientes se les rechaze la tarjeta, así:
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=8) &= \displaystyle \frac{15!}{8!(15-8)!} \times 0.25^8 \times (0.75)^{15-8} \\
-\\
-&= \displaystyle \frac{15!}{8!7!} \times 0.25^8 \times (0.75)^{7} \\
-\\
-&= 6435 \times 0.00001525 \times 0.1334 \\
-&= 0.013
+\vspace{3mm} P(\mathcal{X}=8) &= \displaystyle \frac{15!}{8!(15-8)!} \times 0.25^8 \times (0.75)^{15-8} \\
+\vspace{3mm} &= \displaystyle \frac{15!}{8!7!} \times 0.25^8 \times (0.75)^{7} \\
+\vspace{3mm} &= 6435 \times 0.00001525 \times 0.1334 \\
+P(\mathcal{X}=8) &= 0.013
 \end{array}
 $$
 Por lo que la probabilidad de que a exactamente ocho clientes les sea rechazada la tarjeta es de $0.013$ o $1.3\%$.
@@ -795,34 +731,28 @@ Calculando cada una de estas probabilidades tenemos:
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=0) &= \displaystyle \frac{15!}{0!(15-0)!} \times 0.25^0 \times 0.75^{15-0} \\
-\\
-&= \displaystyle \frac{15!}{15!} \times 0.75^{15} \\
-\\
-&= 0.75^{15} \\
-&= 0.0133
+\vspace{3mm} P(\mathcal{X}=0) &= \displaystyle \frac{15!}{0!(15-0)!} \times 0.25^0 \times 0.75^{15-0} \\
+\vspace{3mm} &= \displaystyle \frac{15!}{15!} \times 0.75^{15} \\
+\vspace{3mm} &= 0.75^{15} \\
+P(\mathcal{X}=0) &= 0.0133
 \end{array}
 $$
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=1) &= \displaystyle \frac{15!}{1!(15-1)!} \times 0.25^1 \times (0.75)^{15-1} \\
-\\
-&= \displaystyle \frac{15!}{14!} \times 0.25^1 \times (0.75)^{14} \\
-\\
-&= 15 \times 0.25 \times 0.01781 \\
-&= 0.0668
+\vspace{3mm} P(\mathcal{X}=1) &= \displaystyle \frac{15!}{1!(15-1)!} \times 0.25^1 \times (0.75)^{15-1} \\
+\vspace{3mm} &= \displaystyle \frac{15!}{14!} \times 0.25^1 \times (0.75)^{14} \\
+\vspace{3mm} &= 15 \times 0.25 \times 0.01781 \\
+P(\mathcal{X}=1) &= 0.0668
 \end{array}
 $$
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=2) &= \displaystyle \frac{15!}{2!(15-2)!} \times 0.25^2 \times (0.75)^{15-2} \\
-\\
-&= \displaystyle \frac{15!}{2 \times 13!} \times 0.25^2 \times (0.75)^{13} \\
-\\
-&= 105 \times 0.0625 \times 0.02375 \\
-&= 0.1559
+\vspace{3mm} P(\mathcal{X}=2) &= \displaystyle \frac{15!}{2!(15-2)!} \times 0.25^2 \times (0.75)^{15-2} \\
+\vspace{3mm} &= \displaystyle \frac{15!}{2 \times 13!} \times 0.25^2 \times (0.75)^{13} \\
+\vspace{3mm} &= 105 \times 0.0625 \times 0.02375 \\
+P(\mathcal{X}=2) &= 0.1559
 \end{array}
 $$
 
@@ -840,39 +770,35 @@ Usamos la función `pbinom()` para calcular la probabilidad $P(\mathcal{X} \leq 
 pbinom(q=2,size=15,prob=0.25)
 ```
 
-\newpage
-
 d) Calculemos la probabilidad de que sean rechazadas más de cinco tarjetas, esto es:
 
 $$P(\mathcal{X}>5) = 1 - P(\mathcal{X} \leq 5) = 1 - \left(\sum_{i=0}^{5} P(\mathcal{X}=i) \right)$$
+
 Calculemos $P(\mathcal{X}=3)$ y $P(\mathcal{X}=5)$, pues las probabilidades $P(\mathcal{X}=0)$, $P(\mathcal{X}=1)$. $P(\mathcal{X}=2)$, $P(\mathcal{X}=4)$ se calcularon anteriomente, así:
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=3) &= \displaystyle \frac{15!}{3!(15-3)!} \times 0.25^3 \times (0.75)^{15-3} \\
-\\
-&= \displaystyle \frac{15!}{6 \times 12!} \times 0.25^3 \times (0.75)^{12} \\
-\\
-&= 455 \times 0.01562 \times 0.03167 \\
-&= 0.2251
+\vspace{3mm} P(\mathcal{X}=3) &= \displaystyle \frac{15!}{3!(15-3)!} \times 0.25^3 \times (0.75)^{15-3} \\
+\vspace{3mm} &= \displaystyle \frac{15!}{6 \times 12!} \times 0.25^3 \times (0.75)^{12} \\
+\vspace{3mm} &= 455 \times 0.01562 \times 0.03167 \\
+P(\mathcal{X}=3) &= 0.2251
 \end{array}
 $$
 Por otro lado,
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=5) &= \displaystyle \frac{15!}{5!(15-5)!} \times 0.25^5 \times (0.75)^{15-5} \\
-\\
-&= \displaystyle \frac{15!}{5! \times 10!} \times 0.25^5 \times (0.75)^{10} \\
-\\
-&= 3003 \times 0.0009765 \times 0.05631 \\
-&= 0.1651
+\vspace{3mm} P(\mathcal{X}=5) &= \displaystyle \frac{15!}{5!(15-5)!} \times 0.25^5 \times (0.75)^{15-5} \\
+\vspace{3mm} &= \displaystyle \frac{15!}{5! \times 10!} \times 0.25^5 \times (0.75)^{10} \\
+\vspace{3mm} &= 3003 \times 0.0009765 \times 0.05631 \\
+P(\mathcal{X}=5) &= 0.1651
 \end{array}
 $$
 
 Sustituyendo estos valores tenemos que la probabilidad de que a más de cinco clientes se les rechaze la tarjeta es de:
 
 $$P(\mathcal{X}>5) = 1 - (0.0133 + 0.0668 + 0.1559 + 0.2251 + 0.2251 + 0.1651) = 1 - 0.8513 = 0.1487$$
+
 \textbf{\underline{En R:}}
 
 Usamos la función `pbinom()` con el argumento `lower.tail=FALSE` para calcular la probabilidad $P(\mathcal{X} > i)$, por lo que tenemos:
@@ -899,17 +825,14 @@ Calculemos la probabilidad de que un agente de ventas recorra 5,500 km o más, e
 
 $$
 \begin{array}{rl}
-P(\mathcal{X} \geq 5,500) 
-&= 1 - P(\mathcal{X} < 5,500) \\
-\\
-&= 1 - P\left(\displaystyle \frac{\mathcal{X} - 5,650}{120} < \displaystyle \frac{5,500 - 5,650}{120}\right) \\
-\\
-&= 1 - P(\mathcal{Z} < -1.25) \\ 
-&= 1-\Phi(-1.25) \\
-&= 1-(1- \Phi(1.25) ) \\
-&= 1 - 1 + \Phi(1.25) \\
-&= \Phi(1.25) \\
-&= 0.8944 \\
+\vspace{3mm} P(\mathcal{X} \geq 5,500) &= 1 - P(\mathcal{X} < 5,500) \\
+\vspace{3mm} &= 1 - P\left(\displaystyle \frac{\mathcal{X} - 5,650}{120} < \displaystyle \frac{5,500 - 5,650}{120}\right) \\
+\vspace{3mm} &= 1 - P(\mathcal{Z} < -1.25) \\ 
+\vspace{3mm} &= 1-\Phi(-1.25) \\
+\vspace{3mm} &= 1-(1- \Phi(1.25) ) \\
+\vspace{3mm} &= 1 - 1 + \Phi(1.25) \\
+\vspace{3mm} &= \Phi(1.25) \\
+P(\mathcal{X} \geq 5,500) &= 0.8944
 \end{array}
 $$
 
@@ -928,7 +851,6 @@ pnorm(q=5500,mean=5650,sd=120,lower.tail = FALSE)
 pnorm(q=-1.25,mean=0,sd=1,lower.tail = FALSE)
 ```
 
-
 \newpage
 
 # Ejercicio 10
@@ -937,36 +859,36 @@ Considere la siguiente información de graduados de los 20 mejores programas de 
 
 | Clasificación  de Programas  MBA en 1994 | Universidad | Salario promedio antes de MBA \$ | Salario promedio después del MBA \$ | Número promedio de ofertas de trabajo |
 |:----------------------------------------:|:----------------------------------------:|:-----------------------------:|:--------------------------------:|:-------------------------------------:|
-| 1 | Pennsylvania (Wharton) | 48,240  | 89,930 | 3.02 |
-| 2 | Northwestern (Kellogg) | 44,000 | 84,640 | 2.96 |
-| 3 | Chicago | 42,690 | 83,210 | 2.92 |
-| 4 | Stanford | 49,610 | 100,800 | 3.47 |
-| 5 | Harvard | 53,910 | 102,630 | 3.60 | 
-| 6 | Michigan | 36,050 | 67,820 | 2.68 | 
-| 7 | Indiana | 34,320 | 58,520 | 2.45 | 
-| 8 | Columbia | 44,470 | 100,480 | 2.43 |
-| 9 | UCLA (Anderson) | 44,620 | 74,010 | 2.74 | 
-| 10 | MIT (Sloan) | 41,820 | 80,500 | 3.25 | 
-| 11 | Duke (Fuqua) | 40,960 | 70,490 | 2.78 | 
-| 12 | Virginia (Darden) | 38,530 | 74,280 | 2.69 | 
-| 13 | Dartmouth (Tuck) | 45,300 | 95,410 | 2.40 |
-| 14 | Carnegie-Mellon | 38,250 | 69,890 | 2,69 | 
-| 15 | Cornell (Johnson) | 40,740 | 71,970 | 2.40 |
-| 16 | NYU (Stern) | 38,960 | 70,660 | 2.12 |
-| 17 | Texas | 36,620 | 61,890 | 2.58 |
-| 18 | UNC (Kenan-Flagler) | 38,690 | 69,880 | 3.09 | 
-| 19 | California (Haas) | 43,570 | 71,970 | 2.34 | 
-| 20 | Purdue (Krannert) | 30,600 | 54,720 | 2.19 | 
+| 1 | Pennsylvania (Wharton) | 48240  | 89930 | 3.02 |
+| 2 | Northwestern (Kellogg) | 44000 | 84640 | 2.96 |
+| 3 | Chicago | 42690 | 83210 | 2.92 |
+| 4 | Stanford | 49610 | 100800 | 3.47 |
+| 5 | Harvard | 53910 | 102630 | 3.60 | 
+| 6 | Michigan | 36050 | 67820 | 2.68 | 
+| 7 | Indiana | 34320 | 58520 | 2.45 | 
+| 8 | Columbia | 44470 | 100480 | 2.43 |
+| 9 | UCLA (Anderson) | 44620 | 74010 | 2.74 | 
+| 10 | MIT (Sloan) | 41820 | 80500 | 3.25 | 
+| 11 | Duke (Fuqua) | 40960 | 70490 | 2.78 | 
+| 12 | Virginia (Darden) | 38530 | 74280 | 2.69 | 
+| 13 | Dartmouth (Tuck) | 45300 | 95410 | 2.40 |
+| 14 | Carnegie-Mellon | 38250 | 69890 | 2,69 | 
+| 15 | Cornell (Johnson) | 40740 | 71970 | 2.40 |
+| 16 | NYU (Stern) | 38960 | 70660 | 2.12 |
+| 17 | Texas | 36620 | 61890 | 2.58 |
+| 18 | UNC (Kenan-Flagler) | 38690 | 69880 | 3.09 | 
+| 19 | California (Haas) | 43570 | 71970 | 2.34 | 
+| 20 | Purdue (Krannert) | 30600 | 54720 | 2.19 | 
 
 a) Calcule la media y la desviación estándar de los salarios después de la maestría.
 
 b) Asuma que los salarios después de la maestría tienen una distribución normal, y la media y la desviación estándar son como las calculadas en a); encuentre la probabilidad de que un graduado de maestría en 1994 elegido al azar esté en la siguiente situación:
 
-1) Gane más de \$100,000.
+1) Gane más de \$100000.
 
-2) Gane menos de \$60,000.
+2) Gane menos de \$60000.
 
-3) Gane entre \$75,000 y $95,000.
+3) Gane entre \$75000 y $95000.
 
 c) Calcule la media para el número promedio de ofertas de trabajo.
 
@@ -983,13 +905,13 @@ d) Si las ofertas de trabajo para los graduados de maestría tienen una distribu
 a) Calculemos la media y la desviación estándar del salario promedio después del MBA mediante **R**, esto es:
 
 ```{r,comment=''}
-spdMBA<-c(89930,84640,83210,100800,102630,67820,58520,100480,74010,80500,70490,
-          74280,95410,69890,71970,70660,61890,69880,71970,54720)
+spdMBA<-c(89930,84640,83210,100800,102630,67820,58520,100480,74010,80500,
+          70490,74280,95410,69890,71970,70660,61890,69880,71970,54720)
 mean(spdMBA)
 sd(spdMBA)
 ```
 
-Por lo que la media y la desviación estándar del salario promedio después del MBA son de 77,685\$ y 14,108.26\$ respectivamente.
+Por lo que la media y la desviación estándar del salario promedio después del MBA son de 77685\$ y 14108.26\$ respectivamente.
 
 b) Definamos la siguiente variable aleatoria con distribución normal como:
 
@@ -1001,15 +923,12 @@ Cuya media y desviación estándar se calcularon en el inciso a).
 
 $$
 \begin{array}{rl}
-P(\mathcal{X} > 100,000) 
-&= 1 - P(\mathcal{X} \leq 100,000) \\
-\\
-&= 1 - P\left(\displaystyle \frac{\mathcal{X} - 77,685}{14,108.26} < \displaystyle \frac{100,000 - 77,685}{14,108.26}\right) \\
-\\
-&= 1 - P(\mathcal{Z} < 1.58) \\ 
-&= 1-\Phi(1.58) \\
-&= 1-0.9429 \\
-&= 0.0571
+\vspace{3mm} P(\mathcal{X} > 100000) &= 1 - P(\mathcal{X} \leq 100000) \\
+\vspace{3mm} &= 1 - P\left(\displaystyle \frac{\mathcal{X} - 77685}{14108.26} < \displaystyle \frac{100000 - 77685}{14108.26}\right) \\
+\vspace{3mm} &= 1 - P(\mathcal{Z} < 1.581698) \\ 
+\vspace{3mm} &= 1-\Phi(1.581698) \\
+\vspace{3mm} &= 1-0.9431407 \\
+P(\mathcal{X} > 100000) &= 0.0568593
 \end{array}
 $$
 
@@ -1023,22 +942,19 @@ pnorm(q=100000,mean=77685,sd=14108.26,lower.tail = FALSE)
 
 ```{r,comment=''}
 # Normal estándar
-pnorm(q=1.58,mean=0,sd=1,lower.tail=FALSE)
+pnorm(q=1.581698,mean=0,sd=1,lower.tail=FALSE)
 ```
-
 
 2) Ahora calculemos las probabilidad de que un graduado tenga un salario promedio menor a 60,000\$, así:
 
 $$
 \begin{array}{rl}
-P(\mathcal{X} < 60,000) 
-&= P\left(\displaystyle \frac{\mathcal{X} - 77,685}{14,108.26} < \displaystyle \frac{60,000 - 77,685}{14,108.26}\right) \\
-\\
-&= P(\mathcal{Z} < -1.25) \\ 
-&= \Phi(-1.25) \\
-&= 1 - \Phi(1.25) \\
-&= 1 - 0.8944 \\
-&= 0.1056
+\vspace{3mm} P(\mathcal{X} < 60000) &= P\left(\displaystyle \frac{\mathcal{X} - 77685}{14108.26} < \displaystyle \frac{60000 - 77685}{14108.26}\right) \\
+\vspace{3mm} &= P(\mathcal{Z} < -1.253521) \\ 
+\vspace{3mm} &= \Phi(-1.253521) \\
+\vspace{3mm} &= 1 - \Phi(1.253521) \\
+\vspace{3mm} &= 1 -0.8949919 \\
+P(\mathcal{X} < 60000)&= 0.1050081
 \end{array}
 $$
 
@@ -1052,23 +968,20 @@ pnorm(q=60000,mean=77685,sd=14108.26)
 
 ```{r,comment=''}
 # Normal estándar
-pnorm(q=-1.25,mean=0,sd=1)
+pnorm(q=-1.253521,mean=0,sd=1)
 ```
-
 
 3) Por último calculemos la probabilidad de que un graduado tenga un salario promedio entre 75,000\$ y 95,000\$, tenemos:
 
 $$
 \begin{array}{rl}
-P(75,000 < \mathcal{X} < 95,000) 
-&= P\left(\displaystyle \frac{75,000 - 77,685}{14,108.26} < \displaystyle \frac{\mathcal{X} - 77,685}{14,108.26} < \displaystyle \frac{95,000 - 77,685}{14,108.26}\right) \\
-\\
-&= P(-0.19 < \mathcal{Z} < 1.22) \\
-&= P(\mathcal{Z}<1.22)-P(\mathcal{Z}<-0.19) \\
-&= \Phi(1.22) - \Phi(-0.19) \\
-&= \Phi(1.22) - 1 + \Phi(0.19) \\
-&= 0.8888 - 1 + 0.5753 \\
-&= 0.4641 \\
+\vspace{3mm} P(75000 < \mathcal{X} < 95000) &= P\left(\displaystyle \frac{75000 - 77685}{14108.26} < \displaystyle \frac{\mathcal{X} - 77685}{14108.26} < \displaystyle \frac{95000 - 77685}{14108.26}\right) \\
+\vspace{3mm} &= P(-0.190314 < \mathcal{Z} < 1.227295) \\
+\vspace{3mm} &= P(\mathcal{Z}<1.227295)-P(\mathcal{Z}<-0.190314) \\
+\vspace{3mm} &= \Phi(1.227295) - \Phi(-0.190314) \\
+\vspace{3mm} &= \Phi(1.227295) - 1 + \Phi(0.190314) \\
+\vspace{3mm} &= 0.8901441 - 1 + 0.5754685 \\
+P(75000 < \mathcal{X} < 95000) &= 0.4656126
 \end{array}
 $$
 
@@ -1082,9 +995,8 @@ pnorm(q=95000,mean=77685,sd=14108.26)-pnorm(q=75000,mean=77685,sd=14108.26)
 
 ```{r,comment=''}
 # Normal estándar
-pnorm(q=1.22,mean=0,sd=1)-pnorm(q=-0.19,mean=0,sd=1)
+pnorm(q=1.227295,mean=0,sd=1)-pnorm(q=-0.190314,mean=0,sd=1)
 ```
-
 
 c) Calculemos la media para el número promedio de ofertas de trabajo mediante **R**, esto es:
 
@@ -1109,10 +1021,9 @@ donde,
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=0) &= \displaystyle \frac{(2.74)^0 \times e^{-2.74}}{0!} \\
-\\
-&= e^{-2.74} \\
-&= 0.0645
+\vspace{3mm} P(\mathcal{X}=0) &= \displaystyle \frac{(2.74)^0 \times e^{-2.74}}{0!} \\
+\vspace{3mm} &= e^{-2.74} \\
+P(\mathcal{X}=0) &= 0.0645
 \end{array}
 $$
 
@@ -1120,10 +1031,9 @@ y,
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=1) &= \displaystyle \frac{(2.74)^1 \times e^{-2.74}}{1!} \\
-\\
-&= 2.74 \times e^{-2.74} \\
-&= 0.1769 \\
+\vspace{3mm} P(\mathcal{X}=1) &= \displaystyle \frac{(2.74)^1 \times e^{-2.74}}{1!} \\
+\vspace{3mm} &= 2.74 \times e^{-2.74} \\
+P(\mathcal{X}=1) &= 0.1769
 \end{array}
 $$
 
@@ -1147,10 +1057,9 @@ donde,
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=2) &= \displaystyle \frac{(2.74)^2 \times e^{-2.74}}{2!} \\
-\\
-&= \displaystyle \frac{7.5076 \times e^{-2.74}}{2} \\
-&= 0.2423 \\
+\vspace{3mm} P(\mathcal{X}=2) &= \displaystyle \frac{(2.74)^2 \times e^{-2.74}}{2!} \\
+\vspace{3mm} &= \displaystyle \frac{7.5076 \times e^{-2.74}}{2} \\
+P(\mathcal{X}=2) &= 0.2423
 \end{array}
 $$
 
@@ -1158,10 +1067,9 @@ y,
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=3) &= \displaystyle \frac{(2.74)^3 \times e^{-2.74}}{3!} \\
-\\
-&= \displaystyle \frac{20.5708 \times e^{-2.74}}{6} \\
-&= 0.2213 \\
+\vspace{3mm} P(\mathcal{X}=3) &= \displaystyle \frac{(2.74)^3 \times e^{-2.74}}{3!} \\
+\vspace{3mm} &= \displaystyle \frac{20.5708 \times e^{-2.74}}{6} \\
+P(\mathcal{X}=3) &= 0.2213
 \end{array}
 $$
 
@@ -1185,9 +1093,9 @@ Sustituyendo las probabilidades ya calculadas anteriormente tenemos que la proba
 
 $$
 \begin{array}{rl}
-P(\mathcal{X} > 3) = 1 - P(\mathcal{X} \leq 3) &= 1 - P(\mathcal{X}=0) - P(\mathcal{X}=1) - P(\mathcal{X}=2) - P(\mathcal{X}=3) \\
-&= 1 - 0.0645 - 0.1769 - 0.2423 - 0.2213 \\
-&= 0.295 \\
+\vspace{3mm} P(\mathcal{X} > 3) = 1 - P(\mathcal{X} \leq 3) &= 1 - P(\mathcal{X}=0) - P(\mathcal{X}=1) - P(\mathcal{X}=2) - P(\mathcal{X}=3) \\
+\vspace{3mm} &= 1 - 0.0645 - 0.1769 - 0.2423 - 0.2213 \\
+P(\mathcal{X} > 3) &= 0.295
 \end{array}
 $$
 
@@ -1198,7 +1106,6 @@ Usando la función `ppois()` con el argumento `lower.tail=FALSE` tenemos:
 ```{r,comment=''}
 ppois(q=3,lambda=2.74,lower.tail = FALSE)
 ```
-
 
 \newpage
 
@@ -1225,7 +1132,6 @@ y,
 
 $$\sigma = \sqrt{npq} = \sqrt{1460 \times 0.8 \times 0.2} = 15.2839$$
 Por lo que la media y la desviación estándar son 1168 y 15.2839 respectivamente.
-
 
 b) Ahora supongamos que la variable aleatoria tiene una probabilidad de $p = 0.77$, $q = 0.23$ y $n = 1327$. Por lo que la media y la desviación estándar están dadas por:
 
@@ -1300,12 +1206,10 @@ Para 6 ejecutivos elegidos al azar, es decir, para $n=6$ calculemos las siguient
 
 $$
 \begin{array}{rl}
-P(\mathcal{X}=5) &= \displaystyle \frac{6!}{5!(6-5)!} \times {p}^5_1 \times {q}^{6-5}_1 \\
-\\
-&= \displaystyle \frac{6!}{5!1!} \times 0.2564^5 \times 0.7435^1 \\
-\\
-&= 6 \times 0.001108 \times 0.7435 \\
-&= 0.004943
+\vspace{3mm} P(\mathcal{X}=5) &= \displaystyle \frac{6!}{5!(6-5)!} \times {p}^5_1 \times {q}^{6-5}_1 \\
+\vspace{3mm} &= \displaystyle \frac{6!}{5!1!} \times 0.2564^5 \times 0.7435^1 \\
+\vspace{3mm} &= 6 \times 0.001108 \times 0.7435 \\
+P(\mathcal{X}=5) &= 0.004943
 \end{array}
 $$
 \textbf{\underline{En R:}}
@@ -1319,66 +1223,58 @@ dbinom(x=5,size=6,prob=0.2564)
 2) Probabilidad de que por lo menos 5 obtuvieran un aumento, esto es:
 
 $$P(\mathcal{Y} \geq 5) = 1 - P(\mathcal{Y}<5) = 1 - P(\mathcal{Y}=0)-P(\mathcal{Y}=1)-P(\mathcal{Y}=2)-P(\mathcal{Y}=3)-P(\mathcal{Y}=4)$$
+
 donde,
 
 $$
 \begin{array}{rl}
-P(\mathcal{Y}=0) &= \displaystyle \frac{6!}{0!(6-0)!} \times {p}^0_2 \times {q}^{6-0}_2 \\
-\\
-&= \displaystyle \frac{6!}{6!} \times 0.7435^0 \times 0.2564^{6-0} \\
-\\
-&= 0.2564^6 \\
-&= 0.0002841
+\vspace{3mm} P(\mathcal{Y}=0) &= \displaystyle \frac{6!}{0!(6-0)!} \times {p}^0_2 \times {q}^{6-0}_2 \\
+\vspace{3mm} &= \displaystyle \frac{6!}{6!} \times 0.7435^0 \times 0.2564^{6-0} \\
+\vspace{3mm} &= 0.2564^6 \\
+P(\mathcal{Y}=0) &= 0.0002841
 \end{array}
 $$
 
 $$
 \begin{array}{rl}
-P(\mathcal{Y}=1) &= \displaystyle \frac{6!}{1!(6-1)!} \times {p}^1_2 \times {q}^{6-1}_2 \\
-\\
-&= \displaystyle \frac{6!}{5!} \times 0.7435^1 \times 0.2564^{6-1} \\
-\\
-&= 6 \times 0.7435 \times 0.2564^5 \\
-&= 0.004943
+\vspace{3mm} P(\mathcal{Y}=1) &= \displaystyle \frac{6!}{1!(6-1)!} \times {p}^1_2 \times {q}^{6-1}_2 \\
+\vspace{3mm} &= \displaystyle \frac{6!}{5!} \times 0.7435^1 \times 0.2564^{6-1} \\
+\vspace{3mm} &= 6 \times 0.7435 \times 0.2564^5 \\
+P(\mathcal{Y}=1) &= 0.004943
 \end{array}
 $$
 
 $$
 \begin{array}{rl}
-P(\mathcal{Y}=2) &= \displaystyle \frac{6!}{2!(6-2)!} \times {p}^2_2 \times {q}^{6-2}_2 \\
-\\
-&= \displaystyle \frac{6!}{2 \times 4!} \times 0.7435^2 \times 0.2564^{6-2} \\
-\\
-&= 15 \times 0.7435^2 \times 0.2564^4 \\
-&= 0.03583
+\vspace{3mm} P(\mathcal{Y}=2) &= \displaystyle \frac{6!}{2!(6-2)!} \times {p}^2_2 \times {q}^{6-2}_2 \\
+\vspace{3mm} &= \displaystyle \frac{6!}{2 \times 4!} \times 0.7435^2 \times 0.2564^{6-2} \\
+\vspace{3mm} &= 15 \times 0.7435^2 \times 0.2564^4 \\
+P(\mathcal{Y}=2) &= 0.03583
 \end{array}
 $$
 
 $$
 \begin{array}{rl}
-P(\mathcal{Y}=3) &= \displaystyle \frac{6!}{3!(6-3)!} \times {p}^3_2 \times {q}^{6-3}_2 \\
-\\
-&= \displaystyle \frac{6!}{6 \times 6} \times 0.7435^3 \times 0.2564^{6-3} \\
-\\
-&= 20 \times 0.7435^3 \times 0.2564^3 \\
-&= 0.1385
+\vspace{3mm} P(\mathcal{Y}=3) &= \displaystyle \frac{6!}{3!(6-3)!} \times {p}^3_2 \times {q}^{6-3}_2 \\
+\vspace{3mm} &= \displaystyle \frac{6!}{6 \times 6} \times 0.7435^3 \times 0.2564^{6-3} \\
+\vspace{3mm} &= 20 \times 0.7435^3 \times 0.2564^3 \\
+P(\mathcal{Y}=3) &= 0.1385
 \end{array}
 $$
 
 $$
 \begin{array}{rl}
-P(\mathcal{Y}=4) &= \displaystyle \frac{6!}{4!(6-4)!} \times {p}^4_2 \times {q}^{6-4}_2 \\
-\\
-&= \displaystyle \frac{6!}{4! \times 2} \times 0.7435^4 \times 0.2564^{6-4} \\
-\\
-&= 15 \times 0.7435^4 \times 0.2564^2 \\
-&= 0.3013
+\vspace{3mm} P(\mathcal{Y}=4) &= \displaystyle \frac{6!}{4!(6-4)!} \times {p}^4_2 \times {q}^{6-4}_2 \\
+\vspace{3mm} &= \displaystyle \frac{6!}{4! \times 2} \times 0.7435^4 \times 0.2564^{6-4} \\
+\vspace{3mm} &= 15 \times 0.7435^4 \times 0.2564^2 \\
+P(\mathcal{Y}=4) &= 0.3013
 \end{array}
 $$
 
 por lo que las probabilidades son: $P(\mathcal{Y}=0) = 0.0002841$, $P(\mathcal{Y}=1) = 0.004943$, $P(\mathcal{Y}=2) = 0.03583$, $P(\mathcal{Y}=3) = 0.1385$ y $P(\mathcal{Y}=4) = 0.3013$. Así, la probabilidad de que por lo menos cinco ejecutivos obtuvieran un aumento es de:
 
-$$P(\mathcal{Y} \geq 5) = 1 - P(Y<5) = 1 - 0.0002841 - 0.004943 - 0.03583 - 0.1385 - 0.3013 = 0.5191$$
+$$P(\mathcal{Y} \geq 5) = 1 - P(\mathcal Y<5) = 1 - 0.0002841 - 0.004943 - 0.03583 - 0.1385 - 0.3013 = 0.5191$$
+
 \textbf{\underline{En R:}}
 
 Usando la función `pbinom()` con el argumento `lower.tail=FALSE` tenemos:
@@ -1390,9 +1286,11 @@ pbinom(q=4,size=6,prob=0.7435,lower.tail = FALSE)
 3) Por último calculemos la probabilidad de que menos de cuatro ejecutivos obtuvieran un aumento, esto es:
 
 $$P(\mathcal{Y} < 4) = P(\mathcal{Y}=0) + P(\mathcal{Y}=1) + P(\mathcal{Y}=2) + P(\mathcal{Y}=3)$$
+
 Sustituyendo las probabilidades ya calculadas anteriormente, tenemos que la probabilidad de que menos de cuatro ejecutivos obtuvieran un aumento es de:
 
 $$P(\mathcal{Y} < 4) = P(\mathcal{Y}=0) + P(\mathcal{Y}=1) + P(\mathcal{Y}=2) + P(\mathcal{Y}=3) = 0.000284 + 0.00494 + 0.0358 + 0.1385 = 0.1795$$
+
 \textbf{\underline{En R:}}
 
 Usando la función `pbinom()` nos queda:
@@ -1422,15 +1320,12 @@ Cuya media y desviación estándar se calcularon en el inciso b).
 
 $$
 \begin{array}{rl}
-P(\mathcal{X} \geq 25) 
-&= 1 - P(\mathcal{X} < 25) \\
-\\
-&= 1 - P\left(\displaystyle \frac{\mathcal{X} - 10.96}{20.90} < \displaystyle \frac{25 - 10.96}{20.90}\right) \\
-\\
-&= 1 - P(\mathcal{Z} < 0.671) \\
-&= 1 - \Phi(0.671) \\
-&= 1 - 0.7486 \\
-&= 0.2514 \\
+\vspace{3mm} P(\mathcal{X} \geq 25) &= 1 - P(\mathcal{X} < 25) \\
+\vspace{3mm} &= 1 - P\left(\displaystyle \frac{\mathcal{X} - 10.96}{20.90} < \displaystyle \frac{25 - 10.96}{20.90}\right) \\
+\vspace{3mm} &= 1 - P(\mathcal{Z} < 0.6717703) \\
+\vspace{3mm} &= 1 - \Phi(0.6717703) \\
+\vspace{3mm} &= 1 - 0.749135\\
+P(\mathcal{X} \geq 25) &= 0.250865
 \end{array}
 $$
 \textbf{\underline{En R:}}
@@ -1439,25 +1334,21 @@ Usamos la función `pnorm()` con el argumento `lower.tail=FALSE` por lo que nos 
 
 ```{r,comment=''}
 pnorm(q=25,mean=10.96,sd=20.90,lower.tail = FALSE)
-```
-```{r,comment=''}
-# Normal estándar
-pnorm(q=0.671,mean=0,sd=1,lower.tail=FALSE)
-```
 
+# Normal estándar
+pnorm(q=0.6717703,mean=0,sd=1,lower.tail=FALSE)
+```
 
 2) Ahora calculemos la probabilidad de que el incremento sea menor del 5\%, así:
 
 $$
 \begin{array}{rl}
-P(\mathcal{X} < 5) 
-&= P\left(\displaystyle \frac{\mathcal{X} - 10.96}{20.90} < \displaystyle \frac{5 - 10.96}{20.90}\right) \\
-\\
-&= P(\mathcal{Z} < -0.285) \\ 
-&= \Phi(-0.285) \\
-&= 1 - \Phi(0.285) \\
-&= 1 - 0.6103 \\
-&= 0.3897 \\
+\vspace{3mm} P(\mathcal{X} < 5) &= P\left(\displaystyle \frac{\mathcal{X} - 10.96}{20.90} < \displaystyle \frac{5 - 10.96}{20.90}\right) \\
+\vspace{3mm} &= P(\mathcal{Z} < -0.2851675) \\ 
+\vspace{3mm} &= \Phi(-0.2851675) \\
+\vspace{3mm} &= 1 - \Phi(0.2851675) \\
+\vspace{3mm} &= 1 - 0.6122421\\
+P(\mathcal{X} < 5) &= 0.3877579
 \end{array}
 $$
 \textbf{\underline{En R:}}
@@ -1470,22 +1361,20 @@ pnorm(q=5,mean=10.96,sd=20.90)
 
 ```{r,comment=''}
 # Normal estándar
-pnorm(q=-0.285,mean=0,sd=1)
+pnorm(q=-0.2851675,mean=0,sd=1)
 ```
 
 3) Por último calculemos la probabilidad de que el cambio porcentual en los salarios de los ejecutivos se encuentre entre un -15\% y 15\%. Por lo que nos queda:
 
 $$
 \begin{array}{rl}
-P(-15 < \mathcal{X} < 15) 
-&= P\left(\displaystyle \frac{-15 - 10.96}{20.90} < \displaystyle \frac{\mathcal{X} - 10.96}{20.90} < \displaystyle \frac{15 - 10.96}{20.90}\right) \\
-\\
-&= P(-1.24 < \mathcal{Z} < 0.19) \\
-&= P(\mathcal{Z}<0.19)-p(\mathcal{Z}<-1.24) \\
-&= \Phi(0.19) - \Phi(-1.24) \\
-&= \Phi(0.19) - 1 + \Phi(1.24) \\
-&= 0.5753 - 1 + 0.8925 \\
-&=  0.4678 \\
+\vspace{3mm} P(-15 < \mathcal{X} < 15) &= P\left(\displaystyle \frac{-15 - 10.96}{20.90} < \displaystyle \frac{\mathcal{X} - 10.96}{20.90} < \displaystyle \frac{15 - 10.96}{20.90}\right) \\
+\vspace{3mm} &= P(-1.242105 < \mathcal{Z} < 0.1933014) \\
+\vspace{3mm} &= P(\mathcal{Z}<0.1933014)-p(\mathcal{Z}<-1.242105) \\
+\vspace{3mm} &= \Phi(0.1933014) - \Phi(-1.242105) \\
+\vspace{3mm} &= \Phi(0.1933014) - 1 + \Phi(1.242105) \\
+\vspace{3mm} &=  0.5766385 - 1 + 0.8929011 \\
+P(-15 < \mathcal{X} < 15) &=  0.4695396 
 \end{array}
 $$
 \textbf{\underline{En R:}}
@@ -1497,15 +1386,14 @@ pnorm(q=15,mean=10.90,sd=20.90)-pnorm(q=-15,mean=10.90,sd=20.90)
 
 ```{r,comment=''}
 # Normal estándar
-pnorm(q=1.22,mean=0,sd=1)-pnorm(q=-0.19,mean=0,sd=1)
+pnorm(q=1.242105,mean=0,sd=1)-pnorm(q=-0.1933014,mean=0,sd=1)
 ```
-
 
 \newpage
 
 # Ejercicio 13
 
-Diez motores se empacan para su venta en cierto almacén.  Los motores se venden en \$100 cada uno, pero una garantía de devolución del doble de su dinero es efectiva por cualquier unidad defectuosa que el comprador pueda recibir.  Encuentre la ganancia neta esperada para el vendedor si la probabilidad de que cualquier motor sea defectuoso es 0.8. (Suponga que la calidad de cualquier motor es independiente de la de los otros.)
+Diez motores se empacan para su venta en cierto almacén.  Los motores se venden en \$100 cada uno, pero una garantía de devolución del doble de su dinero es efectiva por cualquier unidad defectuosa que el comprador pueda recibir. Encuentre la ganancia neta esperada para el vendedor si la probabilidad de que cualquier motor sea defectuoso es 0.8. (Suponga que la calidad de cualquier motor es independiente de la de los otros.)
 
 \textbf{\underline{Solución:}}
 
