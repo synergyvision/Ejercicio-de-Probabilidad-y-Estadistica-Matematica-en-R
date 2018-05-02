@@ -232,7 +232,7 @@ C. Consistencia.
 
 \underline{\textbf{Solución:}}
 
-Las propiedades deseables de un estimador son: Eficiencia, consistencia e imparcialidad, es decir, la menos probable de ser una propiedadd deseable de un estimador es la Confiabilidad. Por lo que la opción correcta es la A.
+Las propiedades deseables de un estimador son: Eficiencia, consistencia e imparcialidad, es decir, la menos probable de ser una propiedad deseable de un estimador es la Confiabilidad. Por lo que la opción correcta es la A.
 
 # Ejercicio 14
 
@@ -265,14 +265,13 @@ Las propiedades de una distrbución t-student, son:
 
 1. Es simétrica.
 
-2. Se define por un solo parámetro, los grados de libertad son iguales al número de una muestra de observaciones menos uno, que es igual a $n-1$.
+2. Se define por un solo parámetro, que corresponde a los grados de libertad y estos son iguales al número de la muestra, o observaciones, menos uno, es decir, $n-1$.
 
 3. Tiene más probabilidad en las colas y menos en el pico que una distribución normal estándar.
 
 4. Cuando los grados de libertad se hacen más grandes, la forma de la distribución t-sudent es mas parecida a una distribución normal estándar, es decir, la varianza no se acerca a cero.
 
 Por lo que la propiedad menos probable es la opción A. 
-
 
 
 # Ejercicio 16
@@ -350,9 +349,7 @@ C. Estudios de desempeño de fondos mutuos.
 
 \underline{\textbf{Solución:}}
 
-El sesgo de supervivencia está más estrechamente relacionado con el estudio de desempeño de fondos mutuos ya que el análisis de fondos mutuos con un sesgo de supervivencia dará resultados que sobrestimarán el rendimiento promedio de los fondos mutuos porque la base de los datos sólo incluye los fondos de mejor rendimiento. Po lo que la respuest correcta es la opción C.
-
-
+El sesgo de supervivencia está más estrechamente relacionado con el estudio de desempeño de fondos mutuos ya que el análisis de fondos mutuos con un sesgo de supervivencia dará resultados que sobrestimarán el rendimiento promedio de los fondos mutuos porque la base de los datos sólo incluye los fondos de mejor rendimiento. Por lo que la respuesta correcta es la opción C.
 
 
 # Ejercicio 19
