@@ -30,6 +30,10 @@ B. la misma posibilidad de ser incluido en la muestra.
 
 C. 1% de probabilidad de ser incluido en la muestra.
 
+\textbf{\underline{Solución:}}
+
+La respuesta correcta es la B. Para una muestra aleatoria simple, cualquier miembro de la población tiene la misma posibilidad de ser incluido en la muestra.
+
 # Ejercicio 2
 
 El error de muestreo se define como:
@@ -39,6 +43,10 @@ A. un error que ocurre cuando se dibuja una muestra de menos de 30 elementos.
 B. un error que ocurre durante la recopilación, grabación y tabulación de datos.
 
 C. la diferencia entre el valor de una muestra estadística y el valor del parámetro de población correspondiente
+
+\textbf{\underline{Solución:}}
+
+La respuesta correcta es la C. El error de muestreo es la resta entre el valor de una muestra estadística (media, varianza ó desviación estándar de la muestra) y el valor del parámetro correspondiente de la población (El valor real de la media, varianza ó desviación estándar de la población).
 
 # Ejercicio 3 
 
@@ -50,6 +58,10 @@ B. error de muestreo.
 
 C. error poblacional
 
+\textbf{\underline{Solución:}}
+
+La respuesta correcta es la B. Pues el error de muestreo es la diferencia entre el valor de una muestra estadística (en este caso la media de la muestra) y el valor del parámetro correspondiente de la población (la media de la población).
+
 # Ejercicio 4
 
 Si $n$ es grande y la desviación estándar de la población es desconocida, el error estándar de la distribución muestral de la media muestral es igual a:
@@ -58,7 +70,11 @@ A. Desviación estándar de la muestra dividida por el tamaño de la muestra.
 
 B. Desviación estándar de la población multiplicada por el tamaño de la muestra.
 
-C. muestra la desviación estándar dividida por la raíz cuadrada del tamaño de la muestra.
+C. Desviación estándar de la muestra dividida por la raíz cuadrada del tamaño de la muestra.
+
+\textbf{\underline{Solución:}}
+
+La respuesta correcta es la C. Para $n$ suficientemente grande y desviación estándar de la población conocida, el error estándar de la media muestral es igual a la desviación estándar poblacional entre la raíz cuadrada del tamaño de la muestra. En cambio si la desviación estándar poblacional es desconocida, usamos en su lugar la desviación estándar de la muestra, por lo que el error estándar de la media muestral vendría siendo la desviación estándar de la muestra dividida por la raíz cuadrada del tamaño de la muestra.
 
 # Ejercicio 5
 
@@ -66,9 +82,14 @@ El error estándar de la distribución de muestreo de la media muestral para un 
 
 A. Desviación estándar de la muestra dividida por el tamaño de la muestra.
 
-B. muestra la desviación estándar dividida por la raíz cuadrada del tamaño de la muestra.
+B. Desviación estándar de la muestra dividida por la raíz cuadrada del tamaño de la muestra.
 
 C. Desviación estándar poblacional dividida por la raíz cuadrada del tamaño de la muestra.
+
+\textbf{\underline{Solución:}}
+
+La respuesta correcta es la C. Para $n$ suficientemente grande y desviación estándar de la población conocida, el error estándar de la media muestral es igual a la desviación estándar poblacional entre la raíz cuadrada del tamaño de la muestra.
+
 
 # Ejercicio 6
 
@@ -80,6 +101,11 @@ B. 25.
 
 C. 30.
 
+\textbf{\underline{Solución:}}
+
+La respuesta correcta es la C. Para aplicar el teorema central del límite, se considera que la muestra es suficientemente grande si $n$ es mayor o igual a 30 ($n \geq 30$).
+
+
 # Ejercicio 7
 
 Supongamos que una población tiene una media de 14 con una desviación estándar de 2. Si se extrae una muestra aleatoria de 49 observaciones de esta población, el error estándar de la media muestral es el más cercano a:
@@ -89,6 +115,10 @@ A. 0.04
 B. 0.29
 
 C. 2.00
+
+\textbf{\underline{Solución:}}
+
+La respuesta correcta es la B. El error estándar de la media muestral viene dado por la desviación estándar poblacional (que es conocida) entre la raíz cuadrada del tamaño de la muestra, por lo que el error estándar de la media muestral es $\displaystyle \frac{2}{\sqrt{49}} = \frac{2}{7} = 0.2857 \approx 0.29$.
 
 # Ejercicio 8
 
@@ -100,6 +130,10 @@ B. 0.25
 
 C. 0.50
 
+\textbf{\underline{Solución:}}
+
+La respuesta correcta es la C. El error estándar de la media muestral viene dado por la desviación estándar poblacional entre la raíz cuadrada del tamaño de la muestra, como en este caso la desviación estándar poblacional es desconocida usamos en su lugar la desviación estándar de la muestra que viene dado por la raíz cuadrada de la varianza muestral que es de 25. Por lo que el error estándar de la media muestral es $\displaystyle \frac{\sqrt{25}}{\sqrt{100}} = \frac{5}{10} = 0.5$.
+
 # Ejercicio 9
 
 Una muestra aleatoria de 100 clientes de computadoras consumió un promedio de \$ 75 en la tienda. Suponiendo que la distribución es normal y la desviación estándar de la población es de \$ 20, el intervalo de confianza del 95% para la media de la población es el más cercano a:
@@ -109,6 +143,24 @@ A. \$ 71.08 a \$ 78.92.
 B. \$ 73.89 a \$ 80.11.
 
 C. \$ 74.56 a \$ 79.44.
+
+\textbf{\underline{Solución:}}
+
+La respuesta correcta es la A. Suponiendo que la población de clientes que gastan en computadoras tiene una distribución normal con varianza poblacional conocida, entonces el intervalo de confianza para la media de la población se puede calcular mediante:
+
+$$\bar{x} \pm z_{\alpha/2}\frac{\sigma}{\sqrt{n}}$$
+
+Donde, 
+
+$\bar{x}$ = $75$ = Media muestral.
+
+$1-\alpha$ = $95\%$ = Grado de confianza.
+
+$z_{\alpha/2}$ = $1.96$ = Factor de confiabilidad.
+
+$\displaystyle \frac{\sigma}{\sqrt{n}}$ =$\displaystyle \frac{20}{\sqrt{100}}$ = $2$ = Error estándar de la media muestral.
+
+Sustituyendo los valores, el intervalo de confianza del 95% para la media de la población es de: $(71.08\$,78.92\$)$.
 
 # Ejercicio 10
 
@@ -120,6 +172,26 @@ B. 70 ± 6.98 horas.
 
 C. 70 ± 7.83 horas.
 
+\textbf{\underline{Solución:}}
+
+La respuesta correcta es la C. Suponiendo que el tiempo de envío tiene una distribución normal con varianza poblacional desconocida, entonces el intervalo de confianza para la media de la población se puede calcular mediante:
+
+$$\bar{x} \pm t_{\alpha/2}\frac{s}{\sqrt{n}}$$
+Donde, 
+
+$\bar{x}$ = $70$ = Media muestral.
+
+$1-\alpha$ = $99\%$ = Grado de confianza.
+
+$t_{\alpha/2}$ = $2.797$ = Factor de $t-$confiabilidad con $n-1$ grados de libertad.
+
+$\displaystyle \frac{s}{\sqrt{n}}$ =$\displaystyle \frac{14}{\sqrt{25}}$ = $2.8$ = Error estándar de la media muestral.
+
+Sustituyendo los valores, el intervalo de confianza del 99% para la media poblacional es de:
+
+$$\bar{x} \pm t_{\alpha/2}\frac{s}{\sqrt{n}} = 70 \pm 2.797\times 2.8 = 70 \pm 7.83$$
+
+
 # Ejercicio 11
 
 La distribución de muestreo de una estadística es la distribución de probabilidad compuesta de todos los posibles:
@@ -130,6 +202,10 @@ B. estadísticas de muestra calculadas a partir de muestras de distintos tamaño
 
 C. estadísticas de muestra calculadas a partir de muestras del mismo tamaño extraídas de la misma población.
 
+\textbf{\underline{Solución:}}
+
+La respuesta correcta es la C. La distribución de muestreo de una muestra estadística es la distribución de probabilidad de todas las posibles muestras estadísticas calculadas a partir de un conjunto de muestras de igual tamaño extraídas de la misma población.
+
 # Ejercicio 12
 
 La muestra de las relaciones deuda / capital de 25 bancos estadounidenses que cotizan en bolsa a nivel fiscal fin de año 2003 es un ejemplo de:
@@ -139,6 +215,10 @@ A. una estimación puntual.
 B. datos transversales.
 
 C. una muestra aleatoria estratificada.
+
+\textbf{\underline{Solución:}}
+
+La respuesta correcta es la B. Pues esta muestra se recolectó en el mismo punto único de tiempo como lo fue al final del año 2003.
 
 # Ejercicio 13
 
