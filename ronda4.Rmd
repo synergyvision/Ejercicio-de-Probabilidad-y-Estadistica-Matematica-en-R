@@ -150,6 +150,10 @@ B. Eficiencia.
 
 C. Consistencia.
 
+\underline{\textbf{Solución:}}
+
+Las propiedades deseables de un estimador son: Eficiencia, consistencia e imparcialidad, es decir, la menos probable de ser una propiedadd deseable de un estimador es la Confiabilidad. Por lo que la opción correcta es la A.
+
 # Ejercicio 14
 
 Si la varianza de la distribución muestral de un estimador es menor que todos los demás estimadores insesgados del parámetro de interés, el estimador es:
@@ -159,6 +163,10 @@ A. eficiente.
 B. imparcial.
 
 C. consistente.
+
+\underline{\textbf{Solución:}}
+
+Un estimador insesgado o imparcial es también eficiente, si la varianza de la distribución muestral es menor que todos los demás estimadores insesgados del parámetro de ínteres. Por lo que la respuesta correcta es la opción A.
 
 # Ejercicio 15
 
@@ -170,6 +178,23 @@ B. Se define por un solo parámetro, los grados de libertad, que es igual a $n-1
 
 C. Tiene más probabilidad en las colas y menos en el pico que una distribución normal estándar.
 
+
+\underline{\textbf{solución:}}
+
+Las propiedades de una distrbución t-student, son:
+
+1. Es simétrica.
+
+2. Se define por un solo parámetro, los grados de libertad son iguales al número de una muestra de observaciones menos uno, que es igual a $n-1$.
+
+3. Tiene más probabilidad en las colas y menos en el pico que una distribución normal estándar.
+
+4. Cuando los grados de libertad se hacen más grandes, la forma de la distribución t-sudent es mas parecida a una distribución normal estándar, es decir, la varianza no se acerca a cero.
+
+Por lo que la propiedad menos probable es la opción A. 
+
+
+
 # Ejercicio 16
 
 Un analista que utiliza datos históricos que no estaban disponibles públicamente en el período de tiempo que se está estudiando tendrá una muestra con:
@@ -180,15 +205,58 @@ B. Sesgo de período de tiempo.
 
 C. sesgo de selección de muestra.
 
+\underline{\textbf{Solución:}}
+
+Cuando se estudia o utiliza unos datos que no estan disponibles públicamente en el tiempo que se estudia entonces estamos hablando de una muestra con parcialidad de anticipación. Por lo que la respuesta correcta es la opción A.
+
 # Ejercicio 17
 
-El intervalo de confianza del 95% de la media muestral de la edad de los empleados de una corporación importante es de 19 años a 44 años según una estadística z. La población de empleados es más de 5.000 y el tamaño de muestra de esta prueba es 100. Suponiendo que la población normalmente se distribuye
+El intervalo de confianza del 95% de la media muestral de la edad de los empleados de una corporación importante es de 19 años a 44 años según una estadística z. La población de empleados es más de 5.000 y el tamaño de muestra de esta prueba es 100. Suponiendo que la población está normalmente distribuida, el error estándar de la media de la edad de los empleados es cercano a: 
 
 A. 1.96.
 
 B. 2.58.
 
 C. 6.38
+
+
+\underline{\textbf{Solución:}}
+
+Supongamos que la población de empleados tiene una distribución normal con varianza desconocida, entonces usando una estadística z el intervalo de confianza se puede calcular:
+
+$$\bar{x} \pm z_{\alpha/2}s_{\bar{x}}$$
+
+Donde, 
+
+$\bar{x}$= Media muestral.
+
+$1-\alpha$= Probabilidad del intervalo de confianza.
+
+$\alpha$= Nivel de significancia.
+
+$z_{\alpha/2}$= Factor de confiabilidad.
+
+$s_{\bar{x}}$= Error estándar de la media muestral.
+
+$n$=Tamaño dela muestra.
+
+Así, tenemos que: $n$ = 100, $1-\alpha$ = 95\% entonces $\alpha$=5\%.
+
+Comunmente el factor de confiabilidad de una distribución normal estándar es:
+
+$z_{\alpha/2}$= 1.960 para una probabilidad de 95\%.
+
+La media muestral en este caso es el punto medio del intervalo de confianza, $\bar{x}=\displaystyle \frac{19+44}{2}=31.5$
+
+Queremos calcular $s_{\bar{x}}$, entonces usando el límite superior del intervalo tenemos,
+
+$$\bar{x} + z_{\alpha/2}s_{\bar{x}}=44$$
+Sustituyendo nos queda, $$31.5+1.96s_{\bar{x}}=44$$
+
+Despejando tenemos, $$s_{\bar{x}}=\displaystyle \frac{44-31.5}{1.96}=6.38$$
+
+Así, el error estándar de la media muestral es de 6.38. Por lo tanto la respuesta correcta es la opción C.
+
 
 # Ejercicio 18
 
@@ -200,6 +268,13 @@ B. Estudios de muestreo de bonos estratificados.
 
 C. Estudios de desempeño de fondos mutuos.
 
+\underline{\textbf{Solución:}}
+
+El sesgo de supervivencia está más estrechamente relacionado con el estudio de desempeño de fondos mutuos ya que el análisis de fondos mutuos con un sesgo de supervivencia dará resultados que sobrestimarán el rendimiento promedio de los fondos mutuos porque la base de los datos sólo incluye los fondos de mejor rendimiento. Po lo que la respuest correcta es la opción C.
+
+
+
+
 # Ejercicio 19
 
 ¿Cuál es la estadística de prueba más apropiada para construir intervalos de confianza para la media poblacional cuando la población está distribuida normalmente, pero la varianza es desconocida?
@@ -209,6 +284,12 @@ A. La estadística $z$ en $\alpha$ con $n$ grados de libertad.
 B. La estadística $t$ en $\alpha /2$ con $n$ grados de libertad.
 
 C. La estadística $t$ en $\alpha /2$ con $n - 1$ grados de libertad.
+
+
+\underline{\textbf{Solución:}}
+
+La estadística de prueba más apropiada para construir intervalos de confianza para la media poblacional cuando la población está distribuida normalmente, pero la varianza es desconocida es la estadística $t$ en $\alpha /2$ con $n - 1$ grados de libertad. La estadística $z$ en $\alpha$ con $n$ grados de libertad es aceptable cuando el tamaño de la muestra es grande, pero como no es el caso, la estadística $t$ siempre es apropiada bajo estás condiciones. Por la tanto la opción correcta es la C.
+
 
 # Ejercicio 20
 
@@ -220,15 +301,34 @@ B. solo una estadística $z$ en $\alpha$ con $n$ grados de libertad.
 
 C. solo una estadística t en $\alpha /2$ con $n$ grados de libertad.
 
+
+\underline{\textbf{Solución:}}
+
+La respuesta correcta es la opción A. Cuando se estima un intervalo de confianza para la media poblacional de una distribución no normal cuando se desconoce la varianza de la población y el tamaño de la muestra es grande $(n> 30)$, un analista puede usar aceptablemente bien una estadística $z$ o una estadística $t$. Sin embargo, el estadístico $t$ es más recomendable por proveer un rango más conservador (más ancho) en un nivel dado de significancia.
+
+
 # Ejercicio 21
 
-Jenny Fox evalúa a los gerentes que tienen una desviación estándar de la población de la sección transversal de rendimientos del 8%. Si los retornos son independientes entre los gerentes, ¿qué tan grande de una muestra necesita Fox, entonces el error estándar de la muestra es de 1.265%?
+Jenny Fox evalúa a los gerentes que tienen una desviación estándar de la población de la sección transversal de rendimientos del 8%. Si los rendimientos son independientes entre los gerentes, ¿qué tan grande necesita Fox una muestra, para que el error estándar de la muestra sea de 1.265%?
 
 A. 7.
 
 B. 30.
 
 C. 40.
+
+\underline{\textbf{Solución:}}
+
+El error estándar muestral está dado por:
+
+$$s_{\bar{x}}=\displaystyle \frac{s}{\sqrt{n}}$$
+Sustituyendo, nos queda:
+
+$$1.265=\displaystyle \frac{8}{\sqrt{n}}$$
+Despejando $n$, 
+$$n=\displaystyle \left(\frac{8}{1.265}\right)^2$$
+
+Finalmente, tenemos que $n=40$. Por lo tanto la muestra que necesita Fox  es de 40, así la respuesta correcta es la opción C.
 
 # Ejercicio 22
 
@@ -240,9 +340,30 @@ B. -2.75% a 26.75%.
 
 C. -5.52% a 29.52%.
 
+
+\underline{\textbf{Solución:}}
+
+Como sabemos la desviación estándar y la población está distribuida normalmente, entonces podemos usar el estadístico z, donde el intervalo de confianza esta dado de la siguiente forma:
+
+$$\bar{x} \pm z_{\alpha/2}\displaystyle \left(\frac{\sigma}{\sqrt{n}}\right)$$
+
+$z_{\alpha/2}$= 1.645 para una probabilidad de 90\%.
+
+Luego, el límite superior e inferior del intervalo es, $$12+1.645\left(\frac{20}{\sqrt{5}}\right)=26.7$$
+$$12-1.645\left(\frac{20}{\sqrt{5}}\right)=-2.7$$
+Por lo tanto, la respuesta correcta es la opción B.
+
+
 # Ejercicio 23
 
 Usando un muestreo aleatorio, un gerente quiere construir una cartera de 50 acciones que se aproximará a los rendimientos de un amplio índice de mercado que contiene 200 acciones. Explique cómo podría usar el muestreo aleatorio simple y el muestreo aleatorio estratificado para seleccionar poblaciones del índice y las posibles ventajas del muestreo aleatorio estratificado.
+
+
+\underline{\textbf{Solución:}}
+
+El muestreo aleatorio simple es un método para seleccionar una muestra de tal manera que cada items o persona de la población siendo estudiada tenga la misma probabilidad de estar incluida en la muestra. Es decir, se realiza un proceso de escogencia aleatoria de 50 acciones con la misma probabilidad de escogencia de una población de 200 acciones.
+
+El muestreo aleatorio estratificado es un sistema de  clasificación para separar una población  en pequeños grupos basados en una o más características. De cada subgrupo o estrato, es tomada una muestra aleatoria y los resultados son agrupados. Para este caso, se puede dividir las acciones en capitalización o industria y formar los subgrupos. En este contexto el muestreo aleatorio estratificado tiene ventaja sobre el muestreo simple ya que permite trabajar con características que aportan más información a la hora de tomar decisiones con la muestra.
 
 # Ejercicio 24
 
@@ -253,6 +374,15 @@ A. ¿Puede usar la media muestral para estimar la media poblacional y construir 
 B. ¿Cuáles son las propiedades estadísticas deseables de un estimador?
 
 C. ¿Cuál de estas propiedades posee la muestra como un estimador de la media de la población?
+
+
+\underline{\textbf{Solución:}}
+
+A. Sí se puede usar la media muestral para estimar la media poblacional y construir un intervalo de confianza usando el resultado del Teorema Central del Límite, que a partir de una muestra mayor a 30, podemos aproximar la distribución de la población a una distribución normal y construir un intervalo de confianza. 
+
+B. Las propiedades estadísticas deseables de un estimador son: Imparcial o insesgado, eficiente y consistente.
+
+C. La media muestral tiene todas estás propiedades.
 
 # Ejercicio 25
 
@@ -267,6 +397,24 @@ B. ¿el tamaño de muestra es 40?
 C. ¿el tamaño de muestra fue 15?
 
 D. ¿el tamaño de muestra fue 60?
+
+\underline{\textbf{Solución:}}
+
+Para los items A y B, no se puede decir algo concreto del intervalo de confianza de 90\% de la ganancias para el proximo período ya que no se tiene información de la distribución de la población si es normal o no normal.
+
+C. No se puede asumir que la distribución es normal, no se puede hacer alguna inferencia si la muestra es de solo 15.
+
+D. Sí la muestra es de 60, podemos asumir gracias al Teorema Central del límite que la distribución es normal, así podemos usar el $t$ estadístico de 90\% con 59 grados de libertad, para calcular el intervalo de confianza, 
+
+$$\bar{x} \pm t_{\alpha/2}s_{\bar{x}}$$
+$t_{\alpha/2}=1.671$ con 90\%.
+
+
+sustituyendo, tenemos:
+
+$$2.84 + 1.671\left(\frac{0.40}{\sqrt{60}}\right)=2.93$$
+
+$$2.84 - 1.671\left(\frac{0.40}{\sqrt{60}}\right)=2.75$$
 
 \newpage
 
