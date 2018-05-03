@@ -41,7 +41,7 @@ A. -2.67.
 
 B. +0.33.
 
-c. +2.67.
+C. +2.67.
 
 # Ejercicio 4
 
@@ -51,17 +51,17 @@ A. -1.96.
 
 B. +1.96.
 
-C. $\pm$1.96.
+C. $\pm1.96$.
 
 # Ejercicio 5
 
 El intervalo de confianza del 95% para la media de la población es:
 
-A. {1.00<$\mu$<3.50}.
+A. ${1.00<\mu<3.50}$.
 
-B. {0.54<$\mu$<4.46}.
+B. ${0.54<\mu<4.46}$.
 
-C. {2.13<$\mu$<2.87}.
+C. ${2.13<\mu<2.87}$.
 
 # Ejercicio 6
 
@@ -135,7 +135,7 @@ A. 0.850.
 
 B. 0.950.
 
-c. 0.975.
+C. 0.975.
 
 # Ejercicio 13
 
@@ -199,3 +199,26 @@ B. Hay un 95% de probabilidad de que la estadística de prueba se encuentre entr
 C. Hay un 5% de probabilidad de que la hipótesis nula sea rechazada cuando
 realmente cierto, y la probabilidad de rechazar el nulo cuando es falso es
 40%.
+
+# Ejercicio 19
+
+Ralph Rollins, un investigador, cree que las acciones de las empresas que han aparecido en un periódico financiero determinado con un titular y una historia positivos regresan más ajustadas al riesgo. Recopila datos sobre los rendimientos ajustados al riesgo para estos las existencias durante los seis meses posteriores a su aparición en la portada, y los datos sobre los rendimientos ajustados al riesgo para una muestra del mismo tamaño de empresas con características similares a las empresas de cobertura coinciden por período de tiempo.
+
+A. Indique las probables hipótesis nula y alternativa para una prueba de su creencia.
+
+B. ¿Es esta una prueba de una o dos colas?
+
+C. Describe los pasos para probar una hipótesis como la nula que dijiste en parte A.
+
+# Ejercicio 20
+
+Para cada una de las siguientes hipótesis, describa la prueba apropiada, identifique la estadística de prueba apropiada y explique en qué condiciones debe rechazarse la hipótesis nula.
+
+A. Un investigador tiene rendimientos de más de 52 semanas para un índice de reservas de gas natural y un índice de reservas de petróleo y quiere saber si los rendimientos semanales son iguales. Supongamos que los rendimientos son distribuidos de manera aproximadamente normal.
+
+B. Un investigador tiene dos muestras independientes que se distribuyen de manera aproximadamente normal. Ella desea probar si los valores medios de las dos variables aleatorias son iguales y supone que las varianzas de las poblaciones de las que se extraen las dos muestras son iguales. Como pregunta adicional aquí, ¿cómo deberían calcularse los grados de libertad?
+
+C. Un investigador desea determinar si las varianzas poblacionales de dos variables aleatorias normalmente distribuidas son iguales en función de dos muestras de tamaños $n_1$ y $n_2$. Como pregunta adicional aquí, ¿cómo deberían calcularse los grados de libertad?
+
+D. Un investigador quiere probar si la varianza de una población normalmente distribuida es igual a 0.00165. Como pregunta adicional aquí, ¿cómo deberían calcularse los grados de libertad?
+
