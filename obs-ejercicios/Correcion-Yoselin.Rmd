@@ -1,6 +1,5 @@
 ---
 title: "Correcciones de Segunda Ronda de Ejercicios" 
-Unstage line	
 author: "http://synergy.vision/"
 output: pdf_document
 subtitle: Yoselin
