@@ -1,6 +1,5 @@
 ---
-title: "Correcciones de Segunda Ronda de Ejercicios" 
-Unstage line	
+title: "Correcciones de Cuarta Ronda de Ejercicios" 	
 author: "http://synergy.vision/"
 output: pdf_document
 subtitle: Yoselin
@@ -14,27 +13,23 @@ knitr::opts_chunk$set(echo = TRUE)
  
 ```
  
-Cuando quieran colocar espacios entre fórmulas usar ´\vspace{3mm}´ y no colocar ´\\´ al final de la fórmula.
+Hacer `PULL` a los cambios realizados.
 
-Prueba de hipótesis
+Cuando quieran colocar espacios entre fórmulas usar `\vspace{3mm}` y no colocar `\\` al final de la fórmula. Lo puedes ver en las correcciones hechas.
 
 3) $H_0:\mu>145.000$
 
-Explicar con tus palabras por que?
+Explicar con tus palabras ¿por qué?
 
-5) Cuál prueba aplicarias en este caso?
+5) ¿Cuál prueba aplicarias en este caso?
 
-7) Agregar gráfico con los vectores obtenidos, estadisticos y región de rechazo
+8) Colocar en la conclusión algo así: Como el analista quiere probar que el tiempo medio empleado en la investigación de inversión es diferente de tres horas por día, se tendría una hiótesis alternativa igual a $H_a:\mu\ne3$ horas por lo tanto la hipótesis nula sería de la forma $H_0:\mu=3$ horas
 
-8) Como el analista quiere probar que el tiempo medio empleado en la investigación de inversión es diferente de tres horas por día, se tendría una hiótesis alternativa igual a $H_a:\mu\ne3$ horas por lo tanto la hipótesis nula sería de la forma
+9) $H_a:\mu\ne 3 \text{horas}$, es decir, que sea mayor o menor que 3 horas
 
-$H_0:\mu=3$ horas
+18) ¿Qué puedes decir al rechazar la $H_0$
 
-9) $H_a:\mu\ne$ 3 horas, es decir, que sea mayor o menor que 3 horas
-
-18) Qué puedes decir al rechazar la $H_b$
-
-22) Por qué?
+22) ¿Por qué esta conclusión?
 
 
 

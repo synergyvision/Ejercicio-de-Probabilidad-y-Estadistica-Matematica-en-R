@@ -511,6 +511,28 @@ C. Una prueba de dos vías con un nivel de significancia del 5% tiene valores cr
 
 Un error Tipo II acepta la hipótesis nula cuando es falsa y un error Tipo I rechaza la hipótesis nula cuando es realmente verdadera. El nivel de significancia es igual a un error de Tipo I. Por lo que la respuesta correcta es la opción C.
 
+Si el nivel de significancia es 5%, para una prueba de dos vías tenemos las siguientes probabilidades
+
+$$
+\begin{array}{rl}
+& P(\mathcal Z < z_{\alpha/2})=\alpha/2\\
+& P(\mathcal Z < z_{0.05/2})=0.05/2\\
+& P(\mathcal Z < z_{0.025})=0.025\\
+& P(\mathcal Z < z_{0.025})=0.025\\
+& P(\mathcal Z < -1.96)=0.025
+\end{array}
+$$
+Y
+
+$$
+\begin{array}{rl}
+&  P(\mathcal Z > z_{1-\alpha/2})=\alpha/2\\
+&  P(\mathcal Z > z_{1-0.05/2})=0.05/2\\
+&  P(\mathcal Z > z_{1-0.025})=0.025\\
+& P(\mathcal Z > z_{0.975})=0.025\\
+& P(\mathcal Z > 1.96)=0.025
+\end{array}
+$$
 
 \newpage
     
