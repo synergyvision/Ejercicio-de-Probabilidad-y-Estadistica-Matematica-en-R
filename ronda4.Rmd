@@ -501,16 +501,38 @@ $$2.84 - 1.671\left(\frac{0.40}{\sqrt{60}}\right)=2.75$$
 
 ¿Cuál de las siguientes afirmaciones sobre la prueba de hipótesis es más precisa?
 
-A. Un error Tipo II rechaza el nulo cuando es realmente verdadero.
+A. Un error Tipo II rechaza la hipótesis nula cuando es realmente verdadera.
 
 B. El nivel de significancia es igual a uno menos la probabilidad de un error de Tipo I.
 
-C. Una prueba de dos vías con un nivel de significancia del 5% tiene valores $z$-críticos de $\pm1.96.$
+C. Una prueba de dos vías con un nivel de significancia del 5% tiene valores críticos $z_\alpha$ de $\pm 1.96$.
 
 \underline{\textbf{Solución:}}
 
 Un error Tipo II acepta la hipótesis nula cuando es falsa y un error Tipo I rechaza la hipótesis nula cuando es realmente verdadera. El nivel de significancia es igual a un error de Tipo I. Por lo que la respuesta correcta es la opción C.
 
+Si el nivel de significancia es 5%, para una prueba de dos vías tenemos las siguientes probabilidades
+
+$$
+\begin{array}{rl}
+& P(\mathcal Z < z_{\alpha/2})=\alpha/2\\
+& P(\mathcal Z < z_{0.05/2})=0.05/2\\
+& P(\mathcal Z < z_{0.025})=0.025\\
+& P(\mathcal Z < z_{0.025})=0.025\\
+& P(\mathcal Z < -1.96)=0.025
+\end{array}
+$$
+Y
+
+$$
+\begin{array}{rl}
+&  P(\mathcal Z > z_{1-\alpha/2})=\alpha/2\\
+&  P(\mathcal Z > z_{1-0.05/2})=0.05/2\\
+&  P(\mathcal Z > z_{1-0.025})=0.025\\
+& P(\mathcal Z > z_{0.975})=0.025\\
+& P(\mathcal Z > 1.96)=0.025
+\end{array}
+$$
 
 \newpage
     
@@ -518,19 +540,19 @@ Un error Tipo II acepta la hipótesis nula cuando es falsa y un error Tipo I rec
 
 ¿Cuál de las siguientes afirmaciones sobre la prueba de hipótesis es menos precisa?
 
-A. El poder de la prueba = 1 - P(error Tipo II).
+A. $\text{El poder de la prueba} = 1 - P(\text{error Tipo II})$.
 
-B. Si la estadística $z-computada = -2$ y el valor $z-crítico = -1 .96$, la hipótesis es rechazada.
+B. Si la estadística calculada nos da $\mathcal Z = -2$ y el valor crítico $z_\alpha = -1 .96$, la hipótesis es rechazada.
 
-C. La estadística $z-calculada$ para una prueba de una muestra simple cuando la varianza poblacional es conocida:
+C. La estadística calculada $\mathcal Z$ para una prueba de una muestra simple cuando la varianza poblacional $\sigma^2$ es conocida:
 
-$$z=\displaystyle\frac{\overline X-\mu_0}{\frac{\sigma^2}{\sqrt{n}}}$$
+$$\mathcal Z=\displaystyle\frac{\overline X-\mu_0}{\frac{\sigma}{\sqrt{n}}}$$
 
 \underline{\textbf{Solución:}}
 
-La respuesta correcta es la opción C. ya que la estadística $z-calculada$ para una prueba de una muestra simple cuando la varianza poblacional es conocida es:
+La respuesta correcta es la opción C. ya que la estadística calculada $\mathcal Z$ para una prueba de una muestra simple, cuando la varianza poblacional es conocida es:
 
-$$z=\displaystyle\frac{\overline X-\mu_0}{\frac{\sigma}{\sqrt{n}}}$$
+$$\mathcal Z=\displaystyle\frac{\overline X-\mu_0}{\frac{\sigma}{\sqrt{n}}}$$
 
 ($\sigma^2$ es la varianza).
 
@@ -538,24 +560,24 @@ $$z=\displaystyle\frac{\overline X-\mu_0}{\frac{\sigma}{\sqrt{n}}}$$
 
 Use la siguiente información para responder las preguntas 3 a 7.
 
-Austin Roberts cree que el precio promedio de las casas en el área es mayor a \$145,000.
+Austin Roberts cree que el precio promedio de las casas en el área es mayor a \$145.000.
 
-Una muestra aleatoria de 36 casas en el área tiene un precio promedio de \$149,750.  La desviación estándar de la población es de \$24,000, y Roberts quiere realizar una prueba de hipótesis a un nivel de 1% del significado.
+Una muestra aleatoria de 36 casas en el área tiene un precio promedio de \$149.750.  La desviación estándar de la población es de \$24.000, y Roberts quiere realizar una prueba de hipótesis a un nivel de 1% del significado.
 
 # Ejercicio 3
 
 La hipótesis alternativa apropiada es:
 
-A. $H_a: \mu < \$145,000.$
+A. $H_a: \mu < \$145.000$
 
-B. $H_a: \mu \ge \$145,000.$
+B. $H_a: \mu \ge \$145.000$
 
-C. $H_a: \mu > \$145,000.$
+C. $H_a: \mu > \$145.000$
 
 
 \underline{\textbf{Solución:}}
 
-La respuesta correcta es la opción C. La hipótesis alternativa es mayor a $\$145,000$. $H_a: \mu > \$145,000.$.
+La hipótesis alternativa en este caso es lo que Austin Roberts quiere probar, que es que el precio promedio de las casas en el área es mayor a \$145.000. Así, la respuesta correcta es la opción C. La hipótesis alternativa es mayor a $\$145.000$. $H_a: \mu > \$145.000$.
 
 
 \newpage
@@ -572,9 +594,9 @@ C. 4.00.
 
 \underline{\textbf{Solución:}}
 
-El estadístico $z$ es la prueba de hipótesis apropiada de la media de la población cuando la población está normalmente distribuida con varianza conocida. El estadístico se calcula de la siguiente forma:
+El estadístico $\mathcal Z$ es la prueba de hipótesis apropiada de la media de la población cuando la población está normalmente distribuida con varianza conocida. El estadístico se calcula de la siguiente forma:
 
-$$z=\displaystyle\frac{\overline X-\mu_0}{\frac{\sigma}{\sqrt{n}}}$$
+$$\mathcal Z=\displaystyle\frac{\overline X-\mu_0}{\frac{\sigma}{\sqrt{n}}}$$
 
 Donde,
 
@@ -588,10 +610,9 @@ $n=$ Tamaño de la muestra.
 
 Sustituyendo, nos queda:
 
-$$z=\displaystyle\frac{149750-145000}{\frac{24000}{\sqrt{36}}}$$
+$$\mathcal Z=\frac{149750-145000}{\frac{24000}{\sqrt{36}}}=1.1875\approx 1.19$$
 
-Por lo que, $z=1.19$. Así la respuesta correcta es la opción B.
-
+Por lo que, $\mathcal Z=1.19$. Así la respuesta correcta es la opción B.
 
 
 \newpage
@@ -608,28 +629,26 @@ C. Prueba Chi-cuadrado.
 
 \underline{\textbf{Solución:}}
 
-La hipótesis alternativa, $H_a: \mu > \$145,000.$, sólo permite valores mayores al valor hipotético. Por eso la prueba de una cola describe con mayor precisión la prueba. La respuesta correcta es la opción B.
+La hipótesis alternativa, $H_a: \mu > \$145.000$, sólo permite valores mayores al valor hipotético. Por eso la prueba de una cola describe con mayor precisión la prueba. La respuesta correcta es la opción B.
 
+Tenemos también que la varianza poblacional es conocida, por lo que la prueba estadística apropiada es $\mathcal Z$. 
 
 
 \newpage
 
 # Ejercicio 6
 
-El valor crítico de la estadística z es:
+El valor crítico de la estadística $\mathcal Z$ es:
 
-A. $\pm1.96.$
+A. $\pm 1.96$
 
-B. $+2.33.$
+B. $+2.33$
 
-C. $\pm2.33.$
+C. $\pm 2.33$
 
 \underline{\textbf{Solución:}}
 
-Para un nivel $1\%$ de significancia el valor crítico de z es, $z-\text{critico}=2.33$. Cómo la prueba es de una cola y $H_a: \mu > \$145,000$ entonces el valor crítico de z es positivo. Por lo que la respuesta correcta es la opción B.
-
-
-
+Para un nivel $1\%$ de significancia el valor crítico de $\mathcal Z$ es, $z_\alpha=z_{0.01}=2.33$. Cómo la prueba es de una cola y $H_a: \mu > \$145.000$ entonces el valor crítico de $z_\alpha$ es positivo. Por lo que la respuesta correcta es la opción B.
 
 \newpage
 
@@ -637,37 +656,35 @@ Para un nivel $1\%$ de significancia el valor crítico de z es, $z-\text{critico
 
 Con un nivel de importancia del 1%, Roberts debería:
 
-A. rechaza la hipótesis nula.
+A. Rechaza la hipótesis nula.
 
-B. no puede rechazar la hipótesis nula.
+B. No puede rechazar la hipótesis nula.
 
-C. ni acepto ni rechazo la hipótesis nula.
+C. Ni acepto ni rechazo la hipótesis nula.
 
 \underline{\textbf{Solución:}}
 
-Se rechaza la hipótesis nula $H_o$ si $z>z-\text{critico}$. Cómo $1.19<2.33$ entonces Roberts no puede rechazar la hipótesis nula. La respuesta correcta es la opción B.
-
+Se rechaza la hipótesis nula $H_o$ si $\mathcal Z>z_{\alpha}$. Cómo $1.19<2.33$ entonces Roberts no puede rechazar la hipótesis nula. La respuesta correcta es la opción B.
 
 \newpage
 
 Use la siguiente información para responder las preguntas 8 a 13.
 
-Un analista está realizando una prueba de hipótesis para determinar si el tiempo medio empleado en la investigación de inversión es diferente de tres horas por día. La prueba se realiza en el 5% nivel de significancia y utiliza una muestra aleatoria de 64 administradores de cartera, donde el tiempo medio dedicado a la investigación es de 2.5 horas.La desviación estándar de la población  es 1. 5 horas.
+Un analista está realizando una prueba de hipótesis para determinar si el tiempo medio empleado en la investigación de inversión es diferente de tres horas por día. La prueba se realiza en el 5% nivel de significancia y utiliza una muestra aleatoria de 64 administradores de cartera, donde el tiempo medio dedicado a la investigación es de 2.5 horas. La desviación estándar de la población es 1.5 horas.
 
 # Ejercicio 8
 
 La hipótesis nula apropiada para la prueba descrita es:
 
-A. $H_0:\mu=3hours.$
+A. $H_0:\mu=3 \text{horas}$
 
-B. $H_0:\mu\le3hours.$
+B. $H_0:\mu\le 3 \text{horas}$
 
-C. $H_0:\mu\ge3hours.$
-
+C. $H_0:\mu\ge 3 \text{horas}$
 
 \underline{\textbf{Solución:}}
 
-La hipótesis nula correcta es $H_0:\mu=3\text{hours}$. Por lo tanto la respuesta correcta es la opción A.
+Cómo el analista está realizando una prueba de hipótesis para determinar si el tiempo medio empleado en la investigación de inversión es diferente de tres horas por día, entonces se tiene una hipótesis alternativa $H_a:\mu \ne 3 \text{horas}$. Por lo que la hipótesis nula sería $H_0:\mu=3 \text{horas}$. Por lo tanto la respuesta correcta es la opción A.
 
 \newpage
 
@@ -675,60 +692,57 @@ La hipótesis nula correcta es $H_0:\mu=3\text{hours}$. Por lo tanto la respuest
 
 Esto es un:
 
-A. prueba de una cola.
+A. Prueba de una cola.
 
 B. Prueba de dos colas.
 
-C. prueba de comparaciones pareadas.
+C. Prueba de comparaciones pareadas.
 
 \underline{\textbf{Solución:}}
 
-La prueba de dos colas es más apropiada ya que se quiere saber si el tiempo medio empleado en la investigación de inversión es diferente de tres horas por día. Esto es para una prueba alternativa $H_a:\mu \ne 3\text{hours}$. Por lo tanto la opción correcta es la opción B.
+La prueba de dos colas es más apropiada ya que se quiere saber si el tiempo medio empleado en la investigación de inversión es diferente de tres horas por día. Esto es para una prueba alternativa $H_a:\mu \ne 3 \text{horas}$. Es decir, que sea mayor o menor a 3 horas. Por lo tanto la opción correcta es la opción B.
 
 \newpage
 
 # Ejercicio 10
 
-La estadística z calculada es:
+La estadística $\mathcal Z$ calculada es:
 
-A. $-2.67.$
+A. $-2.67$
 
-B. $+0.33.$
+B. $+0.33$
 
-C. $+2.67.$
-
+C. $+2.67$
 
 \underline{\textbf{Solución:}}
 
-La estadística z es:
+La estadística $\mathcal Z$ es:
 
 $$
 \begin{array}{rl}
-z &=\displaystyle\frac{\overline X-\mu_0}{\frac{\sigma}{\sqrt{n}}}\\ \\
-&= \displaystyle\frac{2.5-3}{\frac{1.5}{\sqrt{64}}}\\\\
-&=-2.666
+\vspace{3mm} \mathcal Z &=\displaystyle\frac{\overline X-\mu_0}{\frac{\sigma}{\sqrt{n}}}\\ 
+\vspace{3mm} &= \displaystyle\frac{2.5-3}{\frac{1.5}{\sqrt{64}}}\\
+\mathcal Z&=-2.666
 \end{array}
 $$
 
-Así $z=-2.67$. Por lo que la respuesta correcta es la opción A.
+Así $\mathcal Z=-2.67$. Por lo que la respuesta correcta es la opción A.
 
 \newpage
 
 # Ejercicio 11
 
-El valor z crítico de la estadística de prueba es (son):
+El valor crítico $z_\alpha$ de la estadística de prueba es (son):
 
-A. $-1.96.$
+A. $-1.96$
 
-B. $+1.96.$
+B. $+1.96$
 
-C. $\pm1.96.$
+C. $\pm 1.96$
 
 \underline{\textbf{Solución:}}
 
-Para un nivel $5\%$ de significancia el valor crítico de z es, $z-\text{critico}=z_{\alpha/2}=z_{0.025}=1.96$. Cómo la prueba es de dos colas y $H_a:\mu \ne 3\text{hours}$ entonces el valor crítico de z es $\pm 1.96$. Por lo que la respuesta correcta es la opción C.
-
-
+Para un nivel $5\%$ de significancia el valor crítico de $\mathcal Z$ es, $z_{\alpha/2}=z_{0.025}=1.96$. Cómo la prueba es de dos colas y $H_a:\mu \ne 3 \text{horas}$ entonces el valor crítico de $\mathcal Z$ es $\pm 1.96$. Por lo que la respuesta correcta es la opción C.
 
 \newpage
 
@@ -745,16 +759,15 @@ C. ${2.13<\mu<2.87}.$
 
 \underline{\textbf{Solución:}}
 
-Usando una estadística z el intervalo de confianza se puede calcular:
+Usando una estadística $\mathcal Z$ el intervalo de confianza se puede calcular:
 
-$$\bar{X} \pm z_{\alpha/2}\frac{\sigma}{\sqrt{n}}$$
+$$\overline{X} \pm z_{\alpha/2}\frac{\sigma}{\sqrt{n}}$$
 
 Sustituyendo, nos queda:
 
 $$2.5 \pm 1.96 \left(\frac{1.5}{64}\right ) $$
 
 El límite superior es: 2.87.
-
 
 El límite inferior es: 2.13.
 
@@ -766,22 +779,21 @@ Por lo tanto la respuesta correcta es la opción C.
 
 El analista debería más apropiadamente:
 
-A. rechaza la hipótesis nula.
+A. Rechaza la hipótesis nula.
 
-B. no puede rechazar la hipótesis nula.
+B. No puede rechazar la hipótesis nula.
 
-C. no llegar a ninguna conclusión porque no se dio la desviación estándar de la muestra.
+C. No llegar a ninguna conclusión porque no se dio la desviación estándar de la muestra.
 
 \underline{\textbf{Solución:}}
 
-Se rechaza la hipóteisis nula $H_0$ si $z < -z_{\alpha/2}$ o $z > z_{\alpha/2}$. Cómo $-2.67 < -1.96$ entonces se rechaza la hipótesis nula. La respuesta correcta es la opción A.
-
+Se rechaza la hipóteisis nula $H_0$ si $\mathcal Z < -z_{\alpha/2}$ o $\mathcal Z >z_{\alpha/2}$. Cómo $-2.67 < -1.96$ entonces se rechaza la hipótesis nula. La respuesta correcta es la opción A.
 
 \newpage
 
 # Ejercicio 14
 
-Se realizó un estudio para determinar si la desviación estándar de la información mensual los costos de mantenimiento de un avión Pepper III son de \$300. Una muestra de 30 Pepper IIIs tuvo un costo de mantenimiento mensual promedio de \$3,025 y una desviación estándar de \$325. Usando un nivel de significancia del 5%, cuál de los siguientes es la más apropiada con respecto a la diferencia entre el valor hipotético de la varianza poblacional y la varianza muestral?
+Se realizó un estudio para determinar si la desviación estándar de la información mensual los costos de mantenimiento de un avión Pepper III son de \$300. Una muestra de 30 Pepper IIIs tuvo un costo de mantenimiento mensual promedio de \$3.025 y una desviación estándar de \$325. Usando un nivel de significancia del 5%, cuál de los siguientes es la más apropiada con respecto a la diferencia entre el valor hipotético de la varianza poblacional y la varianza muestral?
 
 A. La población y las variaciones de muestra son significativamente diferentes.
 
@@ -806,45 +818,43 @@ $s^2 =$ Varianza de la muestra.
 
 $n=$ Tamaño de la muestra.
 
-$\sigma_0^2$ = Valor hipotético de la varianza poblacional.
+$\sigma_0^2$ = Valor hipotético de la varianza poblacional bajo la hipótesis nula.
 
 Sustituyendo, nos queda:
 
 $$
 \begin{array}{rl}
-\chi^2_{n-1} &=\displaystyle\frac{(n-1)s^2}{\sigma_0^2}\\ \\
-\chi^2_{29} &= \displaystyle\frac{29(325^2)}{300^2}\\\\
-&= 34.03
+\vspace{3mm} \chi^2_{n-1} &=\displaystyle\frac{(n-1)s^2}{\sigma_0^2}\\
+\vspace{3mm}  \chi^2_{29} &= \displaystyle\frac{(29)325^2}{300^2}\\
+\chi^2_{29}&= 34.03
 \end{array}
 $$
 
-Para un nivel $5\%$ de significancia el valor crítico de $\chi^2_{29}$ es, $\chi^2_{29}-\text{critico}= \chi^2_{\alpha/2}= \chi^2_{0.025}=45.722$ por la derecha por ser una prueba de dos colas y $\chi^2_{1-\alpha/2}=\chi^2_{0.975}=16.047$ por la izquierda. 
+Para un nivel $5\%$ de significancia el valor crítico de $\chi^2_{29}$ es, $\chi^2_{\alpha/2}= \chi^2_{0.025}=45.722$ por la derecha por ser una prueba de dos colas y $\chi^2_{1-\alpha/2}=\chi^2_{0.975}=16.047$ por la izquierda. 
 
-Se rechaza la hipótesis nula $H_0$ si $\chi^2_{24} > \chi^2_{\alpha/2}$ y $\chi^2_{24} < \chi^2_{1-\alpha/2}$. Cómo $34.03 < 45.722$ y $34.03 > 16.047$ entonces no se puede rechazar la hipótesis nula. Es decir, la población y las variaciones de muestra no son significativamente diferentes, por lo que la respuesta correcta es la opción B.
-
-
-
+Se rechaza la hipótesis nula $H_0$ si $\chi^2_{24} > \chi^2_{\alpha/2}$ o $\chi^2_{24} < \chi^2_{1-\alpha/2}$. Cómo $34.03 < 45.722$ y $34.03 > 16.047$ entonces no se puede rechazar la hipótesis nula. Es decir, la población y las variaciones de muestra no son significativamente diferentes, por lo que la respuesta correcta es la opción B.
 
 \newpage
 
 Use la siguiente información para responder las preguntas 15 a la 18.
+
 Se tomaron dos muestras de dos poblaciones normalmente distribuidas. Para la primera muestra, el promedio fue de \$50 y la desviación estándar fue de \$5. Para la segunda muestra, el promedio fue \$55 y la desviación estándar fue de \$6. La primera muestra consiste en 25 observaciones y la segunda muestra consiste en 36 observaciones. (Nota: en las preguntas a continuación, los subíndices "1" y "2" indica la primera y la segunda muestra, respectivamente)
 
 # Ejercicio 15
 
-Considere la hipótesis estructurada como $H_0:\mu_1=\$48$ frente a $H_a:\mu_1 \ne \$48.$ A un nivel de significación del 1%, la hipótesis nula:
+Considere la hipótesis estructurada como $H_0:\mu_1=\$48$ frente a $H_a:\mu_1 \ne \$48$. A un nivel de significación del 1%, la hipótesis nula:
 
-A. no puede ser rechazado.
+A. No puede ser rechazado.
 
-B. debe ser rechazado.
+B. Debe ser rechazado.
 
-C. no puede ser probado usando esta muestra de información provista.
+C. No puede ser probado usando esta muestra de información provista.
 
 \underline{\textbf{Solución:}}
 
-Se tiene una prueba de dos colas ya que la hipótesis alternativa es $H_a:\mu \ne \$48$. Cómo la varianza poblacional es desconocida para la primera muestra, el estadístico de prueba es $t$,lo que para $n-1=25-1=24$ grados de libertad se calcula de la siguiente forma:
+Se tiene una prueba de dos colas ya que la hipótesis alternativa es $H_a:\mu \ne \$48$. Cómo la varianza poblacional es desconocida para la primera muestra, el estadístico de prueba es $T$,lo que para $n-1=25-1=24$ grados de libertad se calcula de la siguiente forma:
 
-$$t_{n-1} =\displaystyle\frac{\overline X-\mu_0}{\frac{s}{\sqrt{n}}}$$
+$$T =\displaystyle\frac{\overline X-\mu_0}{\frac{s}{\sqrt{n}}}$$
 
 Donde,
 
@@ -860,53 +870,47 @@ Sustituyendo, nos queda:
 
 $$
 \begin{array}{rl}
-t_{n-1} &=\displaystyle\frac{\overline X-\mu_0}{\frac{s}{\sqrt{n}}}\\ \\
-t_{24} &= \displaystyle\frac{50-48}{\frac{5}{\sqrt{25}}}\\\\
-&=2
+\vspace{3mm} T &= \displaystyle\frac{50-48}{\frac{5}{\sqrt{25}}}\\
+T &=2
 \end{array}
 $$
 
-Para un nivel $1\%$ de significancia el valor crítico de $t_{24}$ es, $t_{24}-\text{critico}=2.797$. Cómo la prueba es de dos colas entonces el valor crítico de $t_{24}$ es $\pm 2.797$. 
+Para un nivel $1\%$ de significancia el valor crítico de $T$ es, $t_{24}=2.797$. Cómo la prueba es de dos colas entonces el valor crítico de $t_{24}$ es $\pm 2.797$. 
 
-Se rechaza la hipótesis nula $H_0$ si $t_{24} < -t_{24}-\text{critico}$ o $t_{24} > t_{24}-\text{critico}$. Cómo $2 < 2.797$ y $2>-2.797$ entonces no se puede rechazar la hipótesis nula. La respuesta correcta es la opción A.
-
+Se rechaza la hipótesis nula $H_0$ si $T< -t_{24}$ o $T > t_{24}$. Cómo $2 < 2.797$ y $2>-2.797$ entonces no se puede rechazar la hipótesis nula. La respuesta correcta es la opción A.
 
 \newpage
 
 # Ejercicio 16
 
-Utilizando un nivel de significancia del 5% y una estructura de prueba de hipótesis de $H_0:\sigma^2_1\le24$ contra $H_a:\sigma^2_1>24$, la hipótesis nula:
+Utilizando un nivel de significancia del 5% y una estructura de prueba de hipótesis de $H_0:\sigma^2_1\le 24$ contra $H_a:\sigma^2_1 > 24$, la hipótesis nula:
 
-A. no puede ser rechazado.
+A. No puede ser rechazado.
 
-B. debe ser rechazado.
+B. Debe ser rechazado.
 
-C. no puede ser probado usando esta muestra de información provista.
+C. No puede ser probado usando esta muestra de información provista.
 
 \underline{\textbf{Solución:}}
 
-Se tiene una prueba de una cola ya que la hipótesis alternativa es $H_a:\sigma^2 > 24$. Cómo el valor hipotético es la varianza poblacional para la primera muestra, el estadístico de prueba es $\chi^2$,lo que para $n-1=25-1=24$ grados de libertad se calcula de la siguiente forma:
+Se tiene una prueba de una cola ya que la hipótesis alternativa es $H_a:\sigma^2 > 24$. Cómo el valor hipotético es la varianza poblacional para la primera muestra, el estadístico de prueba es $\chi^2$, lo que para $n-1=25-1=24$ grados de libertad se calcula de la siguiente forma:
 
-$$\chi^2_{n-1} =\displaystyle\frac{(n-1)s^2}{\sigma_0^2}$$
+$$\chi^2_{n-1} =\displaystyle\frac{(n-1)S^2}{\sigma_0^2}$$
 
+Donde $\sigma_0^2$ es la varianza de la población bajo la hipótesis nula.
 
 Sustituyendo, nos queda:
 
 $$
 \begin{array}{rl}
-\chi^2_{n-1} &=\displaystyle\frac{(n-1)s^2}{\sigma_0^2}\\ \\
-\chi^2_{24} &= \displaystyle\frac{24(5^2)}{24}\\\\
-&= 25
+\vspace{3mm} \chi^2_{24} &= \displaystyle\frac{(24)5^2}{24}\\
+\chi^2_{24} &= 25
 \end{array}
 $$
 
 Para un nivel $5\%$ de significancia el valor crítico de $\chi^2_{24}$ es, $\chi^2_{24}-\text{critico}=36.415$. 
 
-Se rechaza la hipótesis nula $H_0$ si $\chi^2_{24} > \chi^2_{24}-\text{critico}$. Cómo $25 < 36.415$ y entonces no se puede rechazar la hipótesis nula. La respuesta correcta es la opción A.
-
-
-
-
+Se rechaza la hipótesis nula $H_0$ si $\chi^2_{24} > \chi^2_{\alpha,24}$. Cómo $25 < 36.415$ y entonces no se puede rechazar la hipótesis nula. La respuesta correcta es la opción A.
 
 \newpage
 
@@ -914,44 +918,43 @@ Se rechaza la hipótesis nula $H_0$ si $\chi^2_{24} > \chi^2_{24}-\text{critico}
 
 Considere la hipótesis estructurada como $H_0:\mu_1\le\$48$ frente a $H_a:\mu_1> \$ 48$. Con un nivel de significancia del 5%, la hipótesis nula:
 
-A. no puede ser rechazado.
+A. No puede ser rechazado.
 
-B. debe ser rechazado.
+B. Debe ser rechazado.
 
-C. no puede ser probado usando la información de muestra proporcionada.
+C. No puede ser probado usando la información de muestra proporcionada.
 
 \underline{\textbf{Solución:}}
 
-Se tiene una prueba de una cola ya que la hipótesis alternativa es $H_a:\mu > \$48$. Cómo la varianza poblacional es desconocida para la primera muestra, el estadístico de prueba es $t$,lo que para $n-1=25-1=24$ grados de libertad se calcula de la siguiente forma:
+Se tiene una prueba de una cola ya que la hipótesis alternativa es $H_a:\mu > \$48$. Cómo la varianza poblacional es desconocida para la primera muestra, el estadístico de prueba es $T$,lo que para $n-1=25-1=24$ grados de libertad se calcula de la siguiente forma:
 
-$$t_{n-1} =\displaystyle\frac{\overline X-\mu_0}{\frac{s}{\sqrt{n}}}$$
+$$T =\displaystyle\frac{\overline X-\mu_0}{\frac{s}{\sqrt{n}}}$$
 
 Sustituyendo, nos queda:
 
 $$
 \begin{array}{rl}
-t_{n-1} &=\displaystyle\frac{\overline X-\mu_0}{\frac{s}{\sqrt{n}}}\\ \\
-t_{24} &= \displaystyle\frac{50-48}{\frac{5}{\sqrt{25}}}\\\\
-&=2
+\vspace{3mm} T &= \displaystyle\frac{50-48}{\frac{5}{\sqrt{25}}}\\
+T &=2
 \end{array}
 $$
 
-Para un nivel $5\%$ de significancia el valor crítico de $t_{24}$ es, $t_{24}-\text{critico}=1.711$. Cómo la prueba es de una cola positiva entonces el valor crítico de $t_{24}$ es $+1.711$. 
+Para un nivel $5\%$ de significancia el valor crítico de $T$ es, $t_{24}=1.711$. Cómo la prueba es de una cola positiva entonces el valor crítico de $t_{24}$ es $+1.711$. 
 
-Se rechaza la hipótesis nula $H_0$ si $t_{24} > t_{24}-\text{critico}$. Cómo $2 > 1.711$ entonces se rechaza la hipótesis nula. La respuesta correcta es la opción B.
+Se rechaza la hipótesis nula $H_0$ si $T > t_{24}$. Cómo $2 > 1.711$ entonces se rechaza la hipótesis nula. La respuesta correcta es la opción B.
 
 \newpage
 
 
 # Ejercicio 18
 
-Utilizando un nivel de significancia del 5% para una prueba del nulo de $H_0:\sigma^2_1=\sigma^2_2,$ contra la alternativa de $H_a:\sigma^2_1\ne\sigma^2_2,$ la hipótesis nula:
+Utilizando un nivel de significancia del 5% para una prueba del nulo de $H_0:\sigma^2_1=\sigma^2_2,$ contra la alternativa de $H_a:\sigma^2_1\ne\sigma^2_2$, la hipótesis nula:
 
-A. no puede ser rechazado.
+A. No puede ser rechazado.
 
-B. debe ser rechazado.
+B. Debe ser rechazado.
 
-C. no puede ser probado usando la información de muestra proporcionada.
+C. No puede ser probado usando la información de muestra proporcionada.
 
 \underline{\textbf{Solución:}}
 
@@ -963,18 +966,15 @@ Sustituyendo, nos queda:
 
 $$
 \begin{array}{rl}
-F &=\displaystyle\frac{s_2^2}{s_1^2}\\ \\
-&= \displaystyle\frac{6^2}{5^2}\\\\
-&=\displaystyle\frac{36}{25}\\\\
-&= 1.44
+\vspace{3mm} F&= \displaystyle\frac{6^2}{5^2}\\
+\vspace{3mm} &=\displaystyle\frac{36}{25}\\
+F&= 1.44
 \end{array}
 $$
 
-Para un nivel $5\%$ de significancia el valor crítico de $F$ es, $F-\text{critico}=F_{\alpha/2}=F_{0.025}=2.18$. 
+Para un nivel $5\%$ de significancia el valor crítico de $F$ es, $F_{24,35,\alpha/2}=F_{24,35,0.025}=2.18$. 
 
-Se rechaza la hipótesis nula $H_0$ si $F > F-\text{critico}$. Cómo $1.44 < 2.18$ entonces no se puede rechazar la hipótesis nula. La respuesta correcta es la opción A.
-
-
+Se rechaza la hipótesis nula $H_0$ si $F > F_{24,35,0.025}$. Cómo $1.44 < 2.18$ entonces no se puede rechazar la hipótesis nula. Por lo que las varianzas poblacionales son significativamente iguales. La respuesta correcta es la opción A.
 
 \newpage
 
@@ -1000,17 +1000,17 @@ Sustituyendo, tenemos que el poder de la prueba es  $1 - 0.15 = 0.85$. Por lo ta
 
 # Ejercicio 20
 
-¿Cuál de las siguientes afirmaciones sobre la distribución F y la distribución de Chi cuadrado  es menos precisa? Ambas distribuciones:
+¿Cuál de las siguientes afirmaciones sobre la distribución $F$ y la distribución de Chi cuadrado es menos precisa? Ambas distribuciones:
 
-A. son asimétricos.
+A. Son asimétricos.
 
-B. están limitados por cero a la izquierda.
+B. Están limitados por cero a la izquierda.
 
-C. tienen medias que son menores que sus desviaciones estándar.
+C. Tienen medias que son menores que sus desviaciones estándar.
 
 \underline{\textbf{Solución:}}
 
-Las distribuciones F y Chi cuadrado son asimétricas y ambas están limitadas por cero a la izquierda. Por lo que la afirmación menos precisa es que tienen medias que son menores que sus desviaciones estándar. Por lo tanto la respuesta correcta es la opción C.
+Las distribuciones F y Chi cuadrado son asimétricas y ambas están limitadas por cero a la izquierda. Por lo que la afirmación menos precisa es que tienen medias que son menores que sus desviaciones estándar. Por lo tanto, la respuesta correcta es la opción C.
 
 \newpage
 
@@ -1018,15 +1018,15 @@ Las distribuciones F y Chi cuadrado son asimétricas y ambas están limitadas po
 
 El estadístico de prueba apropiado para una prueba de igualdad de varianzas para dos variables aleatorias distribuidas normalmente, basadas en dos muestras aleatorias independientes, es el:
 
-A. $t-test.$
+A. Prueba $T$
 
-B. $F-test.$
+B. Prueba $F$
 
-C. $X^2test.$
+C. Prueba $\chi^2$
 
 \underline{\textbf{Solución:}}
 
-El estadístico de prueba apropiado para ésta prueba es el estadístico $F-\text{test}$. Por lo tanto la respuesta correcta es la opción B.
+El estadístico de prueba apropiado para ésta prueba es el estadístico $F$. Por lo tanto la respuesta correcta es la opción B.
 
 \newpage
 
@@ -1034,15 +1034,15 @@ El estadístico de prueba apropiado para ésta prueba es el estadístico $F-\tex
 
 La estadística de prueba apropiada para probar la hipótesis de que la varianza de una población normalmente distribuida es igual a 13 es la:
 
-A. $t-test.$
+A. Prueba $T$
 
-B. $F-test.$
+B. Prueba $F$
 
-C. $\chi^2-test.$
+C. Prueba $\chi^2$
 
 \underline{\textbf{Solución:}}
 
-La estadística apropiada para ésta prueba es el estadístico $\chi^2-\text{test}$. La respuesta correcta es la opción C.
+Para probar una hipótesis referente a una varianza poblacional como valor hipotético, se tiene que la estadística apropiada para ésta prueba es el estadístico $\chi^2$. Por lo tanto la respuesta correcta es la opción C.
 
 \newpage
 
@@ -1050,15 +1050,15 @@ La estadística apropiada para ésta prueba es el estadístico $\chi^2-\text{tes
 
 William Adams quiere probar si los rendimientos mensuales medios en los últimos cinco años son iguales para dos acciones. Si él supone que las distribuciones de devoluciones son normales y tienen las mismas variaciones, el tipo de prueba y la estadística de prueba son las mejores descritas como:
 
-A. prueba de comparaciones pareadas, estadística-t.
+A. Prueba de comparaciones pareadas, estadística-T.
 
-B. prueba de comparaciones pareadas, estadística-F.
+B. Prueba de comparaciones pareadas, estadística-F.
 
-C. diferencia en la prueba de medios, estadística-t.
+C. Diferencia en la prueba de medios, estadística-T.
 
 \underline{\textbf{Solución:}}
 
-Cuando no se conoce las varianzas poblacionales de las poblaciones y se asumen que son iguales, entonces el tipo de prueba y la estadística de prueba más apropiada son la prueba de comparaciones pareadas y la estadística $t$. Por lo tanto la opción correcta es la A.
+Cuando no se conoce las varianzas poblacionales de las poblaciones y se asumen que son iguales, entonces el tipo de prueba y la estadística de prueba más apropiada son la prueba de comparaciones pareadas y la estadística $T$. Por lo tanto la opción correcta es la A.
 
 \newpage
 
@@ -1072,10 +1072,9 @@ B. Las dos poblaciones se distribuyen normalmente.
 
 C. Las dos poblaciones tienen varianzas iguales.
 
-
 \underline{\textbf{Solución:}}
 
-La menos problable es que las dos poblaciones tengan varianzas iguales, ya que se puede suponer que no son iguales y se usa tambien el estadístico $t$ para éste caso. Por lo tanto la respuesta correcta es la opción C.
+La menos problable es que las dos poblaciones tengan varianzas iguales, ya que se puede suponer que no son iguales y se usa tambien el estadístico $T$ para éste caso. Por lo tanto la respuesta correcta es la opción C.
 
 \newpage
 
@@ -1083,17 +1082,16 @@ La menos problable es que las dos poblaciones tengan varianzas iguales, ya que s
 
 Para una prueba de hipótesis con una probabilidad de un error tipo II del 60% y una probabilidad de un error Tipo I de 5%, ¿cuál de las siguientes afirmaciones es más precisa?
 
-A. El poder de la prueba es del 40%, y hay un 5% de probabilidad de que la prueba la estadística excederá los valores críticos.
+A. El poder de la prueba es del 40%, y hay un 5% de probabilidad de que la prueba estadística excederá los valores críticos.
 
-B. Hay un 95% de probabilidad de que la estadística de prueba se encuentre 
-entre el valor critico si esta es una prueba de dos colas.
+B. Hay un 95% de probabilidad de que la estadística de prueba se encuentre entre el valor critico si ésta es una prueba de dos colas.
 
-C. Hay un 5% de probabilidad de que la hipótesis nula sea rechazada cuando
-es realmente cierto, y la probabilidad de rechazar el nulo cuando es falso es 40%.
+C. Hay un 5% de probabilidad de que la hipótesis nula sea rechazada cuando es realmente cierto, y la probabilidad de rechazar la hipótesis nula cuando es falso es 40%.
 
 \underline{\textbf{Solución:}}
 
-Hay un 5% de probabilidad de que la hipótesis nula sea rechazada cuando es realmente cierto, esto es la probabilidad de cometer un error Tipo I. La probabilidad de rechazar el nulo cuando es falso es 40%, la cual es llamado el poder de la prueba y es $1-P(\text{error tipo II})=1-0.6=0.4$.
+Hay un 5% de probabilidad de que la hipótesis nula sea rechazada cuando es realmente cierto, esto es la probabilidad de cometer un error Tipo I. La probabilidad de rechazar la hipótesis nula cuando es falsa es 40%, la cual es llamado el poder de la prueba y es $1-P(\text{error tipo II})=1-0.6=0.4$.
+
 Las opciones A y B no son necesariamente ciertas. Por lo que la respuesta correcta es la opción C.
 
 \newpage
@@ -1112,31 +1110,25 @@ C. Describe los pasos para probar una hipótesis como la nula que indicaste en l
 
 A. La hipótesis nula es lo que se quiere refutar, es decir, podría ser que la media de las acciones que han aparecido en los periódicos financieros es menor que las acciones sobre una base ajustada de riesgo. La hipótesis alternativa podría ser que la media de las acciones que han aparecido en los periódicos financieros es mayor que las acciones sobre una base ajustada de riesgo.
 
-
-
 B. Ésta prueba podría ser una prueba de una cola.
-
-
 
 C. Los pasos a seguir son:
 
-1. Declarar la hipótesis nula cómo en A.
+  1. Declarar la hipótesis nula cómo en A.
 
-2. Seleccionar el estadístico de prueba apropiado.
+  2. Seleccionar el estadístico de prueba apropiado.
 
-3. Decidir el nivel de significancia apropiado.
+  3. Decidir el nivel de significancia apropiado.
 
-4. Determinar la regla para la región de rechazo de la prueba.
+  4. Determinar la regla para la región de rechazo de la prueba.
 
-5. Coleccionar el conjunto de los datos.
+  5. Coleccionar el conjunto de los datos.
 
-6. Calcular la muestra estadística.
+  6. Calcular la muestra estadística.
 
-7. Tomar una decisión con respecto a la región de rechazo de la prueba.
+  7. Tomar una decisión con respecto a la región de rechazo de la prueba.
 
-8. Tomar decisiones o inferencias basadas en los resultados.
-
-
+  8. Tomar decisiones o inferencias basadas en los resultados.
 
 \newpage
 
