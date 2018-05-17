@@ -839,11 +839,92 @@ C. Un investigador desea determinar si las varianzas poblacionales de dos variab
 
 D. Un investigador quiere probar si la varianza de una población distribuida normalmente es igual a 0.00165. Como pregunta adicional aquí, ¿cómo deberían calcularse los grados de libertad?
 
+\textbf{\underline{Solución:}}
+
+A) Dado que los rendimientos de los índices del gas natural y los índices de las reservas de petróleo podrían estar correlacionadas y por ende no ser independientes, además de que los rendimientos están normalmente distribuidos, la prueba apropiada es la de comparación de pares de dos colas. El estadístico a usar, el cual es una prueba-$t$ con $n-1$ grados de libertad, está dado por:
+
+$$ \mathcal{T} = \displaystyle \frac{\bar{d} - \mu_{dz}}{s_{\bar{d}}}$$
+Donde,
+
+$\bar{d} = \text{media de la muestra de las diferencias de los rendimientos semanales} = \displaystyle \frac{1}{n} \sum_{i=1}^n d_i$
+
+$d_i = \text{diferencia entre los rendimientos semanales de los índices.}$
+
+$\mu_{dz} = \text{media hipotética de las diferencias semanales, que en este caso es cero.}$
+
+$s_{\bar{d}} = \text{error estándar de la diferencia de media} = \displaystyle \frac{s_d}{\sqrt{n}}$
+
+$s_d = \text{muestra de la desviación estándar de las diferencias} = \displaystyle \left(\frac{\sum_{i=1}^n (d_i - \bar{d})^2}{n-1}\right)^\frac{1}{2}$
+
+Rechazamos la hipótesis nula si el $t-$estadístico es mayor (ó menor) al valor crítico positivo (ó negativo).
+
+B) Dado que las dos muestras son independientes y normalmente distribuidas, además que las varianzas de las dos poblaciones son iguales, entonces la prueba apropiada es la de diferencia de medias de dos poblaciones con varianzas desconocidas pero iguales de dos colas. El estadístico a usar, el cual es una prueba-$t$ con $n_1 + n_2 - 2$ grados de libertad, está dado por:
+
+$$\mathcal{T} = \displaystyle \frac{\bar{x}_1 - \bar{x}_2 - D_o}{S\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$$
+Donde,
+
+$D_o = \mu_1 - \mu_2 \quad \text{en este caso $D_o$=0}$
+
+$S = \sqrt{\displaystyle \frac{(n_1 - 1)s^2_1 + (n_2 - 1)s^2_2}{n_1 + n_2 -2}}$
+
+Rechazamos la hipótesis nula si el $t-$estadístico es mayor (ó menor) al valor crítico positivo (ó negativo).
+
+C) Dado que las dos poblaciones están normlamente distribuidas y queremos saber si las varianzas de estas dos poblaciones son iguales, la prueba de hipótesis apropiada es la comparación de varianzas de dos poblaciones. El estadístico a usar, el cual tiene distribución $F$ con $n_1 - 1$ y $n_2 - 1$ grados de libertad, está dado por:
+
+$$\mathcal{F} = \displaystyle \frac{s^2_1}{s^2_2}$$
+Donde,
+
+$s^2_1 = \text{Varianza de la muestra de $n_1$ observaciones de la población 1}$
+
+$s^2_2 = \text{Varianza de la muestra de $n_2$ observaciones de la población 2}$
+
+Rechazamos la hipótesis nula si el $F-$estadístico es mayor al valor crítico.
+
+D) Dada una población distribuida normalmente, queremos saber si la varianza de la población es igual a 0.00165. La prueba apropiada es la referente a una varianza poblacional de dos colas. El estadístico a usar, el cual tiene distribución $Chi-cuadrado$ con $n-1$ grados de libertad, está dado por:
+
+$$\chi = \displaystyle \frac{(n-1)s^2}{\sigma^2_o}$$
+
+Rechazamos la hipótesis nula si el estadístico de prueba es mayor (ó menor) al valor crítico superior (ó inferior).
+
 \newpage
 
 # Ejercicio 28
 
 De un total de 10,200 préstamos otorgados por una unión de crédito de empleados del Estado en el último periodo de cinco años, se muestrearon 350 para determinar qué proporción de los préstamos se otorgaron a mujeres.  Esta muestra indicó que el 39% de los créditos fue dado a empleadas.  Un censo completo de préstamos de hace cinco años mostraba que el 41% de los prestarios eran mujeres.  A un nivel de significancia del 0.02, ¿puede concluir que la proporción de préstamos otorgados a mujeres ha cambiado significativamente en los últimos cinco años?
+
+\textbf{\underline{Solución:}}
+
+Queremos saber si la proporción de préstamos otorgados a mujeres ha cambiado en los últimos cinco años, establecemos la siguiente hipótesis:
+
+$H_o$ : $p_o = 0.41 \quad \text{Proporción de préstamos que se mantiene}$
+
+$H_a$: $p_o \ne 0.41 \quad \text{Proporción de préstamos que ha cambiado}$
+
+$\alpha = 0.02$
+
+La prueba apropiada es una prueba de proporciones de dos colas. El estadístico de prueba a usar está dado por:
+
+$$\mathcal{P} = \displaystyle \frac{(\bar{p}-p_o)\sqrt{n}}{\sqrt{p_o(1-p_o)}}$$
+Donde los valores críticos están dados por los valores $\displaystyle \pm z_{\frac{\alpha}{2}}$ y además:
+
+$\bar{p} = 0.39 \quad \text{Proporción de la muestra}$
+
+$p_o = 0.41$
+
+Sustituyendo estos valores en el estadístico y sabiendo que $\displaystyle z_{0.01} = \pm 2.323$, tenemos:
+
+$$
+\begin{array}{rl}
+\mathcal{P} &= \displaystyle \frac{(0.39 - 0.41) \sqrt{350}}{\sqrt{0.41 \times 0.59}} \\
+\\
+&= \displaystyle \frac{-0.02\sqrt{350}}{\sqrt{0.2419}} \\
+\\
+&= -0.7607 \\
+\end{array}
+$$
+
+como el valor crítico negativo es de -2.323 tenemos que, -0.7607 > -2.323, por lo que no rechazamos la hipótesis nula. Por lo que la proporción de préstamos otorgados a las mujeres no ha cambiado significativamente.
+
 
 \newpage
 
@@ -851,11 +932,80 @@ De un total de 10,200 préstamos otorgados por una unión de crédito de emplead
 
 Algunos teóricos financieros creen que los precios diarios del mercado de valores constituyen una "caminata aleatoria con tendencia positiva".  Si esto es correcto, entonces el promedio industrial Dow Jones debería mostrar una ganancia en más del 50% de todos los días de actividad financiera.  Si el promedio se incrementó en 101 de 175 días escogidos aleatoriamente, ¿qué piensa de la teoría sugerida?  Use un nivel de significancia de 0.01.
 
+\textbf{\underline{Solución:}}
+
+Queremos saber si los precios diarios del mercado tienen una tendencia positiva, para esto el promedio del Dow Jones debe mostrar una ganancia positiva en más del 50%. Establecemos la siguiente hipótesis:
+
+$H_o$: $p_o \leq 0.5 \quad \text{Proporción de ganancias menor ó igual a 50\%}$
+
+$H_a$: $p_o > 0.5 \quad \text{Proporción de ganancias mayor a 50\%}$
+
+$\alpha = 0.01$
+
+La prueba apropiada es una prueba de proporciones de una cola. El estadístico de prueba a usar está dado por:
+
+$$\mathcal{P} = \displaystyle \frac{(\bar{p}-p_o)\sqrt{n}}{\sqrt{p_o(1-p_o)}}$$
+
+Donde el valor crítico está dado por $z_{0.01} = 2.323$ y además:
+
+$\bar{p} = \displaystyle \frac{101}{175} = 0.57 \quad \text{Proporción de la muestra}$
+
+$p_o = 0.5$
+
+Sustituyendo los valores tenemos:
+
+$$
+\begin{array}{rl}
+\mathcal{P} &= \displaystyle \frac{(0.57 - 0.5) \sqrt{175}}{\sqrt{0.5 \times 0.5}} \\
+\\
+&= \displaystyle \frac{0.07\sqrt{175}}{\sqrt{0.25}} \\
+\\
+&=  1.85 \\
+\end{array}
+$$
+
+Como el valor crítico es de 2.323 tenemos que, 1.85 < 2.323, por lo que no rechazamos la hipótesis nula. Por lo que la teoría sugerida con un nivel de significancia del 0.01 no es correcta.
+
 \newpage
 
 # Ejercicio 30
 
 Rick Douglas, el nuevo gerente de Food Barn, está interesado en el porcentaje de clientes totalmente satisfechos con la tienda.  El gerente anterior tenía el 86% de clientes totalmente satisfechos y Rick asegura que lo mismo se cumple hoy.  Rick obtuvo una muestra de 187 clientes y encontró que 157 estaban satisfechos por completo.  Con un nivel de significancia del 1%, ¿existe evidencia de que la afirmación de Rick es válida?
+
+\textbf{\underline{Solución:}}
+
+Queremos saber si la proporción de clientes están bastante satisfechos con la tienda, establecemos la siguiente hipótesis:
+
+$H_o$ : $p_o = 0.86 \quad \text{Afirmación de la proporción de clientes satisfechos}$
+
+$H_a$: $p_o \ne 0.86 \quad \text{Proporción de clientes que no cumplen con la afirmación}$
+
+$\alpha = 0.01$
+
+La prueba apropiada es una prueba de proporciones de dos colas. El estadístico de prueba a usar está dado por:
+
+$$\mathcal{P} = \displaystyle \frac{(\bar{p}-p_o)\sqrt{n}}{\sqrt{p_o(1-p_o)}}$$
+
+Donde los valores críticos están dados por los valores $\displaystyle \pm z_{\frac{\alpha}{2}}$ y además:
+
+$\bar{p} = \displaystyle \frac{157}{187} = 0.83 \quad \text{Proporción de la muestra}$
+
+$p_o = 0.86$
+
+Sustituyendo estos valores en el estadístico y sabiendo que $\displaystyle z_{0.005} = \pm 2.578$, tenemos:
+
+$$
+\begin{array}{rl}
+\mathcal{P} &= \displaystyle \frac{(0.83 - 0.86) \sqrt{187}}{\sqrt{0.86 \times 0.14}} \\
+\\
+&= \displaystyle \frac{-0.03\sqrt{187}}{\sqrt{0.1204}} \\
+\\
+&= -1.18 \\
+\end{array}
+$$
+
+como el valor crítico negativo es de -2.578 tenemos que, -1.18 > -2.578, por lo que no rechazamos la hipótesis nula. Por lo que la afirmación de Rick es válida.
+
 
 \newpage
 
@@ -863,17 +1013,120 @@ Rick Douglas, el nuevo gerente de Food Barn, está interesado en el porcentaje d
 
 La corredora de bienes raíces Elaine Snyderman tomó una muestra aleatoria de 12 hogares de un prestigiado suburbio de Chicago y encontró que el valor de mercado promedio estimado era \$780,000 con una desviación estándar de \$49,000.  Pruebe la hipótesis de que para todas las casas del área, el valor estimado medio es \$825,000, hipótesis alternativa de que es menor que \$825,000.  Utilice el nivel de significancia de 0.05.
 
+\textbf{\underline{Solución:}}
+
+Estableceremos la siguiente hipótesis:
+
+$H_o$ : $\mu_o = 825,000\$$ 
+
+$H_a$: $\mu_o < 825,000\$$ 
+
+$\alpha = 0.05$
+
+La prueba apropiada es una prueba de medias con varianza poblacional desconocida de una cola. El estadístico de prueba a usar está dado por:
+
+$$\mathcal{T} = \displaystyle \frac{(\bar{x}-\mu_o)\sqrt{n}}{s}$$
+Donde el valor crítico está dado por el valor negativo de $t_{0.05}$ con $n-1$ grados de libertad y además:
+
+$\bar{x} = 780,000\$ \quad \text{Media de la muestra}$
+
+$s = 49,000\$ \quad \text{Desviación estándar de la muestra}$
+
+$\mu_o = 825,000\$$
+
+Sustituyendo estos valores en el estadístico y sabiendo que $t_{0.05} = -1.796$, tenemos:
+
+$$
+\begin{array}{rl}
+\mathcal{T} &= \displaystyle \frac{(780,000 - 825,000) \sqrt{12}}{49,000} \\
+\\
+&= \displaystyle \frac{-45000\sqrt{12}}{49,000} \\
+\\
+&= -3.18 \\
+\end{array}
+$$
+
+Como el valor crítico es de -1.796 tenemos que, -3.18 < -1.796, por lo que rechazamos la hipótesis nula. Por lo que asumimos la hipótesis alternativa de que el valor medio es menor a 825,000\$.
+
 \newpage
 
 # Ejercicio 32
 
 Con la caída del mercado petrolero de principios de 1986, los educadores del Texas se preocuparon por la forma en que las pérdidas resultantes en los ingresos del Estado (estimadas en cerca de \$100 millones por cada disminución de un dólar en el precio del barril de petróleo) afectarían sus presupuestos.  La directiva estatal de educación pensaba que la situación no sería crítica en tanto pudieran estar razonablemente seguros de que el precio permanecería arriba de \$18 por barril.  Encuestaron a 13 economistas especializados en el mercado del petróleo, elegidos al azar, y les pidieron que predijeran qué tanto bajarían los precios antes de repuntar.  Las 13 predicciones promediaron \$21.60, con una desviación estándar de \$4.65.  Para un nivel $\alpha=0.01,$ ¿es la predicción promedio significativamente mayor que \$18.00? ¿Debe la directiva de educación concluir que es improbable una crisis presupuestaria? Explique su respuesta.
 
+\textbf{\underline{Solución:}}
+
+Queremos saber si el promedio de los precios del barril del petróleo es significativamente mayor que 18\$, establecemos la siguiente hipótesis:
+
+$H_o$: $\mu_o\leq 18\$ \quad \text{Promedio menor ó igual a 18\$}$
+
+$H_a$: $\mu_o >18\$ \quad \text{Promedio mayor a 18\$}$
+
+$\alpha = 0.01$
+
+La prueba apropiada es una prueba de medias con varianza poblacional desconocida de una cola. El estadístico de prueba a usar está dado por:
+
+$$\mathcal{T} = \displaystyle \frac{(\bar{x}-\mu_o)\sqrt{n}}{s}$$
+Donde el valor crítico está dado por $t_{0.01}$ con $n-1$ grados de libertad y además:
+
+$\bar{x} = 21.60\$ \quad \text{Media de la muestra}$
+
+$s = 4.65\$ \quad \text{Desviación estándar de la muestra}$
+
+$\mu_o = 18\$$
+
+Sustituyendo estos valores en el estadístico y sabiendo que $t_{0.01} = 2.681$, tenemos:
+
+$$
+\begin{array}{rl}
+\mathcal{T} &= \displaystyle \frac{(21.60 - 18) \sqrt{13}}{4.65} \\
+\\
+&= \displaystyle \frac{3.6\sqrt{13}}{4.65} \\
+\\
+&= 2.79 \\
+\end{array}
+$$
+
+Como el valor crítico es de 2.681 tenemos que, 2.79 > 2.681, por lo que rechazamos la hipótesis nula. Lo que implica que el promedio con un nivel de significancia de 0.01 es significativamente mayor a 18\$, por lo que la directiva puede concluir que es improbable una crisis presupuestaria.
+
+
 \newpage
 
 # Ejercicio 33
 
 En un día promedio. alrededor del 5% de las acciones de la Bolsa de Valores de Nueva York muestran una nueva alza para ese año.  El viernes 18 de septiembre de 1992, el promedio industrial Dow Jones cerró en 3,282 con un fuerte volumen de más de 136 millones de títulos negociados.  Una muestra aleatoria de 120 títulos derterminó que 16 de ellos habían mostrado nuevas alzas anuales ese día.  Usando un nivel de significancia de 0.01, ¿deberíamos concluir que más títulos de los habituales tuvieron nuevas alzas anuales ese día?
+
+\textbf{\underline{Solución:}}
+
+Queremos saber si más titulos de los habituales tuvieron alzas del más del 5% Establecemos la siguiente hipótesis:
+
+$H_o$: $p_o \leq 0.05 \quad \text{Proporción de titulos menor ó igual a 5\%}$
+
+$H_a$: $p_o > 0.05 \quad \text{Proporción de titulos mayor a 5\%}$
+
+$\alpha = 0.01$
+
+La prueba apropiada es una prueba de proporciones de una cola. El estadístico de prueba a usar está dado por:
+
+$$\mathcal{P} = \displaystyle \frac{(\bar{p}-p_o)\sqrt{n}}{\sqrt{p_o(1-p_o)}}$$
+Donde el valor crítico está dado por $z_{0.01} = 2.323$ y además:
+
+$\bar{p} = \displaystyle \frac{16}{120} = 0.13 \quad \text{Proporción de la muestra}$
+
+$p_o = 0.05$
+
+Sustituyendo los valores tenemos:
+
+$$
+\begin{array}{rl}
+\mathcal{P} &= \displaystyle \frac{(0.13 - 0.05) \sqrt{120}}{\sqrt{0.05 \times 0.95}} \\
+\\
+&= \displaystyle \frac{0.08\sqrt{120}}{\sqrt{0.0475}} \\
+\\
+&=  4.020 \\
+\end{array}
+$$
+Como el valor crítico es de 2.323 tenemos que, 4.020 > 2.323, por lo que rechazamos la hipótesis nula. Por lo que más de los titulos habituales tuvieron nuevas alzas anuales ese día.
 
 \newpage
 
@@ -883,9 +1136,11 @@ En un día promedio. alrededor del 5% de las acciones de la Bolsa de Valores de 
 
 a) La estadística de muestra difiere del valor hipotético en más de 2.15 errores estándar en cualquier dirección.
 
-b)El valor del estadístico de la muestra es mayor en más de 1.6 errores estándar.
+b) El valor del estadístico de la muestra es mayor en más de 1.6 errores estándar.
 
-c) El valor del estadístico de la muestra es menor que el valor hipotético en más de 2.33 errores estándar.  Los distribuidores de fondo de inversión mutua *abiertos* venden acciones adicionales a  los individuos que desean invertir en estos fondos.  Estas acciones están valuadas como *valores de activo neto*, el valor de estos títulos representados por las acciones de los fondos, más una comisión (o cargo) en el intervalo de 0 a 8%.  los fondos *cerrados*, por otra parte, tienen un número fijo de acciones.  Estas acciones se negocian en varias bolsas de valores a precios determinados por el mercado.  Si el precio es mayor que el valor activo neto, se dice que la acción se vende con *prima*: si sucede lo contrario se vende con *descuento*.  Una muestra aleatoria de 15 fondos cerrados el 4 de junio de 1993, encontró los descuentos (valores negativos) y las primas (valores positivos) expresados en porcentajes y enumerados en la tabla MR8-1.  Utilice esta información para responder los ejercicios 35 y 36.
+c) El valor del estadístico de la muestra es menor que el valor hipotético en más de 2.33 errores estándar. 
+
+Los distribuidores de fondo de inversión mutua *abiertos* venden acciones adicionales a  los individuos que desean invertir en estos fondos.  Estas acciones están valuadas como *valores de activo neto*, el valor de estos títulos representados por las acciones de los fondos, más una comisión (o cargo) en el intervalo de 0 a 8%.  los fondos *cerrados*, por otra parte, tienen un número fijo de acciones.  Estas acciones se negocian en varias bolsas de valores a precios determinados por el mercado.  Si el precio es mayor que el valor activo neto, se dice que la acción se vende con *prima*: si sucede lo contrario se vende con *descuento*.  Una muestra aleatoria de 15 fondos cerrados el 4 de junio de 1993, encontró los descuentos (valores negativos) y las primas (valores positivos) expresados en porcentajes y enumerados en la tabla MR8-1.  Utilice esta información para responder los ejercicios 35 y 36.
 
 | Tabla MR8-1          | Nombre del título               | Descuento/prima |
 |----------------------|---------------------------------|:---------------:|
@@ -907,9 +1162,53 @@ c) El valor del estadístico de la muestra es menor que el valor hipotético en 
 
 \newpage
 
+\textbf{\underline{Solución:}}
+
+a) Si la estadística de muestra es menor ó mayor al valor hipótetico en más de 2.15 errores estándar entonces la probabilidad de rechazar la hipótesis nula si es verdadera es de $P(Z \leq -2.15) = \phi(-2.15) = 0.0158 = 1.58\%$.
+
+b) Si la estadística de muestra es mayor al valor hipótetico en más de 1.6 errores estándar entonces la probabilidad de rechazar la hipótesis nula si es verdadera es de $1 - P(Z \leq 1.6) = 1 - \phi(1.6) = 1 - 0.9452 = 0.05 = 5\%$.
+
+c) Si la estadística de muestra es menor al valor hipótetico en más de 2.33 errores estándar entonces la probabilidad de rechazar la hipótesis nula si es verdadera es de $P(Z \leq -2.33) = \phi(-2.33) = 0.01 = 1\%$.
+
+
+\newpage
+
 # Ejercicio 35
 
 ¿Se vende significativamente menos fondos de acciones de interés variable con descuentos que con primas? Pruebe a un nivel $\alpha=0.01.$
+
+\textbf{\underline{Solución:}}
+
+Queremos saber si se venden menos fondos de acciones con descuentos que con primas. Establecemos la siguiente hipótesis:
+
+$H_o$: $p_o \geq 0.6 \quad \text{Proporción de acciones con descuentos que venden más que las acciones con primas}$
+
+$H_a$: $p_o < 0.6 \quad \text{Proporción de acciones con descuentos que venden menos que las acciones con primas}$
+
+$\alpha = 0.01$
+
+La prueba apropiada es una prueba de proporciones de una cola. El estadístico de prueba a usar está dado por:
+
+$$\mathcal{P} = \displaystyle \frac{(\bar{p}-p_o)\sqrt{n}}{\sqrt{p_o(1-p_o)}}$$
+Donde el valor crítico está dado por $z_{0.01} = -2.323$ y además:
+
+$\bar{p} = \displaystyle \frac{6}{15} = 0.4 \quad \text{Proporción de la muestra}$
+
+$p_o = 0.6$
+
+Sustituyendo los valores tenemos:
+
+$$
+\begin{array}{rl}
+\mathcal{P} &= \displaystyle \frac{(0.4 - 0.6) \sqrt{15}}{\sqrt{0.6 \times 0.4}} \\
+\\
+&= \displaystyle \frac{-0.2\sqrt{15}}{\sqrt{0.24}} \\
+\\
+&=  -1.58 \\
+\end{array}
+$$
+Como el valor crítico es de -2.323 tenemos que, -1.58 > -2.323, por lo que no rechazamos la hipótesis nula. Por lo que no se venden significativamente menos acciones con descuentos que con primas.
+
 
 \newpage
 
@@ -917,11 +1216,86 @@ c) El valor del estadístico de la muestra es menor que el valor hipotético en 
 
 Un profesor de finanzas desarrolló una teoría que predice que los fondos de acciones de interés variable cerrados se deberían vender con una prima cercana al 5% en promedio.  Suponiendo que la población descuento/prima tiene una distribución aproximadamente normal, ¿apoya la información muestreada esta teoría? Pruebe con $\alpha=0.05.$
 
+\textbf{\underline{Solución:}}
+
+Veamos si la teoría que desarrolló el profesor es acertada. Establecemos la siguiente hipótesis:
+
+$H_o$: $\mu_o = 0.05 \quad \text{Promedio de venta de las acciones con primas}$
+
+$H_a$: $\mu_o \ne 0.05 \quad \text{Promedio distinto de venta de las acciones con primas}$
+
+$\alpha = 0.05$
+
+La prueba apropiada es una prueba de medias con varianza poblacional desconocida de dos colas. El estadístico de prueba a usar está dado por:
+
+$$\mathcal{T} = \displaystyle \frac{(\bar{x}-\mu_o)\sqrt{n}}{s}$$
+Donde el valor crítico está dado por $\pm t_{0.025}$ con $n-1$ grados de libertad y además:
+
+$\bar{x} \quad \text{Media de la muestra}$
+
+$s \quad \text{Desviación estándar de la muestra}$
+
+$\mu_o = 0.05$
+
+$\bar{x}$ y $s$ están dados por:
+
+```{r,comment=''}
+Fondos<-c(4.7,-0.7,5.3,9.2,-0.3,-0.3,5.0,0.4,-1.9,0.5,
+          5.8,-8.2,-9.4,10.3,1.7)
+mean(Fondos)
+sd(Fondos)
+```
+
+Sustituyendo estos valores en el estadístico y sabiendo que $t_{0.025} = \pm 2.145$, tenemos:
+
+$$
+\begin{array}{rl}
+\mathcal{T} &= \displaystyle \frac{(0.0174 - 0.05) \sqrt{15}}{0.0554} \\
+\\
+&= \displaystyle \frac{-0.0326 \sqrt{15}}{0.0554} \\
+\\
+&= -2.27 \\
+\end{array}
+$$
+Como el valor crítico es de -2.145 tenemos que, -2.27 < -2.145, por lo que rechazamos la hipótesis nula. Lo que implica que la información muestreada no apoya la teoría.
+
 \newpage
 
 # Ejercicio 37
 
 Una corredora de bolsa afirma que puede predecir, con el 85% de certeza, el ascenso o caída, durante el mes siguiente, de un valor del mercado de valores.  Para probarlo, predice el resultado de 60 valores y acierta en 45 de sus predicciones ¿Presentan estos datos evidencia concluyente $(con\quad\alpha=0.04)$ de que la exactitud de sus predicciones es significativamente menor que el 85% declarado?
+
+\textbf{\underline{Solución:}}
+
+Queremos saber si las predicciones de la corredora de bolsa son acertadas. Establecemos la siguiente hipótesis:
+
+$H_o$ : $p_o = 0.85 \quad \text{Afirmación  de la proporción de las predicciones}$
+
+$H_a$: $p_o < 0.85 \quad \text{Proporción de las predicciones que no cumplen con la afirmación}$
+
+$\alpha = 0.04$
+
+La prueba apropiada es una prueba de proporciones de una cola. El estadístico de prueba a usar está dado por:
+
+$$\mathcal{P} = \displaystyle \frac{(\bar{p}-p_o)\sqrt{n}}{\sqrt{p_o(1-p_o)}}$$
+Donde el valor crítico está dado por $z_{0.04} = -1.75$ y además:
+
+$\bar{p} = \displaystyle \frac{45}{60} = 0.75 \quad \text{Proporción de la muestra}$
+
+$p_o = 0.85$
+
+Sustituyendo los valores tenemos:
+
+$$
+\begin{array}{rl}
+\mathcal{P} &= \displaystyle \frac{(0.75 - 0.85) \sqrt{60}}{\sqrt{0.85 \times 0.15}} \\
+\\
+&= \displaystyle \frac{-0.1\sqrt{60}}{\sqrt{0.1275}} \\
+\\
+&=  -2.16 \\
+\end{array}
+$$
+Como el valor crítico es de -1.75 tenemos que, -2.16 < -1.75, por lo que rechazamos la hipótesis nula. Lo que implica que las predicciones son significativamente menor que el 85% declarado.
 
 \newpage
 
@@ -929,17 +1303,148 @@ Una corredora de bolsa afirma que puede predecir, con el 85% de certeza, el asce
 
 En 1993, el Consejo de Estándares para Contabilidad Financiera (CECF) consideró una propuesta para requerir que las compañías informaran el efecto potencial de la opción de compra de acciones de los empleados sobre los ingresos por acción (IPA).  Una muestra aleatoria de 41 empresas de alta tecnología (AT) reveló que la nueva propuesta reduciría el IPA en un promedio del 13.8%, con una desviación estándar del 18.9%.  Una muestra aleatoria de 35 productores de bienes de consumo (BC) mostró que la propuesta reduciría el IPA en 9.1% en promedio, con desviación estándar del 8.7%.  Con base en estas muestras, ¿es razonable concluir $(para\quad\alpha=0.10)$ que la propuesta de la CECF causaría una mayor reducción en el IPA para las empresas de alta tecnología que para los productores de bienes de consumo?
 
+\textbf{\underline{Solución:}}
+
+Queremos saber si la propuesta de la CECF causaría una mayor reducción en el IPA para las empresas de (AT) que para los productores de bienes de consumo. Establecemos la siguiente hipótesis:
+
+$H_o$ : $\mu_1 = \mu_2 \quad \text{Misma reducción para ambas}$
+
+$H_a$: $\mu_1 > \mu_2 \quad \text{Mayor reducción para (AT) que (BC)}$
+
+$\alpha = 0.1$
+
+La prueba apropiada es una prueba para diferencias entre medias de una cola. El estadístico de prueba a usar está dado por:
+
+$$\mathcal{Z} = \displaystyle \frac{(\bar{x}_1-\bar{x}_2)-(\mu_1-\mu_2)}{\sqrt{\displaystyle \frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}}}$$
+Donde el valor crítico está dado por $z_{0.01} = 1.28$ y además:
+
+$\bar{x}_1 = 0.138 \quad \text{Media muestra 1}$
+
+$\bar{x}_2 = 0.091 \quad \text{Media muestra 2}$
+
+$s_1 = 0.189 \quad \text{Desviación estándar muestra 2}$
+
+$s_2 = 0.087 \quad \text{Desviación estándar muestra 1}$
+
+$n_1 = 41 \quad \text{Tamaño muestra 1}$
+
+$n_2 = 35 \quad \text{Tamaño muestra 2}$
+
+$\mu_1 - \mu_2 = 0$
+
+Sustituyendo estos valores tenemos:
+
+$$
+\begin{array}{rl}
+\mathcal{Z} &= \displaystyle \frac{0.138-0.091}{\sqrt{\displaystyle \frac{0.0357}{41}+\frac{0.007569}{35}}} \\
+\\
+&= \displaystyle \frac{0.047}{0.0329} \\
+\\
+&= 1.42 \\
+\end{array}
+$$
+Como el valor crítico es de 1.28 tenemos que, 1.42 > 1.28, por lo que rechazamos la hipótesis nula. Por lo que la propuesta de la CECF causaría una mayor reducción en el IPA para las empresas de alta tecnología (AT).
+
+
 \newpage
 
 # Ejercicio 39
 
 El 1 de enero de 1996 se tomó una muestra de 32 fondos mutualistas de la bolsa de valores, y se encontró que la tasa promedio de rendimiento anual durante los 30 días anteriores fue del 3,23%, con una desviación estándar de la muestra del 0.51%.  Un año antes, una muestra de 38 fondos mutualistas indicó una tasa promedio de rendimiento del 4.36%, con una desviación estándar de la muestra del 0.84%.  ¿Es razonable llegar a la conclusión (a un nivel$\alpha=0.05)$ de que las tasas de interés del mercado de dinero declinaron durante 1995?
 
+\textbf{\underline{Solución:}}
+
+Veamos si las tasas de interés del mercado declinaron durante 1995. Establecemos la siguiente hipótesis:
+
+$H_o$ : $\mu_1 = \mu_2 \quad \text{Tasas de interés iguales}$
+
+$H_a$: $\mu_1 - \mu_2 < 0 \quad \text{Diferencias de las tasas de interés menor a 0\%}$
+
+$\alpha = 0.05$
+
+La prueba apropiada es una prueba para diferencias entre medias de una cola. El estadístico de prueba a usar está dado por:
+
+$$\mathcal{Z} = \displaystyle \frac{(\bar{x}_1-\bar{x}_2)-(\mu_1-\mu_2)}{\sqrt{\displaystyle \frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}}}$$
+Donde el valor crítico está dado por $z_{0.05} = -1.64$ y además:
+
+$\bar{x}_1 = 0.0323 \quad \text{Media muestra 1}$
+
+$\bar{x}_2 = 0.0436 \quad \text{Media muestra 2}$
+
+$s_1 = 0.0051 \quad \text{Desviación estándar muestra 2}$
+
+$s_2 = 0.0084 \quad \text{Desviación estándar muestra 1}$
+
+$n_1 = 32 \quad \text{Tamaño muestra 1}$
+
+$n_2 = 38 \quad \text{Tamaño muestra 2}$
+
+$\mu_1 - \mu_2 = 0$
+
+Sustituyendo estos valores tenemos:
+
+$$
+\begin{array}{rl}
+\mathcal{Z} &= \displaystyle \frac{0.0323-0.0436}{\sqrt{\displaystyle \frac{0.00002601}{32}+\frac{0.00007056}{38}}} \\
+\\
+&= \displaystyle \frac{-0.0113}{0.001633} \\
+\\
+&=  -6.91\\
+\end{array}
+$$
+Como el valor crítico es de -1.64 tenemos que, -6.91 < -1.64, por lo que rechazamos la hipótesis nula. Por lo que las tasas de interés del mercado declinaron en el año 1995 con un nivel de significancia de $\alpha = 0.05$. 
+
 \newpage
 
 # Ejercicio 40
 
 Una organización de crédito y seguros ha desarrollado un nuevo método de alta tecnología para capacitar al nuevo personal de ventas.  La compañía obtuvo una muestra de 16 empleados capacitados de la manera original y encontró ventas diarias promedio de \$688 con desviación estándar de la muestra de \$32.63.  También tomaron una muestra de 11 empleados capacitados con el método nuevo y encontraron un promedio de ventas diarias de \$706 con desviación estándar de la muestra de \$24.84.  Para $\alpha=0.05$, ¿puede la compañía concluir que el promedio diario de ventas aumenta con el nuevo plan?
+
+\textbf{\underline{Solución:}}
+
+Veamos si el promedio diario de ventas aumenta con el nuevo plan. Establecemos la siguiente hipótesis:
+
+$H_o$ : $\mu_1 = \mu_2 \quad \text{El promedio de ventas que no tuvo variación}$
+
+$H_a$: $\mu_1 - \mu_2 < 0 \quad \text{Promedio de ventas que aumentaron con el nuevo plan}$
+
+$\alpha = 0.05$
+
+La prueba apropiada es una prueba para diferencias entre medias para muestras pequeñas de una cola. El estadístico de prueba a usar está dado por:
+
+$$\mathcal{T} = \displaystyle \frac{(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)}{S\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$$
+
+Donde el valor crítico está dado por el valor negativo de $t_{0.05}$ con $n_1 + n_2 -2$ grados de libertad y además:
+
+$S = \sqrt{\displaystyle \frac{(n_1 - 1)s^2_1 + (n_2 - 1)s^2_2}{n_1 + n_2 -2}}$
+
+$\bar{x}_1 = 688\$ \quad \text{Media muestra 1}$
+
+$\bar{x}_2 = 706\$ \quad \text{Media muestra 2}$
+
+$s_1 = 32.63\$ \quad \text{Desviación estándar muestra 2}$
+
+$s_2 = 24.84\$ \quad \text{Desviación estándar muestra 1}$
+
+$n_1 = 16 \quad \text{Tamaño muestra 1}$
+
+$n_2 = 11 \quad \text{Tamaño muestra 2}$
+
+$\mu_1 - \mu_2 = 0$
+
+Sustituyendo estos valores en el estadístico y sabiendo que $t_{0.05} = -1.708$ tenemos:
+
+$$
+\begin{array}{rl}
+\mathcal{T} &= \displaystyle \frac{688 - 706}{29.75 \times \sqrt{\frac{1}{16}+\frac{1}{11}}} \\
+\\
+&= \displaystyle \frac{-18}{11.65} \\
+\\
+&= -1.54
+\end{array}
+$$
+Como el valor crítico es de -1.708 tenemos que, -1.54 > -1.708, por lo que no rechazamos la hipótesis nula. Por lo que el promedio diario de ventas no ha aumentado de forma significativa.
+
 
 \newpage
 
@@ -959,11 +1464,106 @@ c) ¿Fueron diferentes los ingresos medios por acción en 1991 y 1992? Pruebe co
 | Ingreso de 1991 | 1.38 | 1.26 | 3.64 | 3.50 | 2.47 | 3.21 | 1.05 | 1.98 | 2.72 |
 | Ingreso de 1992 | 2.48 | 1.50 | 4.59 | 3.06 | 2.11 | 2.80 | 1.59 | 0.92 | 0.47 |
 
+\textbf{\underline{Solución:}}
+
+a) Calculemos la media de las diferencias de los ingresos de las empresas entre el año 1991 y 1992 usando **R**, tenemos:
+
+```{r,comment=''}
+Ing1991<-c(1.38,1.26,3.64,3.50,2.47,3.21,1.05,1.98,2.72)
+Ing1992<-c(2.48,1.50,4.59,3.06,2.11,2.80,1.59,0.92,0.47)
+Dif<-Ing1992-Ing1991
+mean(Dif)
+```
+
+b) Calculemos la desviación estándar de las diferencias y del error de la media en **R**.
+
+La desviación estándar de las diferencias es:
+```{r,comment=''}
+sd(Dif)
+```
+
+La desviación estándar del error de la media es:
+```{r,comment=''}
+sd(Dif)/sqrt(9)
+```
+
+c) Queremos saber si los ingresos medios fueron diferentes. Establecemos la siguiente hipótesis:
+
+$H_o$ : $\mu_1 - \mu_2 = 0 \quad \text{Ingresos medios iguales}$
+
+$H_a$: $\mu_1 - \mu_2 \neq 0 \quad \text{Ingresos medios distintos}$
+
+$\alpha = 0.02$
+
+La prueba apropiada es una prueba para diferencias entre medias para muestras pequeñas y dependientes de dos colas. El estadístico de prueba a usar está dado por:
+
+$$\mathcal{T} = \displaystyle \frac{[(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)] \sqrt{n}}{s_d}$$
+Donde el valor crítico está dado por $\pm t_{0.02}$ con $n-1$ grados de libertad y además:
+
+$\bar{x}_1 - \bar{x}_2 = -0.187 \quad \text{Diferencia entre las muestras}$
+
+$n = 9 \quad \text{Tamaño de la muesta}$
+
+$s_d = 1.05 \quad \text{Desviación estándar de las diferencias de las muestras}$
+
+$\mu_1 - \mu_2 = 0$
+
+Sustituyendo estos valores en el estadístico y sabiendo que $t_{0.02} = \pm 2.896$ tenemos:
+
+$$
+\begin{array}{rl}
+\mathcal{T} &= \displaystyle \frac{-0.187}{0.35} \\
+\\
+&= -0.53 \\
+\end{array}
+$$
+Como el valor crítico es de -2.896 tenemos que, -0.53 > -2.896, por lo que no rechazamos la hipótesis nula. Lo que implica que los ingresos medios no fueron significativamente diferentes.
+
 \newpage
  
 # Ejercicio 42
 
 El viernes, aumento el precio (avanzaron) de 11 acciones de una muestra aleatoria de 40 tomada de las 2,500 acciones negociadas en la Bolsa de Valores de Nueva York.  En una muestra tomada el jueves, de 60 acciones de la misma Bolsa, 24 acciones avanzaron.  A un nivel $\alpha=0.10,$ ¿puede llegar a la conclusión de que una proporción menor de las acciones de la Bolsa de Valores avanzaron el viernes con respecto al jueves?
+
+\textbf{\underline{Solución:}}
+
+Queremos saber si la proporción de las acciones que avanzaron el viernes es menor que la proporción que avanzó el jueves. Establecemos la siguiente hipótesis:
+
+$H_o$ : $p_1 = p_2 \quad \text{Misma proporción entre estos dos días}$
+
+$H_a$: $p_1 < p_2  \quad \text{Proporción del viernes menor que la del jueves}$
+
+$\alpha = 0.1$
+
+La prueba apropiada es una prueba para diferencias entre proporciones de una cola. El estadístico de prueba a usar está dado por:
+
+$$\mathcal{P} = \displaystyle \frac{(\bar{p}_1 - \bar{p}_2) - (p_1 - p_2)}{\sqrt{\displaystyle \frac{\hat{p}(1-\hat{p})}{n_1} + \frac{\hat{p}(1-\hat{p})}{n_2}}}$$
+Donde el valor crítico está dado por el valor negativo de $z_{0.1}$ y además:
+
+$\hat{p} = \displaystyle \frac{n_1\bar{p}_1 + n_2\bar{p}_2}{n_1 + n_2}$
+
+$\bar{p}_1 = \displaystyle \frac{11}{40} = 0.275 \quad \text{Proporción muestra 1}$
+
+$\bar{p}_2 = \displaystyle \frac{24}{60} = 0.4 \quad \text{Proporción muestra 2}$
+
+$n_1 = 40 \quad \text{Tamaño de la muesta 1}$
+
+$n_2 = 60 \quad \text{Tamaño de la muesta 2}$
+
+$p_1-p_2 =0$
+
+Sustituyendo estos valores en el estadístico y sabiendo que $z_{0.1} = -1.28$ tenemos:
+
+$$
+\begin{array}{rl}
+\mathcal{P} &= \displaystyle \frac{0.275-0.4}{\sqrt{\displaystyle \frac{0.35 \times 0.65}{40} + \frac{0.35 \times 0.65}{60}}} \\
+\\
+&= \displaystyle \frac{-0.125}{0.097} \\
+\\
+&= -1.288
+\end{array}
+$$
+Como el valor crítico es de -1.28 tenemos que, -1.288 < -1.28, por lo que rechazamos la hipótesis nula. Lo que implica que una proporción más pequeña avanzó el viernes.
 
 \newpage
 
@@ -971,11 +1571,127 @@ El viernes, aumento el precio (avanzaron) de 11 acciones de una muestra aleatori
 
 MacroSwift acaba de liberar al mercado un nuevo procesador de textos y la compañía está interesada en determinar si las personas en el grupo de edad 30-39 califican al programa de manera distintas a las del grupo 40-49.  MacroSwift muestreó al azar a 175 personas del grupo 30-39 que compraron el producto  y encontró que 87 calificaron al programa como excelente; de ellos 52 comprarían una actualización.  También muestreó a 220 personas del grupo 40-49 y encontró que 94 calificaron al software como excelente; de ellos 37 comprarían una actualización.  ¿Hay una diferencia significativa en las proporciones de personas en los dos grupos de edad que califican al programa como excelente al nivel $\alpha=0.05$? ¿Es cierto el mismo resultado en cuanto a las proporciones de personas que planean comprar una actualización?
 
+\textbf{\underline{Solución:}}
+
+Veamos primero si existe una diferencia significativa en las proporciones de las personas de los dos grupos de edad que califican al programa como excelente. Establecemos la siguiente hipótesis:
+
+$H_o$ : $p_1 - p_2 = 0 \quad \text{Misma proporción entre los dos grupos}$
+
+$H_a$: $p_1 - p_2 \neq 0  \quad \text{Proporciones distintas}$
+
+$\alpha = 0.05$
+
+La prueba apropiada es una prueba para diferencias entre proporciones de dos colas. El estadístico de prueba a usar está dado por:
+
+$$\mathcal{P} = \displaystyle \frac{(\bar{p}_1 - \bar{p}_2) - (p_1 - p_2)}{\sqrt{\displaystyle \frac{\hat{p}(1-\hat{p})}{n_1} + \frac{\hat{p}(1-\hat{p})}{n_2}}}$$
+
+Donde el valor crítico está dado por $\pm z_{0.0250}$ y además:
+
+$\hat{p} = \displaystyle \frac{n_1\bar{p}_1 + n_2\bar{p}_2}{n_1 + n_2}$
+
+$\bar{p}_1 = \displaystyle \frac{87}{175} = 0.497 \quad \text{Proporción muestra 1}$
+
+$\bar{p}_2 = \displaystyle \frac{94}{220} = 0.427 \quad \text{Proporción muestra 2}$
+
+$n_1 = 175 \quad \text{Tamaño de la muesta 1}$
+
+$n_2 = 220 \quad \text{Tamaño de la muesta 2}$
+
+$p_1-p_2 =0$
+
+Sustituyendo estos valores en el estadístico y sabiendo que $z_{0.0250} = \pm 1.96$ tenemos:
+
+$$
+\begin{array}{rl}
+\mathcal{P} &= \displaystyle \frac{0.497-0.427}{\sqrt{\displaystyle \frac{0.458 \times 0.541}{175} + \frac{0.458 \times 0.541}{220}}} \\
+\\
+&= \displaystyle \frac{0.07}{0.05} \\
+\\
+&= 1.4
+\end{array}
+$$
+Como el valor crítico es de 1.96 tenemos que, 1.4 < 1.96, por lo que no rechazamos la hipótesis nula. Lo que implica que no existe una diferencia significativa entre las dos proporciones.
+
+Ahora veamos si existe una diferencia significativa en cuanto a las proporciones de personas que planean comprar una actualización. Establecemos la siguiente hipótesis:
+
+$H_o$ : $p_1 - p_2 = 0 \quad \text{Misma proporción entre los dos grupos}$
+
+$H_a$: $p_1 - p_2 \neq 0  \quad \text{Proporciones distintas}$
+
+$\alpha = 0.05$
+
+Usando el mismo estadístico de prueba, con valor crítico dado por $z_{0.0250} = \pm 1.96$ tenemos:
+
+$\bar{p}_1 = \displaystyle \frac{52}{87} = 0.597 \quad \text{Proporción muestra 1}$
+
+$\bar{p}_2 = \displaystyle \frac{37}{94} = 0.393 \quad \text{Proporción muestra 2}$
+
+$n_1 = 87 \quad \text{Tamaño de la muesta 1}$
+
+$n_2 = 94 \quad \text{Tamaño de la muesta 2}$
+
+$p_1-p_2 =0$
+
+Sustituyendo nos queda:
+
+$$
+\begin{array}{rl}
+\mathcal{P} &= \displaystyle \frac{0.597-0.393}{\sqrt{\displaystyle \frac{0.491 \times 0.508}{87} + \frac{0.491 \times 0.508}{94}}} \\
+\\
+&= \displaystyle \frac{0.204}{0.074} \\
+\\
+&= 2.75
+\end{array}
+$$
+Como el valor crítico es de 1.96 tenemos que, 2.75 > 1.96, por lo que rechazamos la hipótesis nula. Lo que implica que existe una diferencia significativa entre las dos proporciones.
+
+
 \newpage
 
 # Ejercicio 44
 
 La compañía Ben & Jerry´s Homemade, es una empresa que se dedica a la venta de helados no convencionales, con sabores extravagantes como el de galleta con chispas de chocolate.  En un artículo en The Wall Street Journal se consigna que parte del éxito de la compañía se debe a que atrae a los adultos jóvenes (quienes presumiblemente serán fieles a la compañía durante su periodo pico de consumo de helados).  Suponga que un investigador de mercado lleva a cabo una encuesta a la salida de un supermercado y hace una solo pregunta a 200 compradores consecutivos del helado Ben & Jerry´s y a 200 compradores de la marca competidora de Haagen-Daz de Grand Metropolitan: "¿Tiene usted menos de 25 años?" Si el 7% de los aficionados al helado de Ben & Jerry´s dice "sí" y solamente el 3% de los aficionados al otro helado dice "sí", ¿esto confirma la conclusión del artículo, para 10% de nivel de significancia?
+
+\textbf{\underline{Solución:}}
+
+Veamos si la proporción de adultos jóvenes es una parte del éxito de la compañía. Establecemos la siguiente hipótesis:
+
+$H_o$ : $p_1 - p_2 \leq 0 \quad \text{Misma ó menor proporción de jóvenes que prefieren Ben \& Jerry's al de Haagen-Daz}$
+
+$H_a$: $p_1 > p_2  \quad \text{ Mayor proporción de jóvenes que prefieren Ben \& Jerry's al de Haagen-Daz}$
+
+$\alpha = 0.1$
+
+La prueba apropiada es una prueba para diferencias entre proporciones de una cola. El estadístico de prueba a usar está dado por:
+
+$$\mathcal{P} = \displaystyle \frac{(\bar{p}_1 - \bar{p}_2) - (p_1 - p_2)}{\sqrt{\displaystyle \frac{\hat{p}(1-\hat{p})}{n_1} + \frac{\hat{p}(1-\hat{p})}{n_2}}}$$
+
+Donde el valor crítico está dado por $z_{0.1}$ y además:
+
+$\hat{p} = \displaystyle \frac{n_1\bar{p}_1 + n_2\bar{p}_2}{n_1 + n_2}$
+
+$\bar{p}_1 = 0.07 \quad \text{Proporción muestra 1}$
+
+$\bar{p}_2 = 0.03 \quad \text{Proporción muestra 2}$
+
+$n_1 = 200 \quad \text{Tamaño de la muesta 1}$
+
+$n_2 = 200 \quad \text{Tamaño de la muesta 2}$
+
+$p_1-p_2 =0$
+
+Sustituyendo estos valores en el estadístico y sabiendo que $z_{0.1} = 1.28$ tenemos:
+
+$$
+\begin{array}{rl}
+\mathcal{P} &= \displaystyle \frac{0.07-0.03}{\sqrt{\displaystyle \frac{0.05 \times 0.95}{200} + \frac{0.05 \times 0.95}{200}}} \\
+\\
+&= \displaystyle \frac{0.04}{0.021} \\
+\\
+&= 1.90
+\end{array}
+$$
+Como el valor crítico es de 1.28 tenemos que, 1.90 > 1.28, por lo que rechazamos la hipótesis nula. Lo que implica que con estos datos se confirma la conclusión del artículo.
 
 \newpage
 
@@ -989,11 +1705,96 @@ Considere los datos de la tabla que sigue.  En los primeros tres meses 1993, la 
 | Porcentaje de autos importados |             52.5             |          53.8         |
 | Total de unidades vendidas     |            373,842           |        372,442        |
 
+\textbf{\underline{Solución:}}
+
+Queremos saber si es significativo el cambio de porcentaje de mercado de automóviles importados con respecto a los domésticos. Establecemos la siguiente hipótesis:
+
+$H_o$ : $\mu_1 - \mu_2 = 0 \quad \text{Ventas medias iguales}$
+
+$H_a$: $\mu_1 - \mu_2 \neq 0 \quad \text{Ventas medias distintas}$
+
+$\alpha = 0.05$
+
+La prueba apropiada es una prueba para diferencias entre medias para muestras pequeñas y dependientes de dos colas. El estadístico de prueba a usar está dado por:
+
+$$\mathcal{T} = \displaystyle \frac{[(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)] \sqrt{n}}{s_d}$$
+
+Donde el valor crítico está dado por $\pm t_{0.05}$ con $n-1$ grados de libertad y además:
+
+$\bar{x}_1 - \bar{x}_2 = 46.85 - 53.15 = -6.3 \quad \text{Diferencia entre las muestras}$
+
+$n = 2 \quad \text{Tamaño de la muesta}$
+
+$s_d \quad \text{Desviación estándar de las diferencias de las muestras}$
+
+$\mu_1 - \mu_2 = 0$
+
+Para calcular la desviación estándar usamos:
+
+```{r,comment=''}
+Nacionales<-c(47.5,46.2)
+Importados<-c(52.5,53.8)
+Dif1<-Nacionales-Importados
+sd(Dif1)
+```
+
+Sustituyendo estos valores en el estadístico y sabiendo que $t_{0.05} = \pm 12.71$ tenemos:
+
+$$
+\begin{array}{rl}
+\mathcal{T} &= \displaystyle \frac{-6.3 \sqrt{2}}{1.838} \\
+\\
+&= -4.84 \\
+\end{array}
+$$
+Como el valor crítico es de -12.71 tenemos que, -4.84 > -12.71, por lo que no rechazamos la hipótesis nula. Lo que implica que no hubo un cambio significativo en las ventas de autos.
+
 \newpage
 
 # Ejercicio 46
 
-En octubre de 1992, una investigación entre 120 macroeconomistas indicó que 87 de ellos creían que la recesión ya había terminado.  Una investigación de 150 agentes de adquisiones encontró que 89 de éstos creían que la recesión ya había terminado.  Al nivel $\alpha=0.10,$ ¿se puede concluir que los agentes de adquisiones eran más pesimistas acerca de la economía de Estados Unidos que los macroeconomistas?
+En octubre de 1992, una investigación entre 120 macroeconomistas indicó que 87 de ellos creían que la recesión ya había terminado.  Una investigación de 150 agentes de adquisiciones encontró que 89 de éstos creían que la recesión ya había terminado.  Al nivel $\alpha=0.10,$ ¿se puede concluir que los agentes de adquisiones eran más pesimistas acerca de la economía de Estados Unidos que los macroeconomistas?
+
+\textbf{\underline{Solución:}}
+
+Queremos saber si se puede concluir que los agentes de adquisiciones eran más pesimistas (ó lo que es lo mismo a menos optimistas) que los macroeconomistas acerca de la economía de Estados Unidos. Establcemos la siguiente hipótesis:
+
+$H_o$ : $p_1 - p_2 = 0 \quad \text{Igual proporción entre los agentes y macroeconomistas}$
+
+$H_a$: $p_1 < p_2  \quad \text{Proporción de agentes menos optimistas que los macroeconomistas}$
+
+$\alpha = 0.1$
+
+La prueba apropiada es una prueba para diferencias entre proporciones de una cola. El estadístico de prueba a usar está dado por:
+
+$$\mathcal{P} = \displaystyle \frac{(\bar{p}_1 - \bar{p}_2) - (p_1 - p_2)}{\sqrt{\displaystyle \frac{\hat{p}(1-\hat{p})}{n_1} + \frac{\hat{p}(1-\hat{p})}{n_2}}}$$
+Donde el valor crítico está dado por el valor negativo de $z_{0.1}$ y además:
+
+$\hat{p} = \displaystyle \frac{n_1\bar{p}_1 + n_2\bar{p}_2}{n_1 + n_2}$
+
+$\bar{p}_1 = \displaystyle \frac{89}{150} = 0.593 \quad \text{Proporción muestra 1}$
+
+$\bar{p}_2 = \displaystyle  \frac{87}{120} = 0.725 \quad \text{Proporción muestra 2}$
+
+$n_1 = 150 \quad \text{Tamaño de la muesta 1}$
+
+$n_2 = 120 \quad \text{Tamaño de la muesta 2}$
+
+$p_1-p_2 =0$
+
+Sustituyendo estos valores en el estadístico y sabiendo que $z_{0.1} = -1.28$ tenemos:
+
+$$
+\begin{array}{rl}
+\mathcal{P} &= \displaystyle \frac{0.593-0.725}{\sqrt{\displaystyle \frac{0.65 \times 0.35}{150} + \frac{0.65 \times 0.35}{120}}} \\
+\\
+&= \displaystyle \frac{-0.132}{0.058} \\
+\\
+&= -2.27
+\end{array}
+$$
+Como el valor crítico es de -1.28 tenemos que, -2.27 < -1.28, por lo que rechazamos la hipótesis nula. Lo que implica que los agentes de adquisiciones eran menos optimistas que los macroeconomistas.
+
 
 \newpage
 
@@ -1018,6 +1819,73 @@ Los largometrajes de animación proporciona grandes ganancias a The Walt Disney 
 | El Gran Ratón Detective            | Disney                | 24,2 |
 | Los Rescatadores                   | Disney                | 21.1 |
 | Patoaventuras                      | Disney                | 18.1 |
+
+Para $\alpha = 0.05$, ¿estos datos apoyan la conclusión de que "aun excluyendo los grandes éxitos, las películas animadas de Disney ganan más que la competencia?".
+
+\textbf{\underline{Solución:}}
+
+Veamos si las películas de Disney ganan más que la competencia. Establecemos la siguiente hipótesis:
+
+$H_o$ : $\mu_1 = \mu_2 \quad \text{El promedio de ganancias no varía}$
+
+$H_a$: $\mu_1 > \mu_2 \quad \text{Promedio de ganancias de Disney mayor al resto}$
+
+$\alpha = 0.05$
+
+La prueba apropiada es una prueba para diferencias entre medias para muestras pequeñas de una cola. El estadístico de prueba a usar está dado por:
+
+$$\mathcal{T} = \displaystyle \frac{(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)}{S\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$$
+
+Donde el valor crítico está dado $t_{0.05}$ con $n_1 + n_2 -2$ grados de libertad y además:
+
+$S = \sqrt{\displaystyle \frac{(n_1 - 1)s^2_1 + (n_2 - 1)s^2_2}{n_1 + n_2 -2}}$
+
+$\bar{x}_1 \quad \text{Media muestra 1}$
+
+$\bar{x}_2 \quad \text{Media muestra 2}$
+
+$s_1 \quad \text{Desviación estándar muestra 2}$
+
+$s_2 \quad \text{Desviación estándar muestra 1}$
+
+$n_1 = 5 \quad \text{Tamaño muestra 1}$
+
+$n_2 = 11 \quad \text{Tamaño muestra 2}$
+
+$\mu_1 - \mu_2 = 0$
+
+Calculemos $\bar{x}_1, \bar{x}_2, s_1, s_2$ mediante **R**:
+
+```{r,comment=""}
+mDisney<-c(52.6,27.8,24.2,21.1,18.1)
+mediaD<-mean(mDisney)
+mediaD
+```
+
+```{r,comment=""}
+mcompe<-c(44.9,26.2,20.9,20.2,13.7,11.6,7.5,5.4,2.7,2.2,1.4)
+mediacomp<-mean(mcompe)
+mediacomp
+```
+
+```{r,comment=""}
+sd(mDisney)
+sd(mcompe)
+```
+
+Sustituyendo estos valores en el estadístico y sabiendo que $t_{0.05} = 1.761$ tenemos:
+
+$$
+\begin{array}{rl}
+\mathcal{T} &= \displaystyle \frac{28.76 - 14.24}{13.35 \times \sqrt{\frac{1}{5}+\frac{1}{11}}} \\
+\\
+&= \displaystyle \frac{14.52}{7.2} \\
+\\
+&= 2.01
+\end{array}
+$$
+Como el valor crítico es de 1.761 tenemos que, 2.01 > 1.761, por lo que rechazamos la hipótesis nula. Por lo que las películas animadas de Disney ganan más que la competencia aún excluyendo los grandes éxitos.
+
 
 \newpage
 
@@ -1050,6 +1918,52 @@ El promedio de Transporte Dow-Jones está basado en los precios de cierre de las
 | XTRA                     |     40.125     |     38.500     |
 | Average Price            |     47.156     |     47.150     |
 
+\textbf{\underline{Solución:}}
+
+Veamos si la disminución de las acciones fueron significativas. Establecemos la siguiente hipótesis:
+
+$H_o$ : $\mu_1 - \mu_2 = 0 \quad \text{Sin diferencias significativas}$
+
+$H_a$: $\mu_1 - \mu_2 \neq 0 \quad \text{Diferencias significativas}$
+
+La prueba apropiada es una prueba para diferencias entre medias para muestras pequeñas y dependientes de dos colas. El estadístico de prueba a usar está dado por:
+
+$$\mathcal{T} = \displaystyle \frac{[(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)] \sqrt{n}}{s_d}$$
+
+Donde,
+
+$\bar{x}_1 - \bar{x}_2 = 47,150\$ - 47.156\$ = -6\$  \quad \text{Diferencia entre las muestras}$
+
+$n = 20 \quad \text{Tamaño de la muesta}$
+
+$s_d \text{Desviación estándar de las diferencias de las muestras}$
+
+$\mu_1 - \mu_2 = 0$
+
+Calculemos $s_d$ mediante **R**:
+
+```{r,comment=''}
+Cierre1<-c(23500,16750,50750,71625,53875,13125,51375,15375,71125,60250,
+           49750,61875,54750,27250,16750,40375,138750,63250,22500,40125)
+Cierre2<-c(23375,16625,52000,71875,54000,13000,51875,15625,70750,60750,
+           49375,61250,55000,27125,17000,40500,138750,63000,22625,38500)
+Dif2<-Cierre2-Cierre1
+sd(Dif2)
+```
+
+
+Sustituyendo estos valores en el estadístico tenemos:
+
+$$
+\begin{array}{rl}
+\mathcal{T} &= \displaystyle \frac{-6 \sqrt{20}}{552.32} \\
+\\
+&= -0.048 \\
+\end{array}
+$$
+El valor del estadístico de prueba (-0.048) es muy cercano a cero. Por lo que la disminución observada no es muy significativa (es decir, tomamos a H_o como cierta).
+
+
 \newpage
 
 # Ejercicio 49
@@ -1058,17 +1972,133 @@ En un estudio económico se trata de determinar si los proyectos industriales te
 
 Una muestra tomada de 16 industrias textiles, indicó que los nuevos empleos por cada millón de bolívares de inversión fueron 400, con desviación típica de 20.  En una muestra de 14 industrias de muebles se generaron 380 empleos por cada millón de bolívares invertidos, con desviación típica de 18.  Suponiendo $\sigma^2_x=\sigma^2_y=\sigma^2$ el estudio concluyó que los proyectos textiles generaban un 6% más de empleos que los otros.  ¿Se justifica la conclusión? ¿Podría ser rechazada la hipótesis de igualdad de la creación media de empleos con $\sigma=0.05$?
 
+\textbf{\underline{Solución:}}
+
+Veamos si las industrias textiles generan más empleos que las industrias de muebles. Establecemos la siguiente hipótesis:
+
+$H_o$ : $\mu_1 = \mu_2 \quad \text{El promedio de empleos no varía}$
+
+$H_a$: $\mu_1 > \mu_2 \quad \text{Promedio de empleos textiles mayor al de muebles}$
+
+$\alpha = 0.06$
+
+La prueba apropiada es una prueba para diferencias entre medias para muestras pequeñas de una cola. El estadístico de prueba a usar está dado por:
+
+$$\mathcal{T} = \displaystyle \frac{(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)}{S\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$$
+
+Donde el valor crítico está dado $t_{0.06}$ con $n_1 + n_2 -2$ grados de libertad y además:
+
+$S = \sqrt{\displaystyle \frac{(n_1 - 1)s^2_1 + (n_2 - 1)s^2_2}{n_1 + n_2 -2}}$
+
+$\bar{x}_1 = 400 \quad \text{Media muestra 1}$
+
+$\bar{x}_2 = 380 \quad \text{Media muestra 2}$
+
+$s_1 = 20 \quad \text{Desviación estándar muestra 2}$
+
+$s_2 = 18 \quad \text{Desviación estándar muestra 1}$
+
+$n_1 = 16 \quad \text{Tamaño muestra 1}$
+
+$n_2 = 14 \quad \text{Tamaño muestra 2}$
+
+$\mu_1 - \mu_2 = 0$
+
+Sustituyendo estos valores en el estadístico y sabiendo que $t_{0.06} = 1.8$ tenemos:
+
+$$
+\begin{array}{rl}
+\mathcal{T} &= \displaystyle \frac{400 - 380}{19.097 \times \sqrt{\frac{1}{16}+\frac{1}{14}}} \\
+\\
+&= \displaystyle \frac{20}{6.988} \\
+\\
+&= 2.86
+\end{array}
+$$
+
+Como el valor crítico es de 1.8 tenemos que, 2.86 > 1.8, por lo que rechazamos la hipótesis nula. Por lo que la industria textil genera más empleo que las industrias de muebles.
+
 \newpage
 
 # Ejercicio 50
 
 Se desea saber si los mercados de Maracaibo y Caracas son iguales respecto al precio que los consumidores están dispuestos a pagar por un cierto producto.  Suponga las varianzas iguales.  Una muestra de 10 consumidores en Maracaibo dio un precio medio de Bs. 5, con una desviación típica de Bs. 2; en Caracas una muestra de 15 consumidores dio un precio medio de Bs. 5,50, con una desviación típica de Bs. 2,10. $\alpha=0,05.$
 
+\textbf{\underline{Solución:}}
+
+Queremos saber si los mercados de las dos ciudades son iguales con respecto al precio que los consumidores están dispuestos a pagar. Establecemos la siguiente hipótesis:
+
+$H_0 : \mu_1 - \mu_2 = 0 \quad \text{Mercados iguales}$
+
+$H_a : \mu_1 -\mu_2 \neq 0 \quad \text{Mercados distintos}$
+
+$\alpha=0.05$
+
+La prueba apropiada es una prueba para diferencias entre medias para muestras pequeñas de dos colas. El estadístico de prueba a usar está dado por:
+
+$$\mathcal{T} = \displaystyle \frac{(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)}{S\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$$
+
+Donde el valor crítico está dado $\pm t_{0.05}$ con $n_1 + n_2 -2$ grados de libertad y además:
+
+$S = \sqrt{\displaystyle \frac{(n_1 - 1)s^2_1 + (n_2 - 1)s^2_2}{n_1 + n_2 -2}}$
+
+$\bar{x}_1 = 5 \quad \text{Media muestra 1}$
+
+$\bar{x}_2 = 5.50 \quad \text{Media muestra 2}$
+
+$s_1 = 2 \quad \text{Desviación estándar muestra 2}$
+
+$s_2 = 2.10 \quad \text{Desviación estándar muestra 1}$
+
+$n_1 = 10 \quad \text{Tamaño muestra 1}$
+
+$n_2 = 15 \quad \text{Tamaño muestra 2}$
+
+$\mu_1 - \mu_2 = 0$
+
+Sustituyendo estos valores en el estadístico y sabiendo que $t_{0.05} = \pm 2.069$ tenemos:
+
+$$
+\begin{array}{rl}
+\mathcal{T} &= \displaystyle \frac{5 - 5.50}{2.06 \times \sqrt{\frac{1}{10}+\frac{1}{15}}} \\
+\\
+&= \displaystyle \frac{-0.5}{1.06} \\
+\\
+&= -0.47
+\end{array}
+$$
+Como el valor crítico es de 2.069 tenemos que, -0.47 > -2.069, por lo que no rechazamos la hipótesis nula. Por lo que los mercados en las dos ciudades son iguales.
+
 \newpage
 
 # Ejercicio 51
 
-En una ciudad se escogió una muestra aleatoria de 121 personas para preguntarles el precio que estarían dispuestas a pagar por un determinado artículo, dando una media de Bs. 5,50, con una desviación típica de Bs. 0,50.  En otra ciudad una muestra de 61 personas dio una media de Bs. 5, con una desviación típica de Bs. 0,37. ¿Hay diferencia significativa en las varianzas de los precios? $\alpha=o,05.$
+En una ciudad se escogió una muestra aleatoria de 121 personas para preguntarles el precio que estarían dispuestas a pagar por un determinado artículo, dando una media de Bs. 5,50, con una desviación típica de Bs. 0,50.  En otra ciudad una muestra de 61 personas dio una media de Bs. 5, con una desviación típica de Bs. 0,37. ¿Hay diferencia significativa en las varianzas de los precios? $\alpha=0.05.$
+
+\textbf{\underline{Solución:}}
+
+Cómo tenemos una comparación de varianzas entre las poblaciones, el estadístico que adecuado para esta prueba es el estadístico $F$, donde la prueba de hipótesis es la siguiente,
+
+$H_0:\sigma_1^2=\sigma_1^2$
+
+$H_a: \sigma_1^2 \ne \sigma_2^2$
+
+Para $v_1 = n_1 - 1 = 121 - 1 = 120$ grados de libertad de la primera ciudad y $v_2 = n_2 - 1 = 61 - 1 = 60$ grados de libertad para la otra ciudad, entonces el estadístico $F$ es,
+
+$$\mathcal{F}=\displaystyle \frac{s_1^2}{s_2^2}$$
+
+Sustituyendo las varianzas muestrales de cada ciudad, tenemos que,
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \mathcal{F} &=\displaystyle \frac{s_1^2}{s_2^2}\\
+\vspace{3mm} &= \displaystyle \frac{(0.50)^2}{(0.37)^2}\\
+&= 1.83
+\end{array}
+$$
+
+Cómo la hipótesis alternativa es de dos colas, entonces se rechaza la hipótesis nula si $F > F^{v_1}_{v_2,\alpha/2}$. Luego, para un nivel de significancia de 5\% se tiene que $F^{120}_{60,0.025}=1.58$. Cómo $1.83>1.58$, entonces se rechaza la hipótesis nula. Esto quiere decir, que las dos ciudades tienen varianzas significativamente diferentes con un nivel de significancia de 5\%.
+
 
 \newpage
 
@@ -1085,3 +2115,36 @@ Los siguientes datos corresponden a la clasificación de empresas vendedoras de 
 
 a) ¿Según estos datos se podría decir que  la ubicación influye en el volumen de ventas? $\alpha=0.05.$ Calcular el coeficiente de contigencia.
 
+\textbf{\underline{Solución:}}
+
+Veamos si la ubicación influye en el volumen de ventas. Establecemos la siguiente hipótesis:
+
+$H_o$ : $\mu_1 - \mu_2 = 0 \quad \text{Sin diferencias significativas}$
+
+$H_a$: $\mu_1 > \mu_2 \quad \text{Mayor ventas por ubicación}$
+
+La prueba apropiada es una prueba para diferencias entre medias para muestras pequeñas y dependientes de una cola. El estadístico de prueba a usar está dado por:
+
+$$\mathcal{T} = \displaystyle \frac{[(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)] \sqrt{n}}{s_d}$$
+
+Donde,
+
+$\bar{x}_1 - \bar{x}_2 \quad \text{Diferencia entre las muestras}$
+
+$n = 3 \quad \text{Tamaño de la muesta}$
+
+$s_d \quad \text{Desviación estándar de las diferencias de las muestras}$
+
+$\mu_1 - \mu_2 = 0$
+
+Calculemos $\bar{x}_1, \bar{x}_2$ y $s_d$ mediante **R**:
+
+```{r,comment=''}
+zonas<-c(194,257,182)
+ventas<-c(142,346,145)
+Dif3<-zonas-ventas
+mean(Dif3)
+sd(Dif3)
+```
+
+Tenemos que $\bar{x}_1}\bar{x}_2 = 0$, lo que implica que el estadístico de prueba es igual a cero. Por lo que rechazamos la hipótesis nula. La ubicación no influye en el volumen de ventas.
