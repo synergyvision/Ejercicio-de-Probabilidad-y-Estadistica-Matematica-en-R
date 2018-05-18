@@ -1149,6 +1149,7 @@ D. Un investigador quiere probar si la varianza de una población distribuida no
 A) Dado que los rendimientos de los índices del gas natural y los índices de las reservas de petróleo podrían estar correlacionadas y por ende no ser independientes, además de que los rendimientos están normalmente distribuidos, la prueba apropiada es la de comparación de pares de dos colas. El estadístico a usar, el cual es una prueba-$t$ con $n-1$ grados de libertad, está dado por:
 
 $$ \mathcal{T} = \displaystyle \frac{\bar{d} - \mu_{dz}}{s_{\bar{d}}}$$
+
 Donde,
 
 $\bar{d} = \text{media de la muestra de las diferencias de los rendimientos semanales} = \displaystyle \frac{1}{n} \sum_{i=1}^n d_i$
@@ -1166,9 +1167,10 @@ Rechazamos la hipótesis nula si el $t-$estadístico es mayor (ó menor) al valo
 B) Dado que las dos muestras son independientes y normalmente distribuidas, además que las varianzas de las dos poblaciones son iguales, entonces la prueba apropiada es la de diferencia de medias de dos poblaciones con varianzas desconocidas pero iguales de dos colas. El estadístico a usar, el cual es una prueba-$t$ con $n_1 + n_2 - 2$ grados de libertad, está dado por:
 
 $$\mathcal{T} = \displaystyle \frac{\bar{x}_1 - \bar{x}_2 - D_o}{S\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$$
+
 Donde,
 
-$D_o = \mu_1 - \mu_2 \quad \text{en este caso $D_o$=0}$
+$D_o = \mu_1 - \mu_2 \quad \text{en este caso}\ D_o=0$
 
 $S = \sqrt{\displaystyle \frac{(n_1 - 1)s^2_1 + (n_2 - 1)s^2_2}{n_1 + n_2 -2}}$
 
@@ -1179,9 +1181,9 @@ C) Dado que las dos poblaciones están normlamente distribuidas y queremos saber
 $$\mathcal{F} = \displaystyle \frac{s^2_1}{s^2_2}$$
 Donde,
 
-$s^2_1 = \text{Varianza de la muestra de $n_1$ observaciones de la población 1}$
+$s^2_1 = \text{Varianza de la muestra de}\ n_1 \text{observaciones de la población 1}$
 
-$s^2_2 = \text{Varianza de la muestra de $n_2$ observaciones de la población 2}$
+$s^2_2 = \text{Varianza de la muestra de}\ n_2 \text{observaciones de la población 2}$
 
 Rechazamos la hipótesis nula si el $F-$estadístico es mayor al valor crítico.
 
@@ -1195,7 +1197,7 @@ Rechazamos la hipótesis nula si el estadístico de prueba es mayor (ó menor) a
 
 # Ejercicio 28
 
-De un total de 10,200 préstamos otorgados por una unión de crédito de empleados del Estado en el último periodo de cinco años, se muestrearon 350 para determinar qué proporción de los préstamos se otorgaron a mujeres.  Esta muestra indicó que el 39% de los créditos fue dado a empleadas.  Un censo completo de préstamos de hace cinco años mostraba que el 41% de los prestarios eran mujeres.  A un nivel de significancia del 0.02, ¿puede concluir que la proporción de préstamos otorgados a mujeres ha cambiado significativamente en los últimos cinco años?
+De un total de 10.200 préstamos otorgados por una unión de crédito de empleados del Estado en el último periodo de cinco años, se muestrearon 350 para determinar qué proporción de los préstamos se otorgaron a mujeres. Esta muestra indicó que el 39% de los créditos fue dado a empleadas.  Un censo completo de préstamos de hace cinco años mostraba que el 41% de los prestarios eran mujeres.  A un nivel de significancia del 0.02, ¿puede concluir que la proporción de préstamos otorgados a mujeres ha cambiado significativamente en los últimos cinco años?
 
 \textbf{\underline{Solución:}}
 
@@ -1210,6 +1212,7 @@ $\alpha = 0.02$
 La prueba apropiada es una prueba de proporciones de dos colas. El estadístico de prueba a usar está dado por:
 
 $$\mathcal{P} = \displaystyle \frac{(\bar{p}-p_o)\sqrt{n}}{\sqrt{p_o(1-p_o)}}$$
+
 Donde los valores críticos están dados por los valores $\displaystyle \pm z_{\frac{\alpha}{2}}$ y además:
 
 $\bar{p} = 0.39 \quad \text{Proporción de la muestra}$
@@ -1235,7 +1238,7 @@ como el valor crítico negativo es de -2.323 tenemos que, -0.7607 > -2.323, por 
 
 # Ejercicio 29
 
-Algunos teóricos financieros creen que los precios diarios del mercado de valores constituyen una "caminata aleatoria con tendencia positiva".  Si esto es correcto, entonces el promedio industrial Dow Jones debería mostrar una ganancia en más del 50% de todos los días de actividad financiera.  Si el promedio se incrementó en 101 de 175 días escogidos aleatoriamente, ¿qué piensa de la teoría sugerida?  Use un nivel de significancia de 0.01.
+Algunos teóricos financieros creen que los precios diarios del mercado de valores constituyen una "caminata aleatoria con tendencia positiva".  Si esto es correcto, entonces el promedio industrial Dow Jones debería mostrar una ganancia en más del 50% de todos los días de actividad financiera. Si el promedio se incrementó en 101 de 175 días escogidos aleatoriamente, ¿qué piensa de la teoría sugerida?  Use un nivel de significancia de 0.01.
 
 \textbf{\underline{Solución:}}
 
@@ -1322,30 +1325,31 @@ La corredora de bienes raíces Elaine Snyderman tomó una muestra aleatoria de 1
 
 Estableceremos la siguiente hipótesis:
 
-$H_o$ : $\mu_o = 825,000\$$ 
+$H_o$ : $\mu_o = 825000\$$ 
 
-$H_a$: $\mu_o < 825,000\$$ 
+$H_a$: $\mu_o < 825000\$$ 
 
 $\alpha = 0.05$
 
 La prueba apropiada es una prueba de medias con varianza poblacional desconocida de una cola. El estadístico de prueba a usar está dado por:
 
 $$\mathcal{T} = \displaystyle \frac{(\bar{x}-\mu_o)\sqrt{n}}{s}$$
+
 Donde el valor crítico está dado por el valor negativo de $t_{0.05}$ con $n-1$ grados de libertad y además:
 
-$\bar{x} = 780,000\$ \quad \text{Media de la muestra}$
+$\bar{x} = 780000\$ \quad \text{Media de la muestra}$
 
-$s = 49,000\$ \quad \text{Desviación estándar de la muestra}$
+$s = 49000\$ \quad \text{Desviación estándar de la muestra}$
 
-$\mu_o = 825,000\$$
+$\mu_o = 825000\$$
 
 Sustituyendo estos valores en el estadístico y sabiendo que $t_{0.05} = -1.796$, tenemos:
 
 $$
 \begin{array}{rl}
-\mathcal{T} &= \displaystyle \frac{(780,000 - 825,000) \sqrt{12}}{49,000} \\
+\mathcal{T} &= \displaystyle \frac{(780000 - 825000) \sqrt{12}}{49000} \\
 \\
-&= \displaystyle \frac{-45000\sqrt{12}}{49,000} \\
+&= \displaystyle \frac{-45000\sqrt{12}}{49000} \\
 \\
 &= -3.18 \\
 \end{array}
@@ -1357,28 +1361,29 @@ Como el valor crítico es de -1.796 tenemos que, -3.18 < -1.796, por lo que rech
 
 # Ejercicio 32
 
-Con la caída del mercado petrolero de principios de 1986, los educadores del Texas se preocuparon por la forma en que las pérdidas resultantes en los ingresos del Estado (estimadas en cerca de \$100 millones por cada disminución de un dólar en el precio del barril de petróleo) afectarían sus presupuestos.  La directiva estatal de educación pensaba que la situación no sería crítica en tanto pudieran estar razonablemente seguros de que el precio permanecería arriba de \$18 por barril.  Encuestaron a 13 economistas especializados en el mercado del petróleo, elegidos al azar, y les pidieron que predijeran qué tanto bajarían los precios antes de repuntar.  Las 13 predicciones promediaron \$21.60, con una desviación estándar de \$4.65.  Para un nivel $\alpha=0.01,$ ¿es la predicción promedio significativamente mayor que \$18.00? ¿Debe la directiva de educación concluir que es improbable una crisis presupuestaria? Explique su respuesta.
+Con la caída del mercado petrolero de principios de 1986, los educadores del Texas se preocuparon por la forma en que las pérdidas resultantes en los ingresos del Estado (estimadas en cerca de \$100 millones por cada disminución de un dólar en el precio del barril de petróleo) afectarían sus presupuestos. La directiva estatal de educación pensaba que la situación no sería crítica en tanto pudieran estar razonablemente seguros de que el precio permanecería arriba de \$18 por barril. Encuestaron a 13 economistas especializados en el mercado del petróleo, elegidos al azar, y les pidieron que predijeran qué tanto bajarían los precios antes de repuntar.  Las 13 predicciones promediaron \$21.60, con una desviación estándar de \$4.65.  Para un nivel $\alpha=0.01,$ ¿es la predicción promedio significativamente mayor que \$18.00? ¿Debe la directiva de educación concluir que es improbable una crisis presupuestaria? Explique su respuesta.
 
 \textbf{\underline{Solución:}}
 
 Queremos saber si el promedio de los precios del barril del petróleo es significativamente mayor que 18\$, establecemos la siguiente hipótesis:
 
-$H_o$: $\mu_o\leq 18\$ \quad \text{Promedio menor ó igual a 18\$}$
+$H_0$: $\mu\leq 18\$ \quad \text{Promedio menor ó igual a 18\$}$
 
-$H_a$: $\mu_o >18\$ \quad \text{Promedio mayor a 18\$}$
+$H_a$: $\mu >18\$ \quad \text{Promedio mayor a 18\$}$
 
 $\alpha = 0.01$
 
 La prueba apropiada es una prueba de medias con varianza poblacional desconocida de una cola. El estadístico de prueba a usar está dado por:
 
-$$\mathcal{T} = \displaystyle \frac{(\bar{x}-\mu_o)\sqrt{n}}{s}$$
+$$\mathcal{T} = \displaystyle \frac{(\overline{X}-\mu_0)\sqrt{n}}{S}$$
+
 Donde el valor crítico está dado por $t_{0.01}$ con $n-1$ grados de libertad y además:
 
 $\bar{x} = 21.60\$ \quad \text{Media de la muestra}$
 
-$s = 4.65\$ \quad \text{Desviación estándar de la muestra}$
+$S = 4.65\$ \quad \text{Desviación estándar de la muestra}$
 
-$\mu_o = 18\$$
+$\mu_0 = 18\$$
 
 Sustituyendo estos valores en el estadístico y sabiendo que $t_{0.01} = 2.681$, tenemos:
 
@@ -1414,6 +1419,7 @@ $\alpha = 0.01$
 La prueba apropiada es una prueba de proporciones de una cola. El estadístico de prueba a usar está dado por:
 
 $$\mathcal{P} = \displaystyle \frac{(\bar{p}-p_o)\sqrt{n}}{\sqrt{p_o(1-p_o)}}$$
+
 Donde el valor crítico está dado por $z_{0.01} = 2.323$ y además:
 
 $\bar{p} = \displaystyle \frac{16}{120} = 0.13 \quad \text{Proporción de la muestra}$
@@ -1445,6 +1451,16 @@ b) El valor del estadístico de la muestra es mayor en más de 1.6 errores está
 
 c) El valor del estadístico de la muestra es menor que el valor hipotético en más de 2.33 errores estándar. 
 
+\textbf{\underline{Solución:}}
+
+a) Si la estadística de muestra es menor ó mayor al valor hipótetico en más de 2.15 errores estándar entonces la probabilidad de rechazar la hipótesis nula si es verdadera es de $P(Z \leq -2.15) = \phi(-2.15) = 0.0158 = 1.58\%$.
+
+b) Si la estadística de muestra es mayor al valor hipótetico en más de 1.6 errores estándar entonces la probabilidad de rechazar la hipótesis nula si es verdadera es de $1 - P(Z \leq 1.6) = 1 - \phi(1.6) = 1 - 0.9452 = 0.05 = 5\%$.
+
+c) Si la estadística de muestra es menor al valor hipótetico en más de 2.33 errores estándar entonces la probabilidad de rechazar la hipótesis nula si es verdadera es de $P(Z \leq -2.33) = \phi(-2.33) = 0.01 = 1\%$.
+
+\newpage
+
 Los distribuidores de fondo de inversión mutua *abiertos* venden acciones adicionales a  los individuos que desean invertir en estos fondos.  Estas acciones están valuadas como *valores de activo neto*, el valor de estos títulos representados por las acciones de los fondos, más una comisión (o cargo) en el intervalo de 0 a 8%.  los fondos *cerrados*, por otra parte, tienen un número fijo de acciones.  Estas acciones se negocian en varias bolsas de valores a precios determinados por el mercado.  Si el precio es mayor que el valor activo neto, se dice que la acción se vende con *prima*: si sucede lo contrario se vende con *descuento*.  Una muestra aleatoria de 15 fondos cerrados el 4 de junio de 1993, encontró los descuentos (valores negativos) y las primas (valores positivos) expresados en porcentajes y enumerados en la tabla MR8-1.  Utilice esta información para responder los ejercicios 35 y 36.
 
 | Tabla MR8-1          | Nombre del título               | Descuento/prima |
@@ -1465,19 +1481,6 @@ Los distribuidores de fondo de inversión mutua *abiertos* venden acciones adici
 |                      | Morgan Stanley Emerging Markets |      +10.3      |
 |                      | Turkish Investment              |       +1.7      |
 
-\newpage
-
-\textbf{\underline{Solución:}}
-
-a) Si la estadística de muestra es menor ó mayor al valor hipótetico en más de 2.15 errores estándar entonces la probabilidad de rechazar la hipótesis nula si es verdadera es de $P(Z \leq -2.15) = \phi(-2.15) = 0.0158 = 1.58\%$.
-
-b) Si la estadística de muestra es mayor al valor hipótetico en más de 1.6 errores estándar entonces la probabilidad de rechazar la hipótesis nula si es verdadera es de $1 - P(Z \leq 1.6) = 1 - \phi(1.6) = 1 - 0.9452 = 0.05 = 5\%$.
-
-c) Si la estadística de muestra es menor al valor hipótetico en más de 2.33 errores estándar entonces la probabilidad de rechazar la hipótesis nula si es verdadera es de $P(Z \leq -2.33) = \phi(-2.33) = 0.01 = 1\%$.
-
-
-\newpage
-
 # Ejercicio 35
 
 ¿Se vende significativamente menos fondos de acciones de interés variable con descuentos que con primas? Pruebe a un nivel $\alpha=0.01.$
@@ -1495,6 +1498,7 @@ $\alpha = 0.01$
 La prueba apropiada es una prueba de proporciones de una cola. El estadístico de prueba a usar está dado por:
 
 $$\mathcal{P} = \displaystyle \frac{(\bar{p}-p_o)\sqrt{n}}{\sqrt{p_o(1-p_o)}}$$
+
 Donde el valor crítico está dado por $z_{0.01} = -2.323$ y además:
 
 $\bar{p} = \displaystyle \frac{6}{15} = 0.4 \quad \text{Proporción de la muestra}$
@@ -1512,8 +1516,8 @@ $$
 &=  -1.58 \\
 \end{array}
 $$
-Como el valor crítico es de -2.323 tenemos que, -1.58 > -2.323, por lo que no rechazamos la hipótesis nula. Por lo que no se venden significativamente menos acciones con descuentos que con primas.
 
+Como el valor crítico es de -2.323 tenemos que, -1.58 > -2.323, por lo que no rechazamos la hipótesis nula. Por lo que no se venden significativamente menos acciones con descuentos que con primas.
 
 \newpage
 
@@ -1534,6 +1538,7 @@ $\alpha = 0.05$
 La prueba apropiada es una prueba de medias con varianza poblacional desconocida de dos colas. El estadístico de prueba a usar está dado por:
 
 $$\mathcal{T} = \displaystyle \frac{(\bar{x}-\mu_o)\sqrt{n}}{s}$$
+
 Donde el valor crítico está dado por $\pm t_{0.025}$ con $n-1$ grados de libertad y además:
 
 $\bar{x} \quad \text{Media de la muestra}$
@@ -2452,4 +2457,4 @@ mean(Dif3)
 sd(Dif3)
 ```
 
-Tenemos que $\bar{x}_1}\bar{x}_2 = 0$, lo que implica que el estadístico de prueba es igual a cero. Por lo que rechazamos la hipótesis nula. La ubicación no influye en el volumen de ventas.
+Tenemos que $\bar{x}_1\bar{x}_2 = 0$, lo que implica que el estadístico de prueba es igual a cero. Por lo que rechazamos la hipótesis nula. La ubicación no influye en el volumen de ventas.
