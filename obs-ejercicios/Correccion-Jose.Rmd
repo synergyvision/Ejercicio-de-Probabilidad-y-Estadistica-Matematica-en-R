@@ -188,8 +188,10 @@ Colocar los comando para realizar los calculos en __R__, adicional usar el coman
 
 Realizar los calculos en __R__ igual que el ejercicio 28, agregar en la conclusión: ``existe suficiente evidencia estadística para rechazar la hipótesis nula".
 
-# Ejercicio 38
+# Ejercicio 38-50
 
+Realizar estos calculos en __R__ y en la conclusión agregar ``existe o no existe suficiente evidencia estadística" para aceptar o rechazar la hipótesis nula en cualquier caso.
 
+# Ejercicio 52
 
-
+Tienes que realizar las pruebas para todas las posibles combinaciones de ubicaciones, es decir, sabana Grande con Centro, sabana grande con otras zonas y centro con otras zonas. Igual que los anteriores realizar los calculos en __R__.
