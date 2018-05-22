@@ -1523,7 +1523,7 @@ Como el valor crítico es de -2.323 tenemos que, -1.58 > -2.323, por lo que no r
 
 # Ejercicio 36
 
-Un profesor de finanzas desarrolló una teoría que predice que los fondos de acciones de interés variable cerrados se deberían vender con una prima cercana al 5% en promedio.  Suponiendo que la población descuento/prima tiene una distribución aproximadamente normal, ¿apoya la información muestreada esta teoría? Pruebe con $\alpha=0.05.$
+Un profesor de finanzas desarrolló una teoría que predice que los fondos de acciones de interés variable cerrados se deberían vender con una prima cercana al 5% en promedio.  Suponiendo que la población descuento/prima tiene una distribución aproximadamente normal, ¿apoya la información muestreada esta teoría? Pruebe con $\alpha=0.05$.
 
 \textbf{\underline{Solución:}}
 
@@ -1611,7 +1611,7 @@ Como el valor crítico es de -1.75 tenemos que, -2.16 < -1.75, por lo que rechaz
 
 # Ejercicio 38
 
-En 1993, el Consejo de Estándares para Contabilidad Financiera (CECF) consideró una propuesta para requerir que las compañías informaran el efecto potencial de la opción de compra de acciones de los empleados sobre los ingresos por acción (IPA).  Una muestra aleatoria de 41 empresas de alta tecnología (AT) reveló que la nueva propuesta reduciría el IPA en un promedio del 13.8%, con una desviación estándar del 18.9%.  Una muestra aleatoria de 35 productores de bienes de consumo (BC) mostró que la propuesta reduciría el IPA en 9.1% en promedio, con desviación estándar del 8.7%.  Con base en estas muestras, ¿es razonable concluir $(para\quad\alpha=0.10)$ que la propuesta de la CECF causaría una mayor reducción en el IPA para las empresas de alta tecnología que para los productores de bienes de consumo?
+En 1993, el Consejo de Estándares para Contabilidad Financiera (CECF) consideró una propuesta para requerir que las compañías informaran el efecto potencial de la opción de compra de acciones de los empleados sobre los ingresos por acción (IPA).  Una muestra aleatoria de 41 empresas de alta tecnología (AT) reveló que la nueva propuesta reduciría el IPA en un promedio del 13.8%, con una desviación estándar del 18.9%.  Una muestra aleatoria de 35 productores de bienes de consumo (BC) mostró que la propuesta reduciría el IPA en 9.1% en promedio, con desviación estándar del 8.7%.  Con base en estas muestras, ¿es razonable concluir (para $\alpha=0.10$) que la propuesta de la CECF causaría una mayor reducción en el IPA para las empresas de alta tecnología que para los productores de bienes de consumo?
 
 \textbf{\underline{Solución:}}
 
@@ -1632,9 +1632,9 @@ $\bar{x}_1 = 0.138 \quad \text{Media muestra 1}$
 
 $\bar{x}_2 = 0.091 \quad \text{Media muestra 2}$
 
-$s_1 = 0.189 \quad \text{Desviación estándar muestra 2}$
+$s_1 = 0.189 \quad \text{Desviación estándar muestra 1}$
 
-$s_2 = 0.087 \quad \text{Desviación estándar muestra 1}$
+$s_2 = 0.087 \quad \text{Desviación estándar muestra 2}$
 
 $n_1 = 41 \quad \text{Tamaño muestra 1}$
 

@@ -1,113 +1,194 @@
 ---
-title: "Correcciones de Tercera Ronda de Ejercicios"
+title: "Correcciones de Cuarta Ronda de Ejercicios"
 author: "http://synergy.vision/"
 output: pdf_document
 subtitle: José
 fontsize: 12pt
 ---
 
-```{r setup, include=FALSE}
+```{r include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(latex2exp)
+library(ggplot2)
+source("ggplottheme.R")
+library(grid)
+library(gridExtra)
+mod_name<-"Pruebas de Hipótesis"
+credits<-function(f){
+  grid.arrange(f,right=textGrob(paste0(mod_name," (C) Synergy Vision - 2018"),
+                                gp=gpar(fontsize=7, fontface="italic", col="gray75"),
+                                rot=90, just = "centre", vjust=-2))
+}
 ```
 
 
-Hacer pull a tus ejercicios.
+- Hacer pull a tus ejercicios.
 
-- Las variables aleatorias deben colocarse en mayúscula y cursiva con `\mathcal{X}`
+- Para colocar espacios entre fórmulas no utilizar `\\` sino colocar al comienzo de la fórmula `\vspace{3mm}`
 
-- El operador varianza y esperanza colocarlos con [] no con paréntesis.
+Ejemplo:
 
-Ejercicio 1 y 2
+En el ejercicio 28 colocaste los siguientes comandos para colocar varias fórmulas
 
-Colocar en la primera parte de la esperanza de la variable igual como lo hiciste en el ejercicio anterior, es decir, los valores que toma la variable por la probabilidad que la variable tome esos valores.
+`\begin{array}{rl}`
 
-Hacer el calculo mediante comandos de R
+`\mathcal{P} &= \displaystyle \frac{(0.39 - 0.41) \sqrt{350}}{\sqrt{0.41 \times 0.59}} \\`
 
-- Crear un vector que guarde los valores posibles que puede tomar la variable.
+`\\`
 
-- Crear otro vector que guarde las correspondientes probabilidades, y calcular esta esperanza mediante la suma del producto de estos dos vectores.
+`&= \displaystyle \frac{-0.02\sqrt{350}}{\sqrt{0.2419}} \\`
 
-`sum(valores*probabilidades)`
+`\\`
 
-Ejercicio 3
+`&= -0.7607 \\`
 
-a) Decir con tus propias palabras porque es una distribución binominal.
+`\end{array}`
 
-Especificar los parámetros que usa cada comando
+Deberias de colocarlos de la siguiente forma
 
-Ejemplo: `dbinom (q=0 size=15, prob=0.3)`
+`\begin{array}{rl}`
 
-b) Colocar cada uno de estos cálculos manuales
+`\vspace{3mm} \mathcal{P} &= \displaystyle \frac{(0.39 - 0.41) \sqrt{350}}{\sqrt{0.41 \times 0.59}}`
 
-$$
-\begin{array}{rl}
-P(\mathcal X=0) & =\frac{15!}{0!(15-0)!}\quad 0.3^0\times 0.75^{15-0}\\
-& =\frac{15!}{15!}0.75^{15}\\
-& =0.75^{15}\\
-& =0.00474
-\end{array}
-$$
+`\vspace{3mm} &= \displaystyle \frac{-0.02\sqrt{350}}{\sqrt{0.2419}} \\`
 
-Nota: agregar que representa el comando `dbinom()` y `pbinom()`.
+`&= -0.7607`
 
-Ejercicio 4
+`\end{array}`
 
-Explicar brevemente porque $\lambda=4$
+El comando `\vspace{3mm}` genera la separación entre la fórmula de la línea donde se encuentra y la siguiente.
 
-Para que las fórmulas no se vean tan pegadas colocar el comando `\vspace{3mm} en la fórmula prevía, no separarlas con \\.
+Corregir en todas las fórmulas donde lo utilizaste.
 
-d) pues las probabilidades $P(\mathcal X=0,2,4)$ quitarlo y colocarlas por separado $P(\mathcal X=0), P(\mathcal X=2),...$
+# Ejercicio 28
 
-Ejercicio 6)
+Cambiar el $\bar p$ `\bar p` por $\hat p$ `\hat p`.
 
-Agregar el cálculo en R con la distribución normal estándar
+En la conclusión colocar:  ``No hay suficiente evidencia estadística para rechazar la hipótesis nula".
 
-Ejercicio 7)
+Realizar los cálculos de esta prueba en __R__
 
-La página para hacer las tablas es tablesgenerator.com, luego seleccionar Markdowntables (tablesgenerator.com/markdown_tables) y allí creas la tabla
+```{r}
+p <- 0.39
+p_0 <- 0.41
+n <- 350
+alpha <- 0.02
 
-Definir quien es $E_1$, $E_2$, $E_3$ y $E_4$. Te recomiendo definir $E_2$, $E_3$, $E_4$, $E_5$ acorde a los posibles peticiones de costos de pan, sea $E_2$ las ventas esperadas por 2 lotes de pan y así sucesivamente.
+P <- (p-p_0)*sqrt(n)/(sqrt(p_0*(1-p_0)))
+P
 
-Ejercicio 8)
+Z_alpha <-qnorm(p=alpha/2, mean = 0,sd=1)
+Z_alpha
+```
 
-c) colocar cada uno de los cálculos
+Ésta es una prueba de dos colas por lo tanto el gráfico correspondiente sería el siguiente
 
-Ejercicio 9)  10)
+```{r,echo=TRUE}
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil1<- qnorm(1-(alpha/2))
+cuantil2<- qnorm(alpha/2)
 
-Agregar el cálculo de la distribución normal estándar
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
 
-b)3) $P(x_1<\mathcal{X}<x_2)=P(\mathcal{X}<x_2)-P(\mathcal{X}>x_1)$
-escribir esta probabilidad en la 3era fórmula
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dnorm(cuantil2,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = P, y =0 , xend = P, 
+                       yend = dnorm(P,mean=0, sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=P, y =-0.02, label ="P", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'Z'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="-'Z'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.5, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.5, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de dos colas Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
 
-hacer el cálculo con la estándarización
+# Ejercicio 29
 
-d)2) $P(\mathcal X=2\cup\mathcal X=3)=P(\mathcal X=2)+P(\mathcal X=3)$
+Cambiar el $\bar p$ `\bar p` por $\hat p$ `\hat p`.
 
-Ejercicio 11)
+Realizar los cálculos en __R__ igual que el ejercicio 28.
 
-Cuya probabilidad de que el crédito sea ceptado es de $p=0.8$ y por consiguiente de que no sea aceptado es de $q=0.2$
+En la conclusión agregar cual es la teória sugerida.
 
-Explicar un poco como se puede aproximar a la distribución normal mediante la distribución binominal que es exactamente lo que usas.
+# Ejercicio 30
 
-Ejercicio 12)
+Cambiar el $\bar p$ `\bar p` por $\hat p$ `\hat p`.
 
-Colocar el cálculo de la normal estándar en R
+Realizar los cálculos en __R__ igual que el ejercicio 28.
 
-Colocar en la fórmula de c)3) $P(\mathcal Z<0.19)-P(\mathcal Z<-1.24)$
+En la conclusión agregar la afirmación de Rick.
 
-Ejercicio 13)
+# Ejercicio 31
 
-La variable aleatoria binominal es el número de exitos obtenidos al realizar un experimento bernoulli
+En la fórmula del estadístico cambiar `\mathcal{T}` por `T` (solamente colocarla en mayúscula), `\bar{x}` por `\overline{X}` y la desviación estandar colocarla en mayúscula `S`. Realizar esta obsevación en todas las partes donde aparezca (no es sólo para este ejercicio).
 
-La variable $\mathcal X$ que estas definiendo es Bernoulli con probabilidad de éxito $0.08$ 
+Agregar los cálculos para esta prueba con __R__
 
-Define una nueva variable aleatoria como el número de éxitos al realizar $n$ experimentos Bernoulli, en este caso los 10 motores con la muestra y el experimento Bernoulli indica si el motor es defectuoso o no.
+```{r}
+alpha <- 0.05
+n <- 12
+mu_0 <- 825000
+X_bar <- 780000
+S<-49000
 
-$y=\#$ de motores defectuosos donde la prob. de que sea defectuoso es $p=0.08$
+T<-(X_bar-mu_0)/(S/sqrt(n));T #Valor del estadístico
 
-$E(y)=np=10\times(0.08)=0.8$  se espera que aproximadamente en promedio 1 sea defectuoso.
+t_alpha<-qt(alpha,df=n-1);t_alpha #Valor crítico
+```
 
-Ganancia esperada $\$100\times (1-0.08)-\$100(0.08)=84$
+Colocar en la conclusión: ``Existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, aceptamos que el valor estimado medio de las casas del prestigioso suburbio de Chicago es menos que 825,000\$.
+
+# Ejercicio 32
+
+Igual que el ejercicio 31, realizar los calculos en __R__. Y en la conclusión colocar: ``existe suficiente evidencia estadística para rechazar la hipótesis nula".
+
+# Ejercicio 33
+
+Realizar los cálculos en __R__ igual que el ejercicio 28, e incluir en la conclusión ``existe suficiente evidencia estadística para rechazar la hipótesis nula".
+
+# Ejercicio 34
+
+Colocar los comandos en __R__ que dan esos resultados.
+
+# Ejercicio 35
+
+Las mismas observaciones que el ejercicio 28.
+
+# Ejercicio 36
+
+Colocar los comando para realizar los calculos en __R__, adicional usar el comando `t.text()`.
+
+# Ejercicio 37
+
+Realizar los calculos en __R__ igual que el ejercicio 28, agregar en la conclusión: ``existe suficiente evidencia estadística para rechazar la hipótesis nula".
+
+# Ejercicio 38
 
 
 
