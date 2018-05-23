@@ -1,0 +1,151 @@
+---
+title: "Pruebas de Hipótesis"
+subtitle: "Diplomado de Probabilidad y Estadística Matemática en R"
+author: "http://synergy.vision/"
+output:
+  pdf_document: default
+  html_document: default
+fontsize: 12pt
+---
+
+```{r include=FALSE}
+library(knitr)
+library(latex2exp)
+library(ggplot2)
+source("ggplottheme.R")
+library(grid)
+library(gridExtra)
+mod_name<-"Pruebas de Hipótesis"
+credits<-function(f){
+  grid.arrange(f,right=textGrob(paste0(mod_name," (C) Synergy Vision - 2018"),
+                                gp=gpar(fontsize=7, fontface="italic", col="gray75"),
+                                rot=90, just = "centre", vjust=-2))
+}
+```
+
+```{r,echo=FALSE, fig.width=8}
+x<-seq(5,15,0.01)
+y1 <- dnorm(x,mean=10, sd=1)
+y2 <- dnorm(x,mean=11, sd=1)
+
+dat<-data.frame(x,y1,y2)
+f<-ggplot(data=dat, mapping = aes(x,y1))+geom_line(colour = "blue")+
+      geom_area(mapping = aes(x,y1), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=10.3309,x,10.3309),y1), fill = "blue", alpha=0.4)+
+      geom_segment(aes(x = 10, y = 0, xend = 10, yend = dnorm(10,10,1)), colour = "black",linetype=2, size=0.5)+
+      geom_segment(aes(x = 10.3309, y = 0, xend = 10.3309, yend = dnorm(10.3309,10,1)), colour = "black",linetype=1, size=0.3)+
+      geom_segment(aes(x = 11, y = 0, xend = 11, yend = dnorm(11,11,1)), colour = "black",linetype=2, size=0.5)+
+      geom_line(aes(x,y2),colour = "orange")+
+      geom_area(mapping = aes(x,y2), fill = "orange",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x<=10.3309,x,10.3309),y2), fill = "orange", alpha=0.4)+
+      ylim(0,0.41)+
+      labs( x = "x", y = "f(x)",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+```{r,echo=FALSE, fig.width=8}
+x<-seq(-3,3,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil<- qnorm(0.05)
+
+dat<-data.frame(x,y)
+f<-ggplot(data=dat, mapping = aes(x,y))+geom_line(colour = "blue")+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = 0.2)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil,x,cuantil),y), fill = "blue", alpha=0.4)+
+      geom_segment(aes(x = cuantil, y = 0, xend = cuantil, yend = dnorm(cuantil)), colour = "black",linetype=2, size=0.3)+
+      annotate("text", x = 0, y = 0.1, label = "Aceptación", alpha = .9)+
+      annotate("text", x = -2.5, y = 0.07, label = "Rechazo", alpha = .9)+
+      ylim(0,0.41)+
+      labs( title = "Prueba de Cola Izquierda Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+```{r,echo=FALSE, fig.width=8}
+cuantil<- qnorm(1-0.05)
+
+f<-ggplot(data=dat, mapping = aes(x,y))+geom_line(colour = "blue")+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = 0.2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil,x,cuantil),y), fill = "blue", alpha=0.4)+
+      geom_segment(aes(x = cuantil, y = 0, xend = cuantil, yend = dnorm(cuantil)), colour = "black",linetype=2, size=0.3)+
+      annotate("text", x = 0, y = 0.1, label = "Aceptación", alpha = .9)+
+      annotate("text", x = 2.5, y = 0.07, label = "Rechazo", alpha = .9)+
+      ylim(0,0.41)+
+      labs( title = "Prueba de Cola Derecha Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+```{r,echo=FALSE,fig.width=8}
+cuantil1<- qnorm(1-(0.05/2))
+cuantil2<- qnorm(0.05/2)
+
+f<-ggplot(data=dat, mapping = aes(x,y))+geom_line(colour = "blue")+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y), fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), fill = "blue", alpha=0.4)+
+      geom_segment(aes(x = cuantil1, y = 0, xend = cuantil1, yend = dnorm(cuantil1)), colour = "black",linetype=2, size=0.3)+
+      geom_segment(aes(x = cuantil2, y = 0, xend = cuantil2, yend = dnorm(cuantil2)), colour = "black",linetype=2, size=0.3)+
+      annotate("text", x = 0, y = 0.1, label = "Aceptación", alpha = .9)+
+      annotate("text", x = -2.5, y = 0.07, label = "Rechazo", alpha = .9)+
+      annotate("text", x = 2.5, y = 0.07, label = "Rechazo", alpha = .9)+
+      ylim(0,0.41)+
+      labs( title = "Prueba de dos colas Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+```{r,echo=FALSE}
+p <- 0.39
+p_0 <- 0.41
+n <- 350
+alpha <- 0.02
+
+P <- (p-p_0)*sqrt(n)/(sqrt(p_0*(1-p_0)))
+
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil1<- qnorm(1-(alpha/2))
+cuantil2<- qnorm(alpha/2)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dnorm(cuantil2,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = P, y =0 , xend = P, 
+                       yend = dnorm(P,mean=0, sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=P, y =-0.02, label ="P", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'Z'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="-'Z'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.5, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.5, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de dos colas Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
