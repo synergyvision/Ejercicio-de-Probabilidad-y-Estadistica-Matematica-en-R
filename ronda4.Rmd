@@ -14,6 +14,18 @@ fontsize: 12pt
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(latex2exp)
+library(ggplot2)
+source("ggplottheme.R")
+library(grid)
+library(gridExtra)
+mod_name<-"Pruebas de Hipótesis"
+credits<-function(f){
+  grid.arrange(f,right=textGrob(paste0(mod_name," (C) Synergy Vision - 2018"),
+                                gp=gpar(fontsize=7, fontface="italic", col="gray75"),
+                                rot=90, just = "centre", vjust=-2))
+}
 ```
 
 \newpage
@@ -1211,11 +1223,11 @@ $\alpha = 0.02$
 
 La prueba apropiada es una prueba de proporciones de dos colas. El estadístico de prueba a usar está dado por:
 
-$$\mathcal{P} = \displaystyle \frac{(\bar{p}-p_o)\sqrt{n}}{\sqrt{p_o(1-p_o)}}$$
+$$\mathcal{P} = \displaystyle \frac{(\hat{p}-p_o)\sqrt{n}}{\sqrt{p_o(1-p_o)}}$$
 
 Donde los valores críticos están dados por los valores $\displaystyle \pm z_{\frac{\alpha}{2}}$ y además:
 
-$\bar{p} = 0.39 \quad \text{Proporción de la muestra}$
+$\hat{p} = 0.39 \quad \text{Proporción de la muestra}$
 
 $p_o = 0.41$
 
@@ -1223,15 +1235,74 @@ Sustituyendo estos valores en el estadístico y sabiendo que $\displaystyle z_{0
 
 $$
 \begin{array}{rl}
-\mathcal{P} &= \displaystyle \frac{(0.39 - 0.41) \sqrt{350}}{\sqrt{0.41 \times 0.59}} \\
-\\
-&= \displaystyle \frac{-0.02\sqrt{350}}{\sqrt{0.2419}} \\
-\\
-&= -0.7607 \\
+\vspace{3mm} \mathcal{P} &= \displaystyle \frac{(0.39 - 0.41) \sqrt{350}}{\sqrt{0.41 \times 0.59}} \\
+\vspace{3mm} &= \displaystyle \frac{-0.02\sqrt{350}}{\sqrt{0.2419}} \\
+&= -0.7607 
 \end{array}
 $$
 
-como el valor crítico negativo es de -2.323 tenemos que, -0.7607 > -2.323, por lo que no rechazamos la hipótesis nula. Por lo que la proporción de préstamos otorgados a las mujeres no ha cambiado significativamente.
+como el valor crítico negativo es de -2.323 tenemos que, -0.7607 > -2.323, por lo que no hay suficiente evidencia estadística para rechazar la hipótesis nula. Por lo que la proporción de préstamos otorgados a las mujeres no ha cambiado significativamente.
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+p<-0.39
+p_0<-0.41
+n<-350
+alpha<-0.02
+P<-(p-p_0)*sqrt(n)/(sqrt(p_0*(1-p_0)))
+P
+Z_alpha<-qnorm(p=alpha/2,mean=0,sd=1)
+Z_alpha
+```
+
+Ésta es una prueba de dos colas por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil1<- qnorm(1-(alpha/2))
+cuantil2<- qnorm(alpha/2)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dnorm(cuantil2,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = P, y =0 , xend = P, 
+                       yend = dnorm(P,mean=0, sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=P, y =-0.02, label ="P", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'Z'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="-'Z'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.5, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.5, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de dos colas Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
 
 
 \newpage
@@ -1252,11 +1323,11 @@ $\alpha = 0.01$
 
 La prueba apropiada es una prueba de proporciones de una cola. El estadístico de prueba a usar está dado por:
 
-$$\mathcal{P} = \displaystyle \frac{(\bar{p}-p_o)\sqrt{n}}{\sqrt{p_o(1-p_o)}}$$
+$$\mathcal{P} = \displaystyle \frac{(\hat{p}-p_o)\sqrt{n}}{\sqrt{p_o(1-p_o)}}$$
 
 Donde el valor crítico está dado por $z_{0.01} = 2.323$ y además:
 
-$\bar{p} = \displaystyle \frac{101}{175} = 0.57 \quad \text{Proporción de la muestra}$
+$\hat{p} = \displaystyle \frac{101}{175} = 0.57 \quad \text{Proporción de la muestra}$
 
 $p_o = 0.5$
 
@@ -1264,15 +1335,64 @@ Sustituyendo los valores tenemos:
 
 $$
 \begin{array}{rl}
-\mathcal{P} &= \displaystyle \frac{(0.57 - 0.5) \sqrt{175}}{\sqrt{0.5 \times 0.5}} \\
-\\
-&= \displaystyle \frac{0.07\sqrt{175}}{\sqrt{0.25}} \\
-\\
-&=  1.85 \\
+\vspace{3mm} \mathcal{P} &= \displaystyle \frac{(0.57 - 0.5) \sqrt{175}}{\sqrt{0.5 \times 0.5}} \\
+\vspace{3mm} &= \displaystyle \frac{0.07\sqrt{175}}{\sqrt{0.25}} \\
+&=  1.85 
 \end{array}
 $$
 
-Como el valor crítico es de 2.323 tenemos que, 1.85 < 2.323, por lo que no rechazamos la hipótesis nula. Por lo que la teoría sugerida con un nivel de significancia del 0.01 no es correcta.
+Como el valor crítico es de 2.323 tenemos que, 1.85 < 2.323, por lo que no hay suficiente evidencia estadística para rechazar la hipótesis nula. Por lo que la teoría sugerida de que los precios diarios del mercado de valores constituyen una caminata aleatoria con tendencia positiva no es correcta.
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+p<-0.57
+p_0<-0.5
+n<-175
+alpha<-0.01
+P<-(p-p_0)*sqrt(n)/(sqrt(p_0*(1-p_0)))
+P
+Z_alpha<-qnorm(p=1-alpha,mean=0,sd=1)
+Z_alpha
+```
+
+Ésta es una prueba de cola derecha por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil1<- qnorm(1-alpha)
+
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = P, y =0 , xend = P, 
+                       yend = dnorm(P,mean=0, sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=P, y =-0.02, label ="P", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'Z'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.5, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola derecha Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
 
 \newpage
 
@@ -1292,11 +1412,11 @@ $\alpha = 0.01$
 
 La prueba apropiada es una prueba de proporciones de dos colas. El estadístico de prueba a usar está dado por:
 
-$$\mathcal{P} = \displaystyle \frac{(\bar{p}-p_o)\sqrt{n}}{\sqrt{p_o(1-p_o)}}$$
+$$\mathcal{P} = \displaystyle \frac{(\hat{p}-p_o)\sqrt{n}}{\sqrt{p_o(1-p_o)}}$$
 
 Donde los valores críticos están dados por los valores $\displaystyle \pm z_{\frac{\alpha}{2}}$ y además:
 
-$\bar{p} = \displaystyle \frac{157}{187} = 0.83 \quad \text{Proporción de la muestra}$
+$\hat{p} = \displaystyle \frac{157}{187} = 0.83 \quad \text{Proporción de la muestra}$
 
 $p_o = 0.86$
 
@@ -1304,15 +1424,74 @@ Sustituyendo estos valores en el estadístico y sabiendo que $\displaystyle z_{0
 
 $$
 \begin{array}{rl}
-\mathcal{P} &= \displaystyle \frac{(0.83 - 0.86) \sqrt{187}}{\sqrt{0.86 \times 0.14}} \\
-\\
-&= \displaystyle \frac{-0.03\sqrt{187}}{\sqrt{0.1204}} \\
-\\
-&= -1.18 \\
+\vspace{3mm} \mathcal{P} &= \displaystyle \frac{(0.83 - 0.86) \sqrt{187}}{\sqrt{0.86 \times 0.14}} \\
+\vspace{3mm} &= \displaystyle \frac{-0.03\sqrt{187}}{\sqrt{0.1204}} \\
+&= -1.18 
 \end{array}
 $$
 
-como el valor crítico negativo es de -2.578 tenemos que, -1.18 > -2.578, por lo que no rechazamos la hipótesis nula. Por lo que la afirmación de Rick es válida.
+como el valor crítico negativo es de -2.578 tenemos que, -1.18 > -2.578, por lo que no hay suficiente evidencia estadística para rechazar la hipótesis nula. Por lo que la afirmación de Rick de mantener a los clientes satisfechos es válida.
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+p<-0.83
+p_0<-0.86
+n<-187
+alpha<-0.01
+P<-(p-p_0)*sqrt(n)/(sqrt(p_0*(1-p_0)))
+P
+Z_alpha<-qnorm(p=alpha/2,mean=0,sd=1)
+Z_alpha
+```
+
+Ésta es una prueba de dos colas por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil1<- qnorm(1-(alpha/2))
+cuantil2<- qnorm(alpha/2)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dnorm(cuantil2,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = P, y =0 , xend = P, 
+                       yend = dnorm(P,mean=0, sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=P, y =-0.02, label ="P", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'Z'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="-'Z'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.5, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.5, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de dos colas Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
 
 
 \newpage
@@ -1333,13 +1512,13 @@ $\alpha = 0.05$
 
 La prueba apropiada es una prueba de medias con varianza poblacional desconocida de una cola. El estadístico de prueba a usar está dado por:
 
-$$\mathcal{T} = \displaystyle \frac{(\bar{x}-\mu_o)\sqrt{n}}{s}$$
+$$T = \displaystyle \frac{(\overline{X}-\mu_o)\sqrt{n}}{S}$$
 
 Donde el valor crítico está dado por el valor negativo de $t_{0.05}$ con $n-1$ grados de libertad y además:
 
-$\bar{x} = 780000\$ \quad \text{Media de la muestra}$
+$\overline{X} = 780000\$ \quad \text{Media de la muestra}$
 
-$s = 49000\$ \quad \text{Desviación estándar de la muestra}$
+$S = 49000\$ \quad \text{Desviación estándar de la muestra}$
 
 $\mu_o = 825000\$$
 
@@ -1347,15 +1526,66 @@ Sustituyendo estos valores en el estadístico y sabiendo que $t_{0.05} = -1.796$
 
 $$
 \begin{array}{rl}
-\mathcal{T} &= \displaystyle \frac{(780000 - 825000) \sqrt{12}}{49000} \\
-\\
-&= \displaystyle \frac{-45000\sqrt{12}}{49000} \\
-\\
-&= -3.18 \\
+\vspace{3mm} T &= \displaystyle \frac{(780000 - 825000) \sqrt{12}}{49000} \\
+\vspace{3mm} &= \displaystyle \frac{-45000\sqrt{12}}{49000} \\
+&= -3.18
 \end{array}
 $$
 
-Como el valor crítico es de -1.796 tenemos que, -3.18 < -1.796, por lo que rechazamos la hipótesis nula. Por lo que asumimos la hipótesis alternativa de que el valor medio es menor a 825,000\$.
+Como el valor crítico es de -1.796 tenemos que, -3.18 < -1.796, por lo que existe suficiente evidencia estadística para rechazar la hipótesis nula, es decir, aceptamos que el valor estimado medio de las casas del prestigioso suburbio de Chicago es menos que 825,000\$.
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar<-780000
+mu_0<-825000
+S<-49000
+n<-12
+alpha<-0.05
+T<-(X_bar-mu_0)*sqrt(n)/S
+T
+t_alpha<-qt(p=alpha,df=n-1)
+t_alpha
+```
+
+Ésta es una prueba de cola izquierda por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dt(x,df=n-1)
+cuantil1<- qt(alpha,df=n-1)
+
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=n-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T, y =0 , xend = T, 
+                       yend = dt(T,df=n-1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T, y =-0.02, label ="T", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="-'t'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1-0.7, y=0.1, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola izquierda Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
 
 \newpage
 
@@ -1367,19 +1597,19 @@ Con la caída del mercado petrolero de principios de 1986, los educadores del Te
 
 Queremos saber si el promedio de los precios del barril del petróleo es significativamente mayor que 18\$, establecemos la siguiente hipótesis:
 
-$H_0$: $\mu\leq 18\$ \quad \text{Promedio menor ó igual a 18\$}$
+$H_0$: $\mu_o\leq 18\$ \quad \text{Promedio menor ó igual a 18\$}$
 
-$H_a$: $\mu >18\$ \quad \text{Promedio mayor a 18\$}$
+$H_a$: $\mu_o >18\$ \quad \text{Promedio mayor a 18\$}$
 
 $\alpha = 0.01$
 
 La prueba apropiada es una prueba de medias con varianza poblacional desconocida de una cola. El estadístico de prueba a usar está dado por:
 
-$$\mathcal{T} = \displaystyle \frac{(\overline{X}-\mu_0)\sqrt{n}}{S}$$
+$$T = \displaystyle \frac{(\overline{X}-\mu_0)\sqrt{n}}{S}$$
 
 Donde el valor crítico está dado por $t_{0.01}$ con $n-1$ grados de libertad y además:
 
-$\bar{x} = 21.60\$ \quad \text{Media de la muestra}$
+$\overline{X} = 21.60\$ \quad \text{Media de la muestra}$
 
 $S = 4.65\$ \quad \text{Desviación estándar de la muestra}$
 
@@ -1389,16 +1619,66 @@ Sustituyendo estos valores en el estadístico y sabiendo que $t_{0.01} = 2.681$,
 
 $$
 \begin{array}{rl}
-\mathcal{T} &= \displaystyle \frac{(21.60 - 18) \sqrt{13}}{4.65} \\
-\\
-&= \displaystyle \frac{3.6\sqrt{13}}{4.65} \\
-\\
-&= 2.79 \\
+\vspace{3mm} T &= \displaystyle \frac{(21.60 - 18) \sqrt{13}}{4.65} \\
+\vspace{3mm} &= \displaystyle \frac{3.6\sqrt{13}}{4.65} \\
+&= 2.79
 \end{array}
 $$
 
-Como el valor crítico es de 2.681 tenemos que, 2.79 > 2.681, por lo que rechazamos la hipótesis nula. Lo que implica que el promedio con un nivel de significancia de 0.01 es significativamente mayor a 18\$, por lo que la directiva puede concluir que es improbable una crisis presupuestaria.
+Como el valor crítico es de 2.681 tenemos que, 2.79 > 2.681, por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula. Lo que implica que el promedio con un nivel de significancia de 0.01 es significativamente mayor a 18\$, por lo que la directiva puede concluir que es improbable una crisis presupuestaria.
 
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar<-21.60
+mu_0<-18
+S<-4.65
+n<-13
+alpha<-0.01
+T<-(X_bar-mu_0)*sqrt(n)/S
+T
+t_alpha<-qt(p=1-alpha,df=n-1)
+t_alpha
+```
+
+Ésta es una prueba de cola derecha por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dt(x,df=n-1)
+cuantil1<- qt(1-alpha,df=n-1)
+
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=n-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T, y =0 , xend = T, 
+                       yend = dt(T,df=n-1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T+0.05, y =-0.02, label ="T", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'t'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.5, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola derecha Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
 
 \newpage
 
@@ -1418,11 +1698,11 @@ $\alpha = 0.01$
 
 La prueba apropiada es una prueba de proporciones de una cola. El estadístico de prueba a usar está dado por:
 
-$$\mathcal{P} = \displaystyle \frac{(\bar{p}-p_o)\sqrt{n}}{\sqrt{p_o(1-p_o)}}$$
+$$\mathcal{P} = \displaystyle \frac{(\hat{p}-p_o)\sqrt{n}}{\sqrt{p_o(1-p_o)}}$$
 
 Donde el valor crítico está dado por $z_{0.01} = 2.323$ y además:
 
-$\bar{p} = \displaystyle \frac{16}{120} = 0.13 \quad \text{Proporción de la muestra}$
+$\hat{p} = \displaystyle \frac{16}{120} = 0.13 \quad \text{Proporción de la muestra}$
 
 $p_o = 0.05$
 
@@ -1430,14 +1710,65 @@ Sustituyendo los valores tenemos:
 
 $$
 \begin{array}{rl}
-\mathcal{P} &= \displaystyle \frac{(0.13 - 0.05) \sqrt{120}}{\sqrt{0.05 \times 0.95}} \\
-\\
-&= \displaystyle \frac{0.08\sqrt{120}}{\sqrt{0.0475}} \\
-\\
-&=  4.020 \\
+\vspace{3mm} \mathcal{P} &= \displaystyle \frac{(0.13 - 0.05) \sqrt{120}}{\sqrt{0.05 \times 0.95}} \\
+\vspace{3mm} &= \displaystyle \frac{0.08\sqrt{120}}{\sqrt{0.0475}} \\
+&=  4.020 
 \end{array}
 $$
-Como el valor crítico es de 2.323 tenemos que, 4.020 > 2.323, por lo que rechazamos la hipótesis nula. Por lo que más de los titulos habituales tuvieron nuevas alzas anuales ese día.
+Como el valor crítico es de 2.323 tenemos que, 4.020 > 2.323, por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula. Por lo que más de los titulos habituales tuvieron nuevas alzas anuales ese día.
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+p<-0.13
+p_0<-0.05
+n<-120
+alpha<-0.01
+P<-(p-p_0)*sqrt(n)/(sqrt(p_0*(1-p_0)))
+P
+Z_alpha<-qnorm(p=1-alpha,mean=0,sd=1)
+Z_alpha
+```
+
+Ésta es una prueba de cola derecha por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-5,5,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil1<- qnorm(1-alpha)
+
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = P, y =0 , xend = P, 
+                       yend = dnorm(P,mean=0, sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=P, y =-0.02, label ="P", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'Z'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.7, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-5,5)+
+      labs( title = "Prueba de cola derecha Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
 
 \newpage
 
@@ -1455,9 +1786,30 @@ c) El valor del estadístico de la muestra es menor que el valor hipotético en 
 
 a) Si la estadística de muestra es menor ó mayor al valor hipótetico en más de 2.15 errores estándar entonces la probabilidad de rechazar la hipótesis nula si es verdadera es de $P(Z \leq -2.15) = \phi(-2.15) = 0.0158 = 1.58\%$.
 
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+pnorm(-2.15)
+```
+
+
 b) Si la estadística de muestra es mayor al valor hipótetico en más de 1.6 errores estándar entonces la probabilidad de rechazar la hipótesis nula si es verdadera es de $1 - P(Z \leq 1.6) = 1 - \phi(1.6) = 1 - 0.9452 = 0.05 = 5\%$.
 
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+pnorm(-1.6)
+```
+
+
 c) Si la estadística de muestra es menor al valor hipótetico en más de 2.33 errores estándar entonces la probabilidad de rechazar la hipótesis nula si es verdadera es de $P(Z \leq -2.33) = \phi(-2.33) = 0.01 = 1\%$.
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+pnorm(-2.33)
+```
+
 
 \newpage
 
@@ -1497,11 +1849,11 @@ $\alpha = 0.01$
 
 La prueba apropiada es una prueba de proporciones de una cola. El estadístico de prueba a usar está dado por:
 
-$$\mathcal{P} = \displaystyle \frac{(\bar{p}-p_o)\sqrt{n}}{\sqrt{p_o(1-p_o)}}$$
+$$\mathcal{P} = \displaystyle \frac{(\hat{p}-p_o)\sqrt{n}}{\sqrt{p_o(1-p_o)}}$$
 
 Donde el valor crítico está dado por $z_{0.01} = -2.323$ y además:
 
-$\bar{p} = \displaystyle \frac{6}{15} = 0.4 \quad \text{Proporción de la muestra}$
+$\hat{p} = \displaystyle \frac{6}{15} = 0.4 \quad \text{Proporción de la muestra}$
 
 $p_o = 0.6$
 
@@ -1509,21 +1861,73 @@ Sustituyendo los valores tenemos:
 
 $$
 \begin{array}{rl}
-\mathcal{P} &= \displaystyle \frac{(0.4 - 0.6) \sqrt{15}}{\sqrt{0.6 \times 0.4}} \\
-\\
-&= \displaystyle \frac{-0.2\sqrt{15}}{\sqrt{0.24}} \\
-\\
+\vspace{3mm} \mathcal{P} &= \displaystyle \frac{(0.4 - 0.6) \sqrt{15}}{\sqrt{0.6 \times 0.4}} \\
+\vspace{3mm} &= \displaystyle \frac{-0.2\sqrt{15}}{\sqrt{0.24}} \\
 &=  -1.58 \\
 \end{array}
 $$
 
-Como el valor crítico es de -2.323 tenemos que, -1.58 > -2.323, por lo que no rechazamos la hipótesis nula. Por lo que no se venden significativamente menos acciones con descuentos que con primas.
+Como el valor crítico es de -2.323 tenemos que, -1.58 > -2.323, por lo que no hay suficiente evidencia estadística para rechazar la hipótesis nula. Por lo que no se venden significativamente menos acciones con descuentos que con primas.
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+p<-0.4
+p_0<-0.6
+n<-15
+alpha<-0.01
+P<-(p-p_0)*sqrt(n)/(sqrt(p_0*(1-p_0)))
+P
+Z_alpha<-qnorm(p=alpha,mean=0,sd=1)
+Z_alpha
+```
+
+
+Ésta es una prueba de cola izquierda por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil1<- qnorm(alpha)
+
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = P, y =0 , xend = P, 
+                       yend = dnorm(P,mean=0, sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=P, y =-0.02, label ="P", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="-'Z'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1-0.6, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola izquierda Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
 
 \newpage
 
 # Ejercicio 36
 
-Un profesor de finanzas desarrolló una teoría que predice que los fondos de acciones de interés variable cerrados se deberían vender con una prima cercana al 5% en promedio.  Suponiendo que la población descuento/prima tiene una distribución aproximadamente normal, ¿apoya la información muestreada esta teoría? Pruebe con $\alpha=0.05$.
+Un profesor de finanzas desarrolló una teoría que predice que los fondos de acciones de interés variable cerrados se deberían vender con una prima cercana al 5% en promedio. Suponiendo que la población descuento/prima tiene una distribución aproximadamente normal, ¿apoya la información muestreada esta teoría? Pruebe con $\alpha=0.05$.
 
 \textbf{\underline{Solución:}}
 
@@ -1537,17 +1941,17 @@ $\alpha = 0.05$
 
 La prueba apropiada es una prueba de medias con varianza poblacional desconocida de dos colas. El estadístico de prueba a usar está dado por:
 
-$$\mathcal{T} = \displaystyle \frac{(\bar{x}-\mu_o)\sqrt{n}}{s}$$
+$$T = \displaystyle \frac{(\overline{X}-\mu_o)\sqrt{n}}{S}$$
 
 Donde el valor crítico está dado por $\pm t_{0.025}$ con $n-1$ grados de libertad y además:
 
-$\bar{x} \quad \text{Media de la muestra}$
+$\overline{X} \quad \text{Media de la muestra}$
 
-$s \quad \text{Desviación estándar de la muestra}$
+$S \quad \text{Desviación estándar de la muestra}$
 
 $\mu_o = 0.05$
 
-$\bar{x}$ y $s$ están dados por:
+$\overline{X}$ y $S$ están dados por:
 
 ```{r,comment=''}
 Fondos<-c(4.7,-0.7,5.3,9.2,-0.3,-0.3,5.0,0.4,-1.9,0.5,
@@ -1560,14 +1964,77 @@ Sustituyendo estos valores en el estadístico y sabiendo que $t_{0.025} = \pm 2.
 
 $$
 \begin{array}{rl}
-\mathcal{T} &= \displaystyle \frac{(0.0174 - 0.05) \sqrt{15}}{0.0554} \\
-\\
-&= \displaystyle \frac{-0.0326 \sqrt{15}}{0.0554} \\
-\\
-&= -2.27 \\
+\vspace{3mm} T &= \displaystyle \frac{(0.0174 - 0.05) \sqrt{15}}{0.0554} \\
+\vspace{3mm} &= \displaystyle \frac{-0.0326 \sqrt{15}}{0.0554} \\
+&= -2.27
 \end{array}
 $$
-Como el valor crítico es de -2.145 tenemos que, -2.27 < -2.145, por lo que rechazamos la hipótesis nula. Lo que implica que la información muestreada no apoya la teoría.
+Como el valor crítico es de -2.145 tenemos que, -2.27 < -2.145, por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula. Lo que implica que la información muestreada no apoya la teoría.
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar<-0.0174
+mu_0<-0.05
+S<-0.0554
+n<-15
+alpha<-0.05
+T<-(X_bar-mu_0)*sqrt(n)/S
+T
+t_alpha<-qt(p=alpha/2,df=n-1)
+t_alpha
+```
+
+Ésta es una prueba de dos colas por lo tanto el gráfico correspondiente es el siguiente:
+
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dt(x,df=n-1)
+cuantil1<- qt(1-(alpha/2),df=n-1)
+cuantil2<- qt(alpha/2,df=n-1)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=n-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dt(cuantil2,df=n-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T, y =0 , xend = T, 
+                       yend = dt(T,df=n-1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T-0.1, y =-0.02, label ="T", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2+0.2, y =-0.02, label="-'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.7, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.8, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de dos colas Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+
 
 \newpage
 
@@ -1587,10 +2054,10 @@ $\alpha = 0.04$
 
 La prueba apropiada es una prueba de proporciones de una cola. El estadístico de prueba a usar está dado por:
 
-$$\mathcal{P} = \displaystyle \frac{(\bar{p}-p_o)\sqrt{n}}{\sqrt{p_o(1-p_o)}}$$
+$$\mathcal{P} = \displaystyle \frac{(\hat{p}-p_o)\sqrt{n}}{\sqrt{p_o(1-p_o)}}$$
 Donde el valor crítico está dado por $z_{0.04} = -1.75$ y además:
 
-$\bar{p} = \displaystyle \frac{45}{60} = 0.75 \quad \text{Proporción de la muestra}$
+$\hat{p} = \displaystyle \frac{45}{60} = 0.75 \quad \text{Proporción de la muestra}$
 
 $p_o = 0.85$
 
@@ -1598,14 +2065,67 @@ Sustituyendo los valores tenemos:
 
 $$
 \begin{array}{rl}
-\mathcal{P} &= \displaystyle \frac{(0.75 - 0.85) \sqrt{60}}{\sqrt{0.85 \times 0.15}} \\
-\\
-&= \displaystyle \frac{-0.1\sqrt{60}}{\sqrt{0.1275}} \\
-\\
-&=  -2.16 \\
+\vspace{3mm} \mathcal{P} &= \displaystyle \frac{(0.75 - 0.85) \sqrt{60}}{\sqrt{0.85 \times 0.15}} \\
+\vspace{3mm} &= \displaystyle \frac{-0.1\sqrt{60}}{\sqrt{0.1275}} \\
+&=  -2.16
 \end{array}
 $$
-Como el valor crítico es de -1.75 tenemos que, -2.16 < -1.75, por lo que rechazamos la hipótesis nula. Lo que implica que las predicciones son significativamente menor que el 85% declarado.
+
+Como el valor crítico es de -1.75 tenemos que, -2.16 < -1.75, por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula. Lo que implica que las predicciones son significativamente menor que el 85% declarado.
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+p<-0.75
+p_0<-0.85
+n<-60
+alpha<-0.04
+P<-(p-p_0)*sqrt(n)/(sqrt(p_0*(1-p_0)))
+P
+Z_alpha<-qnorm(p=alpha,mean=0,sd=1)
+Z_alpha
+```
+
+
+Ésta es una prueba de cola izquierda por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil1<- qnorm(alpha)
+
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = P, y =0 , xend = P, 
+                       yend = dnorm(P,mean=0, sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=P, y =-0.02, label ="P", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="-'Z'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1-0.7, y=0.1, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola izquierda Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
 
 \newpage
 
@@ -1625,16 +2145,16 @@ $\alpha = 0.1$
 
 La prueba apropiada es una prueba para diferencias entre medias de una cola. El estadístico de prueba a usar está dado por:
 
-$$\mathcal{Z} = \displaystyle \frac{(\bar{x}_1-\bar{x}_2)-(\mu_1-\mu_2)}{\sqrt{\displaystyle \frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}}}$$
+$$\mathcal{Z} = \displaystyle \frac{(\overline{X}_1-\overline{X}_2)-(\mu_1-\mu_2)}{\sqrt{\displaystyle \frac{S^2_1}{n_1}+\frac{S^2_2}{n_2}}}$$
 Donde el valor crítico está dado por $z_{0.01} = 1.28$ y además:
 
-$\bar{x}_1 = 0.138 \quad \text{Media muestra 1}$
+$\overline{X}_1 = 0.138 \quad \text{Media muestra 1}$
 
-$\bar{x}_2 = 0.091 \quad \text{Media muestra 2}$
+$\overline{X}_2 = 0.091 \quad \text{Media muestra 2}$
 
-$s_1 = 0.189 \quad \text{Desviación estándar muestra 1}$
+$S_1 = 0.189 \quad \text{Desviación estándar muestra 1}$
 
-$s_2 = 0.087 \quad \text{Desviación estándar muestra 2}$
+$S_2 = 0.087 \quad \text{Desviación estándar muestra 2}$
 
 $n_1 = 41 \quad \text{Tamaño muestra 1}$
 
@@ -1646,14 +2166,68 @@ Sustituyendo estos valores tenemos:
 
 $$
 \begin{array}{rl}
-\mathcal{Z} &= \displaystyle \frac{0.138-0.091}{\sqrt{\displaystyle \frac{0.0357}{41}+\frac{0.007569}{35}}} \\
-\\
-&= \displaystyle \frac{0.047}{0.0329} \\
-\\
+\vspace{3mm} \mathcal{Z} &= \displaystyle \frac{0.138-0.091}{\sqrt{\displaystyle \frac{0.0357}{41}+\frac{0.007569}{35}}} \\
+\vspace{3mm} &= \displaystyle \frac{0.047}{0.0329} \\
 &= 1.42 \\
 \end{array}
 $$
-Como el valor crítico es de 1.28 tenemos que, 1.42 > 1.28, por lo que rechazamos la hipótesis nula. Por lo que la propuesta de la CECF causaría una mayor reducción en el IPA para las empresas de alta tecnología (AT).
+Como el valor crítico es de 1.28 tenemos que, 1.42 > 1.28, por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula. Por lo que la propuesta de la CECF causaría una mayor reducción en el IPA para las empresas de alta tecnología (AT).
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar1<-0.138
+X_bar2<-0.091
+S1<-0.189
+S2<-0.087
+mu1_mu2<-0
+n1<-41
+n2<-35
+alpha<-0.1
+Z<-((X_bar1-X_bar2)-(mu1_mu2))/sqrt((S1^2/n1)+(S2^2/n2))
+Z
+Z_alpha<-qnorm(p=1-alpha,mean=0,sd=1)
+Z_alpha
+```
+
+Ésta es una prueba de cola derecha por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil1<- qnorm(1-alpha)
+
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = Z, y =0 , xend = Z, 
+                       yend = dnorm(Z,mean=0, sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=Z+0.05, y =-0.02, label ="Z", parse = TRUE)+
+        annotate("text", x=cuantil1-0.04, y =-0.02, label="'Z'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.7, y=0.2, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola derecha Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
 
 
 \newpage
@@ -1666,28 +2240,28 @@ El 1 de enero de 1996 se tomó una muestra de 32 fondos mutualistas de la bolsa 
 
 Veamos si las tasas de interés del mercado declinaron durante 1995. Establecemos la siguiente hipótesis:
 
-$H_o$ : $\mu_1 = \mu_2 \quad \text{Tasas de interés iguales}$
+$H_o$ : $\mu_1 \leq \mu_2 \quad \text{Tasas de interés en 1995 menor a las tasas de interés en 1996}$
 
-$H_a$: $\mu_1 - \mu_2 < 0 \quad \text{Diferencias de las tasas de interés menor a 0\%}$
+$H_a$: $\mu_1 - \mu_2 > 0 \quad \text{Tasas de interés en 1995 mayor a las tasas de interés en 1996}$
 
 $\alpha = 0.05$
 
 La prueba apropiada es una prueba para diferencias entre medias de una cola. El estadístico de prueba a usar está dado por:
 
-$$\mathcal{Z} = \displaystyle \frac{(\bar{x}_1-\bar{x}_2)-(\mu_1-\mu_2)}{\sqrt{\displaystyle \frac{s^2_1}{n_1}+\frac{s^2_2}{n_2}}}$$
-Donde el valor crítico está dado por $z_{0.05} = -1.64$ y además:
+$$\mathcal{Z} = \displaystyle \frac{(\overline{X}_1-\overline{X}_2)-(\mu_1-\mu_2)}{\sqrt{\displaystyle \frac{S^2_1}{n_1}+\frac{S^2_2}{n_2}}}$$
+Donde el valor crítico está dado por $z_{0.05} = 1.64$ y además:
 
-$\bar{x}_1 = 0.0323 \quad \text{Media muestra 1}$
+$\overline{X}_1 = 0.0436 \quad \text{Media muestra 1}$
 
-$\bar{x}_2 = 0.0436 \quad \text{Media muestra 2}$
+$\overline{X}_2 = 0.0323 \quad \text{Media muestra 2}$
 
-$s_1 = 0.0051 \quad \text{Desviación estándar muestra 2}$
+$S_1 = 0.0084 \quad \text{Desviación estándar muestra 2}$
 
-$s_2 = 0.0084 \quad \text{Desviación estándar muestra 1}$
+$S_2 = 0.0051 \quad \text{Desviación estándar muestra 1}$
 
-$n_1 = 32 \quad \text{Tamaño muestra 1}$
+$n_1 = 38 \quad \text{Tamaño muestra 1}$
 
-$n_2 = 38 \quad \text{Tamaño muestra 2}$
+$n_2 = 32 \quad \text{Tamaño muestra 2}$
 
 $\mu_1 - \mu_2 = 0$
 
@@ -1695,14 +2269,69 @@ Sustituyendo estos valores tenemos:
 
 $$
 \begin{array}{rl}
-\mathcal{Z} &= \displaystyle \frac{0.0323-0.0436}{\sqrt{\displaystyle \frac{0.00002601}{32}+\frac{0.00007056}{38}}} \\
-\\
-&= \displaystyle \frac{-0.0113}{0.001633} \\
-\\
-&=  -6.91\\
+\vspace{3mm} \mathcal{Z} &= \displaystyle \frac{0.0436-0.0323}{\sqrt{\displaystyle \frac{0.00007056}{38}+\frac{0.00002601}{32}}} \\
+\vspace{3mm} &= \displaystyle \frac{0.0113}{0.001633} \\
+&= 6.91
 \end{array}
 $$
-Como el valor crítico es de -1.64 tenemos que, -6.91 < -1.64, por lo que rechazamos la hipótesis nula. Por lo que las tasas de interés del mercado declinaron en el año 1995 con un nivel de significancia de $\alpha = 0.05$. 
+Como el valor crítico es de 1.64 tenemos que, 6.91 > 1.64, por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula. Por lo que las tasas de interés del mercado en el año 1995 fueron mayor a las tasas de interés en 1996, lo que implica que en 1995 las tasas no declinaron.
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar1<-0.0436
+X_bar2<-0.0323
+S1<-0.0084
+S2<-0.0051
+mu1_mu2<-0
+n1<-38
+n2<-32
+alpha<-0.05
+Z<-((X_bar1-X_bar2)-(mu1_mu2))/sqrt((S1^2/n1)+(S2^2/n2))
+Z
+Z_alpha<-qnorm(p=1-alpha,mean=0,sd=1)
+Z_alpha
+```
+
+Ésta es una prueba de cola derecha por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-8,8,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil1<- qnorm(1-alpha)
+
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = Z, y =0 , xend = Z, 
+                       yend = dnorm(Z,mean=0, sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=Z, y =-0.02, label ="Z", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'Z'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+1.5, y=0.1, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-8,8)+
+      labs( title = "Prueba de cola derecha Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
 
 \newpage
 
@@ -1722,19 +2351,19 @@ $\alpha = 0.05$
 
 La prueba apropiada es una prueba para diferencias entre medias para muestras pequeñas de una cola. El estadístico de prueba a usar está dado por:
 
-$$\mathcal{T} = \displaystyle \frac{(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)}{S\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$$
+$$T = \displaystyle \frac{(\overline{X}_1 - \overline{X}_2) - (\mu_1 - \mu_2)}{S\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$$
 
 Donde el valor crítico está dado por el valor negativo de $t_{0.05}$ con $n_1 + n_2 -2$ grados de libertad y además:
 
 $S = \sqrt{\displaystyle \frac{(n_1 - 1)s^2_1 + (n_2 - 1)s^2_2}{n_1 + n_2 -2}}$
 
-$\bar{x}_1 = 688\$ \quad \text{Media muestra 1}$
+$\overline{X}_1 = 688\$ \quad \text{Media muestra 1}$
 
-$\bar{x}_2 = 706\$ \quad \text{Media muestra 2}$
+$\overline{X}_2 = 706\$ \quad \text{Media muestra 2}$
 
-$s_1 = 32.63\$ \quad \text{Desviación estándar muestra 2}$
+$S_1 = 32.63\$ \quad \text{Desviación estándar muestra 2}$
 
-$s_2 = 24.84\$ \quad \text{Desviación estándar muestra 1}$
+$S_2 = 24.84\$ \quad \text{Desviación estándar muestra 1}$
 
 $n_1 = 16 \quad \text{Tamaño muestra 1}$
 
@@ -1746,14 +2375,71 @@ Sustituyendo estos valores en el estadístico y sabiendo que $t_{0.05} = -1.708$
 
 $$
 \begin{array}{rl}
-\mathcal{T} &= \displaystyle \frac{688 - 706}{29.75 \times \sqrt{\frac{1}{16}+\frac{1}{11}}} \\
-\\
-&= \displaystyle \frac{-18}{11.65} \\
-\\
+\vspace{3mm} T &= \displaystyle \frac{688 - 706}{29.75 \times \sqrt{\frac{1}{16}+\frac{1}{11}}} \\
+\vspace{3mm} &= \displaystyle \frac{-18}{11.65} \\
 &= -1.54
 \end{array}
 $$
-Como el valor crítico es de -1.708 tenemos que, -1.54 > -1.708, por lo que no rechazamos la hipótesis nula. Por lo que el promedio diario de ventas no ha aumentado de forma significativa.
+Como el valor crítico es de -1.708 tenemos que, -1.54 > -1.708, por lo que no hay suficiente evidencia estadística para rechazar la hipótesis nula. Por lo que el promedio diario de ventas no ha aumentado de forma significativa.
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar1<-688
+X_bar2<-706
+S1<-32.63
+S2<-24.84
+mu1_mu2<-0
+n1<-16
+n2<-11
+alpha<-0.05
+S<-sqrt(((n1-1)*(S1^2) + (n2-1)*(S2^2))/(n1+n2-2))
+T<-((X_bar1-X_bar2)-(mu1_mu2))/(S*sqrt((1/n1)+(1/n2)))
+T
+t_alpha<-qt(p=alpha,df=n1+n2-2)
+t_alpha
+```
+
+\newpage
+
+Ésta es una prueba de cola izquierda por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dt(x,df=n1+n2-2)
+cuantil1<- qt(alpha,df=n1+n2-2)
+
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=n1+n2-2)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T, y =0 , xend = T, 
+                       yend = dt(T,df=n1+n2-2)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T+0.1, y =-0.02, label ="T", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="-'t'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1-0.8, y=0.1, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola izquierda Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
 
 
 \newpage
@@ -1807,27 +2493,89 @@ $\alpha = 0.02$
 
 La prueba apropiada es una prueba para diferencias entre medias para muestras pequeñas y dependientes de dos colas. El estadístico de prueba a usar está dado por:
 
-$$\mathcal{T} = \displaystyle \frac{[(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)] \sqrt{n}}{s_d}$$
-Donde el valor crítico está dado por $\pm t_{0.02}$ con $n-1$ grados de libertad y además:
+$$T = \displaystyle \frac{[(\overline{X}_1 - \overline{X}_2) - (\mu_1 - \mu_2)] \sqrt{n}}{S_d}$$
+Donde el valor crítico está dado por $\pm t_{0.01}$ con $n-1$ grados de libertad y además:
 
-$\bar{x}_1 - \bar{x}_2 = -0.187 \quad \text{Diferencia entre las muestras}$
+$\overline{X}_1 - \overline{X}_2 = -0.187 \quad \text{Diferencia entre las muestras}$
 
 $n = 9 \quad \text{Tamaño de la muesta}$
 
-$s_d = 1.05 \quad \text{Desviación estándar de las diferencias de las muestras}$
+$S_d = 1.05 \quad \text{Desviación estándar de las diferencias de las muestras}$
 
 $\mu_1 - \mu_2 = 0$
 
-Sustituyendo estos valores en el estadístico y sabiendo que $t_{0.02} = \pm 2.896$ tenemos:
+Sustituyendo estos valores en el estadístico y sabiendo que $t_{0.01} = \pm 2.896$ tenemos:
 
 $$
 \begin{array}{rl}
-\mathcal{T} &= \displaystyle \frac{-0.187}{0.35} \\
-\\
-&= -0.53 \\
+\vspace{3mm} T &= \displaystyle \frac{-0.187}{0.35} \\
+&= -0.53
 \end{array}
 $$
-Como el valor crítico es de -2.896 tenemos que, -0.53 > -2.896, por lo que no rechazamos la hipótesis nula. Lo que implica que los ingresos medios no fueron significativamente diferentes.
+Como el valor crítico es de -2.896 tenemos que, -0.53 > -2.896, por lo que no existe suficiente evidencia estadística para rechazar la hipótesis nula. Lo que implica que los ingresos medios no fueron significativamente diferentes.
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar1<-mean(Ing1992)
+X_bar2<-mean(Ing1991)
+Sd<-sd(Dif)
+mu1_mu2<-0
+n<-9
+alpha<-0.02
+T<-((X_bar1-X_bar2)-(mu1_mu2))*sqrt(n)/Sd
+T
+t_alpha<-qt(p=alpha/2,df=n-1)
+t_alpha
+```
+
+Ésta es una prueba de dos colas por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dt(x,df=n-1)
+cuantil1<- qt(1-(alpha/2),df=n-1)
+cuantil2<- qt(alpha/2,df=n-1)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=n-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dt(cuantil2,df=n-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T, y =0 , xend = T, 
+                       yend = dt(T,df=n-1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T, y =-0.02, label ="T", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="-'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.7, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.7, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de dos colas Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
 
 \newpage
  
@@ -1847,14 +2595,14 @@ $\alpha = 0.1$
 
 La prueba apropiada es una prueba para diferencias entre proporciones de una cola. El estadístico de prueba a usar está dado por:
 
-$$\mathcal{P} = \displaystyle \frac{(\bar{p}_1 - \bar{p}_2) - (p_1 - p_2)}{\sqrt{\displaystyle \frac{\hat{p}(1-\hat{p})}{n_1} + \frac{\hat{p}(1-\hat{p})}{n_2}}}$$
+$$\mathcal{P} = \displaystyle \frac{(\overline{p}_1 - \overline{p}_2) - (p_1 - p_2)}{\sqrt{\displaystyle \frac{\hat{p}(1-\hat{p})}{n_1} + \frac{\hat{p}(1-\hat{p})}{n_2}}}$$
 Donde el valor crítico está dado por el valor negativo de $z_{0.1}$ y además:
 
-$\hat{p} = \displaystyle \frac{n_1\bar{p}_1 + n_2\bar{p}_2}{n_1 + n_2}$
+$\hat{p} = \displaystyle \frac{n_1\overline{p}_1 + n_2\overline{p}_2}{n_1 + n_2}$
 
-$\bar{p}_1 = \displaystyle \frac{11}{40} = 0.275 \quad \text{Proporción muestra 1}$
+$\overline{p}_1 = \displaystyle \frac{11}{40} = 0.275 \quad \text{Proporción muestra 1}$
 
-$\bar{p}_2 = \displaystyle \frac{24}{60} = 0.4 \quad \text{Proporción muestra 2}$
+$\overline{p}_2 = \displaystyle \frac{24}{60} = 0.4 \quad \text{Proporción muestra 2}$
 
 $n_1 = 40 \quad \text{Tamaño de la muesta 1}$
 
@@ -1866,14 +2614,68 @@ Sustituyendo estos valores en el estadístico y sabiendo que $z_{0.1} = -1.28$ t
 
 $$
 \begin{array}{rl}
-\mathcal{P} &= \displaystyle \frac{0.275-0.4}{\sqrt{\displaystyle \frac{0.35 \times 0.65}{40} + \frac{0.35 \times 0.65}{60}}} \\
-\\
-&= \displaystyle \frac{-0.125}{0.097} \\
-\\
-&= -1.288
+\vspace{3mm} \mathcal{P} &= \displaystyle \frac{0.275-0.4}{\sqrt{\displaystyle \frac{0.35 \times 0.65}{40} + \frac{0.35 \times 0.65}{60}}} \\
+\vspace{3mm} &= \displaystyle \frac{-0.125}{0.09736} \\
+&= -1.283
 \end{array}
 $$
-Como el valor crítico es de -1.28 tenemos que, -1.288 < -1.28, por lo que rechazamos la hipótesis nula. Lo que implica que una proporción más pequeña avanzó el viernes.
+Como el valor crítico es de -1.28 tenemos que, -1.283 < -1.28, por lo que existe suficiente evidencia estadística para rechazar la hipótesis nula. Lo que implica que una proporción más pequeña avanzó el viernes.
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+p_bar1<-0.275
+p_bar2<-0.4
+n1<-40
+n2<-60
+alpha<-0.1
+p_hat<-(n1*p_bar1+n2*p_bar2)/(n1+n2)
+p1_p2<-0
+P<-((p_bar1-p_bar2)-(p1_p2))/(sqrt((p_hat*(1-p_hat)/n1) + (p_hat*(1-p_hat)/n2)))
+P
+Z_alpha<-qnorm(p=alpha,mean=0,sd=1)
+Z_alpha
+```
+
+Ésta es una prueba de cola izquierda por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil1<- qnorm(alpha)
+
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = P, y =0 , xend = P, 
+                       yend = dnorm(P,mean=0, sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=P-0.1, y =-0.01, label ="P", parse = TRUE)+
+        annotate("text", x=cuantil1+0.1, y =-0.02, label="-'Z'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1-0.7, y=0.2, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola izquierda Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
 
 \newpage
 
@@ -1893,15 +2695,15 @@ $\alpha = 0.05$
 
 La prueba apropiada es una prueba para diferencias entre proporciones de dos colas. El estadístico de prueba a usar está dado por:
 
-$$\mathcal{P} = \displaystyle \frac{(\bar{p}_1 - \bar{p}_2) - (p_1 - p_2)}{\sqrt{\displaystyle \frac{\hat{p}(1-\hat{p})}{n_1} + \frac{\hat{p}(1-\hat{p})}{n_2}}}$$
+$$\mathcal{P} = \displaystyle \frac{(\overline{p}_1 - \overline{p}_2) - (p_1 - p_2)}{\sqrt{\displaystyle \frac{\hat{p}(1-\hat{p})}{n_1} + \frac{\hat{p}(1-\hat{p})}{n_2}}}$$
 
 Donde el valor crítico está dado por $\pm z_{0.0250}$ y además:
 
-$\hat{p} = \displaystyle \frac{n_1\bar{p}_1 + n_2\bar{p}_2}{n_1 + n_2}$
+$\hat{p} = \displaystyle \frac{n_1\overline{p}_1 + n_2\overline{p}_2}{n_1 + n_2}$
 
-$\bar{p}_1 = \displaystyle \frac{87}{175} = 0.497 \quad \text{Proporción muestra 1}$
+$\overline{p}_1 = \displaystyle \frac{87}{175} = 0.497 \quad \text{Proporción muestra 1}$
 
-$\bar{p}_2 = \displaystyle \frac{94}{220} = 0.427 \quad \text{Proporción muestra 2}$
+$\overline{p}_2 = \displaystyle \frac{94}{220} = 0.427 \quad \text{Proporción muestra 2}$
 
 $n_1 = 175 \quad \text{Tamaño de la muesta 1}$
 
@@ -1913,14 +2715,79 @@ Sustituyendo estos valores en el estadístico y sabiendo que $z_{0.0250} = \pm 1
 
 $$
 \begin{array}{rl}
-\mathcal{P} &= \displaystyle \frac{0.497-0.427}{\sqrt{\displaystyle \frac{0.458 \times 0.541}{175} + \frac{0.458 \times 0.541}{220}}} \\
-\\
-&= \displaystyle \frac{0.07}{0.05} \\
-\\
-&= 1.4
+\vspace{3mm} \mathcal{P} &= \displaystyle \frac{0.497-0.427}{\sqrt{\displaystyle \frac{0.458 \times 0.541}{175} + \frac{0.458 \times 0.541}{220}}} \\
+\vspace{3mm} &= \displaystyle \frac{0.07}{0.05041} \\
+&= 1.38
 \end{array}
 $$
-Como el valor crítico es de 1.96 tenemos que, 1.4 < 1.96, por lo que no rechazamos la hipótesis nula. Lo que implica que no existe una diferencia significativa entre las dos proporciones.
+Como el valor crítico es de 1.96 tenemos que, 1.38 < 1.96, por lo que no hay suficiente evidencia estadística para rechazar la hipótesis nula. Lo que implica que no existe una diferencia significativa entre las dos proporciones.
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+p_bar1<-0.497
+p_bar2<-0.427
+n1<-175
+n2<-220
+alpha<-0.05
+p_hat<-(n1*p_bar1+n2*p_bar2)/(n1+n2)
+p1_p2<-0
+P<-((p_bar1-p_bar2)-(p1_p2))/(sqrt((p_hat*(1-p_hat)/n1) + (p_hat*(1-p_hat)/n2)))
+P
+Z_alpha<-qnorm(p=1-(alpha/2),mean=0,sd=1)
+Z_alpha
+```
+
+Ésta es una prueba de dos colas por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil1<- qnorm(1-(alpha/2))
+cuantil2<- qnorm(alpha/2)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dnorm(cuantil2,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = P, y =0 , xend = P, 
+                       yend = dnorm(P,mean=0, sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=P, y =-0.02, label ="P", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'Z'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="-'Z'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.8, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.8, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de dos colas Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+
+\newpage
 
 Ahora veamos si existe una diferencia significativa en cuanto a las proporciones de personas que planean comprar una actualización. Establecemos la siguiente hipótesis:
 
@@ -1932,9 +2799,9 @@ $\alpha = 0.05$
 
 Usando el mismo estadístico de prueba, con valor crítico dado por $z_{0.0250} = \pm 1.96$ tenemos:
 
-$\bar{p}_1 = \displaystyle \frac{52}{87} = 0.597 \quad \text{Proporción muestra 1}$
+$\overline{p}_1 = \displaystyle \frac{52}{87} = 0.597 \quad \text{Proporción muestra 1}$
 
-$\bar{p}_2 = \displaystyle \frac{37}{94} = 0.393 \quad \text{Proporción muestra 2}$
+$\overline{p}_2 = \displaystyle \frac{37}{94} = 0.393 \quad \text{Proporción muestra 2}$
 
 $n_1 = 87 \quad \text{Tamaño de la muesta 1}$
 
@@ -1946,14 +2813,76 @@ Sustituyendo nos queda:
 
 $$
 \begin{array}{rl}
-\mathcal{P} &= \displaystyle \frac{0.597-0.393}{\sqrt{\displaystyle \frac{0.491 \times 0.508}{87} + \frac{0.491 \times 0.508}{94}}} \\
-\\
-&= \displaystyle \frac{0.204}{0.074} \\
-\\
+\vspace{3mm} \mathcal{P} &= \displaystyle \frac{0.597-0.393}{\sqrt{\displaystyle \frac{0.491 \times 0.508}{87} + \frac{0.491 \times 0.508}{94}}} \\
+\vspace{3mm} &= \displaystyle \frac{0.204}{0.074} \\
 &= 2.75
 \end{array}
 $$
-Como el valor crítico es de 1.96 tenemos que, 2.75 > 1.96, por lo que rechazamos la hipótesis nula. Lo que implica que existe una diferencia significativa entre las dos proporciones.
+Como el valor crítico es de 1.96 tenemos que, 2.75 > 1.96, por lo que existe suficiente evidencia estadística para rechazar la hipótesis nula. Lo que implica que existe una diferencia significativa entre las dos proporciones.
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+p_bar1<-0.597
+p_bar2<-0.393
+n1<-87
+n2<-94
+alpha<-0.05
+p_hat<-(n1*p_bar1+n2*p_bar2)/(n1+n2)
+p1_p2<-0
+P<-((p_bar1-p_bar2)-(p1_p2))/(sqrt((p_hat*(1-p_hat)/n1) + (p_hat*(1-p_hat)/n2)))
+P
+Z_alpha<-qnorm(p=1-(alpha/2),mean=0,sd=1)
+Z_alpha
+```
+
+Ésta es una prueba de dos colas por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil1<- qnorm(1-(alpha/2))
+cuantil2<- qnorm(alpha/2)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dnorm(cuantil2,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = P, y =0 , xend = P, 
+                       yend = dnorm(P,mean=0, sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=P, y =-0.02, label ="P", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'Z'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="-'Z'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.7, y=0.075, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.7, y=0.075, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de dos colas Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
 
 
 \newpage
@@ -1974,15 +2903,15 @@ $\alpha = 0.1$
 
 La prueba apropiada es una prueba para diferencias entre proporciones de una cola. El estadístico de prueba a usar está dado por:
 
-$$\mathcal{P} = \displaystyle \frac{(\bar{p}_1 - \bar{p}_2) - (p_1 - p_2)}{\sqrt{\displaystyle \frac{\hat{p}(1-\hat{p})}{n_1} + \frac{\hat{p}(1-\hat{p})}{n_2}}}$$
+$$\mathcal{P} = \displaystyle \frac{(\overline{p}_1 - \overline{p}_2) - (p_1 - p_2)}{\sqrt{\displaystyle \frac{\hat{p}(1-\hat{p})}{n_1} + \frac{\hat{p}(1-\hat{p})}{n_2}}}$$
 
 Donde el valor crítico está dado por $z_{0.1}$ y además:
 
-$\hat{p} = \displaystyle \frac{n_1\bar{p}_1 + n_2\bar{p}_2}{n_1 + n_2}$
+$\hat{p} = \displaystyle \frac{n_1\overline{p}_1 + n_2\overline{p}_2}{n_1 + n_2}$
 
-$\bar{p}_1 = 0.07 \quad \text{Proporción muestra 1}$
+$\overline{p}_1 = 0.07 \quad \text{Proporción muestra 1}$
 
-$\bar{p}_2 = 0.03 \quad \text{Proporción muestra 2}$
+$\overline{p}_2 = 0.03 \quad \text{Proporción muestra 2}$
 
 $n_1 = 200 \quad \text{Tamaño de la muesta 1}$
 
@@ -1994,14 +2923,67 @@ Sustituyendo estos valores en el estadístico y sabiendo que $z_{0.1} = 1.28$ te
 
 $$
 \begin{array}{rl}
-\mathcal{P} &= \displaystyle \frac{0.07-0.03}{\sqrt{\displaystyle \frac{0.05 \times 0.95}{200} + \frac{0.05 \times 0.95}{200}}} \\
-\\
-&= \displaystyle \frac{0.04}{0.021} \\
-\\
-&= 1.90
+\vspace{3mm} \mathcal{P} &= \displaystyle \frac{0.07-0.03}{\sqrt{\displaystyle \frac{0.05 \times 0.95}{200} + \frac{0.05 \times 0.95}{200}}} \\
+\vspace{3mm} &= \displaystyle \frac{0.04}{0.02179} \\
+&= 1.83
 \end{array}
 $$
-Como el valor crítico es de 1.28 tenemos que, 1.90 > 1.28, por lo que rechazamos la hipótesis nula. Lo que implica que con estos datos se confirma la conclusión del artículo.
+Como el valor crítico es de 1.28 tenemos que, 1.83 > 1.28, por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula. Lo que implica que con estos datos se confirma la conclusión del artículo.
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+p_bar1<-0.07
+p_bar2<-0.03
+n1<-200
+n2<-200
+alpha<-0.1
+p_hat<-(n1*p_bar1+n2*p_bar2)/(n1+n2)
+p1_p2<-0
+P<-((p_bar1-p_bar2)-(p1_p2))/(sqrt((p_hat*(1-p_hat)/n1) + (p_hat*(1-p_hat)/n2)))
+P
+Z_alpha<-qnorm(p=1-alpha,mean=0,sd=1)
+Z_alpha
+```
+
+Ésta es una prueba de cola derecha por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil1<- qnorm(1-alpha)
+
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = P, y =0 , xend = P, 
+                       yend = dnorm(P,mean=0, sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=P, y =-0.02, label ="P", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'Z'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.5, y=0.2, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola derecha Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
 
 \newpage
 
@@ -2027,15 +3009,15 @@ $\alpha = 0.05$
 
 La prueba apropiada es una prueba para diferencias entre medias para muestras pequeñas y dependientes de dos colas. El estadístico de prueba a usar está dado por:
 
-$$\mathcal{T} = \displaystyle \frac{[(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)] \sqrt{n}}{s_d}$$
+$$T = \displaystyle \frac{[(\overline{X}_1 - \overline{X}_2) - (\mu_1 - \mu_2)] \sqrt{n}}{S_d}$$
 
-Donde el valor crítico está dado por $\pm t_{0.05}$ con $n-1$ grados de libertad y además:
+Donde el valor crítico está dado por $\pm t_{0.025}$ con $n-1$ grados de libertad y además:
 
-$\bar{x}_1 - \bar{x}_2 = 46.85 - 53.15 = -6.3 \quad \text{Diferencia entre las muestras}$
+$\overline{X}_1 - \overline{X}_2 = 46.85 - 53.15 = -6.3 \quad \text{Diferencia entre las muestras}$
 
 $n = 2 \quad \text{Tamaño de la muesta}$
 
-$s_d \quad \text{Desviación estándar de las diferencias de las muestras}$
+$S_d \quad \text{Desviación estándar de las diferencias de las muestras}$
 
 $\mu_1 - \mu_2 = 0$
 
@@ -2048,16 +3030,79 @@ Dif1<-Nacionales-Importados
 sd(Dif1)
 ```
 
-Sustituyendo estos valores en el estadístico y sabiendo que $t_{0.05} = \pm 12.71$ tenemos:
+Sustituyendo estos valores en el estadístico y sabiendo que $t_{0.025} = \pm 12.71$ tenemos:
 
 $$
 \begin{array}{rl}
-\mathcal{T} &= \displaystyle \frac{-6.3 \sqrt{2}}{1.838} \\
-\\
-&= -4.84 \\
+\vspace{3mm} T &= \displaystyle \frac{-6.3 \sqrt{2}}{1.838} \\
+&= -4.84
 \end{array}
 $$
-Como el valor crítico es de -12.71 tenemos que, -4.84 > -12.71, por lo que no rechazamos la hipótesis nula. Lo que implica que no hubo un cambio significativo en las ventas de autos.
+Como el valor crítico es de -12.71 tenemos que, -4.84 > -12.71, por lo que no hay suficiente evidencia estadística para rechazar la hipótesis nula. Lo que implica que no hubo un cambio significativo en las ventas de autos.
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar1<-mean(Nacionales)
+X_bar2<-mean(Importados)
+Sd<-sd(Dif1)
+mu1_mu2<-0
+n<-2
+alpha<-0.05
+T<-((X_bar1-X_bar2)-(mu1_mu2))*sqrt(n)/Sd
+T
+t_alpha<-qt(p=alpha/2,df=n-1)
+t_alpha
+```
+
+Ésta es una prueba de dos colas por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-15,15,0.01)
+y<-dt(x,df=n-1)
+cuantil1<- qt(1-(alpha/2),df=n-1)
+cuantil2<- qt(alpha/2,df=n-1)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=n-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dt(cuantil2,df=n-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T, y =0 , xend = T, 
+                       yend = dt(T,df=n-1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T, y =-0.02, label ="T", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="-'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.7, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.7, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-15,15)+
+      labs( title = "Prueba de dos colas Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
 
 \newpage
 
@@ -2077,14 +3122,14 @@ $\alpha = 0.1$
 
 La prueba apropiada es una prueba para diferencias entre proporciones de una cola. El estadístico de prueba a usar está dado por:
 
-$$\mathcal{P} = \displaystyle \frac{(\bar{p}_1 - \bar{p}_2) - (p_1 - p_2)}{\sqrt{\displaystyle \frac{\hat{p}(1-\hat{p})}{n_1} + \frac{\hat{p}(1-\hat{p})}{n_2}}}$$
+$$\mathcal{P} = \displaystyle \frac{(\overline{p}_1 - \overline{p}_2) - (p_1 - p_2)}{\sqrt{\displaystyle \frac{\hat{p}(1-\hat{p})}{n_1} + \frac{\hat{p}(1-\hat{p})}{n_2}}}$$
 Donde el valor crítico está dado por el valor negativo de $z_{0.1}$ y además:
 
-$\hat{p} = \displaystyle \frac{n_1\bar{p}_1 + n_2\bar{p}_2}{n_1 + n_2}$
+$\hat{p} = \displaystyle \frac{n_1\overline{p}_1 + n_2\overline{p}_2}{n_1 + n_2}$
 
-$\bar{p}_1 = \displaystyle \frac{89}{150} = 0.593 \quad \text{Proporción muestra 1}$
+$\overline{p}_1 = \displaystyle \frac{89}{150} = 0.593 \quad \text{Proporción muestra 1}$
 
-$\bar{p}_2 = \displaystyle  \frac{87}{120} = 0.725 \quad \text{Proporción muestra 2}$
+$\overline{p}_2 = \displaystyle  \frac{87}{120} = 0.725 \quad \text{Proporción muestra 2}$
 
 $n_1 = 150 \quad \text{Tamaño de la muesta 1}$
 
@@ -2096,15 +3141,67 @@ Sustituyendo estos valores en el estadístico y sabiendo que $z_{0.1} = -1.28$ t
 
 $$
 \begin{array}{rl}
-\mathcal{P} &= \displaystyle \frac{0.593-0.725}{\sqrt{\displaystyle \frac{0.65 \times 0.35}{150} + \frac{0.65 \times 0.35}{120}}} \\
-\\
-&= \displaystyle \frac{-0.132}{0.058} \\
-\\
+\vspace{3mm} \mathcal{P} &= \displaystyle \frac{0.593-0.725}{\sqrt{\displaystyle \frac{0.65 \times 0.35}{150} + \frac{0.65 \times 0.35}{120}}} \\
+\vspace{3mm} &= \displaystyle \frac{-0.132}{0.058} \\
 &= -2.27
 \end{array}
 $$
-Como el valor crítico es de -1.28 tenemos que, -2.27 < -1.28, por lo que rechazamos la hipótesis nula. Lo que implica que los agentes de adquisiciones eran menos optimistas que los macroeconomistas.
+Como el valor crítico es de -1.28 tenemos que, -2.27 < -1.28, por lo que existe suficiente evidencia estadística para rechazar la hipótesis nula. Lo que implica que los agentes de adquisiciones eran menos optimistas que los macroeconomistas.
 
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+p_bar1<-0.593
+p_bar2<-0.725
+n1<-150
+n2<-120
+alpha<-0.1
+p_hat<-(n1*p_bar1+n2*p_bar2)/(n1+n2)
+p1_p2<-0
+P<-((p_bar1-p_bar2)-(p1_p2))/(sqrt((p_hat*(1-p_hat)/n1) + (p_hat*(1-p_hat)/n2)))
+P
+Z_alpha<-qnorm(p=alpha,mean=0,sd=1)
+Z_alpha
+```
+
+Ésta es una prueba de cola izquierda por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil1<- qnorm(alpha)
+
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = P, y =0 , xend = P, 
+                       yend = dnorm(P,mean=0, sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=P, y =-0.02, label ="P", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="-'Z'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1-0.7, y=0.2, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola izquierda Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
 
 \newpage
 
@@ -2144,19 +3241,19 @@ $\alpha = 0.05$
 
 La prueba apropiada es una prueba para diferencias entre medias para muestras pequeñas de una cola. El estadístico de prueba a usar está dado por:
 
-$$\mathcal{T} = \displaystyle \frac{(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)}{S\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$$
+$$T = \displaystyle \frac{(\overline{X}_1 - \overline{X}_2) - (\mu_1 - \mu_2)}{S\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$$
 
 Donde el valor crítico está dado $t_{0.05}$ con $n_1 + n_2 -2$ grados de libertad y además:
 
-$S = \sqrt{\displaystyle \frac{(n_1 - 1)s^2_1 + (n_2 - 1)s^2_2}{n_1 + n_2 -2}}$
+$S = \sqrt{\displaystyle \frac{(n_1 - 1)S^2_1 + (n_2 - 1)S^2_2}{n_1 + n_2 -2}}$
 
-$\bar{x}_1 \quad \text{Media muestra 1}$
+$\overline{X}_1 \quad \text{Media muestra 1}$
 
-$\bar{x}_2 \quad \text{Media muestra 2}$
+$\overline{X}_2 \quad \text{Media muestra 2}$
 
-$s_1 \quad \text{Desviación estándar muestra 2}$
+$S_1 \quad \text{Desviación estándar muestra 2}$
 
-$s_2 \quad \text{Desviación estándar muestra 1}$
+$S_2 \quad \text{Desviación estándar muestra 1}$
 
 $n_1 = 5 \quad \text{Tamaño muestra 1}$
 
@@ -2164,7 +3261,7 @@ $n_2 = 11 \quad \text{Tamaño muestra 2}$
 
 $\mu_1 - \mu_2 = 0$
 
-Calculemos $\bar{x}_1, \bar{x}_2, s_1, s_2$ mediante **R**:
+Calculemos $\overline{X}_1, \overline{X}_2, S_1, S_2$ mediante **R**:
 
 ```{r,comment=""}
 mDisney<-c(52.6,27.8,24.2,21.1,18.1)
@@ -2187,15 +3284,71 @@ Sustituyendo estos valores en el estadístico y sabiendo que $t_{0.05} = 1.761$ 
 
 $$
 \begin{array}{rl}
-\mathcal{T} &= \displaystyle \frac{28.76 - 14.24}{13.35 \times \sqrt{\frac{1}{5}+\frac{1}{11}}} \\
-\\
-&= \displaystyle \frac{14.52}{7.2} \\
-\\
+\vspace{3mm} T &= \displaystyle \frac{28.76 - 14.24}{13.35 \times \sqrt{\frac{1}{5}+\frac{1}{11}}} \\
+\vspace{3mm} &= \displaystyle \frac{14.52}{7.2} \\
 &= 2.01
 \end{array}
 $$
-Como el valor crítico es de 1.761 tenemos que, 2.01 > 1.761, por lo que rechazamos la hipótesis nula. Por lo que las películas animadas de Disney ganan más que la competencia aún excluyendo los grandes éxitos.
+Como el valor crítico es de 1.761 tenemos que, 2.01 > 1.761, por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula. Por lo que las películas animadas de Disney ganan más que la competencia aún excluyendo los grandes éxitos.
 
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar1<-mean(mDisney)
+X_bar2<-mean(mcompe)
+S1<-sd(mDisney)
+S2<-sd(mcompe)
+mu1_mu2<-0
+n1<-5
+n2<-11
+alpha<-0.05
+S<-sqrt(((n1-1)*(S1^2) + (n2-1)*(S2^2))/(n1+n2-2))
+T<-((X_bar1-X_bar2)-(mu1_mu2))/(S*sqrt((1/n1)+(1/n2)))
+T
+t_alpha<-qt(p=1-alpha,df=n1+n2-2)
+t_alpha
+```
+
+\newpage
+
+Ésta es una prueba de cola derecha por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dt(x,df=n1+n2-2)
+cuantil1<- qt(1-alpha,df=n1+n2-2)
+
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=n1+n2-2)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T, y =0 , xend = T, 
+                       yend = dt(T,df=n1+n2-2)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T, y =-0.02, label ="T", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'t'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.7, y=0.1, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola derecha Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
 
 \newpage
 
@@ -2238,19 +3391,19 @@ $H_a$: $\mu_1 - \mu_2 \neq 0 \quad \text{Diferencias significativas}$
 
 La prueba apropiada es una prueba para diferencias entre medias para muestras pequeñas y dependientes de dos colas. El estadístico de prueba a usar está dado por:
 
-$$\mathcal{T} = \displaystyle \frac{[(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)] \sqrt{n}}{s_d}$$
+$$T = \displaystyle \frac{[(\overline{X}_1 - \overline{X}_2) - (\mu_1 - \mu_2)] \sqrt{n}}{S_d}$$
 
 Donde,
 
-$\bar{x}_1 - \bar{x}_2 = 47,150\$ - 47.156\$ = -6\$  \quad \text{Diferencia entre las muestras}$
+$\overline{X}_1 - \overline{X}_2 = 47,150\$ - 47.156\$ = -6\$  \quad \text{Diferencia entre las muestras}$
 
 $n = 20 \quad \text{Tamaño de la muesta}$
 
-$s_d \text{Desviación estándar de las diferencias de las muestras}$
+$S_d \quad \text{Desviación estándar de las diferencias de las muestras}$
 
 $\mu_1 - \mu_2 = 0$
 
-Calculemos $s_d$ mediante **R**:
+Calculemos $S_d$ mediante **R**:
 
 ```{r,comment=''}
 Cierre1<-c(23500,16750,50750,71625,53875,13125,51375,15375,71125,60250,
@@ -2266,12 +3419,49 @@ Sustituyendo estos valores en el estadístico tenemos:
 
 $$
 \begin{array}{rl}
-\mathcal{T} &= \displaystyle \frac{-6 \sqrt{20}}{552.32} \\
-\\
-&= -0.048 \\
+\vspace{3mm} T &= \displaystyle \frac{-6 \sqrt{20}}{552.32} \\
+&= -0.048
 \end{array}
 $$
-El valor del estadístico de prueba (-0.048) es muy cercano a cero. Por lo que la disminución observada no es muy significativa (es decir, tomamos a H_o como cierta).
+El valor del estadístico de prueba (-0.048) es muy cercano a cero. Por lo que la disminución observada no es muy significativa (es decir, tomamos a $H_o$ como cierta).
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar1<-mean(Cierre2)
+X_bar2<-mean(Cierre1)
+Sd<-sd(Dif2)
+mu1_mu2<-0
+n<-20
+T<-((X_bar1-X_bar2)-(mu1_mu2))*sqrt(n)/Sd
+T
+```
+
+Ilustremos el estadístico en el siguiente gráfico:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dt(x,df=n-1)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      
+      geom_segment(aes(x = T, y =0 , xend = T, 
+                       yend = dt(T,df=n-1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T, y =-0.02, label ="T", parse = TRUE)+
+        
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Estadístico en la Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
 
 
 \newpage
@@ -2294,19 +3484,19 @@ $\alpha = 0.06$
 
 La prueba apropiada es una prueba para diferencias entre medias para muestras pequeñas de una cola. El estadístico de prueba a usar está dado por:
 
-$$\mathcal{T} = \displaystyle \frac{(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)}{S\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$$
+$$T = \displaystyle \frac{(\overline{X}_1 - \overline{X}_2) - (\mu_1 - \mu_2)}{S\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$$
 
 Donde el valor crítico está dado $t_{0.06}$ con $n_1 + n_2 -2$ grados de libertad y además:
 
-$S = \sqrt{\displaystyle \frac{(n_1 - 1)s^2_1 + (n_2 - 1)s^2_2}{n_1 + n_2 -2}}$
+$S = \sqrt{\displaystyle \frac{(n_1 - 1)S^2_1 + (n_2 - 1)S^2_2}{n_1 + n_2 -2}}$
 
-$\bar{x}_1 = 400 \quad \text{Media muestra 1}$
+$\overline{X}_1 = 400 \quad \text{Media muestra 1}$
 
-$\bar{x}_2 = 380 \quad \text{Media muestra 2}$
+$\overline{X}_2 = 380 \quad \text{Media muestra 2}$
 
-$s_1 = 20 \quad \text{Desviación estándar muestra 2}$
+$S_1 = 20 \quad \text{Desviación estándar muestra 2}$
 
-$s_2 = 18 \quad \text{Desviación estándar muestra 1}$
+$S_2 = 18 \quad \text{Desviación estándar muestra 1}$
 
 $n_1 = 16 \quad \text{Tamaño muestra 1}$
 
@@ -2314,19 +3504,77 @@ $n_2 = 14 \quad \text{Tamaño muestra 2}$
 
 $\mu_1 - \mu_2 = 0$
 
-Sustituyendo estos valores en el estadístico y sabiendo que $t_{0.06} = 1.8$ tenemos:
+Sustituyendo estos valores en el estadístico y sabiendo que $t_{0.06} = 1.6$ tenemos:
 
 $$
 \begin{array}{rl}
-\mathcal{T} &= \displaystyle \frac{400 - 380}{19.097 \times \sqrt{\frac{1}{16}+\frac{1}{14}}} \\
-\\
-&= \displaystyle \frac{20}{6.988} \\
-\\
+\vspace{3mm} T &= \displaystyle \frac{400 - 380}{19.097 \times \sqrt{\frac{1}{16}+\frac{1}{14}}} \\
+\vspace{3mm} &= \displaystyle \frac{20}{6.988} \\
 &= 2.86
 \end{array}
 $$
 
-Como el valor crítico es de 1.8 tenemos que, 2.86 > 1.8, por lo que rechazamos la hipótesis nula. Por lo que la industria textil genera más empleo que las industrias de muebles.
+Como el valor crítico es de 1.6 tenemos que, 2.86 > 1.6, por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula. Por lo que la industria textil genera más empleo que las industrias de muebles.
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar1<-400
+X_bar2<-380
+S1<-20
+S2<-18
+mu1_mu2<-0
+n1<-16
+n2<-14
+alpha<-0.06
+S<-sqrt(((n1-1)*(S1^2) + (n2-1)*(S2^2))/(n1+n2-2))
+T<-((X_bar1-X_bar2)-(mu1_mu2))/(S*sqrt((1/n1)+(1/n2)))
+T
+t_alpha<-qt(p=1-alpha,df=n1+n2-2)
+t_alpha
+```
+
+\newpage
+
+Ésta es una prueba de cola derecha por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dt(x,df=n1+n2-2)
+cuantil1<- qt(1-alpha,df=n1+n2-2)
+
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=n1+n2-2)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T, y =0 , xend = T, 
+                       yend = dt(T,df=n1+n2-2)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T, y =-0.02, label ="T", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'t'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.7, y=0.1, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola derecha Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
 
 \newpage
 
@@ -2346,19 +3594,19 @@ $\alpha=0.05$
 
 La prueba apropiada es una prueba para diferencias entre medias para muestras pequeñas de dos colas. El estadístico de prueba a usar está dado por:
 
-$$\mathcal{T} = \displaystyle \frac{(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)}{S\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$$
+$$T = \displaystyle \frac{(\overline{X}_1 - \overline{X}_2) - (\mu_1 - \mu_2)}{S\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}$$
 
-Donde el valor crítico está dado $\pm t_{0.05}$ con $n_1 + n_2 -2$ grados de libertad y además:
+Donde el valor crítico está dado $\pm t_{0.025}$ con $n_1 + n_2 -2$ grados de libertad y además:
 
-$S = \sqrt{\displaystyle \frac{(n_1 - 1)s^2_1 + (n_2 - 1)s^2_2}{n_1 + n_2 -2}}$
+$S = \sqrt{\displaystyle \frac{(n_1 - 1)S^2_1 + (n_2 - 1)S^2_2}{n_1 + n_2 -2}}$
 
-$\bar{x}_1 = 5 \quad \text{Media muestra 1}$
+$\overline{x}_1 = 5 \quad \text{Media muestra 1}$
 
-$\bar{x}_2 = 5.50 \quad \text{Media muestra 2}$
+$\overline{x}_2 = 5.50 \quad \text{Media muestra 2}$
 
-$s_1 = 2 \quad \text{Desviación estándar muestra 2}$
+$S_1 = 2 \quad \text{Desviación estándar muestra 2}$
 
-$s_2 = 2.10 \quad \text{Desviación estándar muestra 1}$
+$S_2 = 2.10 \quad \text{Desviación estándar muestra 1}$
 
 $n_1 = 10 \quad \text{Tamaño muestra 1}$
 
@@ -2366,18 +3614,85 @@ $n_2 = 15 \quad \text{Tamaño muestra 2}$
 
 $\mu_1 - \mu_2 = 0$
 
-Sustituyendo estos valores en el estadístico y sabiendo que $t_{0.05} = \pm 2.069$ tenemos:
+Sustituyendo estos valores en el estadístico y sabiendo que $t_{0.025} = \pm 2.069$ tenemos:
 
 $$
 \begin{array}{rl}
-\mathcal{T} &= \displaystyle \frac{5 - 5.50}{2.06 \times \sqrt{\frac{1}{10}+\frac{1}{15}}} \\
-\\
-&= \displaystyle \frac{-0.5}{1.06} \\
-\\
-&= -0.47
+\vspace{3mm} T &= \displaystyle \frac{5 - 5.50}{2.06 \times \sqrt{\frac{1}{10}+\frac{1}{15}}} \\
+\vspace{3mm} &= \displaystyle \frac{-0.5}{0.8409} \\
+&= -0.59
 \end{array}
 $$
-Como el valor crítico es de 2.069 tenemos que, -0.47 > -2.069, por lo que no rechazamos la hipótesis nula. Por lo que los mercados en las dos ciudades son iguales.
+Como el valor crítico es de -2.069 tenemos que, -0.59 > -2.069, por lo que no hay evidencia estadística suficiente para rechazar la hipótesis nula. Por lo que los mercados en las dos ciudades son iguales.
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar1<-5
+X_bar2<-5.50
+S1<-2
+S2<-2.10
+mu1_mu2<-0
+n1<-10
+n2<-15
+alpha<-0.05
+S<-sqrt(((n1-1)*(S1^2) + (n2-1)*(S2^2))/(n1+n2-2))
+T<-((X_bar1-X_bar2)-(mu1_mu2))/(S*sqrt((1/n1)+(1/n2)))
+T
+t_alpha<-qt(p=alpha/2,df=n1+n2-2)
+t_alpha
+```
+
+\newpage
+
+Ésta es una prueba de dos colas por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dt(x,df=n1+n2-2)
+cuantil1<- qt(1-(alpha/2),df=n1+n2-2)
+cuantil2<- qt(alpha/2,df=n1+n2-2)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=n1+n2-2)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dt(cuantil2,df=n1+n2-2)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T, y =0 , xend = T, 
+                       yend = dt(T,df=n1+n2-2)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T, y =-0.02, label ="T", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="-'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.7, y=0.075, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.7, y=0.075, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de dos colas Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
 
 \newpage
 
@@ -2387,7 +3702,7 @@ En una ciudad se escogió una muestra aleatoria de 121 personas para preguntarle
 
 \textbf{\underline{Solución:}}
 
-Cómo tenemos una comparación de varianzas entre las poblaciones, el estadístico que adecuado para esta prueba es el estadístico $F$, donde la prueba de hipótesis es la siguiente,
+Cómo tenemos una comparación de varianzas entre las poblaciones, el estadístico adecuado para esta prueba es el estadístico $F$, donde la prueba de hipótesis es la siguiente,
 
 $H_0:\sigma_1^2=\sigma_1^2$
 
@@ -2395,19 +3710,84 @@ $H_a: \sigma_1^2 \ne \sigma_2^2$
 
 Para $v_1 = n_1 - 1 = 121 - 1 = 120$ grados de libertad de la primera ciudad y $v_2 = n_2 - 1 = 61 - 1 = 60$ grados de libertad para la otra ciudad, entonces el estadístico $F$ es,
 
-$$\mathcal{F}=\displaystyle \frac{s_1^2}{s_2^2}$$
+$$\mathcal{F}=\displaystyle \frac{S_1^2}{S_2^2}$$
 
 Sustituyendo las varianzas muestrales de cada ciudad, tenemos que,
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \mathcal{F} &=\displaystyle \frac{s_1^2}{s_2^2}\\
+\vspace{3mm} \mathcal{F} &=\displaystyle \frac{S_1^2}{S_2^2}\\
 \vspace{3mm} &= \displaystyle \frac{(0.50)^2}{(0.37)^2}\\
 &= 1.83
 \end{array}
 $$
 
-Cómo la hipótesis alternativa es de dos colas, entonces se rechaza la hipótesis nula si $F > F^{v_1}_{v_2,\alpha/2}$. Luego, para un nivel de significancia de 5\% se tiene que $F^{120}_{60,0.025}=1.58$. Cómo $1.83>1.58$, entonces se rechaza la hipótesis nula. Esto quiere decir, que las dos ciudades tienen varianzas significativamente diferentes con un nivel de significancia de 5\%.
+Cómo la hipótesis alternativa es de dos colas, entonces se rechaza la hipótesis nula si $F > F^{v_1}_{v_2,\alpha/2}$. Luego, para un nivel de significancia de 5\% se tiene que $F^{120}_{60,0.025}=1.58$. Cómo $1.83>1.58$, entonces existe suficiente evidencia estadística para rechazar la hipótesis nula. Esto quiere decir, que las dos ciudades tienen varianzas significativamente diferentes con un nivel de significancia de 5\%.
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+S1<-0.50
+S2<-0.37
+n1<-121
+n2<-61
+alpha<-0.05
+F<-(S1^2)/(S2^2)
+F
+F_alpha<-qf(p=1-(alpha/2),df1=n1-1,df2 = n2-1)
+F_alpha
+df(1,df1=n1-1,df2=n2-1)
+```
+
+\newpage
+
+Ésta es una prueba de varianzas de dos colas por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(0,3,0.01)
+y<-df(x,df1=n1-1,df2 = n2-1)
+cuantil1<- qf(1-(alpha/2),df1=n1-1,df2 = n2-1)
+cuantil2<- qf(alpha/2,df1=n1-1,df2 = n2-1)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = df(cuantil1,df1=n1-1,df2=n2-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = df(cuantil2,df1=n1-1,df2 = n2-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = F, y =0 , xend = F, 
+                       yend = df(F,df1=n1-1,df2=n2-1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=F, y =-0.1, label ="F", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.1, label="'F'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.1, label="-'F'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=1, y = 0.5, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.3, y=0.25, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.3, y=0.475, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.5,2)+
+      xlim(0,3)+
+      labs( title = "Prueba de varianza de dos colas Distribución Fisher",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
 
 
 \newpage
@@ -2423,38 +3803,280 @@ Los siguientes datos corresponden a la clasificación de empresas vendedoras de 
 | Ventas mayores que el promedio | 34 | 51 | 60 | 145 |
 | Total | 194 | 257 | 182 | 633 |
 
-a) ¿Según estos datos se podría decir que  la ubicación influye en el volumen de ventas? $\alpha=0.05.$ Calcular el coeficiente de contigencia.
+a) ¿Según estos datos se podría decir que  la ubicación influye en el volumen de ventas? $\alpha=0.05.$
 
 \textbf{\underline{Solución:}}
 
-Veamos si la ubicación influye en el volumen de ventas. Establecemos la siguiente hipótesis:
+Veamos si la ubicación influye en el volumen de ventas. Comparemos entre sí las diferentes zonas. Para Sabana Grande y centro establecemos la siguiente hipótesis:
 
 $H_o$ : $\mu_1 - \mu_2 = 0 \quad \text{Sin diferencias significativas}$
 
-$H_a$: $\mu_1 > \mu_2 \quad \text{Mayor ventas por ubicación}$
+$H_a$: $\mu_1 \neq \mu_2 \quad \text{Difererencias significativas entre las dos zonas}$
 
-La prueba apropiada es una prueba para diferencias entre medias para muestras pequeñas y dependientes de una cola. El estadístico de prueba a usar está dado por:
+La prueba apropiada es una prueba para diferencias entre medias para muestras pequeñas y dependientes de dos colas. El estadístico de prueba a usar está dado por:
 
-$$\mathcal{T} = \displaystyle \frac{[(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2)] \sqrt{n}}{s_d}$$
+$$T = \displaystyle \frac{[(\overline{X}_1 - \overline{X}_2) - (\mu_1 - \mu_2)] \sqrt{n}}{S_d}$$
 
-Donde,
+Donde el valor crítico está dado por $\pm t_{0.025}$ con $n-1$ grados de libertad y además:
 
-$\bar{x}_1 - \bar{x}_2 \quad \text{Diferencia entre las muestras}$
+$\overline{X}_1 - \overline{X}_2 \quad \text{Diferencia entre las muestras}$
 
 $n = 3 \quad \text{Tamaño de la muesta}$
 
-$s_d \quad \text{Desviación estándar de las diferencias de las muestras}$
+$S_d \quad \text{Desviación estándar de las diferencias de las muestras}$
 
 $\mu_1 - \mu_2 = 0$
 
-Calculemos $\bar{x}_1, \bar{x}_2$ y $s_d$ mediante **R**:
+Calculemos $\overline{X}_1, \overline{X}_2$ y $S_d$ mediante **R**:
 
 ```{r,comment=''}
-zonas<-c(194,257,182)
-ventas<-c(142,346,145)
-Dif3<-zonas-ventas
+sabanagrande<-c(58,102,34)
+centro<-c(46,160,51)
+otzonas<-c(38,84,60)
+Dif3<-sabanagrande-centro
 mean(Dif3)
 sd(Dif3)
 ```
 
-Tenemos que $\bar{x}_1\bar{x}_2 = 0$, lo que implica que el estadístico de prueba es igual a cero. Por lo que rechazamos la hipótesis nula. La ubicación no influye en el volumen de ventas.
+Tenemos que $\overline{X}_1-\overline{X}_2 = -21$, $S_d=35.1701$ y además $t_{0.025}=\pm 4.303$, sustituyendo en el estadístico nos queda:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} T &= \displaystyle \frac{-21\sqrt{3}}{35.1701}\\
+&= -1.03
+\end{array}
+$$
+Como el valor crítico es de -4.303 tenemos que, -1.03 > -4.303, por lo que no existe suficiente evidencia estadística para rechazar la hipótesis nula. Lo que implica que no existe una diferencia significativa entre las ventas y la ubicación para sabana grande y el centro.
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar1<-mean(sabanagrande)
+X_bar2<-mean(centro)
+Sd<-sd(Dif3)
+mu1_mu2<-0
+n<-3
+alpha<-0.05
+T<-((X_bar1-X_bar2)-(mu1_mu2))*sqrt(n)/Sd
+T
+t_alpha<-qt(p=alpha/2,df=n-1)
+t_alpha
+```
+
+Ésta es una prueba de dos colas por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-5,5,0.01)
+y<-dt(x,df=n-1)
+cuantil1<- qt(1-(alpha/2),df=n-1)
+cuantil2<- qt(alpha/2,df=n-1)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=n-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dt(cuantil2,df=n-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T, y =0 , xend = T, 
+                       yend = dt(T,df=n-1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T, y =-0.02, label ="T", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="-'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-5,5)+
+      labs( title = "Prueba de dos colas Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+\newpage
+
+Análogamente comparemos Sabana Grande y otras zonas, usando el mismo estadístico de prueba y la misma hipótesis, tenemos:
+
+```{r,comment=''}
+Dif4<-sabanagrande-otzonas
+mean(Dif4)
+sd(Dif4)
+```
+
+Tenemos que $\overline{X}_1-\overline{X}_2 = 4$, $S_d=26$ y además $t_{0.025}=\pm 4.303$, sustituyendo en el estadístico nos queda:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} T &= \displaystyle \frac{4\sqrt{3}}{26}\\
+&= 0.266
+\end{array}
+$$
+Como el valor crítico es de 4.303 tenemos que, 0.266 < 4.303, por lo que no existe suficiente evidencia estadística para rechazar la hipótesis nula. Lo que implica que no existe una diferencia significativa entre las ventas y la ubicación para sabana grande y otras zonas.
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar1<-mean(sabanagrande)
+X_bar2<-mean(otzonas)
+Sd<-sd(Dif4)
+mu1_mu2<-0
+n<-3
+alpha<-0.05
+T<-((X_bar1-X_bar2)-(mu1_mu2))*sqrt(n)/Sd
+T
+t_alpha<-qt(p=1-alpha/2,df=n-1)
+t_alpha
+```
+
+Ésta es una prueba de dos colas por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-5,5,0.01)
+y<-dt(x,df=n-1)
+cuantil1<- qt(1-(alpha/2),df=n-1)
+cuantil2<- qt(alpha/2,df=n-1)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=n-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dt(cuantil2,df=n-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T, y =0 , xend = T, 
+                       yend = dt(T,df=n-1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T, y =-0.02, label ="T", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="-'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-5,5)+
+      labs( title = "Prueba de dos colas Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+\newpage
+
+Finalmente comparemos el centro y otras zonas, usando el mismo estadístico de prueba y la misma hipótesis, tenemos:
+
+```{r,comment=''}
+Dif5<-centro-otzonas
+mean(Dif5)
+sd(Dif5)
+```
+
+Tenemos que $\overline{X}_1-\overline{X}_2 = 25$, $S_d=44.977$ y además $t_{0.025}=\pm 4.303$, sustituyendo en el estadístico nos queda:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} T &= \displaystyle \frac{25\sqrt{3}}{44.977}\\
+&= 0.962
+\end{array}
+$$
+Como el valor crítico es de 4.303 tenemos que, 0.962 < 4.303, por lo que no existe suficiente evidencia estadística para rechazar la hipótesis nula. Lo que implica que no existe una diferencia significativa entre las ventas y la ubicación para el centro y otras zonas.
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar1<-mean(centro)
+X_bar2<-mean(otzonas)
+Sd<-sd(Dif5)
+mu1_mu2<-0
+n<-3
+alpha<-0.05
+T<-((X_bar1-X_bar2)-(mu1_mu2))*sqrt(n)/Sd
+T
+t_alpha<-qt(p=1-alpha/2,df=n-1)
+t_alpha
+```
+
+Ésta es una prueba de dos colas por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-5,5,0.01)
+y<-dt(x,df=n-1)
+cuantil1<- qt(1-(alpha/2),df=n-1)
+cuantil2<- qt(alpha/2,df=n-1)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=n-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dt(cuantil2,df=n-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T, y =0 , xend = T, 
+                       yend = dt(T,df=n-1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T, y =-0.02, label ="T", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="-'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-5,5)+
+      labs( title = "Prueba de dos colas Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+
+
+
