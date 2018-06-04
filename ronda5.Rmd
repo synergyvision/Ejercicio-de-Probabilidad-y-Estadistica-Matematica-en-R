@@ -50,13 +50,14 @@ c) Comente la conclusión en caso de que pueda rechazarse $H_0.$
 
 # Ejercicio 3
 
-Una operación de la línea de producción está diseñada para llenar cajas con un peso medio de 32 onzas de detergente para lavar.  Con periodicidad se selecciona una muestra de los empaques y se pesan para determinar si se están llenando de manera insuficiente o en demasía.  Si los datos muestrales llevan a la conclusión de que hay llenado insuficiente o excesivo, la producción se suspende y se ajusta al llenado correcto.
+Una línea de operación está diseñada para llenar empaques de 32 onzas de detergente para lavar.  Con periodicidad se selecciona una muestra de los empaques y se pesan para determinar si no se están llenando con un peso mayor o menor del indicado.  Si los datos muestrales llevan a la conclusión de que hay exceso o falta de llenado, se suspende la producicón y se ajusta al llenado correcto. 
 
 a) Formule las hipótesis nula y alternativa que ayudarán a determinar si se debe detener la produción y ajustar el peso.
 
 b) Comente sobre la conclusión y la decisión en caso de que $H_0$ no se pueda rechazar.
 
 c) Comente acerca de la conclusión y la decisión en caso de que $H_0$ se pueda rechazar.
+
 
 \newpage
 
@@ -113,7 +114,7 @@ c) Usando un nivel de significancia de 0.05, ¿cuál es su conclusión?.
 
 # Ejercicio 8
 
-Las sociedades de valores de Wall Street pagaron en 2005 gratificaciones de fin de año de \$125 500 por empleado (*Fortune,* 6 de febrero de 2006).  Suponga que se desea tomar una muestra de los empleados de la empresa de valores Jones & Ryan para ver si la media de la gratificación de fin de año es diferente de la media de \$125500 reportada por la población.
+Las empresas de seguridad de Wall Street pagaron en 2005 gratificaciones de fin de año de \$125 500 por empleado (*Fortune,* 6 de febrero de 2006).  Suponga que se desea tomar una muestra de los empleados de la empresa de valores Jones & Ryan para ver si la media de la gratificación de fin de año es diferente de la media de \$125500 reportada por la población.
 
 a) Establezca la hipótesis nula y alternativa que se usarían para probar si las gratificaciones de fin de año de Jones & Ryan difieren de la media poblacional.
 
@@ -139,7 +140,7 @@ c) Con $\sigma=0.05,$ ¿cuál es su conclusión?.
 
 # Ejercicio 10
 
-El U.S. Departament fo labor informó que los ingresos promedio para los trabajadores estadounidenses de la producción en 2001 era \$14.32 por hora (*The World Almanac*, 2003).  En una muestra de 75 trabajadores tomada en 2003, la media muestral fue \$14.68 por hora.  Si la desviación estándar poblacional es $\sigma=\$1.45$, ¿se puede concluir que ha habido un aumento en la media de las ganancias por hora? Use $\sigma=0.05.$
+En 2001, el U.S. Department Labor informó que el salario por hora promedio para los trabajadores de la producción en Estados Unidos era \$14.32 por hora (*The World Almanac*, 2003).  En una muestra de 75 trabajadores tomada en 2003, la media muestral fue \$14.68 por hora.  Si la desviación estándar poblacional es $\sigma=\$1.45$, ¿se puede concluir que ha habido un aumento en la media de las ganancias por hora? Use $\sigma=0.05.$
 
 \newpage
 
@@ -187,107 +188,98 @@ d) Calcule un intervalo de 95% de confianza para la media poblacional. ¿Esto su
 
 # Ejercicio 14
 
-Las declaraciones de impuestos presentadas antes del 31 de marzo obtienen un reembolso que en promedio es de \$1056.  Considere la población de los contribuyentes de "última hora" que presentan su declaración en los últimos cinco días del periodo para este trámite (normalmente del 10 al 15 de abril).
+La Employment and Training Administration informó que la prestación media del seguro de desempleo es \$238/semana (The World Almanac, 2003). Un investigador del estado de Virginia anticipó que datos muestrales indicarán que la prestación media semanal del seguro de desempleo en el estado de Virginia es menor que la media de todo el país.
 
-a) Un investigador sugiere que la razón por la que estos declarantes esperan hasta los últimos días se debe a que en promedio obtienen un reembolso menor que los que declaran antes del 31 de marzo.  Establezcan las hipótesis apropiadas de manera que el rechazo de $H_0$ favorezca la sugerencia de este investigador.
+a. Dé las hipótesis adecuadas de manera que el rechazo de $H_0$ favorezca la afirmación del investigador.
 
-b) En una muestra de 400 personas que presentaron su declaración entre el 10 y el 15 de abril, la media muestral de los reembolsos fue \$910.  Por experiencia se sabe que es posible considerar que la desviación estándar poblacional es $\sigma=\$1600$. ¿Cuál es el *p*-valor?
+b. En una muestra de 100 individuos la media muestral encontrada fue \$231 y la desviación estándar muestral fue \$80. ¿Cuál es el valor-p?
 
-c) Con $\sigma=0.05$, ¿cuál es su conclusión?
+c. Si $\alpha=0.05$, ¿cuál es su conclusión?
 
-d) Repita la prueba de hipótesis anterior usando el método del valor crítico.
+d. Repita la prueba de hipótesis anterior usando el método del valor crítico.
 
 \newpage
 
 # Ejercicio 15
 
-En un estudio acerca de cómo utilizan las tarjetas de crédito los estudiantes no titulados, se reportó que este tipo de población tiene un saldo medio en su tarjeta de crédito de \$3173 (*Sallie Mae*, abril de 2009).  Tal cifra fue la más alta de todos los tiempos y tuvo un incremento de 44% sobre la de los cinco años previos.  Suponga que se realiza un estudio actual para determinar si es posible concluir que el saldo medio en la tarjeta de crédito de estudiantes no titulados ha continuado en aumento comparado con el informe de abril de 2009.  Con base en reportes previos, utilice una desviación estándar poblacional de $\sigma=\$1000$.
+El precio de un diamante de un quilate de color H y pureza VS2 de Diamod Source USA es \$5 600 (www.diasource.com, marzo de 2003). Un joyero del medio oeste llama al distrito de los diamantes de Nueva York para ver si el precio medio de los diamantes ahí difiere de \$5600
 
-a) Establezca las hipótesis nula y alternativa.
+a. Formule las hipótesis para determinar si el precio en Nueva York difiere de \$5600.
 
-b) ¿Cuál es el *p*-valor de una muestra de 180 estudiantes no titulados con un saldo medio muestral en su tarjeta de crédito de \$3325?
+b. Los precios en una muestra de 25 contactos en la ciudad de Nueva York fueron los que se presentan en el archivo Diamonds del disco compacto. ¿Cuál es el valor-p?
 
-c) Usando un nivel de significancia de 0.05, ¿cuál es su conclusión?
+c. Con $\alpha=0.05$, ¿es posible rechazar la hipótesis nula? ¿Cuál es su conclusión?
+
+d. Repita la prueba de hipótesis anterior usando el método del valor crítico.
 
 \newpage
 
 # Ejercicio 16
 
-Las sociedades de valores de Wall Street pagaron en 2005 gratificaciones de fin de año de \$125500 por empleado (*Fortune,* 6 de febrero de 2006). Suponga que se desea tomar una muestra de los empleados de la empresa de valores Jones & Ryan para ver si la media de la gratificación de fin de año es diferente de la media de \$125500 reportada de la población.
-
-a) Establezca las hipótesis nula y alternativa que se usarían para probar si las gratificaciones de fin de año de Jones & Ryan difieren de la media poblacional.
-
-b) Suponga que una muestra de 40 empleados de Jones & Ryan exhibió una media muestral de las gratificaciones de \$118000.  Suponga que la desviación estándar poblacional es $\sigma=\$30000$ y calcule el *p*-valor.
-
-c) Con $\sigma=0.05$ como nivel de significancia, ¿cuál es su conclusión?
-
-d) Repita esta prueba de hipótesis usando el método del valor crítico.
+Raftelis Financial Consulting informa que la media en los recibos trimestrales del agua en Estados Unidos es \$47.50 (U.S. News & World Report, 12 de agosto de 2002). Algunos servicios de agua son operados por empresas de servicio público, mientras que otros sistemas de agua son operados por empresas privadas. Un economista indica que la privatización no nivela la competencia y que el poder monopólico dado a las empresas públicas se está transfiriendo ahora a las empresas privadas. El problema es que los usuarios acaban pagando tasas más altas por el agua suministrada por las empresas privadas. El sistema de agua de Atlanta, Georgia, es operado por una empresa privada.
+En una muestra de 64 usuarios de Atlanta, la cantidad media trimestral pagada por el agua fue \$51 y la desviación estándar fue \$12. Empleando $\alpha=0.05$ ¿la muestra favorece la conclusión de que esta empresa privada que suministra el agua tiene tasas promedio mayores?
 
 \newpage
 
 # Ejercicio 17
 
-La rentabilidad total anual promedio de los fondos de inversión de U.S. Diversified Equity de 1999 a 2003 fue de 4.1% (*BusinessWeek*, 26 de enero de 2004).  Un investigador desea realizar una prueba de hipótesis para saber si los rendimientos de determinados fondos de crecimiento (mid-cap growth funds) difieren de manera significativa del promedio de los fondos de U.S. Diversified Equity.
-
-a) Establezca las hipótesis que se pueden usar para determinar si la rentabilidad anual media de estos fondos difiere de la media de los fondos de U.S. Diversified Equity.
-
-b) En una muestra de 40 fondos el rendimiento medio fue de $\hat{x}=3.4\%$.  Suponga que por estudios anteriores sa sabe que la desviación estándar poblacional de estos fondos es $\sigma=2\%$.  Use los resultados muestrales para calcular el estadístico de prueba y el *p*-valor para la prueba de hipótesis.
-
-c) Con $\sigma=0.05,$ ¿cuál es su conclusión?
+El viernes los corredores de bolsa de Wall Street esperaban ansiosos la publicación del gobierno federal del aumento en enero de nóminas no agrícolas. El primer consenso estimado entre los economistas fue que se esperaba un aumento de 250000 nuevos empleos (CNBC, 3 de febrero de 2006). Sin embargo, en una muestra de 20 economistas tomada el jueves en la tarde, la media muestral fue 266000, y la desviación estándar muestral 24 000. Los analistas financieros suelen llamar a tales medias muestrales, basadas en las estimaciones que circulan en el mercado después de que los analistas incorporan las últimas informaciones, “whisper number”. Realice una prueba de hipótesis para determinar si el “whisper number” justifica la conclusión de un aumento estadísticamente significante en la estimación de consenso de los economistas. Use $\alpha=0.01$ como nivel de significancia.
 
 \newpage
 
 # Ejercicio 18
 
-El U.S. Department of Labor informó que los ingresos promedio para los trabajadores estadounidense de la producción en 2001 era \$14.32 por hora (*The World Almanac*, 2003).  En una muestra de 75 trabajadores tomada en 2003, la media muestral fue \$14.68 por horas.  Si la desviación estándar poblacional es $\sigma=\$1.45$, ¿se puede concluir que ha habido un aumento en la media de las ganancias por hora? Use $\sigma=0.05$.
+En un estudio sobre los costos de atención a la salud en Estados Unidos se presentaron datos que mostraban un gasto medio de Medicare por derechohabiente de \$6 883 en el 2003. Para investigar las diferencias en todo el país, un investigador tomó una muestra de 40 derechohabientes de 382 Capítulo 9 Prueba de hipótesis Medicare del estado de Indianápolis. En la muestra de Indianápolis el gasto promedio de Medicare
+en el 2003 fue \$5980 y la desviación estándar \$2518.
+
+a. Establezca las hipótesis a usar si se quiere determinar si el gasto anual medio de Medicare en Indianápolis es menor a la media nacional.
+
+b. Use los resultados muestrales anteriores para calcular el estadístico de prueba y el valor-p.
+
+c. Use $\alpha=0.05$. ¿A qué conclusión llega?
+
+d. Repita la prueba de hipótesis usando el método del valor crítico.
 
 \newpage
 
 # Ejercicio 19
 
-En Estados Unidos, un hogar paga promedio \$32.79 mensuales por el servicio de Internet (CNBC, 18 de enero de 2006).  En una muestra de 50 hogares de un estado del sur la media muestral fue \$30.63.  Use la desviación estándar poblacional de $\sigma=\$5.60$.
+La cámara de comercio de una comunidad de Florida anuncia en su publicidad que el costo medio de un terreno residencial es \$125 000 o menos por lote. Suponga que en una muestra de 32 lotes se encuentra que la media muestral es \$130 000 por lote y que la desviación estándar muestral es \$12 500. Use 0.05 como nivel de significancia para probar la validez de lo que se dice en la publicidad.
 
-a) Formule las hipótesis para una prueba en la que se quiere determinar si los datos muestrales favorecen la conclusión de que la cantidad media mensual pagada por el servicio de Internet en este estado del sur es menor a la media de todo el país, que es de \$32.79.
-
-b) ¿Cuál es el valor estadístico de prueba?
-
-c) ¿Cuál es el *p*-valor?
-
-d) Con $\sigma=0.01$ ¿qué concluye?
 
 \newpage
 
 # Ejercicio 20
 
-Fowle Marketing Research, Inc. tasa la tarifa que cobra a sus clientes en el supuesto de que una encuesta por teléfono se realiza en un promedio de 15 minutos o menos.  Si se requiere más tiempo en promedio, se cobra una cantidad adicional.  La duración de las encuestas en una muestra de 35 de ellas se presentan en el archivo Fowle.  Por estudios anteriores se puede considerar que la desviación estándar poblacional es conocida y que es $\sigma=4$ minutos. ¿El cobro de la cantidad adicional está justificado?
+Los centros virtuales de llamadas son atendidos por personas que trabajan fuera de sus hogares. La mayor parte de los agentes de casa (home agent) ganan \$10 a \$15 por hora sin beneficios frente a \$7 a \$9 por hora con beneficios en un centro tradicional de llamadas (BusinessWeek, 23 de enero de 2006). Regional Airways está considerando emplear agentes de casa, pero sólo si conservan una satisfacción del cliente mayor que 80%. Se realizó una prueba con agentes de casa.
 
-a) Formule las hipótesis nula y alternativa para esta aplicación.
+En una muestra de 300 clientes, 252 indicaron estar satisfechos con el servicio.
 
-b) Calcule el valor estadístico de prueba.
+a. Elabore las hipótesis de una prueba para determinar si los datos muestrales apoyan la conclusión de que el servicio al cliente con agentes de casa satisface el criterio de Regional Airways.
 
-c) ¿Cuál es el *p*-valor?
+b. ¿Cuál es la estimación puntual del porcentaje de clientes satisfechos?
 
-d) Con $\sigma=0.01,$ ¿cuál es su conclusión?
+c. ¿Cuál es el valor-p proporcionado por los datos muestrales?
+
+d. ¿Cuál es la conclusión en esta prueba de hipótesis? Use como nivel de significancia $\alpha=0.05$.
 
 \newpage
 
 # Ejercicio 21
 
-CNN y ActMedia presentaron un cnal de televisión dirigido a las personas que esperan en las colas de los supermercados.  En este canal se transmitían noticias, esportajes cortos y publicidad.  La duración de la programación se basaba en el supuesto de que la media poblacional del tiempo que los clientes esperan en la fila de la caja es 8 minutos.  Se utilizará una muestra de tiempos de espera reales para probar ese supuesto y determinar si el tiempo medio de espera difiere de ese estándar.
+En Estados Unidos, de acuerdo con el gobierno federal, 24% de los trabajadores amparados por el plan de atención a la salud de su empresa no tuvieron que contribuir a la prima (Statistical Abstract of the United States: 2006). En un estudio reciente se encontró que a 81 trabajadores de los 400 tomados en una muestra no se les pidió que contribuyeran para el plan de atención a la salud de su empresa.
 
-a) Formule las hipótesis para esta aplicación.
+a. Elabore las hipótesis para probar si ha disminuido el porcentaje de trabajadores a quienes no se les pide que contribuyan para el plan de atención a la salud de su empresa.
 
-b) En una muestra de 120 clientes, la media muestral de tiempo de espera fue de 8.5 minutos.  Suponga que la desviación estándar poblacional es $\sigma=3.2$. ¿Cuál es el *p-*valor?
+b. ¿Cuál es la estimación puntual de la proporción que tiene un seguro de salud financiado totalmente por su empresa?
 
-c) Con $\sigma=0.05,$ ¿cuál es su conclusión?
-
-d) Calcule un intervalo de 95% de confianza para la media poblacional.  ¿Esto sustenta su conclusión?.
+c. ¿Ha habido una disminución estadísticamente significativa en la proporción de trabajadores que tienen un seguro de salud financiado totalmente por su empresa? Use $\alpha=0.05$.
 
 \newpage
 
 # Ejercicio 22
 
-En un estudio se encontró quem en 2005, el 12.5% de los trabajadores estadounidenses pertenecía a un sindicato (*The Wall Street Journal*, 21 de enero de 2006).  El caso es que en 2006 se toma una muestra de 400 trabajadores para ver si el esfuerzo realizado por los sindicatos por organizarse ha hecho que aumente el número de sus miembros.
+En un estudio se encontró que en 2005, el 12.5% de los trabajadores estadounidenses pertenecía a un sindicato (*The Wall Street Journal*, 21 de enero de 2006).  El caso es que en 2006 se toma una muestra de 400 trabajadores para ver si el esfuerzo realizado por los sindicatos por organizarse ha hecho que aumente el número de sus miembros.
 
 a) Formule las hipótesis que puedan ser usadas para determinar si la afiliación a los sindicatos ha aumentado en 2006.
 
@@ -387,7 +379,7 @@ c) Con $\sigma=0.1,$ ¿cuál es su conclusión?
 
 # Ejercicio 30
 
-Numerosos inversionistas y analistas financieron piensan que el promedio industrial Dow Jones (DJIA) es un buen barómetro del mercado de acciones. El 31 de enero de 2006, de las 30 acciones que constituyen el DIJA, 9 aumentaron de precio (*The Wall Street Journal,  1 de febrero de 2006).  A partir de este hecho, un analista bursátil afirmó que 30% de las acciones de la Bolsa de Nueva York se incrementarían ese mismo día.
+Muchos inversionistas y analistas financieron piensan que el promedio industrial Dow Jones (DJIA) es un buen barómetro del mercado de acciones. El 31 de enero de 2006, de las 30 acciones que constituyen el DIJA, 9 aumentaron de precio (*The Wall Street Journal,  1 de febrero de 2006).  A partir de este hecho, un analista bursátil afirmó que 30% de las acciones de la Bolsa de Nueva York se incrementarían ese mismo día.
 
 a) Formule las hipótesis nula y alternativas para probar lo que afirma el análista.
 
