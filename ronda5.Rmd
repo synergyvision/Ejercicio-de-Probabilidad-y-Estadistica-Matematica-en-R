@@ -15,6 +15,19 @@ fontsize: 12pt
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(latex2exp)
+library(ggplot2)
+source("ggplottheme.R")
+library(grid)
+library('readxl')
+library(gridExtra)
+mod_name<-"Pruebas de Hipótesis"
+credits<-function(f){
+  grid.arrange(f,right=textGrob(paste0(mod_name," (C) Synergy Vision - 2018"),
+                                gp=gpar(fontsize=7, fontface="italic", col="gray75"),
+                                rot=90, just = "centre", vjust=-2))
+}
 ```
 
 \newpage
@@ -34,6 +47,17 @@ b) ¿Cuál es la conclusión apropiada cuando no se puede rechazar la hipótesis
 
 c)  ¿Qué conclusión es adecuada cuando se puede rechazar la hipótesis nula $H_0$?
 
+\textbf{\underline{Solución:}}
+
+a) La prueba de hipótesis para probar la afirmación del gerente es:
+
+$$\begin{matrix} H_o: \mu \leq 600 \\ H_a: \mu>600 \end{matrix}$$
+Pues queremos saber si la cantidad media que gastan los huespedes en un fin de semana es de 600\$ ó menos versus la hipótesis de que los huespedes gastan más de 600\$ en un fin de semana.
+
+b) En el caso de no rechazar la hipótesis nula, no existiría suficiente evidencia estadística para afirmar que los huespedes gastan más de 600\$ en un fin de semana, por lo que tomamos como válida la afirmación del gerente.
+
+c) En el caso de rechazar la hipótesis nula, existiría suficiente evidencia estadística para afirmar que los huespedes gastan más de 600\$ en un fin de semana, por lo que no tomamos como válida la afirmación del gerente.
+
 \newpage
 
 # Ejercicio 2
@@ -45,6 +69,17 @@ a) Desarrolle las hipótesis nula y alternativa más adecuadas para esta situaci
 b) Comente la conclusión en caso de que no pueda rechazarse $H_0.$
 
 c) Comente la conclusión en caso de que pueda rechazarse $H_0.$
+
+\textbf{\underline{Solución:}}
+
+a) La prueba de hipótesis adecuada es:
+
+$$\begin{matrix} H_o: \mu \leq 14 \\ H_a: \mu>14 \end{matrix}$$
+Pues queremos saber si la cantidad media de ventas incrementó en más de 14 automóviles por mes ó no con el nuevo plan.
+
+b) En el caso de no rechazar la hipótesis nula, no existiría suficiente evidencia estadística para afirmar que el nuevo plan haya incrementado las ventas de automóviles.
+
+c) En el caso de rechazar la hipótesis nula, existiría suficiente evidencia estadística para afirmar que el nuevo plan de bono incrementó las ventas de automóviles en más de 14 por mes.
 
 \newpage
 
@@ -58,6 +93,16 @@ b) Comente sobre la conclusión y la decisión en caso de que $H_0$ no se pueda 
 
 c) Comente acerca de la conclusión y la decisión en caso de que $H_0$ se pueda rechazar.
 
+\textbf{\underline{Solución:}}
+
+a) La prueba de hipótesis adecuada es:
+
+$$\begin{matrix} H_o: \mu = 32 \\ H_a: \mu \neq 32 \end{matrix}$$
+Pues queremos saber si los empaques de detergentes se están llenando ó no con la cantidad indicada de detergente.
+
+b) En el caso de no rechazar la hipótesis nula, no existiría suficiente evidencia estadística para afirmar que el llenado de empaques de detergentes no esté funcionando correctamente, por lo que no se suspendería la producción.
+
+c) En el caso de rechazar la hipótesis nula, existiría suficiente evidencia estadística para afirmar que el llenado de empaques de detergentes no esté funcionando correctamente, por lo que se suspendería la producción y se ajustaría al llenado correcto.
 
 \newpage
 
@@ -71,6 +116,17 @@ b) Comente acerca de la conclusión cuando $H_0$ no pueda rechazarse.
 
 c) Comente acerca de la conclusión cuando $H_0$ pueda rechazarse.
 
+\textbf{\underline{Solución:}}
+
+a) La prueba de hipótesis adecuada es:
+
+$$\begin{matrix} H_o: \mu \geq 220 \\ H_a: \mu<220 \end{matrix}$$
+Pues queremos saber si el nuevo método reducirá los costos de producción o no.
+
+b) En el caso de no rechazar la hipótesis nula, no existiría suficiente evidencia estadística para afirmar que el nuevo método reduzca los costos de producción, por lo que la afirmación del director no es válida.
+
+c) En el caso de rechazar la hipótesis nula, existiría suficiente evidencia estadística para afirmar que el nuevo método reduce los costos de producción, por lo que tomamos como válida la afirmación del director.
+
 \newpage
 
 # Ejercicio 5
@@ -83,6 +139,12 @@ H_a:\mu>56.2\end{matrix}$$
 a) ¿Cuál es el error tipo I en esta situación? ¿Qué consecuencia tiene comertelo?
 
 b) ¿Cuál es el error tipo II en esta sitiación? ¿Qué consecuencia tiene comertelo?
+
+\textbf{\underline{Solución:}}
+
+a) El error tipo I en esta situación es afirmar que los jóvenes en alemania ven en promedio más minutos de televisión en las horas de mayor audiencia cuando en realidad dicha afirmación es falsa, es decir, que los jóvenes estadounidenses ven en promedio más minutos de televisión.
+
+b) El error tipo II en esta situación es afirmar que los jóvenes estadounidenses ven en promedio más minutos de televisión cuando en realidad dicha afirmación es falsa, es decir, que los jóvenes en alemania ven en promedio más minutos de televisión en las horas de mayor audiencia.
 
 \newpage
 
@@ -98,6 +160,111 @@ c) Con $\sigma=0.05,$ ¿cuál es su conclusión?
 
 d) Repita la prueba de hipótesis anterior usando el método del valor crítico?.
 
+\textbf{\underline{Solución:}}
+
+a) La prueba de hipótesis adecuada de manera que al rechazar $H_o$ favorezca la sugerencia del investigador es:
+
+$$\begin{matrix} H_o: \mu \geq 1056\$ \\ H_a: \mu<1056\$ \end{matrix}$$
+
+b) Dado que esta es una prueba de media con varianza poblacional conocida de cola inferior, para calcular el $p-$valor usamos el siguiente estadístico de prueba:
+
+$$\mathcal{Z}=\displaystyle \frac{(\overline{X}-\mu)\sqrt{n}}{\sigma}$$
+Donde:
+
+$\overline{X}=910\$$
+
+$\mu = 1056\$$
+
+$n=400$
+
+$\sigma=1600\$$
+
+Sustituyendo estos valores en el estadístico tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \mathcal{Z} &= \displaystyle \frac{(910-1056)\sqrt{400}}{1600}\\
+\vspace{3mm} &= \displaystyle \frac{-146 \times 20}{1600}\\
+&= -1.825
+\end{array}
+$$
+Cómo la prueba es de cola inferior, el $p-$valor está dado por:
+
+$$p-\text{valor} = P(\mathcal{Z}\leq -1.825)=\Phi(-1.825)=0.034$$
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar<-910
+mu<-1056
+Sigma<-1600
+n<-400
+Z<-(X_bar-mu)*sqrt(n)/Sigma
+Z
+```
+
+El $p-$valor viene dado por:
+
+```{r,comment=''}
+p_valor<-pnorm(Z,mean=0,sd=1)
+p_valor
+```
+
+c) Dado que el $p-$valor es de 0.034, para $\alpha = 0.05$ tenemos que:
+
+$$p-\text{valor}=0.034 \leq 0.05$$
+
+Por lo que existe suficiente evidencia estadística para rechazar $H_o$, lo que implica que la sugerencia del investigador de que los declarantes esperan hasta los últimos días para obtener un reembolso menor es válida.
+
+d) Dado que esta es una prueba de media con varianza poblacional conocida de cola inferior, para $\alpha = 0.05$ tenemos que el valor crítico está dado por el valor negativo de $Z_\alpha$, esto es $Z_{0.05}=-1.645$, como el estadístico de prueba es de -1.825 tenemos que, -1.825<-1.645, por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula.
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+alpha<-0.05
+Z_alpha<-qnorm(p=alpha,mean=0,sd=1)
+Z
+Z_alpha
+```
+
+Ésta es una prueba de cola izquierda por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil2<- qnorm(p=alpha,mean=0,sd=1)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+    
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dnorm(cuantil2,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = Z, y =0 , xend = Z, 
+                       yend = dnorm(Z,mean=0, sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=Z-0.05, y =-0.02, label ="Z", parse = TRUE)+
+        annotate("text", x=cuantil2+0.05, y =-0.02, label="-'Z'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.75, y=0.1, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola izquierda Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+
 \newpage
 
 # Ejercicio 7
@@ -109,6 +276,62 @@ a) Establezca las hipótesis nula y alternativa.
 b) ¿Cuál es el valor*-p* de una muestra de 180 estudiantes no titulados con un saldo medio muestral en su tarjeta de crédito de \$3325?
  
 c) Usando un nivel de significancia de 0.05, ¿cuál es su conclusión?.
+
+\textbf{\underline{Solución:}}
+
+a) La prueba de hipótesis adecuada es:
+
+$$\begin{matrix} H_o: \mu \leq 3173\$ \\ H_a: \mu>3173\$ \end{matrix}$$
+
+b) Dado que esta es una prueba de media con varianza poblacional conocida de cola superior, para calcular el $p-$valor usamos el siguiente estadístico de prueba:
+
+$$\mathcal{Z}=\displaystyle \frac{(\overline{X}-\mu)\sqrt{n}}{\sigma}$$
+Donde:
+
+$\overline{X}=3325\$$
+
+$\mu = 3173\$$
+
+$n=180$
+
+$\sigma=1000\$$
+
+Sustituyendo estos valores en el estadístico tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \mathcal{Z} &= \displaystyle \frac{(3325-3173)\sqrt{180}}{1000}\\
+\vspace{3mm} &= \displaystyle \frac{152 \times 6 \times \sqrt{5}}{1000}\\
+&= 2.03929
+\end{array}
+$$
+
+Como la prueba es de cola superior, el $p-$valor está dado por:
+
+$$p-\text{valor} = P(\mathcal{Z}\geq 2.03929)=1-P(\mathcal{Z}<2.03929)=1-\Phi(2.03929)=0.021$$
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar<-3325
+mu<-3173
+Sigma<-1000
+n<-180
+Z<-(X_bar-mu)*sqrt(n)/Sigma
+Z
+```
+
+El $p-$valor viene dado por:
+
+```{r,comment=''}
+p_valor<-pnorm(Z,mean=0,sd=1,lower.tail = FALSE)
+p_valor
+```
+
+c) Dado que el $p-$valor es de 0.021, para $\alpha = 0.05$ tenemos que:
+
+$$p-\text{valor}=0.021 \leq 0.05$$
+
+Por lo que existe suficiente evidencia estadística para rechazar $H_o$, lo que implica que se puede concluir que ha aumentado el saldo medio en la tarjeta de crédito de los estudiantes.
 
 \newpage
 
@@ -124,6 +347,125 @@ c) Con $\sigma=0.05$ como nivel de significancia, ¿cuál es su conclusión?.
 
 d) Repita esta prueba de hipótesis usando el método del valor crítico.
 
+\textbf{\underline{Solución:}}
+
+a) La prueba de hipótesis adecuada para probar si las gratificaciones de fin de año difieren de la media poblacional es:
+
+$$\begin{matrix} H_o: \mu = 125500\$ \\ H_a: \mu \neq 125500\$ \end{matrix}$$
+
+b) Dado que esta es una prueba de media con varianza poblacional conocida de dos colas, para calcular el $p-$valor usamos el siguiente estadístico de prueba:
+
+$$\mathcal{Z}=\displaystyle \frac{(\overline{X}-\mu)\sqrt{n}}{\sigma}$$
+
+Donde:
+
+$\overline{X}=118000\$$
+
+$\mu = 125500\$$
+
+$n=40$
+
+$\sigma=30000\$$
+
+Sustituyendo estos valores en el estadístico tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \mathcal{Z} &= \displaystyle \frac{(118000-125500)\sqrt{40}}{30000}\\
+\vspace{3mm} &= \displaystyle \frac{-7500 \times 2 \times \sqrt{10}}{30000}\\
+&= -1.581
+\end{array}
+$$
+
+Como la prueba es de dos colas, el $p-$valor está dado por:
+
+$$p-\text{valor} = 2 \times P(\mathcal{Z}\leq -1.581)=2 \times \Phi(-1.581)= 0.1142$$
+
+\textbf{\underline{En R:}}
+
+
+```{r,comment=''}
+X_bar<-118000
+mu<-125500
+Sigma<-30000
+n<-40
+Z<-(X_bar-mu)*sqrt(n)/Sigma
+Z
+```
+
+El $p-$valor viene dado por:
+
+```{r,comment=''}
+p_valor<-2*pnorm(Z,mean=0,sd=1)
+p_valor
+```
+
+c) Dado que el $p-$valor es de 0.114, para $\alpha = 0.05$ tenemos que:
+
+$$p-\text{valor}=0.114 \geq 0.05$$
+
+Por lo que no existe suficiente evidencia estadística para rechazar $H_o$, lo que implica que las gratificaciones de fin de año no difieren de la media poblacional.
+
+d) Dado que esta es una prueba de media con varianza poblacional conocida de dos colas, para $\alpha = 0.05$ tenemos que el valor crítico está dado por $\pm Z_{\frac{\alpha}{2}}$, esto es $Z_{0.025}=\pm 1.96$, como el estadístico de prueba es de -1.581 tenemos que, -1.581>-1.96, por lo que no hay suficiente evidencia estadística para rechazar la hipótesis nula.
+
+\newpage
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+alpha<-0.05
+Z_alpha<-qnorm(p=alpha/2,mean=0,sd=1)
+Z
+Z_alpha
+```
+
+Ésta es una prueba de dos colas por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil1<- qnorm(1-(alpha/2))
+cuantil2<- qnorm(alpha/2)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dnorm(cuantil2,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = Z, y =0 , xend = Z, 
+                       yend = dnorm(Z,mean=0, sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=Z, y =-0.02, label ="Z", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'Z'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.05, y =-0.02, label="-'Z'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.6, y=0.075, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.6, y=0.075, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de dos colas Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+
 \newpage
 
 # Ejercicio 9
@@ -136,11 +478,175 @@ b) En una muestra de 40 fondos el rendimiento medio fue de $\hat{x}=3.4\%$. Supo
 
 c) Con $\sigma=0.05,$ ¿cuál es su conclusión?.
 
+\textbf{\underline{Solución:}}
+
+a) La prueba de hipótesis adecuada para determinar si la rentabilidad anual media difiere de los fondos de U.S. Diversified Equity es:
+
+$$\begin{matrix} H_o: \mu = 4.1\% \\ H_a: \mu \neq 4.1\% \end{matrix}$$
+
+b) Dado que esta es una prueba de media con varianza poblacional conocida de dos colas, para calcular el $p-$valor usamos el siguiente estadístico de prueba:
+
+$$\mathcal{Z}=\displaystyle \frac{(\overline{X}-\mu)\sqrt{n}}{\sigma}$$
+
+Donde:
+
+$\overline{X}=3.4\%$
+
+$\mu = 4.1\%$
+
+$n=40$
+
+$\sigma=2\%$
+
+Sustituyendo estos valores en el estadístico tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \mathcal{Z} &= \displaystyle \frac{(3.4-4.1)\sqrt{40}}{2}\\
+\vspace{3mm} &= \displaystyle \frac{-0.7 \times 2 \times \sqrt{10}}{2}\\
+&= -2.2135
+\end{array}
+$$
+
+Como la prueba es de dos colas, el $p-$valor está dado por:
+
+$$p-\text{valor} = 2 \times P(\mathcal{Z}\leq -2.2135)=2 \times \Phi(-2.2135)= 0.0272$$
+
+\textbf{\underline{En R:}}
+
+
+```{r,comment=''}
+X_bar<-3.4
+mu<-4.1
+Sigma<-2
+n<-40
+Z<-(X_bar-mu)*sqrt(n)/Sigma
+Z
+```
+
+El $p-$valor viene dado por:
+
+```{r,comment=''}
+p_valor<-2*pnorm(Z,mean=0,sd=1)
+p_valor
+```
+
+c) Dado que el $p-$valor es de 0.0272, para $\alpha = 0.05$ tenemos que:
+
+$$p-\text{valor}=0.0272 \leq 0.05$$
+
+Por lo que existe suficiente evidencia estadística para rechazar $H_o$, lo que implica que la rentabilidad anual media de mid-cap growth funds difieren de manera significativa del promedio de los fondos de U.S. Diversified Equity.
+
 \newpage
 
 # Ejercicio 10
 
 En 2001, el U.S. Department Labor informó que el salario por hora promedio para los trabajadores de la producción en Estados Unidos era \$14.32 por hora (*The World Almanac*, 2003).  En una muestra de 75 trabajadores tomada en 2003, la media muestral fue \$14.68 por hora.  Si la desviación estándar poblacional es $\sigma=\$1.45$, ¿se puede concluir que ha habido un aumento en la media de las ganancias por hora? Use $\sigma=0.05.$
+
+\textbf{\underline{Solución:}}
+
+Queremos saber si ha habido un aumento en la media de las ganancias por hora para los trabajadores de la producción en Estados Unidos, establecemos la siguiente hipótesis:
+
+$$\begin{matrix} H_o: \mu \leq 14.32\$ \\ H_a: \mu>14.32\$ \end{matrix}$$
+
+Dado que esta es una prueba de media con varianza poblacional conocida de cola superior, usamos el siguiente estadístico de prueba:
+
+$$\mathcal{Z}=\displaystyle \frac{(\overline{X}-\mu)\sqrt{n}}{\sigma}$$
+
+Donde:
+
+$\overline{X}=14.68\$$
+
+$\mu = 14.32\$$
+
+$n=75$
+
+$\sigma=1.45\$$
+
+Sustituyendo estos valores en el estadístico tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \mathcal{Z} &= \displaystyle \frac{(14.68-14.32)\sqrt{75}}{1.45}\\
+\vspace{3mm} &= \displaystyle \frac{0.36 \times 5 \times \sqrt{3}}{1.45}\\
+&= 2.15
+\end{array}
+$$
+
+Cómo la prueba es de cola superior, el $p-$valor está dado por:
+
+$$p-\text{valor} = P(\mathcal{Z}\geq 2.15)=1-P(\mathcal{Z}<2.15)=1-\Phi(2.15)=0.0158$$
+
+Dado que el $p-$valor es de 0.0158, para $\alpha = 0.05$ tenemos que:
+
+$$p-\text{valor}=0.0158 \leq 0.05$$
+
+Por lo que existe suficiente evidencia estadística para rechazar $H_o$, lo que implica que se puede concluir que ha habido un aumento en la media de las ganancias por hora.
+
+Cómo esta es una prueba de media con varianza poblacional conocida de cola superior, para $\alpha = 0.05$ tenemos que el valor crítico está dado por $Z_\alpha$, esto es $Z_{0.05}=1.645$, como el estadístico de prueba es de 2.15 tenemos que, 2.15>1.645, por lo que se reafirma que hay suficiente evidencia estadística para rechazar la hipótesis nula.
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar<-14.68
+mu<-14.32
+Sigma<-1.45
+n<-75
+alpha<-0.05
+Z<-(X_bar-mu)*sqrt(n)/Sigma
+Z
+```
+
+El $p-$valor viene dado por:
+
+```{r,comment=''}
+p_valor<-pnorm(Z,mean=0,sd=1,lower.tail = FALSE)
+p_valor
+```
+
+El valor crítico viene dado por:
+
+```{r,comment=''}
+Z_alpha<-qnorm(p=1-alpha,mean=0,sd=1)
+Z_alpha
+```
+
+\newpage
+
+Ésta es una prueba de cola derecha por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil1<- qnorm(1-alpha,mean=0,sd=1)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = Z, y =0 , xend = Z, 
+                       yend = dnorm(Z,mean=0, sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=Z, y =-0.02, label ="Z", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'Z'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.7, y=0.1, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola derecha Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
 
 \newpage
 
@@ -156,6 +662,64 @@ c) ¿Cuál es el *p*-valor?
 
 d) Con $\sigma=0.01,$ ¿qué concluye?
 
+\textbf{\underline{Solución:}}
+
+a) La prueba de hipótesis adecuada de manera que favorezca a la conclusión de que la cantidad media mensual pagada por este estado del sur es menor a la media de todo el país es:
+
+$$\begin{matrix} H_o: \mu \geq 32.79\$ \\ H_a: \mu<32.79\$ \end{matrix}$$
+
+b) Dado que esta es una prueba de media con varianza poblacional conocida de cola inferior, usamos el siguiente estadístico de prueba:
+
+$$\mathcal{Z}=\displaystyle \frac{(\overline{X}-\mu)\sqrt{n}}{\sigma}$$
+
+Donde:
+
+$\overline{X}=30.63\$$
+
+$\mu = 32.79\$$
+
+$n=50$
+
+$\sigma=5.60\$$
+
+Sustituyendo estos valores en el estadístico tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \mathcal{Z} &= \displaystyle \frac{(30.63-32.79)\sqrt{50}}{5.60}\\
+\vspace{3mm} &= \displaystyle \frac{-2.16 \times 5 \times \sqrt{2}}{5.60}\\
+&= -2.7274
+\end{array}
+$$
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar<-30.63
+mu<-32.79
+Sigma<-5.60
+n<-50
+Z<-(X_bar-mu)*sqrt(n)/Sigma
+Z
+```
+
+c) Cómo la prueba es de cola inferior y dado que el estadístico de prueba es -2.7274, el $p-$valor es:
+
+$$p-\text{valor} = P(\mathcal{Z}\leq -2.7274)=\Phi(-2.7274)=0.0033$$
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+p_valor<-pnorm(Z,mean=0,sd=1)
+p_valor
+```
+
+d) Dado que el $p-$valor es de 0.0033, para $\alpha = 0.01$ tenemos que:
+
+$$p-\text{valor}=0.0033 \leq 0.01$$
+
+Por lo que existe suficiente evidencia estadística para rechazar $H_o$, lo que implica que se puede concluir que la cantidad media mensual pagada por este estado del sur es menor a la media de todo el país.
+
 \newpage
 
 # Ejercicio 12
@@ -169,6 +733,88 @@ b) Calcule el valor del estadísticos de prueba.
 c) ¿Cuál es el *p*-valor?
 
 d) Con $\sigma=0.01$, ¿cuál es su conclusión?
+
+\textbf{\underline{Solución:}}
+
+a) La prueba de hipótesis adecuada para saber si el cobro de la cantidad adicional está justificada es:
+
+$$\begin{matrix} H_o: \mu \leq 15 \\ H_a: \mu>15 \end{matrix}$$
+
+b) Dado que esta es una prueba de media con varianza poblacional conocida de cola superior, usamos el siguiente estadístico de prueba:
+
+$$\mathcal{Z}=\displaystyle \frac{(\overline{X}-\mu)\sqrt{n}}{\sigma}$$
+
+Donde:
+
+$\mu = 15$
+
+$n=35$
+
+$\sigma=4$
+
+Para conocer el valor de $\overline{X}$ nos valemos del arhcivo \textit{Fowle.xlsx}, para poder descargar estos archivos usando **R** y leer el archivo directamente de la descarga usamos:
+
+```{r,comment=''}
+#library('readxl')
+#url<-'http://academic.cengage.com/resource_uploads/downloads/1133629652_418434.zip'
+#tf<-tempfile()
+#download.file(url,tf,mode = 'wb')
+#data1<-unzip(tf,'Excel Files/Ch 09 Hypothesis Tests/Fowle.xlsx')
+#Fowle<-read_excel(data1)
+```
+
+En el caso de tener ya el archivo en el directorio, simplemente importamos los datos como sigue:
+
+```{r,comment=''}
+Fowle<-read_excel('Fowle.xlsx')
+```
+
+Así $\overline{X}$ viene dado por:
+
+```{r,comment=''}
+X_bar<-mean(Fowle$Time)
+X_bar
+```
+
+Sustituyendo estos valores en el estadístico tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \mathcal{Z} &= \displaystyle \frac{(17-15)\sqrt{35}}{4}\\
+\vspace{3mm} &= \displaystyle \frac{2 \sqrt{35}}{4}\\
+&= 2.958
+\end{array}
+$$
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar<-mean(Fowle$Time)
+mu<-15
+Sigma<-4
+n<-35
+Z<-(X_bar-mu)*sqrt(n)/Sigma
+Z
+```
+
+c) Cómo la prueba es de cola superior y dado que el estadístico de prueba es 2.958, el $p-$valor es:
+
+$$p-\text{valor} = P(\mathcal{Z}\geq 2.958)=1-P(\mathcal{Z}<2.958)=1-\Phi(2.958)=0.0016$$
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+p_valor<-pnorm(Z,mean=0,sd=1,lower.tail = FALSE)
+p_valor
+```
+
+\newpage
+
+d) Dado que el $p-$valor es de 0.0016, para $\alpha = 0.01$ tenemos que:
+
+$$p-\text{valor}=0.0016 \leq 0.01$$
+
+Por lo que existe suficiente evidencia estadística para rechazar $H_o$, lo que implica que el cobro adicional si está justificado.
 
 \newpage
 
@@ -184,6 +830,110 @@ c) Con $\sigma=0.05,$ ¿cuál es su conclusión?
 
 d) Calcule un intervalo de 95% de confianza para la media poblacional. ¿Esto sustenta su conclusión?
 
+\textbf{\underline{Solución:}}
+
+a) La prueba de hipótesis adecuada para probar si el tiempo medio de espera difiere de la media poblacional es:
+
+$$\begin{matrix} H_o: \mu = 8 \\ H_a: \mu \neq 8 \end{matrix}$$
+
+b) Dado que esta es una prueba de media con varianza poblacional conocida de dos colas, para calcular el $p-$valor usamos el siguiente estadístico de prueba:
+
+$$\mathcal{Z}=\displaystyle \frac{(\overline{X}-\mu)\sqrt{n}}{\sigma}$$
+
+Donde:
+
+$\overline{X}=8.5$
+
+$\mu = 8$
+
+$n=120$
+
+$\sigma=3.2$
+
+Sustituyendo estos valores en el estadístico tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \mathcal{Z} &= \displaystyle \frac{(8.5-8)\sqrt{120}}{3.2}\\
+\vspace{3mm} &= \displaystyle \frac{0.5 \times 2 \times \sqrt{30}}{3.2}\\
+&= 1.711
+\end{array}
+$$
+
+Como la prueba es de dos colas, el $p-$valor está dado por:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} p-\text{valor} &= 2 \times P(\mathcal{Z} \geq 1.711) \\
+\vspace{3mm} &= 2 \times(1-P(\mathcal{Z}<1.711)) \\
+\vspace{3mm} &= 2 \times (1-\Phi(1.711)) \\
+\vspace{3mm} &= 2 \times 0.0436 \\
+&=0.0872
+\end{array}
+$$
+\textbf{\underline{En R:}}
+
+
+```{r,comment=''}
+X_bar<-8.5
+mu<-8
+Sigma<-3.2
+n<-120
+Z<-(X_bar-mu)*sqrt(n)/Sigma
+Z
+```
+
+El $p-$valor viene dado por:
+
+```{r,comment=''}
+p_valor<-2*pnorm(Z,mean=0,sd=1,lower.tail = FALSE)
+p_valor
+```
+
+c) Dado que el $p-$valor es de 0.0872, para $\alpha = 0.05$ tenemos que:
+
+$$p-\text{valor}=0.0872 \geq 0.05$$
+
+Por lo que no existe suficiente evidencia estadística para rechazar $H_o$, lo que implica que el tiempo medio de espera no difiere de la media de la población.
+
+\newpage
+
+d) Calculemos un intervalo de 95% de confianza para la media poblacional, esto es:
+
+$$\overline{X} \pm Z_{\displaystyle \frac{\alpha}{2}} \displaystyle \frac{\sigma}{\sqrt{n}}$$
+
+Dado que esta es una prueba de media con varianza poblacional conocida de dos colas, para $\alpha = 0.05$ tenemos que el valor crítico está dado por $\pm Z_{\displaystyle \frac{\alpha}{2}}$, esto es $Z_{0.025}=\pm 1.96$, y además:
+
+$\overline{X}=8.5$
+
+$n=120$
+
+$\sigma=3.2$
+
+Sustituyendo estos valores, nos queda:
+
+$$8.5 \pm 0.5725$$
+
+Así un intervalo de confianza del 95% para la media poblacional es de: 
+
+$$(7.9275,9.0725)$$
+
+Cómo la media poblacional es $\mu=8$ está en este intervalo, se reafirma la conclusión de no rechazar la hipótesis nula.
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar<-8.5
+Sigma<-3.2
+n<-120
+alpha<-0.05
+error<-qnorm(p=1-(alpha/2),mean=0,sd=1)*Sigma/sqrt(n)
+inferior<-X_bar-error
+inferior
+superior<-X_bar+error
+superior
+```
+
 \newpage
 
 # Ejercicio 14
@@ -197,6 +947,114 @@ b. En una muestra de 100 individuos la media muestral encontrada fue \$231 y la 
 c. Si $\alpha=0.05$, ¿cuál es su conclusión?
 
 d. Repita la prueba de hipótesis anterior usando el método del valor crítico.
+
+\textbf{\underline{Solución:}}
+
+a) La prueba de hipótesis adecuada de manera que al rechazar $H_o$ favorezca la afirmación del investigador es:
+
+$$\begin{matrix} H_o: \mu \geq 238\$ \\ H_a: \mu<238\$ \end{matrix}$$
+
+b) Dado que esta es una prueba de media con varianza poblacional desconocida de cola inferior, para calcular el $p-$valor usamos el siguiente estadístico de prueba:
+
+$$T=\displaystyle \frac{(\overline{X}-\mu)\sqrt{n}}{S}$$
+Donde:
+
+$\overline{X}=231\$$
+
+$\mu = 238\$$
+
+$n=100$
+
+$S=80\$$
+
+Sustituyendo estos valores en el estadístico tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} T &= \displaystyle \frac{(231-238)\sqrt{100}}{80}\\
+\vspace{3mm} &= \displaystyle \frac{-7 \times 10}{80}\\
+&= -0.875
+\end{array}
+$$
+
+Cómo la prueba es de cola inferior, con $n-1$ grados de libertad el $p-$valor está dado por:
+
+$$p-\text{valor} = P(T \leq -0.875) \approx 0.19$$
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar<-231
+mu<-238
+S<-80
+n<-100
+T<-(X_bar-mu)*sqrt(n)/S
+T
+```
+
+El $p-$valor viene dado por:
+
+```{r,comment=''}
+p_valor<-pt(q=T,df=n-1)
+p_valor
+```
+
+c) Dado que el $p-$valor es de 0.19, para $\alpha = 0.05$ tenemos que:
+
+$$p-\text{valor}=0.19 \geq 0.05$$
+
+Por lo que no existe suficiente evidencia estadística para rechazar $H_o$, lo que implica que la prestación media semanal del seguro de desempleo en el estado de Virginia no es menor que la media del país, la afirmación del investigador no es válida.
+
+\newpage
+
+d) Dado que esta es una prueba de media con varianza poblacional desconocida de cola inferior, para $\alpha = 0.05$ tenemos que el valor crítico está dado por el valor negativo de $T_\alpha$ con $n-1$ grados de libertad, esto es $T_{0.05}=-1.660$, como el estadístico de prueba es de -0.875 tenemos que, -0.875>-1.660, por lo que no hay suficiente evidencia estadística para rechazar la hipótesis nula.
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+alpha<-0.05
+T_alpha<-qt(p=alpha,df=n-1)
+T
+T_alpha
+```
+
+Ésta es una prueba de cola izquierda por lo tanto el gráfico correspondiente es el siguiente:
+
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dt(x,df=n-1)
+cuantil2<- qt(p=alpha,df=n-1)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+    
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dt(cuantil2,df=n-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T, y =0 , xend = T, 
+                       yend = dt(T,df=n-1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T-0.05, y =-0.02, label ="T", parse = TRUE)+
+        annotate("text", x=cuantil2+0.05, y =-0.02, label="-'T'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.75, y=0.1, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola izquierda Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
 
 \newpage
 
@@ -212,6 +1070,14 @@ c. Con $\alpha=0.05$, ¿es posible rechazar la hipótesis nula? ¿Cuál es su co
 
 d. Repita la prueba de hipótesis anterior usando el método del valor crítico.
 
+\textbf{\underline{Solución:}}
+
+a) La prueba de hipótesis adecuada para probar si el precio en Nueva York difiere de la media de 5600\$ es:
+
+$$\begin{matrix} H_o: \mu = 5600\$ \\ H_a: \mu \neq 5600\$ \end{matrix}$$
+
+b) 
+
 \newpage
 
 # Ejercicio 16
@@ -219,17 +1085,226 @@ d. Repita la prueba de hipótesis anterior usando el método del valor crítico.
 Raftelis Financial Consulting informa que la media en los recibos trimestrales del agua en Estados Unidos es \$47.50 (U.S. News & World Report, 12 de agosto de 2002). Algunos servicios de agua son operados por empresas de servicio público, mientras que otros sistemas de agua son operados por empresas privadas. Un economista indica que la privatización no nivela la competencia y que el poder monopólico dado a las empresas públicas se está transfiriendo ahora a las empresas privadas. El problema es que los usuarios acaban pagando tasas más altas por el agua suministrada por las empresas privadas. El sistema de agua de Atlanta, Georgia, es operado por una empresa privada.
 En una muestra de 64 usuarios de Atlanta, la cantidad media trimestral pagada por el agua fue \$51 y la desviación estándar fue \$12. Empleando $\alpha=0.05$ ¿la muestra favorece la conclusión de que esta empresa privada que suministra el agua tiene tasas promedio mayores?
 
+\textbf{\underline{Solución:}}
+
+Queremos saber si ésta empresa privada que suministra el agua tiene tasas promedio mayores, establecemos la siguiente hipótesis:
+
+$$\begin{matrix} H_o: \mu \leq 47.50\$ \\ H_a: \mu>47.50\$ \end{matrix}$$
+
+Dado que esta es una prueba de media con varianza poblacional desconocida de cola superior, usamos el siguiente estadístico de prueba:
+
+$$T=\displaystyle \frac{(\overline{X}-\mu)\sqrt{n}}{S}$$
+
+Donde:
+
+$\overline{X}=51\$$
+
+$\mu = 47.50\$$
+
+$n=64$
+
+$S=12\$$
+
+Sustituyendo estos valores en el estadístico tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} T &= \displaystyle \frac{(51-47.50)\sqrt{64}}{12}\\
+\vspace{3mm} &= \displaystyle \frac{3.5 \times 8}{12}\\
+&= 2.33
+\end{array}
+$$
+
+Cómo la prueba es de cola superior, con $n-1$ grados de libertad el $p-$valor está dado por:
+
+$$p-\text{valor} = P(T \geq 2.33) \approx 0.011$$
+
+Dado que el $p-$valor es de 0.011, para $\alpha = 0.05$ tenemos que:
+
+$$p-\text{valor}=0.011 \leq 0.05$$
+
+Por lo que existe suficiente evidencia estadística para rechazar $H_o$, lo que implica que se puede concluir que ha habido un aumento en las tasas promedio de agua.
+
+Cómo esta es una prueba de media con varianza poblacional desconocida de cola superior, para $\alpha = 0.05$ tenemos que el valor crítico está dado por $T_\alpha$ con $n-1$ grados de libertad, esto es $T_{0.05}=1.671$, como el estadístico de prueba es de 2.33 tenemos que, 2.33>1.671, por lo que se reafirma que hay suficiente evidencia estadística para rechazar la hipótesis nula.
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar<-51
+mu<-47.50
+S<-12
+n<-64
+alpha<-0.05
+T<-(X_bar-mu)*sqrt(n)/S
+T
+```
+
+El $p-$valor viene dado por:
+
+```{r,comment=''}
+p_valor<-pt(T,df=n-1,lower.tail = FALSE)
+p_valor
+```
+
+El valor crítico viene dado por:
+
+```{r,comment=''}
+T_alpha<-qt(p=1-alpha,df=n-1)
+T_alpha
+```
+
+Ésta es una prueba de cola derecha por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dt(x,df=n-1)
+cuantil1<- qt(p=1-alpha,df=n-1)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=n-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T, y =0 , xend = T, 
+                       yend = dt(T,df=n-1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T, y =-0.02, label ="T", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'T'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.7, y=0.1, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola derecha Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+
 \newpage
 
 # Ejercicio 17
 
 El viernes los corredores de bolsa de Wall Street esperaban ansiosos la publicación del gobierno federal del aumento en enero de nóminas no agrícolas. El primer consenso estimado entre los economistas fue que se esperaba un aumento de 250000 nuevos empleos (CNBC, 3 de febrero de 2006). Sin embargo, en una muestra de 20 economistas tomada el jueves en la tarde, la media muestral fue 266000, y la desviación estándar muestral 24 000. Los analistas financieros suelen llamar a tales medias muestrales, basadas en las estimaciones que circulan en el mercado después de que los analistas incorporan las últimas informaciones, “whisper number”. Realice una prueba de hipótesis para determinar si el “whisper number” justifica la conclusión de un aumento estadísticamente significante en la estimación de consenso de los economistas. Use $\alpha=0.01$ como nivel de significancia.
 
+\textbf{\underline{Solución:}}
+
+Queremos saber si aumentó la estimación de consenso de los economistas, establecemos la siguiente hipótesis:
+
+$$\begin{matrix} H_o: \mu \leq 250000 \\ H_a: \mu>250000 \end{matrix}$$
+
+Dado que esta es una prueba de media con varianza poblacional desconocida de cola superior, usamos el siguiente estadístico de prueba:
+
+$$T=\displaystyle \frac{(\overline{X}-\mu)\sqrt{n}}{S}$$
+
+Donde:
+
+$\overline{X}=266000$
+
+$\mu = 250000$
+
+$n=20$
+
+$S=24000$
+
+Sustituyendo estos valores en el estadístico tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} T &= \displaystyle \frac{(266000-250000)\sqrt{20}}{24000}\\
+\vspace{3mm} &= \displaystyle \frac{16000 \times 2 \times \sqrt{5}}{24000}\\
+&= 2.981
+\end{array}
+$$
+
+Cómo la prueba es de cola superior, con $n-1$ grados de libertad el $p-$valor está dado por:
+
+$$p-\text{valor} = P(T \geq 2.981) \approx 0.0036$$
+
+Dado que el $p-$valor es de 0.0036, para $\alpha = 0.01$ tenemos que:
+
+$$p-\text{valor}=0.0036 \leq 0.01$$
+
+Por lo que existe suficiente evidencia estadística para rechazar $H_o$, lo que implica que se justifica la conclusión de que aumentó significativamente la estimación de consenso de los economistas.
+
+Cómo esta es una prueba de media con varianza poblacional desconocida de cola superior, para $\alpha = 0.01$ tenemos que el valor crítico está dado por $T_\alpha$ con $n-1$ grados de libertad, esto es $T_{0.01}=2.539$, como el estadístico de prueba es de 2.981 tenemos que, 2.981>2.539, por lo que se reafirma que hay suficiente evidencia estadística para rechazar la hipótesis nula.
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar<-266000
+mu<-250000
+S<-24000
+n<-20
+alpha<-0.01
+T<-(X_bar-mu)*sqrt(n)/S
+T
+```
+
+El $p-$valor viene dado por:
+
+```{r,comment=''}
+p_valor<-pt(T,df=n-1,lower.tail = FALSE)
+p_valor
+```
+
+El valor crítico viene dado por:
+
+```{r,comment=''}
+T_alpha<-qt(p=1-alpha,df=n-1)
+T_alpha
+```
+
+\newpage
+
+Ésta es una prueba de cola derecha por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dt(x,df=n-1)
+cuantil1<- qt(p=1-alpha,df=n-1)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=n-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T, y =0 , xend = T, 
+                       yend = dt(T,df=n-1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T, y =-0.02, label ="T", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'T'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.7, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola derecha Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
 \newpage
 
 # Ejercicio 18
 
-En un estudio sobre los costos de atención a la salud en Estados Unidos se presentaron datos que mostraban un gasto medio de Medicare por derechohabiente de \$6 883 en el 2003. Para investigar las diferencias en todo el país, un investigador tomó una muestra de 40 derechohabientes de 382 Capítulo 9 Prueba de hipótesis Medicare del estado de Indianápolis. En la muestra de Indianápolis el gasto promedio de Medicare
+En un estudio sobre los costos de atención a la salud en Estados Unidos se presentaron datos que mostraban un gasto medio de Medicare por derechohabiente de \$6 883 en el 2003. Para investigar las diferencias en todo el país, un investigador tomó una muestra de 40 derechohabientes de Medicare del estado de Indianápolis. En la muestra de Indianápolis el gasto promedio de Medicare
 en el 2003 fue \$5980 y la desviación estándar \$2518.
 
 a. Establezca las hipótesis a usar si se quiere determinar si el gasto anual medio de Medicare en Indianápolis es menor a la media nacional.
@@ -239,6 +1314,113 @@ b. Use los resultados muestrales anteriores para calcular el estadístico de pru
 c. Use $\alpha=0.05$. ¿A qué conclusión llega?
 
 d. Repita la prueba de hipótesis usando el método del valor crítico.
+
+\textbf{\underline{Solución:}}
+
+a) La prueba de hipótesis adecuada para determinar si el gasto anual medio de Medicare en Indianápolis es menor a la media nacional es:
+
+$$\begin{matrix} H_o: \mu \geq 6883\$ \\ H_a: \mu<6883\$ \end{matrix}$$
+
+b) Dado que esta es una prueba de media con varianza poblacional desconocida de cola inferior, para calcular el $p-$valor usamos el siguiente estadístico de prueba:
+
+$$T=\displaystyle \frac{(\overline{X}-\mu)\sqrt{n}}{S}$$
+
+Donde:
+
+$\overline{X}=5980\$$
+
+$\mu = 6883\$$
+
+$n=40$
+
+$S=2518\$$
+
+Sustituyendo estos valores en el estadístico tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} T &= \displaystyle \frac{(5980-6883)\sqrt{40}}{2518}\\
+\vspace{3mm} &= \displaystyle \frac{-903 \times 2 \times \sqrt{10}}{2518}\\
+&= -2.268
+\end{array}
+$$
+
+Cómo la prueba es de cola inferior, con $n-1$ grados de libertad el $p-$valor está dado por:
+
+$$p-\text{valor} = P(T \leq -2.268) \approx 0.015$$
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+X_bar<-5980
+mu<-6883
+S<-2518
+n<-40
+T<-(X_bar-mu)*sqrt(n)/S
+T
+```
+
+El $p-$valor viene dado por:
+
+```{r,comment=''}
+p_valor<-pt(q=T,df=n-1)
+p_valor
+```
+
+c) Dado que el $p-$valor es de 0.015, para $\alpha = 0.05$ tenemos que:
+
+$$p-\text{valor}=0.015 \leq 0.05$$
+
+Por lo que existe suficiente evidencia estadística para rechazar $H_o$, lo que implica que el gasto anual medio de Medicare en Indianápolis es menor a la media nacional.
+
+\newpage
+
+d) Dado que esta es una prueba de media con varianza poblacional desconocida de cola inferior, para $\alpha = 0.05$ tenemos que el valor crítico está dado por el valor negativo de $T_\alpha$ con $n-1$ grados de libertad, esto es $T_{0.05}=-1.684$, como el estadístico de prueba es de -2.268 tenemos que, -2.268<-1.684, por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula.
+
+\textbf{\underline{En R:}}
+
+```{r,comment=''}
+alpha<-0.05
+T_alpha<-qt(p=alpha,df=n-1)
+T
+T_alpha
+```
+
+Ésta es una prueba de cola izquierda por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dt(x,df=n-1)
+cuantil2<- qt(p=alpha,df=n-1)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+    
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dt(cuantil2,df=n-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T, y =0 , xend = T, 
+                       yend = dt(T,df=n-1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T-0.05, y =-0.02, label ="T", parse = TRUE)+
+        annotate("text", x=cuantil2+0.05, y =-0.02, label="-'T'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.75, y=0.1, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola izquierda Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
 
 \newpage
 
