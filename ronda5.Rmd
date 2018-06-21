@@ -15,6 +15,18 @@ fontsize: 12pt
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(latex2exp)
+library(ggplot2)
+source("ggplottheme.R")
+library(grid)
+library(gridExtra)
+mod_name<-"Pruebas de Hipótesis"
+credits<-function(f){
+  grid.arrange(f,right=textGrob(paste0(mod_name," (C) Synergy Vision - 2018"),
+                                gp=gpar(fontsize=7, fontface="italic", col="gray75"),
+                                rot=90, just = "centre", vjust=-2))
+}
 ```
 
 \newpage
@@ -246,6 +258,88 @@ d. Repita la prueba de hipótesis usando el método del valor crítico.
 
 La cámara de comercio de una comunidad de Florida anuncia en su publicidad que el costo medio de un terreno residencial es \$125 000 o menos por lote. Suponga que en una muestra de 32 lotes se encuentra que la media muestral es \$130 000 por lote y que la desviación estándar muestral es \$12 500. Use 0.05 como nivel de significancia para probar la validez de lo que se dice en la publicidad.
 
+\underline{\textbf{Solución:}}
+
+Se quiere realizar una prueba de hipótesis para probar la validez de la publicidad, esto es:
+
+$$H_0: \mu \leq 125000$$
+$$H_a: \mu > 125000$$
+con un nivel de significancia $\alpha=0.05.$
+
+Para la varianza poblacional desconocida, el estadístico de prueba tiene distribución $t$ con $n-1$ grados de libertad.
+
+$$t=\displaystyle \frac{\overline{x}-\mu_0}{s/\sqrt{n}}$$
+
+Donde,
+
+$\overline{x}= 130000$, $\mu_0=125000$, $s=12500$,$n=32$.
+
+Sustituyendo, tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} t &=\displaystyle \frac{\overline{x}-\mu_0}{s/\sqrt{n}}\\
+\vspace{3mm} &= \displaystyle \frac{130000-125000}{12500/\sqrt{32}}\\
+&= 2.26
+\end{array}
+$$
+
+La distribución de muestreo de $t$ tiene $n-1=31$ grados de libertad. El valor crítico de $t$ con 31 grados de libertad es 1.694.
+
+La hipótesis nula se rechaza si $t\geq t_\alpha$, donde $t_\alpha$ es el valor crítico. Como $2.26 > 1.694$ entonces se rechaza la hipótesis nula, es decir, no hay pruebas suficientes para validar la publicidad.
+
+Hagamos éstos cálculos en R,
+
+```{r,comment=""}
+alpha<-0.05
+n<-32
+mp<-130000 #Media poblacional
+mm<-125000 #Media muestral
+s<-12500 #Desviación estándar muestral.
+
+t<-(mp-mm)/(s/sqrt(n)) #Estadístico de prueba
+t
+
+t_alpha<-qt(p=1-alpha,df=n-1) #Valor crítico.
+t_alpha
+```
+
+Ésta es una prueba de cola superior, por lo tanto el gráfico correspondiete es el siguiente:
+
+```{r,echo=FALSE}
+x<-seq(-4,4,0.01)
+y<-dt(x,df=31)
+cuantil1<- qt(1-alpha,df=31)
+
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=31)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = t, y =0 , xend = t, 
+                       yend = dt(t,df=31)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=t, y =-0.02, label ="t", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'t'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.5, y=0.15, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola superior Distribución t",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
 
 \newpage
 
@@ -263,6 +357,108 @@ c. ¿Cuál es el valor-p proporcionado por los datos muestrales?
 
 d. ¿Cuál es la conclusión en esta prueba de hipótesis? Use como nivel de significancia $\alpha=0.05$.
 
+\underline{\textbf{Solución:}}
+
+a) Se quiere realizar una prueba de hipótesis para probar si los datos muestrales apoyan la conclusión de que el servicio al cliente con agentes de casa satisface el criterio de Regional Airways, esto es para una hipótesis alternativa $H_a: p>0.8$. Las hipótesis nula y alternativa para esta prueba son:
+
+$$H_0: p \leq 0.8.$$
+$$H_a: p > 0.8.$$
+
+b) Para estimar $p$, que es la proporción de clientes satisfechos, se usa la proporcón muestral $\overline{p}$. Por tanto cómo el tamaño de la muestra es de $n=300$, la proporción muestral es, 
+$$\overline{p}=\displaystyle \frac{252}{300}=0.84$$
+
+c) Para proporción poblacional de los clientes satisfechos, el estadístico de prueba tiene distribución normal estándar,
+
+$$\mathcal{Z}=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}$$
+
+Donde,
+
+$n=300$, $\overline{p}=0.84$ es la proporción de clientes satisfechos con el servicio, $p_0=0.8$.
+
+Sustituyendo, tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \mathcal{Z} &=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}\\
+\vspace{3mm} &= \displaystyle \frac{0.84-0.8}{\sqrt{\frac{0.16}{300}}}\\
+&= 1.73
+\end{array}
+$$
+
+Cómo la prueba de hipótesis para este caso es una prueba de cola superior, el valor-p es la probabilidad de de que $\mathcal{Z}$ sea mayor o igual a $\mathcal{Z}=1.73$ ; esto es, el área bajo la curva normal estándar para $\mathcal{Z} \geq 1.73$. En la tabla de probabilidad para normal estándar el área a la izquierda de $\mathcal{Z}=1.73$ es 0.9573. Pro tanto, el valor-p es:
+
+
+$$
+\begin{array}{rl}
+\vspace{3mm}P(\mathcal{Z} \geq 1.73) &=1-P(\mathcal{Z}\leq1.73)\\
+&=1-0.9573\\
+&=0.0427
+\end{array}
+$$
+
+Por lo que, el valor-p es 0.0427.
+
+d) Usando un nivel de significancia de $\alpha=0.05$ se tiene que un $valor-p = 0.0427<0.05$ proporciona una evidencia para rechazar la hipótesis nula. Así, la prueba proporciona apoyo estadístico para concluir que el servicio al cliente con agentes de casa satisface el criterio de Regional Airways.
+
+
+Hagamos éstos cálculos en R,
+
+```{r,comment=""}
+alpha<-0.05
+n<-300
+p_0<-0.8 #proporción poblacional.
+p<-252/300 #proporción muestral de los clientes satisfechos.
+
+z<-(p-p_0)/(sqrt(p_0*(1-p_0)/n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1,lower.tail=FALSE) #Valor p.
+valor_p
+
+```
+
+Ésta es una prueba de cola superior, por lo tanto el gráfico correspondiete es el siguiente:
+
+```{r,echo=FALSE}
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0,sd=1)
+cuantil1<- qnorm(1-alpha)
+
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0,sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = z, y =0 , xend = z, 
+                       yend = dnorm(z,mean=0,sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=z, y =0.1, label ="z", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'z'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.5, y=0.15, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola superior Distribución z",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+
+
+
+
+
 \newpage
 
 # Ejercicio 21
@@ -274,6 +470,91 @@ a. Elabore las hipótesis para probar si ha disminuido el porcentaje de trabajad
 b. ¿Cuál es la estimación puntual de la proporción que tiene un seguro de salud financiado totalmente por su empresa?
 
 c. ¿Ha habido una disminución estadísticamente significativa en la proporción de trabajadores que tienen un seguro de salud financiado totalmente por su empresa? Use $\alpha=0.05$.
+
+\underline{\textbf{Solución:}}
+
+a) Se quiere realizar una prueba de hipótesis para probar si ha disminuido el porcentaje de trabajadores a quienes no se les pide que contribuyan para el plan de atención a la salud de su empresa, esto es para una hipótesis alternativa $H_a: p<0.24$. Las hipótesis nula y alternativa para esta prueba son:
+
+$$H_0: p \geq 0.24.$$
+$$H_a: p < 0.24.$$
+
+b)  Para estimar $p$, que es la proporción del que tiene un seguro de salud financiado totalmente por su empresa, se usa la proporcón muestral $\overline{p}$. Por tanto cómo el tamaño de la muestra es de $n=400$, la proporción muestral es, 
+$$\overline{p}=\displaystyle \frac{81}{400}=0.2025$$
+
+c) Para proporción poblacional de los trabajadores, el estadístico de prueba tiene distribución normal estándar,
+
+$$\mathcal Z=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}$$
+
+Donde,
+
+$n=400$, $\overline{p}= 0.2025$ es la proporción de trabajadores que no contribuyeron al plan de atención de salud de la empresa, $p_0=0.24$.
+
+Sustituyendo, tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \mathcal Z &=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}\\
+\vspace{3mm} &= \displaystyle \frac{0.2025-0.24}{\sqrt{\frac{0.1824}{400}}}\\
+&= -1.76
+\end{array}
+$$
+
+Usando un nivel de significancia de $\alpha=0.05$ el valor crítico de $z$ es 1.645.
+
+La hipótesis nula se rechaza si $\mathcal Z \leq -z_\alpha$, donde $z_\alpha$ es el valor crítico. Como $-1.76 < -1.645$ entonces se rechaza la hipótesis nula, es decir, no hay pruebas suficientes para decir que no hubo una disminución significativa de la proporción de los  trabajadores que tienen un seguro de salud financiado por la empresa.
+
+Hagamos éstos cálculos en R,
+
+```{r,comment=""}
+alpha<-0.05
+n<-400
+p_0<-0.24 #proporción poblacional.
+p<-81/400 #proporción muestral de los trabajadores que no conribuyen.
+
+z<-(p-p_0)/(sqrt(p_0*(1-p_0)/n)) #Estadístico de prueba
+z
+
+z_alpha<-qnorm(p=1-alpha,0,1) #Valor crítico.
+z_alpha
+```
+
+Ésta es una prueba de cola inferior, por lo tanto el gráfico correspondiete es el siguiente:
+
+```{r,echo=FALSE}
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil2<- qnorm(alpha)
+
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dnorm(cuantil2,mean=0,sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = z, y =0 , xend = z, 
+                       yend = dnorm(z,mean=0,sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=z, y =0.1, label ="z", parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="'-z'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.5, y=0.15, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola inferior Distribución z",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
 
 \newpage
 
@@ -287,6 +568,102 @@ b) Si los resultados muestrales indican que 52 de los trabajadores pertenecen a 
 
 c) Con $\sigma=0.05,$ ¿cuál es su conclusión?
 
+\underline{\textbf{Solución:}}
+
+a) Se quiere formular una prueba de hipótesis para determinar si la afiliación a los sindicatos ha aumentado en 2006, esto es para una hipótesis alternativa $H_a: p>0.125$. Las hipótesis nula y alternativa para esta prueba son:
+
+$$H_0: p \leq 0.125.$$
+$$H_a: p > 0.125.$$
+
+b) Para proporción poblacional de los trabajadores, el estadístico de prueba tiene distribución normal estándar,
+
+$$\mathcal Z=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}$$
+
+Donde,
+
+$n=400$, $\overline{p}=\displaystyle \frac{52}{400}=0.13$ es la proporción de trabajadores que pertenecen al sindicato, $p_0=0.125$.
+
+
+Sustituyendo, tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \mathcal Z &=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}\\
+\vspace{3mm} &= \displaystyle \frac{0.13-0.125}{\sqrt{\frac{0.109375}{400}}}\\
+&= 0.3024
+\end{array}
+$$
+
+Cómo la prueba de hipótesis para este caso es una prueba de cola superior, el valor-p es la probabilidad de que $z$ sea mayor o igual a $\mathcal Z=0.3024$ ; esto es, el área bajo la curva normal estándar para $\mathcal Z \geq 0.3024$. En la tabla de probabilidad para normal estándar el área a la izquierda de $\mathcal Z=0.3024$ es 0.6179. Por tanto, el valor-p es:
+
+
+$$
+\begin{array}{rl}
+\vspace{3mm}P(\mathcal Z \geq 0.3024) &=1-P(\mathcal Z\leq0.3024)\\
+&=1-0.6179\\
+&=0.3821
+\end{array}
+$$
+
+El valor-p es 0.3821.
+
+c) Usando $\alpha=0.05$. $valor-p = 0.3821 > 0.05$. proporciona una evidencia suficiente para no rechazar la hipótesis nula. Así, la prueba proporciona apoyo estadístico para concluir que el esfuerzo realizado por los sindicatos por organizarse ha hecho que disminuya el número de trabajadores desde 2005.
+
+En R, 
+
+```{r,comment=""}
+alpha<-0.05
+n<-400
+p_0<-0.125 #proporción poblacional.
+p<-52/400 #proporción muestral de los clientes satisfechos.
+
+z<-(p-p_0)/(sqrt(p_0*(1-p_0)/n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1,lower.tail=FALSE) #Valor p.
+valor_p
+
+```
+
+Ésta es una prueba de cola inferior, por lo tanto el gráfico correspondiete es el siguiente:
+
+
+```{r,echo=FALSE}
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0,sd=1)
+cuantil1<- qnorm(1-alpha)
+
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0,sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = z, y =0 , xend = z, 
+                       yend = dnorm(z,mean=0,sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=z, y =-0.02, label ="z", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'z'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.5, y=0.15, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola superior Distribución z",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+
 \newpage
 
 # Ejercicio 23
@@ -299,13 +676,108 @@ b) Si en una muestra de 100 clientes, 52 opinan que las marcas de los supermerca
 
 c) Con $\sigma=0.05$, ¿cuál es la conclusión?
 
-d) ¿Le dará gusto esta conclusión al fabricante de la marca naciaonal de salsa de tomate? Explique.
+d) ¿Le dará gusto esta conclusión al fabricante de la marca nacional de salsa de tomate? Explique.
+
+\underline{\textbf{Solución:}}
+
+a) Se quiere formular una prueba de hipótesis para determinar si el porcentaje de clientes de los supermercados que considera las salsas de tomate de marca propia de estos establecimientos tan buenas como la de marca nacional difiere de 64% , esto es para una hipótesis alternativa $H_a: p \ne 0.64$. Las hipótesis nula y alternativa para esta prueba son:
+
+$$H_0: p = 0.64.$$
+$$H_a: p \ne 0.64.$$
+
+b) Para proporción poblacional de los clientes del supermercado, el estadístico de prueba tiene distribución normal estándar,
+
+$$\mathcal Z=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}$$
+
+Donde,
+
+$n=100$, $\overline{p}=\displaystyle \frac{52}{100}=0.52$ es la proporción de clientes que opinan que las marcas del supermercado son tan buenas como las nacionales, $p_0=064$.
+
+
+Sustituyendo, tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \mathcal Z &=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}\\
+\vspace{3mm} &= \displaystyle \frac{0.52-0.64}{\sqrt{\frac{0.2304}{100}}}\\
+&= -2.5
+\end{array}
+$$
+
+Cómo la prueba de hipótesis para este caso es una prueba de dos colas, el valor-p es la probabilidad de que $\mathcal Z$ sea mayor o igual a $\mathcal Z=2.5$ y la probabilidad de que $\mathcal Z$ sea menor o igual a $\mathcal Z=-2.5$; esto es, el área bajo la curva normal estándar para $\mathcal Z \leq -2.5$ duplicada por ser la curva normal simétrica. En la tabla de probabilidad para normal estándar el área a la izquierda de $\mathcal Z=-2.5$ es 0.0062. Por tanto, el valor-p es $2(0.0062)=0.0124$.
+
+c) Usando $\alpha=0.05$. $valor-p = 0.0124 < 0.05$. proporciona una evidencia suficiente para rechazar la hipótesis nula. Así, la prueba proporciona apoyo estadístico para concluir que el porcentaje de clientes de los supermercados que considera las salsas de tomate de marca propia de estos establecimientos tan buenas como la de marca nacional difiere de 64%.
+
+Hagamos éstos cálculos en R, 
+
+```{r,comment=""}
+alpha<-0.05
+n<-100
+p_0<-0.64 #proporción poblacional.
+p<-52/100 #proporción muestral de los clientes que opinan sobre las marcas.
+
+z<-(p-p_0)/(sqrt(p_0*(1-p_0)/n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1,lower.tail=FALSE) #Valor p.
+2*(valor_p)
+```
+
+Ésta es una prueba de dos colas, por lo tanto el gráfico correspondiete es el siguiente:
+
+
+```{r,echo=FALSE}
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil1<- qnorm(1-(alpha/2))
+cuantil2<- qnorm(alpha/2)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dnorm(cuantil2,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = z, y =0 , xend = z, 
+                       yend = dnorm(z,mean=0, sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=z, y =-0.02, label ="z", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'Z'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="-'Z'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.5, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.5, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de dos colas Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+
+d) Si, ya que el 52% de los clientes de la muestra de 100 opinan que es lo mismo comprar salsa de tomate del supermercado que la de la marca nacional. Es decir, es menos que 64%.
 
 \newpage
 
 # Ejercicio 24
 
-Según el Pew Internet & American Life Project, 75% de los estadounidenses adultos una Internet (sitio web de Pew Internet, 19 de abril de 2008).  Los autores del projecto Pew también reportaron el porcentaje de estadounidenses que usa Internet por grupo de edad.  Los datos en el archivo AgeGroup son congruentes con sus hallazgos.  Esos datos fueron obtenidos de una muestra de 100 usuarios en el grupo de edad de 30 a 49 años y 200 usuarios en el grupo de edad de 50 a 64 años.  Un Yes (Sí) indica que el encuestado usa Internet; un No indica que el encuestado no lo hace.
+Según el Pew Internet & American Life Project, 75% de los estadounidenses adultos usa Internet (sitio web de Pew Internet, 19 de abril de 2008).  Los autores del projecto Pew también reportaron el porcentaje de estadounidenses que usa Internet por grupo de edad.  Los datos en el archivo AgeGroup son congruentes con sus hallazgos.  Esos datos fueron obtenidos de una muestra de 100 usuarios en el grupo de edad de 30 a 49 años y 200 usuarios en el grupo de edad de 50 a 64 años.  Un Yes (Sí) indica que el encuestado usa Internet; un No indica que el encuestado no lo hace.
 
 a) Establezca las hipótesis que pueden utilizarse para determinar si el porcentaje de usuarios de Internet en ambos grupos de edad difieren del promedio general de 75%.
 
@@ -314,6 +786,236 @@ b) Estime la proporción de usuarios en el grupo de edad de 30 a 49 años. ¿Est
 c) Determine la proporción de usuarios en el grupo de edad de 50 a 64 años. ¿Esta proporción difiere significativamente de la proporción general de 0.75? Utilice $\sigma=0.05.$
 
 d) ¿Esperaría que la proporción de usuarios en el grupo de 18 a 29 años sea más grande o más pequeña que la proporción del grupo de edad de 30 a 49 años? Sustente su conclusión con los resultados obtenidos en los incisos b) y c).
+
+\underline{\textbf{Solución:}}
+
+a) Las hipótesis nula y alternativa para determinar si el porcentaje de usuarios de Internet en ambos grupos de edad difieren del promedio general de 75% son:
+
+$$H_o: p =0.75.$$
+$$H_a: p \ne 0.75.$$
+
+b) Para conocer el valor de $\overline{p}$ nos valemos del archivo $\textit{AgeGroup.xlsx}$, para descargar éste archivo usamos el siguiente comando en R:
+
+```{r,comment=""}
+#library('readxl')
+#url<-'http://academic.cengage.com/resource_uploads/downloads/1133274536_430757.zip'
+#tf<-tempfile()
+#download.file(url,tf,mode = 'wb')
+#data1<-unzip(tf,'Excel Files/Ch 09 Hypothesis Tests/AgeeGroup.xlsx')
+#h<-read_excel(data1)
+```
+
+Para importar los datos desde el directorio, usamos el siguiente comando en R,
+
+```{r,comment=""}
+library("readxl")
+AgeGroup<-read_excel("AgeGroup.xlsx")
+```
+
+Así $\overline{p}$ para el grupo de edad de 30 a 49 años, viene dado como sigue:
+
+```{r,comment=""}
+#Muestra cuántos usuarios usan Internet de 30 a 49 años.
+table(AgeGroup$`Use the Internet 30 -49`) 
+
+n<- 100 #Tamaño de la muestra.
+p<-85/n # Estimación puntual de la proporción poblacional 
+#de los usuarios que usan Internet..
+p
+```
+
+Asi, $\overline{p}=\displaystyle \frac{85}{100}=0.85$. Es decir, el 85% de los usuarios de 30 a 49 años usan Internet.
+
+Para proporción poblacional de los usuarios de 30 a 49 años, el estadístico de prueba tiene distribución normal estándar,
+
+$$\mathcal Z=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}$$
+
+Donde,
+
+$n=100$, $\overline{p}=0.85$ es la proporción de usuarios que usan Internet, $p_0=0.75$.
+
+
+Sustituyendo, tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \mathcal Z &=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}\\
+\vspace{3mm} &= \displaystyle \frac{0.85-0.75}{\sqrt{\frac{0.1875}{100}}}\\
+&= 2.31
+\end{array}
+$$
+
+Cómo la prueba de hipótesis para este caso es una prueba de dos colas, el valor-p es la probabilidad de que $\mathcal Z$ sea mayor o igual a $\mathcal Z=2.31$ y la probabilidad de que $\mathcal Z$ sea menor o igual a $\mathcal Z=-2.31$; esto es, el área bajo la curva normal estándar para $\mathcal Z \leq -2.31$ duplicada por ser la curva normal simétrica. En la tabla de probabilidad para normal estándar el área a la izquierda de $\mathcal Z=-2.31$ es 0.01. Por tanto, el valor-p es $2(0.01)=0.02$.
+
+Usando $\alpha=0.05$. $valor-p = 0.02 < 0.05$. proporciona una evidencia suficiente para rechazar la hipótesis nula. Así, la prueba proporciona apoyo estadístico para concluir que está  proporción difiere significativamente de la proporción general de 0.75.
+
+Hagamos éstos cálculos en R, 
+
+```{r,comment=""}
+alpha<-0.05
+n<-100
+p_0<-0.75 #proporción poblacional.
+p<-85/100 #proporción muestral de los usuarios que usan internet.
+
+z<-(p-p_0)/(sqrt(p_0*(1-p_0)/n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1,lower.tail=FALSE) #Valor p.
+2*(valor_p)
+```
+
+Ésta es una prueba de dos colas, por lo tanto el gráfico correspondiete es el siguiente:
+
+
+```{r,echo=FALSE}
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil1<- qnorm(1-(alpha/2))
+cuantil2<- qnorm(alpha/2)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dnorm(cuantil2,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = z, y =0 , xend = z, 
+                       yend = dnorm(z,mean=0, sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=z, y =-0.02, label ="z", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'Z'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="-'Z'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.5, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.5, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de dos colas Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+c) $\overline{p}$ para el grupo de edad de 50 a 64 años, viene dado como sigue:
+
+```{r,comment=""}
+#Muestra cuántos usuarios usan Internet de 50 a 64 años.
+table(AgeGroup$`Use the Internet 50 - 64`) 
+
+n<- 200 #Tamaño de la muestra.
+p<-144/n # Estimación puntual de la proporción poblacional 
+#de los usuarios que usan Internet..
+p
+```
+
+Asi, $\overline{p}=\displaystyle \frac{144}{200}=0.72$. Es decir, el 72% de los usuarios de 50 a 64 años usan Internet.
+
+Para proporción poblacional de los usuarios de 50 a 64 años, el estadístico de prueba tiene distribución normal estándar,
+
+$$\mathcal Z=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}$$
+
+Donde,
+
+$n=200$, $\overline{p}=0.72$ es la proporción de usuarios que usan Internet, $p_0=0.75$.
+
+
+Sustituyendo, tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \mathcal Z &=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}\\
+\vspace{3mm} &= \displaystyle \frac{0.72-0.75}{\sqrt{\frac{0.1875}{200}}}\\
+&= -0.98
+\end{array}
+$$
+
+Cómo la prueba de hipótesis para este caso es una prueba de dos colas, el valor-p es la probabilidad de que $\mathcal Z$ sea mayor o igual a $\mathcal Z=0.98$ y la probabilidad de que $\mathcal Z$ sea menor o igual a $\mathcal Z=-0.981$; esto es, el área bajo la curva normal estándar para $\mathcal Z \leq -0.98$ duplicada por ser la curva normal simétrica. En la tabla de probabilidad para normal estándar el área a la izquierda de $\mathcal Z=-0.98$ es 0.16. Por tanto, el valor-p es $2(0.16)=0.32$.
+
+Usando $\alpha=0.05$. $valor-p = 0.32 > 0.05$. proporciona una evidencia suficiente para no rechazar la hipótesis nula. Así, la prueba proporciona apoyo estadístico para concluir que está  proporción no difiere significativamente de la proporción general de 0.75.
+
+Hagamos éstos cálculos en R, 
+
+```{r,comment=""}
+alpha<-0.05
+n<-200
+p_0<-0.75 #proporción poblacional.
+p<-144/200 #proporción muestral de los usuarios que usan internet.
+
+z<-(p-p_0)/(sqrt(p_0*(1-p_0)/n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1) #Valor p.
+2*(valor_p)
+```
+
+Ésta es una prueba de dos colas, por lo tanto el gráfico correspondiete es el siguiente:
+
+
+```{r,echo=FALSE}
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil1<- qnorm(1-(alpha/2))
+cuantil2<- qnorm(alpha/2)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dnorm(cuantil2,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = z, y =0 , xend = z, 
+                       yend = dnorm(z,mean=0, sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=z, y =-0.02, label ="z", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'Z'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="-'Z'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.5, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.5, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de dos colas Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+d) Sí, de acuerdo los incisos b) y c) la usuarios más jóvenes usan más el Internet. 
+
+
+
+
+
 
 \newpage
 
@@ -327,6 +1029,107 @@ b) Con $\sigma=0.05$, determine si la intención de ver los programas de la ABC 
 
 c) ¿Por qué tales estudios son valiosos para las empresas y los negocios de publicidad?
 
+\underline{\textbf{Solución:}}
+
+a) Para estimar $p$, que es la proporción de espectadores que después de ver los anuncios dijeron que verían los programas de televisión, se usa la proporcón muestral $\overline{p}$. Por tanto cómo el tamaño de la muestra es de $n=1532$, la proporción muestral es, 
+$$\overline{p}=\displaystyle \frac{414}{1532}=0.27$$
+
+b) Se quiere formular una prueba de hipótesis para determinar si la intención de ver los programas de la ABC aumentó significativamente después de ver los anuncios. , esto es para una hipótesis alternativa $H_a: p > 0.22$. Las hipótesis nula y alternativa para esta prueba son:
+
+$$H_0: p \leq 0.22.$$
+$$H_a: p > 0.22.$$
+
+Para proporción poblacional de la audiencia por televisión, el estadístico de prueba tiene distribución normal estándar,
+
+$$\mathcal Z=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}$$
+
+Donde,
+
+$n=1532$, $\overline{p}=0.27$ es la proporción de la audiencia que vería las series, $p_0=0.22$.
+
+
+Sustituyendo, tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \mathcal Z &=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}\\
+\vspace{3mm} &= \displaystyle \frac{0.27-0.22}{\sqrt{\frac{0.1716}{1532}}}\\
+&= 4.72
+\end{array}
+$$
+
+Cómo la prueba de hipótesis para este caso es una prueba de cola superior, el valor-p es la probabilidad de que $\mathcal Z$ sea mayor o igual a $\mathcal Z=4.72$ ; esto es, el área bajo la curva normal estándar para $z \geq 4.72$. En la tabla de probabilidad para normal estándar el área a la izquierda de $\mathcal Z =4.72$ es 1. Por tanto, el valor-p es:
+
+
+$$
+\begin{array}{rl}
+\vspace{3mm}P(\mathcal Z \geq 4.72) &=1-P(\mathcal Z\leq 4.72)\\
+&=1-1\\
+&=0
+\end{array}
+$$
+
+El valor-p es 0.
+
+Usando $\alpha=0.05$. $valor-p = 0 < 0.05$. proporciona una evidencia suficiente para rechazar la hipótesis nula. Así, la prueba proporciona apoyo estadístico para concluir que la intención de ver los programas de la ABC aumentó significativamente después de ver los anuncios.
+
+En R, 
+
+```{r,comment=""}
+alpha<-0.05
+n<-1532
+p_0<-0.22 #proporción poblacional.
+p<-414/1532 #proporción muestral de la audiencia que vería las series.
+
+z<-(p-p_0)/(sqrt(p_0*(1-p_0)/n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1,lower.tail=FALSE) #Valor p.
+valor_p
+```
+
+Ésta es una prueba de cola superior, por lo tanto el gráfico correspondiete es el siguiente:
+
+
+```{r,echo=FALSE}
+x<-seq(-5,5,0.01)
+y<-dnorm(x,mean=0,sd=1)
+cuantil1<- qnorm(1-alpha)
+
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0,sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = z, y =0 , xend = z, 
+                       yend = dnorm(z,mean=0,sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=z, y =-0.02, label ="z", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'z'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.5, y=0.15, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-5,5)+
+      labs( title = "Prueba de cola superior Distribución z",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+
+c) Para evaluar la eficacia y calidad de los anuncios de publicidad.
+
+
 \newpage
 
 # Ejercicio 26
@@ -338,6 +1141,92 @@ a) Formule las hipótesis para probar la validez de lo expresado por el ejecutiv
 b) Suponga que para este estudio, UBS Investor Optimism Survey recabó información de 300 inversionistas. ¿Cuál es el *p*-valor en esta prueba de hipótesis?
 
 c) Con $\sigma=0.50,$ ¿debe rechazarse lo que afirma el ejecutivo?
+
+\underline{\textbf{Solución:}}
+
+
+a) Se quiere formular una prueba de hipótesis para determinar la validez de lo expresado por el ejecutivo de la empresa mediadora en el mercado de dinero , esto es para una hipótesis alternativa $H_a: p<0.7$. Las hipótesis nula y alternativa para esta prueba son:
+
+$$H_0: p \geq 0.7.$$
+$$H_a: p < 0.7.$$
+
+b) Para proporción poblacional de los inversionistas, el estadístico de prueba tiene distribución normal estándar,
+
+$$\mathcal Z=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}$$
+
+Donde,
+
+$n=300$, $\overline{p}=0.67$ es la proporción de inversionistas que confiaban en lograr sus objetivos, $p_0=07$.
+
+
+Sustituyendo, tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \mathcal Z &=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}\\
+\vspace{3mm} &= \displaystyle \frac{0.67-0.7}{\sqrt{\frac{0.2211}{300}}}\\
+&= -1.1
+\end{array}
+$$
+
+Cómo la prueba de hipótesis para este caso es una prueba de cola inferior, el valor-p es la probabilidad de que $\mathcal Z$ sea menor o igual a $\mathcal Z=-1.1$ ; esto es, el área bajo la curva normal estándar para $\mathcal Z \leq -1.1$. En la tabla de probabilidad para normal estándar el área a la izquierda de $\mathcal Z=-1.1$ es 0.1357. Por tanto, el valor-p es 0.1357.
+
+c) Usando $\alpha=0.50$. $valor-p = 0.1357 < 0.50$. proporciona una evidencia suficiente para rechazar la hipótesis nula. Así, la prueba proporciona apoyo estadístico para concluir que menos del 70% de los inversionista confiaban en lograr sus objetivos.
+
+En R, 
+
+```{r,comment=""}
+alpha<-0.5
+n<-300
+p_0<-0.70 #proporción poblacional.
+p<-0.67 #proporción muestral de los inversionistas.
+
+z<-(p-p_0)/(sqrt(p_0*(1-p_0)/n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1) #Valor p.
+valor_p
+```
+
+
+Ésta es una prueba de cola inferior, por lo tanto el gráfico correspondiete es el siguiente
+
+
+```{r,echo=FALSE}
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil2<- qnorm(alpha)
+
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dnorm(cuantil2,mean=0,sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = z, y =0 , xend = z, 
+                       yend = dnorm(z,mean=0,sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=z, y =-0.02, label ="z", parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="'-z'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.5, y=0.15, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola inferior Distribución z",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
 
 \newpage
 
@@ -351,6 +1240,124 @@ b) Calcule un intervalo de 95% de confianza para la proporción de devoluciones 
 
 c) ¿La proporción de devoluciones es significativamente distinta de las devoluciones de toda la nación en conjunto? Proporcione sustento estadístico para su respuesta.
 
+
+\underline{\textbf{Solución:}}
+
+
+a) Para estimar $p$, que es la proporción de artículos devueltos para la población de transacciones de ventas en el almacén de Houston, se usa la proporcón muestral $\overline{p}$. Por tanto cómo el tamaño de la muestra es de $n=80$, la proporción muestral es, 
+$$\overline{p}=\displaystyle \frac{12}{80}=0.15$$
+
+b) La expresión para el intervalo de confianza de la proporción de las devoluciones es, 
+$$\overline{p} \pm \mathcal Z_{\alpha/2}\sqrt{\frac{\overline{p}(1-\overline{p})}{n}}$$
+
+Donde, $1-\alpha = 0.95$ es el coeficiente de confianza. 
+
+Sustituyendo, tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \overline{p} \pm \mathcal Z_{\alpha/2}\sqrt{\frac{\overline{p}(1-\overline{p})}{n}}\\
+\vspace{3mm} 0.15 \pm 1.96\sqrt{\frac{0.15(1-0.15)}{80}}\\
+\vspace{3mm} 0.15 \pm 0.0031
+\end{array}
+$$
+
+Así el límite superior del intervalo de confianza es: 0.23 y el límite inferior de 0.072. Por lo que, $$0.072 \leq \overline{p} \leq 0.23$$
+
+c) Se quiere formular una prueba de hipótesis para probar que la proporción de devoluciones es significativamente distinta de las devoluciones de toda la nación en conjunto, esto es para una hipótesis alternativa $H_a: p \ne 0.06$. Las hipótesis nula y alternativa para esta prueba son:
+
+$$H_0: p = 0.06.$$
+$$H_a: p \ne 0.06.$$
+
+Para proporción poblacional de las devoluciones de una tienda departamental en Houston, el estadístico de prueba tiene distribución normal estándar,
+
+$$\mathcal Z=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}$$
+
+Donde,
+
+$n=80$, $\overline{p}=0.15$ es la proporción de artículos devueltos en el almacén de Houston y $p_0=0.06$.
+
+
+Sustituyendo, tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \mathcal Z &=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}\\
+\vspace{3mm} &= \displaystyle \frac{0.15-0.06}{\sqrt{\frac{0.0564}{80}}}\\
+&= 3.39
+\end{array}
+$$
+
+Cómo la prueba de hipótesis para este caso es una prueba de dos colas, el valor-p es la probabilidad de que $\mathcal Z$ sea mayor o igual a $\mathcal Z=3.39$ y la probabilidad de que $\mathcal Z$ sea menor o igual a $\mathcal Z=-3.39$; esto es, el área bajo la curva normal estándar para $\mathcal Z \leq -3.39$ duplicada por ser la curva normal simétrica. En la tabla de probabilidad para normal estándar el área a la izquierda de $\mathcal Z=-3.39$ es 0.0003 aproximadamente. Por tanto, el valor-p es $2(0.0003)=0.0006$.
+
+Usando $\alpha=0.05$. $valor-p = 0.0006 < 0.05$. proporciona una evidencia suficiente para rechazar la hipótesis nula. Así, la prueba proporciona apoyo estadístico para concluir que la proporción de devoluciones es significativamente distinta de las devoluciones de toda la nación en conjunto.
+
+Hagamos éstos cálculos en R, 
+
+```{r,comment=""}
+alpha<-0.05
+n<-80
+p_0<-0.06 #proporción poblacional.
+p<-12/80 #proporción muestral de devoluciones.
+
+z<-(p-p_0)/(sqrt(p_0*(1-p_0)/n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1,lower.tail=FALSE) #Valor p.
+2*(valor_p)
+```
+
+Ésta es una prueba de dos colas, por lo tanto el gráfico correspondiete es el siguiente:
+
+
+```{r,echo=FALSE}
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil1<- qnorm(1-(alpha/2))
+cuantil2<- qnorm(alpha/2)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dnorm(cuantil2,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = z, y =0 , xend = z, 
+                       yend = dnorm(z,mean=0, sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=z, y =-0.02, label ="z", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'Z'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="-'Z'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.5, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.5, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de dos colas Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+
+
+
+
 \newpage
 
 # Ejercicio 28
@@ -363,7 +1370,140 @@ b) El archivo Eagle contiene los datos muestrales.  Obtenga una estimación punt
 
 c) Use $\sigma=0.05$ y realice la prueba de hipótesis. ¿La empresa debe realizar esta promoción en todo el país?
 
+\underline{\textbf{Solución:}}
+
+a) Se quiere formular una prueba de hipótesis para probar si la proporción poblacional de aquellos que usarán el cupón es suficiente como para hacer la promoción en todo el país, esto es para una hipótesis alternativa $H_a: p > 0.1$. Las hipótesis nula y alternativa para esta prueba son:
+
+$$H_0: p \leq 0.1.$$
+$$H_a: p > 0.1.$$
+
+b) Para conocer el valor de $\overline{p}$ nos valemos del archivo $\textit{Eagle.xlsx}$, para descargar éste archivo usamos el siguiente comando en R:
+
+```{r,comment=""}
+#library('readxl')
+#url<-'http://academic.cengage.com/resource_uploads/downloads/1133274536_430757.zip'
+#tf<-tempfile()
+#download.file(url,tf,mode = 'wb')
+#data1<-unzip(tf,'Excel Files/Ch 09 Hypothesis Tests/Eagle.xlsx')
+#h<-read_excel(data1)
+```
+
+Para importar los datos desde el directorio, usamos el siguiente comando en R,
+
+```{r,comment=""}
+library("readxl")
+Eagle<-read_excel("Eagle.xlsx")
+```
+
+Así $\overline{p}$, viene dado como sigue:
+
+```{r,comment=""}
+table(Eagle$`Used Coupon?`) #Muestra cuántos clientes utilizaron el cupón.
+
+n<- 100 #Tamaño de la muestra.
+p<-13/n # Estimación puntual de la proporción poblacional 
+#de los clientes que utilizaron el cupón.
+p
+```
+
+Asi, $\overline{p}=\displaystyle \frac{13}{100}=0.13$. Es decir, el 13% de los clientes usaron el cupón.
+
+c) Para proporción poblacional de los clientes de la empresa, el estadístico de prueba tiene distribución normal estándar,
+
+$$\mathcal Z=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}$$
+
+Donde,
+
+$n=100$, $\overline{p}=0.13$ es la proporción de los clientes que usaron el cupón, $p_0=0.1$.
+
+
+Sustituyendo, tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \mathcal Z &=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}\\
+\vspace{3mm} &= \displaystyle \frac{0.13-0.1}{\sqrt{\frac{0.09}{100}}}\\
+&= 1
+\end{array}
+$$
+
+Cómo la prueba de hipótesis para este caso es una prueba de cola superior, el valor-p es la probabilidad de que $\mathcal Z$ sea mayor o igual a $\mathcal Z=1$ ; esto es, el área bajo la curva normal estándar para $z \geq 1$. En la tabla de probabilidad para normal estándar el área a la izquierda de $\mathcal Z =1$ es 0.84. Por tanto, el valor-p es:
+
+
+$$
+\begin{array}{rl}
+\vspace{3mm}P(\mathcal Z \geq 4.72) &=1-P(\mathcal Z\leq 4.72)\\
+&=1-0.84\\
+&=0.16
+\end{array}
+$$
+
+El valor-p es 0.16.
+
+Usando $\alpha=0.05$. $valor-p = 0.16 > 0.05$. proporciona una evidencia suficiente para no rechazar la hipótesis nula. Así, la prueba proporciona apoyo estadístico para concluir que la empresa no debe realizar ésta promoción en todo el país.
+
+En R, 
+
+```{r,comment=""}
+alpha<-0.05
+n<-100
+p_0<-0.1 #proporción poblacional.
+p<-13/100 #proporción muestral de clientes que usaron el cupón.
+
+z<-(p-p_0)/(sqrt(p_0*(1-p_0)/n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1,lower.tail=FALSE) #Valor p.
+valor_p
+```
+
+Ésta es una prueba de cola superior, por lo tanto el gráfico correspondiete es el siguiente:
+
+
+```{r,echo=FALSE}
+x<-seq(-5,5,0.01)
+y<-dnorm(x,mean=0,sd=1)
+cuantil1<- qnorm(1-alpha)
+
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0,sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = z, y =0 , xend = z, 
+                       yend = dnorm(z,mean=0,sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=z, y =-0.02, label ="z", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'z'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.5, y=0.15, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-5,5)+
+      labs( title = "Prueba de cola superior Distribución z",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+
+
+
+
+
+
 \newpage
+
+
 
 # Ejercicio 29
 
@@ -374,6 +1514,137 @@ a) Formule la hipótesis que ayuden a determinar si más de 51% de la población
 b) En una muestra de 400 trabajadores de turnos nocturnos se identidicó a quienes admitían conducir somnolientos.  Consulte el archivo Drowsy. ¿Cuál es la proporción muestral? ¿Cuál es el *p*-valor?
 
 c) Con $\sigma=0.1,$ ¿cuál es su conclusión?
+
+
+\underline{\textbf{Solución:}}
+
+a) Se quiere formular una prueba de hipótesis que ayuden a determinar si más de 51% de la población de trabajadores de los turnos nocturnos admite conducir somnoliento, esto es para una hipótesis alternativa $H_a: p > 0.51$. Las hipótesis nula y alternativa para esta prueba son:
+
+$$H_0: p \leq 0.51.$$
+$$H_a: p > 0.51.$$
+
+b) Para conocer el valor de $\overline{p}$ nos valemos del archivo $\textit{Drowsy.xlsx}$, para descargar éste archivo usamos el siguiente comando en R:
+
+```{r,comment=""}
+#library('readxl')
+#url<-'http://academic.cengage.com/resource_uploads/downloads/1133274536_430757.zip'
+#tf<-tempfile()
+#download.file(url,tf,mode = 'wb')
+#data1<-unzip(tf,'Excel Files/Ch 09 Hypothesis Tests/Drowsy.xlsx')
+#h<-read_excel(data1)
+```
+
+Para importar los datos desde el directorio, usamos el siguiente comando en R,
+
+```{r,comment=""}
+library("readxl")
+Drowsy<-read_excel("Drowsy.xlsx")
+```
+
+Así $\overline{p}$, viene dado como sigue:
+
+```{r,comment=""}
+ #Muestra cuántos admitieron conducir somnolientos.
+table(Drowsy$`Drive While Drowsy?`) 
+
+n<- 400 #Tamaño de la muestra.
+p<-232/n # Estimación puntual de la proporción poblacional 
+#de los trabajadores nocturnos.
+p
+```
+
+Asi, $\overline{p}=\displaystyle \frac{232}{400}=0.58$. Es decir, el 13% de los trabajadores de turno nocturno admitieron conducir somnolientos.
+
+Para proporción poblacional de los trabajadores nocturno, el estadístico de prueba tiene distribución normal estándar,
+
+$$\mathcal Z=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}$$
+
+Donde,
+
+$n=400$, $\overline{p}=0.58$ es la proporción de los trabajadores que conducian somnolientos, $p_0=0.51$.
+
+
+Sustituyendo, tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \mathcal Z &=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}\\
+\vspace{3mm} &= \displaystyle \frac{0.58-0.51}{\sqrt{\frac{0.2499}{400}}}\\
+&= 2.80
+\end{array}
+$$
+
+Cómo la prueba de hipótesis para este caso es una prueba de cola superior, el valor-p es la probabilidad de que $\mathcal Z$ sea mayor o igual a $\mathcal Z=2.80$ ; esto es, el área bajo la curva normal estándar para $z \geq 2.80$. En la tabla de probabilidad para normal estándar el área a la izquierda de $\mathcal Z =2.80$ es 0.997. Por tanto, el valor-p es:
+
+
+$$
+\begin{array}{rl}
+\vspace{3mm}P(\mathcal Z \geq2.80) &=1-P(\mathcal Z\leq 2.80)\\
+&=1-0.997\\
+&=0.003
+\end{array}
+$$
+
+El valor-p es 0.003.
+
+c)  Usando $\alpha=0.1$. $valor-p = 0.003 < 0.1$. proporciona una evidencia suficiente para rechazar la hipótesis nula. Así, la prueba proporciona apoyo estadístico para concluir que más de 51% de la población de trabajadores de los turnos nocturnos admite conducir somnoliento.
+
+En R, 
+
+```{r,comment=""}
+alpha<-0.1
+n<-400
+p_0<-0.51 #proporción poblacional.
+p<-232/400 #proporción muestral de los trabajadores somnolientos.
+z<-(p-p_0)/(sqrt(p_0*(1-p_0)/n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1,lower.tail=FALSE) #Valor p.
+valor_p
+```
+
+Ésta es una prueba de cola superior, por lo tanto el gráfico correspondiete es el siguiente:
+
+
+```{r,echo=FALSE}
+x<-seq(-5,5,0.01)
+y<-dnorm(x,mean=0,sd=1)
+cuantil1<- qnorm(1-alpha)
+
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0,sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = z, y =0 , xend = z, 
+                       yend = dnorm(z,mean=0,sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=z, y =-0.02, label ="z", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'z'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.5, y=0.15, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-5,5)+
+      labs( title = "Prueba de cola superior Distribución z",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+
+
+
+
 
 \newpage
 
@@ -386,6 +1657,105 @@ a) Formule las hipótesis nula y alternativas para probar lo que afirma el anál
 b) En una muestra de 50 acciones de la bolsa de Nueva York, 24 aumentaron.  Establezca la estimación puntual de la proporción poblacional de las acciones se incrementaron.
 
 c) Realice una prueba de hipótesis usando $\sigma=0.01$ como nivel de significancia. ¿Cuál es la conclusión?.
+
+\underline{\textbf{Solución:}}
+
+a) Se quiere realizar una prueba de hipótesis para probar lo que afirma el análista, esto es para una hipótesis alternativa $H_a: p>0.3$. Las hipótesis nula y alternativa para esta prueba son:
+
+$$H_0: p \leq 0.3.$$
+$$H_a: p > 0.3.$$
+
+b) Para estimar $p$, que es la proporción de las acciones de la Bolsa de Nueva York que se incrementaron, se usa la proporcón muestral $\overline{p}$. Por tanto cómo el tamaño de la muestra es de $n=50$, la proporción muestral es, 
+$$\overline{p}=\displaystyle \frac{24}{50}=0.48$$
+
+c)  Para proporción poblacional de las acciones que se aumentaron, el estadístico de prueba tiene distribución normal estándar,
+
+$$\mathcal{Z}=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}$$
+
+Donde,
+
+$n=50$, $\overline{p}=0.48$ es la proporción de acciones que se aumentaron, $p_0=0.3$.
+
+Sustituyendo, tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \mathcal{Z} &=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}\\
+\vspace{3mm} &= \displaystyle \frac{0.48-0.3}{\sqrt{\frac{0.21}{50}}}\\
+&= 2.77
+\end{array}
+$$
+
+Cómo la prueba de hipótesis para este caso es una prueba de cola superior, el valor-p es la probabilidad de de que $\mathcal{Z}$ sea mayor o igual a $\mathcal{Z}=2.77$ ; esto es, el área bajo la curva normal estándar para $\mathcal{Z} \geq 2.77$. En la tabla de probabilidad para normal estándar el área a la izquierda de $\mathcal{Z}=2.77$ es 0.9972. Por tanto, el valor-p es:
+
+
+$$
+\begin{array}{rl}
+\vspace{3mm}P(\mathcal{Z} \geq 2.77) &=1-P(\mathcal{Z}\leq2.77)\\
+&=1-0.9972\\
+&=0.0028
+\end{array}
+$$
+Por lo que, el valor-p es 0.0028.
+
+d) Usando un nivel de significancia de $\alpha=0.01$ se tiene que un $valor-p = 0.0028<0.01$ proporciona una evidencia para rechazar la hipótesis nula. Así, la prueba proporciona apoyo estadístico para concluir que 30% de las acciones de la Bolsa de Nueva York se incrementarían ese mismo día.
+
+
+Hagamos éstos cálculos en R,
+
+```{r,comment=""}
+alpha<-0.01
+n<-50
+p_0<-0.3 #proporción poblacional.
+p<-24/50 #proporción muestral de las acciones que aumentaron.
+
+z<-(p-p_0)/(sqrt(p_0*(1-p_0)/n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1,lower.tail=FALSE) #Valor p.
+valor_p
+
+```
+
+Ésta es una prueba de cola superior, por lo tanto el gráfico correspondiete es el siguiente:
+
+```{r,echo=FALSE}
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0,sd=1)
+cuantil1<- qnorm(1-alpha)
+
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0,sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = z, y =0 , xend = z, 
+                       yend = dnorm(z,mean=0,sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=z, y =-0.02, label ="z", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'z'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.5, y=0.04, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola superior Distribución z",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+
+
 
 \newpage
 
@@ -401,19 +1771,210 @@ c) ¿Cuál es la probabilidad de cometerlo si la verdadera media de los tiempos 
 
 d) Dibuje la forma general de la curva de potencia de esta prueba.
 
+\underline{\textbf{Solución:}}
+
+a) Aceptar la hipótesis nula $H_0: \mu \leq 15$, cuando es falsa es cometer un error tipo II. Al cometer un error tipo II la empresa basa una tarifa menor de lo que debería ser ya que la encuesta por teléfono se puede realizar en un promedio de más de 15 minutos.
+
+b) La hipótesis nula y la alternativa para el tiempo requerido de la encuesta son, 
+
+$$H_0: \mu \leq 15$$
+$$H_a: \mu > 15$$
+
+Usando 0.01 de nivel de significancia para realizar la prueba de hipótesis, el estadístico de prueba en el caso de $\sigma$ conocida es, 
+$$\mathcal Z= \displaystyle \frac{\overline{x}-\mu}{\sigma/\sqrt{n}}$$
+
+Con base en el método del valor crítico y $\mathcal Z_{0.01}=2.33$, la regla de rechazo en esta prueba de cola superior es si 
+$$\mathcal Z \geq 2.33$$
+
+Sabemos que $\sigma=4$ y $\mu=15$. La regla de rechazo indica que $H_0$ será descartada si, 
+
+$$\mathcal Z= \displaystyle \frac{\overline{x}-15}{4/\sqrt{35}} \geq 2.33$$
+
+Al despejar $\overline{x}$, tenemos que $H_0$ será rechazada si,
+
+$$\overline{x} \geq 15 + 2.33(\frac{4}{\sqrt{35}})=16.58$$
+
+Rechazar $H_0$ siempre que $\overline{x}\geq 16.58$ significa que se tomará la decisión de aceptar la $H_0$ si $$\overline{x}< 16.58$$
+
+Utilizando la distribución normal estándar vemos que para $\overline{x}= 16.58$ y si $\mu=17$
+
+$$\mathcal Z= \displaystyle \frac{16.58-17}{4/\sqrt{35}} =-0.62$$
+
+La tabla de probabilidad normal estándar indica que para $\mathcal Z=-0.62$, el área en la cola inferior es $1.000-0.7324=0.2676$. Entonces, 0.2676 es la probabilidad de cometer un error tipo II cuando $\mu=17$.
+
+Calculemos el valor-p en R,
+
+```{r,comment=""}
+alpha<-0.01
+n<-35
+mu<-17 #media muestral.
+x<-16.58 #media poblacional
+sigma<-4
+
+z<-(x-mu)/(sigma/sqrt(n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1) #Valor p.
+valor_p
+```
+
+c) Sí $\mu=18$, entonces
+
+$$\mathcal Z= \displaystyle \frac{16.58-18}{4/\sqrt{35}} =-2.1$$
+
+La tabla de probabilidad normal estándar indica que para $\mathcal Z=-2.1$, el área en la cola inferior es $1-0.9821=0.0179$. Entonces, 0.0179 es la probabilidad de cometer un error tipo II cuando $\mu=18$
+
+Calculemos el valor-p en R,
+
+```{r,comment=""}
+alpha<-0.01
+n<-35
+mu<-18 #media muestral.
+x<-16.58 #media poblacional
+sigma<-4
+
+z<-(x-mu)/(sigma/sqrt(n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1) #Valor p.
+valor_p
+```
+
+
+d) 
+
+
+```{r,echo=FALSE}
+z<-c()
+for(i in c(14:18)){
+  z[i-13]<-((x-i)/(sigma/sqrt(n)))
+}
+
+valor_p<-pnorm(z,0,1) #Valor p.
+
+potencia<-1-valor_p
+
+mu<-c(14,15,16,17,18)
+
+h<-spline(mu,potencia,n=100)
+
+f<-ggplot(mapping = aes(h[[1]],h[[2]]))+geom_line(colour = "blue")+
+labs( title = "Curva de potencia",x = "Media Poblacional ", y = "Potencia",  caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+A la probabilidad de rechazar acertadamente $H_0$ cuando es falsa se le llama potencia de la prueba. Para cada valor específico de la media poblacional $\mu$, la potencia es 1 menos la probabilidad de cometer un error tipo II. Observando la curva, podemos notar que mientras $\mu$ aumenta y se aleja de 15, la probabilidad de rechazar acertadamente $H_0$ cuando es falsa aumenta.
+
+
+
+
 \newpage
 
 # Ejercicio 32
 
-Un grupo de investigación del consumidor está interesado en probar la afirmación de un fabricante de automóviles de que un nuevo modelo económico recorrerá por lo menos 25 millas por cada galón de gasolina ($H_0;\mu\ge25$).
+Un grupo de investigación del consumidor está interesado en probar la afirmación de un fabricante de automóviles de que un nuevo modelo económico recorrerá por lo menos 25 millas por cada galón de gasolina ($H_0:\mu\ge25$).
 
-a) Con 0.02 como nivel de significancia y una muestra de 30 automóviles, ¿cuál es la regla de rechazo basada en el valor de $\hat{x}$ en la prueba para determinar si debe rechazarse la afirmación del fabricante? Suponga que $\sigma$ es 3 millas por galón.
+a) Con 0.02 como nivel de significancia y una muestra de 30 automóviles, ¿cuál es la regla de rechazo basada en el valor de $\overline{x}$ en la prueba para determinar si debe rechazarse la afirmación del fabricante? Suponga que $\sigma$ es 3 millas por galón.
 
 b) ¿Cuál es la probilidad de cometer un error tipo II si el verdadero rendimiento es 23 millas por galón?
 
 c) ¿Cuál es la probabilidad de cometerlo si el verdadero rendimiento es 24 millas por galón?
 
 d) ¿Cuál es la probabilidad si el verdadero rendimiento es 25.5 millas por galón?
+
+
+\underline{\textbf{Solución:}}
+
+a) La hipótesis nula y la alternativa para el recorrido del nuevo modelo económico son, 
+
+$$H_0: \mu \geq 25$$
+$$H_a: \mu < 25$$
+
+Usando 0.02 de nivel de significancia para realizar la prueba de hipótesis, el estadístico de prueba en el caso de $\sigma$ conocida es, 
+$$\mathcal Z= \displaystyle \frac{\overline{x}-\mu}{\sigma/\sqrt{n}}$$
+
+Con base en el método del valor crítico y $\mathcal Z_{0.02}=-2.05$, la regla de rechazo en esta prueba de cola inferior es si 
+$$\mathcal Z \leq -2.05$$
+
+Sabemos que $\sigma=3$ y $\mu=25$. La regla de rechazo indica que $H_0$ será descartada si, 
+
+$$\mathcal Z= \displaystyle \frac{\overline{x}-25}{3/\sqrt{30}} \leq -2.05$$
+
+Al despejar $\overline{x}$, tenemos que $H_0$ será rechazada si,
+
+$$\overline{x} \leq 25 - 2.05(\frac{3}{\sqrt{30}})=23.88$$
+
+Rechazar $H_0$ siempre que $\overline{x}\leq 23.88$ significa que se tomará la decisión de aceptar la $H_0$ si $$\overline{x}> 23.88$$
+
+b)  Utilizando la distribución normal estándar vemos que para $\overline{x}= 23.88$ y si $\mu=23$
+
+$$\mathcal Z= \displaystyle \frac{23.88-23}{3/\sqrt{30}} =1.61$$
+
+La tabla de probabilidad normal estándar indica que para $\mathcal Z=1.61$, el área en la cola superior es $1.000-0.95=0.05$. Entonces, 0.05 es la probabilidad de cometer un error tipo II cuando $\mu=23$.
+
+Calculemos el valor-p en R,
+
+```{r,comment=""}
+alpha<-0.02
+n<-30
+mu<-23 #media muestral.
+x<-23.88 #media poblacional
+sigma<-3
+
+z<-(x-mu)/(sigma/sqrt(n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1,lower.tail = F) #Valor p.
+valor_p
+```
+
+c) Sí $\mu=24$,entonces:
+
+$$\mathcal Z= \displaystyle \frac{23.88-24}{3/\sqrt{30}} =-0.22$$
+
+La tabla de probabilidad normal estándar indica que para $\mathcal Z=-0.22$, el área en la cola superior es 0.59. Entonces, 0.59 es la probabilidad de cometer un error tipo II cuando $\mu=24$.
+
+Calculemos el valor-p en R,
+
+```{r,comment=""}
+alpha<-0.02
+n<-30
+mu<-24 #media muestral.
+x<-23.88 #media poblacional
+sigma<-3
+
+z<-(x-mu)/(sigma/sqrt(n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1,lower.tail = F) #Valor p.
+valor_p
+```
+
+d) Sí $\mu=25.5$,entonces:
+
+$$\mathcal Z= \displaystyle \frac{23.88-25.5}{3/\sqrt{30}} =-2.96$$
+
+La tabla de probabilidad normal estándar indica que para $\mathcal Z=-2.96$, el área en la cola superior es 0.99. Entonces, 0.99 es la probabilidad de cometer un error tipo II cuando $\mu=25.5$.
+
+Calculemos el valor-p en R,
+
+```{r,comment=""}
+alpha<-0.02
+n<-30
+mu<-25.5 #media muestral.
+x<-23.88 #media poblacional
+sigma<-3
+
+z<-(x-mu)/(sigma/sqrt(n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1,lower.tail = F) #Valor p.
+valor_p
+```
+
+Para $\mu=23$ la probabilidad de cometer un error tipo II es más pequeña, con 0.05.
+
 
 \newpage
 
@@ -433,6 +1994,144 @@ a) En esta situación, ¿qué significa cometer un error tipo II?
 b) se supone que la desviación estándar poblacional es conocida como de $\sigma=6$ años, y que el tamaño de la muestra es 100.  Si $\alpha=0.05$, ¿cuál es la probabilidad de aceptar $H_0$ si $\mu$ es igual a 26,27,29 y 30?
 
 c) ¿Cuál es la potencia si $\mu=26$? ¿Qué le dice este resultado?
+
+
+\underline{\textbf{Solución:}}
+
+a) Aceptar $H_0:\mu=28$ cuando es falsa.
+
+b)  La hipótesis nula y la alternativa para la edad de los suscriptores son, 
+
+$$H_0: \mu = 28$$
+$$H_a: \mu \ne 28$$
+
+Usando 0.05 de nivel de significancia para realizar la prueba de hipótesis, el estadístico de prueba en el caso de $\sigma$ conocida es, 
+$$\mathcal Z= \displaystyle \frac{\overline{x}-\mu}{\sigma/\sqrt{n}}$$
+
+Con base en el método del valor crítico y $\mathcal Z_{0.05/2}=\mathcal Z_{0.025}=1.96$, la regla de rechazo en esta prueba de dos colas es si 
+$$\mathcal Z \geq 1.96$$
+ó
+
+$$\mathcal Z \leq -1.96$$
+
+Sabemos que $\sigma=6$ y $\mu=28$. La regla de rechazo indica que $H_0$ será descartada si, 
+
+$$\mathcal Z= \displaystyle \frac{\overline{x}-28}{6/\sqrt{100}} \geq 1.96$$
+
+ó
+
+$$\mathcal Z= \displaystyle \frac{\overline{x}-28}{6/\sqrt{100}} \leq -1.96$$
+
+
+Al despejar $\overline{x}$, tenemos que $H_0$ será rechazada si,
+
+$$\overline{x} \geq 28 + 1.96(\frac{6}{\sqrt{100}})=29.176$$
+
+ó
+
+$$\overline{x} \leq 28 - 1.96(\frac{6}{\sqrt{100}})=26.824$$
+
+
+Rechazar $H_0$ siempre que $\overline{x}\geq 29.176$ y $\overline{x}\leq 26.824$ significa que se tomará la decisión de aceptar la $H_0$ si $$\overline{x}< 29.176$$
+ó
+$$\overline{x}> 26.824$$
+
+Utilizando la distribución normal estándar vemos que para $\overline{x}= 26.824$ y si $\mu=26$
+
+$$\mathcal Z= \displaystyle \frac{26.824-26}{6/\sqrt{100}} =13.7$$
+
+La tabla de probabilidad normal estándar indica que para $\mathcal Z=1.37$, el área en la cola superior es $1-0.915=0.085$. Entonces, 0.085 es la probabilidad de cometer un error tipo II cuando $\mu=26$.
+
+Calculemos el valor-p en R,
+
+```{r,comment=""}
+alpha<-0.05
+n<-100
+mu<-26 #media muestral.
+x<-26.824 #media poblacional
+sigma<-6
+
+z<-(x-mu)/(sigma/sqrt(n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1,lower.tail = F) #Valor p.
+valor_p
+```
+
+Sí $\mu=27$, entonces
+
+$$\mathcal Z= \displaystyle \frac{26.824-27}{6/\sqrt{100}} =-0.29$$
+
+La tabla de probabilidad normal estándar indica que para $\mathcal Z=-0.29$, el área en la cola superior es 0.61. Entonces, 0.61 es la probabilidad de cometer un error tipo II cuando $\mu=27$.
+
+Calculemos el valor-p en R,
+
+```{r,comment=""}
+alpha<-0.05
+n<-100
+mu<-27 #media muestral.
+x<-26.824 #media poblacional
+sigma<-6
+
+z<-(x-mu)/(sigma/sqrt(n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1,lower.tail = F) #Valor p.
+valor_p
+```
+
+Sí $\mu=29$ y $\overline{x}=29.176$, entonces
+
+
+$$\mathcal Z= \displaystyle \frac{29.176-29}{6/\sqrt{100}} =0.29$$
+
+La tabla de probabilidad normal estándar indica que para $\mathcal Z=0.29$, el área en la cola inferior es 0.614. Entonces, 0.614 es la probabilidad de cometer un error tipo II cuando $\mu=29$.
+
+Calculemos el valor-p en R,
+
+```{r,comment=""}
+alpha<-0.05
+n<-100
+mu<-29 #media muestral.
+x<-29.176 #media poblacional
+sigma<-6
+
+z<-(x-mu)/(sigma/sqrt(n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1) #Valor p.
+valor_p
+```
+
+
+Sí $\mu=30$ y $\overline{x}=29.176$, entonces
+
+
+$$\mathcal Z= \displaystyle \frac{29.176-30}{6/\sqrt{100}} =-1.37$$
+
+La tabla de probabilidad normal estándar indica que para $\mathcal Z=-1.37$, el área en la cola inferior es $1-0.915=0.085$. Entonces, 0.085 es la probabilidad de cometer un error tipo II cuando $\mu=30$.
+
+Calculemos el valor-p en R,
+
+```{r,comment=""}
+alpha<-0.05
+n<-100
+mu<-30 #media muestral.
+x<-29.176 #media poblacional
+sigma<-6
+
+z<-(x-mu)/(sigma/sqrt(n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1) #Valor p.
+valor_p
+```
+
+c) Para cada valor específico de la media poblacional $\mu$, la potencia es 1 menos la probabilidad de cometer un error tipo II. Así, para $\mu=26$ la potencia es, 
+
+$$1-0.085=0.915$$
+
+Por lo tanto, la probabilidad de rechazar $H_0$ acertadamente es de 0.915 cuando $\mu=26$.
 
 \newpage
 
@@ -456,11 +2155,185 @@ c) Si se está llenando con 0.5 onzas de exceso, ¿cuál es la potencia de la pr
 
 d) Muestre la curva de potencia para esta prueba de hipótesis. ¿Qué información aporta al gerente de producción?
 
+\underline{\textbf{Solución:}}
+
+a) Aceptar $H_0: \mu=16$ cuando es falsa, es decir, el llenado está fuera del estándar.
+
+b) La hipótesis nula y la alternativa para el peso de llenado son, 
+
+$$H_0: \mu = 16$$
+$$H_a: \mu \ne 16$$
+
+Usando 0.05 de nivel de significancia para realizar la prueba de hipótesis, el estadístico de prueba en el caso de $\sigma$ conocida es, 
+$$\mathcal Z= \displaystyle \frac{\overline{x}-\mu}{\sigma/\sqrt{n}}$$
+
+Con base en el método del valor crítico y $\mathcal Z_{0.05/2}=\mathcal Z_{0.025}=1.96$, la regla de rechazo en esta prueba de dos colas es si 
+$$\mathcal Z \geq 1.96$$
+ó
+
+$$\mathcal Z \leq -1.96$$
+
+Sabemos que $\sigma=0.8$ y $\mu=16$. La regla de rechazo indica que $H_0$ será descartada si, 
+
+$$\mathcal Z= \displaystyle \frac{\overline{x}-16}{0.8/\sqrt{30}} \geq 1.96$$
+
+ó
+
+$$\mathcal Z= \displaystyle \frac{\overline{x}-16}{0.8/\sqrt{30}} \leq -1.96$$
+
+
+Al despejar $\overline{x}$, tenemos que $H_0$ será rechazada si,
+
+$$\overline{x} \geq 16 + 1.96(\frac{0.8}{\sqrt{30}})=16.29$$
+
+ó
+
+$$\overline{x} \leq 16 - 1.96(\frac{0.8}{\sqrt{30}})=15.71$$
+
+
+Rechazar $H_0$ siempre que $\overline{x}\geq 16.29$ y $\overline{x}\leq 15.71$ significa que se tomará la decisión de aceptar la $H_0$ si $$\overline{x}< 16.29$$
+ó
+$$\overline{x}> 15.71$$
+
+Utilizando la distribución normal estándar vemos que para $\overline{x}= 16.29$ y si $\mu=16.5$
+
+$$\mathcal Z= \displaystyle \frac{16.29-16.5}{0.8/\sqrt{30}} =-1.44$$
+
+La tabla de probabilidad normal estándar indica que para $\mathcal Z=-1.44$, el área en la cola inferior es $1-0.925=0.075$. Entonces, 0.075 es la probabilidad de cometer un error tipo II cuando $\mu=16.5$.
+
+Calculemos el valor-p en R,
+
+```{r,comment=""}
+alpha<-0.05
+n<-30
+mu<-16.5 #media muestral.
+x<-16.29 #media poblacional
+sigma<-0.8
+
+z<-(x-mu)/(sigma/sqrt(n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1) #Valor p.
+valor_p
+```
+
+c) Para cada valor específico de la media poblacional $\mu$, la potencia es 1 menos la probabilidad de cometer un error tipo II. Así, para $\mu=16.5$ la potencia es, 
+
+$$1-0.075=0.925$$
+
+Por lo tanto, la probabilidad de rechazar $H_0$ acertadamente es de 0.925 cuando $\mu=16.5$.
+
+
+d) 
+
+```{r,echo=FALSE}
+z<-c()
+for(i in c(15.5:17.5)){
+  z[i-14.5]<-((x-i)/(sigma/sqrt(n)))
+}
+
+valor_p<-pnorm(z,0,1) #Valor p.
+
+potencia<-1-valor_p
+
+mu<-c(15.5:17.5)
+
+h<-spline(mu,potencia,n=50)
+
+f<-ggplot(mapping = aes(h[[1]],h[[2]]))+geom_line(colour = "blue")+
+labs( title = "Curva de potencia",x = "Media Poblacional ", y = "Potencia",  caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+
+A la probabilidad de rechazar acertadamente $H_0$ cuando es falsa se le llama potencia de la prueba. Para cada valor específico de la media poblacional $\mu$, la potencia es 1 menos la probabilidad de cometer un error tipo II. Observando la curva, podemos notar que mientras $\mu$ aumenta y se aleja de 16, la probabilidad de rechazar acertadamente $H_0$ cuando es falsa aumenta. Esto quiere decir que la información con respecto al llenado correcto tiene una probabilidad de cometer un error tipo II muy alta.
+
+
+
+
 \newpage
 
 # Ejercicio 35
 
 Vaya al ejercicio 31.  Suponga que la empresa toma una muestra de 50 encuestas y repita los incisos b) y c). ¿Qué observación se puede hace sobre cómo el incremento del tamaño de la muestra afecta la probabilidad de cometer un error tipo II?
+
+\underline{\textbf{Solución:}}
+
+Tomemos ahora $n=50$. 
+
+b) La hipótesis nula y la alternativa para el tiempo requerido de la encuesta son, 
+
+$$H_0: \mu \leq 15$$
+$$H_a: \mu > 15$$
+
+Usando 0.01 de nivel de significancia para realizar la prueba de hipótesis, el estadístico de prueba en el caso de $\sigma$ conocida es, 
+$$\mathcal Z= \displaystyle \frac{\overline{x}-\mu}{\sigma/\sqrt{n}}$$
+
+Con base en el método del valor crítico y $\mathcal Z_{0.01}=2.33$, la regla de rechazo en esta prueba de cola superior es si 
+$$\mathcal Z \geq 2.33$$
+
+Sabemos que $\sigma=4$ y $\mu=15$. La regla de rechazo indica que $H_0$ será descartada si, 
+
+$$\mathcal Z= \displaystyle \frac{\overline{x}-15}{4/\sqrt{50}} \geq 2.33$$
+
+Al despejar $\overline{x}$, tenemos que $H_0$ será rechazada si,
+
+$$\overline{x} \geq 15 + 2.33(\frac{4}{\sqrt{50}})=16.32$$
+
+Rechazar $H_0$ siempre que $\overline{x}\geq 16.32$ significa que se tomará la decisión de aceptar la $H_0$ si $$\overline{x}< 16.32$$
+
+Utilizando la distribución normal estándar vemos que para $\overline{x}= 16.32$ y si $\mu=17$
+
+$$\mathcal Z= \displaystyle \frac{16.32-17}{4/\sqrt{50}} =-1.20$$
+
+La tabla de probabilidad normal estándar indica que para $\mathcal Z=-1.20$, el área en la cola inferior es $1.000-0.8849=0.1151$. Entonces, 0.1151 es la probabilidad de cometer un error tipo II cuando $\mu=17$.
+
+Calculemos el valor-p en R,
+
+```{r,comment=""}
+alpha<-0.01
+n<-50
+mu<-17 #media muestral.
+x<-16.32 #media poblacional
+sigma<-4
+
+z<-(x-mu)/(sigma/sqrt(n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1) #Valor p.
+valor_p
+```
+
+c) Sí $\mu=18$, entonces
+
+$$\mathcal Z= \displaystyle \frac{16.32-18}{4/\sqrt{50}} =-2.97$$
+
+La tabla de probabilidad normal estándar indica que para $\mathcal Z=-2.97$, el área en la cola inferior es $1-0.9985=0.0015$. Entonces, 0.0015 es la probabilidad de cometer un error tipo II cuando $\mu=18$
+
+Calculemos el valor-p en R,
+
+```{r,comment=""}
+alpha<-0.01
+n<-50
+mu<-18 #media muestral.
+x<-16.32 #media poblacional
+sigma<-4
+
+z<-(x-mu)/(sigma/sqrt(n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1) #Valor p.
+valor_p
+```
+
+Podemos notar que mientras el tamaño de la muestra $n$ aumenta, las probabilidades de cometer un error tipo II disminuyen.
+
+
+
+
+
+
 
 \newpage
 
@@ -475,6 +2348,131 @@ b) ¿Cuál es la probabilidad de cometer un error tipo II si la media de la inve
 c) ¿Cuál es la probabilidad de cometer un error de tipo II si la media de la inversión mensual de los empleados es \$130?
 
 d) Suponiendo que se usa el tamaño muestral de 80 empleados, repita los incisos b) y c).
+
+\underline{\textbf{Solución:}}
+
+a) El cometer un error tipo II sería para ésta situación aceptar la hipótesis de Sparr que es que en este momento los empleados tienen en promedio \$100 o menos por mes en inversiones con impuestos diferidos cuando es falso.
+
+b) La hipótesis nula y la alternativa para la inversión mensual de los empleados son, 
+
+$$H_0: \mu \leq 100$$
+$$H_a: \mu > 100$$
+
+Usando 0.05 de nivel de significancia para realizar la prueba de hipótesis, el estadístico de prueba en el caso de $\sigma$ conocida es, 
+$$\mathcal Z= \displaystyle \frac{\overline{x}-\mu}{\sigma/\sqrt{n}}$$
+
+Con base en el método del valor crítico y $\mathcal Z_{0.05}=1.645$, la regla de rechazo en esta prueba de cola superior es si 
+$$\mathcal Z \geq 1.645$$
+
+Sabemos que $\sigma=75$ y $\mu=100$. La regla de rechazo indica que $H_0$ será descartada si, 
+
+$$\mathcal Z= \displaystyle \frac{\overline{x}-100}{75/\sqrt{40}} \geq 1.645$$
+
+Al despejar $\overline{x}$, tenemos que $H_0$ será rechazada si,
+
+$$\overline{x} \geq 100 + 1.645(\frac{75}{\sqrt{40}})=119.51$$
+
+Rechazar $H_0$ siempre que $\overline{x}\geq 119.51$ significa que se tomará la decisión de aceptar la $H_0$ si $$\overline{x}< 119.51$$
+
+Utilizando la distribución normal estándar vemos que para $\overline{x}= 119.51$ y si $\mu=120$
+
+$$\mathcal Z= \displaystyle \frac{119.51-120}{75/\sqrt{40}} =-0.04$$
+
+La tabla de probabilidad normal estándar indica que para $\mathcal Z=-0.04$, el área en la cola inferior es $1.000-0.5160=0.484$. Entonces, 0.484 es la probabilidad de cometer un error tipo II cuando $\mu=120$.
+
+Calculemos el valor-p en R,
+
+```{r,comment=""}
+alpha<-0.05
+n<-40
+mu<-120 #media muestral.
+x<-119.51 #media poblacional
+sigma<-75
+
+z<-(x-mu)/(sigma/sqrt(n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1) #Valor p.
+valor_p
+```
+
+c) Sí $\mu=130$, entonces
+
+$$\mathcal Z= \displaystyle \frac{119.51-130}{75/\sqrt{40}} =-0.88$$
+
+La tabla de probabilidad normal estándar indica que para $\mathcal Z=-0.88$, el área en la cola inferior es $1-0.8106=0.1894$. Entonces, 0.1894 es la probabilidad de cometer un error tipo II cuando $\mu=130$
+
+Calculemos el valor-p en R,
+
+```{r,comment=""}
+alpha<-0.01
+n<-40
+mu<-130 #media muestral.
+x<-119.51 #media poblacional
+sigma<-75
+
+z<-(x-mu)/(sigma/sqrt(n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1) #Valor p.
+valor_p
+```
+
+
+d) Tomandao $n=80$.
+
+Sí $\mu=120$, entonces
+
+$$\mathcal Z= \displaystyle \frac{119.51-120}{75/\sqrt{80}} =-0.06$$
+
+La tabla de probabilidad normal estándar indica que para $\mathcal Z=-0.06$, el área en la cola inferior es $1-0.5239=0.4761$. Entonces, 0.4761 es la probabilidad de cometer un error tipo II cuando $\mu=120$
+
+Calculemos el valor-p en R,
+
+```{r,comment=""}
+alpha<-0.01
+n<-80
+mu<-120 #media muestral.
+x<-119.51 #media poblacional
+sigma<-75
+
+z<-(x-mu)/(sigma/sqrt(n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1) #Valor p.
+valor_p
+```
+
+
+Sí $\mu=130$, entonces
+
+$$\mathcal Z= \displaystyle \frac{119.51-130}{75/\sqrt{80}} =-1.25$$
+
+La tabla de probabilidad normal estándar indica que para $\mathcal Z=-1.25$, el área en la cola inferior es $1-0.8944=0.1056$. Entonces, 0.1056 es la probabilidad de cometer un error tipo II cuando $\mu=130$
+
+Calculemos el valor-p en R,
+
+```{r,comment=""}
+alpha<-0.01
+n<-80
+mu<-130 #media muestral.
+x<-119.51 #media poblacional
+sigma<-75
+
+z<-(x-mu)/(sigma/sqrt(n)) #Estadístico de prueba
+z
+
+valor_p<-pnorm(z,0,1) #Valor p.
+valor_p
+```
+
+
+Podemos notar que mientras el tamaño de la muestra $n$ aumenta, las probabilidades de cometer un error tipo II disminuyen.
+
+
+
+
+
 
 
 
