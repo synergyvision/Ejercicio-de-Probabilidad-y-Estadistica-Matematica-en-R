@@ -20,10 +20,7 @@ library(latex2exp)
 library(ggplot2)
 source("ggplottheme.R")
 library(grid)
-<<<<<<< HEAD
-=======
 library('readxl')
->>>>>>> 4ac97d871bb0549030ab4ea3447cf7b2fc5ce4a5
 library(gridExtra)
 mod_name<-"Pruebas de Hipótesis"
 credits<-function(f){
@@ -88,9 +85,9 @@ c) En el caso de rechazar la hipótesis nula, existiría suficiente evidencia es
 
 # Ejercicio 3
 
-Una línea de operación está diseñada para llenar empaques de 32 onzas de detergente para lavar.  Con periodicidad se selecciona una muestra de los empaques y se pesan para determinar si no se están llenando con un peso mayor o menor del indicado.  Si los datos muestrales llevan a la conclusión de que hay exceso o falta de llenado, se suspende la producicón y se ajusta al llenado correcto. 
+Una línea de operación está diseñada para llenar empaques de 32 onzas de detergente para lavar.  Con periodicidad se selecciona una muestra de los empaques y se pesan para determinar si no se están llenando con un peso mayor o menor del indicado.  Si los datos muestrales llevan a la conclusión de que hay exceso o falta de llenado, se suspende la producción y se ajusta al llenado correcto. 
 
-a) Formule las hipótesis nula y alternativa que ayudarán a determinar si se debe detener la produción y ajustar el peso.
+a) Formule las hipótesis nula y alternativa que ayudarán a determinar si se debe detener la producción y ajustar el peso.
 
 b) Comente sobre la conclusión y la decisión en caso de que $H_0$ no se pueda rechazar.
 
@@ -134,7 +131,7 @@ c) En el caso de rechazar la hipótesis nula, existiría suficiente evidencia es
 
 # Ejercicio 5
 
-Nielse informó que los hombres jóvenes estadounidenses ven diariamente 56.2 minutos de televisión en las horas de mayor audiencia (The Wall Street Journal Europe, 18 de noviembre de 2003).  Un investigador cree que en Alemania los jóvenes ver más tiempo la televisión en las horas de mayor audiencia.  Este investigador toma una muestra de hombres jóvenes alemanes y registra el tiempo que ven televisión en un día.  Los resultados muestrales se usan para probar  las siguientes hipótesis nula y alternativa.
+Nielse informó que los hombres jóvenes estadounidenses ven diariamente 56.2 minutos de televisión en las horas de mayor audiencia (The Wall Street Journal Europe, 18 de noviembre de 2003).  Un investigador cree que en Alemania los jóvenes ven más tiempo la televisión en las horas de mayor audiencia.  Este investigador toma una muestra de hombres jóvenes alemanes y registra el tiempo que ven televisión en un día.  Los resultados muestrales se usan para probar  las siguientes hipótesis nula y alternativa.
 
 $$\begin{matrix}H_0:\mu\le56.2\\
 H_a:\mu>56.2\end{matrix}$$
@@ -145,7 +142,7 @@ b) ¿Cuál es el error tipo II en esta sitiación? ¿Qué consecuencia tiene com
 
 \textbf{\underline{Solución:}}
 
-a) El error tipo I en esta situación es afirmar que los jóvenes en alemania ven en promedio más minutos de televisión en las horas de mayor audiencia cuando en realidad dicha afirmación es falsa, es decir, que los jóvenes estadounidenses ven en promedio más minutos de televisión.
+a) El error tipo I en esta situación es afirmar que los jóvenes en alemania ven en promedio más minutos de televisión en las horas de mayor audiencia cuando en realidad dicha afirmación es falsa, es decir, que los jóvenes estadounidenses ven en promedio más minutos de televisión que los alemanes.
 
 b) El error tipo II en esta situación es afirmar que los jóvenes estadounidenses ven en promedio más minutos de televisión cuando en realidad dicha afirmación es falsa, es decir, que los jóvenes en alemania ven en promedio más minutos de televisión en las horas de mayor audiencia.
 
@@ -159,7 +156,7 @@ a) Un investigador sugiere que la razón por la que estos declarantes esperan ha
 
 b) En una muestra de 400 personas que presentaron su declaración entre el 10 y el 15 de abril, la media muestral de los reembolsos fue \$910.  Por experiencia se sabe que es posible considerar que la desviación estándar poblacional es $\sigma=\$1600$.  ¿Cuál es el valor-p?
 
-c) Con $\sigma=0.05,$ ¿cuál es su conclusión?
+c) Con $\alpha=0.05,$ ¿cuál es su conclusión?
 
 d) Repita la prueba de hipótesis anterior usando el método del valor crítico?.
 
@@ -252,11 +249,11 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                    colour = "red",linetype=1)+
       
         annotate("text", x=Z-0.05, y =-0.02, label ="Z", parse = TRUE)+
-        annotate("text", x=cuantil2+0.05, y =-0.02, label="-'Z'[alpha]",
+        annotate("text", x=cuantil2+0.05, y =-0.02, label="'Z'[alpha]",
                  parse = TRUE)+
         annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
                  parse = TRUE)+
-        annotate("text", x=cuantil2-0.75, y=0.1, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil2-0.95, y=0.1, label="'Rechazar H'[0]",
                  parse = TRUE)+
   
       ylim(-0.05,0.41)+
@@ -455,9 +452,9 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                  parse = TRUE)+
         annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
                  parse = TRUE)+
-        annotate("text", x=cuantil1+0.6, y=0.075, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil1+1, y=0.075, label="'Rechazar H'[0]",
                  parse = TRUE)+
-        annotate("text", x=cuantil2-0.6, y=0.075, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil2-1, y=0.075, label="'Rechazar H'[0]",
                  parse = TRUE)+
   
       ylim(-0.05,0.41)+
@@ -477,9 +474,9 @@ La rentabilidad total anual promedio de los fondos de inversión de U.S. Diversi
 
 a) Establezca las hipótesis que se pueden usar para determinar si la rentabilidad anual media de estos fondos difiere de la media de los fondos de U.S. Diversified Equity.
 
-b) En una muestra de 40 fondos el rendimiento medio fue de $\hat{x}=3.4\%$. Suponga que por estudios anteriores se sabe que la desviación estándar poblacional de estos fondos es $\sigma=2\%$.  Use los resultados muestrales para calcular el estadístico de prueba y el *p*-valor para la prueba de hipótesis.
+b) En una muestra de 40 fondos el rendimiento medio fue de $\overline{X}=3.4\%$. Suponga que por estudios anteriores se sabe que la desviación estándar poblacional de estos fondos es $\sigma=2\%$.  Use los resultados muestrales para calcular el estadístico de prueba y el *p*-valor para la prueba de hipótesis.
 
-c) Con $\sigma=0.05,$ ¿cuál es su conclusión?.
+c) Con $\alpha=0.05$ ¿cuál es su conclusión?.
 
 \textbf{\underline{Solución:}}
 
@@ -544,7 +541,7 @@ Por lo que existe suficiente evidencia estadística para rechazar $H_o$, lo que 
 
 # Ejercicio 10
 
-En 2001, el U.S. Department Labor informó que el salario por hora promedio para los trabajadores de la producción en Estados Unidos era \$14.32 por hora (*The World Almanac*, 2003).  En una muestra de 75 trabajadores tomada en 2003, la media muestral fue \$14.68 por hora.  Si la desviación estándar poblacional es $\sigma=\$1.45$, ¿se puede concluir que ha habido un aumento en la media de las ganancias por hora? Use $\sigma=0.05.$
+En 2001, el U.S. Department Labor informó que el salario por hora promedio para los trabajadores de la producción en Estados Unidos era \$14.32 por hora (*The World Almanac*, 2003).  En una muestra de 75 trabajadores tomada en 2003, la media muestral fue \$14.68 por hora.  Si la desviación estándar poblacional es $\sigma=\$1.45$, ¿se puede concluir que ha habido un aumento en la media de las ganancias por hora? Use $\alpha=0.05.$
 
 \textbf{\underline{Solución:}}
 
@@ -640,7 +637,7 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                  parse = TRUE)+
         annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
                  parse = TRUE)+
-        annotate("text", x=cuantil1+0.7, y=0.1, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil1+1, y=0.1, label="'Rechazar H'[0]",
                  parse = TRUE)+
   
       ylim(-0.05,0.41)+
@@ -663,7 +660,7 @@ b) ¿Cuál es el valor del estadístico de prueba?
 
 c) ¿Cuál es el *p*-valor?
 
-d) Con $\sigma=0.01,$ ¿qué concluye?
+d) Con $\alpha=0.01,$ ¿qué concluye?
 
 \textbf{\underline{Solución:}}
 
@@ -735,7 +732,7 @@ b) Calcule el valor del estadísticos de prueba.
 
 c) ¿Cuál es el *p*-valor?
 
-d) Con $\sigma=0.01$, ¿cuál es su conclusión?
+d) Con $\alpha=0.01$, ¿cuál es su conclusión?
 
 \textbf{\underline{Solución:}}
 
@@ -768,7 +765,7 @@ Para conocer el valor de $\overline{X}$ nos valemos del arhcivo \textit{Fowle.xl
 
 En el caso de tener ya el archivo en el directorio, simplemente importamos los datos como sigue:
 
-```{r,comment=''}
+```{r,comment='', warning= FALSE }
 Fowle<-read_excel('Fowle.xlsx')
 ```
 
@@ -823,13 +820,13 @@ Por lo que existe suficiente evidencia estadística para rechazar $H_o$, lo que 
 
 # Ejercicio 13
 
-CNN y ActMedia presentaron un canal de televisión dirigido a las personas que esperan en las colas delos supermercados.  En este canal se transmitían noticias, reportajes cortos y publicidad.  La duración de la programación se basaba en el supuesto de que la media poblacional del tiempo que los clientes esperan en la fila de la caja es 8 minutos.  Se utilizará una muestra de tiempos de espera reales para probar ese supuesto y determinar si el tiempo medio de espera difiere de ese estándar.
+CNN y ActMedia presentaron un canal de televisión dirigido a las personas que esperan en las colas de los supermercados.  En este canal se transmitían noticias, reportajes cortos y publicidad.  La duración de la programación se basaba en el supuesto de que la media poblacional del tiempo que los clientes esperan en la fila de la caja es 8 minutos.  Se utilizará una muestra de tiempos de espera reales para probar ese supuesto y determinar si el tiempo medio de espera difiere de ese estándar.
 
 a) Formule las hipótesis para esta aplicación.
 
 b) En una muestra de 120 clientes,la media muestral de tiempo de espera fue de 8.5 minutos.  Suponga que la desviación estándar poblacional es $\sigma=3.2$ minutos. ¿Cuál es el *p*-valor?
 
-c) Con $\sigma=0.05,$ ¿cuál es su conclusión?
+c) Con $\alpha=0.05,$ ¿cuál es su conclusión?
 
 d) Calcule un intervalo de 95% de confianza para la media poblacional. ¿Esto sustenta su conclusión?
 
@@ -1047,7 +1044,7 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                  parse = TRUE)+
         annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
                  parse = TRUE)+
-        annotate("text", x=cuantil2-0.75, y=0.1, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil2-1, y=0.1, label="'Rechazar H'[0]",
                  parse = TRUE)+
   
       ylim(-0.05,0.41)+
@@ -1067,7 +1064,7 @@ El precio de un diamante de un quilate de color H y pureza VS2 de Diamod Source 
 
 a. Formule las hipótesis para determinar si el precio en Nueva York difiere de \$5600.
 
-b. Los precios en una muestra de 25 contactos en la ciudad de Nueva York fueron los que se presentan en el archivo Diamonds del disco compacto. ¿Cuál es el valor-p?
+b. Para una muestra de los precios de 25 contactos en la ciudad de Nueva York ¿Cuál es el valor-p?
 
 c. Con $\alpha=0.05$, ¿es posible rechazar la hipótesis nula? ¿Cuál es su conclusión?
 
@@ -1180,7 +1177,7 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                  parse = TRUE)+
         annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
                  parse = TRUE)+
-        annotate("text", x=cuantil1+0.7, y=0.1, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil1+1, y=0.1, label="'Rechazar H'[0]",
                  parse = TRUE)+
   
       ylim(-0.05,0.41)+
@@ -1414,7 +1411,7 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                  parse = TRUE)+
         annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
                  parse = TRUE)+
-        annotate("text", x=cuantil2-0.75, y=0.1, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil2-1, y=0.1, label="'Rechazar H'[0]",
                  parse = TRUE)+
   
       ylim(-0.05,0.41)+
@@ -1498,17 +1495,17 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                        yend = dt(t,df=31)), 
                    colour = "red",linetype=1)+
       
-        annotate("text", x=t, y =-0.02, label ="t", parse = TRUE)+
+        annotate("text", x=t, y =-0.02, label ="T", parse = TRUE)+
         annotate("text", x=cuantil1, y =-0.02, label="'t'[alpha]",
                  parse = TRUE)+
         annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
                  parse = TRUE)+
-        annotate("text", x=cuantil1+0.5, y=0.15, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil1+1, y=0.1, label="'Rechazar H'[0]",
                  parse = TRUE)+
   
       ylim(-0.05,0.41)+
       xlim(-4,4)+
-      labs( title = "Prueba de cola superior Distribución t",
+      labs( title = "Prueba de cola superior Distribución T",
             x = " ", y = " ",caption = "http://synergy.vision/" )+
       vision 
 credits(f)
@@ -1558,7 +1555,7 @@ $$
 \end{array}
 $$
 
-Cómo la prueba de hipótesis para este caso es una prueba de cola superior, el valor-p es la probabilidad de de que $\mathcal{Z}$ sea mayor o igual a $\mathcal{Z}=1.73$ ; esto es, el área bajo la curva normal estándar para $\mathcal{Z} \geq 1.73$. En la tabla de probabilidad para normal estándar el área a la izquierda de $\mathcal{Z}=1.73$ es 0.9573. Pro tanto, el valor-p es:
+Cómo la prueba de hipótesis para este caso es una prueba de cola superior, el valor-p es la probabilidad de de que $\mathcal{Z}$ sea mayor o igual a $\mathcal{Z}=1.73$ ; esto es, el área bajo la curva normal estándar para $\mathcal{Z} \geq 1.73$. En la tabla de probabilidad para normal estándar el área a la izquierda de $\mathcal{Z}=1.73$ es 0.9573. Por lo tanto, el valor-p es:
 
 
 $$
@@ -1611,8 +1608,8 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                        yend = dnorm(z,mean=0,sd=1)), 
                    colour = "red",linetype=1)+
       
-        annotate("text", x=z, y =0.1, label ="z", parse = TRUE)+
-        annotate("text", x=cuantil1, y =-0.02, label="'z'[alpha]",
+        annotate("text", x=z, y =-0.02, label ="Z", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'Z'[alpha]",
                  parse = TRUE)+
         annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
                  parse = TRUE)+
@@ -1651,7 +1648,7 @@ a) Se quiere realizar una prueba de hipótesis para probar si ha disminuido el p
 $$H_0: p \geq 0.24.$$
 $$H_a: p < 0.24.$$
 
-b)  Para estimar $p$, que es la proporción del que tiene un seguro de salud financiado totalmente por su empresa, se usa la proporcón muestral $\overline{p}$. Por tanto cómo el tamaño de la muestra es de $n=400$, la proporción muestral es, 
+b)  Para estimar $p$, que es la proporción del que tiene un seguro de salud financiado totalmente por su empresa, se usa la proporción muestral $\overline{p}$. Por tanto cómo el tamaño de la muestra es de $n=400$, la proporción muestral es, 
 $$\overline{p}=\displaystyle \frac{81}{400}=0.2025$$
 
 c) Para proporción poblacional de los trabajadores, el estadístico de prueba tiene distribución normal estándar,
@@ -1712,12 +1709,12 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                        yend = dnorm(z,mean=0,sd=1)), 
                    colour = "red",linetype=1)+
       
-        annotate("text", x=z, y =0.1, label ="z", parse = TRUE)+
-        annotate("text", x=cuantil2, y =-0.02, label="'-z'[alpha]",
+        annotate("text", x=z, y =0.1, label ="Z", parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="'-Z'[alpha]",
                  parse = TRUE)+
         annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
                  parse = TRUE)+
-        annotate("text", x=cuantil2-0.5, y=0.15, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil2-1, y=0.1, label="'Rechazar H'[0]",
                  parse = TRUE)+
   
       ylim(-0.05,0.41)+
@@ -1739,7 +1736,7 @@ a) Formule las hipótesis que puedan ser usadas para determinar si la afiliació
 
 b) Si los resultados muestrales indican que 52 de los trabajadores pertenecen a los sindicatos, ¿cuál es el *p*-valor de esta prueba de hipótesis?
 
-c) Con $\sigma=0.05,$ ¿cuál es su conclusión?
+c) Con $\alpha=0.05,$ ¿cuál es su conclusión?
 
 \underline{\textbf{Solución:}}
 
@@ -1780,7 +1777,7 @@ $$
 
 El valor-p es 0.3821.
 
-c) Usando $\alpha=0.05$. $valor-p = 0.3821 > 0.05$. proporciona una evidencia suficiente para no rechazar la hipótesis nula. Así, la prueba proporciona apoyo estadístico para concluir que el esfuerzo realizado por los sindicatos por organizarse ha hecho que disminuya el número de trabajadores desde 2005.
+c) Usando $\alpha=0.05$. $valor-p = 0.3821 > 0.05$. proporciona evidencia suficiente para no rechazar la hipótesis nula. Así, la prueba proporciona apoyo estadístico para concluir que el esfuerzo realizado por los sindicatos por organizarse ha hecho que disminuya el número de trabajadores desde 2005.
 
 En R, 
 
@@ -1820,12 +1817,12 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                        yend = dnorm(z,mean=0,sd=1)), 
                    colour = "red",linetype=1)+
       
-        annotate("text", x=z, y =-0.02, label ="z", parse = TRUE)+
-        annotate("text", x=cuantil1, y =-0.02, label="'z'[alpha]",
+        annotate("text", x=z, y =-0.02, label ="Z", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'Z'[alpha]",
                  parse = TRUE)+
         annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
                  parse = TRUE)+
-        annotate("text", x=cuantil1+0.5, y=0.15, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil1+1, y=0.1, label="'Rechazar H'[0]",
                  parse = TRUE)+
   
       ylim(-0.05,0.41)+
@@ -1847,7 +1844,7 @@ a) Formule las hipótesis para determinar si el porcentaje de clientes de los su
 
 b) Si en una muestra de 100 clientes, 52 opinan que las marcas de los supermercados son tan buenas como las nacionales, ¿cuál es el *p*-valor?
 
-c) Con $\sigma=0.05$, ¿cuál es la conclusión?
+c) Con $\alpha=0.05$, ¿cuál es la conclusión?
 
 d) ¿Le dará gusto esta conclusión al fabricante de la marca nacional de salsa de tomate? Explique.
 
@@ -1877,11 +1874,11 @@ $$
 \end{array}
 $$
 
-Cómo la prueba de hipótesis para este caso es una prueba de dos colas, el valor-p es la probabilidad de que $\mathcal Z$ sea mayor o igual a $\mathcal Z=2.5$ y la probabilidad de que $\mathcal Z$ sea menor o igual a $\mathcal Z=-2.5$; esto es, el área bajo la curva normal estándar para $\mathcal Z \leq -2.5$ duplicada por ser la curva normal simétrica. En la tabla de probabilidad para normal estándar el área a la izquierda de $\mathcal Z=-2.5$ es 0.0062. Por tanto, el valor-p es $2(0.0062)=0.0124$.
+Cómo la prueba de hipótesis para este caso es una prueba de dos colas, el valor-p es la probabilidad de que $\mathcal Z$ sea mayor o igual a $\mathcal Z=2.5$ y la probabilidad de que $\mathcal Z$ sea menor o igual a $\mathcal Z=-2.5$; esto es, el área bajo la curva normal estándar para $\mathcal Z \leq -2.5$ duplicada, ésto se debe a que la curva normal es simétrica. En la tabla de probabilidad para normal estándar el área a la izquierda de $\mathcal Z=-2.5$ es 0.0062. Por tanto, el valor-p es $2(0.0062)=0.0124$.
 
 c) Usando $\alpha=0.05$. $valor-p = 0.0124 < 0.05$. proporciona una evidencia suficiente para rechazar la hipótesis nula. Así, la prueba proporciona apoyo estadístico para concluir que el porcentaje de clientes de los supermercados que considera las salsas de tomate de marca propia de estos establecimientos tan buenas como la de marca nacional difiere de 64%.
 
-Hagamos éstos cálculos en R, 
+Hagamos estos cálculos en R, 
 
 ```{r,comment=""}
 alpha<-0.05
@@ -1930,9 +1927,9 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                  parse = TRUE)+
         annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
                  parse = TRUE)+
-        annotate("text", x=cuantil1+0.5, y=0.05, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil1+1.5, y=0.1, label="'Rechazar H'[0]",
                  parse = TRUE)+
-        annotate("text", x=cuantil2-0.5, y=0.05, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil2-1.5, y=0.1, label="'Rechazar H'[0]",
                  parse = TRUE)+
   
       ylim(-0.05,0.41)+
@@ -1954,9 +1951,9 @@ Según el Pew Internet & American Life Project, 75% de los estadounidenses adult
 
 a) Establezca las hipótesis que pueden utilizarse para determinar si el porcentaje de usuarios de Internet en ambos grupos de edad difieren del promedio general de 75%.
 
-b) Estime la proporción de usuarios en el grupo de edad de 30 a 49 años. ¿Está  proporción difiere significativamente de la proporción general de 0.75? Utilice $\sigma=0.05.$
+b) Estime la proporción de usuarios en el grupo de edad de 30 a 49 años. ¿Está  proporción difiere significativamente de la proporción general de 0.75? Utilice $\alpha=0.05.$
 
-c) Determine la proporción de usuarios en el grupo de edad de 50 a 64 años. ¿Esta proporción difiere significativamente de la proporción general de 0.75? Utilice $\sigma=0.05.$
+c) Determine la proporción de usuarios en el grupo de edad de 50 a 64 años. ¿Esta proporción difiere significativamente de la proporción general de 0.75? Utilice $\alpha=0.05.$
 
 d) ¿Esperaría que la proporción de usuarios en el grupo de 18 a 29 años sea más grande o más pequeña que la proporción del grupo de edad de 30 a 49 años? Sustente su conclusión con los resultados obtenidos en los incisos b) y c).
 
@@ -1981,7 +1978,7 @@ b) Para conocer el valor de $\overline{p}$ nos valemos del archivo $\textit{AgeG
 Para importar los datos desde el directorio, usamos el siguiente comando en R,
 
 ```{r,comment=""}
-library("readxl")
+library("readxl") #Paque
 AgeGroup<-read_excel("AgeGroup.xlsx")
 ```
 
@@ -2064,16 +2061,16 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                        yend = dnorm(z,mean=0, sd=1)), 
                    colour = "red",linetype=1)+
       
-        annotate("text", x=z, y =-0.02, label ="z", parse = TRUE)+
+        annotate("text", x=z, y =-0.02, label ="Z", parse = TRUE)+
         annotate("text", x=cuantil1, y =-0.02, label="'Z'[alpha/2]",
                  parse = TRUE)+
         annotate("text", x=cuantil2, y =-0.02, label="-'Z'[alpha/2]",
                  parse = TRUE)+
         annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
                  parse = TRUE)+
-        annotate("text", x=cuantil1+0.5, y=0.05, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil1+1, y=0.1, label="'Rechazar H'[0]",
                  parse = TRUE)+
-        annotate("text", x=cuantil2-0.5, y=0.05, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil2-1, y=0.1, label="'Rechazar H'[0]",
                  parse = TRUE)+
   
       ylim(-0.05,0.41)+
@@ -2163,16 +2160,16 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                        yend = dnorm(z,mean=0, sd=1)), 
                    colour = "red",linetype=1)+
       
-        annotate("text", x=z, y =-0.02, label ="z", parse = TRUE)+
+        annotate("text", x=z, y =-0.02, label ="Z", parse = TRUE)+
         annotate("text", x=cuantil1, y =-0.02, label="'Z'[alpha/2]",
                  parse = TRUE)+
         annotate("text", x=cuantil2, y =-0.02, label="-'Z'[alpha/2]",
                  parse = TRUE)+
         annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
                  parse = TRUE)+
-        annotate("text", x=cuantil1+0.5, y=0.05, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil1+1, y=0.1, label="'Rechazar H'[0]",
                  parse = TRUE)+
-        annotate("text", x=cuantil2-0.5, y=0.05, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil2-1, y=0.1, label="'Rechazar H'[0]",
                  parse = TRUE)+
   
       ylim(-0.05,0.41)+
@@ -2186,19 +2183,15 @@ credits(f)
 d) Sí, de acuerdo los incisos b) y c) la usuarios más jóvenes usan más el Internet. 
 
 
-
-
-
-
 \newpage
 
 # Ejercicio 25
 
 Antes del Super Bowl de 2003, la ABC pronosticó que 22% de la audiencia por televisión expresaría interés por ver uno de sus programas por estrenar, entre ellos: 8 *Simple Rules, Are you Hot? y Dragnet*. Durante el Super Bowl, la ABC pasó anuncios sobre estos programas de televisión. Al día siguiente del evento, una firma de publicidad tomó una muestra de 1532 espectadores que los vieron, de los cuales 414 afirmaron que verían alguna de las series promovidas por a ABC (*The Wall Street Journal*,30 de enero de 2003).
 
-a) ¿Cuál esla estimación puntual de la proporción de espectadores que después de ver los anuncios dijeron que verían los programas de televisión?
+a) ¿Cuál es la estimación puntual de la proporción de espectadores que después de ver los anuncios dijeron que verían los programas de televisión?
 
-b) Con $\sigma=0.05$, determine si la intención de ver los programas de la ABC aumentó significativamente después de ver los anuncios.  Establezca las hipótesis apropiadas, calcule el *p*-valor y defina su conclusión.
+b) Con $\alpha=0.05$, determine si la intención de ver los programas de la ABC aumentó significativamente después de ver los anuncios.  Establezca las hipótesis apropiadas, calcule el *p*-valor y defina su conclusión.
 
 c) ¿Por qué tales estudios son valiosos para las empresas y los negocios de publicidad?
 
@@ -2288,12 +2281,12 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                  parse = TRUE)+
         annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
                  parse = TRUE)+
-        annotate("text", x=cuantil1+0.5, y=0.15, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil1+1, y=0.1, label="'Rechazar H'[0]",
                  parse = TRUE)+
   
       ylim(-0.05,0.41)+
       xlim(-5,5)+
-      labs( title = "Prueba de cola superior Distribución z",
+      labs( title = "Prueba de cola superior Distribución ",
             x = " ", y = " ",caption = "http://synergy.vision/" )+
       vision 
 credits(f)
@@ -2313,7 +2306,7 @@ a) Formule las hipótesis para probar la validez de lo expresado por el ejecutiv
 
 b) Suponga que para este estudio, UBS Investor Optimism Survey recabó información de 300 inversionistas. ¿Cuál es el *p*-valor en esta prueba de hipótesis?
 
-c) Con $\sigma=0.50,$ ¿debe rechazarse lo que afirma el ejecutivo?
+c) Con $\alpha=0.50,$ ¿debe rechazarse lo que afirma el ejecutivo?
 
 \underline{\textbf{Solución:}}
 
@@ -2384,12 +2377,12 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                        yend = dnorm(z,mean=0,sd=1)), 
                    colour = "red",linetype=1)+
       
-        annotate("text", x=z, y =-0.02, label ="z", parse = TRUE)+
-        annotate("text", x=cuantil2, y =-0.02, label="'-z'[alpha]",
+        annotate("text", x=z, y =-0.02, label ="Z", parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="'-Z'[alpha]",
                  parse = TRUE)+
-        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+        annotate("text", x=1, y = 0.1, label="'Aceptar H'[0]",
                  parse = TRUE)+
-        annotate("text", x=cuantil2-0.5, y=0.15, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil2-1, y=0.1, label="'Rechazar H'[0]",
                  parse = TRUE)+
   
       ylim(-0.05,0.41)+
@@ -2442,7 +2435,7 @@ c) Se quiere formular una prueba de hipótesis para probar que la proporción de
 $$H_0: p = 0.06.$$
 $$H_a: p \ne 0.06.$$
 
-Para proporción poblacional de las devoluciones de una tienda departamental en Houston, el estadístico de prueba tiene distribución normal estándar,
+Para la proporción poblacional de las devoluciones de una tienda departamental en Houston, el estadístico de prueba tiene distribución normal estándar,
 
 $$\mathcal Z=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}$$
 
@@ -2514,9 +2507,9 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                  parse = TRUE)+
         annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
                  parse = TRUE)+
-        annotate("text", x=cuantil1+0.5, y=0.05, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil1+1, y=0.1, label="'Rechazar H'[0]",
                  parse = TRUE)+
-        annotate("text", x=cuantil2-0.5, y=0.05, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil2-1, y=0.1, label="'Rechazar H'[0]",
                  parse = TRUE)+
   
       ylim(-0.05,0.41)+
@@ -2541,7 +2534,7 @@ a) Desarrolle las hipótesis que pueden utilizarse para probar si la proporción
 
 b) El archivo Eagle contiene los datos muestrales.  Obtenga una estimación puntual de la proporción poblacional.
 
-c) Use $\sigma=0.05$ y realice la prueba de hipótesis. ¿La empresa debe realizar esta promoción en todo el país?
+c) Use $\alpha=0.05$ y realice la prueba de hipótesis. ¿La empresa debe realizar esta promoción en todo el país?
 
 \underline{\textbf{Solución:}}
 
@@ -2652,17 +2645,17 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                        yend = dnorm(z,mean=0,sd=1)), 
                    colour = "red",linetype=1)+
       
-        annotate("text", x=z, y =-0.02, label ="z", parse = TRUE)+
-        annotate("text", x=cuantil1, y =-0.02, label="'z'[alpha]",
+        annotate("text", x=z, y =-0.02, label ="Z", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'Z'[alpha]",
                  parse = TRUE)+
         annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
                  parse = TRUE)+
-        annotate("text", x=cuantil1+0.5, y=0.15, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil1+1, y=0.1, label="'Rechazar H'[0]",
                  parse = TRUE)+
   
       ylim(-0.05,0.41)+
       xlim(-5,5)+
-      labs( title = "Prueba de cola superior Distribución z",
+      labs( title = "Prueba de cola superior Distribución Normal",
             x = " ", y = " ",caption = "http://synergy.vision/" )+
       vision 
 credits(f)
@@ -2686,7 +2679,7 @@ a) Formule la hipótesis que ayuden a determinar si más de 51% de la población
 
 b) En una muestra de 400 trabajadores de turnos nocturnos se identidicó a quienes admitían conducir somnolientos.  Consulte el archivo Drowsy. ¿Cuál es la proporción muestral? ¿Cuál es el *p*-valor?
 
-c) Con $\sigma=0.1,$ ¿cuál es su conclusión?
+c) Con $\alpha=0.1,$ ¿cuál es su conclusión?
 
 
 \underline{\textbf{Solución:}}
@@ -2728,7 +2721,7 @@ p
 
 Asi, $\overline{p}=\displaystyle \frac{232}{400}=0.58$. Es decir, el 13% de los trabajadores de turno nocturno admitieron conducir somnolientos.
 
-Para proporción poblacional de los trabajadores nocturno, el estadístico de prueba tiene distribución normal estándar,
+Para la proporción poblacional de los trabajadores nocturno, el estadístico de prueba tiene distribución normal estándar,
 
 $$\mathcal Z=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}$$
 
@@ -2798,26 +2791,21 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                        yend = dnorm(z,mean=0,sd=1)), 
                    colour = "red",linetype=1)+
       
-        annotate("text", x=z, y =-0.02, label ="z", parse = TRUE)+
-        annotate("text", x=cuantil1, y =-0.02, label="'z'[alpha]",
+        annotate("text", x=z, y =-0.02, label ="Z", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'Z'[alpha]",
                  parse = TRUE)+
         annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
                  parse = TRUE)+
-        annotate("text", x=cuantil1+0.5, y=0.15, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil1+2, y=0.1, label="'Rechazar H'[0]",
                  parse = TRUE)+
   
       ylim(-0.05,0.41)+
       xlim(-5,5)+
-      labs( title = "Prueba de cola superior Distribución z",
+      labs( title = "Prueba de cola superior Distribución Normal",
             x = " ", y = " ",caption = "http://synergy.vision/" )+
       vision 
 credits(f)
 ```
-
-
-
-
-
 
 \newpage
 
@@ -2829,7 +2817,7 @@ a) Formule las hipótesis nula y alternativas para probar lo que afirma el anál
 
 b) En una muestra de 50 acciones de la bolsa de Nueva York, 24 aumentaron.  Establezca la estimación puntual de la proporción poblacional de las acciones se incrementaron.
 
-c) Realice una prueba de hipótesis usando $\sigma=0.01$ como nivel de significancia. ¿Cuál es la conclusión?.
+c) Realice una prueba de hipótesis usando $\alpha=0.01$ como nivel de significancia. ¿Cuál es la conclusión?.
 
 \underline{\textbf{Solución:}}
 
@@ -2841,7 +2829,7 @@ $$H_a: p > 0.3.$$
 b) Para estimar $p$, que es la proporción de las acciones de la Bolsa de Nueva York que se incrementaron, se usa la proporcón muestral $\overline{p}$. Por tanto cómo el tamaño de la muestra es de $n=50$, la proporción muestral es, 
 $$\overline{p}=\displaystyle \frac{24}{50}=0.48$$
 
-c)  Para proporción poblacional de las acciones que se aumentaron, el estadístico de prueba tiene distribución normal estándar,
+c)  Para la proporción poblacional de las acciones que se aumentaron, el estadístico de prueba tiene distribución normal estándar,
 
 $$\mathcal{Z}=\displaystyle \frac{\overline{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}}$$
 
@@ -2911,24 +2899,21 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                        yend = dnorm(z,mean=0,sd=1)), 
                    colour = "red",linetype=1)+
       
-        annotate("text", x=z, y =-0.02, label ="z", parse = TRUE)+
-        annotate("text", x=cuantil1, y =-0.02, label="'z'[alpha]",
+        annotate("text", x=z, y =-0.02, label ="Z", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'Z'[alpha]",
                  parse = TRUE)+
         annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
                  parse = TRUE)+
-        annotate("text", x=cuantil1+0.5, y=0.04, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil1+1, y=0.1, label="'Rechazar H'[0]",
                  parse = TRUE)+
   
       ylim(-0.05,0.41)+
       xlim(-4,4)+
-      labs( title = "Prueba de cola superior Distribución z",
+      labs( title = "Prueba de cola superior Distribución Normal",
             x = " ", y = " ",caption = "http://synergy.vision/" )+
       vision 
 credits(f)
 ```
-
-
-
 
 \newpage
 
@@ -3072,11 +3057,11 @@ $$\mathcal Z \leq -2.05$$
 
 Sabemos que $\sigma=3$ y $\mu=25$. La regla de rechazo indica que $H_0$ será descartada si, 
 
-$$\mathcal Z= \displaystyle \frac{\overline{x}-25}{3/\sqrt{30}} \leq -2.05$$
+$$\mathcal Z= \displaystyle \frac{\overline{X}-25}{3/\sqrt{30}} \leq -2.05$$
 
-Al despejar $\overline{x}$, tenemos que $H_0$ será rechazada si,
+Al despejar $\overline{X}$, tenemos que $H_0$ será rechazada si,
 
-$$\overline{x} \leq 25 - 2.05(\frac{3}{\sqrt{30}})=23.88$$
+$$\overline{X} \leq 25 - 2.05\left(\frac{3}{\sqrt{30}}\right)=23.88$$
 
 Rechazar $H_0$ siempre que $\overline{x}\leq 23.88$ significa que se tomará la decisión de aceptar la $H_0$ si $$\overline{x}> 23.88$$
 
