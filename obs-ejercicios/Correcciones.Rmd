@@ -1,0 +1,108 @@
+---
+title: "Correcciones de Quinta Ronda de Ejercicios"
+author: "http://synergy.vision/"
+output: pdf_document
+subtitle: 
+fontsize: 12pt
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+
+- Hacer pull a tus ejercicios.
+
+# Ejercicio 1
+
+Ya que la hipotesis nula debe contener la hipótesis principal que queremos probar y la hipótesis alternativa debe ser el complemento de ésta.
+
+# Ejercicio 4
+
+$H_0:\mu\le 220$ queremos probar que el costo de producción se reducirá con el nuevo método.
+$H_1:\mu>220$
+
+Cambiar las respuestas de aceptar y rechazar la hipótesis nula.
+
+# Ejercicio 5
+
+El erra tipo II implicaria afirmar que los Alemanes ven menos de 56,2 minutos de televisión en las horas de mayor audiencia cuando esto es verdadero, es decir, concluiríamos que los jóvenes alemanes con menos minutos que los jóvenes estado unidenses lo cual es falso.
+
+Los datos son para los minutos de los jóvenes alemanes.
+
+# Ejercicio 6
+
+a) Por qué esto favorece la sugerencia del investigador.
+
+b) Decir con palabras que significa el resultado del P-valor obtenido.
+
+c) ¿Qué implica rechazar la $H_0$
+
+# Ejercicio 7
+
+a) Decir con palabras que significan $H_0$ y $H_a$. Agregar el gráfico para este prueba.
+
+# Ejercicio 12
+
+a) ¿Qué representa $H_0$ y $H_a$? decirlo con palabras
+
+# Ejercicio 13
+
+a) ¿Qué representa la media en este caso?
+
+# Ejercicio 14
+
+¿Qué representa la $H_0$ y $H_a$
+
+d) ¿Qué implica rechazar la $H_0$ para este ejercicio?
+
+# Ejercicio 17
+
+¿Qué significa que rechaces la $H_0$?
+
+# Ejercicio 18
+
+d) También colocar que significa rechazarla $H_0$
+
+# Ejercicio 19
+
+Cambiar t por T, $\bar x$ por $\bar X$ y s por S
+
+# Ejercicio 24
+
+d) Explicar con más detalle esta conclusión
+
+# Ejercicio 25
+
+b) Colocarle el valor del estadístico de prueba en el gráfico.  Quitar el título.  Distribución Z y colocar Distribución Normal.
+
+# Ejercicio 26
+
+b) Colocar los calculos en R para obtener $P(Z\le-1,1)=0.1357$
+
+Cambiar el título.  Prueba de cola inferior Distribución Normal.
+
+# Ejercicio 27
+
+c) Colocar el estadístico de prueba en el gráfico.
+
+# Ejercicio 33 
+
+a) Decir con tus propias palabras que significa
+
+b) Colocar el gráfico correspondiente a cada caso.
+
+c) Decir con palabras que representa esta probabilidad.
+
+# Ejercicio 34
+
+a) Aceptar que el llenado es correcto y que se puede continuar con la operación cuando en realidad no lo es, es decir, el llenado, está fuera del estándar.
+
+# Ejercicio 35
+
+Colocar los comandos en R con lo que se pueden calcular los cuantiles de la distribución Normal estándar.
+
+# Ejercicio 36
+
+Igual que el 35 colocar el comando en R para calcular los cuantiles.
