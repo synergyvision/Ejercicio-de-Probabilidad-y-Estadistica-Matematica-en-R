@@ -3164,7 +3164,7 @@ $$H_0: \mu = 28$$
 $$H_a: \mu \ne 28$$
 
 Usando 0.05 de nivel de significancia para realizar la prueba de hipótesis, el estadístico de prueba en el caso de $\sigma$ conocida es, 
-$$\mathcal Z= \displaystyle \frac{\overline{x}-\mu}{\sigma/\sqrt{n}}$$
+$$\mathcal Z= \displaystyle \frac{\overline{X}-\mu}{\sigma/\sqrt{n}}$$
 
 Con base en el método del valor crítico y $\mathcal Z_{0.05/2}=\mathcal Z_{0.025}=1.96$, la regla de rechazo en esta prueba de dos colas es si 
 $$\mathcal Z \geq 1.96$$
@@ -3174,27 +3174,29 @@ $$\mathcal Z \leq -1.96$$
 
 Sabemos que $\sigma=6$ y $\mu=28$. La regla de rechazo indica que $H_0$ será descartada si, 
 
-$$\mathcal Z= \displaystyle \frac{\overline{x}-28}{6/\sqrt{100}} \geq 1.96$$
+$$\mathcal Z= \displaystyle \frac{\overline{X}-28}{6/\sqrt{100}} \geq 1.96$$
 
 ó
 
-$$\mathcal Z= \displaystyle \frac{\overline{x}-28}{6/\sqrt{100}} \leq -1.96$$
+$$\mathcal Z= \displaystyle \frac{\overline{X}-28}{6/\sqrt{100}} \leq -1.96$$
 
 
 Al despejar $\overline{x}$, tenemos que $H_0$ será rechazada si,
 
-$$\overline{x} \geq 28 + 1.96(\frac{6}{\sqrt{100}})=29.176$$
+$$\overline{X} \geq 28 + 1.96\left(\frac{6}{\sqrt{100}}\right)=29.176$$
 
 ó
 
-$$\overline{x} \leq 28 - 1.96(\frac{6}{\sqrt{100}})=26.824$$
+$$\overline{X} \leq 28 - 1.96\left(\frac{6}{\sqrt{100}}\right)=26.824$$
 
 
-Rechazar $H_0$ siempre que $\overline{x}\geq 29.176$ y $\overline{x}\leq 26.824$ significa que se tomará la decisión de aceptar la $H_0$ si $$\overline{x}< 29.176$$
+Rechazar $H_0$ siempre que $\overline{X}\geq 29.176$ y $\overline{X}\leq 26.824$ significa que se tomará la decisión de aceptar la $H_0$ si $$\overline{X}< 29.176$$
+
 ó
+
 $$\overline{x}> 26.824$$
 
-Utilizando la distribución normal estándar vemos que para $\overline{x}= 26.824$ y si $\mu=26$
+Utilizando la distribución normal estándar vemos que para $\overline{X}= 26.824$ y si $\mu=26$
 
 $$\mathcal Z= \displaystyle \frac{26.824-26}{6/\sqrt{100}} =13.7$$
 
@@ -3323,7 +3325,7 @@ $$H_0: \mu = 16$$
 $$H_a: \mu \ne 16$$
 
 Usando 0.05 de nivel de significancia para realizar la prueba de hipótesis, el estadístico de prueba en el caso de $\sigma$ conocida es, 
-$$\mathcal Z= \displaystyle \frac{\overline{x}-\mu}{\sigma/\sqrt{n}}$$
+$$\mathcal Z= \displaystyle \frac{\overline{X}-\mu}{\sigma/\sqrt{n}}$$
 
 Con base en el método del valor crítico y $\mathcal Z_{0.05/2}=\mathcal Z_{0.025}=1.96$, la regla de rechazo en esta prueba de dos colas es si 
 $$\mathcal Z \geq 1.96$$
@@ -3333,27 +3335,27 @@ $$\mathcal Z \leq -1.96$$
 
 Sabemos que $\sigma=0.8$ y $\mu=16$. La regla de rechazo indica que $H_0$ será descartada si, 
 
-$$\mathcal Z= \displaystyle \frac{\overline{x}-16}{0.8/\sqrt{30}} \geq 1.96$$
+$$\mathcal Z= \displaystyle \frac{\overline{X}-16}{0.8/\sqrt{30}} \geq 1.96$$
 
 ó
 
-$$\mathcal Z= \displaystyle \frac{\overline{x}-16}{0.8/\sqrt{30}} \leq -1.96$$
+$$\mathcal Z= \displaystyle \frac{\overline{X}-16}{0.8/\sqrt{30}} \leq -1.96$$
 
 
-Al despejar $\overline{x}$, tenemos que $H_0$ será rechazada si,
+Al despejar $\overline{X}$, tenemos que $H_0$ será rechazada si,
 
-$$\overline{x} \geq 16 + 1.96(\frac{0.8}{\sqrt{30}})=16.29$$
+$$\overline{X} \geq 16 + 1.96\left(\frac{0.8}{\sqrt{30}}\right)=16.29$$
 
 ó
 
-$$\overline{x} \leq 16 - 1.96(\frac{0.8}{\sqrt{30}})=15.71$$
+$$\overline{X} \leq 16 - 1.96\left(\frac{0.8}{\sqrt{30}}\right)=15.71$$
 
 
-Rechazar $H_0$ siempre que $\overline{x}\geq 16.29$ y $\overline{x}\leq 15.71$ significa que se tomará la decisión de aceptar la $H_0$ si $$\overline{x}< 16.29$$
+Rechazar $H_0$ siempre que $\overline{X}\geq 16.29$ y $\overline{X}\leq 15.71$ significa que se tomará la decisión de aceptar la $H_0$ si $$\overline{X}< 16.29$$
 ó
-$$\overline{x}> 15.71$$
+$$\overline{X}> 15.71$$
 
-Utilizando la distribución normal estándar vemos que para $\overline{x}= 16.29$ y si $\mu=16.5$
+Utilizando la distribución normal estándar vemos que para $\overline{X}= 16.29$ y si $\mu=16.5$
 
 $$\mathcal Z= \displaystyle \frac{16.29-16.5}{0.8/\sqrt{30}} =-1.44$$
 
@@ -3408,8 +3410,6 @@ credits(f)
 A la probabilidad de rechazar acertadamente $H_0$ cuando es falsa se le llama potencia de la prueba. Para cada valor específico de la media poblacional $\mu$, la potencia es 1 menos la probabilidad de cometer un error tipo II. Observando la curva, podemos notar que mientras $\mu$ aumenta y se aleja de 16, la probabilidad de rechazar acertadamente $H_0$ cuando es falsa aumenta. Esto quiere decir que la información con respecto al llenado correcto tiene una probabilidad de cometer un error tipo II muy alta.
 
 
-
-
 \newpage
 
 # Ejercicio 35
@@ -3426,22 +3426,22 @@ $$H_0: \mu \leq 15$$
 $$H_a: \mu > 15$$
 
 Usando 0.01 de nivel de significancia para realizar la prueba de hipótesis, el estadístico de prueba en el caso de $\sigma$ conocida es, 
-$$\mathcal Z= \displaystyle \frac{\overline{x}-\mu}{\sigma/\sqrt{n}}$$
+$$\mathcal Z= \displaystyle \frac{\overline{X}-\mu}{\sigma/\sqrt{n}}$$
 
 Con base en el método del valor crítico y $\mathcal Z_{0.01}=2.33$, la regla de rechazo en esta prueba de cola superior es si 
 $$\mathcal Z \geq 2.33$$
 
 Sabemos que $\sigma=4$ y $\mu=15$. La regla de rechazo indica que $H_0$ será descartada si, 
 
-$$\mathcal Z= \displaystyle \frac{\overline{x}-15}{4/\sqrt{50}} \geq 2.33$$
+$$\mathcal Z= \displaystyle \frac{\overline{X}-15}{4/\sqrt{50}} \geq 2.33$$
 
-Al despejar $\overline{x}$, tenemos que $H_0$ será rechazada si,
+Al despejar $\overline{X}$, tenemos que $H_0$ será rechazada si,
 
-$$\overline{x} \geq 15 + 2.33(\frac{4}{\sqrt{50}})=16.32$$
+$$\overline{X} \geq 15 + 2.33\left(\frac{4}{\sqrt{50}}\right)=16.32$$
 
-Rechazar $H_0$ siempre que $\overline{x}\geq 16.32$ significa que se tomará la decisión de aceptar la $H_0$ si $$\overline{x}< 16.32$$
+Rechazar $H_0$ siempre que $\overline{X}\geq 16.32$ significa que se tomará la decisión de aceptar la $H_0$ si $$\overline{X}< 16.32$$
 
-Utilizando la distribución normal estándar vemos que para $\overline{x}= 16.32$ y si $\mu=17$
+Utilizando la distribución normal estándar vemos que para $\overline{X}= 16.32$ y si $\mu=17$
 
 $$\mathcal Z= \displaystyle \frac{16.32-17}{4/\sqrt{50}} =-1.20$$
 
@@ -3487,12 +3487,6 @@ valor_p
 
 Podemos notar que mientras el tamaño de la muestra $n$ aumenta, las probabilidades de cometer un error tipo II disminuyen.
 
-
-
-
-
-
-
 \newpage
 
 # Ejercicio 36
@@ -3509,7 +3503,7 @@ d) Suponiendo que se usa el tamaño muestral de 80 empleados, repita los incisos
 
 \underline{\textbf{Solución:}}
 
-a) El cometer un error tipo II sería para ésta situación aceptar la hipótesis de Sparr que es que en este momento los empleados tienen en promedio \$100 o menos por mes en inversiones con impuestos diferidos cuando es falso.
+a) El cometer un error tipo II sería para esta situación aceptar la hipótesis de Sparr que es que en este momento los empleados tienen en promedio \$100 o menos por mes en inversiones con impuestos diferidos cuando es falso.
 
 b) La hipótesis nula y la alternativa para la inversión mensual de los empleados son, 
 
@@ -3524,15 +3518,15 @@ $$\mathcal Z \geq 1.645$$
 
 Sabemos que $\sigma=75$ y $\mu=100$. La regla de rechazo indica que $H_0$ será descartada si, 
 
-$$\mathcal Z= \displaystyle \frac{\overline{x}-100}{75/\sqrt{40}} \geq 1.645$$
+$$\mathcal Z= \displaystyle \frac{\overline{X}-100}{75/\sqrt{40}} \geq 1.645$$
 
-Al despejar $\overline{x}$, tenemos que $H_0$ será rechazada si,
+Al despejar $\overline{X}$, tenemos que $H_0$ será rechazada si,
 
-$$\overline{x} \geq 100 + 1.645(\frac{75}{\sqrt{40}})=119.51$$
+$$\overline{X} \geq 100 + 1.645\left(\frac{75}{\sqrt{40}}\right)=119.51$$
 
-Rechazar $H_0$ siempre que $\overline{x}\geq 119.51$ significa que se tomará la decisión de aceptar la $H_0$ si $$\overline{x}< 119.51$$
+Rechazar $H_0$ siempre que $\overline{X}\geq 119.51$ significa que se tomará la decisión de aceptar la $H_0$ si $$\overline{X}< 119.51$$
 
-Utilizando la distribución normal estándar vemos que para $\overline{x}= 119.51$ y si $\mu=120$
+Utilizando la distribución normal estándar vemos que para $\overline{X}= 119.51$ y si $\mu=120$
 
 $$\mathcal Z= \displaystyle \frac{119.51-120}{75/\sqrt{40}} =-0.04$$
 
@@ -3624,14 +3618,4 @@ valor_p<-pnorm(z,0,1) #Valor p.
 valor_p
 ```
 
-
 Podemos notar que mientras el tamaño de la muestra $n$ aumenta, las probabilidades de cometer un error tipo II disminuyen.
-
-
-
-
-
-
-
-
-
