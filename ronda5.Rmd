@@ -52,7 +52,7 @@ c)  ¿Qué conclusión es adecuada cuando se puede rechazar la hipótesis nula $
 a) La prueba de hipótesis para probar la afirmación del gerente es:
 
 $$\begin{matrix} H_o: \mu \leq 600 \\ H_a: \mu>600 \end{matrix}$$
-Pues queremos saber si la cantidad media que gastan los huespedes en un fin de semana es de 600\$ ó menos versus la hipótesis de que los huespedes gastan más de 600\$ en un fin de semana.
+Pues queremos saber si la cantidad media que gastan los huespedes en un fin de semana es de 600\$ ó menos versus la hipótesis de que los huespedes gastan más de 600\$ en un fin de semana, ya que la hipótesis nula debe contener la hipótesis principal que queremos probar y la hipótesis alternativa debe ser el complemento de ésta.
 
 b) En el caso de no rechazar la hipótesis nula, no existiría suficiente evidencia estadística para afirmar que los huespedes gastan más de 600\$ en un fin de semana, por lo que tomamos como válida la afirmación del gerente.
 
@@ -121,7 +121,7 @@ c) Comente acerca de la conclusión cuando $H_0$ pueda rechazarse.
 a) La prueba de hipótesis adecuada es:
 
 $$\begin{matrix} H_o: \mu \geq 220 \\ H_a: \mu<220 \end{matrix}$$
-Pues queremos saber si el nuevo método reducirá los costos de producción o no.
+Pues queremos probar que el costo de producción se reducirá con el nuevo método.
 
 b) En el caso de no rechazar la hipótesis nula, no existiría suficiente evidencia estadística para afirmar que el nuevo método reduzca los costos de producción, por lo que la afirmación del director no es válida.
 
@@ -144,7 +144,7 @@ b) ¿Cuál es el error tipo II en esta sitiación? ¿Qué consecuencia tiene com
 
 a) El error tipo I en esta situación es afirmar que los jóvenes en alemania ven en promedio más minutos de televisión en las horas de mayor audiencia cuando en realidad dicha afirmación es falsa, es decir, que los jóvenes estadounidenses ven en promedio más minutos de televisión que los alemanes.
 
-b) El error tipo II en esta situación es afirmar que los jóvenes estadounidenses ven en promedio más minutos de televisión cuando en realidad dicha afirmación es falsa, es decir, que los jóvenes en alemania ven en promedio más minutos de televisión en las horas de mayor audiencia.
+b) El error tipo II en esta situación es afirmar que los jóvenes alemanes ven en promedio menos minutos de televisión  en las horas de mayor audiencia cuando en realidad dicha afirmación es falsa, es decir, que los jóvenes en alemania ven en promedio más minutos de televisión en las horas de mayor audiencia que los jóvenes estadounidenses.
 
 \newpage
 
@@ -165,6 +165,8 @@ d) Repita la prueba de hipótesis anterior usando el método del valor crítico?
 a) La prueba de hipótesis adecuada de manera que al rechazar $H_o$ favorezca la sugerencia del investigador es:
 
 $$\begin{matrix} H_o: \mu \geq 1056\$ \\ H_a: \mu<1056\$ \end{matrix}$$
+
+Pues queremos saber si los declarantes de impuestos que esperan hasta los últimos días reciben un reembolso menor al promedio de los que declaran antes del 31 de marzo.
 
 b) Dado que esta es una prueba de media con varianza poblacional conocida de cola inferior, para calcular el $p-$valor usamos el siguiente estadístico de prueba:
 
@@ -191,6 +193,9 @@ $$
 Cómo la prueba es de cola inferior, el $p-$valor está dado por:
 
 $$p-\text{valor} = P(\mathcal{Z}\leq -1.825)=\Phi(-1.825)=0.034$$
+
+Este valor nos indica el nivel de significancia más bajo que podemos asumir para poder rechazar la hipótesis nula.
+
 \textbf{\underline{En R:}}
 
 ```{r,comment=''}
@@ -213,7 +218,7 @@ c) Dado que el $p-$valor es de 0.034, para $\alpha = 0.05$ tenemos que:
 
 $$p-\text{valor}=0.034 \leq 0.05$$
 
-Por lo que existe suficiente evidencia estadística para rechazar $H_o$, lo que implica que la sugerencia del investigador de que los declarantes esperan hasta los últimos días para obtener un reembolso menor es válida.
+Por lo que existe suficiente evidencia estadística para rechazar $H_o$, lo que implica que la sugerencia del investigador de que los declarantes que esperan hasta los últimos días reciben un reembolso menor al promedio de los que declaran antes del 31 de marzo es válida.
 
 d) Dado que esta es una prueba de media con varianza poblacional conocida de cola inferior, para $\alpha = 0.05$ tenemos que el valor crítico está dado por el valor negativo de $Z_\alpha$, esto es $Z_{0.05}=-1.645$, como el estadístico de prueba es de -1.825 tenemos que, -1.825<-1.645, por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula.
 
@@ -283,6 +288,8 @@ a) La prueba de hipótesis adecuada es:
 
 $$\begin{matrix} H_o: \mu \leq 3173\$ \\ H_a: \mu>3173\$ \end{matrix}$$
 
+pues queremos saber si el saldo medio en las tarjetas de crédito de los estudiantes no titulados ha aumentado.
+
 b) Dado que esta es una prueba de media con varianza poblacional conocida de cola superior, para calcular el $p-$valor usamos el siguiente estadístico de prueba:
 
 $$\mathcal{Z}=\displaystyle \frac{(\overline{X}-\mu)\sqrt{n}}{\sigma}$$
@@ -332,6 +339,44 @@ c) Dado que el $p-$valor es de 0.021, para $\alpha = 0.05$ tenemos que:
 $$p-\text{valor}=0.021 \leq 0.05$$
 
 Por lo que existe suficiente evidencia estadística para rechazar $H_o$, lo que implica que se puede concluir que ha aumentado el saldo medio en la tarjeta de crédito de los estudiantes.
+
+\newpage
+
+Ésta es una prueba de cola derecha por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+alpha<-0.05
+x<-seq(-4,4,0.01)
+y<-dnorm(x,mean=0, sd=1)
+cuantil1<- qnorm(1-alpha,mean=0,sd=1)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dnorm(cuantil1,mean=0, sd=1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = Z, y =0 , xend = Z, 
+                       yend = dnorm(Z,mean=0, sd=1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=Z, y =-0.02, label ="Z", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'Z'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+1, y=0.1, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de cola derecha Distribución Normal",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
 
 \newpage
 
@@ -740,6 +785,8 @@ a) La prueba de hipótesis adecuada para saber si el cobro de la cantidad adicio
 
 $$\begin{matrix} H_o: \mu \leq 15 \\ H_a: \mu>15 \end{matrix}$$
 
+donde $H_o$ representa si la duración de las encuestas es menor a 15 minutos y $H_a$ representa el complemento de ésta hipótesis.
+
 b) Dado que esta es una prueba de media con varianza poblacional conocida de cola superior, usamos el siguiente estadístico de prueba:
 
 $$\mathcal{Z}=\displaystyle \frac{(\overline{X}-\mu)\sqrt{n}}{\sigma}$$
@@ -835,6 +882,8 @@ d) Calcule un intervalo de 95% de confianza para la media poblacional. ¿Esto su
 a) La prueba de hipótesis adecuada para probar si el tiempo medio de espera difiere de la media poblacional es:
 
 $$\begin{matrix} H_o: \mu = 8 \\ H_a: \mu \neq 8 \end{matrix}$$
+
+La media poblacional representa el promedio de tiempo de espera de los clientes en las filas para la caja del supermercado.
 
 b) Dado que esta es una prueba de media con varianza poblacional conocida de dos colas, para calcular el $p-$valor usamos el siguiente estadístico de prueba:
 
@@ -954,6 +1003,8 @@ a) La prueba de hipótesis adecuada de manera que al rechazar $H_o$ favorezca la
 
 $$\begin{matrix} H_o: \mu \geq 238\$ \\ H_a: \mu<238\$ \end{matrix}$$
 
+pues queremos saber si la prestación media semanal del seguro de desempleo en el estado de Virginia es menor que la media de todo el país.
+
 b) Dado que esta es una prueba de media con varianza poblacional desconocida de cola inferior, para calcular el $p-$valor usamos el siguiente estadístico de prueba:
 
 $$T=\displaystyle \frac{(\overline{X}-\mu)\sqrt{n}}{S}$$
@@ -1007,7 +1058,7 @@ Por lo que no existe suficiente evidencia estadística para rechazar $H_o$, lo q
 
 \newpage
 
-d) Dado que esta es una prueba de media con varianza poblacional desconocida de cola inferior, para $\alpha = 0.05$ tenemos que el valor crítico está dado por el valor negativo de $T_\alpha$ con $n-1$ grados de libertad, esto es $T_{0.05}=-1.660$, como el estadístico de prueba es de -0.875 tenemos que, -0.875>-1.660, por lo que no hay suficiente evidencia estadística para rechazar la hipótesis nula.
+d) Dado que esta es una prueba de media con varianza poblacional desconocida de cola inferior, para $\alpha = 0.05$ tenemos que el valor crítico está dado por el valor negativo de $T_\alpha$ con $n-1$ grados de libertad, esto es $T_{0.05}=-1.660$, como el estadístico de prueba es de -0.875 tenemos que, -0.875>-1.660, por lo que no hay suficiente evidencia estadística para rechazar la hipótesis nula, es decir, la prestación media semanal del seguro de desempleo en el estado de Virginia no es menor que la media de todo el país.
 
 \textbf{\underline{En R:}}
 
@@ -1235,7 +1286,7 @@ $$p-\text{valor}=0.0036 \leq 0.01$$
 
 Por lo que existe suficiente evidencia estadística para rechazar $H_o$, lo que implica que se justifica la conclusión de que aumentó significativamente la estimación de consenso de los economistas.
 
-Cómo esta es una prueba de media con varianza poblacional desconocida de cola superior, para $\alpha = 0.01$ tenemos que el valor crítico está dado por $T_\alpha$ con $n-1$ grados de libertad, esto es $T_{0.01}=2.539$, como el estadístico de prueba es de 2.981 tenemos que, 2.981>2.539, por lo que se reafirma que hay suficiente evidencia estadística para rechazar la hipótesis nula.
+Cómo esta es una prueba de media con varianza poblacional desconocida de cola superior, para $\alpha = 0.01$ tenemos que el valor crítico está dado por $T_\alpha$ con $n-1$ grados de libertad, esto es $T_{0.01}=2.539$, como el estadístico de prueba es de 2.981 tenemos que, 2.981>2.539, por lo que se reafirma que hay suficiente evidencia estadística para rechazar la hipótesis nula, es decir, se reafirma la conclusión de que aumentó significativamente la estimación de consenso de los economistas.
 
 \textbf{\underline{En R:}}
 
@@ -1375,7 +1426,7 @@ Por lo que existe suficiente evidencia estadística para rechazar $H_o$, lo que 
 
 \newpage
 
-d) Dado que esta es una prueba de media con varianza poblacional desconocida de cola inferior, para $\alpha = 0.05$ tenemos que el valor crítico está dado por el valor negativo de $T_\alpha$ con $n-1$ grados de libertad, esto es $T_{0.05}=-1.684$, como el estadístico de prueba es de -2.268 tenemos que, -2.268<-1.684, por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula.
+d) Dado que esta es una prueba de media con varianza poblacional desconocida de cola inferior, para $\alpha = 0.05$ tenemos que el valor crítico está dado por el valor negativo de $T_\alpha$ con $n-1$ grados de libertad, esto es $T_{0.05}=-1.684$, como el estadístico de prueba es de -2.268 tenemos que, -2.268<-1.684, por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula, lo que implica que el gasto anual medio de Medicare en Indianápolis es menor a la media nacional.
 
 \textbf{\underline{En R:}}
 
