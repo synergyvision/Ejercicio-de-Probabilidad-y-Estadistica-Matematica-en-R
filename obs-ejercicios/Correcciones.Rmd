@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Ejercicio 1
 
-Ya que la hipotesis nula debe contener la hipótesis principal que queremos probar y la hipótesis alternativa debe ser el complemento de ésta.
+Colocar en la conclusión "ya que la hipotesis nula debe contener la hipótesis principal que queremos probar y la hipótesis alternativa debe ser el complemento de ésta".
 
 # Ejercicio 4
 
@@ -27,17 +27,17 @@ Cambiar las respuestas de aceptar y rechazar la hipótesis nula.
 
 # Ejercicio 5
 
-El erra tipo II implicaria afirmar que los Alemanes ven menos de 56,2 minutos de televisión en las horas de mayor audiencia cuando esto es verdadero, es decir, concluiríamos que los jóvenes alemanes con menos minutos que los jóvenes estado unidenses lo cual es falso.
+El error tipo II implicaria afirmar que los Alemanes ven menos de 56.2 minutos de televisión en las horas de mayor audiencia cuando esto es verdadero, es decir, concluiríamos que los jóvenes alemanes ven menos minutos que los jóvenes estado unidenses, lo cual es falso.
 
 Los datos son para los minutos de los jóvenes alemanes.
 
 # Ejercicio 6
 
-a) Por qué esto favorece la sugerencia del investigador.
+a) ¿Por qué esto favorece la sugerencia del investigador?.
 
 b) Decir con palabras que significa el resultado del P-valor obtenido.
 
-c) ¿Qué implica rechazar la $H_0$
+c) ¿Qué implica rechazar la $H_0$?
 
 # Ejercicio 7
 
@@ -67,7 +67,7 @@ d) También colocar que significa rechazarla $H_0$
 
 # Ejercicio 19
 
-Cambiar t por T, $\bar x$ por $\bar X$ y s por S
+Cambiar t por T, $\overline x$ por $\overline X$ y s por S
 
 # Ejercicio 24
 
@@ -75,13 +75,13 @@ d) Explicar con más detalle esta conclusión
 
 # Ejercicio 25
 
-b) Colocarle el valor del estadístico de prueba en el gráfico.  Quitar el título.  Distribución Z y colocar Distribución Normal.
+b) Colocarle el valor del estadístico de prueba en el gráfico.  Cambiar en el titulo "Distribución Z" por "Distribución Normal".
 
 # Ejercicio 26
 
 b) Colocar los calculos en R para obtener $P(Z\le-1,1)=0.1357$
 
-Cambiar el título.  Prueba de cola inferior Distribución Normal.
+Cambiar el título del gráfico por "Prueba de cola inferior Distribución Normal".
 
 # Ejercicio 27
 
