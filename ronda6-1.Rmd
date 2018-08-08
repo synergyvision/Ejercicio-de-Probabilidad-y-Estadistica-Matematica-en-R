@@ -14,6 +14,19 @@ fontsize: 12pt
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(latex2exp)
+library(ggplot2)
+source("ggplottheme.R")
+library(grid)
+library('readxl')
+library(gridExtra)
+mod_name<-"Regresión lineal"
+credits<-function(f){
+  grid.arrange(f,right=textGrob(paste0(mod_name," (C) Synergy Vision - 2018"),
+                                gp=gpar(fontsize=7, fontface="italic", col="gray75"),
+                                rot=90, just = "centre", vjust=-2))
+}
 ```
 
 \newpage
@@ -40,16 +53,17 @@ Elabore un diagrama de dispersión para estos datos e indique el tipo de relaci�
 Grafiquemos estos datos mediante R.
 
 ```{r,comment='',warning=FALSE}
-library('ggplot2')
 Salario<-c(11,10,8,5,9,9,7,3,11,8,7,2,9,8,6,3)
 Ausencia<-c(18,17,29,36,11,26,28,35,14,20,32,39,16,26,31,40)
 
-Datos<-as.data.frame(cbind(Salario,Ausencia))
+Datos<-data.frame(Salario,Ausencia)
 
-ggplot(Datos,mapping = aes(x=Datos$Salario,y=Datos$Ausencia))+
+f<-ggplot(Datos,mapping = aes(x=Salario,y=Ausencia))+
   geom_point(colour='darkred')+
-  scale_x_continuous(breaks=2:11)+
-  xlab('Salarios')+ylab('Ausencias')
+  labs(title = "Salarios versus Ausencias", x="Salarios", y="Ausencias",
+       caption = "http://synergy.vision/" )+
+  vision
+credits(f)
 ```
 
 La relación que se observa en la gráfica es lineal de tipo inversa.
@@ -116,6 +130,7 @@ c) Para calcular el error estándar de la estimación aplicamos el comando `summ
 
 ```{r,comment='',warning=FALSE}
 m<-summary(regresion)
+m
 m$sigma
 ```
 
