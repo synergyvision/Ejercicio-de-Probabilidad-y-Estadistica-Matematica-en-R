@@ -193,7 +193,7 @@ Un corredor de una empresa de inversión local ha estudiado la relación entre e
 
 # Ejercicio 10
 
-Los corredores de bienes raíces a menudo están interesados en ver cómo el avaluó de una casa varía de acuerdo con su tamaño.  A continuación se muestran algunos datos del área (en miles de pies cuadrados) y el evaluó (en miles de dólares) para una muestra de 11 casas.
+Los corredores de bienes raíces a menudo están interesados en ver cómo el avalúo de una casa varía de acuerdo con su tamaño.  A continuación se muestran algunos datos del área (en miles de pies cuadrados) y el avalúo (en miles de dólares) para una muestra de 11 casas.
 
 | Área | Valor |
 |:----:|:-----:|
@@ -211,7 +211,108 @@ Los corredores de bienes raíces a menudo están interesados en ver cómo el ava
 
 a) Estime la regresión de mínimos cuadrados para predecir el valor según el avaluó a partir del tamaño.
 
-b) Generalmente, los corredores de bienes raíce sienten que el valor de una casa sube 50,000 dólares por cada 1,000 pies cuadrados de área.  Para esta muestra, ¿se cumple esta relación? Utilice $\alpha=0.10.$
+b) Generalmente, los corredores de bienes raíces sienten que el valor de una casa sube 50,000 dólares por cada 1,000 pies cuadrados de área.  Para esta muestra, ¿se cumple esta relación? Utilice $\alpha=0.10.$
+
+\underline{\textbf{Solución:}}
+
+a) Calculemos la recta de mínimos cuadrados usando lo siguiente en R,
+
+```{r,comment=""}
+library(ggplot2)
+area<-c(1.1,1.5,1.6,1.6,1.4,1.3,1.1,1.7,1.9,1.5,1.3)
+valor<-c(75,95,110,102,95,87,82,115,122,98,90)
+
+#unamos éstos dos vectores.
+data<-cbind(area,valor)
+
+#convertimos en data frame.
+data<-as.data.frame(data)
+
+#Regresión por mínimos cuadrados.
+lmodel<-lm(data$valor~data$area,data)
+lmodel
+
+#Gráfica de la recta de mínimos cuadrados.
+
+ggplot(data,aes(x=data$area,y=data$valor))+geom_point(colour="red")+
+  geom_smooth(method = "lm",fill=NA)+xlab("Área")+ylab("Valor")
+
+```
+
+Así, se tiene que la recta de mínimos cuadrados es:
+
+$$y= 55.96x+15.97.$$
+
+b) Para probar sí se cumple la relación para ésta muestra, se puede definir la siguiente prueba de hipótesis,
+
+$$H_0: B= 50$$
+$$H_a: B \ne 50$$
+
+Donde $B$ es la relación entre el valor y el área.
+
+Para encontrar el estadístico de prueba para $B$, es necesario primero encontrar el error estándar del coeficiente de regresión. Aquí, el coeficiente de regresión es 55.96, así el error estándar de éste coeficiente se expresa como $s_b$. $s_b$ se expresa como sigue,
+
+$$s_b= \displaystyle \frac{s_e}{\sqrt{\sum{X^2}-n\overline{X}^2}}$$
+Donde,
+
+$se=$ error estándar de la estimación.
+
+$X=$ valores de la variable independiente.
+
+$\overline{X}=$ media de los valores de la variable independiente.
+
+$n=$ tamaño de la muestra.
+
+Una vez calculado $s_b$, podemos utilizar la siguiente ecuación para estandarizar la pendiente de nuestra ecuación de regresión,
+
+$$t= \displaystyle \frac{b-B_{H_0}}{s_b},$$
+en la que, 
+
+$b=$ pendiente de la recta ajustada.
+
+$B_{H_0}=$ pendiente real hipotética de la población.
+
+
+Cómo la prueba estará basada en la distribución $t$ con $n-2$ grados de libertad, usamos $t$ para denotar la estadística estandarizada.
+
+
+Hagamos los siguientes cálculos en R,
+
+```{r,comment=""}
+sumx<-sum(area^2) 
+mediax<-(mean(area))^2
+n<-11
+b<-55.96
+B<-50
+
+s_e<-3.448 #dado por el modelo
+
+s_b<-s_e/sqrt((sumx-n*mediax)) #error estándar del coeficiente de
+#regresión
+s_b
+
+#estadístico de prueba
+
+t<-(b-B)/s_b
+t
+
+```
+
+Cómo la prueba es de dos colas, el $p-valor$ está dado por:
+
+$$p-valor=2 \times P(t\geq1.35)=1.79$$
+Calculando éste valor en R, tenemos lo siguiente:
+
+```{r,comment=""}
+pvalor<-pt(q=t,df=n-1)
+pvalor<-2*pvalor
+pvalor
+```
+
+Dado que el $p-valor$ es 1.79, para $\alpha=0.10$ se tiene,
+
+$$p-valor=1.79\geq0.10.$$
+Por lo que no hay evidencias para rechazar la hipótesis nula que el valor de una casa sube 50.000 dólares por cada 1000 pies cuadrados por área. Entonces, para ésta muestra se cumple ésta relación.
 
 \newpage
 
@@ -228,7 +329,104 @@ Un gerente de operaciones está interesado en predecir los costos *C* (en miles 
 |  7 | 19 |
 |  6 | 18 |
 
+\underline{\textbf{Solución:}}
+
+Se puede definir la siguiente prueba de hipótesis,
+
+$$H_0: B \leq 0.5$$
+$$H_a: B > 0.5$$
+
+Donde $B$ es la relación entre el costo y la cantidad de materia prima.
+
+Para encontrar el estadístico de prueba para $B$, es necesario primero encontrar el error estándar del coeficiente de regresión. 
+
+Calculemos el coeficiente de regresión estimando la recta que mejor se ajuste a los datos en R,
+
+```{r,comment=""}
+library(ggplot2)
+costo<-c(10,7,5,6,7,6)
+materia<-c(25,20,16,17,19,18)
+
+#unamos éstos dos vectores.
+data1<-cbind(costo,materia)
+
+#convertimos en data frame.
+data1<-as.data.frame(data1)
+
+#Regresión por mínimos cuadrados.
+model<-lm(data1$costo~data1$materia,data1)
+model
+```
+
+
+Aquí, el coeficiente de regresión es 0.53, así el error estándar de éste coeficiente se expresa como $s_b$.
+
+$$s_b= \displaystyle \frac{s_e}{\sqrt{\sum{X^2}-n\overline{X}^2}}$$
+Donde,
+
+$se=$ error estándar de la estimación.
+
+$X=$ valores de la variable independiente.
+
+$\overline{X}=$ media de los valores de la variable independiente.
+
+$n=$ tamaño de la muestra.
+
+Una vez calculado $s_b$, podemos utilizar la siguiente ecuación para estandarizar la pendiente de nuestra ecuación de regresión,
+
+$$t= \displaystyle \frac{b-B_{H_0}}{s_b},$$
+en la que, 
+
+$b=$ pendiente de la recta ajustada.
+
+$B_{H_0}=$ pendiente real hipotética de la población.
+
+
+Cómo la prueba estará basada en la distribución $t$ con $n-2$ grados de libertad, usamos $t$ para denotar la estadística estandarizada.
+
+
+Hagamos los siguientes cálculos en R,
+
+```{r,comment=""}
+sumx<-sum(materia^2) 
+mediax<-(mean(materia))^2
+n<-6
+b<-0.53
+B<-0.5
+
+s_e<-0.28805 #dado por el modelo con summary(model)
+
+s_b<-s_e/sqrt((sumx-n*mediax)) #error estándar del coeficiente de
+#regresión
+s_b
+
+#estadístico de prueba
+
+t<-(b-B)/s_b
+t
+
+```
+
+Cómo la prueba es cola superior, el $p-valor$ está dado por:
+
+$$p-valor= P(t\geq 0.74)=0.75$$
+Calculando éste valor en R, tenemos lo siguiente:
+
+```{r,comment=""}
+pvalor<-pt(q=t,df=n-1)
+pvalor
+```
+
+Dado que el $p-valor$ es 0.75, para $\alpha=0.05$ se tiene,
+
+$$p-valor=0.75\geq0.05.$$
+Por lo que no hay evidencias para rechazar la hipótesis nula, de manera que la pendiente es significativamente mayor que 0.5,entonces algo marcha mal con el proceso de producción y la maquinaria de la línea de ensamble debe ajustarse. 
+
 \newpage
+
+
+
+
 
 # Ejercicio 12
 
@@ -252,11 +450,109 @@ Muchas compañías pequeñas compran publicidad sin analizar sus efectos.  La "g
 |                         21                         |                           29                           |
 |                         19                         |                           20                           |
 
-a) Desarrolle al ecuación de estimación que mejor describa estos datos.
+a) Desarrolle la ecuación de estimación que mejor describa estos datos.
 
 b) Calcule el error estándar de la estimación para esta relación.
 
 c) Para un mes con gastos de \$28,000 en espectaculares, desarrolle un intervalo de confianza del 95% para las ventas mensuales esperadas ese mes.
+
+\underline{\textbf{Solución:}}
+
+a) Calculemos la recta de mínimos cuadrados usando lo siguiente en R,
+
+```{r,comment=""}
+library(ggplot2)
+espec<-c(25,16,42,34,10,21,19)
+rend<-c(34,14,48,32,26,29,20)
+
+#unamos éstos dos vectores.
+data<-cbind(espec,rend)
+
+#convertimos en data frame.
+data<-as.data.frame(data)
+
+#Regresión por mínimos cuadrados.
+model<-lm(data$rend~data$espec,data)
+model
+
+#Gráfica de la recta de mínimos cuadrados.
+
+ggplot(data,aes(x=data$espec,y=data$rend))+geom_point(colour="red")+
+  geom_smooth(method = "lm",fill=NA)+xlab("Espectaculares")+ylab("Rendimiento")
+
+```
+
+Así, se tiene que la recta de mínimos cuadrados es:
+
+$$y= 0.8124x+9.6184$$
+
+b) El error estándar de la estimación, $s_e$, viene dado por, 
+$$s_e=\displaystyle \sqrt{\frac{\sum{Y^2}-a\sum{Y}-b\sum{XY}}{n-2}},$$
+donde, 
+
+$a=$ es la ordenada de la recta ajustada.
+
+$b=$ es la pendiente de la recta ajustada.
+
+$n=$ tamaño de la muestra.
+
+En R, podemos hacer éste cálculo cómo sigue,
+
+```{r,comment=""}
+#El valor del error estándar es el valor del error estándar de los residuales.
+summary(model)
+
+#Calculemos s_e
+
+s_e<-sqrt((sum(rend^2)-9.6184*sum(rend)-0.8124*sum(espec*rend))/5)
+s_e
+```
+
+c) Aquí, el coeficiente de regresión es 0.8124, así el error estándar de éste coeficiente se expresa como $s_b$.
+
+$$s_b= \displaystyle \frac{s_e}{\sqrt{\sum{X^2}-n\overline{X}^2}}$$
+Donde,
+
+$se=$ error estándar de la estimación.
+
+$X=$ valores de la variable independiente.
+
+$\overline{X}=$ media de los valores de la variable independiente.
+
+$n=$ tamaño de la muestra.
+
+
+Cómo la prueba estará basada en la distribución $t$ con $n-2$ grados de libertad, tenemos los siguientes cálculos en R,
+
+
+```{r,comment=""}
+sumx<-sum(espec^2) 
+mediax<-(mean(espec))^2
+n<-7
+
+s_e<-sqrt((sum(rend^2)-9.6184*sum(rend)-0.8124*sum(espec*rend))/5)
+s_e#dado por el modelo con summary(model)
+
+s_b<-s_e/sqrt((sumx-n*mediax)) #error estándar del coeficiente de
+#regresión
+s_b
+
+#valor crítico de t
+alpha<-0.05
+
+
+talpha<-qt(p=1-alpha,df=n-2)
+talpha
+
+```
+
+Con ésta información, podemos calcular intervalos de confianza para un mes con gastos de \$28.000 en espectaculares, cómo se sigue:
+
+$$b+t_{\alpha}(s_b)=28+2.02(0.26)=28.52$$
+$$b-t_{\alpha}(s_b)=28-2.02(0.26)=19.47$$
+
+En ésta situación, estamos 95% seguros de que las ventas para éste mes se desarrollan entre 28.52 millones de dólares y 19.47 millones de dólares.
+
 
 \newpage
 
@@ -282,6 +578,42 @@ c) El porcentaje de mercado no parece depender del precio.
 |   Kellogg´s   |     Froot Loops     |          2.33          |             89.52             |            $2.64           |
 | General Mills |     Lucky Charms    |          1.85          |             71.08             |            $3.15           |
 | General Mills |        Total        |          1.84          |             70.69             |            $2.86           |
+
+\underline{\textbf{Solución:}}
+
+Calculemos la recta de mínimos cuadrados usando lo siguiente en R,
+
+```{r,comment=""}
+library(ggplot2)
+menudeo<-c(2.18,2.83,2.99,1.94,1.47,2.74,2.91,2.64,3.15,2.86)
+mercado<-c(4.58,4.08,3.28,2.99,2.97,2.77,2.77,2.33,1.85,1.84)
+
+#unamos éstos dos vectores.
+data<-cbind(menudeo,mercado)
+
+#convertimos en data frame.
+data<-as.data.frame(data)
+
+#Regresión por mínimos cuadrados.
+lmodel<-lm(data$mercado~data$menudeo,data)
+lmodel
+
+#Gráfica de la recta de mínimos cuadrados.
+
+ggplot(data,aes(x=data$menudeo,y=data$mercado))+geom_point(colour="red")+
+  geom_smooth(method = "lm",fill=NA)+xlab("Precio Promedio Menudeo")+
+  ylab("Porcentaje Mercado")
+
+```
+
+Así, se tiene que la recta de mínimos cuadrados es:
+
+$$y= -0.523x+4.291$$
+De acuerdo a la gráfica de la recta tenemos que de la tres generalizaciones la mejor que ajusta es la relación c), es decir, el porcentaje de mercado no parece depender del precio.
+
+
+
+
 
 \newpage
 
@@ -309,6 +641,50 @@ a) Dados los siguientes datos, desarrolle la ecuación de estimación que mejor 
 |             4.00             |       3.00       |
 
 b) Calcule el coeficiente de determinación de la muestra. ¿Debe Dave usar esta ecuación de regresión para pronosticar o debe buscar en otra parte variables explicativas adicionales?
+
+\underline{\textbf{Solución:}}
+
+a) Calculemos la recta de mínimos cuadrados usando lo siguiente en R,
+
+```{r,comment=""}
+library(ggplot2)
+precio<-c(12,4,5,6,13,19,8.5,5,15,6,12,12,6.5,3)
+tamaño<-c(108,4.4,3.5,3.6,39,68.4,7.5,5.5,375,12,51,66,10.4,4)
+
+#unamos éstos dos vectores.
+data<-cbind(precio,tamaño)
+
+#convertimos en data frame.
+data<-as.data.frame(data)
+
+#Regresión por mínimos cuadrados.
+lmodel<-lm(data$precio~data$tamaño,data)
+lmodel
+
+#Gráfica de la recta de mínimos cuadrados.
+
+ggplot(data,aes(x=data$tamaño,y=data$precio))+geom_point(colour="red")+
+  geom_smooth(method = "lm",fill=NA)+xlab("Tamaño")+ylab("Precio")
+
+```
+
+Así, se tiene que la recta de mínimos cuadrados es:
+
+$$y= 0.03x+7.53.$$
+
+b) El coeficiente de determinación de la muestra, $r^2$, se calcula de la siguiente forma, 
+
+$$r^2= \displaystyle \frac{a\sum{Y}-b\sum{XY}-n\overline{Y}^2}{\sum{Y^2}-n\overline{Y}^2}$$
+
+En R, podemos calcular $r^2$ cómo sigue,
+
+```{r,comment=""}
+summary(lmodel)
+
+# El coeficiente de determinación es el r^2 ajustado.
+```
+
+De acuerdo a éstos cálculos, $r^2=0.28$, es decir, la relacion entre el precio y el tamaño es muy baja, por lo tanto Dave debe considerar en otra parte variables explicativas adicionales.
 
 \newpage
 
@@ -353,11 +729,116 @@ b) Calcular el estimador de la varianza de los términos de perturbación.
 
 c) Calcular los errores estándar de los estimadores.
 
-d) Calcular $R_2$ y $R^{-2}.$
+d) Calcular $R$ y $R^2.$
 
 e) Construir intervalos de confianza para los coeficientes.
 
 f) ¿Cuál es el significado de los coeficientes y en qué unidades están medidos?
+
+\underline{\textbf{Solución:}}
+
+a) Calculemos la regresión múltiple usando lo siguiente en R,
+
+```{r,comment=""}
+library("readxl")
+data<-read_excel("Libro1.xlsx")
+
+
+#Regresión múltiple.
+lmodel<-lm(data$YNR~data$LMR+data$GFR+data$XTP+data$VCOV,data)
+lmodel
+
+```
+
+Así, se tiene que el plano que mejor se ajuste a los datos es:
+
+$$y= 0.24x_1-0.0014x_2+0.26x_3+1471x_4+6872$$
+
+
+b) y c) En R, podemos hacer éste cálculo cómo sigue,
+
+```{r,comment=""}
+#El valor del error estándar es el valor del error estándar de los residuales. 
+summary(lmodel)
+```
+
+El estimador de la varianza en términos de la pertubación es el cuadrado del error estándar de la estimación. Por lo que la varianza es, $(543.1)^2=294957.6$. Así, el estimador de la varianza es 294957.6.
+
+
+
+d) En R, podemos calcular $R^2$ cómo sigue,
+
+```{r,comment=""}
+summary(lmodel)
+
+# El coeficiente de determinación es el R^2 ajustado.
+```
+
+El coeficiente de determinación múliple es, $R^2=0.9154$. Esto quiere decir, que las cuatro variables independientes explican el 91.5% de la variación total del producto interno real en Venezuela.
+
+El coeficiente de correlación múltiple, $R$, es la raiz cuadrada de $R^2$. Así, $R=\sqrt{0.9154}=0.96$.
+
+e) Construyamos un intervalo de confianza para $B_1$. (Liquidez monetaria en términos reales)
+
+El coeficiente de regresión para éste caso es, $b_1=0.24$. El error estándar del coeficente de regresión ésta dado por $summary(lmodel)$ en R, y es $s_{b_1}=0.018$. El valor crítico de $t$ con $n-k-1$ grados de libertad ($k$ es el número de variables independientes) y un nivel de confianza de 95%, es:
+
+
+```{r,comment=""}
+#valor crítico de t
+n<-27
+k<-4
+alpha<-0.05
+
+
+talpha<-qt(p=1-alpha,df=n-k-1)
+talpha
+
+```
+
+Con ésta información, podemos calcular intervalos de confianza para $B_1$, cómo se sigue:
+
+$$b_1+t_{\alpha}(s_{b_1})=0.24+1.72(0.018)=0.27$$
+$$b_1-t_{\alpha}(s_{b_1})=0.24-1.72(0.018)=0.21$$
+En ésta situación, estamos 95% seguros de que la liquidez monetaria em términos reales (LMR) se desarrolla entre 0.27 millones de dólares y 0.21 millones de dólares.
+
+Construyamos un intervalo de confianza para $B_2$. (Gasto fiscal interno real de período anterior.)
+
+El coeficiente de regresión para éste caso es, $b_2=-0.0014$. El error estándar del coeficente de regresión ésta dado por $summary(lmodel)$ en R, y es $s_{b_2}=0.074$. El valor crítico de $t$ con $n-k-1$ grados de libertad ($k$ es el número de variables independientes) y un nivel de confianza de 95%, es 1.72.
+
+Con ésta información, podemos calcular intervalos de confianza para $B_2$, cómo se sigue:
+
+$$b_2+t_{\alpha}(s_{b_2})=0.0014+1.72(0.074)=0.13$$
+$$b_2-t_{\alpha}(s_{b_2})=0.0014-1.72(0.074)=-0.13$$
+
+En ésta situación, estamos 95% seguros de que el gasto fiscal interno real se desarrolla entre 0.13 millones de dólares y -0.13 millones de dólares.
+
+
+Construyamos un intervalo de confianza para $B_3$. (Exportaciones reales de petróleo e hierro.)
+
+El coeficiente de regresión para éste caso es, $b_3=0.26$. El error estándar del coeficente de regresión ésta dado por $summary(lmodel)$ en R, y es $s_{b_3}=0.026$. El valor crítico de $t$ con $n-k-1$ grados de libertad ($k$ es el número de variables independientes) y un nivel de confianza de 95%, es 1.72.
+
+Con ésta información, podemos calcular intervalos de confianza para $B_3$, cómo se sigue:
+
+$$b_3+t_{\alpha}(s_{b_3})=0.26+1.72(0.26)=0.71$$
+
+$$b_3+t_{\alpha}(s_{b_3})=0.26-1.72(0.26)=-0.19$$
+
+En ésta situación, estamos 95% seguros de que las exportaciones reales de petróleo e hierro de se desarrollan entre 0.71 millones de dólares y -0.19 millones de dólares.
+
+
+Construyamos un intervalo de confianza para $B_4$. (Tasa de inflación)
+
+El coeficiente de regresión para éste caso es, $b_4=1471$. El error estándar del coeficente de regresión ésta dado por $summary(lmodel)$ en R, y es $s_{b_4}=2228$. El valor crítico de $t$ con $n-k-1$ grados de libertad ($k$ es el número de variables independientes) y un nivel de confianza de 95%, es 1.72.
+
+Con ésta información, podemos calcular intervalos de confianza para $B_4$, cómo se sigue:
+
+$$b_4+t_{\alpha}(s_{b_4})=1471+1.72(2228)=5303.2$$
+$$b_4+t_{\alpha}(s_{b_4})=1471-1.72(2228)=-2361.2$$
+
+En ésta situación, estamos 95% seguros de que la tasa de inflación se desarrolla entre 5303.2 millones de dólares y -2361.2 millones de dólares.
+
+
+f) Esto quiere decir, que si se mantienen constantes las variables LMR, $X_1$, GFR, $X_2$ y XTP, $X_3$, entonces el valor $Y$ aumentará 1471 millones de bolivares por cada un millón de bolivares de inflación. Sí, se mantienen constantes las variables, $X_1,X_2$ y $X_4$, entonces el valor $Y$ aumentará 0.26 millones de bolivares por cada un millón de bolivares de exportaciones de petróleo e hierro.
 
 \newpage
 
@@ -391,6 +872,119 @@ a) Considerando los resultados del primer modelo. ¿Qué opina Ud. de la siguien
 
 b) Comparando los resultados de los dos modelos, ¿Qué opina Ud.  de la siguiente afirmación?: El segundo modelo es tan eficiente como el primero en la explicación de las variables de la demanda monetaria. $\alpha=0,05$.
 
+
+\underline{\textbf{Solución:}}
+
+a) Vemos que nuestra pregunta conduce a a establecer hipótesis de la forma:
+
+$$H_0: B_{2i}= 0$$
+$$H_a: B_{2i} \ne 0$$
+
+
+Donde $B_{2i}$ es la relación entre el nivel de ingreso privado y la demanda monetaria.
+
+Para encontrar el estadístico de prueba para $B_{2i}$, es necesario primero encontrar el error estándar del coeficiente de regresión, $s_{b_{2i}}$. 
+
+
+Una vez calculado $s_{b_{2i}}$, podemos utilizar la siguiente ecuación para estandarizar la pendiente de nuestra ecuación de regresión,
+
+$$t= \displaystyle \frac{b_{2i}-B_{2i_{H_0}}}{s_{b_{2i}}},$$
+en la que, 
+
+$b_{2i}=$ coeficiente de $X_{2i}$.
+
+$B_{2i_{H_0}}=$ coeficiente hipotético $X_{2i}$.
+
+
+Cómo la prueba estará basada en la distribución $t$ con $n-k-1$ grados de libertad, usamos $t$ para denotar la estadística estandarizada.
+
+
+Hagamos los siguientes cálculos en R,
+
+```{r,comment=""}
+
+b2<-0.785
+s_b2<-0.1641 #Dado en la hipótesis del problema X_2i=0.1641
+
+#estadístico de prueba
+
+t<-b2/s_b2
+t
+
+```
+
+Entonces, como la prueba para determinar si $X_{2i}$ es una variable explicativa significativa es una prueba de dos colas, solo necesitamos verificar si $-t_c \leq t \leq t_c$, donde $t_c$ es el valor crítico de t con $n-k-1$ grados de libertad.
+
+Calculemos el valor crítico en R,
+
+```{r,comment=""}
+#valor crítico de t
+n<-35
+k<-3
+alpha<-0.05
+
+
+talpha<-qt(p=1-alpha,df=n-k-1)
+talpha
+```
+
+Cómo $t>t_c$, entonces hay evidencias para rechazar la hipótesis nula, por lo que aceptamos la hipótesis alternativa, de modo que concluimos que el nivel de ingreso privado tiene influencia significativa en la demanda monetaria.
+
+b) Vemos que nuestra segunda pregunta conduce a a establecer hipótesis de la forma:
+
+$$H_0: B_{2i}= 0$$
+$$H_a: B_{2i} \ne 0$$
+
+
+Donde $B_{2i}$ es la relación entre el nivel de ingreso privado y la demanda monetaria.
+
+Para encontrar el estadístico de prueba para $B_{2i}$, es necesario primero encontrar el error estándar del coeficiente de regresión, $s_{b_{2i}}$. 
+
+
+Una vez calculado $s_{b_{2i}}$, podemos utilizar la siguiente ecuación para estandarizar la pendiente de nuestra ecuación de regresión,
+
+$$t= \displaystyle \frac{b_{2i}-B_{2i_{H_0}}}{s_{b_{2i}}},$$
+en la que, 
+
+$b_{2i}=$ coeficiente de $X_{2i}$.
+
+$B_{2i_{H_0}}=$ coeficiente hipotético $X_{2i}$.
+
+
+Cómo la prueba estará basada en la distribución $t$ con $n-k-1$ grados de libertad, usamos $t$ para denotar la estadística estandarizada.
+
+
+Hagamos los siguientes cálculos en R,
+
+```{r,comment=""}
+
+b2<-0.8298
+s_b2<-0.2503 #Dado en la hipótesis del problema X_2i=0.2503
+
+#estadístico de prueba
+
+t<-b2/s_b2
+t
+
+```
+
+Entonces, como la prueba para determinar si $X_{2i}$ es una variable explicativa significativa es una prueba de dos colas, solo necesitamos verificar si $-t_c \leq t \leq t_c$, donde $t_c$ es el valor crítico de t con $n-k-1$ grados de libertad.
+
+Calculemos el valor crítico en R,
+
+```{r,comment=""}
+#valor crítico de t
+n<-35
+k<-3
+alpha<-0.05
+
+
+talpha<-qt(p=1-alpha,df=n-k-1)
+talpha
+```
+
+Cómo $t>t_c$, entonces hay evidencias para rechazar la hipótesis nula, por lo que aceptamos la hipótesis alternativa, de modo que concluimos que el segundo modelo es tan eficiente como el primero en la explicación de las variables de la demanda diaria.
+
 \newpage
 
 # Ejercicio 18
@@ -417,3 +1011,63 @@ Dé su opinión acerca de las siguientes afirmaciones:
 a) Un incremento unitario en el índice de precios del bien provoca, ceteris paribus, una disminución en la cantidad demandada de por lo menos 500 unidades.
 
 b) Los precios del bien sustitutivo no tienen influencia significativa en la demanda. $\alpha=0,05.$
+
+\underline{\textbf{Solución:}}
+
+a) Al mantener constantes las variables $X_2$ y $X_4$, el incremento unitario de precios del bien provoca un disminución en la cantidad demandada de por lo menos 370 unidades.
+
+b) Vemos que nuestra pregunta conduce a a establecer hipótesis de la forma:
+
+$$H_0: B_{4i}= 0$$
+$$H_a: B_{4i} \ne 0$$
+
+
+Donde $B_{4i}$ es la relación entre los precios del bien sustitutivo y la demanda.
+
+Para encontrar el estadístico de prueba para $B_{4i}$, es necesario primero encontrar el error estándar del coeficiente de regresión, $s_{b_{4i}}$. 
+
+
+Una vez calculado $s_{b_{4i}}$, podemos utilizar la siguiente ecuación para estandarizar la pendiente de nuestra ecuación de regresión,
+
+$$t= \displaystyle \frac{b_{4i}-B_{4i_{H_0}}}{s_{b_{4i}}},$$
+en la que, 
+
+$b_{4i}=$ coeficiente de $X_{4i}$.
+
+$B_{4i_{H_0}}=$ coeficiente hipotético $X_{4i}$.
+
+
+Cómo la prueba estará basada en la distribución $t$ con $n-k-1$ grados de libertad, usamos $t$ para denotar la estadística estandarizada.
+
+
+Hagamos los siguientes cálculos en R,
+
+```{r,comment=""}
+
+b4<-0.12
+s_b4<-0.16 #Dado en la hipótesis del problema X_4i=0.16
+
+#estadístico de prueba
+
+t<-b4/s_b4
+t
+
+```
+
+Entonces, como la prueba para determinar si $X_{4i}$ es una variable explicativa significativa es una prueba de dos colas, solo necesitamos verificar si $-t_c \leq t \leq t_c$, donde $t_c$ es el valor crítico de t con $n-k-1$ grados de libertad.
+
+Calculemos el valor crítico en R,
+
+```{r,comment=""}
+#valor crítico de t
+n<-91
+k<-3
+alpha<-0.05
+
+
+talpha<-qt(p=1-alpha,df=n-k-1)
+talpha
+```
+
+Cómo $t<t_c$, entonces no hay evidencias para rechazar la hipótesis nula, por lo que aceptamos la hipótesis nula, de modo que concluimos que los precios del bien sustitutivo no tienen influencia significativa en la demanda.
+
