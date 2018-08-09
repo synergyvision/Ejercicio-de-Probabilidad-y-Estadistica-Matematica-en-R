@@ -14,6 +14,19 @@ fontsize: 12pt
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(latex2exp)
+library(ggplot2)
+source("ggplottheme.R")
+library(grid)
+library('readxl')
+library(gridExtra)
+mod_name<-"Regresión lineal"
+credits<-function(f){
+  grid.arrange(f,right=textGrob(paste0(mod_name," (C) Synergy Vision - 2018"),
+                                gp=gpar(fontsize=7, fontface="italic", col="gray75"),
+                                rot=90, just = "centre", vjust=-2))
+}
 ```
 
 \newpage
@@ -33,6 +46,28 @@ William Hawkins, vicepresidente de personal de la International Motors, trabaja 
 |           7          |     28    |           6          |     31    |
 |           3          |     35    |           3          |     40    |
 
+Elabore un diagrama de dispersión para estos datos e indique el tipo de relación.
+
+\underline{\textbf{Solución:}}
+
+Grafiquemos estos datos mediante R.
+
+```{r,comment='',warning=FALSE}
+Salario<-c(11,10,8,5,9,9,7,3,11,8,7,2,9,8,6,3)
+Ausencia<-c(18,17,29,36,11,26,28,35,14,20,32,39,16,26,31,40)
+
+Datos<-data.frame(Salario,Ausencia)
+
+f<-ggplot(Datos,mapping = aes(x=Salario,y=Ausencia))+
+  geom_point(colour='darkred')+
+  labs(title = "Salarios versus Ausencias", x="Salarios", y="Ausencias",
+       caption = "http://synergy.vision/" )+
+  vision
+credits(f)
+```
+
+La relación que se observa en la gráfica es lineal de tipo inversa.
+
 \newpage
 
 # Ejercicio 2
@@ -51,6 +86,71 @@ Las ventas de línea blanca varían según el estado del mercado de casas nuevas
 |               4.6              |               9.0              |
 |               4.8              |               9.7              |
 |               5.0              |              10.0              |
+
+a) Desarrolle una ecuación para la relación entre las ventas de línea blanca (en miles) y la construcción de casas (en miles).
+
+b) Interprete la pendiente de la recta de regresión.
+
+c) Calcule e interprete el error estándar de la estimación.
+
+d) La construcción de casas durante el año próximo puede ser mayor que el intervalo registrado; se han pronosticado estimaciones hasta de 8.0 millones de unidades. Calcule un intervalo de predicción de 90% de confianza para las ventas de línea blanca, con base en los datos anteriores y el nuevo pronóstico de construcción de casas.
+
+\underline{\textbf{Solución:}}
+
+Grafiquemos estos datos mediante R.
+
+```{r,comment='',warning=FALSE}
+Construccion<-c(2,2.5,3.2,3.6,3.3,4,4.2,4.6,4.8,5)
+Ventas<-c(5,5.5,6,7,7.2,7.7,8.4,9,9.7,10)
+
+Datos<-as.data.frame(cbind(Construccion,Ventas))
+
+ggplot(Datos,mapping = aes(x=Datos$Construccion,y=Datos$Ventas))+
+  geom_point(colour='darkred')+
+  xlab('Construccion de casas (miles)')+
+  ylab('Ventas de línea blanca (miles)')
+```
+
+a) Observamos que la relación entre la construcción de casas y las ventas de línea blanca es lineal, para ajustar una recta de regresión a estos datos en R usamos el comando `lm()`. Por lo que nos queda:
+
+```{r,comment='',warning=FALSE}
+regresion<-lm(Datos$Ventas~Datos$Construccion,Datos)
+coef(regresion)
+```
+
+Por lo que la ecuación para la relación entre las ventas de línea blanca y la construcción de casas es:
+
+$$Y=1.16+1.71X$$
+
+\newpage
+
+b) Cuando la construcción de casas aumenta en mil unidades, las ventas de línea blanca aumentan 1.700 unidades.
+
+c) Para calcular el error estándar de la estimación aplicamos el comando `summary()` a la recta de regresión ajustada en el inciso a). Por lo que tenemos:
+
+```{r,comment='',warning=FALSE}
+m<-summary(regresion)
+m
+m$sigma
+```
+
+La desviación estándar de los puntos alrededor de la recta ajustada es cercana a 373 unidades.
+
+d) Para pronosticar el valor de las ventas de línea blanca para un valor de 8.0 millones de unidades de la construcción de casas usamos la ecuación de la recta de regresión, esto es:
+
+$$X=8, \quad \hat{Y}=1.16+1.71(8)=14.84$$
+
+El intervalo de confianza al 90% para la predicción calculada es de:
+
+$$
+\begin{array}{rl}
+\hat{Y} &\pm t_{\displaystyle \frac{\alpha}{2}} \times s_e \\
+\vspace{3mm} \hat{Y} &\pm t_{0.05} \times s_e \\
+\vspace{3mm} 14.84 &\pm 1.86 (0.3737) \\
+\vspace{3mm} 14.84 &\pm 0.69
+\end{array}
+$$
+donde $t_{\displaystyle \frac{\alpha}{2}}$ es el factor de confiabilidad con $n-2$ grados de libertad y $s_e$ la desviación estándar de los residuales.
 
 \newpage
 
@@ -77,6 +177,46 @@ b) ¿En cuánto se incrementa el número esperado de unidades vendidas por cada 
 
 c) Utilice la recta de regresión de mínimos cuadrados para predecir el número de unidades que vendería un capacitando que obtuvo una calificación promedio en la prueba.
 
+\underline{\textbf{Solución:}}
+
+Grafiquemos estos datos usando R.
+
+```{r,comment='',warning=FALSE}
+Calificaciones<-c(2.6,3.7,2.4,4.5,2.6,5,2.8,3,4,3.4)
+Ventas<-c(95,140,85,180,100,195,115,136,175,150)
+
+Datos<-as.data.frame(cbind(Calificaciones,Ventas))
+
+ggplot(Datos,mapping = aes(x=Datos$Calificaciones,y=Datos$Ventas))+
+  geom_point(colour='darkred')+
+  xlab('Calificaciones de la prueba')+
+  ylab('Ventas')
+```
+
+a) Para encontrar la recta de regresión de mínimos cuadrados usamos el comando `lm()` en R, por lo que tenemos:
+
+```{r,comment='',warning=FALSE}
+regresion<-lm(Datos$Ventas~Datos$Calificaciones,Datos)
+coef(regresion)
+```
+
+por lo que la recta de regresión está dada por:
+
+$$Y = -4.6 + 41.6X$$
+\newpage
+
+b) Por cada incremento de 1 punto en la calificación de la prueba, se espera un incremento de 41.6 unidades vendidas.
+
+c) Calculemos el promedio de la califcación de la prueba mediante R. Esto es:
+
+```{r,comment='',warning=FALSE}
+media<-mean(Calificaciones)
+media
+```
+
+El número de unidades que vendería un capacitando que obtuvo la media de las calificaciones de prueba es de:
+
+$$X=3.4, \quad \hat{Y}=-4.6+41.6(3.4)=136.84$$
 
 \newpage
 
@@ -100,6 +240,45 @@ a) Grafique estos datos.
 b) Calcule la recta de regresión de mínimos cuadrados.
 
 c) Trace la recta de regresión ajustada en su gráfica del inciso a).
+
+\underline{\textbf{Solución:}}
+
+a) Grafiquemos estos datos usando R. Nos queda:
+
+```{r,comment='',warning=FALSE}
+Precio<-c(20,17.5,16,14,12.05,10,8,6.5)
+Ventas<-c(125,156,183,190,212,238,250,276)
+
+Datos<-as.data.frame(cbind(Precio,Ventas))
+
+ggplot(Datos,mapping = aes(x=Datos$Precio,y=Datos$Ventas))+
+  geom_point(colour='darkred')+
+  xlab('Precio')+
+  ylab('Cantidades vendidas')
+```
+
+b) Usando el comando `lm()` tenemos:
+
+```{r,comment='',warning=FALSE}
+regresion<-lm(Datos$Ventas~Datos$Precio,Datos)
+coef(regresion)
+```
+
+Por lo que la recta de regresión de mínimos cuadrados es:
+
+$$Y=341.26-10.57X$$
+
+\newpage
+
+c) Trazando la recta de regresión que se ajustó a los datos nos queda:
+
+```{r,comment='',warning=FALSE}
+ggplot(Datos,mapping = aes(x=Datos$Precio,y=Datos$Ventas))+
+  geom_point(colour='darkred')+
+  xlab('Precio')+
+  ylab('Cantidades vendidas')+geom_smooth(method='lm',se=FALSE)
+```
+
 
 \newpage
 
@@ -127,6 +306,49 @@ a) Calcule la ecuación de regresión que mejor se ajusta a estos datos.
 
 b) Calcule el coeficiente de determinación de la muestra y el coeficiente de correlación de muestra.
 
+\underline{\textbf{Solución:}}
+
+Graficando estos datos tenemos:
+
+```{r,comment='',warning=FALSE}
+X<-c(2,3,5,4,2,6,1,3,4,3,3,2,4)
+Y<-c(12.8,11.3,3.2,6.4,11.6,3.2,8.7,10.5,8.2,11.3,9.4,12.8,8.2)
+
+Datos<-as.data.frame(cbind(X,Y))
+
+ggplot(Datos,mapping = aes(x=Datos$X,y=Datos$Y))+
+  geom_point(colour='darkred')+
+  xlab('Número de banqueros atendiendo')+
+  ylab('Tiempo de espera (minutos)')
+```
+
+a) Usando el comando `lm()` para ajustar la ecuación de regresión nos queda:
+
+```{r,comment='',warning=FALSE}
+regresion<-lm(Datos$Y~Datos$X,Datos)
+coef(regresion)
+```
+
+Por lo que la ecuación que mejor se ajusta a los datos es:
+
+$$Y=15.26-1.92X$$
+
+\newpage
+
+b) Usamos el comando `summary()` para calcular el coeficiente de determinación, por lo que tenemos:
+
+```{r,comment='',warning=FALSE}
+m<-summary(regresion)
+m$r.squared
+```
+
+El coeficiente de correlación está dado por la raíz cuadrada del coeficiente de determinación, esto es:
+
+```{r,comment='',warning=FALSE}
+sqrt(m$r.squared)
+```
+
+
 \newpage
 
 # Ejercicio 6
@@ -148,12 +370,53 @@ a) Desarrolle la ecuación de estimación que mejor ajuste los datos.
 
 b) Calcule el coeficiente de determinación de la muestra y el coeficiente de correlación.
 
+\underline{\textbf{Solución:}}
+
+Graficando los datos mediante R tenemos:
+
+```{r,comment='',warning=FALSE}
+Anuncios<-c(3,7,4,2,0,4,1,2)
+Ventas<-c(11,18,9,4,7,6,3,8)
+
+Datos<-as.data.frame(cbind(Anuncios,Ventas))
+
+ggplot(Datos,mapping = aes(x=Datos$Anuncios,y=Datos$Ventas))+
+  geom_point(colour='darkred')+
+  xlab('Número de anuncios')+
+  ylab('Número de latas compradas')
+```
+
+a) Usando el comando `lm()` en R nos queda:
+
+```{r,comment='',warning=FALSE}
+regresion<-lm(Datos$Ventas~Datos$Anuncios,Datos)
+coef(regresion)
+```
+
+Así, la ecuación de regresión está dada por:
+
+$$Y=3.33+1.71X$$
+
+\newpage
+
+b) Con el comando `summary()` en R obtenemos el coeficiente de determinación, esto es:
+
+```{r,comment='',warning=FALSE}
+m<-summary(regresion)
+m$r.squared
+```
+
+El coeficiente de correlación es la raíz cuadrada del coeficiente de determinación, por lo que tenemos:
+
+```{r,comment='',warning=FALSE}
+sqrt(m$r.squared)
+```
 
 \newpage
 
 # Ejercicio 7
 
-En finanzas, es de interés observar la relación entre *Y*, el rendimiento promedio de las acciones, y *X*, el rendimiento global del mercado.  El coeficiente de la pendiente calculada por una regresión lineal se conoce como la *beta* de las acciones pormloa analistas de inversiones.  Una beta mayor que 1 indica que la acción es relativamente sensible a cambios en el mercado, mientras que una beta menor que 1 indica que la acción es relativamente insensible.  Para los datos siguientes, calcule la beta y pruebe si ésta es significativamente insensible.  Para los datos siguientes, calcule la beta y pruebe si ésta es significativamente menor que 1. Use $\alpha=0.05.$
+En finanzas, es de interés observar la relación entre *Y*, el rendimiento promedio de las acciones, y *X*, el rendimiento global del mercado.  El coeficiente de la pendiente calculada por una regresión lineal se conoce como la *beta* de las acciones por los analistas de inversiones.  Una beta mayor que 1 indica que la acción es relativamente sensible a cambios en el mercado, mientras que una beta menor que 1 indica que la acción es relativamente insensible.  Para los datos siguientes, calcule la beta y pruebe si ésta es significativamente menor que 1. Use $\alpha=0.05.$
 
 | Y (%) | X (%) |
 |:-----:|:-----:|
@@ -167,6 +430,71 @@ En finanzas, es de interés observar la relación entre *Y*, el rendimiento prom
 |   10  |   7   |
 |   13  |   18  |
 |   11  |   13  |
+
+\underline{\textbf{Solución:}}
+
+Graficando los datos tenemos:
+
+```{r,comment='',warning=FALSE}
+X<-c(11,15,3,18,10,12,6,7,18,13)
+Y<-c(10,12,8,15,9,11,8,10,13,11)
+
+Datos<-as.data.frame(cbind(X,Y))
+
+ggplot(Datos,mapping = aes(x=Datos$X,y=Datos$Y))+
+  geom_point(colour='darkred')+
+  xlab('Rendimiento global del mercado')+
+  ylab('Rendimiento promedio de las acciones')
+```
+
+ajustando un modelo de regresión a estos datos nos queda:
+
+```{r,comment='',warning=FALSE}
+regresion<-lm(Datos$Y~Datos$X,Datos)
+coef(regresion)
+```
+
+Por lo que el coeficiente de la pendiente de regresión conocida como la $beta$ por los inversionistas es de 0.41. Probemos si este valor es significativamente menor que 1, establecemos la siguiente hipótesis
+
+$$
+\begin{array}{rl}
+H_o: B \geq 1 \\
+H_a: B < 1
+\end{array}
+$$
+donde $H_o$ es la hipótesis nula y $H_a$ es la hipótesis alternativa. El estadístico de prueba (de una cola) viene dado por:
+
+$$t=\displaystyle \frac{b-B_{H_o}}{s_b}$$
+donde,
+
+$b$ = pendiente de la regresión ajustada
+
+$B_{h_o}$= pendiente hipótetica
+
+$s_b$ = error estándar del coeficiente de regresión $\left(s_b=\displaystyle \frac{s_e}{\sqrt{\Sigma X^2 - n\overline{X}^2}}\right)$
+
+El error estándar $s_b$ lo calculamos de la siguiente manera:
+
+```{r,comment='',warning=FALSE}
+m<-summary(regresion)
+se<-m$sigma
+xsquared<-sum(X^2)
+n<-10
+mediasquared<-mean(X)^2
+sb<-se/sqrt(xsquared-n*mediasquared)
+sb
+```
+
+sustituyendo estos valores en el estadístico y sabiendo que $t_{0.05}$ = -1.869 (con $n-2$ grados de libertad) tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} t &= \displaystyle \frac{0.41-1}{0.059}\\
+\vspace{3mm} &= -10
+\end{array}
+$$
+
+como el valor crítico es de -1.869, tenemos que -10<-1.869 por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula, por lo que el coeficiente de regresión es significativamente menor a 1, lo que implica que la $beta$ indica que las acciones son relativamente insensibles.
 
 \newpage
 
@@ -183,11 +511,109 @@ Ned´s Beds está considerando contratar a una compañía de publicidad para est
 |                          11.5                         |                28.33                |                        12.4                        |                30.17                |
 |                          10.9                         |                27.05                |                        16.9                        |                 34.7                |
 
+
+\underline{\textbf{Solución:}}
+
+Grafiquemos estos datos mediante R, nos queda:
+
+```{r,comment='',warning=FALSE}
+Publicidad<-c(3.6,4.8,9.7,12.6,11.5,10.9,14.6,18.2,3.7,9.8,12.4,16.9)
+Ganancia<-c(12.13,14.7,22.83,28.4,28.33,27.05,33.6,40.8,9.4,24.84,30.17,34.7)
+
+Datos<-as.data.frame(cbind(Publicidad,Ganancia))
+
+ggplot(Datos,mapping = aes(x=Datos$Publicidad,y=Datos$Ganancia))+
+  geom_point(colour='darkred')+
+  xlab('Cantidad gastada en publicidad')+
+  ylab('Cantidad de ganancias')
+```
+
+usando el comando `lm()` tenemos:
+
+```{r,comment='',warning=FALSE}
+regresion<-lm(Datos$Ganancia~Datos$Publicidad,Datos)
+coef(regresion)
+```
+
+por lo que el coeficiente de la pendiente de la recta de regresión es 1.95. Probemos si este valor es significativamente mayor que 1.50, establecemos la siguiente hipótesis
+
+$$
+\begin{array}{rl}
+H_o: B \leq 1.50 \\
+H_a: B > 1.50
+\end{array}
+$$
+donde $H_o$ es la hipótesis nula y $H_a$ es la hipótesis alternativa. El estadístico de prueba (de una cola) viene dado por:
+
+$$t=\displaystyle \frac{b-B_{H_o}}{s_b}$$
+
+donde,
+
+$b$ = pendiente de la regresión ajustada.
+
+$B_{h_o}$= pendiente hipótetica.
+
+$s_b$ = error estándar del coeficiente de regresión.
+
+El error estándar $s_b$ viene dado por:
+
+```{r,comment='',warning=FALSE}
+m<-summary(regresion)
+se<-m$sigma
+xsquared<-sum(Publicidad^2)
+n<-12
+mediasquared<-mean(Publicidad)^2
+sb<-se/sqrt(xsquared-n*mediasquared)
+sb
+```
+
+sustituyendo estos valores en el estadístico y sabiendo que $t_{0.05}$ = 1.812 (con $n-2$ grados de libertad) tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} t &= \displaystyle \frac{1.95-1.50}{0.09}\\
+\vspace{3mm} &= 5
+\end{array}
+$$
+como el valor crítico es de 1.812, tenemos que 5>1.812 por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula, por lo que el coeficiente de regresión es significativamente mayor a 1.50, lo que sugiere que Ned debería contratar a la compañía de publicidad.
+
 \newpage
 
 # Ejercicio 9
 
 Un corredor de una empresa de inversión local ha estudiado la relación entre el incremento en el precio del oro *(X)* y las peticiones de sus clientes de liquidar las acciones *(Y)*.  Del conjunto de datos basado en 15 observaciones, se encontró que la pendiente de la muestra era 2.9.  Si el error estándar del coeficiente de la pendiente de regresión es 0.18, ¿existe una razón para pensar (a 0.05 de nivel de significancia) que la pendiente cambió de su valor anterior de 3.2?
+
+\underline{\textbf{Solución:}}
+
+Veamos si el valor de la pendiente obtenida cambió significativamente su valor anterior de 3.2, establecemos la siguiente hipótesis:
+
+$$
+\begin{array}{rl}
+H_o: B = 3.2 \\
+H_a: B \neq 3.2
+\end{array}
+$$
+donde $H_o$ es la hipótesis nula y $H_a$ es la hipótesis alternativa. El estadístico de prueba (de dos colas) viene dado por:
+
+$$t=\displaystyle \frac{b-B_{H_o}}{s_b}$$
+
+donde,
+
+$b$ = pendiente de la regresión ajustada.
+
+$B_{h_o}$= pendiente hipótetica.
+
+$s_b$ = error estándar del coeficiente de regresión.
+
+sustituyendo los valores correspondientes en el estadístico y sabiendo que $t_{0.025}$ = $\pm$ 2.160 (con $n-2$ grados de libertad) tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} t &= \displaystyle \frac{2.9-3.2}{0.18}\\
+\vspace{3mm} &= -1.66
+\end{array}
+$$
+como el valor crítico es de -2.160, tenemos que -1.66 > -2.160 por lo que no hay suficiente evidencia estadística para rechazar la hipótesis nula, por lo que el coeficiente de regresión no cambió de manera significativa con respecto a su valor anterior.
 
 \newpage
 

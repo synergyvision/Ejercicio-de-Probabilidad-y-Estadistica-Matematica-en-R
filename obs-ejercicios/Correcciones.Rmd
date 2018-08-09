@@ -1,5 +1,5 @@
 ---
-title: "Correcciones de Quinta Ronda de Ejercicios"
+title: "Correcciones de Sexta Ronda para José"
 author: "http://synergy.vision/"
 output: pdf_document
 subtitle: 
@@ -12,97 +12,85 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-- Hacer pull a tus ejercicios.
+- Hacer pull a los cambios realizados.
 
 # Ejercicio 1
 
-Colocar en la conclusión "ya que la hipotesis nula debe contener la hipótesis principal que queremos probar y la hipótesis alternativa debe ser el complemento de ésta".
+La forma más sencilla para crear un objeto tipo data frame es usando el comando `data.frame()`, a este se le debe pasar los vectores, o variables que deben tener el mismo tamaño, y pueden ser de distintos tipos. En el gráfico que estas construyendo podrías usar $data.frame(Salario,Ausencia)$. 
+
+Cuando creas un `ggplot()` debes pasar los datos guardados en un data frame como lo hiciste, y en el mapping es suficiente con especificar quienes son las variables que vas a usar de ese data frame para tus ejes `x` e `y`, puedes colocar `aes(x=Salario, y=Ausencia)`. Los títulos, nombres de las ejes, subtitulos y firmas deben ir dentro de `lab(title ='',x='', y='', caption='' )`, adicionalmente queremos que la plantilla sea la misma para todos esto lo hacen colocando `vision` y agregandole el credíto que coloque al inicio del documento, todo esto es para tener los mismos gráficos en todos los archivos. Observa las modificaciones que coloque en este ejercicio y aplicalas para todos los demás.
+
+Se que en este ejercicio no te piden calcular el modelo de regresión lineal, pero me gustaría que lo colocaras, primero con realizando los calculos manuales con las fórmulas y luego usando los comando de `R` para realizar dichos cálculos
+
+# Ejercicio 2
+
+a) ¿Cómo se calcularía la recta de regresión lineal? colocar las fórmulas y aplicación de las mismas, luego hacer los calculos utilizando los comandos correspondientes con `R`, y decir que significa el modelo que se obtiene.
+
+b) Escribir primero que representa el modelo de regresión lineal.
+
+c) El error estándar se utiliza para medir la dispersión de un conjunto de observaciones respecto a la media, mide la variabilidad, o dispersión de los valores observados alrededor de la recta de regresión, la fórmula para calcularlo es 
+
+$$S_e = \sqrt{\frac{\sum_{i=1}^n (Y_i- \hat Y_i)^2}{n-2}}$$
+
+Para realizar su calculo primero debes calcular los valores estimados por el modelo de regresión encontrado, es decir los valores $\hat Y_i$ y luego aplicar la fórmula. Después que consigas dicho valor debes colocar como se calcula con `R`.
+
+d) Realizar los cálculos de esta parte en `R`, manualmente.
+
+# Ejercicio 3
+
+a) ¿Cómo se calcularía la recta de regresión lineal? colocar las fórmulas y aplicación de las mismas, luego hacer los calculos utilizando los comandos correspondientes con `R`, y decir que significa el modelo que se obtiene.
+
+b) Colocar : Es decir, si un capacitado obtuvo una calificación de prueba de 3.4, según el modelo de regresión este venderá 136.84 unidades.
 
 # Ejercicio 4
 
-$H_0:\mu\le 220$ queremos probar que el costo de producción se reducirá con el nuevo método.
-$H_1:\mu>220$
-
-Cambiar las respuestas de aceptar y rechazar la hipótesis nula.
+b) ¿Cómo se calcularía la recta de regresión lineal? colocar las fórmulas y aplicación de las mismas, luego hacer los calculos utilizando los comandos correspondientes con `R`, y decir que significa el modelo que se obtiene.
 
 # Ejercicio 5
 
-El error tipo II implicaria afirmar que los Alemanes ven menos de 56.2 minutos de televisión en las horas de mayor audiencia cuando esto es verdadero, es decir, concluiríamos que los jóvenes alemanes ven menos minutos que los jóvenes estado unidenses, lo cual es falso.
+a) ¿Cómo se calcularía la recta de regresión lineal? colocar las fórmulas y aplicación de las mismas, luego hacer los calculos utilizando los comandos correspondientes con `R`, y decir que significa el modelo que se obtiene.
 
-Los datos son para los minutos de los jóvenes alemanes.
+b) 
+
+El __coeficiente de determinación__ se cálcula con la fórmula siguiente
+
+$$r^2 = 1- \frac{\sum_{i=1}^n (Y_i - \hat Y_i)^2}{\sum_{i=1}^n (Y_i - \overline Y)^2}$$
+
+Y este nos dice el grado de asociación lineal entre las variables $X$ e $Y$. Dar una interpretación del resultado obtenido en el modelo de regresión ajustado. Realizar el cálculo de este manualmente y luego poner como se obtiene en `R`.
+
+El __coeficiente de correlación__ es la raíz cuadrada del coeficiente de determinación $r=\sqrt{r^2}$. El signo de este valor dependera de la pendiente que se obtiene en el modelo de regresión. Realizar su cálculo mediante la fórmula y luego hacerlo con `R`, dar una interpretación del resultado que se obtiene y que representa en este problema.
 
 # Ejercicio 6
 
-a) ¿Por qué esto favorece la sugerencia del investigador?.
+a) ¿Cómo se calcularía la recta de regresión lineal? colocar las fórmulas y aplicación de las mismas, luego hacer los calculos utilizando los comandos correspondientes con `R`, y decir que significa el modelo que se obtiene.
 
-b) Decir con palabras que significa el resultado del P-valor obtenido.
-
-c) ¿Qué implica rechazar la $H_0$?
+b) Igual a la parte b) del ejercicio 5.
 
 # Ejercicio 7
 
-a) Decir con palabras que significan $H_0$ y $H_a$. Agregar el gráfico para este prueba.
+a) Colocar también $S_e=$ Error estándar de la estimación $\left( S_e = \sqrt{\frac{\sum_{i=1}^n Y_i^2 -a \sum_{i=1}^n Y_i-b\sum_{i=1}^n X_iY_i}{n-2}}\right)$ 
 
-# Ejercicio 12
+Para la prueba de hipótesis:
 
-a) ¿Qué representa $H_0$ y $H_a$? decirlo con palabras
+¿Cómo calculas el valor del estadístico en `R` y el valor crítico? hacer una representación gráfica para está prueba de hipótesis.
 
-# Ejercicio 13
+# Ejercicio 8
 
-a) ¿Qué representa la media en este caso?
+¿Cómo se calcularía la recta de regresión lineal? colocar las fórmulas y aplicación de las mismas, luego hacer los calculos utilizando los comandos correspondientes con `R`, y decir que significa el modelo que se obtiene.
 
-# Ejercicio 14
+Para la prueba de hipótesis:
 
-¿Qué representa la $H_0$ y $H_a$
+¿Cómo calculas el valor del estadístico en `R` y el valor crítico? hacer una representación gráfica para está prueba de hipótesis.
 
-d) ¿Qué implica rechazar la $H_0$ para este ejercicio?
+# Ejercicio 9
 
-# Ejercicio 17
+Igual que las observaciones del ejercicio 7.
 
-¿Qué significa que rechaces la $H_0$?
 
-# Ejercicio 18
 
-d) También colocar que significa rechazarla $H_0$
 
-# Ejercicio 19
 
-Cambiar t por T, $\overline x$ por $\overline X$ y s por S
 
-# Ejercicio 24
 
-d) Explicar con más detalle esta conclusión
 
-# Ejercicio 25
 
-b) Colocarle el valor del estadístico de prueba en el gráfico.  Cambiar en el titulo "Distribución Z" por "Distribución Normal".
-
-# Ejercicio 26
-
-b) Colocar los calculos en R para obtener $P(Z\le-1,1)=0.1357$
-
-Cambiar el título del gráfico por "Prueba de cola inferior Distribución Normal".
-
-# Ejercicio 27
-
-c) Colocar el estadístico de prueba en el gráfico.
-
-# Ejercicio 33 
-
-a) Decir con tus propias palabras que significa
-
-b) Colocar el gráfico correspondiente a cada caso.
-
-c) Decir con palabras que representa esta probabilidad.
-
-# Ejercicio 34
-
-a) Aceptar que el llenado es correcto y que se puede continuar con la operación cuando en realidad no lo es, es decir, el llenado, está fuera del estándar.
-
-# Ejercicio 35
-
-Colocar los comandos en R con lo que se pueden calcular los cuantiles de la distribución Normal estándar.
-
-# Ejercicio 36
-
-Igual que el 35 colocar el comando en R para calcular los cuantiles.
