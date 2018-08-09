@@ -1,0 +1,58 @@
+---
+title: "Correcciones de Sexta Ronda para Yoselin"
+author: "http://synergy.vision/"
+output: pdf_document
+subtitle: 
+fontsize: 12pt
+---
+
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+
+- Hacer pull a los cambios realizados.
+
+# Ejercicio 10
+
+La forma más sencilla para crear un objeto tipo data frame es usando el comando `data.frame()`, a este se le debe pasar los vectores, o variables que deben tener el mismo tamaño, y pueden ser de distintos tipos. En el gráfico que estas construyendo podrías usar $data.frame(area,valor)$. 
+
+Cuando creas un `ggplot()` debes pasar los datos guardados en un data frame como lo hiciste, y en el mapping es suficiente con especificar quienes son las variables que vas a usar de ese data frame para tus ejes `x` e `y`, puedes colocar `aes(x=area, y=valor)`. Los títulos, nombres de las ejes, subtitulos y firmas deben ir dentro de `lab(title ='',x='', y='', caption='' )`, adicionalmente queremos que la plantilla sea la misma para todos esto lo hacen colocando `vision` y agregandole el credíto que coloque al inicio del documento, todo esto es para tener los mismos gráficos en todos los archivos. Observa las modificaciones que coloque en este ejercicio y aplicalas para todos los demás.
+
+a) ¿Cómo se calcularía la recta de regresión lineal? colocar las fórmulas y aplicación de las mismas, luego hacer los calculos utilizando los comandos correspondientes con `R`, y decir que significa el modelo que se obtiene.
+
+b) Colocar el gráfico correspondiente a esta prueba de hipótesis, recuerda como lo hicieron en los ejercicios de pruebas de hipótesis.
+
+# Ejercicio 11
+
+a) ¿Cómo se calcularía la recta de regresión lineal? colocar las fórmulas y aplicación de las mismas, luego hacer los calculos utilizando los comandos correspondientes con `R`, y decir que significa el modelo que se obtiene. También agregar los gráficos de la prueba de hipótesis.
+
+# Ejercicio 12
+
+Apenas logre resolver lo de estos datos te los hare llegar.
+
+# Ejercicio 13
+
+a) ¿Cómo se calcularía la recta de regresión lineal? colocar las fórmulas y aplicación de las mismas, luego hacer los calculos utilizando los comandos correspondientes con `R`, y decir que significa el modelo que se obtiene.
+
+b) Realizar primero el cálculo manual y luego aplicar los comandos de R para dicho cálculo.
+
+Otra observación es con respecto a las sumatorias siempre tienes que escribir los indices y de donde a donde van, $\sum Y$ debes colocar $\sum_{i=1}^n Y_i$, por favor realizarlo en todas donde aparezcan.
+
+# Ejercicio 14
+
+Escribir cuales son las variables que están involucradas en el problema, luego calcular la recta de regresión lineal utilizando las fórmulas correspondientes y después hacer esa implementación en R.
+
+¿Por qué seleccionas la parte c)? dar más detalle en la explicación.
+
+# Ejercicio 15
+
+a) ¿Cómo se calcularía la recta de regresión lineal? colocar las fórmulas y aplicación de las mismas, luego hacer los calculos utilizando los comandos correspondientes con `R`, y decir que significa el modelo que se obtiene.
+
+b) Recuerda hacer el cálculo manual y luego hacer la implementación en R.
+
+#Ejercicio 16
+
+f) Explicar que representa el resultado obtenido para R.
+
