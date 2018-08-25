@@ -68,6 +68,63 @@ credits(f)
 
 La relación que se observa en la gráfica es lineal de tipo inversa.
 
+Calculemos la recta de regresión lineal $Y=a+bX$ que mejor se ajusta a estos datos. Para calcular los coeficientes usamos las siguientes formulas:
+
+$$b=\displaystyle \frac{\displaystyle \sum_{i=1}^{n} x_i y_i - n\overline{x}\overline{y}}{\displaystyle \sum_{i=1}^{n} x^2_i - n\overline{x}^2}$$
+y
+
+$$a=\overline{y}-b\overline{x}$$
+donde,
+
+$x_i$ = valores de la variable independiente.
+
+$y_i$= valores de la variable dependiente.
+
+$\overline{x}$ = media de los valores de la variable independiente.
+
+$\overline{y}$ = media de los valores de la variable dependiente.
+
+$n$ = tamaño de la muestra.
+
+Sustituyendo los respectivos valores en cada fórmula tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} b &=\displaystyle \frac{\displaystyle \sum_{i=1}^{n} x_i y_i - n\overline{x}\overline{y}}{\displaystyle \sum_{i=1}^{n} x^2_i - n\overline{x}^2}\\
+\vspace{3mm} &= \displaystyle \frac{2688-16\times 7.25 \times 26.125}{958-16\times52.5625}\\
+\vspace{3mm} &= \displaystyle \frac{-342.5}{117}\\
+\vspace{3mm} &= -2.92735
+\end{array}
+$$
+
+$$
+\begin{array}{rl}
+\vspace{3mm} a &= \overline{y}-b\overline{x}\\
+\vspace{3mm} &= 26.125-(-2.92735)\times7.25\\
+\vspace{3mm} &= 47.34829
+\end{array}
+$$
+
+Así la recta de regresión está dada por:
+
+$$Y=47.34829-2.92735X$$
+
+\underline{\textbf{En R:}}
+
+Usamos el comando `lm()` para calcular la recta de mínimos cuadrados, por lo que nos queda:
+
+```{r,comment='',warning=FALSE}
+regresion<-lm(Ausencia~Salario,Datos)
+coef(regresion)
+```
+
+Por lo que la recta de regresión está dada por:
+
+$$Y=47.34829-2.92735X$$
+
+El modelo que obtenemos a partir de la regresión lineal nos índica la relación directa entre las categorías del salario de un trabajador y las ausencias de este.
+
+
 \newpage
 
 # Ejercicio 2
@@ -103,38 +160,113 @@ Grafiquemos estos datos mediante R.
 Construccion<-c(2,2.5,3.2,3.6,3.3,4,4.2,4.6,4.8,5)
 Ventas<-c(5,5.5,6,7,7.2,7.7,8.4,9,9.7,10)
 
-Datos<-as.data.frame(cbind(Construccion,Ventas))
+Datos<-data.frame(Construccion,Ventas)
 
-ggplot(Datos,mapping = aes(x=Datos$Construccion,y=Datos$Ventas))+
+f<-ggplot(Datos,mapping = aes(x=Construccion,y=Ventas))+
   geom_point(colour='darkred')+
-  xlab('Construccion de casas (miles)')+
-  ylab('Ventas de línea blanca (miles)')
+  labs(title='Construcción versus Ventas',x='Construccion de casas (miles)',
+       y='Ventas de línea blanca (miles)',caption='http://synergy.vision/')+
+  vision
+credits(f)
 ```
 
-a) Observamos que la relación entre la construcción de casas y las ventas de línea blanca es lineal, para ajustar una recta de regresión a estos datos en R usamos el comando `lm()`. Por lo que nos queda:
+a) Observamos que la relación entre la construcción de casas y las ventas de línea blanca es lineal, calculemos la recta de regresión lineal $Y=a+bX$ que mejor se ajusta a estos datos. Para calcular los coeficientes usamos las siguientes formulas:
+
+$$b=\displaystyle \frac{\displaystyle \sum_{i=1}^{n} x_i y_i - n\overline{x}\overline{y}}{\displaystyle \sum_{i=1}^{n} x^2_i - n\overline{x}^2}$$
+y
+
+$$a=\overline{y}-b\overline{x}$$
+donde,
+
+$x_i$ = valores de la variable independiente.
+
+$y_i$= valores de la variable dependiente.
+
+$\overline{x}$ = media de los valores de la variable independiente.
+
+$\overline{y}$ = media de los valores de la variable dependiente.
+
+$n$ = tamaño de la muestra.
+
+Sustituyendo los respectivos valores en cada fórmula tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} b &=\displaystyle \frac{\displaystyle \sum_{i=1}^{n} x_i y_i - n\overline{x}\overline{y}}{\displaystyle \sum_{i=1}^{n} x^2_i - n\overline{x}^2}\\
+\vspace{3mm} &= \displaystyle \frac{295.95-10\times 3.72 \times 7.55}{147.18-10\times 13.8384}\\
+\vspace{3mm} &= \displaystyle \frac{15.09}{8.796}\\
+\vspace{3mm} &= 1.715553
+\end{array}
+$$
+
+$$
+\begin{array}{rl}
+\vspace{3mm} a &= \overline{y}-b\overline{x}\\
+\vspace{3mm} &= 7.55-(1.715553)\times3.72\\
+\vspace{3mm} &= 1.168143
+\end{array}
+$$
+Así la recta de regresión está dada por:
+
+$$Y=1.1681+1.7155X$$
+
+\underline{\textbf{En R:}}
+
+Para ajustar una recta de regresión a estos datos en R usamos el comando `lm()`. Por lo que nos queda:
 
 ```{r,comment='',warning=FALSE}
-regresion<-lm(Datos$Ventas~Datos$Construccion,Datos)
+regresion<-lm(Ventas~Construccion,Datos)
 coef(regresion)
 ```
 
+\newpage
+
 Por lo que la ecuación para la relación entre las ventas de línea blanca y la construcción de casas es:
 
-$$Y=1.16+1.71X$$
+$$Y=1.1681+1.7155X$$
 
-\newpage
+El modelo que obtenemos a partir de la regresión lineal nos índica la relación directa entre las construcciones de casas y las ventas de línea blanca.
 
 b) Cuando la construcción de casas aumenta en mil unidades, las ventas de línea blanca aumentan 1.700 unidades.
 
-c) Para calcular el error estándar de la estimación aplicamos el comando `summary()` a la recta de regresión ajustada en el inciso a). Por lo que tenemos:
+c) El cálculo del error estándar de la estimación viene dado por la siguiente fórmula:
+
+$$s_e= \sqrt{\displaystyle \frac{\sum_{i=1}^{n} (Y_i - \hat{Y_i})^2}{n-2}}$$
+donde,
+
+$Y_i$= valores de la variable dependiente.
+
+$\hat{Y_i}$ = valores estimados a partir de la ecuación de regresión lineal.
+
+$n$ = tamaño de la muestra.
+
+Sustituyendo los valores correspondientes luego de evaluar los valores en la ecuación de regresión lineal tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} s_e &= \sqrt{\displaystyle \frac{\sum_{i=1}^{n} (Y_i - \hat{Y_i})^2}{n-2}}\\
+\vspace{3mm} &= \sqrt{\displaystyle \frac{1.1173}{8}}\\
+\vspace{3mm} &= 0.3737
+\end{array}
+$$
+
+\underline{\textbf{En R:}}
+
+El cálculo para estimar $\hat{Y_i}$ mediante R está dado por:
+
+```{r,comment='',warning=FALSE}
+y_bar<-1.1681+1.7155*Construccion
+y_bar
+```
+
+Para calcular el error estándar de la estimación aplicamos el comando `summary()` a la recta de regresión ajustada en el inciso a). Por lo que tenemos:
 
 ```{r,comment='',warning=FALSE}
 m<-summary(regresion)
-m
 m$sigma
 ```
 
-La desviación estándar de los puntos alrededor de la recta ajustada es cercana a 373 unidades.
+La desviación estándar de los puntos alrededor de la recta ajustada es cercana a 373 unidades, éste error estándar nos permite medir la dispersión que existe entre los valores observados del conjunto de datos y la recta de regresión.
 
 d) Para pronosticar el valor de las ventas de línea blanca para un valor de 8.0 millones de unidades de la construcción de casas usamos la ecuación de la recta de regresión, esto es:
 
@@ -151,6 +283,19 @@ $$
 \end{array}
 $$
 donde $t_{\displaystyle \frac{\alpha}{2}}$ es el factor de confiabilidad con $n-2$ grados de libertad y $s_e$ la desviación estándar de los residuales.
+
+\underline{\textbf{En R:}}
+
+```{r,comment='',warning=FALSE}
+X<-8
+y_bar<-1.1681+1.7155*X
+y_bar
+alpha<-0.1
+n<-10
+t_alpha<-qt(1-alpha/2,df=n-2)
+t_alpha
+```
+
 
 \newpage
 
@@ -185,27 +330,77 @@ Grafiquemos estos datos usando R.
 Calificaciones<-c(2.6,3.7,2.4,4.5,2.6,5,2.8,3,4,3.4)
 Ventas<-c(95,140,85,180,100,195,115,136,175,150)
 
-Datos<-as.data.frame(cbind(Calificaciones,Ventas))
+Datos<-data.frame(Calificaciones,Ventas)
 
-ggplot(Datos,mapping = aes(x=Datos$Calificaciones,y=Datos$Ventas))+
+f<-ggplot(Datos,mapping = aes(x=Calificaciones,y=Ventas))+
   geom_point(colour='darkred')+
-  xlab('Calificaciones de la prueba')+
-  ylab('Ventas')
+  labs(title='Calificaciones versus Ventas',x='Calificaciones de la prueba',
+  y='Ventas',caption='http://synergy.vision/')+
+  vision
+credits(f)
 ```
 
-a) Para encontrar la recta de regresión de mínimos cuadrados usamos el comando `lm()` en R, por lo que tenemos:
+
+
+a) Calculemos la recta de regresión lineal $Y=a+bX$ que mejor se ajusta a estos datos, para calcular los coeficientes usamos las siguientes formulas:
+
+$$b=\displaystyle \frac{\displaystyle \sum_{i=1}^{n} x_i y_i - n\overline{x}\overline{y}}{\displaystyle \sum_{i=1}^{n} x^2_i - n\overline{x}^2}$$
+y
+
+$$a=\overline{y}-b\overline{x}$$
+donde,
+
+$x_i$ = valores de la variable independiente.
+
+$y_i$= valores de la variable dependiente.
+
+$\overline{x}$ = media de los valores de la variable independiente.
+
+$\overline{y}$ = media de los valores de la variable dependiente.
+
+$n$ = tamaño de la muestra.
+
+Sustituyendo los respectivos valores en cada fórmula tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} b &=\displaystyle \frac{\displaystyle \sum_{i=1}^{n} x_i y_i - n\overline{x}\overline{y}}{\displaystyle \sum_{i=1}^{n} x^2_i - n\overline{x}^2}\\
+\vspace{3mm} &= \displaystyle \frac{4954-10\times 3.4 \times 137.1}{122.62-10\times11.56}\\
+\vspace{3mm} &= \displaystyle \frac{292.6}{7.02}\\
+\vspace{3mm} &=41.68
+\end{array}
+$$
+$$
+\begin{array}{rl}
+\vspace{3mm} a &= \overline{y}-b\overline{x}\\
+\vspace{3mm} &= 137.1-(41.68)\times3.4\\
+\vspace{3mm} &= -4.612
+\end{array}
+$$
+
+Así la recta de regresión está dada por:
+
+$$Y=-4.612+41.68X$$
+
+
+
+\underline{\textbf{En R:}}
+
+Para encontrar la recta de regresión de mínimos cuadrados usamos el comando `lm()` en R, por lo que tenemos:
 
 ```{r,comment='',warning=FALSE}
-regresion<-lm(Datos$Ventas~Datos$Calificaciones,Datos)
+regresion<-lm(Ventas~Calificaciones,Datos)
 coef(regresion)
 ```
 
 por lo que la recta de regresión está dada por:
 
 $$Y = -4.6 + 41.6X$$
+El modelo que obtenemos a partir de la regresión lineal nos índica la relación directa entre las calificaciones de la prueba de capacitación y las unidades vendidas.
+
 \newpage
 
-b) Por cada incremento de 1 punto en la calificación de la prueba, se espera un incremento de 41.6 unidades vendidas.
+b) Por cada incremento de 1 punto en la calificación de la prueba, se espera un incremento de 41.6 en ventas de las unidades.
 
 c) Calculemos el promedio de la califcación de la prueba mediante R. Esto es:
 
@@ -217,6 +412,8 @@ media
 El número de unidades que vendería un capacitando que obtuvo la media de las calificaciones de prueba es de:
 
 $$X=3.4, \quad \hat{Y}=-4.6+41.6(3.4)=136.84$$
+es decir, si un capacitado obtuvo una calificación de prueba de 3.4, según el modelo de regresión este venderá 136.84 unidades.
+
 
 \newpage
 
@@ -249,18 +446,67 @@ a) Grafiquemos estos datos usando R. Nos queda:
 Precio<-c(20,17.5,16,14,12.05,10,8,6.5)
 Ventas<-c(125,156,183,190,212,238,250,276)
 
-Datos<-as.data.frame(cbind(Precio,Ventas))
+Datos<-data.frame(Precio,Ventas)
 
-ggplot(Datos,mapping = aes(x=Datos$Precio,y=Datos$Ventas))+
+f<-ggplot(Datos,mapping = aes(x=Precio,y=Ventas))+
   geom_point(colour='darkred')+
-  xlab('Precio')+
-  ylab('Cantidades vendidas')
+  labs(title='Precio versus Ventas',x='Precio',
+  y='Cantidades vendidas',caption='http://synergy.vision/')+
+  vision
+credits(f)
 ```
 
-b) Usando el comando `lm()` tenemos:
+
+a) Calculemos la recta de regresión de mínimos cuadrados, para calcular los coeficientes usamos las siguientes formulas:
+
+$$b=\displaystyle \frac{\displaystyle \sum_{i=1}^{n} x_i y_i - n\overline{x}\overline{y}}{\displaystyle \sum_{i=1}^{n} x^2_i - n\overline{x}^2}$$
+
+y
+
+$$a=\overline{y}-b\overline{x}$$
+
+donde,
+
+$x_i$ = valores de la variable independiente.
+
+$y_i$= valores de la variable dependiente.
+
+$\overline{x}$ = media de los valores de la variable independiente.
+
+$\overline{y}$ = media de los valores de la variable dependiente.
+
+$n$ = tamaño de la muestra.
+
+Sustituyendo los respectivos valores en cada fórmula tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} b &=\displaystyle \frac{\displaystyle \sum_{i=1}^{n} x_i y_i - n\overline{x}\overline{y}}{\displaystyle \sum_{i=1}^{n} x^2_i - n\overline{x}^2}\\
+\vspace{3mm} &= \displaystyle \frac{19546.6-8\times 13.00625 \times 203.75}{1509.703-8\times169.1625}\\
+\vspace{3mm} &= \displaystyle \frac{-1653.588}{156.403}\\
+\vspace{3mm} &= -10.5726
+\end{array}
+$$
+
+$$
+\begin{array}{rl}
+\vspace{3mm} a &= \overline{y}-b\overline{x}\\
+\vspace{3mm} &= 203.75-(-10.5726)\times 13.00625\\
+\vspace{3mm} &= 341.259
+\end{array}
+$$
+
+Así la recta de regresión está dada por:
+
+$$Y=341.259-10.5726X$$
+
+
+\underline{\textbf{En R:}}
+
+Usando el comando `lm()` tenemos:
 
 ```{r,comment='',warning=FALSE}
-regresion<-lm(Datos$Ventas~Datos$Precio,Datos)
+regresion<-lm(Ventas~Precio,Datos)
 coef(regresion)
 ```
 
@@ -268,15 +514,20 @@ Por lo que la recta de regresión de mínimos cuadrados es:
 
 $$Y=341.26-10.57X$$
 
+El modelo que obtenemos a partir de la regresión lineal nos índica la relación directa entre los precios del producto y las ventas del producto.
+
+
 \newpage
 
 c) Trazando la recta de regresión que se ajustó a los datos nos queda:
 
 ```{r,comment='',warning=FALSE}
-ggplot(Datos,mapping = aes(x=Datos$Precio,y=Datos$Ventas))+
+f<-ggplot(Datos,mapping = aes(x=Precio,y=Ventas))+
   geom_point(colour='darkred')+
-  xlab('Precio')+
-  ylab('Cantidades vendidas')+geom_smooth(method='lm',se=FALSE)
+  labs(title='Precio versus Ventas',x='Precio',
+  y='Cantidades vendidas',caption='http://synergy.vision/')+
+  geom_smooth(method='lm',se=FALSE)+vision
+credits(f)
 ```
 
 
@@ -314,18 +565,64 @@ Graficando estos datos tenemos:
 X<-c(2,3,5,4,2,6,1,3,4,3,3,2,4)
 Y<-c(12.8,11.3,3.2,6.4,11.6,3.2,8.7,10.5,8.2,11.3,9.4,12.8,8.2)
 
-Datos<-as.data.frame(cbind(X,Y))
+Datos<-data.frame(X,Y)
 
-ggplot(Datos,mapping = aes(x=Datos$X,y=Datos$Y))+
+f<-ggplot(Datos,mapping = aes(x=X,y=Y))+
   geom_point(colour='darkred')+
-  xlab('Número de banqueros atendiendo')+
-  ylab('Tiempo de espera (minutos)')
+  labs(title='Banqueros atendiendo versus Tiempo de espera',x='Número de banqueros atendiendo',y='Tiempo de espera (minutos)',caption='http://synergy.vision/')+vision
+credits(f)
 ```
 
-a) Usando el comando `lm()` para ajustar la ecuación de regresión nos queda:
+a) Calculemos la ecuación de regresión que se ajusta mejor a los datos, para calcular los coeficientes usamos las siguientes formulas:
+
+$$b=\displaystyle \frac{\displaystyle \sum_{i=1}^{n} x_i y_i - n\overline{x}\overline{y}}{\displaystyle \sum_{i=1}^{n} x^2_i - n\overline{x}^2}$$
+
+y
+
+$$a=\overline{y}-b\overline{x}$$
+
+donde,
+
+$x_i$ = valores de la variable independiente.
+
+$y_i$= valores de la variable dependiente.
+
+$\overline{x}$ = media de los valores de la variable independiente.
+
+$\overline{y}$ = media de los valores de la variable dependiente.
+
+$n$ = tamaño de la muestra.
+
+Sustituyendo los respectivos valores en cada fórmula tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} b &=\displaystyle \frac{\displaystyle \sum_{i=1}^{n} x_i y_i - n\overline{x}\overline{y}}{\displaystyle \sum_{i=1}^{n} x^2_i - n\overline{x}^2}\\
+\vspace{3mm} &= \displaystyle \frac{337-13\times 3.230769 \times 9.046154}{158-13\times 10.43787}\\
+\vspace{3mm} &= \displaystyle \frac{-42.93844}{22.30769}\\
+\vspace{3mm} &= -1.924827
+\end{array}
+$$
+
+$$
+\begin{array}{rl}
+\vspace{3mm} a &= \overline{y}-b\overline{x}\\
+\vspace{3mm} &= 9.046154-(-1.924827)\times 3.230769\\
+\vspace{3mm} &= 15.26483
+\end{array}
+$$
+
+Así la recta de regresión está dada por:
+
+$$Y=15.26483-1.924827X$$
+
+
+\underline{\textbf{En R:}}
+
+Usando el comando `lm()` para ajustar la ecuación de regresión, nos queda:
 
 ```{r,comment='',warning=FALSE}
-regresion<-lm(Datos$Y~Datos$X,Datos)
+regresion<-lm(Y~X,Datos)
 coef(regresion)
 ```
 
@@ -333,9 +630,59 @@ Por lo que la ecuación que mejor se ajusta a los datos es:
 
 $$Y=15.26-1.92X$$
 
+El modelo que obtenemos a partir de la regresión lineal nos índica la relación directa entre el número de banqueros atendiendo y el tiempo de espera.
+
+
 \newpage
 
-b) Usamos el comando `summary()` para calcular el coeficiente de determinación, por lo que tenemos:
+b) El coeficiente de determinación se cálcula con la fórmula siguiente:
+
+$$r^2= 1 - \displaystyle \frac{\sum_{i=1}^{n} (Y_i - \hat{Y_i})^2}{\sum_{i=1}^{n} (Y_i - \overline{Y})^2}$$
+
+donde,
+
+$Y_i$= valores de la variable dependiente.
+
+$\hat{Y_i}$ = valores estimados a partir de la ecuación de regresión lineal.
+
+$\overline{Y}$ = media de los valores de la variable dependiente.
+
+Sustituyendo los valores correspondientes luego de evaluar los valores en la ecuación de regresión lineal tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} r^2 &= 1 - \displaystyle \frac{\sum_{i=1}^{n} (Y_i - \hat{Y_i})^2}{\sum_{i=1}^{n} (Y_i - \overline{Y})^2}\\
+\vspace{3mm} &= 1-\displaystyle \frac{41.3617}{124.0123}\\
+\vspace{3mm} &=1-0.333529\\
+\vspace{3mm} &= 0.666471
+\end{array}
+$$
+
+Por lo que $r^2$=0.66, esto nos indica que el 66\% de la variación en Y (es decir el tiempo de espera) es explicada por la recta de regresión lineal.
+
+El coeficiente de correlación es la raíz cuadrada del coeficiente de determinación, es decir, $r=\sqrt{r^2}$. Calculando este valor nos queda lo siguiente:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} r &= \sqrt{r^2}\\
+\vspace{3mm} &= \sqrt{0.666471}\\
+\vspace{3mm} &= 0.81637
+\end{array}
+$$
+
+como el valor de la pendiente de la recta de regresión es negativo, tenemos que el coeficiente de correlación es $r=-0.81637$. Este valor nos indica que el 81\% de los datos están relacionados entre sí, como el coeficiente es negativo, esta relación es una relación inversa.
+
+\underline{\textbf{En R:}}
+
+El cálculo para estimar $\hat{Y_i}$ mediante R está dado por:
+
+```{r,comment='',warning=FALSE}
+y_bar<-15.26483-1.924827*X
+y_bar
+```
+
+
+Usamos el comando `summary()` para calcular el coeficiente de determinación, por lo que tenemos:
 
 ```{r,comment='',warning=FALSE}
 m<-summary(regresion)
@@ -378,18 +725,64 @@ Graficando los datos mediante R tenemos:
 Anuncios<-c(3,7,4,2,0,4,1,2)
 Ventas<-c(11,18,9,4,7,6,3,8)
 
-Datos<-as.data.frame(cbind(Anuncios,Ventas))
+Datos<-data.frame(Anuncios,Ventas)
 
-ggplot(Datos,mapping = aes(x=Datos$Anuncios,y=Datos$Ventas))+
+f<-ggplot(Datos,mapping = aes(x=Anuncios,y=Ventas))+
   geom_point(colour='darkred')+
-  xlab('Número de anuncios')+
-  ylab('Número de latas compradas')
+  labs(title='Anuncios versus Ventas',x='Número de anuncios',
+  y='Número de latas compradas',caption='http://synergy.vision/')+vision
+credits(f)
 ```
 
-a) Usando el comando `lm()` en R nos queda:
+a) Calculemos la ecuación de regresión que se ajusta mejor a los datos, para calcular los coeficientes usamos las siguientes formulas:
+
+$$b=\displaystyle \frac{\displaystyle \sum_{i=1}^{n} x_i y_i - n\overline{x}\overline{y}}{\displaystyle \sum_{i=1}^{n} x^2_i - n\overline{x}^2}$$
+
+y
+
+$$a=\overline{y}-b\overline{x}$$
+
+donde,
+
+$x_i$ = valores de la variable independiente.
+
+$y_i$= valores de la variable dependiente.
+
+$\overline{x}$ = media de los valores de la variable independiente.
+
+$\overline{y}$ = media de los valores de la variable dependiente.
+
+$n$ = tamaño de la muestra.
+
+Sustituyendo los respectivos valores en cada fórmula tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} b &=\displaystyle \frac{\displaystyle \sum_{i=1}^{n} x_i y_i - n\overline{x}\overline{y}}{\displaystyle \sum_{i=1}^{n} x^2_i - n\overline{x}^2}\\
+\vspace{3mm} &= \displaystyle \frac{246-8\times 2.875 \times 8.25}{99-8\times 8.265625}\\
+\vspace{3mm} &= \displaystyle \frac{56.25}{32.875}\\
+\vspace{3mm} &= 1.711027
+\end{array}
+$$
+
+$$
+\begin{array}{rl}
+\vspace{3mm} a &= \overline{y}-b\overline{x}\\
+\vspace{3mm} &= 8.25-(1.711027)\times 2.875\\
+\vspace{3mm} &= 3.330797
+\end{array}
+$$
+
+Así la recta de regresión está dada por:
+
+$$Y=3.330797+1.711027X$$
+
+\underline{\textbf{En R:}}
+
+Usando el comando `lm()` en R nos queda:
 
 ```{r,comment='',warning=FALSE}
-regresion<-lm(Datos$Ventas~Datos$Anuncios,Datos)
+regresion<-lm(Ventas~Anuncios,Datos)
 coef(regresion)
 ```
 
@@ -397,9 +790,57 @@ Así, la ecuación de regresión está dada por:
 
 $$Y=3.33+1.71X$$
 
+El modelo que obtenemos a partir de la regresión lineal nos índica la relación directa entre el número anuncios y el número de latas que compraron los consumidores.
+
 \newpage
 
-b) Con el comando `summary()` en R obtenemos el coeficiente de determinación, esto es:
+b) El coeficiente de determinación se cálcula con la fórmula siguiente:
+
+$$r^2= 1 - \displaystyle \frac{\sum_{i=1}^{n} (Y_i - \hat{Y_i})^2}{\sum_{i=1}^{n} (Y_i - \overline{Y})^2}$$
+
+donde,
+
+$Y_i$= valores de la variable dependiente.
+
+$\hat{Y_i}$ = valores estimados a partir de la ecuación de regresión lineal.
+
+$\overline{Y}$ = media de los valores de la variable dependiente.
+
+Sustituyendo los valores correspondientes luego de evaluar los valores en la ecuación de regresión lineal tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} r^2 &= 1 - \displaystyle \frac{\sum_{i=1}^{n} (Y_i - \hat{Y_i})^2}{\sum_{i=1}^{n} (Y_i - \overline{Y})^2}\\
+\vspace{3mm} &= 1-\displaystyle \frac{59.25475}{155.5}\\
+\vspace{3mm} &=1-0.3810595\\
+\vspace{3mm} &= 0.618905
+\end{array}
+$$
+
+Por lo que $r^2$=0.618, esto nos indica que el 61.8\% de la variación en Y (es decir el número de latas compradas por los consumidores) es explicada por la recta de regresión lineal.
+
+El coeficiente de correlación es la raíz cuadrada del coeficiente de determinación, es decir, $r=\sqrt{r^2}$. Calculando este valor nos queda lo siguiente:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} r &= \sqrt{r^2}\\
+\vspace{3mm} &= \sqrt{0.6189405}\\
+\vspace{3mm} &= 0.7867277
+\end{array}
+$$
+
+como el valor de la pendiente de la recta de regresión es positivo, tenemos que el coeficiente de correlación es $r=0.7867$. Este valor nos indica que el 78.6\% de los datos están relacionados entre sí, como el coeficiente es positivo, esta relación es una relación directa.
+
+\underline{\textbf{En R:}}
+
+El cálculo para estimar $\hat{Y_i}$ mediante R está dado por:
+
+```{r,comment='',warning=FALSE}
+y_bar<-3.330797+1.711027*Anuncios
+y_bar
+```
+
+Con el comando `summary()` en R obtenemos el coeficiente de determinación, esto es:
 
 ```{r,comment='',warning=FALSE}
 m<-summary(regresion)
@@ -439,20 +880,61 @@ Graficando los datos tenemos:
 X<-c(11,15,3,18,10,12,6,7,18,13)
 Y<-c(10,12,8,15,9,11,8,10,13,11)
 
-Datos<-as.data.frame(cbind(X,Y))
+Datos<-data.frame(X,Y)
 
-ggplot(Datos,mapping = aes(x=Datos$X,y=Datos$Y))+
+f<-ggplot(Datos,mapping = aes(x=X,y=Y))+
   geom_point(colour='darkred')+
-  xlab('Rendimiento global del mercado')+
-  ylab('Rendimiento promedio de las acciones')
+  labs(title='Rendimiento global del mercado versus \
+Rendimiento promedio de las acciones',x='Rendimiento global \
+del mercado',y='Rendimiento promedio \ 
+de las acciones',caption='http://synergy.vision/')+
+  vision
+credits(f)
 ```
 
-ajustando un modelo de regresión a estos datos nos queda:
+Ajustemos la recta de regresión que mejor se ajusta a estos datos. Para calcular los coeficientes usamos las siguientes formulas:
 
-```{r,comment='',warning=FALSE}
-regresion<-lm(Datos$Y~Datos$X,Datos)
-coef(regresion)
-```
+$$b=\displaystyle \frac{\displaystyle \sum_{i=1}^{n} x_i y_i - n\overline{x}\overline{y}}{\displaystyle \sum_{i=1}^{n} x^2_i - n\overline{x}^2}$$
+
+y
+
+$$a=\overline{y}-b\overline{x}$$
+
+donde,
+
+$x_i$ = valores de la variable independiente.
+
+$y_i$= valores de la variable dependiente.
+
+$\overline{x}$ = media de los valores de la variable independiente.
+
+$\overline{y}$ = media de los valores de la variable dependiente.
+
+$n$ = tamaño de la muestra.
+
+Sustituyendo los respectivos valores en cada fórmula tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} b &=\displaystyle \frac{\displaystyle \sum_{i=1}^{n} x_i y_i - n\overline{x}\overline{y}}{\displaystyle \sum_{i=1}^{n} x^2_i - n\overline{x}^2}\\
+\vspace{3mm} &= \displaystyle \frac{1301-10\times 11.3 \times 10.7}{1501-10\times 127.69}\\
+\vspace{3mm} &= \displaystyle \frac{91.9}{224.1}\\
+\vspace{3mm} &= 0.41008
+\end{array}
+$$
+
+$$
+\begin{array}{rl}
+\vspace{3mm} a &= \overline{y}-b\overline{x}\\
+\vspace{3mm} &=10.7-(0.41008)\times 11.3\\
+\vspace{3mm} &= 6.0660
+\end{array}
+$$
+
+Así la recta de regresión está dada por:
+
+$$Y=6.0660+0.41008X$$
+
 
 Por lo que el coeficiente de la pendiente de regresión conocida como la $beta$ por los inversionistas es de 0.41. Probemos si este valor es significativamente menor que 1, establecemos la siguiente hipótesis
 
@@ -473,7 +955,54 @@ $B_{h_o}$= pendiente hipótetica
 
 $s_b$ = error estándar del coeficiente de regresión $\left(s_b=\displaystyle \frac{s_e}{\sqrt{\Sigma X^2 - n\overline{X}^2}}\right)$
 
-El error estándar $s_b$ lo calculamos de la siguiente manera:
+Para calcular el error estándar del coeficiente de regresión $s_b$, primero calculemos el error estándar de la estimación $s_e$, por lo que tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} s_e &= \sqrt{\displaystyle \frac{\sum_{i=1}^{n} (Y_i - \hat{Y_i})^2}{n-2}}\\
+\vspace{3mm} &= \sqrt{\displaystyle \frac{6.413208}{8}}\\
+\vspace{3mm} &= 0.8953497
+\end{array}
+$$
+
+Ahora sustituyendo los respectivos valores para calcular $s_b$ nos queda:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} s_b &= \displaystyle \frac{s_e}{\sqrt{\Sigma X^2 - n\overline{X}^2}}\\
+\vspace{3mm} &= \displaystyle \frac{0.895349}{\sqrt{1501-10 \times 127.69}}\\
+\vspace{3mm} &= \displaystyle \frac{0.895349}{\sqrt{224.1}}\\
+\vspace{3mm} &= 0.05980 \\
+\end{array}
+$$
+
+Así sustituyendo estos valores en el estadístico y sabiendo que $t_{0.05}$ = -1.869 (con $n-2$ grados de libertad) tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} t &= \displaystyle \frac{0.41-1}{0.059}\\
+\vspace{3mm} &= -10
+\end{array}
+$$
+
+como el valor crítico es de -1.869, tenemos que -10<-1.869 por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula, por lo que el coeficiente de regresión es significativamente menor a 1, lo que implica que la $beta$ indica que las acciones son relativamente insensibles.
+
+\underline{\textbf{En R:}}
+
+Ajustando un modelo de regresión a estos datos nos queda:
+
+```{r,comment='',warning=FALSE}
+regresion<-lm(Y~X,Datos)
+coef(regresion)
+```
+
+Por lo que la recta de regresión es:
+
+$$Y=6.0660+0.41008X$$
+
+El modelo que obtenemos a partir de la regresión lineal nos índica la relación directa entre el rendimiento global del mercado y el rendimiento promedio de las acciones.
+
+Para calcular el error estándar del coeficiente de regresión $s_b$ hacemos:
 
 ```{r,comment='',warning=FALSE}
 m<-summary(regresion)
@@ -485,16 +1014,60 @@ sb<-se/sqrt(xsquared-n*mediasquared)
 sb
 ```
 
-sustituyendo estos valores en el estadístico y sabiendo que $t_{0.05}$ = -1.869 (con $n-2$ grados de libertad) tenemos:
+El estadístico de prueba viene dado por:
 
-$$
-\begin{array}{rl}
-\vspace{3mm} t &= \displaystyle \frac{0.41-1}{0.059}\\
-\vspace{3mm} &= -10
-\end{array}
-$$
+```{r,comment='',warning=FALSE}
+b<-0.41
+B<-1
+T<-(b-B)/sb
+T
+```
 
-como el valor crítico es de -1.869, tenemos que -10<-1.869 por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula, por lo que el coeficiente de regresión es significativamente menor a 1, lo que implica que la $beta$ indica que las acciones son relativamente insensibles.
+El valor crítico se calcula como sigue:
+
+```{r,comment='',warning=FALSE}
+alpha<-0.05
+n<-10
+t_alpha<-qt(p=alpha,df=n-2)
+t_alpha
+```
+
+Ésta es una prueba de cola izquierda por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-10,10,0.01)
+y<-dt(x,df=n-2)
+cuantil1<- qt(p=alpha,df=n-2)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      
+       geom_area(mapping = aes(x= ifelse(x<=cuantil1,x,cuantil1),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=n-2)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T, y =0 , xend = T, 
+                       yend = dt(T,df=n-2)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T, y =-0.02, label ="T", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="-'t'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1-2, y=0.1, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+      ylim(-0.05,0.41)+
+      xlim(-10,10)+
+      labs( title = "Prueba de cola izquierda Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
 
 \newpage
 
@@ -520,22 +1093,60 @@ Grafiquemos estos datos mediante R, nos queda:
 Publicidad<-c(3.6,4.8,9.7,12.6,11.5,10.9,14.6,18.2,3.7,9.8,12.4,16.9)
 Ganancia<-c(12.13,14.7,22.83,28.4,28.33,27.05,33.6,40.8,9.4,24.84,30.17,34.7)
 
-Datos<-as.data.frame(cbind(Publicidad,Ganancia))
+Datos<-data.frame(Publicidad,Ganancia)
 
-ggplot(Datos,mapping = aes(x=Datos$Publicidad,y=Datos$Ganancia))+
+f<-ggplot(Datos,mapping = aes(x=Publicidad,y=Ganancia))+
   geom_point(colour='darkred')+
-  xlab('Cantidad gastada en publicidad')+
-  ylab('Cantidad de ganancias')
+  labs(title='Publicidad versus Ganancias',x='Cantidad gastada en publicidad',
+  y='Cantidad de ganancias',caption='http://synergy.vision/')+
+  vision
+credits(f)
 ```
 
-usando el comando `lm()` tenemos:
+Ajustemos la recta de regresión lineal que mejor se ajusta a estos datos. Para calcular los coeficientes usamos las siguientes formulas:
 
-```{r,comment='',warning=FALSE}
-regresion<-lm(Datos$Ganancia~Datos$Publicidad,Datos)
-coef(regresion)
-```
+$$b=\displaystyle \frac{\displaystyle \sum_{i=1}^{n} x_i y_i - n\overline{x}\overline{y}}{\displaystyle \sum_{i=1}^{n} x^2_i - n\overline{x}^2}$$
 
-por lo que el coeficiente de la pendiente de la recta de regresión es 1.95. Probemos si este valor es significativamente mayor que 1.50, establecemos la siguiente hipótesis
+y
+
+$$a=\overline{y}-b\overline{x}$$
+
+donde,
+
+$x_i$ = valores de la variable independiente.
+
+$y_i$= valores de la variable dependiente.
+
+$\overline{x}$ = media de los valores de la variable independiente.
+
+$\overline{y}$ = media de los valores de la variable dependiente.
+
+$n$ = tamaño de la muestra.
+
+Sustituyendo los respectivos valores en cada fórmula tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} b &=\displaystyle \frac{\displaystyle \sum_{i=1}^{n} x_i y_i - n\overline{x}\overline{y}}{\displaystyle \sum_{i=1}^{n} x^2_i - n\overline{x}^2}\\
+\vspace{3mm} &= \displaystyle \frac{3786.029-12\times 10.725 \times 25.57917}{1633.41-12\times 115.0256}\\
+\vspace{3mm} &= \displaystyle \frac{493.9898}{253.1028}\\
+\vspace{3mm} &= 1.951736
+\end{array}
+$$
+
+$$
+\begin{array}{rl}
+\vspace{3mm} a &= \overline{y}-b\overline{x}\\
+\vspace{3mm} &= 25.57917-(1.951736)\times 10.725\\
+\vspace{3mm} &= 4.6468
+\end{array}
+$$
+
+Así la recta de regresión está dada por:
+
+$$Y=4.6468+1.9517X$$
+
+Por lo que el coeficiente de la pendiente de la recta de regresión es 1.95. Probemos si este valor es significativamente mayor que 1.50, establecemos la siguiente hipótesis
 
 $$
 \begin{array}{rl}
@@ -553,7 +1164,54 @@ $b$ = pendiente de la regresión ajustada.
 
 $B_{h_o}$= pendiente hipótetica.
 
-$s_b$ = error estándar del coeficiente de regresión.
+$s_b$ = error estándar del coeficiente de regresión. $\left(s_b=\displaystyle \frac{s_e}{\sqrt{\Sigma X^2 - n\overline{X}^2}}\right)$
+
+Para calcular el error estándar del coeficiente de regresión $s_b$, primero calculemos el error estándar de la estimación $s_e$, por lo que tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} s_e &= \sqrt{\displaystyle \frac{\sum_{i=1}^{n} (Y_i - \hat{Y_i})^2}{n-2}}\\
+\vspace{3mm} &= \sqrt{\displaystyle \frac{22.92601}{10}}\\
+\vspace{3mm} &= 1.514134
+\end{array}
+$$
+
+Ahora sustituyendo los respectivos valores para calcular $s_b$ nos queda:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} s_b &= \displaystyle \frac{s_e}{\sqrt{\Sigma X^2 - n\overline{X}^2}}\\
+\vspace{3mm} &= \displaystyle \frac{1.514134}{\sqrt{1633.41-12 \times 115.0256}}\\
+\vspace{3mm} &= \displaystyle \frac{1.514134}{\sqrt{253.1028}}\\
+\vspace{3mm} &= 0.09517 \\
+\end{array}
+$$
+
+
+sustituyendo estos valores en el estadístico y sabiendo que $t_{0.05}$ = 1.812 (con $n-2$ grados de libertad) tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} t &= \displaystyle \frac{1.95-1.50}{0.09}\\
+\vspace{3mm} &= 5
+\end{array}
+$$
+como el valor crítico es de 1.812, tenemos que 5>1.812 por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula, por lo que el coeficiente de regresión es significativamente mayor a 1.50, lo que sugiere que Ned debería contratar a la compañía de publicidad.
+
+\underline{\textbf{En R:}}
+
+usando el comando `lm()` tenemos:
+
+```{r,comment='',warning=FALSE}
+regresion<-lm(Ganancia~Publicidad,Datos)
+coef(regresion)
+```
+
+Por lo que la recta de regresión es:
+
+$$Y=4.6468+1.9517X$$
+
+El modelo que obtenemos a partir de la regresión lineal nos índica la relación directa entre la cantidad gastada en publicidad  y la cantidad de ganancias.
 
 El error estándar $s_b$ viene dado por:
 
@@ -567,15 +1225,60 @@ sb<-se/sqrt(xsquared-n*mediasquared)
 sb
 ```
 
-sustituyendo estos valores en el estadístico y sabiendo que $t_{0.05}$ = 1.812 (con $n-2$ grados de libertad) tenemos:
+El estadístico de prueba se calcula de la siguiente manera:
 
-$$
-\begin{array}{rl}
-\vspace{3mm} t &= \displaystyle \frac{1.95-1.50}{0.09}\\
-\vspace{3mm} &= 5
-\end{array}
-$$
-como el valor crítico es de 1.812, tenemos que 5>1.812 por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula, por lo que el coeficiente de regresión es significativamente mayor a 1.50, lo que sugiere que Ned debería contratar a la compañía de publicidad.
+```{r,comment='',warning=FALSE}
+b<-1.9517
+B<-1.50
+T<-(b-B)/sb
+T
+```
+
+El valor crítico se calcula como sigue:
+
+```{r,comment='',warning=FALSE}
+alpha<-0.05
+n<-12
+t_alpha<-qt(p=1-alpha,df=n-2)
+t_alpha
+```
+
+Ésta es una prueba de cola derecha por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-5,5,0.01)
+y<-dt(x,df=n-2)
+cuantil1<- qt(p=1-alpha,df=n-2)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      
+       geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=n-2)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T, y =0 , xend = T, 
+                       yend = dt(T,df=n-2)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T, y =-0.02, label ="T", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'t'[alpha]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+1, y=0.1, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+      ylim(-0.05,0.41)+
+      xlim(-5,5)+
+      labs( title = "Prueba de cola derecha Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
 
 \newpage
 
@@ -613,7 +1316,76 @@ $$
 \vspace{3mm} &= -1.66
 \end{array}
 $$
+
 como el valor crítico es de -2.160, tenemos que -1.66 > -2.160 por lo que no hay suficiente evidencia estadística para rechazar la hipótesis nula, por lo que el coeficiente de regresión no cambió de manera significativa con respecto a su valor anterior.
+
+\underline{\textbf{En R:}}
+
+El estadístico de prueba se calcula de la siguiente manera:
+
+```{r,comment='',warning=FALSE}
+sb<-0.18
+b<-2.9
+B<-3.2
+T<-(b-B)/sb
+T
+```
+
+El valor crítico viene dado por:
+
+```{r,comment='',warning=FALSE}
+alpha<-0.05
+n<-15
+t_alpha<-qt(p=alpha/2,df=n-2)
+t_alpha
+```
+
+Ésta es una prueba de dos colas por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dt(x,df=n-2)
+cuantil1<- qt(1-(alpha/2),df=n-2)
+cuantil2<- qt(alpha/2,df=n-2)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=n-2)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dt(cuantil2,df=n-2)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T, y =0 , xend = T, 
+                       yend = dt(T,df=n-2)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T, y =-0.02, label ="T", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="-'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.8, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.8, y=0.05, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de dos colas Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
 
 \newpage
 
