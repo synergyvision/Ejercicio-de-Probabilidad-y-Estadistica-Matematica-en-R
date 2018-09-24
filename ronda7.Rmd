@@ -14,21 +14,13 @@ fontsize: 12
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-<<<<<<< HEAD
-
-=======
->>>>>>> 9c195f5e0944aa20114b13d5a871d61dbc47e99c
 library(knitr)
 library(latex2exp)
 library(ggplot2)
 source("ggplottheme.R")
 library(grid)
 library(gridExtra)
-<<<<<<< HEAD
-mod_name<-"Pruebas de HipÃ³tesis"
-=======
 mod_name<-"Regresión Múltiple y Análisis de Varianza"
->>>>>>> 9c195f5e0944aa20114b13d5a871d61dbc47e99c
 credits<-function(f){
   grid.arrange(f,right=textGrob(paste0(mod_name," (C) Synergy Vision - 2018"),
                                 gp=gpar(fontsize=7, fontface="italic", col="gray75"),
