@@ -14,14 +14,21 @@ fontsize: 12
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9c195f5e0944aa20114b13d5a871d61dbc47e99c
 library(knitr)
 library(latex2exp)
 library(ggplot2)
 source("ggplottheme.R")
 library(grid)
 library(gridExtra)
+<<<<<<< HEAD
 mod_name<-"Pruebas de HipÃ³tesis"
+=======
+mod_name<-"Regresión Múltiple y Análisis de Varianza"
+>>>>>>> 9c195f5e0944aa20114b13d5a871d61dbc47e99c
 credits<-function(f){
   grid.arrange(f,right=textGrob(paste0(mod_name," (C) Synergy Vision - 2018"),
                                 gp=gpar(fontsize=7, fontface="italic", col="gray75"),
@@ -48,6 +55,83 @@ a) Calcule la ecuación de mínimos cuadrados para predecir las ventas a partir 
 
 b) Si la publicidad es 7 y el precio \$132, ¿qué ventas podría pronosticar?
 
+\textbf{\underline{Solución:}}
+
+a) Calculemos la ecuación de mínimos cuadrados múltiple $Y = a + b_1 X_1 + b_2 X_2$, donde:
+
+$Y$ = Variable dependiente.
+
+$a$ = Ordenada $Y$.
+
+$X_1$ y $X_2$ = Variables indpendientes.
+
+$b_1$ y $b_2$ = Pendientes asociadas a $X_1$ y $X_2$ respectivamente.
+
+Para calcular los coeficientes $a, b_1$ y $b_2$ de la ecuación de mínimos cuadrados múltiple usamos el siguiente sistema de ecuaciones:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} y_i &= na + b_1 \displaystyle \sum_{i=1}^{n} x_{1i} +  b_2 \sum_{i=1}^{n} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{1i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{1i} + b_1 \sum_{i=1}^{n} x^2_{1i} +  b_2 \sum_{i=1}^{n} x_{1i} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{2i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{2i} + b_1 \sum_{i=1}^{n} x_{1i} x_{2i} +  b_2 \sum_{i=1}^{n} x^2_{2i} \\
+\end{array}
+$$
+donde,
+
+$y_i$ = Valores de la variable dependiente (Ventas).
+
+$x_{1i}$ = Valores de la variable independiente (Publicidad).
+
+$x_{2i}$ = Valores de la variable independiente (Precio).
+
+\newpage
+
+Sustituyendo los valores en el sistema de ecuación tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} 287 &= 6a + 47b_1 + 795b_2\\
+\vspace{3mm} 2528 &= 47a + 431b_1 + 6300b_2\\
+\vspace{3mm} 37425 &= 795a + 6300b_1 +105975b_2 \\
+\end{array}
+$$
+Resolviendo el sistema de ecuaciones, tenemos que los coeficientes están dados por:
+
+$a$ = 219.2306
+
+$b_1$ = 6.3814
+
+$b_2$ = -1.6708
+
+Así la ecuación de mínimos cuadrados múltiple está dada por:
+
+$$Y = 219.2306 + 6.3814X_1 - 1.6708X_2$$
+
+\textbf{\underline{En R:}}
+
+Usamos el comando `lm()` en R para encontrar la ecuación de mínimos cuadrados múltiple, tenemos:
+
+```{r,comment='',warning=FALSE}
+Ventas<-c(33,61,70,82,17,24)
+Publicidad<-c(3,6,10,13,9,6)
+Precio<-c(125,115,140,130,145,140)
+
+Datos<-data.frame(Ventas,Publicidad,Precio)
+
+regresion<-lm(Ventas~Publicidad+Precio,Datos)
+
+coef(regresion)
+```
+Por lo que la ecuación de regresión está dada por:
+
+$$Y = 219.2306 + 6.3814X_1 - 1.6708X_2$$
+
+b) Si el número de anuncios es de 7 y el precio de 132\$, las ventas serán de:
+
+$$X_1=7, X_2=132, \quad \hat{Y} = 219.2306 + 6.3814(7) - 1.6708(132) = 43.3548$$
+
+43.35 unidades
+
 \newpage
 
 # Ejercicio 2
@@ -66,6 +150,81 @@ La Reserva Federal de Estados Unidos realiza un estudio preliminar para determin
 a) Encuentre (calcule) la ecuación de mínimos cuadrados que mejor describa los datos.
 
 b) ¿Qué porcentaje de cambio en el PIB se esperaría en un año en el cual el déficit federal fue 240,000 millones de dólares y el promedio Dow Jones fue 3,000?
+
+\textbf{\underline{Solución:}}
+
+a) Calculemos la ecuación de mínimos cuadrados múltiple $Y = a + b_1 X_1 + b_2 X_2$, donde:
+
+$Y$ = Variable dependiente.
+
+$a$ = Ordenada $Y$.
+
+$X_1$ y $X_2$ = Variables indpendientes.
+
+$b_1$ y $b_2$ = Pendientes asociadas a $X_1$ y $X_2$ respectivamente.
+
+Para calcular los coeficientes $a, b_1$ y $b_2$ de la ecuación de mínimos cuadrados múltiple usamos el siguiente sistema de ecuaciones:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} y_i &= na + b_1 \displaystyle \sum_{i=1}^{n} x_{1i} +  b_2 \sum_{i=1}^{n} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{1i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{1i} + b_1 \sum_{i=1}^{n} x^2_{1i} +  b_2 \sum_{i=1}^{n} x_{1i} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{2i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{2i} + b_1 \sum_{i=1}^{n} x_{1i} x_{2i} +  b_2 \sum_{i=1}^{n} x^2_{2i} \\
+\end{array}
+$$
+donde,
+
+$y_i$ = Valores de la variable dependiente (Cambio en el PIB).
+
+$x_{1i}$ = Valores de la variable independiente (Déficit federal).
+
+$x_{2i}$ = Valores de la variable independiente (Dow Jones).
+
+Sustituyendo los valores en el sistema de ecuación tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} 11 &= 6a + 1080b_1 + 15900b_2\\
+\vspace{3mm} 1040 &= 1080a + 263200b_1 + 2676000b_2\\
+\vspace{3mm} 32550 &= 15900a + 2676000b_1 + 42975000b_2 \\
+\end{array}
+$$
+Resolviendo el sistema de ecuaciones, tenemos que los coeficientes están dados por:
+
+$a$ = -3.6963
+
+$b_1$ = -0.00677
+
+$b_2$ = 0.00254
+
+Así la ecuación de mínimos cuadrados múltiple está dada por:
+
+$$Y = -3.6963 -0.00677X_1 + 0.00254X_2$$
+
+\textbf{\underline{En R:}}
+
+Para encontrar la ecuación de mínimos cuadrados múltiple usamos el comando `lm()` en R, nos queda:
+
+```{r,comment='',warning=FALSE}
+CambioPIB<-c(2.5,-1,4,1,1.5,3)
+Deficit<-c(100,400,120,200,180,80)
+DowJones<-c(2850,2100,3300,2400,2550,2700)
+
+Datos<-data.frame(CambioPIB,Deficit,DowJones)
+
+regresion<-lm(CambioPIB~Deficit+DowJones,Datos)
+
+coef(regresion)
+```
+Por lo que la ecuación de regresión está dada por:
+
+$$Y = -3.6963 -0.00677X_1 + 0.00254X_2$$
+
+b) Si el déficit federal fue de 240,000 millones de dólares y el promedio Dow Jones fue 3,000, entonces se esperaría un porcentaje de cambio en el PIB de:
+
+$$X_1 = 240,X_2 = 3,000,\quad \hat{Y} = -3.6963 -0.00677(240) + 0.00254(3,000)$$
+2.2989\%
+
 
 \newpage
 
@@ -111,6 +270,117 @@ d) Establezca e interprete el error estándar de la estimación para el problema
 
 e) Según la ecuación de regresión obtenida, ¿qué valor de DEMAND predeciría si el precio de los productos fue \$6, el ingreso del consumidor \$1,200 y el precio del bien sustituto \$17?
 
+\textbf{\underline{Solución:}}
+
+a) Encontremos la ecuación de regresión múltiple $Y = a + b_1 X_1 + b_2 X_2 + b_3 X_3$ mediante **R**, donde:
+
+$Y$ = Variable dependiente (Demanda).
+
+$a$ = Ordenada $Y$.
+
+$X_1$, $X_2$ y $X_3$ = Variables indpendientes (Precio, ingreso y buen sustituto).
+
+$b_1$, $b_2$ y $b_3$ = Pendientes asociadas a $X_1$, $X_2$ y $X_3$ respectivamente.
+
+Usando el comando `lm()` en **R** tenemos:
+
+```{r,comment='',warning=FALSE}
+Demanda<-c(40,45,50,55,60,70,65,65,75,75,80,100,90,95,85)
+Precio<-c(9,8,9,8,7,6,6,8,5,5,5,3,4,3,4)
+Ingreso<-c(400,500,600,700,800,900,1000,1100,1200,1300,1400,1500,1600,1700,1800)
+Sub<-c(10,14,12,13,11,15,16,17,22,19,20,23,18,24,21)
+
+Datos<-data.frame(Demanda,Precio,Ingreso,Sub)
+
+regresion<-lm(Demanda~Precio+Ingreso+Sub,Datos)
+
+coef(regresion)
+```
+
+Por lo que la ecuación de regresión está dada por:
+
+$$Y = 79.10633 - 4.9280X_1 + 0.01590X_2 + 0.1747X_3$$
+
+b) Los coeficientes de la ecuación de regresión nos indica la relación que aporta cada variable independiente con respecto a la variable dependiente. Notamos que en la variable de Precio se obtiene un coeficiente negativo, esto nos indica una relación negativa entre el precio y la demanda, es decir, entre más alto el precio se obtiene un menor valor en la demanda del producto.
+
+c) El coeficiente de determinación se cálcula con la fórmula siguiente:
+
+$$r^2 = 1 - \displaystyle \frac{\displaystyle \sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2}{\displaystyle \sum_{i=1}^{n}(Y_i - \overline{Y})^2}$$
+donde,
+
+$Y_i$ = Valores de la variable dependiente.
+
+$\hat{Y}_i$ = Valores estimados a partir de la ecuación de regresión.
+
+$\overline{Y}$ = Media de los valores de la variable dependiente.
+
+Sustituyendo los valores correspondientes luego de evaluar los valores en la ecuación de regresión tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} r^2 &= 1 - \displaystyle \frac{\displaystyle \sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2}{\displaystyle \sum_{i=1}^{n}(Y_i - \overline{Y})^2}\\
+\vspace{3mm} &= 1 - \displaystyle \frac{225.4918}{4600}\\
+\vspace{3mm} &= 1 - 0.049 \\
+\vspace{3mm} &= 0.951
+\end{array}
+$$
+Por lo que $r^2$=0.951, esto nos indica que el 95.1\% de la variación en Y (la demanda) es explicada por la ecuación de regresión.
+
+\textbf{\underline{En R:}}
+
+El cálculo para estimar $\hat{Y}_i$ mediante R está dado por:
+
+```{r,comment='',warning=FALSE}
+y_bar<-79.1063-4.9281*Precio+0.0159*Ingreso+0.1748*Sub
+y_bar
+```
+
+Con el comando `summary()` en R obtenemos el coeficiente de determinación, tenemos:
+
+```{r,comment='',warning=FALSE}
+m<-summary(regresion)
+m$r.squared
+```
+
+d) El error estándar de la estimación se calcula con la fórmula siguiente:
+
+$$s_e = \sqrt{\displaystyle \frac{\displaystyle \sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2}{n -k-1}}$$
+donde,
+
+$Y_i$ = valores de la variable dependiente.
+
+$\hat{Y}_i$ = valores estimados a partir de la ecuación de regresión.
+
+$n$ = tamaño de la muestra.
+
+$k$ = número de variables independientes.
+
+sustituyendo los valores correspondientes nos queda:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} s_e &=  \sqrt{\displaystyle \frac{\displaystyle \sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2}{n -k-1}} \\
+\vspace{3mm} &= \sqrt{\displaystyle \frac{225.4918}{11}} \\
+\vspace{3mm} &= 4.5276\\
+\end{array}
+$$
+por lo que $s_e$ = 4.5276, es decir, la dispersión que existe entre los valores observados del conjunto de datos y el plano de regresión es de 45.27 (demanda de los productos).
+
+\textbf{\underline{En R:}}
+
+Usamos el comando `summary()` para determinar el error estándar de la estimación, así tenemos:
+
+```{r,comment='',warning=FALSE}
+m<-summary(regresion)
+m$sigma
+```
+\newpage
+
+e) Si el precio de los productos fue de 6\$, el ingreso del consumidor de 1,200\$ y el precio del bien sustituto de 17\$, entonces el valor de la demanda que se predecirá a partir de la ecuación de regresión es de:
+
+$$X_1 = 6, X_2 = 1,200, X_3= 17 \quad \hat{Y} = 79.10633 - 4.9280(6) + 0.01590(1,200) + 0.1747(17)=71.588$$
+71.588 unidades
+
 \newpage
 
 # Ejercicio 4
@@ -134,9 +404,85 @@ Rick Blackburn está pensando en vender su casa.  Con el fin de decidir el preci
 
 a) Utilice cualquier paquete de software que tenga disponble para determinar la ecuación de regresión de mejor ajuste para los datos.
 
-b) ¿Cuál es el valor de $R_2$ para esta ecuación?
+b) ¿Cuál es el valor de $R^2$ para esta ecuación?
 
 c) Si la casa de Rick tiene 1,800 pies cuadrados (=18.0 cientos de pies cuadrados), un piso, 1.5 baños y seis años de antigüedad, ¿qué precio de venta puede esperar Rick?
+
+\textbf{\underline{Solución:}}
+
+a) Determinemos la ecuación de regresión múltiple $Y = a + b_1 X_1 + b_2 X_2 + b_3 X_3 + b_4 X_4$ mediante **R**, donde:
+
+$Y$ = Variable dependiente (Precio de venta).
+
+$a$ = Ordenada $Y$.
+
+$X_1$, $X_2$, $X_3$ y $X_4$ = Variables indpendientes (Pies, pisos, baños y antiguedad).
+
+$b_1$, $b_2$, $b_3$ y $b_4$ = Pendientes asociadas a $X_1$, $X_2$, $X_3$ y $X_4$ respectivamente.
+
+Usando el comando `lm()` en **R** tenemos:
+
+```{r,comment='',warning=FALSE}
+Precio<-c(49.65,67.95,81.15,81.60,91.50,95.25,100.35,104.25,112.65,149.70,160.65,232.50)
+Pies<-c(8.9,9.5,12.6,12.9,19,17.6,20,20.6,20.5,25.1,22.7,40.8)
+Pisos<-c(1,1,2,2,2,1,2,2,1,2,2,3)
+Baños<-c(1,1,1.5,1.5,1,1,1.5,1.5,2,2,2,4)
+Antiguedad<-c(2,6,11,8,22,17,12,11,9,8,18,12)
+
+Datos<-data.frame(Precio,Pies,Pisos,Baños,Antiguedad)
+
+regresion<-lm(Precio~Pies+Pisos+Baños+Antiguedad,Datos)
+
+coef(regresion)
+```
+
+Por lo que la ecuación de regresión está dada por:
+
+$$Y = -1.3812 + 2.8524X_1 - 3.7134X_2 + 30.2850X_3 + 1.1721X_4$$
+
+b) El coeficiente de determinación se cálcula con la fórmula siguiente:
+
+$$r^2 = 1 - \displaystyle \frac{\displaystyle \sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2}{\displaystyle \sum_{i=1}^{n}(Y_i - \overline{Y})^2}$$
+donde,
+
+$Y_i$ = Valores de la variable dependiente.
+
+$\hat{Y}_i$ = Valores estimados a partir de la ecuación de regresión.
+
+$\overline{Y}$ = Media de los valores de la variable dependiente.
+
+Sustituyendo los valores correspondientes luego de evaluar los valores en la ecuación de regresión tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} r^2 &= 1 - \displaystyle \frac{\displaystyle \sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2}{\displaystyle \sum_{i=1}^{n}(Y_i - \overline{Y})^2}\\
+\vspace{3mm} &= 1 - \displaystyle \frac{1277.123}{26885.67}\\
+\vspace{3mm} &= 1 - 0.0475 \\
+\vspace{3mm} &= 0.9525
+\end{array}
+$$
+
+Por lo que $r^2$=0.9525, esto nos indica que el 95.25\% de la variación en Y (el precio de venta) es explicada por la ecuación de regresión.
+
+\textbf{\underline{En R:}}
+
+El cálculo para estimar $\hat{Y}_i$ mediante R está dado por:
+
+```{r,comment='',warning=FALSE}
+y_bar<--1.3812 + 2.8524*Pies - 3.7134*Pisos + 30.2850*Baños + 1.1721*Antiguedad
+y_bar
+```
+
+Con el comando `summary()` en R obtenemos el coeficiente de determinación, tenemos:
+
+```{r,comment='',warning=FALSE}
+m<-summary(regresion)
+m$r.squared
+```
+
+c) Si la casa de Rick tiene 18.0 (cientos de pies) pies cuadrados, un piso, 1.5 baños y 6 años de antiguedad, el precio de venta que puede esperar rick es de:
+$$X_1 = 18, X_2 = 1, X_3= 1.5, X_4=6 \quad \hat{Y} = -1.3812 + 2.8524(18) - 3.7134(1) + 30.2850(1.5) + 1.1721(6)= 98.70$$
+98.70\$ (en miles)
 
 \newpage
 
@@ -160,6 +506,83 @@ b) ¿Qué porcentaje de variación total de la cantidad de acero vendido (en mil
 
 c) ¿Cuántas toneladas de acero deberá esperar Allegheny vender en un año en el que la tasa de inflación es 7.1, los fabricantes de automóviles norteamericanos planean producir 6.0 millones de autos y la cota promedio del acero importado por tonelada es \$3.50?
 
+\textbf{\underline{Solución:}}
+
+a) Determinemos la ecuación de regresión múltiple $Y = a + b_1 X_1 + b_2 X_2 + b_3 X_3$ mediante **R**, donde:
+
+$Y$ = Variable dependiente (Venta de acero).
+
+$a$ = Ordenada $Y$.
+
+$X_1$, $X_2$ y $X_3$ = Variables indpendientes (Inflación, importaciones y automóviles).
+
+$b_1$, $b_2$ y $b_3$ = Pendientes asociadas a $X_1$, $X_2$ y $X_3$ respectivamente.
+
+Usando el comando `lm()` en **R** tenemos:
+
+```{r,comment='',warning=FALSE}
+Ventas<-c(4.2,3.1,4,4.7,4.3,3.7,3.5)
+Inflacion<-c(3.1,3.9,7.5,10.7,15.5,13,11)
+Importaciones<-c(3.1,5,2.2,4.5,4.35,2.6,3.05)
+Automoviles<-c(6.2,5.1,5.7,7.1,6.5,6.1,5.9)
+
+Datos<-data.frame(Ventas,Inflacion,Importaciones,Automoviles)
+
+regresion<-lm(Ventas~Inflacion+Importaciones+Automoviles,Datos)
+
+coef(regresion)
+```
+
+Por lo que la ecuación de regresión está dada por:
+
+$$Y = -1.0490 -0.02822X_1 - 0.0508X_2 + 0.8903X_3$$
+
+b) Para calcular que porcentaje de la variación total de la cantidad de acero vendido por Allegheny es explicada por esta ecuación usamos el coeficiente de determinación $r^2$ que está dado por la siguiente fórmula:
+
+$$r^2 = 1 - \displaystyle \frac{\displaystyle \sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2}{\displaystyle \sum_{i=1}^{n}(Y_i - \overline{Y})^2}$$
+donde,
+
+$Y_i$ = Valores de la variable dependiente.
+
+$\hat{Y}_i$ = Valores estimados a partir de la ecuación de regresión.
+
+$\overline{Y}$ = Media de los valores de la variable dependiente.
+
+Sustituyendo los valores correspondientes luego de evaluar los valores en la ecuación de regresión tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} r^2 &= 1 - \displaystyle \frac{\displaystyle \sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2}{\displaystyle \sum_{i=1}^{n}(Y_i - \overline{Y})^2}\\
+\vspace{3mm} &= 1 - \displaystyle \frac{0.2306}{1.7342}\\
+\vspace{3mm} &= 1 - 0.1329 \\
+\vspace{3mm} &= 0.8671
+\end{array}
+$$
+
+Por lo que $r^2$=0.8671, esto nos indica que el 86.71\% de la variación en Y (cantidad de acero vendido) es explicada por la ecuación de regresión.
+
+\textbf{\underline{En R:}}
+
+El cálculo para estimar $\hat{Y}_i$ mediante R está dado por:
+
+```{r,comment='',warning=FALSE}
+y_bar<--1.0490 -0.02822*Inflacion - 0.0508*Importaciones + 0.8903*Automoviles
+y_bar
+```
+
+Con el comando `summary()` en R obtenemos el coeficiente de determinación, tenemos:
+
+```{r,comment='',warning=FALSE}
+m<-summary(regresion)
+m$r.squared
+```
+
+\newpage
+
+c) Si la tasa de inflación fue de 7.1, los fabricantes de autos planean producir 6.0 millones de automóviles y la cota promedio del acero importado por tonelada es 3.50\$, entonces Allegheny esperará vender:
+$$X_1 = 7.1, X_2 = 3.5, X_3=6 \quad \hat{Y} = -1.0490 - 0.02822(7.1) - 0.0508(3.5) + 0.8903(6) = 3.9146$$
+3.9146 millones de toneladas de acero.
+
 \newpage
 
 # Ejercicio 6
@@ -179,16 +602,12 @@ a) Use la siguiente tabla para determinar la regresión que mejor se ajuste a VE
 
 La ecuación de regresión es
 
-VENTAS 0 -26233 + 9093 TIEMPO
+VENTAS = -26233 + 9093 TIEMPO
 
-| Tiempo | Ventas (en miles de dólares) | Tiempo | Ventas (en miles de dólares) |
-|:------:|:----------------------------:|:------:|:----------------------------:|
-| 1 | 4,618 | 7 | 19,746 |
-| 2 | 3,741 | 8 | 34,215 |
-| 3 | 5,836 | 9 | 50,306 |
-| 4 | 4,367 | 10 | 65,717 |
-| 5 | 5,118 | 11 | 86,434 |
-| 6 | 8,887 | 12 | 105,464 |
+| Pronosticador | Coef | DesvEst | Cociente-t | p |
+|---------------|:-------:|:-------:|:----------:|:-----:|
+| Constante | -26233 | 9551 | -2.75 | 0.021 |
+| TIEMPO | 9093 | 1298 | 7.01 | 0.000 |
 
 s = 15518       R-sq = 83.1%
 
@@ -238,6 +657,24 @@ s = 2631        R-sq = 99,6%
 | 11 | 86434 | 84836 | 1598 |
 | 12 | 105464 | 107186 | -1722 |
 
+\textbf{\underline{Solución:}}
+
+a) Según la tabla mostrada, observamos que la ecuación de regresión que mejor se ajusta a los datos es:
+
+$$Y = -26233 + 9093X_1$$
+donde,
+
+$Y$ = Variable dependiente (Ventas).
+
+$X_1$ = Variable independiente (Tiempo).
+
+b) A pesar de obtener un coeficiente de determinación $R^2$ relativamente alto (83.1\%), se obtiene un valor alto en la desviación estándar de los residuales, indicando una alta dispersión en los datos con respecto a la ecuación de regresión obtenida, también podemos observar un cierto patrón en los residuales de positivo a negativo y nuevamente a positivo, esto sugiere que se podría buscar otro modelo de regresión que se ajuste mejor a los datos.
+
+c) Según la tabla mostrada, el modelo cuadrático dado por:
+
+$$Y = 13981 -8142X_1 + 1326X^2_1$$
+es mejor al modelo anterior, pues se aumenta el coeficiente de determinacion $R^2$ a un 99.6\%, disminuye significativamente el valor de la desviación estándar de los residuales y no se observa un patrón en los residuos.
+
 \newpage
 
 # Ejercicio 7
@@ -250,7 +687,7 @@ $$\text{GÉNERO}=\left \{ \begin{matrix} 1 & \text{si SEXO = M (masculino)}
 | Consumo | Ingreso (dólares) | Sexo | Género |
 |:-------:|:-----------------:|:----:|:------:|
 | 37,070 | 45,100 | M | 1 |
-| 22,,700 | 28,070 | M | 1 |
+| 22,700 | 28,070 | M | 1 |
 | 24,260 | 26,080 | F | 0 |
 | 30,420 | 35,000 | M | 1 |
 | 17,360 | 18,860 | F | 0 |
@@ -274,9 +711,147 @@ CONSUMO = 2036  + 0.818 INGRESO - 1664 GÉNERO
 | INGRESO | 0.81831 | 0.04940 | 16.56 | 0.000 |
 | GÉNERO | -1664.2 | 916.9 | -1.82 | 0.103 |
 
+s = 1015        R-sq = 98.4%
+
 b) Si el ingreso disponible se mantiene constante, ¿existe una diferencia significativa en el consumo entre las casas cuya cabeza es masculina comparada con aquéllas cuya cabeza es femenina? Establezca las hipótesis explícitas, pruébelas para un nivel de 0.10 y establezca una conclusión explícita.
 
 c) Proporcione un intervalo de confianza para la estimación del 95% para el consumo en una casa con ingreso disponible de \$40,000 cuya cabeza de familia es masculina.
+
+\textbf{\underline{Solución:}}
+
+a) Según la tabla mostrada, observamos que la ecuación de regresión que mejor se ajusta a los datos es:
+
+$$Y = 2036 + 0.818X_1 -1664X_2 $$
+donde,
+
+$Y$ = Variable dependiente (Consumo).
+
+$X_1$ y $X_2$ = Variable independiente (Ingreso y Género).
+
+b) Probemos si existe una diferencia significativa en el consumo entre las casas cuya cabeza es masculina comparada con aquéllas cuya cabeza es femenina, para esto establecemos la siguiente prueba de hipótesis para el coeficiente que acompaña a la variable GENERO. Implantemos la siguiente hipótesis:
+
+$$H_o: B_2=0$$
+$$H_a: B_2 \neq 0$$
+donde $H_o$ es la hipótesis nula y $H_a$ es la hipótesis alternativa. El estadístico de prueba (de dos colas) viene dado por:
+
+$$t = \displaystyle \frac{b_2 - B_{2H_o}}{s_{b_2}}$$
+donde,
+
+$b_2$ = pendiente de la variable independiente $X_2$.
+
+$B_{2H_o}$ = pendiente hipótetica.
+
+$s_{b_2}$ = error estándar del coeficiente de regresión $b_2$.
+
+Dada la tabla del inciso a), observamos que $s_{b_2}$ = 916.9, sustituyendo los respectivos valores en el estadístico y sabiendo que $t_{\displaystyle \frac{\alpha}{2}}$ = $t_{0.05}$ = $\pm$ 1.833 (con $n-k-1$ grados de libertad) tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} t &= \displaystyle \frac{1664-0}{916.9}\\
+\vspace{3mm} &= 1.8148
+\end{array}
+$$
+como el valor crítico es de 1.833, tenemos que 1.8148<1.833 por lo que no hay suficiente evidencia estadística para rechazar la hipótesis nula, por lo que el género de la cabeza de familia no es un factor significativo para explicar el consumo.
+
+\textbf{\underline{En R:}}
+
+El estadístico de prueba viene dado por:
+
+```{r,comment='',warning=FALSE}
+b2<-1664
+B2<-0
+sb2<-916.9
+T<-(b2-B2)/sb2
+T
+```
+
+El valor crítico de calcula como sigue:
+
+```{r,comment='',warning=FALSE}
+alpha<-0.1
+n<-12
+k<-2
+t_alpha<-qt(p=1-(alpha/2),df=n-k-1)
+t_alpha
+```
+
+Ésta es una prueba de dos colas por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dt(x,df=n-k-1)
+cuantil1<- qt(p=1-(alpha/2),df=n-k-1)
+cuantil2<- qt(p=alpha/2,df=n-k-1)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=n-k-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dt(cuantil2,df=n-k-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T, y =0 , xend = T, 
+                       yend = dt(T,df=n-k-1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T-0.05, y =-0.02, label ="T", parse = TRUE)+
+        annotate("text", x=cuantil1+0.25, y =-0.02, label="'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="-'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.6, y=0.1, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.6, y=0.1, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de dos colas Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+c) Si el ingreso disponible es de 40,000\$ y el sexo de la cabeza de la familia es masculina, los gastos de consumo será de:
+
+$$X_1 = 40,000, X_2 = 1 \quad \hat{Y} =2036 + 0.818(40,000) - 1664(1) = 33092$$
+33,092\$. El intervalo de confianza al 95\% para esta predicción es de:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \hat{Y} &\pm t_{\displaystyle \frac{\alpha}{2}} \times s_e \\
+\vspace{3mm} \hat{Y} &\pm t_{0.025} \times s_e \\
+\vspace{3mm} 33,092 &\pm 2.262 \times (1015) \\
+\vspace{3mm} 33,092 &\pm 2295.93 \\
+\end{array}
+$$
+donde $t_{\displaystyle \frac{\alpha}{2}}$ es el factor de confiabilidad con $n-k-1$ grados de libertad y $s_e$ el error estándar de la estimación que se muestra en el inciso a).
+
+\textbf{\underline{En R:}}
+
+```{r,comment='',warning=FALSE}
+X1<-40000
+X2<-1
+y_bar<-2036 + 0.818*X1 - 1664*X2
+y_bar
+```
+
+```{r,comment='',warning=FALSE}
+alpha<-0.05
+n<-12
+k<-2
+t_alpha<-qt(1-alpha/2,df=n-k-1)
+t_alpha
+```
 
 \newpage
 
@@ -285,7 +860,7 @@ c) Proporcione un intervalo de confianza para la estimación del 95% para el con
 Los siguientes datos corresponden a las ventas brutas (VENTAS) de la pizzería local, el dinero que gastan en promociones (PROMO) y el tipo de promoción que incluye radio, peródicos y volantes.  Suponga que la pizzería usa un solo tipo de promoción en una semana dada.  Las variables TIPO1 y TIPO2 se han codificado como sigue:
 
 \begin{center}TIPO1 = 1 si se usó radio, 0 de otra manera\end{center}
-\begin{center}TIPO2 = 2 si se usaron volantes, 0 de otra manera\end{center}
+\begin{center}TIPO2 = 1 si se usaron volantes, 0 de otra manera\end{center}
 
 (cuando las dos, TIPO1 y TIPO2, son 0, el presupuestos de la promoción de esa semana se gastó en anuncios de periódico).
 
@@ -314,15 +889,285 @@ d) Si PROMO se mantiene constante, ¿existe una diferencia significativa entre l
 
 e) Calcule un intervalo de confianza del 90% para VENTAS en una semana en la que se gastaron \$800 usando anuncios de radio como el único tipo de promoción.
 
+\textbf{\underline{Solución:}}
+
+a) Encontremos la ecuación de regresión múltiple $Y = a + b_1 X_1 + b_2 X_2 + b_3 X_3$ mediante **R**, donde:
+
+$Y$ = Variable dependiente (Ventas).
+
+$a$ = Ordenada $Y$.
+
+$X_1$, $X_2$ y $X_3$ = Variables indpendientes (Promociones, Tipo1 (Radio) y Tipo2 (Volantes)).
+
+$b_1$, $b_2$ y $b_3$ = Pendientes asociadas a $X_1$, $X_2$ y $X_3$ respectivamente.
+
+Usando el comando `lm()` en **R** tenemos:
+
+```{r,comment='',warning=FALSE}
+Ventas<-c(12.1,19.1,26.9,24.8,37.1,39.4,32.5,28.9,28.8,34.7,38.4,26.3)
+Promociones<-c(3.8,6.4,7.9,8.7,12.4,15.9,11.3,9.4,8.6,12.7,14.3,6.7)
+Tipo1<-c(0,0,0,1,1,0,0,0,1,0,0,1)
+Tipo2<-c(1,1,0,0,0,1,0,0,0,1,0,0)
+
+Datos<-data.frame(Ventas,Promociones,Tipo1,Tipo2)
+
+regresion<-lm(Ventas~Promociones+Tipo1+Tipo2,Datos)
+
+coef(regresion)
+```
+
+b) La ecuación de regresión está dada por:
+
+$$Y=8.2470+2.1844X_1+1.1246X_2-3.110X_3$$
+
+c) Probemos si existe una diferencia significativa entre el radio y el periódico como tipos de promociones, para esto establecemos la siguiente prueba de hipótesis para el coeficiente que acompaña a la variable Tipo1. Implantemos la siguiente hipótesis:
+
+$$H_o: B_2=0$$
+$$H_a: B_2 \neq 0$$
+donde $H_o$ es la hipótesis nula y $H_a$ es la hipótesis alternativa. El estadístico de prueba (de dos colas) viene dado por:
+
+$$t = \displaystyle \frac{b_2 - B_{2H_o}}{s_{b_2}}$$
+donde,
+
+$b_2$ = pendiente de la variable independiente $X_2$.
+
+$B_{2H_o}$ = pendiente hipótetica.
+
+$s_{b_2}$ = error estándar del coeficiente de regresión $b_2$.
+
+Usamos el comando `summary()` para hallar $s_{b_2}$, tenemos:
+
+```{r,comment='',warning=FALSE}
+m<-summary(regresion)
+m$coefficients
+```
+
+Así $s_{b_2}$=1.3372, sustituyendo los respectivos valores en el estadístico y sabiendo que $t_{\displaystyle \frac{\alpha}{2}}$ = $t_{0.025}$ = $\pm$ 2.306 (con $n-k-1$ grados de libertad) nos queda:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} t &= \displaystyle \frac{1.1246-0}{1.3372}\\
+\vspace{3mm} &= 0.8410
+\end{array}
+$$
+como el valor crítico es de 2.306, tenemos que 0.8410<2.306 por lo que no hay suficiente evidencia estadística para rechazar la hipótesis nula, por lo que no existe una diferencia significativa entre el radio y el periódico como tipos de promociones.
+
+\textbf{\underline{En R:}}
+
+El estadístico de prueba viene dado por:
+
+```{r,comment='',warning=FALSE}
+b2<-1.1246
+B2<-0
+sb2<-1.3372
+T<-(b2-B2)/sb2
+T
+```
+
+El valor crítico de calcula como sigue:
+
+```{r,comment='',warning=FALSE}
+alpha<-0.05
+n<-12
+k<-3
+t_alpha<-qt(p=1-(alpha/2),df=n-k-1)
+t_alpha
+```
+
+Ésta es una prueba de dos colas por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dt(x,df=n-k-1)
+cuantil1<- qt(p=1-(alpha/2),df=n-k-1)
+cuantil2<- qt(p=alpha/2,df=n-k-1)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=n-k-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dt(cuantil2,df=n-k-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T, y =0 , xend = T, 
+                       yend = dt(T,df=n-k-1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T-0.05, y =-0.02, label ="T", parse = TRUE)+
+        annotate("text", x=cuantil1+0.25, y =-0.02, label="'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="-'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.6, y=0.1, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.6, y=0.1, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de dos colas Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+d) Veamos si existe una diferencia significativa entre los volantes y el periódico como tipos de promociones, para esto establecemos la siguiente prueba de hipótesis para el coeficiente que acompaña a la variable Tipo2. Implantemos la siguiente hipótesis:
+
+$$H_o: B_3=0$$
+$$H_a: B_3 \neq 0$$
+donde $H_o$ es la hipótesis nula y $H_a$ es la hipótesis alternativa. El estadístico de prueba (de dos colas) viene dado por:
+
+$$t = \displaystyle \frac{b_3 - B_{3H_o}}{s_{b_3}}$$
+donde,
+
+$b_3$ = pendiente de la variable independiente $X_3$.
+
+$B_{3H_o}$ = pendiente hipótetica.
+
+$s_{b_3}$ = error estándar del coeficiente de regresión $b_3$.
+
+Usamos el comando `summary()` para hallar $s_{b_3}$, tenemos:
+
+```{r,comment='',warning=FALSE}
+m<-summary(regresion)
+m$coefficients
+```
+
+Así $s_{b_3}$=1.3217, sustituyendo los respectivos valores en el estadístico y sabiendo que $t_{\displaystyle \frac{\alpha}{2}}$ = $t_{0.025}$ = $\pm$ 2.306 (con $n-k-1$ grados de libertad) nos queda:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} t &= \displaystyle \frac{-3.1109-0}{1.3217}\\
+\vspace{3mm} &= -2.353
+\end{array}
+$$
+como el valor crítico es de -2.306, tenemos que -2.353<-2.306 por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula, por lo que si existe una diferencia significativa entre los volantes y el periódico como tipos de promociones.
+
+\textbf{\underline{En R:}}
+
+El estadístico de prueba viene dado por:
+
+```{r,comment='',warning=FALSE}
+b3<--3.1109
+B3<-0
+sb3<-1.3217
+T<-(b3-B3)/sb3
+T
+```
+
+El valor crítico de calcula como sigue:
+
+```{r,comment='',warning=FALSE}
+alpha<-0.05
+n<-12
+k<-3
+t_alpha<-qt(p=alpha/2,df=n-k-1)
+t_alpha
+```
+
+Ésta es una prueba de dos colas por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dt(x,df=n-k-1)
+cuantil1<- qt(p=1-(alpha/2),df=n-k-1)
+cuantil2<- qt(p=alpha/2,df=n-k-1)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=n-k-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dt(cuantil2,df=n-k-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T, y =0 , xend = T, 
+                       yend = dt(T,df=n-k-1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T-0.05, y =-0.02, label ="T", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2+0.3, y =-0.02, label="-'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.6, y=0.075, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.6, y=0.075, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de dos colas Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+e) Si el gasto de promociones fue de 800\$ usando anuncios de radio como el único tipo de promoción, las ventas brutas será de:
+
+$$X_1 = 8, X_2 = 1, X_3=0 \quad \hat{Y} =8.2470+2.1844(8)+1.1246(1)-3.110(0)=26.84$$
+26.84\$ (en cientos de \$). El intervalo de confianza al 90\% para esta predicción es de:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \hat{Y} &\pm t_{\displaystyle \frac{\alpha}{2}} \times s_e \\
+\vspace{3mm} \hat{Y} &\pm t_{0.05} \times s_e \\
+\vspace{3mm} 26.84 &\pm 1.860 \times (1.855) \\
+\vspace{3mm} 26.84 &\pm 3.4503 \\
+\end{array}
+$$
+donde $t_{\displaystyle \frac{\alpha}{2}}$ es el factor de confiabilidad con $n-k-1$ grados de libertad y $s_e$ el error estándar de la estimación que se calcula como sigue:
+
+```{r,comment='',warning=FALSE}
+m$sigma
+```
+
+
+\textbf{\underline{En R:}}
+
+```{r,comment='',warning=FALSE}
+X1<-8
+X2<-1
+X3<-0
+y_bar<-8.2470+2.1844*X1+1.1246*X2-3.110*X3
+y_bar
+```
+
+```{r,comment='',warning=FALSE}
+alpha<-0.1
+n<-12
+k<-3
+t_alpha<-qt(1-alpha/2,df=n-k-1)
+t_alpha
+```
+
+
 \newpage
 
 # Ejercicio 9
 
-La venta exitosa es tanto un arte como una ciencia, pero muchos gerentes de ventas piensan que los atributos personales son importantes para pronosticar el éxito en esa actividad.  Desing Alley es una tienda de diseño de interiores con servicio completo que vende persianas, alfombras y papel tapiz a la medida.  El gerente de la tienda, Dee Dempsey, contrató a una compañía de selección de personal para realizar pruebas de cuatro aptitudes antes de contratar.  Dee recolectó los datos de crecimiento en ventas de 25 agentes que contrató, junto con las calificaciones de las cuatro pruebas de actitud: creatividad, habilidad motriz, pensamiento abstracto y cálculo matemático.  Por medio de una PC, Dee generó la siguiente salida utilizando un programa estadístico:
+La venta exitosa es tanto un arte como una ciencia, pero muchos gerentes de ventas piensan que los atributos personales son importantes para pronosticar el éxito en esa actividad.  Desing Alley es una tienda de diseño de interiores con servicio completo que vende persianas, alfombras y papel tapiz a la medida.  El gerente de la tienda, Dee Dempsey, contrató a una compañía de selección de personal para realizar pruebas de cuatro aptitudes antes de contratar.  Dee recolectó los datos de crecimiento en ventas de 25 agentes que contrató, junto con las calificaciones de las cuatro pruebas de aptitud: creatividad, habilidad motriz, pensamiento abstracto y cálculo matemático.  Por medio de una PC, Dee generó la siguiente salida utilizando un programa estadístico:
 
 La ecuación de regresión es:
 
-CRECIMIENTO = 70.1 + 0.422 CREAT + 0.271 MOTR + 0.745 ABST = 0.420 MATE
+CRECIMIENTO = 70.1 + 0.422 CREAT + 0.271 MOTR + 0.745 ABST + 0.420 MATE
 
 | Pronosticador | Coef | DesvEst | Cociente-t | p |
 |---------------|:-------:|:-------:|:----------:|------:|
@@ -331,6 +1176,8 @@ CRECIMIENTO = 70.1 + 0.422 CREAT + 0.271 MOTR + 0.745 ABST = 0.420 MATE
 | MOTR | 0.27140 | 0.21840 | 1.24 | 0.228 |
 | ABST | 0.74504 | 0.28982 | 2.57 | 0.018 |
 | MATE | 0.41955 | 0.06871 | 6.11 | 0.000 |
+
+s = 2.048        R-sq = 92.6%
 
 Análisis de varianza
 
@@ -349,6 +1196,339 @@ c) Para un nivel de significancia de 0.05, ¿cuáles de las pruebas de aptitud s
 d) ¿Es significativo el modelo como un todo?
 
 e) Jay es un nuevo aspirante; tiene las siguientes calificaciones: CREAT = 12, MOTR = 14, ABST = 18 y MATE = 30. ¿Qué crecimiento en ventas pronostica el modelo para ese candidato?
+
+\textbf{\underline{Solución:}}
+
+a) Según la tabla mostrada, observamos que la ecuación de regresión que mejor se ajusta a los datos es:
+
+$$Y = 70.1 + 0.422X_1 + 0.271X_2 + 0.745X_3 + 0.420X_4$$
+donde las variables independientes $X_1,X_2, X_3$ y $X_4$ están definidas por:
+
+$X_1$ = creatividad.
+
+$X_2$ = habilidad motriz.
+
+$X_3$ = pensamiento abstracto.
+
+$X_4$ = cálculo matemático.
+
+y la variable dependiente $Y$ está definida por:
+
+$Y$ = crecimiento
+
+b) El 92.6\% de la variación en el crecimiento en ventas es explicada por la ecuación de regresión, es decir, las pruebas de aptitud explican un 92.6\% de la variación total del crecimiento.
+
+c) Veamos cuáles de las pruebas de aptitud son variables explicativas significativas para el crecimiento de ventas, para esto establecemos las siguientes hipótesis para las cuatro pendientes que acompañan a estas cuatro variables, tenemos:
+
+$$H_o: B_i=0$$
+$$H_a: B_i \neq 0$$
+donde $H_o$ es la hipótesis nula y $H_a$ es la hipótesis alternativa con $i$=1,2,3,4. El estadístico de prueba (de dos colas) viene dado por:
+
+$$t_i = \displaystyle \frac{b_i - B_{iH_o}}{s_{b_i}}$$
+donde,
+
+$b_i$ = pendiente de la variable independiente $X_i$.
+
+$B_{iH_o}$ = pendiente hipótetica.
+
+$s_{b_i}$ = error estándar del coeficiente de regresión $b_i$.
+
+sustituyendo los respectivos valores en los estadísticos y sabiendo que $t_{\displaystyle \frac{\alpha}{2}}$ = $t_{0.025}$ = $\pm$ 2.086 (con $n-k-1$ grados de libertad) nos queda,
+
+Para $t_1$:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} t_1 &= \displaystyle \frac{0.4216-0}{0.1719}\\
+\vspace{3mm} &= 2.4525
+\end{array}
+$$
+
+como el valor crítico es de 2.086, tenemos que 2.4525>2.086 por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula, por lo que la variable que corresponde a la creatividad en la prueba de aptitud es una variable significativamente explicativa.
+
+\textbf{\underline{En R:}}
+
+El valor crítico de calcula como sigue:
+
+```{r,comment='',warning=FALSE}
+alpha<-0.05
+n<-25
+k<-4
+t_alpha<-qt(p=1-(alpha/2),df=n-k-1)
+t_alpha
+```
+
+El estadístico de prueba $t_1$ viene dado por:
+
+```{r,comment='',warning=FALSE}
+b1<-0.4216
+B1<-0
+sb1<-0.1719
+T1<-(b1-B1)/sb1
+T1
+```
+
+Ésta es una prueba de dos colas por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dt(x,df=n-k-1)
+cuantil1<- qt(p=1-(alpha/2),df=n-k-1)
+cuantil2<- qt(p=alpha/2,df=n-k-1)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=n-k-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dt(cuantil2,df=n-k-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T1, y =0 , xend = T1, 
+                       yend = dt(T1,df=n-k-1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T1+0.05, y =-0.02, label ="'T'[1]", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="-'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.6, y=0.075, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.6, y=0.075, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de dos colas Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+Para $t_2$:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} t_2 &= \displaystyle \frac{0.2714-0}{0.2184}\\
+\vspace{3mm} &= 1.2426
+\end{array}
+$$
+
+como el valor crítico es de 2.086, tenemos que 1.2426<2.086 por lo que no hay suficiente evidencia estadística para rechazar la hipótesis nula, por lo que la variable que corresponde a la habilidad motriz en la prueba de aptitud no es una variable significativamente explicativa.
+
+\textbf{\underline{En R:}}
+
+El estadístico de prueba $t_2$ viene dado por:
+
+```{r,comment='',warning=FALSE}
+b2<-0.2714
+B2<-0
+sb2<-0.2184
+T2<-(b2-B2)/sb2
+T2
+```
+
+Ésta es una prueba de dos colas por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dt(x,df=n-k-1)
+cuantil1<- qt(p=1-(alpha/2),df=n-k-1)
+cuantil2<- qt(p=alpha/2,df=n-k-1)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=n-k-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dt(cuantil2,df=n-k-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T2, y =0 , xend = T2, 
+                       yend = dt(T2,df=n-k-1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T2+0.05, y =-0.02, label ="'T'[2]", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="-'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.6, y=0.075, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.6, y=0.075, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de dos colas Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+Para $t_3$:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} t_3 &= \displaystyle \frac{0.745-0}{0.2898}\\
+\vspace{3mm} &= 2.5707
+\end{array}
+$$
+
+como el valor crítico es de 2.086, tenemos que 2.5707>2.086 por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula, por lo que la variable que corresponde al pensamiento abstracto en la prueba de aptitud es una variable significativamente explicativa.
+
+\textbf{\underline{En R:}}
+
+El estadístico de prueba $t_3$ viene dado por:
+
+```{r,comment='',warning=FALSE}
+b3<-0.745
+B3<-0
+sb3<-0.2898
+T3<-(b3-B3)/sb3
+T3
+```
+
+
+Ésta es una prueba de dos colas por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-4,4,0.01)
+y<-dt(x,df=n-k-1)
+cuantil1<- qt(p=1-(alpha/2),df=n-k-1)
+cuantil2<- qt(p=alpha/2,df=n-k-1)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=n-k-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dt(cuantil2,df=n-k-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T3, y =0 , xend = T3, 
+                       yend = dt(T3,df=n-k-1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T3+0.05, y =-0.02, label ="'T'[3]", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="-'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.6, y=0.075, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-0.6, y=0.075, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-4,4)+
+      labs( title = "Prueba de dos colas Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+Para $t_4$:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} t_4 &= \displaystyle \frac{0.4195-0}{0.0687}\\
+\vspace{3mm} &= 6.1062
+\end{array}
+$$
+
+como el valor crítico es de 2.086, tenemos que 6.1062>2.086 por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula, por lo que la variable que corresponde a el cálculo matemático en la prueba de aptitud es una variable significativamente explicativa.
+
+\textbf{\underline{En R:}}
+
+El estadístico de prueba $t_4$ viene dado por:
+
+```{r,comment='',warning=FALSE}
+b4<-0.4195
+B4<-0
+sb4<-0.0687
+T4<-(b4-B4)/sb4
+T4
+```
+
+
+Ésta es una prueba de dos colas por lo tanto el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,comment='',warning=FALSE}
+x<-seq(-7,7,0.01)
+y<-dt(x,df=n-k-1)
+cuantil1<- qt(p=1-(alpha/2),df=n-k-1)
+cuantil2<- qt(p=alpha/2,df=n-k-1)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dt(cuantil1,df=n-k-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
+                       yend = dt(cuantil2,df=n-k-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = T4, y =0 , xend = T4, 
+                       yend = dt(T4,df=n-k-1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=T4+0.05, y =-0.02, label ="'T'[4]", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.02, label="'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2, y =-0.02, label="-'t'[alpha/2]",
+                 parse = TRUE)+
+        annotate("text", x=0, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+1, y=0.075, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil2-1, y=0.075, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.41)+
+      xlim(-7,7)+
+      labs( title = "Prueba de dos colas Distribución t-Student",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+d) Como el valor de la proabilidad en la tabla de ANOVA es de p=0.00, esto nos indica que el modelo es significativo como un todo, es decir, que las variables que explican el modelo son significativamente explicativas en conjunto.
+
+e) Si Jay obtuvo las calificaciones en la prueba de aptitud de creatividad = 12, habilidad motriz = 14, pensamiento abstracto = 18 y cálculo matemático = 30, entonces el modelo pronosticará un crecimiento en ventas para este candidato de:
+
+$$X_1=12, X_2=14, X_3=18, X_4=30, \quad Y = 70.1 + 0.422(12) + 0.271(14) + 0.745(18) + 0.420(30)=104.96$$
+104.96\$.
 
 \newpage
 
@@ -371,6 +1551,83 @@ a) Desarrolle una ecuación de estimación que utilice las variables edad e ingr
 
 b) ¿Cuántos cheques al mes se esperaría de un cliente de 35 años de edad con un ingreso anual de \$22,500?
 
+\textbf{\underline{Solución:}}
+
+a) Calculemos la ecuación de regresión múltiple $Y = a + b_1 X_1 + b_2 X_2$, donde:
+
+$Y$ = Variable dependiente.
+
+$a$ = Ordenada $Y$.
+
+$X_1$ y $X_2$ = Variables indpendientes.
+
+$b_1$ y $b_2$ = Pendientes asociadas a $X_1$ y $X_2$ respectivamente.
+
+Para calcular los coeficientes $a, b_1$ y $b_2$ de la ecuación de mínimos cuadrados múltiple usamos el siguiente sistema de ecuaciones:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} y_i &= na + b_1 \displaystyle \sum_{i=1}^{n} x_{1i} +  b_2 \sum_{i=1}^{n} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{1i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{1i} + b_1 \sum_{i=1}^{n} x^2_{1i} +  b_2 \sum_{i=1}^{n} x_{1i} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{2i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{2i} + b_1 \sum_{i=1}^{n} x_{1i} x_{2i} +  b_2 \sum_{i=1}^{n} x^2_{2i} \\
+\end{array}
+$$
+donde,
+
+$y_i$ = Valores de la variable dependiente (Cheques).
+
+$x_{1i}$ = Valores de la variable independiente (Edad).
+
+$x_{2i}$ = Valores de la variable independiente (Ingreso).
+
+\newpage
+
+Sustituyendo los valores en el sistema de ecuación tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} 200 &= 8a + 303b_1 + 137.4b_2\\
+\vspace{3mm} 7161 &= 303a + 11861b_1 + 4963.8b_2\\
+\vspace{3mm} 4440.4 &= 137.4a + 4963.8b_1 + 2733.3b_2 \\
+\end{array}
+$$
+Resolviendo el sistema de ecuaciones, tenemos que los coeficientes están dados por:
+
+$a$ = -70.6647
+
+$b_1$ = 1.0103
+
+$b_2$ = 3.3420
+
+Así la ecuación de regresión múltiple está dada por:
+
+$$Y = -70.6647 + 1.0103X_1 + 3.3420X_2$$
+
+\textbf{\underline{En R:}}
+
+Usamos el comando `lm()` en R para encontrar la ecuación de regresión múltiple, tenemos:
+
+```{r,comment='',warning=FALSE}
+Cheques<-c(29,42,9,56,2,10,48,4)
+Edad<-c(37,34,48,38,43,25,33,45)
+Ingreso<-c(16.2,25.4,12.4,25,8,18.3,24.2,7.9)
+
+Datos<-data.frame(Cheques,Edad,Ingreso)
+
+regresion<-lm(Cheques~Edad+Ingreso,Datos)
+
+coef(regresion)
+```
+
+Por lo que la ecuación de regresión está dada por:
+
+$$Y = -70.6647 + 1.0103X_1 + 3.3420X_2$$
+
+b) Si la edad del cliente es de 35 años con un ingreso anual de 22,500\$, se esperaría una cantidad de cheques al mes de:
+
+$$X_1=35, X_2=22.5, \quad \hat{Y} =  -70.6647 + 1.0103(35) + 3.3420(22.5)=39.8908$$
+40 cheques.
+
 \newpage
 
 # Ejercicio 11
@@ -391,6 +1648,83 @@ a) Calcule la ecuación de mínimos cuadrados para predecir el precio a partir d
 | 340 | 761 | 15.88 |
 
 b) Prediga el precio por barril para el siguiente año si las ventas de éste son 980 (fresco) y 360 (para proceso).
+
+\textbf{\underline{Solución:}}
+
+a) Calculemos la ecuación de mínimos cuadrados múltiple $Y = a + b_1 X_1 + b_2 X_2$, donde:
+
+$Y$ = Variable dependiente.
+
+$a$ = Ordenada $Y$.
+
+$X_1$ y $X_2$ = Variables indpendientes.
+
+$b_1$ y $b_2$ = Pendientes asociadas a $X_1$ y $X_2$ respectivamente.
+
+Para calcular los coeficientes $a, b_1$ y $b_2$ de la ecuación de mínimos cuadrados múltiple usamos el siguiente sistema de ecuaciones:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} y_i &= na + b_1 \displaystyle \sum_{i=1}^{n} x_{1i} +  b_2 \sum_{i=1}^{n} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{1i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{1i} + b_1 \sum_{i=1}^{n} x^2_{1i} +  b_2 \sum_{i=1}^{n} x_{1i} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{2i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{2i} + b_1 \sum_{i=1}^{n} x_{1i} x_{2i} +  b_2 \sum_{i=1}^{n} x^2_{2i} \\
+\end{array}
+$$
+donde,
+
+$y_i$ = Valores de la variable dependiente (Precio).
+
+$x_{1i}$ = Valores de la variable independiente (Ventas producto fresco).
+
+$x_{2i}$ = Valores de la variable independiente (Ventas producto para proceso).
+
+\newpage
+
+Sustituyendo los valores en el sistema de ecuación tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} 80.93 &= 6a + 3467b_1 + 2944b_2\\
+\vspace{3mm} 49422.65 &= 3467a + 2361245b_1 + 1587199b_2\\
+\vspace{3mm} 39628.45 &= 2944a + 1587199b_1 + 1951666b_2 \\
+\end{array}
+$$
+Resolviendo el sistema de ecuaciones, tenemos que los coeficientes están dados por:
+
+$a$ = 8.0996
+
+$b_1$ = 0.00794
+
+$b_2$ = 0.001625
+
+Así la ecuación de regresión múltiple está dada por:
+
+$$Y = 8.0996 + 0.00794X_1 + 0.001625X_2$$
+
+\textbf{\underline{En R:}}
+
+Usamos el comando `lm()` en R para encontrar la ecuación de regresión múltiple, tenemos:
+
+```{r,comment='',warning=FALSE}
+Precio<-c(15.5,17.15,11.71,9.79,10.90,15.88)
+Fresco<-c(844,965,470,320,528,340)
+Proceso<-c(256,335,672,60,860,761)
+
+Datos<-data.frame(Precio,Fresco,Proceso)
+
+regresion<-lm(Precio~Fresco+Proceso,Datos)
+
+coef(regresion)
+```
+
+Por lo que la ecuación de regresión está dada por:
+
+$$Y = 8.0996 + 0.00794X_1 + 0.001625X_2$$
+
+b) Si las ventas del número de barriles son de 980 (producto fresco) y 360 (producto para procesar), el precio por barril para el siguiente año será de:
+
+$$X_1=980, X_2=360, \quad \hat{Y} =  8.0996 + 0.00794(980) + 0.001625(360) = 16.4658$$
+16.4658\$ por barril.
 
 \newpage
 
@@ -416,11 +1750,169 @@ b) Desarrolle una columna de ingreso promedio por empleado.  Encuentre la recta 
 | 1993 | 264 | 100 | 9,239 | 50,600 |
 | 1994 | 340 | 103 | 12,477 | 67,300 |
 
+\textbf{\underline{Solución:}}
+
+a) Calculemos la ecuación de regresión múltiple que describa el ingreso total como función del número de tiendas y el tamaño promedio de la tienda, calculemos $Y = a + b_1 X_1 + b_2 X_2$, donde:
+
+$Y$ = Variable dependiente.
+
+$a$ = Ordenada $Y$.
+
+$X_1$ y $X_2$ = Variables indpendientes.
+
+$b_1$ y $b_2$ = Pendientes asociadas a $X_1$ y $X_2$ respectivamente.
+
+Para calcular los coeficientes $a, b_1$ y $b_2$ de la ecuación de regresión múltiple usamos el siguiente sistema de ecuaciones:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} y_i &= na + b_1 \displaystyle \sum_{i=1}^{n} x_{1i} +  b_2 \sum_{i=1}^{n} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{1i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{1i} + b_1 \sum_{i=1}^{n} x^2_{1i} +  b_2 \sum_{i=1}^{n} x_{1i} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{2i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{2i} + b_1 \sum_{i=1}^{n} x_{1i} x_{2i} +  b_2 \sum_{i=1}^{n} x^2_{2i} \\
+\end{array}
+$$
+donde,
+
+$y_i$ = Valores de la variable dependiente (Ingreso total).
+
+$x_{1i}$ = Valores de la variable independiente (Número de tiendas).
+
+$x_{2i}$ = Valores de la variable independiente (Tamaño promedio de tienda).
+
+Sustituyendo los valores en el sistema de ecuación tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} 46162 &= 11a + 1567b_1 +981 b_2\\
+\vspace{3mm} 10392814 &= 1567a + 318219b_1 + 148239b_2\\
+\vspace{3mm} 4451868 &= 981a + 148239b_1 + 88295b_2 \\
+\end{array}
+$$
+Resolviendo el sistema de ecuaciones, tenemos que los coeficientes están dados por:
+
+$a$ = 8085.6084
+
+$b_1$ = 51.42
+
+$b_2$ = -125.744
+
+Así la ecuación de regresión múltiple está dada por:
+
+$$Y = 8085.6084 + 51.42X_1 - 125.744X_2$$
+
+El factor que parece ser más importante para determinar el crecimiento en los ingresos son el número de tiendas, pues esta variable posee el coeficiente mas alto entre el número de tiendas y el tamaño de las tiendas, por lo que esta ecuación le recomendaría a un consultor llevar a cabo una estrategia de expansión enfocada a una dispersión geográfica más amplia aumentando así el número de tiendas de esta cadena de materiales para mejorar las casas.
+
+\textbf{\underline{En R:}}
+
+Usamos el comando `lm()` en R para encontrar la ecuación de regresión múltiple, tenemos:
+
+```{r,comment='',warning=FALSE}
+Ingreso<-c(433,701,1001,1454,2000,2758,3815,5136,7148,9239,12477)
+Tiendas<-c(31,50,60,75,96,118,145,174,214,264,340)
+Tamaño<-c(77,80,80,82,86,88,92,95,98,100,103)
+
+Datos<-data.frame(Ingreso,Tiendas,Tamaño)
+
+regresion<-lm(Ingreso~Tiendas+Tamaño,Datos)
+
+coef(regresion)
+```
+
+Por lo que la ecuación de regresión está dada por:
+
+$$Y = 8085.6084 + 51.42X_1 - 125.744X_2$$
+
+b) Desarrollando la nueva columna de ingreso promedio por empleado, codificando los años como 1,2,3,.. y manteniendo la columna del tamaño promedio de la tienda tenemos la siguiente tabla:
+
+| Año | Tamaño promedio de tienda | Ingreso promedio por empleado |
+|:-----:|:---------------------------:|:-------------------------------:|
+| 1 | 77 | 0.1083 |
+| 2 | 80 | 0.1298 |
+| 3 | 80 | 0.1517 |
+| 4 | 82 | 0.1598 |
+| 5 | 86 | 0.1538 |
+| 6 | 88 | 0.1576 |
+| 7 | 92 | 0.1774 |
+| 8 | 95 | 0.1834 |
+| 9 | 98 | 0.1838 |
+| 10 | 100 | 0.1826 |
+| 11 | 103 | 0.1854 |
+
+encontremos la ecuación de regresión múltiple que mejor describa el ingreso promedio por empleado en función del año y el tamaño promedio de la tienda, calculemos $Y = a + b_1 X_1 + b_2 X_2$, donde:
+
+$Y$ = Variable dependiente.
+
+$a$ = Ordenada $Y$.
+
+$X_1$ y $X_2$ = Variables indpendientes.
+
+$b_1$ y $b_2$ = Pendientes asociadas a $X_1$ y $X_2$ respectivamente.
+
+Para calcular los coeficientes $a, b_1$ y $b_2$ de la ecuación de regresión múltiple usamos el siguiente sistema de ecuaciones:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} y_i &= na + b_1 \displaystyle \sum_{i=1}^{n} x_{1i} +  b_2 \sum_{i=1}^{n} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{1i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{1i} + b_1 \sum_{i=1}^{n} x^2_{1i} +  b_2 \sum_{i=1}^{n} x_{1i} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{2i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{2i} + b_1 \sum_{i=1}^{n} x_{1i} x_{2i} +  b_2 \sum_{i=1}^{n} x^2_{2i} \\
+\end{array}
+$$
+donde,
+
+$y_i$ = Valores de la variable dependiente (Ingreso promedio por empleado).
+
+$x_{1i}$ = Valores de la variable independiente (Año).
+
+$x_{2i}$ = Valores de la variable independiente (Tamaño promedio de tienda).
+
+Sustituyendo los valores en el sistema de ecuación tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} 1.7736 &= 11a + 66b_1 + 981b_2\\
+\vspace{3mm} 11.4054 &= 66a + 506b_1 + 6182b_2\\
+\vspace{3mm} 160.1707 &= 981a + 6182b_1 + 88295b_2 \\
+\end{array}
+$$
+Resolviendo el sistema de ecuaciones, tenemos que los coeficientes están dados por:
+
+$a$ = 0.4969
+
+$b_1$ = 0.02084
+
+$b_2$ = -0.005166
+
+Así la ecuación de regresión múltiple está dada por:
+
+$$Y = 0.4969+0.02084X_1-0.005166X_2$$
+
+Como el coeficiente de la variable Año es mayor que el coeficiente de la variable que corresponde al tamaño de la tienda, entonces la ecuación de regresión sugiere que los empleados son más productivos con el paso del tiempo. Éste modelo puede llevar a un analista considerar otros factores más importantes para el éxito de la cadena Home Depot.
+
+\textbf{\underline{En R:}}
+
+Usamos el comando `lm()` en R para encontrar la ecuación de regresión múltiple, tenemos:
+
+```{r,comment='',warning=FALSE}
+IngresoPromedio<-c(0.1083,0.1298,0.1517,0.1598,0.1538,0.1576,0.1774,0.1834,0.1838,0.1826,0.1854)
+Año<-1:11
+Tamaño<-c(77,80,80,82,86,88,92,95,98,100,103)
+
+Datos<-data.frame(IngresoPromedio,Año,Tamaño)
+
+regresion<-lm(IngresoPromedio~Año+Tamaño,Datos)
+
+coef(regresion)
+```
+
+Por lo que la ecuación de regresión está dada por:
+
+$$Y = 0.4969+0.02084X_1-0.005166X_2$$
+
 \newpage
 
 # Ejercicio 13
 
-Wal-Mart es una de las compañías más grandes y exitosas de Estados Unidos, con más de 2,400 tiendas en operación y ventas anuales por \$82 mil millones de dólares.  En el inicio la compañía daba una excelente tasa de rendimiento (ROE) a sus accionistas, pero su desempeño en este rubro ha decaído.  Junto con el, crecimiento rápido la empresa se ha expandido más allá de original de tienda y ahora incluye Sam´s Club que es una operación de margen muy bajo con fuerte rotación de inventario.  Los siguientes datos muestran cifras para los años fiscales que terminan en enero de la fecha mostrada, el inventario, el porcentaje de tiendas que eran Sam´s Club y ROE:
+Wal-Mart es una de las compañías más grandes y exitosas de Estados Unidos, con más de 2,400 tiendas en operación y ventas anuales por \$82 mil millones de dólares.  En el inicio la compañía daba una excelente tasa de rendimiento (ROE) a sus accionistas, pero su desempeño en este rubro ha decaído.  Junto con el crecimiento rápido, la empresa se ha expandido más allá de concepto original de tienda y ahora incluye Sam´s Club que es una operación de margen muy bajo con fuerte rotación de inventario.  Los siguientes datos muestran cifras para los años fiscales que terminan en enero de la fecha mostrada, el inventario, el porcentaje de tiendas que eran Sam´s Club y ROE:
 
 | Año | Inventario (miles de millones de dólares) | Porcentaje de  Sam´s Club | ROE |
 |------|:-----------------------------------------:|:-------------------------:|-------|
@@ -437,6 +1929,78 @@ Wal-Mart es una de las compañías más grandes y exitosas de Estados Unidos, co
 | 1995 | 14.4 | 17.7| 24.9 |
 
 Desarrolle una ecuación de regresión múltiple para pronosticar la ROE para Wal Mart con base en las dos variables dadas. ¿Qué consejo daría a los administradores de la empresa para aumentar la ROE?
+
+\textbf{\underline{Solución:}}
+
+Calculemos la ecuación de regresión múltiple $Y = a + b_1 X_1 + b_2 X_2$, donde:
+
+$Y$ = Variable dependiente.
+
+$a$ = Ordenada $Y$.
+
+$X_1$ y $X_2$ = Variables indpendientes.
+
+$b_1$ y $b_2$ = Pendientes asociadas a $X_1$ y $X_2$ respectivamente.
+
+Para calcular los coeficientes $a, b_1$ y $b_2$ de la ecuación de mínimos cuadrados múltiple usamos el siguiente sistema de ecuaciones:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} y_i &= na + b_1 \displaystyle \sum_{i=1}^{n} x_{1i} +  b_2 \sum_{i=1}^{n} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{1i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{1i} + b_1 \sum_{i=1}^{n} x^2_{1i} +  b_2 \sum_{i=1}^{n} x_{1i} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{2i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{2i} + b_1 \sum_{i=1}^{n} x_{1i} x_{2i} +  b_2 \sum_{i=1}^{n} x^2_{2i} \\
+\end{array}
+$$
+donde,
+
+$y_i$ = Valores de la variable dependiente (ROE).
+
+$x_{1i}$ = Valores de la variable independiente (Inventario).
+
+$x_{2i}$ = Valores de la variable independiente (Porcentaje de Sam's Club).
+
+Sustituyendo los valores en el sistema de ecuación tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} 357.8 &= 11a + 65.7b_1 + 98.7b_2\\
+\vspace{3mm} 1957.01 &= 65.7a + 586.35b_1 + 817.2b_2\\
+\vspace{3mm} 3009.55 &= 98.7a + 817.2b_1 + 1171.97b_2 \\
+\end{array}
+$$
+Resolviendo el sistema de ecuaciones, tenemos que los coeficientes están dados por:
+
+$a$ = 36.9939
+
+$b_1$ = -1.5735
+
+$b_2$ = 0.5496
+
+Así la ecuación de regresión múltiple está dada por:
+
+$$Y = 36.9939 -1.5735X_1 + 0.5496X_2$$
+
+De acuerdo con el modelo de regresión, para aumentar la tasa de rendimiento (ROE) se sugiere aumentar el porcentaje de tiendas que incluyen a Sam's Club, pues esta variable es la que más tiene peso en la ecuación de regresión.
+
+\textbf{\underline{En R:}}
+
+Usamos el comando `lm()` en R para encontrar la ecuación de regresión múltiple, tenemos:
+
+```{r,comment='',warning=FALSE}
+ROE<-c(36.7,33.3,35.2,37.1,37.1,35.8,32.6,30,28.5,26.6,24.9)
+Inventario<-c(1.2,1.5,2.2,2.8,3.6,4.7,6.2,7.8,9.8,11.5,14.4)
+SamsClub<-c(1.5,2.6,4.8,7,7.7,8.1,8.6,10.8,12.2,17.7,17.7)
+
+Datos<-data.frame(ROE,Inventario,SamsClub)
+
+regresion<-lm(ROE~Inventario+SamsClub,Datos)
+
+coef(regresion)
+```
+
+Por lo que la ecuación de regresión está dada por:
+
+$$Y = 36.9939 -1.5735X_1 + 0.5496X_2$$
 
 \newpage
 TODO: Primeros 21 ejercicios de análisis de Varianza
@@ -459,6 +2023,77 @@ Para ver si las ventas de chips de silicio son independientes del punto del cicl
 
 Calcule una tabla de frecuencias observadas y esperadas para este problema.
 
+\textbf{\underline{Solución:}}
+
+Calculemos la tabla con frecuencias observadas ($f_o$) y esperadas ($f_e$) de cada celda, donde la frecuencia esperada está dada por la siguiente fórmula:
+
+$$f_e = \displaystyle \frac{RT \times CT}{n}$$
+donde,
+
+$f_e$ = Frecuencia esperada.
+
+$RT$ = Suma total de la fila que contiene esa celda.
+
+$CT$ = Suma total de la columna que contiene esa celda.
+
+$n$ = Número total de observaciones.
+
+Calculando la frecuencia observada y esperada para cada celda tenemos:
+
+| Fila | Columna | $f_o$ |                      $f_e$                      |
+|:----:|:-------:|:-----:|:-----------------------------------------------:|
+|   1  |    1    |   20  |  $\displaystyle \frac{30 \times 100}{200} = 15$ |
+|      |         |       |                                                 |
+|   1  |    2    |   7   |   $\displaystyle \frac{30 \times 60}{200} = 9$  |
+|      |         |       |                                                 |
+|   1  |    3    |   3   |   $\displaystyle \frac{30 \times 40}{200} = 6$  |
+|      |         |       |                                                 |
+|   2  |    1    |   30  | $\displaystyle \frac{100 \times 100}{200} = 50$ |
+|      |         |       |                                                 |
+|   2  |    2    |   40  |  $\displaystyle \frac{100 \times 60}{200} = 30$ |
+|      |         |       |                                                 |
+|   2  |    3    |   30  |  $\displaystyle \frac{100 \times 40}{200} = 20$ |
+|      |         |       |                                                 |
+|   3  |    1    |   20  |  $\displaystyle \frac{30 \times 100}{200} = 15$ |
+|      |         |       |                                                 |
+|   3  |    2    |   8   |   $\displaystyle \frac{30 \times 60}{200} = 9$  |
+|      |         |       |                                                 |
+|   3  |    3    |   2   |   $\displaystyle \frac{30 \times 40}{200} = 6$  |
+|      |         |       |                                                 |
+|   4  |    1    |   30  | $\displaystyle \frac{40 \times 100}{200} = 20$  |
+|      |         |       |                                                 |
+|   4  |    2    |   5   | $\displaystyle \frac{40 \times 60}{200} = 12$   |
+|      |         |       |                                                 |
+|   4  |    3    |   5   | $\displaystyle \frac{40 \times 40}{200} = 8$    |
+
+Por lo que la tabla de frecuencias observadas y esperadas queda como sigue:
+
+|                   | Alta | Mediana | Baja |
+|-------------------|:----:|:-------:|:----:|
+| En el pico:       |      |         |      |
+| $\quad$ Observada |  20  |    7    |   3  |
+| $\quad$ Esperada  |  15  |    9    |   6  |
+| En el punto bajo: |      |         |      |
+| $\quad$ Observada |  30  |    40   |  30  |
+| $\quad$ Esperada  |  50  |    30   |  20  |
+| Subiendo:         |      |         |      |
+| $\quad$ Observada |  20  |    8    |   2  |
+| $\quad$ Esperada  |  15  |    9    |   6  |
+| Bajando:          |      |         |      |
+| $\quad$ Observada |  30  |    5    |   5  |
+| $\quad$ Esperada  |  20  |    12   |   8  |
+
+\textbf{\underline{En R:}}
+
+Usamos la función `chiq.test()` para calcular las tablas de frecuencia observadas y esperadas, por lo que nos queda:
+'
+```{r,comment='',warning=FALSE}
+Ventas<-matrix(c(20,30,20,30,7,40,8,5,3,30,2,5),4,3)
+xsq<-chisq.test(Ventas)
+kable(xsq$observed) #Frecuencias observadas
+kable(xsq$expected) #Frecuencias esperadas
+```
+
 \newpage
 
 # Ejercicio 2
@@ -471,11 +2106,97 @@ b) Calcule el valor $X^2$ de la muestra.
 
 c) Al nivel de significancia de 0.10, ¿cuál es su conclusión?
 
+\textbf{\underline{Solución:}}
+
+a) Veamos si las ventas de chips son independientes del estado de la economía de Estados Unidos, para esto establecemos la siguiente hipótesis:
+
+$$H_o: \text{Las ventas y la economía son independientes}$$
+$$H_a: \text{Las ventas y la economía son dependientes}$$
+donde $H_o$ es la hipótesis nula y $H_a$ es la hipótesis alternativa.
+
+b) El estadístico de prueba para ésta prueba de hipótesis viene dado por:
+
+$$X^2 = \displaystyle \sum \frac{(f_o - f_e)^2}{f_e}$$
+donde $f_o$ y $f_e$ son las frecuencias observadas y esperadas respectivamente de cada celda (calculadas en el ejercicio anterior). Así sustituyendo los respectivos valores en el estadístico nos queda:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} X^2 &= \displaystyle \sum \frac{(f_o - f_e)^2}{f_e}\\
+\vspace{3mm} &= \displaystyle \frac{(20-15)^2}{15} + \frac{(7-9)^2}{9} + ...+ \frac{(5-8)^2}{8} \\
+\vspace{3mm} &= 1.66 + 0.44 + ... + 1.125 \\
+\vspace{3mm} &= 34.597
+\end{array}
+$$
+por lo que el valor de $X^2$ es de 34.597.
+
+\textbf{\underline{En R:}}
+
+Usamos la función `chiq.test()` para calcular el estadístico $X^2$, por lo que nos queda:
+'
+```{r,comment='',warning=FALSE}
+Ventas<-matrix(c(20,30,20,30,7,40,8,5,3,30,2,5),4,3)
+xsq<-chisq.test(Ventas)
+xsq$statistic
+```
+
+c) Para $\alpha$ = 0.10, tenemos que el valor crítico está dado por $X^2_{\alpha} = X^2_{0.1} = 10.645$ (con 6 grados de libertad pues como la tabla de contigencia tiene una dimensión de 4 x 3, los grados de libertad están dados por: número de filas - 1 $\times$ número de columas - 1).
+
+Como el valor de el estadístico es de 34.597, tenemos que 10.645<34.597 por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula, por lo que las ventas de chips y el estado de la economía de Estados Unidos son dependientes entre sí.
+
+\textbf{\underline{En R:}}
+
+Usamos el comando `qchisq()` para calcular el valor crítico, nos queda:
+
+```{r,comment='',warning=FALSE}
+r<-4
+c<-3
+alpha<-0.1
+qchisq(p=alpha,df=(r-1)*(c-1),lower.tail = FALSE)
+```
+
+Cómo esta es una prueba $\chi^2$, el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE}
+p<-34.597
+x<-seq(0,35,0.01)
+y<-dchisq(x,df=(r-1)*(c-1))
+cuantil1<-qchisq(p=alpha,df=(r-1)*(c-1),lower.tail = FALSE)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dchisq(cuantil1,df=(r-1)*(c-1))),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = p, y =0 , xend = p, 
+                       yend = dchisq(p,df=(r-1)*(c-1))), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=p, y =-0.01, label ="X^2", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.01, label="'X'[alpha] ^2",
+                 parse = TRUE)+
+        annotate("text", x=5, y = 0.05, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+3, y=0.04, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.15)+
+      xlim(-1,35)+
+      labs( title = "Prueba Chi-cuadrado",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
+
 \newpage
 
 # Ejercicio 3
 
-Un ascensor financiero está interesado en las diferencias de estructura de capital respecto a compañías de distintos tamaños dentro de cierta industria.  El ascensor investiga un grupo de empresas con activos de diferentes cantidades y las organiza en tres grupos.  Calsifica cada compañía según si su débito total es mayor que la cantidad de acciones ordinarias de los accionistas o si menor que éstas.  Los resultados de la investigación son:
+Un asesor financiero está interesado en las diferencias de estructura de capital respecto a compañías de distintos tamaños dentro de cierta industria.  El asesor investiga un grupo de empresas con activos de diferentes cantidades y las organiza en tres grupos. Clasifica cada compañía según si su débito total es mayor que la cantidad de acciones ordinarias de los accionistas o si es menor que éstas. Los resultados de la investigación son:
 
 
 \begin{center}Tamaño del activo de la compañía (en miles de dólares)\end{center}
@@ -486,12 +2207,275 @@ Un ascensor financiero está interesado en las diferencias de estructura de capi
 | Deuda mayor que cantidad de acciones |  10  |     18    |     9    |    37    |
 |                                Total |  17  |     28    |    17    |    62    |
  
+¿Los tres tamaños de empresas tienen la misma estructura de capital? Use un nivel de significancia de 0.10.
+
+\textbf{\underline{Solución:}}
+
+Veamos si en los tres tamaños de empresas organizadas por el asesor financiero poseen la misma estructura de capital, para esto establecemos la siguiente hipótesis:
+
+$$H_o: \text{Los tres tamaños de empresas tienen la misma estructura de capital}$$
+$$H_a: \text{Los tres tamaños de empresas no tienen la misma estructura de capital}$$
+donde $H_o$ es la hipótesis nula y $H_a$ es la hipótesis alternativa. El estadístico de prueba para ésta prueba de hipótesis viene dado por:
+
+$$X^2 = \displaystyle \sum \frac{(f_o - f_e)^2}{f_e}$$
+donde $f_o$ y $f_e$ son las frecuencias observadas y esperadas respectivamente de cada celda. Calculando las frecuencias tenemos:
+
+| Fila | Columna | $f_o$ |                      $f_e$                       |
+|:----:|:-------:|:-----:|:------------------------------------------------:|
+|   1  |    1    |   7   |  $\displaystyle \frac{25 \times 17}{62} = 6.854$ |
+|      |         |       |                                                  |
+|   1  |    2    |  10   |   $\displaystyle \frac{25 \times 28}{62} = 11.29$|
+|      |         |       |                                                  |
+|   1  |    3    |   8   |   $\displaystyle \frac{25 \times 17}{62} = 6.854$|
+|      |         |       |                                                  |
+|   2  |    1    |   10  | $\displaystyle \frac{37 \times 17}{62} = 10.145$ |
+|      |         |       |                                                  |
+|   2  |    2    |   18  |  $\displaystyle \frac{37 \times 28}{62} = 16.709$|
+|      |         |       |                                                  |
+|   2  |    3    |   9   |  $\displaystyle \frac{37 \times 17}{62} = 10.145$|
+
+Así sustituyendo los respectivos valores en el estadístico y sabiendo que $X^2_{\alpha} = X^2_{0.1} = 4.61$ (con 2 grados de libertad pues como la tabla de contigencia tiene una dimensión de 2 x 3, los grados de libertad están dados por: número de filas - 1 $\times$ número de columas - 1) tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} X^2 &= \displaystyle \sum \frac{(f_o - f_e)^2}{f_e}\\
+\vspace{3mm} &= \displaystyle \frac{(7-6.854)^2}{6.854} + \frac{(10-11.29)^2}{11.29} + \frac{(8-6.854)^2}{6.854} + \frac{(10-10.145)^2}{10.145} +\frac{(18-16.709)^2}{16.709}+ \frac{(9-10.145)^2}{10.145} \\
+\vspace{3mm} &= 0.00311 + 0.1473 + 0.1916 + 0.00207 + 0.0997 + 0.1292\\
+\vspace{3mm} &= 0.57298
+\end{array}
+$$
+por lo que el valor de $X^2$ es de 0.57298. Como el valor crítico es de 4.61, tenemos que 4.61>0.57298 por lo que no existe suficiente evidencia estadística para rechazar la hipótesis nula, por lo que los tres tamaños de empresas tienen la misma estructura de capital.
+
+\textbf{\underline{En R:}}
+
+Usamos la función `chiq.test()` para calcular el estadístico $X^2$, por lo que nos queda:
+'
+```{r,comment='',warning=FALSE}
+Activos<-matrix(c(7,10,10,18,8,9),2,3)
+xsq<-chisq.test(Activos)
+xsq$statistic
+```
+
+Con el comando `qchisq()` calculamos el valor crítico, así tenemos:
+
+```{r,comment='',warning=FALSE}
+r<-2
+c<-3
+alpha<-0.1
+qchisq(p=alpha,df=(r-1)*(c-1),lower.tail = FALSE)
+```
+
+\newpage
+
+Cómo esta es una prueba $\chi^2$, el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,warning=FALSE}
+p<-0.57298
+x<-seq(0,15,0.01)
+y<-dchisq(x,df=(r-1)*(c-1))
+cuantil1<-qchisq(p=alpha,df=(r-1)*(c-1),lower.tail = FALSE)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dchisq(cuantil1,df=(r-1)*(c-1))),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = p, y =0 , xend = p, 
+                       yend = dchisq(p,df=(r-1)*(c-1))), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=p, y =-0.02, label ="X^2", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.025, label="'X'[alpha] ^2",
+                 parse = TRUE)+
+        annotate("text", x=2, y = 0.1, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+0.8, y=0.08, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.6)+
+      xlim(-1,9)+
+      labs( title = "Prueba Chi-cuadrado",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
 
 \newpage
 
 # Ejercicio 4
 
 El gerente de un supermercado lleva un registro de la llegada de clientes a las cajas para determinar cuántas debe mantener abiertas para manejar el flujo.  En una muestra de 500 periodos de cinco minutos, hubo 22, 74, 115, 95, 94, 80 y 20 periodos con 0, 1, 2, 3, 4, 5, 6 o más clientes, respectivamente.  ¿Son esto de datos consistentes con una distribución de Poisson con $\lambda=3$, para un nivel de significancia de 0.05?
+
+\textbf{\underline{Solución:}}
+
+Veamos si los datos suministrados por el gerente del supermercado son consistentes con una distribución de poisson, establecemos la siguiente hipótesis:
+
+$$H_o: \text{Los datos son consistentes con una distribución de Poisson con $\lambda$ =3}$$
+$$H_o: \text{Los datos no son consistentes con una distribución de Poisson con $\lambda$ =3}$$
+donde $H_o$ es la hipótesis nula y $H_a$ es la hipótesis alternativa. El estadístico de prueba para ésta prueba de hipótesis viene dado por:
+
+$$X^2 = \displaystyle \sum \frac{(f_o - f_e)^2}{f_e}$$
+donde $f_o$ y $f_e$ son las frecuencias observadas y esperadas respectivamente de cada celda. Para esta prueba de bondad de ajuste la frecuencia esperada viene dada por:
+
+$$f_e=n \times P(\mathcal{X}=i)$$
+donde,
+
+$f_e$ = Frecuencia esperada.
+
+$n$ = Total de períodos.
+
+$\mathcal{X}$ = Cantidad de clientes que llegan en un cierto período de tiempo.
+
+$P(\mathcal{X}=i)$ = Probabilidad de la llegada de clientes (con distribuición de Poisson).
+
+Calculando las diferentes probabilidades tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} P(\mathcal{X}=0) &= \displaystyle \frac{3^0\times e^{-3}}{0!}\\
+\vspace{3mm} &= 0.0497
+\end{array}
+$$
+
+$$
+\begin{array}{rl}
+\vspace{3mm} P(\mathcal{X}=1) &= \displaystyle \frac{3^1\times e^{-3}}{1!}\\
+\vspace{3mm} &= 0.1493
+\end{array}
+$$
+
+$$
+\begin{array}{rl}
+\vspace{3mm} P(\mathcal{X}=2) &= \displaystyle \frac{3^2\times e^{-3}}{2!}\\
+\vspace{3mm} &= 0.224
+\end{array}
+$$
+
+$$
+\begin{array}{rl}
+\vspace{3mm} P(\mathcal{X}=3) &= \displaystyle \frac{3^3\times e^{-3}}{3!}\\
+\vspace{3mm} &= 0.224
+\end{array}
+$$
+
+$$
+\begin{array}{rl}
+\vspace{3mm} P(\mathcal{X}=4) &= \displaystyle \frac{3^4\times e^{-3}}{4!}\\
+\vspace{3mm} &= 0.168
+\end{array}
+$$
+
+$$
+\begin{array}{rl}
+\vspace{3mm} P(\mathcal{X}=5) &= \displaystyle \frac{3^5\times e^{-3}}{5!}\\
+\vspace{3mm} &= 0.1008
+\end{array}
+$$
+
+$$
+\begin{array}{rl}
+\vspace{3mm} P(\mathcal{X} \geq 6) &= 1-P(\mathcal{X}<6)\\
+\vspace{3mm} &= 1-P(\mathcal{X}=0)-P(\mathcal{X}=1)-P(\mathcal{X}=2)-P(\mathcal{X}=3)-P(\mathcal{X}=4)-P(\mathcal{X}=5)\\
+\vspace{3mm} &= 1-0.0497-0.1493-0.224-0.224-0.168-0.1008\\
+\vspace{3mm} &= 0.0842
+\end{array}
+$$
+
+Así calculando las frecuencias tenemos:
+
+| $f_o$ |           $f_e$           |
+|:-----:|:-------------------------:|
+|   22  | 500 $\times$ 0.0497=24.85 |
+|       |                           |
+|   74  | 500 $\times$ 0.1493=74.65 |
+|       |                           |
+|  115  |   500 $\times$ 0.224=112  |
+|       |                           |
+|   95  |   500 $\times$ 0.224=112  |
+|       |                           |
+|   94  |   500 $\times$ 0.168=84   |
+|       |                           |
+|   80  |  500 $\times$ 0.1008=50.4 |
+|       |                           |
+|   20  |  500 $\times$ 0.0842=42.1 |
+
+Así sustituyendo los respectivos valores en el estadístico y sabiendo que $X^2_{\alpha} = X^2_{0.05} = 12.59$ (con 7-1=6 grados de libertad) tenemos:
+
+$$
+\begin{array}{rl}
+\vspace{3mm} X^2 &= \displaystyle \sum \frac{(f_o - f_e)^2}{f_e}\\
+\vspace{3mm} &= \displaystyle \frac{(22-24.85)^2}{24.85} + \frac{(74-74.65)^2}{74.65} + \frac{(115-112)^2}{112} + \frac{(95-112)^2}{112}\\
+\vspace{3mm} &+ \displaystyle \frac{(94-84)^2}{84}+ \frac{(80-50.4)^2}{50.4} + \frac{(20-42.1)^2}{42.1}\\
+\vspace{3mm} &= 0.3268 + 0.005659+0.0803+2.5803+1.1904+17.3841+11.6011\\
+\vspace{3mm} &= 33.1686
+\end{array}
+$$
+Como el valor crítico es de 12.59, tenemos que 12.59<33.168 por lo que existe suficiente evidencia estadística para rechazar la hipótesis nula, por lo que el número de llegadas de clientes no sigue una distribución de Poisson con $\lambda$ =3.
+
+\textbf{\underline{En R:}}
+
+Usamos la función `chiq.test()` para calcular el estadístico $X^2$, por lo que nos queda:
+'
+```{r,comment='',warning=FALSE}
+Periodos<-c(22,74,115,95,94,80,20)
+Probabilidades<-c(dpois(0,3),dpois(1,3),dpois(2,3),dpois(3,3),dpois(4,3),dpois(5,3),
+                  ppois(5,3,lower.tail = FALSE))
+xsq<-chisq.test(x=Periodos,p=Probabilidades)
+xsq$statistic
+```
+
+Con el comando `qchisq()` calculamos el valor crítico, así tenemos:
+
+```{r,comment='',warning=FALSE}
+n<-7
+alpha<-0.05
+qchisq(p=alpha,df=n-1,lower.tail = FALSE)
+```
+
+\newpage
+
+Cómo esta es una prueba $\chi^2$, el gráfico correspondiente es el siguiente:
+
+```{r,echo=FALSE,warning=FALSE}
+p<-33.1
+x<-seq(0,35,0.01)
+y<-dchisq(x,df=n-1)
+cuantil1<-qchisq(p=alpha,df=n-1,lower.tail = FALSE)
+
+f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
+
+      geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
+      geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
+                fill = "blue", alpha=0.4)+
+      
+      geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
+                       yend = dchisq(cuantil1,df=n-1)),
+                   colour = "black",linetype=2)+
+      geom_segment(aes(x = p, y =0 , xend = p, 
+                       yend = dchisq(p,df=n-1)), 
+                   colour = "red",linetype=1)+
+      
+        annotate("text", x=p, y =-0.01, label ="X^2", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.01, label="'X'[alpha] ^2",
+                 parse = TRUE)+
+        annotate("text", x=5, y = 0.05, label="'Aceptar H'[0]",
+                 parse = TRUE)+
+        annotate("text", x=cuantil1+2.5, y=0.025, label="'Rechazar H'[0]",
+                 parse = TRUE)+
+  
+      ylim(-0.05,0.2)+
+      xlim(-1,35)+
+      labs( title = "Prueba Chi-cuadrado",
+            x = " ", y = " ",caption = "http://synergy.vision/" )+
+      vision 
+credits(f)
+```
+
 
 \newpage
 
