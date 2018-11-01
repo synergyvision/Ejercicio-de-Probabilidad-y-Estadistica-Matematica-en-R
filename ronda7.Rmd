@@ -3466,9 +3466,9 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
         annotate("text", x=cuantil2, y =-0.02, label="-'F'[alpha]",
                  parse = TRUE)+
         annotate("text", x=1, y = 0.1, label="'Región de Aceptación'",
-                 parse = TRUE)+
-        annotate("text", x=cuantil1+0.5, y=0.05, label="'Región de Rechazo'",
-                 parse = TRUE)+
+                 parse = TRUE,size=3)+
+        annotate("text", x=cuantil1+0.01, y=0.05, label="'Región de Rechazo'",
+                 parse = TRUE,size=3)+
         annotate("text", x=cuantil2-0.5, y=0.05, label="'Rechazar H'[0]",
                  parse = TRUE)+
   
@@ -3560,14 +3560,14 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
         
         annotate("text", x=cuantil2, y =-0.005, label="-chi[alpha]^2",
                  parse = TRUE)+
-        annotate("text", x=17, y = 0.01, label="'Región de Aceptación'",
-                 parse = TRUE,size=3)+
+        annotate("text", x=20, y = 0.01, label="'Región de Aceptación'",
+                 parse = TRUE,size=4)+
         
-        annotate("text", x=cuantil2-4, y=0.01, label="'Región de Rechazo'",
-                 parse = TRUE,size=3)+
+        annotate("text", x=cuantil2-3.5, y=0.02, label="'Región de Rechazo'",
+                 parse = TRUE,size=4)+
   
       ylim(-0.01,0.06)+
-      xlim(0,20)+
+      xlim(5,30)+
       labs( title = "Prueba de una cola Distribución Chi-cuadrada",
             x = " ", y = " ",caption = "http://synergy.vision/" )+
       vision 
@@ -3812,7 +3812,7 @@ Una compañía de seguros está interesada en la duración de la hospitalizació
 
 \underline{\textbf{Solución:}}
 
-En éste caso planteamos la siguiente hipótesis,
+Queremos saber si los pacientes del hospital A tienen significativamente menor variabilidad en su tiempo de recuperación que los pacientes del hospital B. Para eso usamos la prueba de hipótesis de Fisher de una cola para dos poblaciones con varianzas poblacionales desconocidas. En éste caso planteamos la siguiente hipótesis,
 
 $$H_0: \sigma_1^2=\sigma_2^2$$
 
@@ -3825,17 +3825,17 @@ $\sigma_2^2=$ varianza de los pacientes del hospital A.
 
 El estadístico de prueba es el cociente F,
 
-$$F=\displaystyle \frac{s_1^2}{s_2^2},$$
+$$F=\displaystyle \frac{S_1^2}{S_2^2},$$
 
 donde, 
 
-$s_1^2, s_2^2=$ son las variaciones muestrales de los pacientes de los hospitales A y B.
+$S_1^2, S_2^2=$ son las variaciones muestrales de los pacientes de los hospitales A y B.
 
 Sustituyendo éstos valores en el cociente, tenemos:
 
 $$
 \begin{array}{rl}
-\vspace{3mm} F &=\displaystyle \frac{s_1^2}{s_2^2}\\
+\vspace{3mm} F &=\displaystyle \frac{S_1^2}{S_2^2}\\
 \vspace{3mm} &= \displaystyle \frac{0.9^2}{0.6^2}\\
 \vspace{3mm} &= \displaystyle \frac{0.81}{0.36}\\
 \vspace{3mm} &= 2.25\\
@@ -3849,7 +3849,7 @@ $$\text{Grados de libertad del denominador}= n_2-1=20-1=19.$$
 
 Con 24 grados de libertad del numerador, 19 grados de libertad del denominador y $\alpha=0.01$, el valor crítico de F es 2.92, de manera que no se rechaza la $H_0$ porque 2.25 < 2.92. Los pacientes del hospital A y B no son significativamente diferente en su tiempo de recuperación.
 
-Calculemos el valor crítico de F,
+Calculemos el valor crítico de F con la funcion `qf()`,
 
 ```{r,comment=""}
 #f<- qf(p,df1,df2) valor crítico
@@ -3887,14 +3887,14 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
     
         annotate("text", x=cuantil2+0.1, y =-0.02, label="'F'[alpha]",
                  parse = TRUE)+
-        annotate("text", x=1, y = 0.1, label="'Aceptar H'[0]",
+        annotate("text", x=1.2, y = 0.1, label="'Región de Aceptación'",
                  parse = TRUE)+
         
-        annotate("text", x=cuantil2+1, y=0.1, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil2+0.5, y=0.1, label="'Región de Rechazo'",
                  parse = TRUE)+
   
       ylim(-0.05,1)+
-      xlim(-1,6)+
+      xlim(0,4)+
       labs( title = "Prueba de una cola Distribución F",
             x = " ", y = " ",caption = "http://synergy.vision/" )+
       vision 
@@ -3932,7 +3932,11 @@ c) ¿Y para un nivel de significancia de 0.20?
 a) Para éste caso la prueba de hipótesis es la siguiente:
 
 $$H_0: \mu_1 = \mu_2 = \mu_3= \mu_4$$
-$$H_a: \mu_1,\mu_2,\mu_3,\mu_4 \quad \text{no todas son iguales.}$$
+$$H_a:  \text{Al menos un}\hspace{2mm}\mu_i\hspace{2mm}\text{es distinto.}$$
+
+Donde, $\mu_i$ es la media del tipo de auto preferido por regiones.
+
+
 
 b) El estadístico de prueba es el cociente F,
 
@@ -3941,44 +3945,44 @@ donde, $\hat{\sigma_b^2}$ y $\hat{\sigma_w^2}$ son la estimación de la varianza
 
 Primeramente calcularemos la medias unitarias de cada columna,
 
-Para el noreste, tenemos:
+Sea $X_1:$ el tipo de auto preferido en la región noreste. La media de ésta variable es,
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \overline{x_1} &= \sum_{i=1}^{n_1} \displaystyle \frac{x_{1i}}{n_1}\\
+\vspace{3mm} \overline{X_1} &= \displaystyle \sum_{i=1}^{n_1} \displaystyle \frac{x_{1i}}{n_1}\\
 \vspace{3mm} &= \displaystyle \frac{105+120+25}{3}\\
 \vspace{3mm} &= \displaystyle \frac{250}{3}\\
 \vspace{3mm} &= 83.3
 \end{array}
 $$
 
-Para el sureste, tenemos:
+Sea $X_2:$ el tipo de auto preferido en la región sureste. La media de ésta variable es,
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \overline{x_2} &= \sum_{i=1}^{n_2} \displaystyle \frac{x_{2i}}{n_2}\\
+\vspace{3mm} \overline{X_2} &= \displaystyle \sum_{i=1}^{n_2} \displaystyle \frac{x_{2i}}{n_2}\\
 \vspace{3mm} &= \displaystyle \frac{120+100+30}{3}\\
 \vspace{3mm} &= \displaystyle \frac{250}{3}\\
 \vspace{3mm} &= 83.3
 \end{array}
 $$
 
-Para el noreste, tenemos:
+Sea $X_3:$ el tipo de auto preferido en la región noroeste. La media de ésta variable es,
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \overline{x_3} &= \sum_{i=1}^{n_3} \displaystyle \frac{x_{3i}}{n_3}\\
+\vspace{3mm} \overline{X_3} &= \displaystyle \sum_{i=1}^{n_3} \displaystyle \frac{x_{3i}}{n_3}\\
 \vspace{3mm} &= \displaystyle \frac{105+130+15}{3}\\
 \vspace{3mm} &= \displaystyle \frac{250}{3}\\
 \vspace{3mm} &= 83.3
 \end{array}
 $$
 
-Para el suroeste, tenemos:
+Sea $X_4:$ el tipo de auto preferido en la región suroeste. La media de ésta variable es,
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \overline{x_4} &= \sum_{i=1}^{n_4} \displaystyle \frac{x_{4i}}{n_4}\\
+\vspace{3mm} \overline{X_4} &= \displaystyle \sum_{i=1}^{n_4} \displaystyle \frac{x_{4i}}{n_4}\\
 \vspace{3mm} &= \displaystyle \frac{70+150+30}{3}\\
 \vspace{3mm} &= \displaystyle \frac{250}{3}\\
 \vspace{3mm} &= 83.3
@@ -3989,14 +3993,14 @@ Calculemos ahora la gran media,
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \overline{\overline{x}} &= \displaystyle \sum_{i=1}^4 \displaystyle \frac{\overline{x_i}n_i}{n}\\
+\vspace{3mm} \overline{\overline{X}} &= \displaystyle \sum_{i=1}^4 \displaystyle \frac{\overline{X_i}n_i}{n}\\
 \vspace{3mm} &= \displaystyle \frac{4(250)}{12}\\
 \vspace{3mm} &= \displaystyle \frac{1000}{12}\\
 \vspace{3mm} &= 83.3
 \end{array}
 $$
 
-En R,
+En R usamos la funcion `mean()`,
 
 ```{r,comment=""}
 e1<-c(105,120,25)
@@ -4006,12 +4010,14 @@ e4<-c(70,150,30)
 
 region<-data.frame(e1,e2,e3,e4)
 
+#Calculamos la media de cada variable.
 medias<-c()
 for(i in c(1:4)){medias[i]<-mean(region[,i])
 }
 
 medias
 
+#Calculamos la gran media.
 gran_media<- sum(medias*3)/12
 gran_media
 
@@ -4021,15 +4027,15 @@ gran_media
 
 La estimación de la varianza de la población utilizando la varianza entre columnas es la siguiente,
 
-$$\hat{\sigma_b^2}= \displaystyle \frac{\sum_{i=1}^kn_i(\overline{x_i}-\overline{\overline{x}})^2}{k-1},$$
+$$\hat{\sigma_b^2}= \displaystyle \frac{\displaystyle \sum_{i=1}^kn_i(\overline{X_i}-\overline{\overline{X}})^2}{k-1},$$
 
 donde,
 
 $n_i=$ tamaño de la i-ésima muestras.
 
-$\overline{x_i}=$ media muestral de la i-ésima muestra.
+$\overline{X_i}=$ media muestral de la i-ésima muestra.
 
-$\overline{\overline{x}}=$ gran media.
+$\overline{\overline{X}}=$ gran media.
 
 $k=$ número de muestras.
 
@@ -4037,7 +4043,7 @@ Calculemos,
 
 $$
 \begin{array}{rl}
-\vspace{3mm}\hat{\sigma_b^2} &= \displaystyle \frac{\sum_{i=1}^kn_i(\overline{x_i}-\overline{\overline{x}})^2}{k-1}\\
+\vspace{3mm}\hat{\sigma_b^2} &= \displaystyle \frac{\displaystyle \sum_{i=1}^kn_i(\overline{X_i}-\overline{\overline{X}})^2}{k-1}\\
 \vspace{3mm} &= \displaystyle \frac{3(83.3-83.3)^2+3(83.3-83.3)^2+3(83.3-83.3)^2+3(83.3-83.3)^2}{4-1}\\
 \vspace{3mm} &= 0
 \end{array}
@@ -4058,7 +4064,7 @@ $s_i^2=$ varianza muestral de la i-ésima muestra..
 $k=$ número de muestras.
 
 
-Calculemos en R las varianzas muestrales,
+Calculemos en R las varianzas muestrales con la funcion `var()`,
 
 ```{r,comment=""}
 varianzas<-c()
@@ -4100,7 +4106,7 @@ $$\text{Grados de libertad del denominador}= n-k=12-4=8.$$
 
 Con 3 grados de libertad del numerador, 8 grados de libertad del denominador y $\alpha=0.05$, el valor crítico de F es 4.07 para la cola superior y 0.11 para la inferior, de manera que se rechaza la $H_0$ porque 0 < 0.11. Por lo que existen fuertes preferencias regionales en cuanto al tamaño del auto.
 
-Calculemos el valor crítico de F,
+Calculemos el valor crítico de F con la función `qf()`,
 
 ```{r,comment=""}
 #f<- qf(p,df1,df2) valor crítico
@@ -4113,12 +4119,12 @@ f0
 
 Veamos la región de aceptación y el estadístico de prueba,
 
-```{r,echo=FALSE}
+```{r,echo=FALSE,warning=FALSE}
 alpha <- 0.05
 
 f1 <- 0
 
-x<-seq(-6,6,0.01)
+x<-seq(0,6,0.01)
 y<-df(x,3,8)
 cuantil1<- qf(1-(alpha),3,8)
 cuantil2<- qf(alpha,3,8)
@@ -4146,15 +4152,15 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                  parse = TRUE)+
         annotate("text", x=cuantil2, y =-0.02, label="-'F'[alpha]",
                  parse = TRUE)+
-        annotate("text", x=2, y = 0.1, label="'Aceptar H'[0]",
+        annotate("text", x=1.2, y = 0.1, label="'Región de Aceptación'",
                  parse = TRUE)+
-        annotate("text", x=cuantil1+0.5, y=0.05, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil1+0.7, y=0.05, label="'Región de Rechazo'",
                  parse = TRUE)+
         annotate("text", x=cuantil2-0.5, y=0.05, label="'Rechazar H'[0]",
                  parse = TRUE)+
   
       ylim(-0.05,0.8)+
-      xlim(-6,6)+
+      xlim(0,6)+
       labs( title = "Prueba de dos colas Distribución F",
             x = " ", y = " ",caption = "http://synergy.vision/" )+
       vision 
@@ -4166,7 +4172,7 @@ c) Veamos para un nivel de significancia de $\alpha=0.20,$
 
 Con 3 grados de libertad del numerador, 8 grados de libertad del denominador y $\alpha=0.20$, el valor crítico de F es 1.95 para la cola superior y 0.34 para la inferior, de manera que se rechaza la $H_0$ porque 0 < 0.34. Por lo que existen fuertes preferencias regionales en cuanto al tamaño del auto.
 
-Calculemos el valor crítico de F,
+Calculemos el valor crítico de F con la función `qf()`,
 
 ```{r,comment=""}
 #f<- qf(p,df1,df2) valor crítico
@@ -4179,12 +4185,12 @@ f0
 
 Veamos la región de aceptación y el estadístico de prueba,
 
-```{r,echo=FALSE}
+```{r,echo=FALSE,warning=FALSE}
 alpha <- 0.20
 
 f1 <- 0
 
-x<-seq(-6,6,0.01)
+x<-seq(-1,1.8,0.01)
 y<-df(x,3,8)
 cuantil1<- qf(1-(alpha),3,8)
 cuantil2<- qf(alpha,3,8)
@@ -4212,15 +4218,15 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                  parse = TRUE)+
         annotate("text", x=cuantil2, y =-0.02, label="-'F'[alpha]",
                  parse = TRUE)+
-        annotate("text", x=1, y = 0.1, label="'Aceptar H'[0]",
+        annotate("text", x=1.1, y = 0.1, label="'Región de Aceptación'",
                  parse = TRUE)+
-        annotate("text", x=cuantil1+0.5, y=0.05, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil1+0.5, y=0.05, label="'Región de Rechazo'",
                  parse = TRUE)+
-        annotate("text", x=cuantil2-0.5, y=0.05, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil2-0.3, y=0.7, label="'Región de Rechazo'",
                  parse = TRUE)+
   
-      ylim(-0.05,0.8)+
-      xlim(-6,6)+
+      ylim(-0.05,0.7)+
+      xlim(-1,1.8)+
       labs( title = "Prueba de dos colas Distribución F",
             x = " ", y = " ",caption = "http://synergy.vision/" )+
       vision 
@@ -4252,7 +4258,7 @@ d) Comparación de dos medias de población a partir de muestras dependientes pe
 a) Para una prueba estadística de comparación de dos proporciones de población la distribución de probabilidad adecuada es la distribución Normal.
 
 
-b) Para el valor de una sola varianza de población la distribución de probabilidad adecuada es la distribución Ji-cuadrada.
+b) Para el valor de una sola varianza de población la distribución de probabilidad adecuada es la distribución Chi-cuadrada.
 
 c) Para la comparación de tres o más  medias de población se utiliza la distribución Fisher (F) del análisis de Varianza (ANOVA).
 
@@ -4277,7 +4283,9 @@ Pruebe para $\alpha=0.01$ si Gap está poniendo el mismo énfasis al abrir tiend
 Para éste caso la prueba de hipótesis es la siguiente:
 
 $$H_0: \mu_1 = \mu_2 = \mu_3$$
-$$H_a: \mu_1,\mu_2,\mu_3 \quad \text{no todas son iguales.}$$
+$$H_a: \text{Al menos un}\hspace{2mm}\mu_i\hspace{2mm}\text{es distinto.}$$
+Donde $\mu_i$ representa las medias del número de tiendas Gaps por país.
+
 El estadístico de prueba es el cociente F,
 
 $$F= \displaystyle  \frac{\hat{\sigma_b^2}}{\hat{\sigma_w^2}}$$
@@ -4286,33 +4294,33 @@ donde, $\hat{\sigma_b^2}$ y $\hat{\sigma_w^2}$ son la estimación de la varianza
 
 Primeramente calcularemos la medias unitarias de cada columna,
 
-Para el Estados Unidos, tenemos:
+Sea $X_1:$ el numero de tiendas Gaps en Estados Unidos. La media para ésta variable es,
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \overline{x_1} &= \sum_{i=1}^{n_1} \displaystyle \frac{x_{1i}}{n_1}\\
+\vspace{3mm} \overline{X_1} &= \displaystyle \sum_{i=1}^{n_1} \displaystyle \frac{x_{1i}}{n_1}\\
 \vspace{3mm} &= \displaystyle \frac{822+240}{2}\\
 \vspace{3mm} &= \displaystyle \frac{1062}{2}\\
 \vspace{3mm} &= 531
 \end{array}
 $$
 
-Para Inglaterra, tenemos:
+Sea $X_2:$ el numero de tiendas Gaps en Inglaterra. La media para ésta variable es,
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \overline{x_2} &= \sum_{i=1}^{n_2} \displaystyle \frac{x_{2i}}{n_2}\\
+\vspace{3mm} \overline{X_2} &= \displaystyle \sum_{i=1}^{n_2} \displaystyle \frac{x_{2i}}{n_2}\\
 \vspace{3mm} &= \displaystyle \frac{20+8}{2}\\
 \vspace{3mm} &= \displaystyle \frac{28}{2}\\
 \vspace{3mm} &= 14
 \end{array}
 $$
 
-Para Canadá, tenemos:
+Sea $X_3:$ el numero de tiendas Gaps en Canada. La media para ésta variable es,
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \overline{x_3} &= \sum_{i=1}^{n_3} \displaystyle \frac{x_{3i}}{n_3}\\
+\vspace{3mm} \overline{X_3} &= \displaystyle \sum_{i=1}^{n_3} \displaystyle \frac{x_{3i}}{n_3}\\
 \vspace{3mm} &= \displaystyle \frac{31+14}{2}\\
 \vspace{3mm} &= \displaystyle \frac{45}{2}\\
 \vspace{3mm} &= 22.5
@@ -4324,14 +4332,14 @@ Calculemos ahora la gran media,
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \overline{\overline{x}} &= \displaystyle \sum_{i=1}^3 \displaystyle \frac{\overline{x_i}n_i}{n}\\
+\vspace{3mm} \overline{\overline{X}} &= \displaystyle \sum_{i=1}^3 \displaystyle \frac{\overline{X_i}n_i}{n}\\
 \vspace{3mm} &= \displaystyle \frac{1062+28+45}{15}\\
 \vspace{3mm} &= \displaystyle \frac{1135}{6}\\
 \vspace{3mm} &=189.17
 \end{array}
 $$
 
-En R,
+En R calculamos la media con la función `mean()`,
 
 ```{r,comment=""}
 us<-c(822,240)
@@ -4341,12 +4349,14 @@ ca<-c(31,14)
 
 tiendas<-data.frame(us,uk,ca)
 
+#Calculamos la media por cada variable.
 medias<-c()
 for(i in c(1:3)){medias[i]<-mean(tiendas[,i])
 }
 
 medias
 
+#Calculamos la gran media. 
 gran_media<- sum(medias*2)/6
 gran_media
 
@@ -4356,15 +4366,15 @@ gran_media
 
 La estimación de la varianza de la población utilizando la varianza entre columnas es la siguiente,
 
-$$\hat{\sigma_b^2}= \displaystyle \frac{\sum_{i=1}^kn_i(\overline{x_i}-\overline{\overline{x}})^2}{k-1},$$
+$$\hat{\sigma_b^2}= \displaystyle \frac{\displaystyle \sum_{i=1}^kn_i(\overline{X_i}-\overline{\overline{X}})^2}{k-1},$$
 
 donde,
 
 $n_i=$ tamaño de la i-ésima muestras.
 
-$\overline{x_i}=$ media muestral de la i-ésima muestra.
+$\overline{X_i}=$ media muestral de la i-ésima muestra.
 
-$\overline{\overline{x}}=$ gran media.
+$\overline{\overline{X}}=$ gran media.
 
 $k=$ número de muestras.
 
@@ -4372,7 +4382,7 @@ Calculemos,
 
 $$
 \begin{array}{rl}
-\vspace{3mm}\hat{\sigma_b^2} &= \displaystyle \frac{\sum_{i=1}^kn_i(\overline{x_i}-\overline{\overline{x}})^2}{k-1}\\
+\vspace{3mm}\hat{\sigma_b^2} &= \displaystyle \frac{\displaystyle \sum_{i=1}^kn_i(\overline{X_i}-\overline{\overline{X}})^2}{k-1}\\
 \vspace{3mm} &= \displaystyle \frac{3(531-189.17)^2+3(14-189.17)^2+3(22.5-189.17)^2}{3-1}\\
 \vspace{3mm} &= \displaystyle \frac{525933.5}{2}\\
 \vspace{3mm} &= 262966.8
@@ -4394,7 +4404,7 @@ $s_i^2=$ varianza muestral de la i-ésima muestra..
 $k=$ número de muestras.
 
 
-Calculemos en R las varianzas muestrales,
+Calculemos en R las varianzas muestrales con la funcion `var()`,
 
 ```{r,comment=""}
 varianzas<-c()
@@ -4437,7 +4447,7 @@ $$\text{Grados de libertad del denominador}= n-k=6-3=3.$$
 Con 2 grados de libertad del numerador, 3 grados de libertad del denominador y $\alpha=0.01$, el valor crítico de F es 0.01 para la cola inferior y 30.81 para la superior, de manera que no se rechaza la $H_0$ porque 4.65 <30.81 y 4.65>0.01. El énfasis de abrir tiendas Gap kids en los tres paises no es significativamente diferente.
 
 
-Calculemos el valor crítico de F,
+Calculemos el valor crítico de F con la funcion `qf()`,
 
 ```{r,comment=""}
 #f<- qf(p,df1,df2) valor crítico
@@ -4450,12 +4460,12 @@ f0
 
 Veamos la región de aceptación y el estadístico de prueba,
 
-```{r,echo=FALSE}
+```{r,echo=FALSE,warning=FALSE}
 alpha <- 0.01
 
 f1 <- 4.65
 
-x<-seq(-1,50,0.01)
+x<-seq(0,32,0.01)
 y<-df(x,2,3)
 cuantil1<- qf(1-(alpha),2,3)
 cuantil2<- qf(alpha,2,3)
@@ -4483,15 +4493,15 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                  parse = TRUE)+
         annotate("text", x=cuantil2, y =-0.02, label="-'F'[alpha]",
                  parse = TRUE)+
-        annotate("text", x=2, y = 0.1, label="'Aceptar H'[0]",
-                 parse = TRUE)+
-        annotate("text", x=cuantil1+0.5, y=0.05, label="'Rechazar H'[0]",
-                 parse = TRUE)+
+        annotate("text", x=2, y = 0.1, label="'Región de Aceptación'",
+                 parse = TRUE,size=2)+
+        annotate("text", x=cuantil1+0.5, y=0.05, label="'Región de Rechazo'",
+                 parse = TRUE,size=2)+
         annotate("text", x=cuantil2-0.5, y=0.05, label="'Rechazar H'[0]",
                  parse = TRUE)+
   
-      ylim(-0.05,1.3)+
-      xlim(-1,50)+
+      ylim(-0.05,1)+
+      xlim(0,32)+
       labs( title = "Prueba de dos colas Distribución F",
             x = " ", y = " ",caption = "http://synergy.vision/" )+
       vision 
