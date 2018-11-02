@@ -4495,7 +4495,7 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                  parse = TRUE)+
         annotate("text", x=2, y = 0.1, label="'Región de Aceptación'",
                  parse = TRUE,size=2)+
-        annotate("text", x=cuantil1+0.5, y=0.05, label="'Región de Rechazo'",
+        annotate("text", x=cuantil1+0.2, y=0.05, label="'Región de Rechazo'",
                  parse = TRUE,size=2)+
         annotate("text", x=cuantil2-0.5, y=0.05, label="'Rechazar H'[0]",
                  parse = TRUE)+
@@ -4516,7 +4516,7 @@ credits(f)
 
 # Ejercicio 16
 
-Los inventores y las compañías internacionales saben del valor de una patente estadounidense para proteger sus ideas, y en años recientes, han recibido casi la  mitad de las patentes otorgadas.  A partir de los datos de la siguiente tabla, ¿ha habido un cambio significativo en la proporción de patentes orifginadas fuera de Estados Unidos en los últimos 19 años? Pruebe par $\alpha=0.05.$
+Los inventores y las compañías internacionales saben del valor de una patente estadounidense para proteger sus ideas, y en años recientes, han recibido casi la  mitad de las patentes otorgadas.  A partir de los datos de la siguiente tabla, ¿ha habido un cambio significativo en la proporción de patentes originadas fuera de Estados Unidos en los últimos 19 años? Pruebe par $\alpha=0.05.$
 
 | Patentes concedidas     |  1981  |  1991  |
 |-------------------------|:------:|:------:|
@@ -4531,11 +4531,11 @@ La hipótesis nula y alternativa para éste caso, son:
 $$H_0: \text{No hay un cambio significativo en la proporción de patentes fuera de EUA }$$
 $$H_a: \text{Sí hay un cambio significativo}$$
 
-El estadístico de prueba es el estadístico ji-cuadrada, 
+El estadístico de prueba es el estadístico Chi-cuadrada, 
 
-$$\chi^2= \displaystyle \sum \frac{(f_o-f_e)^2}{f_e},$$
+$$\chi^2= \displaystyle \sum_{i=1}^k \frac{(f_{oi}-f_{ei})^2}{f_{ei}},$$
 
-donde $f_0, f_e$ son las frecuencias observadas y esperadas.
+donde $f_{0i}, f_{ei}$ son las frecuencias observadas y esperadas de la celda i.
 
 Podemos calcular la frecuencia esperada para cualquier celda con la siguiente ecuación:
 
@@ -4552,7 +4552,7 @@ En la siguiente tabla calcularemos las frecuencias observadas y esperadas,
 
 \newpage
 
-| Fila | Columna |  $f_0$ | $f_e$                                     |
+| Fila | Columna |  $f_{0i}$ | $f_{ei}$                                     |
 |------|---------|--------|-------------------------------------------|
 | 1    | 1       | 39223 | $\displaystyle \frac{90406(65771)}{162285}=36639.8$   |
 |      |         |        |                                           |
@@ -4587,14 +4587,14 @@ kable(d$expected) #Frecuencia esperada
 ```
 
 
-A partir de las frecuencias observadas y esperadas, el estadístico ji-cuadrada es de la forma:
+A partir de las frecuencias observadas y esperadas, el estadístico Chi-cuadrada es de la forma:
 
 
 Calculemos,
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \chi^2 &= \displaystyle \sum \frac{(f_o-f_e)^2}{f_e}\\
+\vspace{3mm} \chi^2 &= \displaystyle \sum_{i=1}^k \frac{(f_{oi}-f_{ei})^2}{f_{ei}}\\
 \vspace{3mm} &= \displaystyle \frac{(39223-36639.8)^2}{36639.8}+\frac{(51183-53766.2)^2}{53766.2}+\frac{(26548-29131.2)^2}{29131.2}+\frac{(45331-42747.8)^2}{42747.8} \\
 \vspace{3mm} &= 691.12
 \end{array}
@@ -4626,7 +4626,7 @@ alpha <- 0.05
 
 f1 <- d$statistic
 
-x<-seq(3,803,200)
+x<-seq(-200,700,50)
 y<-dchisq(x,1)
 cuantil1<- qchisq(1-(alpha),1)
 cuantil2<- qchisq(alpha,1)
@@ -4636,34 +4636,25 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
       geom_area(mapping = aes(x,y), fill = "blue",alpha = .2)+
       geom_area(mapping = aes(x= ifelse(x>=cuantil1,x,cuantil1),y),
                 fill = "blue", alpha=0.4)+
-      geom_area(mapping = aes(x= ifelse(x<=cuantil2,x,cuantil2),y), 
-                fill = "blue", alpha=0.4)+
       
       geom_segment(aes(x = cuantil1, y =0 , xend = cuantil1,
                        yend = dchisq(cuantil1,1)),
-                   colour = "black",linetype=2)+
-      geom_segment(aes(x = cuantil2, y =0 , xend = cuantil2,
-                       yend = dchisq(cuantil2,1)),
                    colour = "black",linetype=2)+
       geom_segment(aes(x = f1, y =0 , xend = f1, 
                        yend = dchisq(f1,1)), 
                    colour = "red",linetype=1)+
       
-        annotate("text", x=f1, y =-0.02, label ="chi^2", parse = TRUE)+
-        annotate("text", x=cuantil1, y =-0.02, label="chi[alpha]^2",
-                 parse = TRUE)+
-        annotate("text", x=cuantil2, y =-0.02, label="-chi[alpha]^2",
-                 parse = TRUE)+
-        annotate("text", x=9, y = 0.05, label="'Aceptar H'[0]",
-                 parse = TRUE)+
-        annotate("text", x=cuantil1+0.5, y=0.05, label="'Rechazar H'[0]",
-                 parse = TRUE)+
-        annotate("text", x=cuantil2-0.5, y=0.05, label="'Rechazar H'[0]",
-                 parse = TRUE)+
+        annotate("text", x=f1, y =-0.002, label ="chi^2", parse = TRUE,size=4)+
+        annotate("text", x=cuantil1, y =-0.002, label="chi[alpha]^2",
+                 parse = TRUE,size=4)+
+        annotate("text", x=-100, y = 0.05, label="'Región de Aceptación'",
+                 parse = TRUE,size=3)+
+        annotate("text", x=cuantil1+100, y=0.05, label="'Región de Rechazo'",
+                 parse = TRUE,size=3)+
   
-      ylim(-0.05,0.1)+
-      xlim(3,803)+
-      labs( title = "Prueba de dos colas Distribución Ji-cuadrada",
+      ylim(-0.005,0.05)+
+      xlim(-200,700)+
+      labs( title = "Prueba de dos colas Distribución Chi-cuadrada",
             x = " ", y = " ",caption = "http://synergy.vision/" )+
       vision 
 credits(f)
@@ -4700,7 +4691,9 @@ Las tiendas establecen sus precios, pero los fabricantes tienen interés en el p
 Para éste caso la prueba de hipótesis es la siguiente:
 
 $$H_0: \mu_1 = \mu_2 = \mu_3= \mu_4$$
-$$H_a: \mu_1,\mu_2,\mu_3,\mu_4 \quad \text{no todas son iguales.}$$
+$$H_a: \text{Al menos un}\hspace{2mm}\mu_i\hspace{2mm}\text{es distinto.}$$
+
+Donde $\mu_i$ representa la media de los precios de la diferentes marcas.
 
 El estadístico de prueba es el cociente F,
 
@@ -4708,45 +4701,46 @@ $$F= \displaystyle  \frac{\hat{\sigma_b^2}}{\hat{\sigma_w^2}}$$
 donde, $\hat{\sigma_b^2}$ y $\hat{\sigma_w^2}$ son la estimación de la varianza poblacional utilizando varianzas entre columnas y dentro de columnas. Para calcularlas, tenemos lo siguiente:
 
 Primeramente calcularemos la medias unitarias de cada columna,
+ 
+Sea $X_1:$ el precio de la marca A. La media para ésta variable es,
 
-Para la marca A, tenemos:
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \overline{x_1} &= \sum_{i=1}^{n_1} \displaystyle \frac{x_{1i}}{n_1}\\
+\vspace{3mm} \overline{X_1} &= \displaystyle \sum_{i=1}^{n_1} \displaystyle \frac{x_{1i}}{n_1}\\
 \vspace{3mm} &= \displaystyle \frac{61+55+57+60+62}{5}\\
 \vspace{3mm} &= \displaystyle \frac{295}{5}\\
 \vspace{3mm} &= 59
 \end{array}
 $$
 
-Para la marca B, tenemos:
+Sea $X_2:$ el precio de la marca B. La media para ésta variable es,
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \overline{x_2} &= \sum_{i=1}^{n_2} \displaystyle \frac{x_{2i}}{n_2}\\
+\vspace{3mm} \overline{X_2} &= \displaystyle \sum_{i=1}^{n_2} \displaystyle \frac{x_{2i}}{n_2}\\
 \vspace{3mm} &= \displaystyle \frac{52+58+54+55+58}{4}\\
 \vspace{3mm} &= \displaystyle \frac{277}{5}\\
 \vspace{3mm} &= 55.4
 \end{array}
 $$
 
-Para la marca C, tenemos:
+Sea $X_3:$ el precio de la marca C. La media para ésta variable es,
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \overline{x_3} &= \sum_{i=1}^{n_3} \displaystyle \frac{x_{3i}}{n_3}\\
+\vspace{3mm} \overline{X_3} &= \displaystyle \sum_{i=1}^{n_3} \displaystyle \frac{x_{3i}}{n_3}\\
 \vspace{3mm} &= \displaystyle \frac{47+52+49+49+57}{5}\\
 \vspace{3mm} &= \displaystyle \frac{254}{5}\\
 \vspace{3mm} &= 50.8
 \end{array}
 $$
 
-Para la marca D, tenemos:
+Sea $X_4:$ el precio de la marca D. La media para ésta variable es,
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \overline{x_4} &= \sum_{i=1}^{n_4} \displaystyle \frac{x_{4i}}{n_4}\\
+\vspace{3mm} \overline{X_4} &= \displaystyle \sum_{i=1}^{n_4} \displaystyle \frac{x_{4i}}{n_4}\\
 \vspace{3mm} &= \displaystyle \frac{67+63+68+59+65}{5}\\
 \vspace{3mm} &= \displaystyle \frac{322}{5}\\
 \vspace{3mm} &= 64.4
@@ -4757,14 +4751,14 @@ Calculemos ahora la gran media,
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \overline{\overline{x}} &= \displaystyle \sum_{i=1}^4 \displaystyle \frac{\overline{x_i}n_i}{n}\\
+\vspace{3mm} \overline{\overline{X}} &= \displaystyle \sum_{i=1}^4 \displaystyle \frac{\overline{X_i}n_i}{n}\\
 \vspace{3mm} &= \displaystyle \frac{295+277+254+322}{20}\\
 \vspace{3mm} &= \displaystyle \frac{1148}{20}\\
 \vspace{3mm} &= 57.4
 \end{array}
 $$
 
-En R,
+En R calculamos la media con la funcion `mean()`,
 
 ```{r,comment=""}
 a<-c(61,55,57,60,62)
@@ -4774,12 +4768,14 @@ d<-c(67,63,68,59,65)
 
 marcas<-data.frame(a,b,c,d)
 
+#Calculamos la media de cada variable.
 medias<-c()
 for(i in c(1:4)){medias[i]<-mean(marcas[,i])
 }
 
 medias
 
+#Calculamos la gran media.
 gran_media<- sum(medias*5)/20
 gran_media
 
@@ -4789,15 +4785,15 @@ gran_media
 
 La estimación de la varianza de la población utilizando la varianza entre columnas es la siguiente,
 
-$$\hat{\sigma_b^2}= \displaystyle \frac{\sum_{i=1}^kn_i(\overline{x_i}-\overline{\overline{x}})^2}{k-1},$$
+$$\hat{\sigma_b^2}= \displaystyle \frac{\displaystyle \sum_{i=1}^kn_i(\overline{X_i}-\overline{\overline{X}})^2}{k-1},$$
 
 donde,
 
 $n_i=$ tamaño de la i-ésima muestras.
 
-$\overline{x_i}=$ media muestral de la i-ésima muestra.
+$\overline{X_i}=$ media muestral de la i-ésima muestra.
 
-$\overline{\overline{x}}=$ gran media.
+$\overline{\overline{X}}=$ gran media.
 
 $k=$ número de muestras.
 
@@ -4805,7 +4801,7 @@ Calculemos,
 
 $$
 \begin{array}{rl}
-\vspace{3mm}\hat{\sigma_b^2} &= \displaystyle \frac{\sum_{i=1}^kn_i(\overline{x_i}-\overline{\overline{x}})^2}{k-1}\\
+\vspace{3mm}\hat{\sigma_b^2} &= \displaystyle \frac{\displaystyle \sum_{i=1}^kn_i(\overline{X_i}-\overline{\overline{X}})^2}{k-1}\\
 \vspace{3mm} &= \displaystyle \frac{5(59-57.4)^2+5(55.4-57.4)^2+5(50.8-57.4)^2+5(64.4-57.4)^2}{4-1}\\
 \vspace{3mm} &= \displaystyle \frac{495.6}{3}\\
 \vspace{3mm} &= 165.2
@@ -4827,7 +4823,7 @@ $s_i^2=$ varianza muestral de la i-ésima muestra..
 $k=$ número de muestras.
 
 
-Calculemos en R las varianzas muestrales,
+Calculemos en R las varianzas muestrales con la funcion `var()`,
 
 ```{r,comment=""}
 varianzas<-c()
@@ -4869,7 +4865,7 @@ $$\text{Grados de libertad del denominador}= n-k=20-4=16.$$
 
 Con 3 grados de libertad del numerador, 16 grados de libertad del denominador y $\alpha=0.05$, el valor crítico de F es 3.24 en la cola superior y 0.12 en la cola inferior, de manera que se rechaza la $H_0$ porque 15.3 > 3.24. Por lo tanto, existe una varianza significativamente diferente entre las marcas.
 
-Calculemos el valor crítico de F,
+Calculemos el valor crítico de F con la fucion `qf()`,
 
 ```{r,comment=""}
 #f<- qf(p,df1,df2) valor crítico
@@ -4887,7 +4883,7 @@ alpha <- 0.05
 
 f1 <- 15.3
 
-x<-seq(-1,16,0.01)
+x<-seq(0,16,0.01)
 y<-df(x,3,16)
 cuantil1<- qf(1-(alpha),3,16)
 cuantil2<- qf(alpha,3,16)
@@ -4915,15 +4911,15 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                  parse = TRUE)+
         annotate("text", x=cuantil2, y =-0.02, label="-'F'[alpha]",
                  parse = TRUE)+
-        annotate("text", x=1.5, y = 0.1, label="'Aceptar H'[0]",
-                 parse = TRUE)+
-        annotate("text", x=cuantil1+0.5, y=0.05, label="'Rechazar H'[0]",
+        annotate("text", x=1.2, y = 0.1, label="'Región de Aceptación'",
+                 parse = TRUE,size=2)+
+        annotate("text", x=cuantil1+2, y=0.05, label="'Región de Rechazo'",
                  parse = TRUE)+
         annotate("text", x=cuantil2-0.5, y=0.05, label="'Rechazar H'[0]",
                  parse = TRUE)+
   
-      ylim(-0.05,0.7)+
-      xlim(-1,16)+
+      ylim(-0.05,0.8)+
+      xlim(0,16)+
       labs( title = "Prueba de dos colas Distribución F",
             x = " ", y = " ",caption = "http://synergy.vision/" )+
       vision 
@@ -4962,7 +4958,10 @@ Una compañía publicitaria de espectaculares debe saber si hay volúmenes de tr
 Para éste caso la prueba de hipótesis es la siguiente:
 
 $$H_0: \mu_1 = \mu_2 = \mu_3$$
-$$H_a: \mu_1,\mu_2,\mu_3 \quad \text{no todas son iguales.}$$
+$$H_a:\text{Al menos un}\hspace{2mm}\mu_i\hspace{2mm}\text{es distinto.}$$
+
+Donde $\mu_i$ representa la media de volumen de transito en los diferentes anuncios.
+
 El estadístico de prueba es el cociente F,
 
 $$F= \displaystyle  \frac{\hat{\sigma_b^2}}{\hat{\sigma_w^2}}$$
@@ -4971,33 +4970,33 @@ donde, $\hat{\sigma_b^2}$ y $\hat{\sigma_w^2}$ son la estimación de la varianza
 
 Primeramente calcularemos la medias unitarias de cada columna,
 
-Para el anuncio 1, tenemos:
+Sea $X_1:$ el volumen de transito en el anuncio 1. La media de esta variable es,
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \overline{x_1} &= \sum_{i=1}^{n_1} \displaystyle \frac{x_{1i}}{n_1}\\
+\vspace{3mm} \overline{X_1} &= \displaystyle \sum_{i=1}^{n_1} \displaystyle \frac{x_{1i}}{n_1}\\
 \vspace{3mm} &= \displaystyle \frac{30+45+26+44+18+38+42+29}{8}\\
 \vspace{3mm} &= \displaystyle \frac{272}{8}\\
 \vspace{3mm} &= 34
 \end{array}
 $$
 
-Para el anuncio 2, tenemos:
+Sea $X_2:$ el volumen de transito en el anuncio 2. La media de esta variable es,
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \overline{x_2} &= \sum_{i=1}^{n_2} \displaystyle \frac{x_{2i}}{n_2}\\
+\vspace{3mm} \overline{X_2} &= \displaystyle \sum_{i=1}^{n_2} \displaystyle \frac{x_{2i}}{n_2}\\
 \vspace{3mm} &= \displaystyle \frac{29+38+36+21+36+18+17+30+32}{9}\\
 \vspace{3mm} &= \displaystyle \frac{257}{9}\\
 \vspace{3mm} &= 28.5
 \end{array}
 $$
 
-Para el anuncio 3, tenemos:
+Sea $X_3:$ el volumen de transito en el anuncio 3. La media de esta variable es,
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \overline{x_3} &= \sum_{i=1}^{n_3} \displaystyle \frac{x_{3i}}{n_3}\\
+\vspace{3mm} \overline{X_3} &= \displaystyle \sum_{i=1}^{n_3} \displaystyle \frac{x_{3i}}{n_3}\\
 \vspace{3mm} &= \displaystyle \frac{32+44+40+43+24+28+18}{7}\\
 \vspace{3mm} &= \displaystyle \frac{229}{7}\\
 \vspace{3mm} &= 32.7
@@ -5009,14 +5008,14 @@ Calculemos ahora la gran media,
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \overline{\overline{x}} &= \displaystyle \sum_{i=1}^3 \displaystyle \frac{\overline{x_i}n_i}{n}\\
+\vspace{3mm} \overline{\overline{X}} &= \displaystyle \sum_{i=1}^3 \displaystyle \frac{\overline{X_i}n_i}{n}\\
 \vspace{3mm} &= \displaystyle \frac{272+257+229}{24}\\
 \vspace{3mm} &= \displaystyle \frac{758}{24}\\
 \vspace{3mm} &= 31.6
 \end{array}
 $$
 
-En R,
+En R calculamos la media con la funcion `mean()`,
 
 ```{r,comment=""}
 a1<-c(30,45,26,44,18,38,42,29,NA)
@@ -5026,30 +5025,30 @@ a3<-c(32,44,40,43,24,28,18,NA,NA)
 
 anuncios<-data.frame(a1,a2,a3)
 
+#Calculamos la media para cada variable.
 medias<-c()
 for(i in c(1:3)){medias[i]<-mean(anuncios[,i],na.rm = TRUE)
 }
 
 medias
 
+#Calculamos la gran media.
 gran_media<- sum(medias*c(8,9,7))/24
 gran_media
-
-
 ```
 
 
 La estimación de la varianza de la población utilizando la varianza entre columnas es la siguiente,
 
-$$\hat{\sigma_b^2}= \displaystyle \frac{\sum_{i=1}^kn_i(\overline{x_i}-\overline{\overline{x}})^2}{k-1},$$
+$$\hat{\sigma_b^2}= \displaystyle \frac{\displaystyle \sum_{i=1}^kn_i(\overline{X_i}-\overline{\overline{X}})^2}{k-1},$$
 
 donde,
 
 $n_i=$ tamaño de la i-ésima muestras.
 
-$\overline{x_i}=$ media muestral de la i-ésima muestra.
+$\overline{X_i}=$ media muestral de la i-ésima muestra.
 
-$\overline{\overline{x}}=$ gran media.
+$\overline{\overline{X}}=$ gran media.
 
 $k=$ número de muestras.
 
@@ -5057,7 +5056,7 @@ Calculemos,
 
 $$
 \begin{array}{rl}
-\vspace{3mm}\hat{\sigma_b^2} &= \displaystyle \frac{\sum_{i=1}^kn_i(\overline{x_i}-\overline{\overline{x}})^2}{k-1}\\
+\vspace{3mm}\hat{\sigma_b^2} &= \displaystyle \frac{\displaystyle \sum_{i=1}^kn_i(\overline{X_i}-\overline{\overline{X}})^2}{k-1}\\
 \vspace{3mm} &= \displaystyle \frac{8(34-31.6)^2+9(28.5-31.6)^2+7(32.7-31.6)^2}{3-1}\\
 \vspace{3mm} &= \displaystyle \frac{422.64}{2}\\
 \vspace{3mm} &= 70.5
@@ -5079,7 +5078,7 @@ $s_i^2=$ varianza muestral de la i-ésima muestra..
 $k=$ número de muestras.
 
 
-Calculemos en R las varianzas muestrales,
+Calculemos en R las varianzas muestrales con la función `var()`,
 
 ```{r,comment=""}
 varianzas<-c()
@@ -5139,7 +5138,7 @@ alpha <- 0.05
 
 f1 <- 0.83
 
-x<-seq(-8,8,0.01)
+x<-seq(0,8,0.01)
 y<-df(x,2,21)
 cuantil1<- qf(1-(alpha),2,21)
 cuantil2<- qf(alpha,2,21)
@@ -5167,15 +5166,15 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                  parse = TRUE)+
         annotate("text", x=cuantil2, y =-0.02, label="-'F'[alpha]",
                  parse = TRUE)+
-        annotate("text", x=1.5, y = 0.1, label="'Aceptar H'[0]",
+        annotate("text", x=1.2, y = 0.1, label="'Región de Aceptación'",
                  parse = TRUE)+
-        annotate("text", x=cuantil1+0.5, y=0.05, label="'Rechazar H'[0]",
+        annotate("text", x=cuantil1+1, y=0.07, label="'Región de Rechazo'",
                  parse = TRUE)+
         annotate("text", x=cuantil2-0.5, y=0.05, label="'Rechazar H'[0]",
                  parse = TRUE)+
   
       ylim(-0.05,1)+
-      xlim(-8,8)+
+      xlim(0,8)+
       labs( title = "Prueba de dos colas Distribución F",
             x = " ", y = " ",caption = "http://synergy.vision/" )+
       vision 
