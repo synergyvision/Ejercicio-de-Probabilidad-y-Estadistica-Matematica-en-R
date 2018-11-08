@@ -20,6 +20,7 @@ library(ggplot2)
 source("ggplottheme.R")
 library(grid)
 library(gridExtra)
+library(xtable)
 mod_name<-"Regresión Múltiple y Análisis de Varianza"
 credits<-function(f){
   grid.arrange(f,right=textGrob(paste0(mod_name," (C) Synergy Vision - 2018"),
@@ -49,23 +50,23 @@ b) Si la publicidad es 7 y el precio \$132, ¿qué ventas podría pronosticar?
 
 \textbf{\underline{Solución:}}
 
-a) Calculemos la ecuación de mínimos cuadrados múltiple $Y = a + b_1 X_1 + b_2 X_2$, donde:
+a) Calculemos la ecuación de mínimos cuadrados múltiple $Y = \beta_o + \beta_1 X_1 + \beta_2 X_2$, donde:
 
-$Y$ = Variable dependiente.
+$Y$ = Ventas del modelo reproductor de CD y casetes.
 
-$a$ = Ordenada $Y$.
+$\beta_o$ = Ordenada $Y$.
 
-$X_1$ y $X_2$ = Variables indpendientes.
+$X_1$ y $X_2$ = Número de anuncios publicitarios y Precio en dólares.
 
-$b_1$ y $b_2$ = Pendientes asociadas a $X_1$ y $X_2$ respectivamente.
+$\beta_1$ y $\beta_2$ = Pendientes asociadas a $X_1$ y $X_2$ respectivamente.
 
-Para calcular los coeficientes $a, b_1$ y $b_2$ de la ecuación de mínimos cuadrados múltiple usamos el siguiente sistema de ecuaciones:
+Para calcular los coeficientes $\beta_o, \beta_1$ y $\beta_2$ de la ecuación de mínimos cuadrados múltiple usamos el siguiente sistema de ecuaciones:
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \displaystyle \sum_{i=1}^{n} y_i &= na + b_1 \displaystyle \sum_{i=1}^{n} x_{1i} +  b_2 \sum_{i=1}^{n} x_{2i} \\
-\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{1i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{1i} + b_1 \sum_{i=1}^{n} x^2_{1i} +  b_2 \sum_{i=1}^{n} x_{1i} x_{2i} \\
-\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{2i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{2i} + b_1 \sum_{i=1}^{n} x_{1i} x_{2i} +  b_2 \sum_{i=1}^{n} x^2_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} y_i &= n\beta_o + \beta_1 \displaystyle \sum_{i=1}^{n} x_{1i} +  \beta_2 \sum_{i=1}^{n} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{1i} y_i &= \beta_o \displaystyle \sum_{i=1}^{n} x_{1i} + \beta_1 \sum_{i=1}^{n} x^2_{1i} +  \beta_2 \sum_{i=1}^{n} x_{1i} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{2i} y_i &= \beta_o \displaystyle \sum_{i=1}^{n} x_{2i} + \beta_1 \sum_{i=1}^{n} x_{1i} x_{2i} +  \beta_2 \sum_{i=1}^{n} x^2_{2i} \\
 \end{array}
 $$
 donde,
@@ -78,22 +79,41 @@ $x_{2i}$ = Valores de la variable independiente (Precio).
 
 \newpage
 
+calculando los diferentes valores nos queda:
+
+```{r,comment='',warning=FALSE,echo=FALSE}
+Ventas<-c(33,61,70,82,17,24)
+Publicidad<-c(3,6,10,13,9,6)
+Precio<-c(125,115,140,130,145,140)
+
+Tabla<-data.frame(Ventas,Publicidad,Precio,Publicidad*Precio,Publicidad*Ventas,
+                  Precio*Ventas,Publicidad^2,Precio^2)
+
+suma<-apply(Tabla,2,sum)
+
+Tabla<-rbind(Tabla,suma)
+rownames(Tabla)[nrow(Tabla)]<-'Suma total'
+
+kable(Tabla,col.names = c('$Y$','$X_1$','$X_2$','$X_1$ $X_2$','$X_1 Y$','$X_2 Y$','$X^2_1$','$X^2_2$'))
+```
+
+
 Sustituyendo los valores en el sistema de ecuación tenemos:
 
 $$
 \begin{array}{rl}
-\vspace{3mm} 287 &= 6a + 47b_1 + 795b_2\\
-\vspace{3mm} 2528 &= 47a + 431b_1 + 6300b_2\\
-\vspace{3mm} 37425 &= 795a + 6300b_1 +105975b_2 \\
+\vspace{3mm} 287 &= 6\beta_o + 47\beta_1 + 795\beta_2\\
+\vspace{3mm} 2528 &= 47\beta_o + 431\beta_1 + 6300\beta_2\\
+\vspace{3mm} 37425 &= 795\beta_o + 6300\beta_1 +105975\beta_2 \\
 \end{array}
 $$
 Resolviendo el sistema de ecuaciones, tenemos que los coeficientes están dados por:
 
-$a$ = 219.2306
+$\beta_o$ = 219.2306
 
-$b_1$ = 6.3814
+$\beta_1$ = 6.3814
 
-$b_2$ = -1.6708
+$\beta_2$ = -1.6708
 
 Así la ecuación de mínimos cuadrados múltiple está dada por:
 
@@ -122,7 +142,21 @@ b) Si el número de anuncios es de 7 y el precio de 132\$, las ventas serán de:
 
 $$X_1=7, X_2=132, \quad \hat{Y} = 219.2306 + 6.3814(7) - 1.6708(132) = 43.3548$$
 
-43.35 unidades
+43.35 unidades.
+
+\textbf{\underline{En R:}}
+
+Para el pronostico en **R** creamos la función `pronostico()` y le pasamos como argumento el modelo de regresión antes calculado y el vector con los nuevos valores de la variable dependiente, nos queda:
+
+```{r,,comment='',warning=FALSE}
+pronostico<-function(x,y){
+     unname(sum(coef(x)[-1]*y)+coef(x)[1])
+}
+valores<-c(7,132)
+
+pronostico(regresion,valores)
+```
+
 
 \newpage
 
@@ -145,23 +179,23 @@ b) ¿Qué porcentaje de cambio en el PIB se esperaría en un año en el cual el 
 
 \textbf{\underline{Solución:}}
 
-a) Calculemos la ecuación de mínimos cuadrados múltiple $Y = a + b_1 X_1 + b_2 X_2$, donde:
+a) Calculemos la ecuación de mínimos cuadrados múltiple $Y = \beta_o + \beta_1 X_1 + \beta_2 X_2$, donde:
 
-$Y$ = Variable dependiente.
+$Y$ = Cambio en el PIB.
 
-$a$ = Ordenada $Y$.
+$\beta_o$ = Ordenada $Y$.
 
-$X_1$ y $X_2$ = Variables indpendientes.
+$X_1$ y $X_2$ = Déficit federal y Promedio industrial del Dow Jones.
 
-$b_1$ y $b_2$ = Pendientes asociadas a $X_1$ y $X_2$ respectivamente.
+$\beta_1$ y $\beta_2$ = Pendientes asociadas a $X_1$ y $X_2$ respectivamente.
 
-Para calcular los coeficientes $a, b_1$ y $b_2$ de la ecuación de mínimos cuadrados múltiple usamos el siguiente sistema de ecuaciones:
+Para calcular los coeficientes $\beta_o, \beta_1$ y $\beta_2$ de la ecuación de mínimos cuadrados múltiple usamos el siguiente sistema de ecuaciones:
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \displaystyle \sum_{i=1}^{n} y_i &= na + b_1 \displaystyle \sum_{i=1}^{n} x_{1i} +  b_2 \sum_{i=1}^{n} x_{2i} \\
-\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{1i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{1i} + b_1 \sum_{i=1}^{n} x^2_{1i} +  b_2 \sum_{i=1}^{n} x_{1i} x_{2i} \\
-\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{2i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{2i} + b_1 \sum_{i=1}^{n} x_{1i} x_{2i} +  b_2 \sum_{i=1}^{n} x^2_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} y_i &= n\beta_o + \beta_1 \displaystyle \sum_{i=1}^{n} x_{1i} +  \beta_2 \sum_{i=1}^{n} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{1i} y_i &= \beta_o \displaystyle \sum_{i=1}^{n} x_{1i} + \beta_1 \sum_{i=1}^{n} x^2_{1i} +  \beta_2 \sum_{i=1}^{n} x_{1i} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{2i} y_i &= \beta_o \displaystyle \sum_{i=1}^{n} x_{2i} + \beta_1 \sum_{i=1}^{n} x_{1i} x_{2i} +  \beta_2 \sum_{i=1}^{n} x^2_{2i} \\
 \end{array}
 $$
 donde,
@@ -172,22 +206,40 @@ $x_{1i}$ = Valores de la variable independiente (Déficit federal).
 
 $x_{2i}$ = Valores de la variable independiente (Dow Jones).
 
+calculando los diferentes valores nos queda:
+
+```{r,comment='',warning=FALSE,echo=FALSE}
+CambioPIB<-c(2.5,-1,4,1,1.5,3)
+Deficit<-c(100,400,120,200,180,80)
+DowJones<-c(2850,2100,3300,2400,2550,2700)
+
+Tabla<-data.frame(CambioPIB,Deficit,DowJones,Deficit*DowJones,Deficit*CambioPIB,
+                  DowJones*CambioPIB,Deficit^2,DowJones^2)
+
+suma<-apply(Tabla,2,sum)
+
+Tabla<-rbind(Tabla,suma)
+rownames(Tabla)[nrow(Tabla)]<-'Suma total'
+
+kable(Tabla,col.names = c('$Y$','$X_1$','$X_2$','$X_1$ $X_2$','$X_1 Y$','$X_2 Y$','$X^2_1$','$X^2_2$'))
+```
+
 Sustituyendo los valores en el sistema de ecuación tenemos:
 
 $$
 \begin{array}{rl}
-\vspace{3mm} 11 &= 6a + 1080b_1 + 15900b_2\\
-\vspace{3mm} 1040 &= 1080a + 263200b_1 + 2676000b_2\\
-\vspace{3mm} 32550 &= 15900a + 2676000b_1 + 42975000b_2 \\
+\vspace{3mm} 11 &= 6\beta_o + 1080\beta_1 + 15900\beta_2\\
+\vspace{3mm} 1040 &= 1080\beta_o + 263200\beta_1 + 2676000\beta_2\\
+\vspace{3mm} 32550 &= 15900\beta_o + 2676000\beta_1 + 42975000\beta_2 \\
 \end{array}
 $$
 Resolviendo el sistema de ecuaciones, tenemos que los coeficientes están dados por:
 
-$a$ = -3.6963
+$\beta_o$ = -3.6963
 
-$b_1$ = -0.00677
+$\beta_1$ = -0.00677
 
-$b_2$ = 0.00254
+$\beta_2$ = 0.00254
 
 Así la ecuación de mínimos cuadrados múltiple está dada por:
 
@@ -215,8 +267,17 @@ $$Y = -3.6963 -0.00677X_1 + 0.00254X_2$$
 b) Si el déficit federal fue de 240,000 millones de dólares y el promedio Dow Jones fue 3,000, entonces se esperaría un porcentaje de cambio en el PIB de:
 
 $$X_1 = 240,X_2 = 3,000,\quad \hat{Y} = -3.6963 -0.00677(240) + 0.00254(3,000)$$
-2.2989\%
+2.2989\%.
 
+\textbf{\underline{En R:}}
+
+Usando la función `pronostico()` definida anteriormente tenemos:
+
+```{r,,comment='',warning=FALSE}
+valores<-c(240,3000)
+
+pronostico(regresion,valores)
+```
 
 \newpage
 
@@ -264,15 +325,76 @@ e) Según la ecuación de regresión obtenida, ¿qué valor de DEMAND predecirí
 
 \textbf{\underline{Solución:}}
 
-a) Encontremos la ecuación de regresión múltiple $Y = a + b_1 X_1 + b_2 X_2 + b_3 X_3$ mediante **R**, donde:
+a) Encontremos la ecuación de regresión múltiple $Y = \beta_o + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3$ mediante **R**, donde:
 
-$Y$ = Variable dependiente (Demanda).
+$Y$ = Demanda de un producto.
 
-$a$ = Ordenada $Y$.
+$\beta_o$ = Ordenada $Y$.
 
-$X_1$, $X_2$ y $X_3$ = Variables indpendientes (Precio, ingreso y buen sustituto).
+$X_1$, $X_2$ y $X_3$ = Precio del producto, Ingreso del consumidor y Precio de un bien sustituto.
 
-$b_1$, $b_2$ y $b_3$ = Pendientes asociadas a $X_1$, $X_2$ y $X_3$ respectivamente.
+$\beta_1$, $\beta_2$ y $\beta_3$ = Pendientes asociadas a $X_1$, $X_2$ y $X_3$ respectivamente.
+
+La ecuación de regresión múltiple se puede expresar de la siguiente forma matricial:
+
+$$
+\begin{array}{rl}
+\overrightarrow{y} &= \mathbf{X} \overrightarrow{\beta} + \overrightarrow{\varepsilon}
+\end{array}
+$$
+Lo que es lo mismo que,
+
+$$
+\left(\begin{array}{c}
+40                     \\
+45                     \\
+50                     \\
+55                     \\
+60                     \\
+70                     \\
+65                     \\
+65                     \\
+75                     \\
+75                     \\
+80                     \\
+100                    \\
+90                     \\
+95                     \\
+85                    
+\end{array}\right)
+=
+\left(\begin{array}{cccc}
+1 & 9 & 400  & 10 \\
+1 & 8 & 500  & 14 \\
+1 & 9 & 600  & 12 \\
+1 & 8 & 700  & 13 \\
+1 & 7 & 800  & 11 \\
+1 & 6 & 900  & 15 \\
+1 & 6 & 1000 & 16 \\
+1 & 8 & 1100 & 17 \\
+1 & 5 & 1200 & 22 \\
+1 & 5 & 1300 & 19 \\
+1 & 5 & 1400 & 20 \\
+1 & 3 & 1500 & 23 \\
+1 & 4 & 1600 & 18 \\
+1 & 3 & 1700 & 24 \\
+1 & 4 & 1800 & 21
+\end{array}\right)
+\left(\begin{array}{c}
+\beta_o                     \\
+\beta_1                     \\
+\beta_2                     \\
+\beta_3                     \\
+\end{array}\right)
++
+\overrightarrow{\varepsilon}
+$$
+
+Para encontrar el vector de coeficientes $\overrightarrow{\beta}$ se resuelve la ecuación matricial como sigue:
+
+$$
+\hat{\beta}=(\mathbf{X}^t \mathbf{X})^{-1} \mathbf{X}^t \vec{y}
+$$
 
 Usando el comando `lm()` en **R** tenemos:
 
@@ -293,18 +415,34 @@ Por lo que la ecuación de regresión está dada por:
 
 $$Y = 79.10633 - 4.9280X_1 + 0.01590X_2 + 0.1747X_3$$
 
-b) Los coeficientes de la ecuación de regresión nos indica la relación que aporta cada variable independiente con respecto a la variable dependiente. Notamos que en la variable de Precio se obtiene un coeficiente negativo, esto nos indica una relación negativa entre el precio y la demanda, es decir, entre más alto el precio se obtiene un menor valor en la demanda del producto.
+b) Los coeficientes de la ecuación de regresión nos indica la relación que aporta cada variable independiente con respecto a la variable dependiente. Notamos que en la variable de Precio se obtiene un coeficiente negativo, esto nos indica una relación negativa entre el precio y la demanda, es decir, entre más alto el precio se obtiene un menor valor en la demanda del producto, luego el coeficiente que acompaña a la variable del precio de un bien sustituto es el siguiente valor más alto que describe a la demanda y por último la variable que menos describe a la demanda es el ingreso del consumidor con el menor valor en el coeficiente.
 
 c) El coeficiente de determinación se cálcula con la fórmula siguiente:
 
 $$r^2 = 1 - \displaystyle \frac{\displaystyle \sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2}{\displaystyle \sum_{i=1}^{n}(Y_i - \overline{Y})^2}$$
 donde,
 
-$Y_i$ = Valores de la variable dependiente.
+$Y_i$ = Valores de la demanda anual de cierto producto.
 
-$\hat{Y}_i$ = Valores estimados a partir de la ecuación de regresión.
+$\hat{Y}_i$ = Valores estimados de la demanda a partir de la ecuación de regresión.
 
-$\overline{Y}$ = Media de los valores de la variable dependiente.
+$\overline{Y}$ = Media de los valores de la demanda anual de cierto producto.
+
+```{r,comment='',warning=FALSE,echo=FALSE}
+Demanda<-c(40,45,50,55,60,70,65,65,75,75,80,100,90,95,85)
+y_bar<-79.1063-4.9281*Precio+0.0159*Ingreso+0.1748*Sub
+Media<-mean(Demanda)
+
+Tabla<-data.frame(Demanda,y_bar,(Demanda-y_bar)^2,(Demanda-Media)^2)
+
+suma<-apply(Tabla,2,sum)
+
+Tabla<-rbind(Tabla,suma)
+rownames(Tabla)[nrow(Tabla)]<-'Suma total'
+
+kable(Tabla,col.names = c('$Y$','$\\hat{Y}$','$(Y-\\hat{Y})^2$','$(Y-\\overline{Y})^2$'))
+```
+
 
 Sustituyendo los valores correspondientes luego de evaluar los valores en la ecuación de regresión tenemos:
 
@@ -316,7 +454,7 @@ $$
 \vspace{3mm} &= 0.951
 \end{array}
 $$
-Por lo que $r^2$=0.951, esto nos indica que el 95.1\% de la variación en Y (la demanda) es explicada por la ecuación de regresión.
+Por lo que $r^2$=0.951, esto nos indica que el 95.1\% de la variación de la demanda anual de cierto producto es explicada por el precio de un producto, el ingreso del consumidor y el precio de un bien sustituto.
 
 \textbf{\underline{En R:}}
 
@@ -339,9 +477,9 @@ d) El error estándar de la estimación se calcula con la fórmula siguiente:
 $$s_e = \sqrt{\displaystyle \frac{\displaystyle \sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2}{n -k-1}}$$
 donde,
 
-$Y_i$ = valores de la variable dependiente.
+$Y_i$ = valores de la demanda anual de cierto producto.
 
-$\hat{Y}_i$ = valores estimados a partir de la ecuación de regresión.
+$\hat{Y}_i$ = valores estimados de la demanda a partir de la ecuación de regresión.
 
 $n$ = tamaño de la muestra.
 
@@ -356,7 +494,7 @@ $$
 \vspace{3mm} &= 4.5276\\
 \end{array}
 $$
-por lo que $s_e$ = 4.5276, es decir, la dispersión que existe entre los valores observados del conjunto de datos y el plano de regresión es de 45.27 (demanda de los productos).
+por lo que $s_e$ = 4.5276, es decir, la dispersión que existe entre el precio de un producto, el ingreso del consumidor, el precio de un bien sustituto con respecto a la demanda anual de cierto producto es de 45.27%.
 
 \textbf{\underline{En R:}}
 
@@ -366,12 +504,22 @@ Usamos el comando `summary()` para determinar el error estándar de la estimaci�
 m<-summary(regresion)
 m$sigma
 ```
-\newpage
 
 e) Si el precio de los productos fue de 6\$, el ingreso del consumidor de 1,200\$ y el precio del bien sustituto de 17\$, entonces el valor de la demanda que se predecirá a partir de la ecuación de regresión es de:
 
 $$X_1 = 6, X_2 = 1,200, X_3= 17 \quad \hat{Y} = 79.10633 - 4.9280(6) + 0.01590(1,200) + 0.1747(17)=71.588$$
-71.588 unidades
+71.588 unidades.
+
+\textbf{\underline{En R:}}
+
+Usando la función `pronostico()` nos queda:
+
+```{r,,comment='',warning=FALSE}
+valores<-c(6,1200,17)
+
+pronostico(regresion,valores)
+```
+
 
 \newpage
 
@@ -402,15 +550,73 @@ c) Si la casa de Rick tiene 1,800 pies cuadrados (=18.0 cientos de pies cuadrado
 
 \textbf{\underline{Solución:}}
 
-a) Determinemos la ecuación de regresión múltiple $Y = a + b_1 X_1 + b_2 X_2 + b_3 X_3 + b_4 X_4$ mediante **R**, donde:
+a) Determinemos la ecuación de regresión múltiple $Y = \beta_o + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3 + \beta_4 X_4$ mediante **R**, donde:
 
-$Y$ = Variable dependiente (Precio de venta).
+$Y$ = Precio de venta.
 
-$a$ = Ordenada $Y$.
+$\beta_o$ = Ordenada $Y$.
 
-$X_1$, $X_2$, $X_3$ y $X_4$ = Variables indpendientes (Pies, pisos, baños y antiguedad).
+$X_1$, $X_2$, $X_3$ y $X_4$ = Número de pies cuadrados, Número de pisos, Número de baños y Antigüedad de la casa.
 
-$b_1$, $b_2$, $b_3$ y $b_4$ = Pendientes asociadas a $X_1$, $X_2$, $X_3$ y $X_4$ respectivamente.
+$\beta_1$, $\beta_2$, $\beta_3$ y $\beta_4$ = Pendientes asociadas a $X_1$, $X_2$, $X_3$ y $X_4$ respectivamente.
+
+La ecuación de regresión múltiple se puede expresar de la siguiente forma matricial:
+
+$$
+\begin{array}{rl}
+\overrightarrow{y} &= \mathbf{X} \overrightarrow{\beta} + \overrightarrow{\varepsilon}
+\end{array}
+$$
+
+Lo que es lo mismo que,
+
+$$
+\left(\begin{array}{c}
+49.65  \\
+67.95  \\
+81.15  \\
+81.60  \\
+91.50  \\
+95.25  \\
+100.35 \\
+104.25 \\
+112.65 \\
+149.70 \\
+160.65 \\
+232.50
+\end{array}\right)
+=
+\left(\begin{array}{ccccc}
+1 & 8.9  & 1 & 1   & 2  \\
+1 & 9.5  & 1 & 1   & 6  \\
+1 & 12.6 & 2 & 1.5 & 11 \\
+1 & 12.9 & 2 & 1.5 & 8  \\
+1 & 19   & 2 & 1   & 22 \\
+1 & 17.6 & 1 & 1   & 17 \\
+1 & 20   & 2 & 1.5 & 12 \\
+1 & 20.6 & 2 & 1.5 & 11 \\
+1 & 20.5 & 1 & 2   & 9  \\
+1 & 25.1 & 2 & 2   & 8  \\
+1 & 22.7 & 2 & 2   & 18 \\
+1 & 40.8 & 3 & 4   & 12
+\end{array}\right)
+\left(\begin{array}{c}
+\beta_o                     \\
+\beta_1                     \\
+\beta_2                     \\
+\beta_3                     \\
+\beta_4
+\end{array}\right)
++
+\overrightarrow{\epsilon}
+$$
+
+Para encontrar el vector de coeficientes $\overrightarrow{\beta}$ se resuelve la ecuación matricial como sigue:
+
+$$
+\hat{\beta}=(\mathbf{X}^t \mathbf{X})^{-1} \mathbf{X}^t \vec{y}
+$$
+
 
 Usando el comando `lm()` en **R** tenemos:
 
@@ -437,11 +643,29 @@ b) El coeficiente de determinación se cálcula con la fórmula siguiente:
 $$r^2 = 1 - \displaystyle \frac{\displaystyle \sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2}{\displaystyle \sum_{i=1}^{n}(Y_i - \overline{Y})^2}$$
 donde,
 
-$Y_i$ = Valores de la variable dependiente.
+$Y_i$ = Valores del precio de venta.
 
-$\hat{Y}_i$ = Valores estimados a partir de la ecuación de regresión.
+$\hat{Y}_i$ = Valores estimados del precio de venta a partir de la ecuación de regresión.
 
-$\overline{Y}$ = Media de los valores de la variable dependiente.
+\newpage
+
+$\overline{Y}$ = Media de los valores del precio de venta.
+
+```{r,comment='',warning=FALSE,echo=FALSE}
+Precio<-c(49.65,67.95,81.15,81.60,91.50,95.25,100.35,104.25,112.65,149.70,160.65,232.50)
+y_bar<--1.3812 + 2.8524*Pies - 3.7134*Pisos + 30.2850*Baños + 1.1721*Antiguedad
+Media<-mean(Precio)
+
+Tabla<-data.frame(Precio,y_bar,(Precio-y_bar)^2,(Precio-Media)^2)
+
+suma<-apply(Tabla,2,sum)
+
+Tabla<-rbind(Tabla,suma)
+rownames(Tabla)[nrow(Tabla)]<-'Suma total'
+
+kable(Tabla,col.names = c('$Y$','$\\hat{Y}$','$(Y-\\hat{Y})^2$','$(Y-\\overline{Y})^2$'))
+```
+
 
 Sustituyendo los valores correspondientes luego de evaluar los valores en la ecuación de regresión tenemos:
 
@@ -454,7 +678,7 @@ $$
 \end{array}
 $$
 
-Por lo que $r^2$=0.9525, esto nos indica que el 95.25\% de la variación en Y (el precio de venta) es explicada por la ecuación de regresión.
+Por lo que $r^2$=0.9525, esto nos indica que el 95.25\% de la variación en el precio de venta es explicada por el número de pies cuadrados, el número de pisos y la antigüedad de la casa.
 
 \textbf{\underline{En R:}}
 
@@ -474,7 +698,18 @@ m$r.squared
 
 c) Si la casa de Rick tiene 18.0 (cientos de pies) pies cuadrados, un piso, 1.5 baños y 6 años de antiguedad, el precio de venta que puede esperar rick es de:
 $$X_1 = 18, X_2 = 1, X_3= 1.5, X_4=6 \quad \hat{Y} = -1.3812 + 2.8524(18) - 3.7134(1) + 30.2850(1.5) + 1.1721(6)= 98.70$$
-98.70\$ (en miles)
+98.70\$ (en miles).
+
+\textbf{\underline{En R:}}
+
+Usando la función `pronostico()` nos queda:
+
+```{r,,comment='',warning=FALSE}
+valores<-c(18,1,1.5,6)
+
+pronostico(regresion,valores)
+```
+
 
 \newpage
 
@@ -500,15 +735,62 @@ c) ¿Cuántas toneladas de acero deberá esperar Allegheny vender en un año en 
 
 \textbf{\underline{Solución:}}
 
-a) Determinemos la ecuación de regresión múltiple $Y = a + b_1 X_1 + b_2 X_2 + b_3 X_3$ mediante **R**, donde:
+a) Determinemos la ecuación de regresión múltiple $Y = \beta_o + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3$ mediante **R**, donde:
 
-$Y$ = Variable dependiente (Venta de acero).
+$Y$ = Venta de acero.
 
-$a$ = Ordenada $Y$.
+$\beta_o$ = Ordenada $Y$.
 
-$X_1$, $X_2$ y $X_3$ = Variables indpendientes (Inflación, importaciones y automóviles).
+$X_1$, $X_2$ y $X_3$ = Tasa de inflación, Cota de importaciones y Número de automóviles.
 
-$b_1$, $b_2$ y $b_3$ = Pendientes asociadas a $X_1$, $X_2$ y $X_3$ respectivamente.
+$\beta_1$, $\beta_2$ y $\beta_3$ = Pendientes asociadas a $X_1$, $X_2$ y $X_3$ respectivamente.
+
+La ecuación de regresión múltiple se puede expresar de la siguiente forma matricial:
+
+$$
+\begin{array}{rl}
+\overrightarrow{y} &= \mathbf{X} \overrightarrow{\beta} + \overrightarrow{\varepsilon}
+\end{array}
+$$
+
+Lo que es lo mismo que,
+
+$$
+\left(\begin{array}{c}
+4.2 \\
+3.1 \\
+4   \\
+4.7 \\
+4.3 \\
+3.7 \\
+3.5
+\end{array}\right)
+=
+\left(\begin{array}{cccc}
+1 & 3.1  & 3.1  & 6.2 \\
+1 & 3.9  & 5    & 5.1 \\
+1 & 7.5  & 2.2  & 5.7 \\
+1 & 10.7 & 4.5  & 7.1 \\
+1 & 15.5 & 4.35 & 6.5 \\
+1 & 13   & 2.6  & 6.1 \\
+1 & 11   & 3.05 & 5.9
+\end{array}\right)
+\left(\begin{array}{c}
+\beta_o                     \\
+\beta_1                     \\
+\beta_2                     \\
+\beta_3                     
+\end{array}\right)
++
+\overrightarrow{\epsilon}
+$$
+
+Para encontrar el vector de coeficientes $\overrightarrow{\beta}$ se resuelve la ecuación matricial como sigue:
+
+$$
+\hat{\beta}=(\mathbf{X}^t \mathbf{X})^{-1} \mathbf{X}^t \vec{y}
+$$
+
 
 Usando el comando `lm()` en **R** tenemos:
 
@@ -534,11 +816,27 @@ b) Para calcular que porcentaje de la variación total de la cantidad de acero v
 $$r^2 = 1 - \displaystyle \frac{\displaystyle \sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2}{\displaystyle \sum_{i=1}^{n}(Y_i - \overline{Y})^2}$$
 donde,
 
-$Y_i$ = Valores de la variable dependiente.
+$Y_i$ = Valores de la venta de acero.
 
-$\hat{Y}_i$ = Valores estimados a partir de la ecuación de regresión.
+$\hat{Y}_i$ = Valores estimados de la venta de acero a partir de la ecuación de regresión.
 
-$\overline{Y}$ = Media de los valores de la variable dependiente.
+$\overline{Y}$ = Media de los valores de la venta de acero.
+
+```{r,comment='',warning=FALSE,echo=FALSE}
+Ventas<-c(4.2,3.1,4,4.7,4.3,3.7,3.5)
+y_bar<--1.0490 -0.02822*Inflacion - 0.0508*Importaciones + 0.8903*Automoviles
+Media<-mean(Ventas)
+
+Tabla<-data.frame(Ventas,y_bar,(Ventas-y_bar)^2,(Ventas-Media)^2)
+
+suma<-apply(Tabla,2,sum)
+
+Tabla<-rbind(Tabla,suma)
+rownames(Tabla)[nrow(Tabla)]<-'Suma total'
+
+kable(Tabla,col.names = c('$Y$','$\\hat{Y}$','$(Y-\\hat{Y})^2$','$(Y-\\overline{Y})^2$'))
+```
+
 
 Sustituyendo los valores correspondientes luego de evaluar los valores en la ecuación de regresión tenemos:
 
@@ -551,7 +849,7 @@ $$
 \end{array}
 $$
 
-Por lo que $r^2$=0.8671, esto nos indica que el 86.71\% de la variación en Y (cantidad de acero vendido) es explicada por la ecuación de regresión.
+Por lo que $r^2$=0.8671, esto nos indica que el 86.71\% de la variación de la cantidad de acero vendido es explicada por la tasa de inflación, la cota de importaciones y el número de automóviles.
 
 \textbf{\underline{En R:}}
 
@@ -569,11 +867,20 @@ m<-summary(regresion)
 m$r.squared
 ```
 
-\newpage
-
 c) Si la tasa de inflación fue de 7.1, los fabricantes de autos planean producir 6.0 millones de automóviles y la cota promedio del acero importado por tonelada es 3.50\$, entonces Allegheny esperará vender:
 $$X_1 = 7.1, X_2 = 3.5, X_3=6 \quad \hat{Y} = -1.0490 - 0.02822(7.1) - 0.0508(3.5) + 0.8903(6) = 3.9146$$
 3.9146 millones de toneladas de acero.
+
+\textbf{\underline{En R:}}
+
+Usando la función `pronostico()` nos queda:
+
+```{r,,comment='',warning=FALSE}
+valores<-c(7.1,3.5,6)
+
+pronostico(regresion,valores)
+```
+
 
 \newpage
 
@@ -656,16 +963,16 @@ a) Según la tabla mostrada, observamos que la ecuación de regresión que mejor
 $$Y = -26233 + 9093X_1$$
 donde,
 
-$Y$ = Variable dependiente (Ventas).
+$Y$ = Ventas de Cindy's.
 
-$X_1$ = Variable independiente (Tiempo).
+$X_1$ = Tiempo de las ventas.
 
 b) A pesar de obtener un coeficiente de determinación $R^2$ relativamente alto (83.1\%), se obtiene un valor alto en la desviación estándar de los residuales, indicando una alta dispersión en los datos con respecto a la ecuación de regresión obtenida, también podemos observar un cierto patrón en los residuales de positivo a negativo y nuevamente a positivo, esto sugiere que se podría buscar otro modelo de regresión que se ajuste mejor a los datos.
 
-c) Según la tabla mostrada, el modelo cuadrático dado por:
+c) Según la tabla mostrada, el modelo cuadrático que está dado por:
 
 $$Y = 13981 -8142X_1 + 1326X^2_1$$
-es mejor al modelo anterior, pues se aumenta el coeficiente de determinacion $R^2$ a un 99.6\%, disminuye significativamente el valor de la desviación estándar de los residuales y no se observa un patrón en los residuos.
+es mejor al modelo anterior, ya que aumenta el coeficiente de determinación $R^2$, comparado con el $R^2$=83.1% del otro modelo, para este modelo la variación en las ventas de cindy's es explicada por un 99.6% por el modelo de regresión ajustado. También observamos como disminuye significativamente el valor de la desviación estándar de los residuales y no se observa un patrón en los residuos.
 
 \newpage
 
@@ -716,26 +1023,28 @@ a) Según la tabla mostrada, observamos que la ecuación de regresión que mejor
 $$Y = 2036 + 0.818X_1 -1664X_2 $$
 donde,
 
-$Y$ = Variable dependiente (Consumo).
+$Y$ = Gastos de consumo.
 
-$X_1$ y $X_2$ = Variable independiente (Ingreso y Género).
+$X_1$ y $X_2$ = Ingreso disponible y Sexo de la cabeza de la casa.
+
+Observamos que este modelo de regresión obtiene un coeficiente de determinación de $R^2$=98.4%, lo cual indica que la variación en los gastos de consumo es explicada por un 98.4% por el ingreso disponible y el sexo de la cabeza de la casa.
 
 b) Probemos si existe una diferencia significativa en el consumo entre las casas cuya cabeza es masculina comparada con aquéllas cuya cabeza es femenina, para esto establecemos la siguiente prueba de hipótesis para el coeficiente que acompaña a la variable GENERO. Implantemos la siguiente hipótesis:
 
-$$H_o: B_2=0$$
-$$H_a: B_2 \neq 0$$
+$$H_o: \beta_2=0$$
+$$H_a: \beta_2 \neq 0$$
 donde $H_o$ es la hipótesis nula y $H_a$ es la hipótesis alternativa. El estadístico de prueba (de dos colas) viene dado por:
 
-$$t = \displaystyle \frac{b_2 - B_{2H_o}}{s_{b_2}}$$
+$$t = \displaystyle \frac{\beta_2 - \beta_{2H_o}}{s_{\beta_2}}$$
 donde,
 
-$b_2$ = pendiente de la variable independiente $X_2$.
+$\beta_2$ = pendiente de la variable independiente $X_2$.
 
-$B_{2H_o}$ = pendiente hipótetica.
+$\beta_{2H_o}$ = pendiente hipótetica.
 
-$s_{b_2}$ = error estándar del coeficiente de regresión $b_2$.
+$s_{\beta_2}$ = error estándar del coeficiente de regresión $\beta_2$.
 
-Dada la tabla del inciso a), observamos que $s_{b_2}$ = 916.9, sustituyendo los respectivos valores en el estadístico y sabiendo que $t_{\displaystyle \frac{\alpha}{2}}$ = $t_{0.05}$ = $\pm$ 1.833 (con $n-k-1$ grados de libertad) tenemos:
+Dada la tabla del inciso a), observamos que $s_{\beta_2}$ = 916.9, sustituyendo los respectivos valores en el estadístico y sabiendo que $t_{\displaystyle \frac{\alpha}{2}}$ = $t_{0.05}$ = $\pm$ 1.833 (con $n-k-1$ grados de libertad) tenemos:
 
 $$
 \begin{array}{rl}
@@ -830,12 +1139,21 @@ donde $t_{\displaystyle \frac{\alpha}{2}}$ es el factor de confiabilidad con $n-
 
 \textbf{\underline{En R:}}
 
-```{r,comment='',warning=FALSE}
-X1<-40000
-X2<-1
-y_bar<-2036 + 0.818*X1 - 1664*X2
-y_bar
+
+```{r,,comment='',warning=FALSE,echo=-c(1:8)}
+Consumo<-c(37070,22700,24260,30420,17360,33520,26960,19360,35680,22360,28640,39720)
+Ingreso<-c(45100,28070,26080,35000,18860,41270,32940,21440,44700,24400,33620,46000)
+Genero<-c(1,1,0,1,0,1,1,0,1,0,0,1)
+
+Datos<-data.frame(Consumo,Ingreso,Genero)
+
+regresion<-lm(Consumo~Ingreso+Genero,Datos)
+
+valores<-c(40000,1)
+
+pronostico(regresion,valores)
 ```
+
 
 ```{r,comment='',warning=FALSE}
 alpha<-0.05
@@ -843,6 +1161,18 @@ n<-12
 k<-2
 t_alpha<-qt(1-alpha/2,df=n-k-1)
 t_alpha
+```
+
+```{r,echo=FALSE,comment='',warning=FALSE,fig.height=4.5,fig.width=6}
+ggplot()+
+  geom_curve( aes(x = 28000, y = 0, xend = 38000, yend = 0),curvature = 0)+
+  scale_x_continuous(breaks = seq(28000,38000,by=2000)) +xlab('')+ylab('')+
+  annotate("text", x=33092, y=-0.005, label="'33,092'",parse = TRUE)+ylim(-0.05,0.05)+
+  annotate("text",x=30900,y=-0.005,label="'33,092-2,295.93'",parse=TRUE)+
+  annotate("text",x=30796,y=0,label="'('",parse=TRUE,col='red',size=8)+
+  annotate("text",x=35450.93,y=-0.005,label="'33,092+2,295.93'",parse=TRUE)+
+  annotate("text",x=35387.93,y=0,label="')'",parse=TRUE,col='red',size=8)+
+  geom_segment(aes(x = 33092, y =-0.002 , xend = 33092,yend = 0),colour = "black",linetype=2)
 ```
 
 \newpage
@@ -883,16 +1213,71 @@ e) Calcule un intervalo de confianza del 90% para VENTAS en una semana en la que
 
 \textbf{\underline{Solución:}}
 
-a) Encontremos la ecuación de regresión múltiple $Y = a + b_1 X_1 + b_2 X_2 + b_3 X_3$ mediante **R**, donde:
+a) Encontremos la ecuación de regresión múltiple $Y = \beta_o + \beta_1 X_1 + \beta_2 X_2 + \beta_3 X_3$ mediante **R**, donde:
 
-$Y$ = Variable dependiente (Ventas).
+$Y$ = Ventas en la pizzería.
 
-$a$ = Ordenada $Y$.
+$\beta_o$ = Ordenada $Y$.
 
-$X_1$, $X_2$ y $X_3$ = Variables indpendientes (Promociones, Tipo1 (Radio) y Tipo2 (Volantes)).
+$X_1$, $X_2$ y $X_3$ = Gastos en promociones, Promoción en radio (Tipo 1) y promoción en volantes (Tipo 2).
 
-$b_1$, $b_2$ y $b_3$ = Pendientes asociadas a $X_1$, $X_2$ y $X_3$ respectivamente.
+$\beta_1$, $\beta_2$ y $\beta_3$ = Pendientes asociadas a $X_1$, $X_2$ y $X_3$ respectivamente.
 
+La ecuación de regresión múltiple se puede expresar de la siguiente forma matricial:
+
+$$
+\begin{array}{rl}
+\overrightarrow{y} &= \mathbf{X} \overrightarrow{\beta} + \overrightarrow{\varepsilon}
+\end{array}
+$$
+
+Lo que es lo mismo que,
+
+$$
+\left(\begin{array}{c}
+12.1 \\
+19.1 \\
+26.9 \\
+24.8 \\
+37.1 \\
+39.4 \\
+32.5 \\
+28.9 \\
+28.8 \\
+34.7 \\
+38.4 \\
+26.3
+\end{array}\right)
+=
+\left(\begin{array}{cccc}
+1 & 3.8  & 0 & 1 \\
+1 & 6.4  & 0 & 1 \\
+1 & 7.9  & 0 & 0 \\
+1 & 8.7  & 1 & 0 \\
+1 & 12.4 & 1 & 0 \\
+1 & 15.9 & 0 & 1 \\
+1 & 11.3 & 0 & 0 \\
+1 & 9.4  & 0 & 0 \\
+1 & 8.6  & 1 & 0 \\
+1 & 12.7 & 0 & 1 \\
+1 & 14.3 & 0 & 0 \\
+1 & 6.7  & 1 & 0
+\end{array}\right)
+\left(\begin{array}{c}
+\beta_o                     \\
+\beta_1                     \\
+\beta_2                     \\
+\beta_3                     \\
+\end{array}\right)
++
+\overrightarrow{\varepsilon}
+$$
+
+Para encontrar el vector de coeficientes $\overrightarrow{\beta}$ se resuelve la ecuación matricial como sigue:
+
+$$
+\hat{\beta}=(\mathbf{X}^t \mathbf{X})^{-1} \mathbf{X}^t \vec{y}
+$$
 Usando el comando `lm()` en **R** tenemos:
 
 ```{r,comment='',warning=FALSE}
@@ -912,29 +1297,31 @@ b) La ecuación de regresión está dada por:
 
 $$Y=8.2470+2.1844X_1+1.1246X_2-3.110X_3$$
 
-c) Probemos si existe una diferencia significativa entre el radio y el periódico como tipos de promociones, para esto establecemos la siguiente prueba de hipótesis para el coeficiente que acompaña a la variable Tipo1. Implantemos la siguiente hipótesis:
+El modelo que obtuvimos nos indica la relación que existe entre las ventas de la pizzería con respecto a los gastos en promoción y el tipo de promoción que realizó la pizzería.
 
-$$H_o: B_2=0$$
-$$H_a: B_2 \neq 0$$
+c) La variable Tipo 1 es una variable discreta que toma unicamente el valor 1 si el tipo de promoción fue por radio ó 0 si la promoción fue por periódico, queremos saber si ésta es significativa en el modelo ajustado, para ello tenemos que hacer una prueba para el parámetro $\beta_2$. La prueba de hipótesis correspondiente es la siguiente:
+
+$$H_o: \beta_2=0$$
+$$H_a: \beta_2 \neq 0$$
 donde $H_o$ es la hipótesis nula y $H_a$ es la hipótesis alternativa. El estadístico de prueba (de dos colas) viene dado por:
 
-$$t = \displaystyle \frac{b_2 - B_{2H_o}}{s_{b_2}}$$
+$$t = \displaystyle \frac{\beta_2 - \beta_{2H_o}}{s_{\beta_2}}$$
 donde,
 
-$b_2$ = pendiente de la variable independiente $X_2$.
+$\beta_2$ = pendiente de la variable independiente $X_2$.
 
-$B_{2H_o}$ = pendiente hipótetica.
+$\beta_{2H_o}$ = pendiente hipótetica.
 
-$s_{b_2}$ = error estándar del coeficiente de regresión $b_2$.
+$s_{\beta_2}$ = error estándar del coeficiente de regresión $\beta_2$.
 
-Usamos el comando `summary()` para hallar $s_{b_2}$, tenemos:
+Usamos el comando `summary()` para hallar $s_{\beta_2}$, tenemos:
 
 ```{r,comment='',warning=FALSE}
 m<-summary(regresion)
 m$coefficients
 ```
 
-Así $s_{b_2}$=1.3372, sustituyendo los respectivos valores en el estadístico y sabiendo que $t_{\displaystyle \frac{\alpha}{2}}$ = $t_{0.025}$ = $\pm$ 2.306 (con $n-k-1$ grados de libertad) nos queda:
+Así $s_{\beta_2}$=1.3372, sustituyendo los respectivos valores en el estadístico y sabiendo que $t_{\displaystyle \frac{\alpha}{2}}$ = $t_{0.025}$ = $\pm$ 2.306 (con $n-k-1$ grados de libertad) nos queda:
 
 $$
 \begin{array}{rl}
@@ -1012,29 +1399,29 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
 credits(f)
 ```
 
-d) Veamos si existe una diferencia significativa entre los volantes y el periódico como tipos de promociones, para esto establecemos la siguiente prueba de hipótesis para el coeficiente que acompaña a la variable Tipo2. Implantemos la siguiente hipótesis:
+d) La variable Tipo 2 es una variable discreta que toma unicamente el valor 1 si el tipo de promoción fue por volantes ó 0 si la promoción fue por periódico, queremos saber si ésta es significativa en el modelo ajustado, para ello tenemos que hacer una prueba para el parámetro $\beta_2$. La prueba de hipótesis correspondiente es la siguiente::
 
-$$H_o: B_3=0$$
-$$H_a: B_3 \neq 0$$
+$$H_o: \beta_3=0$$
+$$H_a: \beta_3 \neq 0$$
 donde $H_o$ es la hipótesis nula y $H_a$ es la hipótesis alternativa. El estadístico de prueba (de dos colas) viene dado por:
 
-$$t = \displaystyle \frac{b_3 - B_{3H_o}}{s_{b_3}}$$
+$$t = \displaystyle \frac{\beta_3 - \beta_{3H_o}}{s_{\beta_3}}$$
 donde,
 
-$b_3$ = pendiente de la variable independiente $X_3$.
+$\beta_3$ = pendiente de la variable independiente $X_3$.
 
-$B_{3H_o}$ = pendiente hipótetica.
+$\beta_{3H_o}$ = pendiente hipótetica.
 
-$s_{b_3}$ = error estándar del coeficiente de regresión $b_3$.
+$s_{\beta_3}$ = error estándar del coeficiente de regresión $\beta_3$.
 
-Usamos el comando `summary()` para hallar $s_{b_3}$, tenemos:
+Usamos el comando `summary()` para hallar $s_{\beta_3}$, tenemos:
 
 ```{r,comment='',warning=FALSE}
 m<-summary(regresion)
 m$coefficients
 ```
 
-Así $s_{b_3}$=1.3217, sustituyendo los respectivos valores en el estadístico y sabiendo que $t_{\displaystyle \frac{\alpha}{2}}$ = $t_{0.025}$ = $\pm$ 2.306 (con $n-k-1$ grados de libertad) nos queda:
+Así $s_{\beta_3}$=1.3217, sustituyendo los respectivos valores en el estadístico y sabiendo que $t_{\displaystyle \frac{\alpha}{2}}$ = $t_{0.025}$ = $\pm$ 2.306 (con $n-k-1$ grados de libertad) nos queda:
 
 $$
 \begin{array}{rl}
@@ -1112,7 +1499,7 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
 credits(f)
 ```
 
-e) Si el gasto de promociones fue de 800\$ usando anuncios de radio como el único tipo de promoción, las ventas brutas será de:
+e) Si el gasto de promociones fue de 800\$ usando anuncios de radio como el único tipo de promoción, la venta bruta será de:
 
 $$X_1 = 8, X_2 = 1, X_3=0 \quad \hat{Y} =8.2470+2.1844(8)+1.1246(1)-3.110(0)=26.84$$
 26.84\$ (en cientos de \$). El intervalo de confianza al 90\% para esta predicción es de:
@@ -1134,12 +1521,12 @@ m$sigma
 
 \textbf{\underline{En R:}}
 
-```{r,comment='',warning=FALSE}
-X1<-8
-X2<-1
-X3<-0
-y_bar<-8.2470+2.1844*X1+1.1246*X2-3.110*X3
-y_bar
+Usando la función `pronostico()` tenemos:
+
+```{r,,comment='',warning=FALSE}
+valores<-c(8,1,0)
+
+pronostico(regresion,valores)
 ```
 
 ```{r,comment='',warning=FALSE}
@@ -1150,6 +1537,17 @@ t_alpha<-qt(1-alpha/2,df=n-k-1)
 t_alpha
 ```
 
+```{r,echo=FALSE,comment='',warning=FALSE,fig.height=4.5,fig.width=6}
+ggplot()+
+  geom_curve( aes(x = 16, y = 0, xend = 36, yend = 0),curvature = 0)+
+  scale_x_continuous(breaks = seq(16,36,by=2)) +xlab('')+ylab('')+
+  annotate("text", x=26.84, y=-0.005, label="26.84",parse = TRUE)+ylim(-0.05,0.05)+
+  annotate("text",x=23.39,y=-0.005,label="26.84-3.45",parse=TRUE)+
+  annotate("text",x=23.4,y=0,label="'('",parse=TRUE,col='red',size=8)+
+  annotate("text",x=30.29,y=-0.005,label="26.84+3.45",parse=TRUE)+
+  annotate("text",x=30.3,y=0,label="')'",parse=TRUE,col='red',size=8)+
+  geom_segment(aes(x = 26.84, y =-0.002 , xend = 26.84,yend = 0),colour = "black",linetype=2)
+```
 
 \newpage
 
@@ -1194,36 +1592,38 @@ e) Jay es un nuevo aspirante; tiene las siguientes calificaciones: CREAT = 12, M
 a) Según la tabla mostrada, observamos que la ecuación de regresión que mejor se ajusta a los datos es:
 
 $$Y = 70.1 + 0.422X_1 + 0.271X_2 + 0.745X_3 + 0.420X_4$$
-donde las variables independientes $X_1,X_2, X_3$ y $X_4$ están definidas por:
+donde las variables independientes $X_1,X_2, X_3$ y $X_4$ están definidas por las siguientes pruebas de aptitudes:
 
-$X_1$ = creatividad.
+$X_1$ = Creatividad.
 
-$X_2$ = habilidad motriz.
+$X_2$ = Habilidad motriz.
 
-$X_3$ = pensamiento abstracto.
+$X_3$ = Pensamiento abstracto.
 
-$X_4$ = cálculo matemático.
+$X_4$ = Cálculo matemático.
 
 y la variable dependiente $Y$ está definida por:
 
-$Y$ = crecimiento
+$Y$ = Crecimiento en ventas.
 
-b) El 92.6\% de la variación en el crecimiento en ventas es explicada por la ecuación de regresión, es decir, las pruebas de aptitud explican un 92.6\% de la variación total del crecimiento.
+El modelo de regresión obtenido muestra la relación entre el crecimiento en ventas de los 25 agentes contratados con respecto a la calificación que obtuvieron en sus pruebas de aptitudes.
+
+b) El coeficiente de determinación $R^2$ que se obtuvo a partir del modelo de regresión fue de $R^2$=92.6%, es decir, el 92.6\% de la variación en el crecimiento en ventas de los 25 agentes contratados es explicada por las calificaciones obtenidas en sus pruebas de aptitudes.
 
 c) Veamos cuáles de las pruebas de aptitud son variables explicativas significativas para el crecimiento de ventas, para esto establecemos las siguientes hipótesis para las cuatro pendientes que acompañan a estas cuatro variables, tenemos:
 
-$$H_o: B_i=0$$
-$$H_a: B_i \neq 0$$
+$$H_o: \beta_i=0$$
+$$H_a: \beta_i \neq 0$$
 donde $H_o$ es la hipótesis nula y $H_a$ es la hipótesis alternativa con $i$=1,2,3,4. El estadístico de prueba (de dos colas) viene dado por:
 
-$$t_i = \displaystyle \frac{b_i - B_{iH_o}}{s_{b_i}}$$
+$$t_i = \displaystyle \frac{\beta_i - \beta_{iH_o}}{s_{\beta_i}}$$
 donde,
 
-$b_i$ = pendiente de la variable independiente $X_i$.
+$\beta_i$ = pendiente de la variable independiente $X_i$.
 
-$B_{iH_o}$ = pendiente hipótetica.
+$\beta_{iH_o}$ = pendiente hipótetica.
 
-$s_{b_i}$ = error estándar del coeficiente de regresión $b_i$.
+$s_{\beta_i}$ = error estándar del coeficiente de regresión $\beta_i$.
 
 sustituyendo los respectivos valores en los estadísticos y sabiendo que $t_{\displaystyle \frac{\alpha}{2}}$ = $t_{0.025}$ = $\pm$ 2.086 (con $n-k-1$ grados de libertad) nos queda,
 
@@ -1286,7 +1686,7 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                        yend = dt(T1,df=n-k-1)), 
                    colour = "red",linetype=1)+
       
-        annotate("text", x=T1+0.05, y =-0.02, label ="'T'[1]", parse = TRUE)+
+        annotate("text", x=T1+0.05, y =-0.02, label ="'t'[1]", parse = TRUE)+
         annotate("text", x=cuantil1, y =-0.02, label="'t'[alpha/2]",
                  parse = TRUE)+
         annotate("text", x=cuantil2, y =-0.02, label="-'t'[alpha/2]",
@@ -1355,7 +1755,7 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                        yend = dt(T2,df=n-k-1)), 
                    colour = "red",linetype=1)+
       
-        annotate("text", x=T2+0.05, y =-0.02, label ="'T'[2]", parse = TRUE)+
+        annotate("text", x=T2+0.05, y =-0.02, label ="'t'[2]", parse = TRUE)+
         annotate("text", x=cuantil1, y =-0.02, label="'t'[alpha/2]",
                  parse = TRUE)+
         annotate("text", x=cuantil2, y =-0.02, label="-'t'[alpha/2]",
@@ -1425,7 +1825,7 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                        yend = dt(T3,df=n-k-1)), 
                    colour = "red",linetype=1)+
       
-        annotate("text", x=T3+0.05, y =-0.02, label ="'T'[3]", parse = TRUE)+
+        annotate("text", x=T3+0.05, y =-0.02, label ="'t'[3]", parse = TRUE)+
         annotate("text", x=cuantil1, y =-0.02, label="'t'[alpha/2]",
                  parse = TRUE)+
         annotate("text", x=cuantil2, y =-0.02, label="-'t'[alpha/2]",
@@ -1495,7 +1895,7 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                        yend = dt(T4,df=n-k-1)), 
                    colour = "red",linetype=1)+
       
-        annotate("text", x=T4+0.05, y =-0.02, label ="'T'[4]", parse = TRUE)+
+        annotate("text", x=T4+0.05, y =-0.02, label ="'t'[4]", parse = TRUE)+
         annotate("text", x=cuantil1, y =-0.02, label="'t'[alpha/2]",
                  parse = TRUE)+
         annotate("text", x=cuantil2, y =-0.02, label="-'t'[alpha/2]",
@@ -1515,12 +1915,27 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
 credits(f)
 ```
 
-d) Como el valor de la proabilidad en la tabla de ANOVA es de p=0.00, esto nos indica que el modelo es significativo como un todo, es decir, que las variables que explican el modelo son significativamente explicativas en conjunto.
+Por lo que en general, las calificaciones de las pruebas de aptitud son variables explicativas significativas para el crecimiento en las ventas de los 25 agentes contratados.
+
+d) Como el valor de la probabilidad en la tabla de ANOVA es de p=0.00, esto nos indica que el modelo es significativo como un todo, es decir, que las variables que explican el modelo son significativamente explicativas en conjunto.
 
 e) Si Jay obtuvo las calificaciones en la prueba de aptitud de creatividad = 12, habilidad motriz = 14, pensamiento abstracto = 18 y cálculo matemático = 30, entonces el modelo pronosticará un crecimiento en ventas para este candidato de:
 
 $$X_1=12, X_2=14, X_3=18, X_4=30, \quad Y = 70.1 + 0.422(12) + 0.271(14) + 0.745(18) + 0.420(30)=104.96$$
 104.96\$.
+
+\textbf{\underline{En R:}}
+
+```{r,comment='',warning=FALSE}
+X1<-12
+X2<-14
+X3<-18
+X4<-30
+
+y_bar<-70.1 + 0.422*X1 + 0.271*X2 + 0.745*X3 + 0.420*X4
+y_bar
+```
+
 
 \newpage
 
@@ -1545,23 +1960,23 @@ b) ¿Cuántos cheques al mes se esperaría de un cliente de 35 años de edad con
 
 \textbf{\underline{Solución:}}
 
-a) Calculemos la ecuación de regresión múltiple $Y = a + b_1 X_1 + b_2 X_2$, donde:
+a) Calculemos la ecuación de regresión múltiple $Y = \beta_o + \beta_1 X_1 + \beta_2 X_2$, donde:
 
-$Y$ = Variable dependiente.
+$Y$ = Número de cheques emitidos.
 
-$a$ = Ordenada $Y$.
+$\beta_o$ = Ordenada $Y$.
 
-$X_1$ y $X_2$ = Variables indpendientes.
+$X_1$ y $X_2$ = Edad e Ingresos anuales de los clientes.
 
-$b_1$ y $b_2$ = Pendientes asociadas a $X_1$ y $X_2$ respectivamente.
+$\beta_1$ y $\beta_2$ = Pendientes asociadas a $X_1$ y $X_2$ respectivamente.
 
-Para calcular los coeficientes $a, b_1$ y $b_2$ de la ecuación de mínimos cuadrados múltiple usamos el siguiente sistema de ecuaciones:
+Para calcular los coeficientes $\beta_o, \beta_1$ y $\beta_2$ de la ecuación de mínimos cuadrados múltiple usamos el siguiente sistema de ecuaciones:
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \displaystyle \sum_{i=1}^{n} y_i &= na + b_1 \displaystyle \sum_{i=1}^{n} x_{1i} +  b_2 \sum_{i=1}^{n} x_{2i} \\
-\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{1i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{1i} + b_1 \sum_{i=1}^{n} x^2_{1i} +  b_2 \sum_{i=1}^{n} x_{1i} x_{2i} \\
-\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{2i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{2i} + b_1 \sum_{i=1}^{n} x_{1i} x_{2i} +  b_2 \sum_{i=1}^{n} x^2_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} y_i &= n\beta_o + \beta_1 \displaystyle \sum_{i=1}^{n} x_{1i} +  \beta_2 \sum_{i=1}^{n} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{1i} y_i &= \beta_o \displaystyle \sum_{i=1}^{n} x_{1i} + \beta_1 \sum_{i=1}^{n} x^2_{1i} +  \beta_2 \sum_{i=1}^{n} x_{1i} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{2i} y_i &= \beta_o \displaystyle \sum_{i=1}^{n} x_{2i} + \beta_1 \sum_{i=1}^{n} x_{1i} x_{2i} +  \beta_2 \sum_{i=1}^{n} x^2_{2i} \\
 \end{array}
 $$
 donde,
@@ -1574,22 +1989,41 @@ $x_{2i}$ = Valores de la variable independiente (Ingreso).
 
 \newpage
 
+calculando los diferentes valores nos queda:
+
+```{r,comment='',warning=FALSE,echo=FALSE}
+Cheques<-c(29,42,9,56,2,10,48,4)
+Edad<-c(37,34,48,38,43,25,33,45)
+Ingreso<-c(16.2,25.4,12.4,25,8,18.3,24.2,7.9)
+
+Tabla<-data.frame(Cheques,Edad,Ingreso,Edad*Ingreso,Edad*Cheques,
+                  Ingreso*Cheques,Edad^2,Cheques^2)
+
+suma<-apply(Tabla,2,sum)
+
+Tabla<-rbind(Tabla,suma)
+rownames(Tabla)[nrow(Tabla)]<-'Suma total'
+
+kable(Tabla,col.names = c('$Y$','$X_1$','$X_2$','$X_1$ $X_2$','$X_1 Y$','$X_2 Y$','$X^2_1$','$X^2_2$'))
+```
+
+
 Sustituyendo los valores en el sistema de ecuación tenemos:
 
 $$
 \begin{array}{rl}
-\vspace{3mm} 200 &= 8a + 303b_1 + 137.4b_2\\
-\vspace{3mm} 7161 &= 303a + 11861b_1 + 4963.8b_2\\
-\vspace{3mm} 4440.4 &= 137.4a + 4963.8b_1 + 2733.3b_2 \\
+\vspace{3mm} 200 &= 8\beta_o + 303\beta_1 + 137.4\beta_2\\
+\vspace{3mm} 7161 &= 303\beta_o + 11861\beta_1 + 4963.8\beta_2\\
+\vspace{3mm} 4440.4 &= 137.4\beta_o + 4963.8\beta_1 + 2733.3\beta_2 \\
 \end{array}
 $$
 Resolviendo el sistema de ecuaciones, tenemos que los coeficientes están dados por:
 
-$a$ = -70.6647
+$\beta_o$ = -70.6647
 
-$b_1$ = 1.0103
+$\beta_1$ = 1.0103
 
-$b_2$ = 3.3420
+$\beta_2$ = 3.3420
 
 Así la ecuación de regresión múltiple está dada por:
 
@@ -1620,11 +2054,22 @@ b) Si la edad del cliente es de 35 años con un ingreso anual de 22,500\$, se es
 $$X_1=35, X_2=22.5, \quad \hat{Y} =  -70.6647 + 1.0103(35) + 3.3420(22.5)=39.8908$$
 40 cheques.
 
+\textbf{\underline{En R:}}
+
+Usando la función `pronostico()` definida anteriormente tenemos:
+
+```{r,,comment='',warning=FALSE}
+valores<-c(35,22.5)
+
+pronostico(regresion,valores)
+```
+
+
 \newpage
 
 # Ejercicio 11
 
-La cooperativa National Cranberry, una organización formada por cultivadores de arándanos que se dedica a procesar y comercializar su producto, está tratando de establecer una relación entre el precio promedio por barril recibido em cualquier año dado, y el número total de barriles vendidos el año anterior (dividido en ventas del producto fresco y del producto para procesar).
+La cooperativa National Cranberry, una organización formada por cultivadores de arándanos que se dedica a procesar y comercializar su producto, está tratando de establecer una relación entre el precio promedio por barril recibido en cualquier año dado, y el número total de barriles vendidos el año anterior (dividido en ventas del producto fresco y del producto para procesar).
 
 a) Calcule la ecuación de mínimos cuadrados para predecir el precio a partir de las siguientes cifras:
 
@@ -1643,23 +2088,23 @@ b) Prediga el precio por barril para el siguiente año si las ventas de éste so
 
 \textbf{\underline{Solución:}}
 
-a) Calculemos la ecuación de mínimos cuadrados múltiple $Y = a + b_1 X_1 + b_2 X_2$, donde:
+a) Calculemos la ecuación de mínimos cuadrados múltiple $Y = \beta_o + \beta_1 X_1 + \beta_2 X_2$, donde:
 
-$Y$ = Variable dependiente.
+$Y$ = Precio de venta.
 
-$a$ = Ordenada $Y$.
+$\beta_o$ = Ordenada $Y$.
 
-$X_1$ y $X_2$ = Variables indpendientes.
+$X_1$ y $X_2$ = Ventas del producto fresco y ventas del producto para procesar.
 
-$b_1$ y $b_2$ = Pendientes asociadas a $X_1$ y $X_2$ respectivamente.
+$\beta_1$ y $\beta_2$ = Pendientes asociadas a $X_1$ y $X_2$ respectivamente.
 
-Para calcular los coeficientes $a, b_1$ y $b_2$ de la ecuación de mínimos cuadrados múltiple usamos el siguiente sistema de ecuaciones:
+Para calcular los coeficientes $\beta_o, \beta_1$ y $\beta_2$ de la ecuación de mínimos cuadrados múltiple usamos el siguiente sistema de ecuaciones:
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \displaystyle \sum_{i=1}^{n} y_i &= na + b_1 \displaystyle \sum_{i=1}^{n} x_{1i} +  b_2 \sum_{i=1}^{n} x_{2i} \\
-\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{1i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{1i} + b_1 \sum_{i=1}^{n} x^2_{1i} +  b_2 \sum_{i=1}^{n} x_{1i} x_{2i} \\
-\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{2i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{2i} + b_1 \sum_{i=1}^{n} x_{1i} x_{2i} +  b_2 \sum_{i=1}^{n} x^2_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} y_i &= n\beta_o + \beta_1 \displaystyle \sum_{i=1}^{n} x_{1i} +  \beta_2 \sum_{i=1}^{n} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{1i} y_i &= \beta_o \displaystyle \sum_{i=1}^{n} x_{1i} + \beta_1 \sum_{i=1}^{n} x^2_{1i} +  \beta_2 \sum_{i=1}^{n} x_{1i} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{2i} y_i &= \beta_o \displaystyle \sum_{i=1}^{n} x_{2i} + \beta_1 \sum_{i=1}^{n} x_{1i} x_{2i} +  \beta_2 \sum_{i=1}^{n} x^2_{2i} \\
 \end{array}
 $$
 donde,
@@ -1670,24 +2115,43 @@ $x_{1i}$ = Valores de la variable independiente (Ventas producto fresco).
 
 $x_{2i}$ = Valores de la variable independiente (Ventas producto para proceso).
 
-\newpage
+\pagebreak
+
+calculando los diferentes valores nos queda:
+
+```{r,comment='',warning=FALSE,echo=FALSE}
+Precio<-c(15.5,17.15,11.71,9.79,10.90,15.88)
+Fresco<-c(844,965,470,320,528,340)
+Proceso<-c(256,335,672,60,860,761)
+
+Tabla<-data.frame(Precio,Fresco,Proceso,Fresco*Proceso,Fresco*Precio,
+                  Proceso*Precio,Fresco^2,Proceso^2)
+
+suma<-apply(Tabla,2,sum)
+
+Tabla<-rbind(Tabla,suma)
+rownames(Tabla)[nrow(Tabla)]<-'Suma total'
+
+kable(Tabla,col.names = c('$Y$','$X_1$','$X_2$','$X_1$ $X_2$','$X_1 Y$','$X_2 Y$','$X^2_1$','$X^2_2$'))
+```
+
 
 Sustituyendo los valores en el sistema de ecuación tenemos:
 
 $$
 \begin{array}{rl}
-\vspace{3mm} 80.93 &= 6a + 3467b_1 + 2944b_2\\
-\vspace{3mm} 49422.65 &= 3467a + 2361245b_1 + 1587199b_2\\
-\vspace{3mm} 39628.45 &= 2944a + 1587199b_1 + 1951666b_2 \\
+\vspace{3mm} 80.93 &= 6\beta_o + 3467\beta_1 + 2944\beta_2\\
+\vspace{3mm} 49422.65 &= 3467\beta_o + 2361245\beta_1 + 1587199\beta_2\\
+\vspace{3mm} 39628.45 &= 2944\beta_o + 1587199\beta_1 + 1951666\beta_2 \\
 \end{array}
 $$
 Resolviendo el sistema de ecuaciones, tenemos que los coeficientes están dados por:
 
-$a$ = 8.0996
+$\beta_o$ = 8.0996
 
-$b_1$ = 0.00794
+$\beta_1$ = 0.00794
 
-$b_2$ = 0.001625
+$\beta_2$ = 0.001625
 
 Así la ecuación de regresión múltiple está dada por:
 
@@ -1718,6 +2182,17 @@ b) Si las ventas del número de barriles son de 980 (producto fresco) y 360 (pro
 $$X_1=980, X_2=360, \quad \hat{Y} =  8.0996 + 0.00794(980) + 0.001625(360) = 16.4658$$
 16.4658\$ por barril.
 
+\textbf{\underline{En R:}}
+
+Usando la función `pronostico()` tenemos:
+
+```{r,,comment='',warning=FALSE}
+valores<-c(980,360)
+
+pronostico(regresion,valores)
+```
+
+
 \newpage
 
 # Ejercicio 12
@@ -1744,23 +2219,23 @@ b) Desarrolle una columna de ingreso promedio por empleado.  Encuentre la recta 
 
 \textbf{\underline{Solución:}}
 
-a) Calculemos la ecuación de regresión múltiple que describa el ingreso total como función del número de tiendas y el tamaño promedio de la tienda, calculemos $Y = a + b_1 X_1 + b_2 X_2$, donde:
+a) Calculemos la ecuación de regresión múltiple que describa el ingreso total como función del número de tiendas y el tamaño promedio de la tienda, calculemos $Y = \beta_o + \beta_1 X_1 + \beta_2 X_2$, donde:
 
-$Y$ = Variable dependiente.
+$Y$ = Ingreso total.
 
-$a$ = Ordenada $Y$.
+$\beta_o$ = Ordenada $Y$.
 
-$X_1$ y $X_2$ = Variables indpendientes.
+$X_1$ y $X_2$ = Número de tiendas y Tamaño promedio de la tienda.
 
-$b_1$ y $b_2$ = Pendientes asociadas a $X_1$ y $X_2$ respectivamente.
+$\beta_1$ y $\beta_2$ = Pendientes asociadas a $X_1$ y $X_2$ respectivamente.
 
-Para calcular los coeficientes $a, b_1$ y $b_2$ de la ecuación de regresión múltiple usamos el siguiente sistema de ecuaciones:
+Para calcular los coeficientes $\beta_o, \beta_1$ y $\beta_2$ de la ecuación de regresión múltiple usamos el siguiente sistema de ecuaciones:
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \displaystyle \sum_{i=1}^{n} y_i &= na + b_1 \displaystyle \sum_{i=1}^{n} x_{1i} +  b_2 \sum_{i=1}^{n} x_{2i} \\
-\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{1i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{1i} + b_1 \sum_{i=1}^{n} x^2_{1i} +  b_2 \sum_{i=1}^{n} x_{1i} x_{2i} \\
-\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{2i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{2i} + b_1 \sum_{i=1}^{n} x_{1i} x_{2i} +  b_2 \sum_{i=1}^{n} x^2_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} y_i &= n\beta_o + \beta_1 \displaystyle \sum_{i=1}^{n} x_{1i} +  \beta_2 \sum_{i=1}^{n} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{1i} y_i &= \beta_o \displaystyle \sum_{i=1}^{n} x_{1i} + \beta_1 \sum_{i=1}^{n} x^2_{1i} +  \beta_2 \sum_{i=1}^{n} x_{1i} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{2i} y_i &= \beta_o \displaystyle \sum_{i=1}^{n} x_{2i} + \beta_1 \sum_{i=1}^{n} x_{1i} x_{2i} +  \beta_2 \sum_{i=1}^{n} x^2_{2i} \\
 \end{array}
 $$
 donde,
@@ -1771,28 +2246,47 @@ $x_{1i}$ = Valores de la variable independiente (Número de tiendas).
 
 $x_{2i}$ = Valores de la variable independiente (Tamaño promedio de tienda).
 
+calculando los diferentes valores nos queda:
+
+```{r,comment='',warning=FALSE,echo=FALSE}
+Ingreso<-c(433,701,1001,1454,2000,2758,3815,5136,7148,9239,12477)
+Tiendas<-c(31,50,60,75,96,118,145,174,214,264,340)
+Tamaño<-c(77,80,80,82,86,88,92,95,98,100,103)
+
+Tabla<-data.frame(Ingreso,Tiendas,Tamaño,Tiendas*Tamaño,Tiendas*Ingreso,
+                  Tamaño*Ingreso,Tiendas^2,Tamaño^2)
+
+suma<-apply(Tabla,2,sum)
+
+Tabla<-rbind(Tabla,suma)
+rownames(Tabla)[nrow(Tabla)]<-'Suma total'
+
+kable(Tabla,col.names = c('$Y$','$X_1$','$X_2$','$X_1$ $X_2$','$X_1 Y$','$X_2 Y$','$X^2_1$','$X^2_2$'))
+```
+
+
 Sustituyendo los valores en el sistema de ecuación tenemos:
 
 $$
 \begin{array}{rl}
-\vspace{3mm} 46162 &= 11a + 1567b_1 +981 b_2\\
-\vspace{3mm} 10392814 &= 1567a + 318219b_1 + 148239b_2\\
-\vspace{3mm} 4451868 &= 981a + 148239b_1 + 88295b_2 \\
+\vspace{3mm} 46162 &= 11\beta_o + 1567\beta_1 +981 \beta_2\\
+\vspace{3mm} 10392814 &= 1567\beta_o + 318219\beta_1 + 148239\beta_2\\
+\vspace{3mm} 4451868 &= 981\beta_o + 148239\beta_1 + 88295\beta_2 \\
 \end{array}
 $$
 Resolviendo el sistema de ecuaciones, tenemos que los coeficientes están dados por:
 
-$a$ = 8085.6084
+$\beta_o$ = 8085.6084
 
-$b_1$ = 51.42
+$\beta_1$ = 51.42
 
-$b_2$ = -125.744
+$\beta_2$ = -125.744
 
 Así la ecuación de regresión múltiple está dada por:
 
 $$Y = 8085.6084 + 51.42X_1 - 125.744X_2$$
 
-El factor que parece ser más importante para determinar el crecimiento en los ingresos son el número de tiendas, pues esta variable posee el coeficiente mas alto entre el número de tiendas y el tamaño de las tiendas, por lo que esta ecuación le recomendaría a un consultor llevar a cabo una estrategia de expansión enfocada a una dispersión geográfica más amplia aumentando así el número de tiendas de esta cadena de materiales para mejorar las casas.
+El factor que parece ser más importante para determinar el crecimiento en los ingresos son el número de tiendas, pues esta variable posee el coeficiente mas alto entre el número de tiendas y el tamaño de las tiendas, por lo que la variable que corresponde al número de tiendas es la que más peso tiene en el modelo de reregresión, por lo que esta ecuación le recomendaría a un consultor llevar a cabo una estrategia de expansión enfocada a una dispersión geográfica más amplia aumentando así el número de tiendas de esta cadena de materiales para mejorar las casas.
 
 \textbf{\underline{En R:}}
 
@@ -1814,9 +2308,9 @@ Por lo que la ecuación de regresión está dada por:
 
 $$Y = 8085.6084 + 51.42X_1 - 125.744X_2$$
 
-b) Desarrollando la nueva columna de ingreso promedio por empleado, codificando los años como 1,2,3,.. y manteniendo la columna del tamaño promedio de la tienda tenemos la siguiente tabla:
+b) Desarrollando la nueva columna de ingreso promedio por empleado que se define como el ingreso total dividido por el número de empleados (por año), codificando los años como 1,2,3,.. y manteniendo la columna del tamaño promedio de la tienda tenemos la siguiente tabla:
 
-| Año | Tamaño promedio de tienda | Ingreso promedio por empleado |
+| Año | Tamaño promedio de tienda | Ingreso promedio por empleado (en millones de dólares)|
 |:-----:|:---------------------------:|:-------------------------------:|
 | 1 | 77 | 0.1083 |
 | 2 | 80 | 0.1298 |
@@ -1830,23 +2324,23 @@ b) Desarrollando la nueva columna de ingreso promedio por empleado, codificando 
 | 10 | 100 | 0.1826 |
 | 11 | 103 | 0.1854 |
 
-encontremos la ecuación de regresión múltiple que mejor describa el ingreso promedio por empleado en función del año y el tamaño promedio de la tienda, calculemos $Y = a + b_1 X_1 + b_2 X_2$, donde:
+encontremos la ecuación de regresión múltiple que mejor describa el ingreso promedio por empleado en función del año y el tamaño promedio de la tienda, calculemos $Y = \beta_o + \beta_1 X_1 + \beta_2 X_2$, donde:
 
-$Y$ = Variable dependiente.
+$Y$ = Ingreso promedio por empleado.
 
-$a$ = Ordenada $Y$.
+$\beta_o$ = Ordenada $Y$.
 
-$X_1$ y $X_2$ = Variables indpendientes.
+$X_1$ y $X_2$ = Año y Tamaño promedio de la tienda.
 
-$b_1$ y $b_2$ = Pendientes asociadas a $X_1$ y $X_2$ respectivamente.
+$\beta_1$ y $\beta_2$ = Pendientes asociadas a $X_1$ y $X_2$ respectivamente.
 
-Para calcular los coeficientes $a, b_1$ y $b_2$ de la ecuación de regresión múltiple usamos el siguiente sistema de ecuaciones:
+Para calcular los coeficientes $\beta_o, \beta_1$ y $\beta_2$ de la ecuación de regresión múltiple usamos el siguiente sistema de ecuaciones:
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \displaystyle \sum_{i=1}^{n} y_i &= na + b_1 \displaystyle \sum_{i=1}^{n} x_{1i} +  b_2 \sum_{i=1}^{n} x_{2i} \\
-\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{1i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{1i} + b_1 \sum_{i=1}^{n} x^2_{1i} +  b_2 \sum_{i=1}^{n} x_{1i} x_{2i} \\
-\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{2i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{2i} + b_1 \sum_{i=1}^{n} x_{1i} x_{2i} +  b_2 \sum_{i=1}^{n} x^2_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} y_i &= n\beta_o + \beta_1 \displaystyle \sum_{i=1}^{n} x_{1i} +  \beta_2 \sum_{i=1}^{n} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{1i} y_i &= \beta_o \displaystyle \sum_{i=1}^{n} x_{1i} + \beta_1 \sum_{i=1}^{n} x^2_{1i} +  \beta_2 \sum_{i=1}^{n} x_{1i} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{2i} y_i &= \beta_o \displaystyle \sum_{i=1}^{n} x_{2i} + \beta_1 \sum_{i=1}^{n} x_{1i} x_{2i} +  \beta_2 \sum_{i=1}^{n} x^2_{2i} \\
 \end{array}
 $$
 donde,
@@ -1857,28 +2351,47 @@ $x_{1i}$ = Valores de la variable independiente (Año).
 
 $x_{2i}$ = Valores de la variable independiente (Tamaño promedio de tienda).
 
+calculando los diferentes valores nos queda:
+
+```{r,comment='',warning=FALSE,echo=FALSE}
+IngresoPromedio<-c(0.1083,0.1298,0.1517,0.1598,0.1538,0.1576,0.1774,0.1834,0.1838,0.1826,0.1854)
+Año<-1:11
+Tamaño<-c(77,80,80,82,86,88,92,95,98,100,103)
+
+Tabla<-data.frame(IngresoPromedio,Año,Tamaño,Año*Tamaño,Año*IngresoPromedio,
+                  Tamaño*IngresoPromedio,Año^2,Tamaño^2)
+
+suma<-apply(Tabla,2,sum)
+
+Tabla<-rbind(Tabla,suma)
+rownames(Tabla)[nrow(Tabla)]<-'Suma total'
+
+kable(Tabla,col.names = c('$Y$','$X_1$','$X_2$','$X_1$ $X_2$','$X_1 Y$','$X_2 Y$','$X^2_1$','$X^2_2$'))
+```
+
+
 Sustituyendo los valores en el sistema de ecuación tenemos:
 
 $$
 \begin{array}{rl}
-\vspace{3mm} 1.7736 &= 11a + 66b_1 + 981b_2\\
-\vspace{3mm} 11.4054 &= 66a + 506b_1 + 6182b_2\\
-\vspace{3mm} 160.1707 &= 981a + 6182b_1 + 88295b_2 \\
+\vspace{3mm} 1.7736 &= 11\beta_o + 66\beta_1 + 981\beta_2\\
+\vspace{3mm} 11.4054 &= 66\beta_o + 506\beta_1 + 6182\beta_2\\
+\vspace{3mm} 160.1707 &= 981\beta_o + 6182\beta_1 + 88295\beta_2 \\
 \end{array}
 $$
 Resolviendo el sistema de ecuaciones, tenemos que los coeficientes están dados por:
 
-$a$ = 0.4969
+$\beta_o$ = 0.4969
 
-$b_1$ = 0.02084
+$\beta_1$ = 0.02084
 
-$b_2$ = -0.005166
+$\beta_2$ = -0.005166
 
 Así la ecuación de regresión múltiple está dada por:
 
 $$Y = 0.4969+0.02084X_1-0.005166X_2$$
 
-Como el coeficiente de la variable Año es mayor que el coeficiente de la variable que corresponde al tamaño de la tienda, entonces la ecuación de regresión sugiere que los empleados son más productivos con el paso del tiempo. Éste modelo puede llevar a un analista considerar otros factores más importantes para el éxito de la cadena Home Depot.
+Como el coeficiente de la variable Año es mayor que el coeficiente de la variable que corresponde al tamaño de la tienda, entonces la variable Año es la que más peso tiene en el modelo de reregresión, por lo que esta ecuación sugiere que los empleados son más productivos con el paso del tiempo. Éste modelo puede llevar a un analista considerar otros factores más importantes para el éxito de la cadena Home Depot.
 
 \textbf{\underline{En R:}}
 
@@ -1924,23 +2437,23 @@ Desarrolle una ecuación de regresión múltiple para pronosticar la ROE para Wa
 
 \textbf{\underline{Solución:}}
 
-Calculemos la ecuación de regresión múltiple $Y = a + b_1 X_1 + b_2 X_2$, donde:
+Calculemos la ecuación de regresión múltiple $Y = \beta_o + \beta_1 X_1 + \beta_2 X_2$, donde:
 
-$Y$ = Variable dependiente.
+$Y$ = Tasa de rendimiento (ROE).
 
-$a$ = Ordenada $Y$.
+$\beta_o$ = Ordenada $Y$.
 
-$X_1$ y $X_2$ = Variables indpendientes.
+$X_1$ y $X_2$ = Inventario y Porcentaje de Sam's Club.
 
-$b_1$ y $b_2$ = Pendientes asociadas a $X_1$ y $X_2$ respectivamente.
+$\beta_1$ y $\beta_2$ = Pendientes asociadas a $X_1$ y $X_2$ respectivamente.
 
-Para calcular los coeficientes $a, b_1$ y $b_2$ de la ecuación de mínimos cuadrados múltiple usamos el siguiente sistema de ecuaciones:
+Para calcular los coeficientes $\beta_o, \beta_1$ y $\beta_2$ de la ecuación de mínimos cuadrados múltiple usamos el siguiente sistema de ecuaciones:
 
 $$
 \begin{array}{rl}
-\vspace{3mm} \displaystyle \sum_{i=1}^{n} y_i &= na + b_1 \displaystyle \sum_{i=1}^{n} x_{1i} +  b_2 \sum_{i=1}^{n} x_{2i} \\
-\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{1i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{1i} + b_1 \sum_{i=1}^{n} x^2_{1i} +  b_2 \sum_{i=1}^{n} x_{1i} x_{2i} \\
-\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{2i} y_i &= a \displaystyle \sum_{i=1}^{n} x_{2i} + b_1 \sum_{i=1}^{n} x_{1i} x_{2i} +  b_2 \sum_{i=1}^{n} x^2_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} y_i &= n\beta_o + \beta_1 \displaystyle \sum_{i=1}^{n} x_{1i} +  \beta_2 \sum_{i=1}^{n} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{1i} y_i &= \beta_o \displaystyle \sum_{i=1}^{n} x_{1i} + \beta_1 \sum_{i=1}^{n} x^2_{1i} +  \beta_2 \sum_{i=1}^{n} x_{1i} x_{2i} \\
+\vspace{3mm} \displaystyle \sum_{i=1}^{n} x_{2i} y_i &= \beta_o \displaystyle \sum_{i=1}^{n} x_{2i} + \beta_1 \sum_{i=1}^{n} x_{1i} x_{2i} +  \beta_2 \sum_{i=1}^{n} x^2_{2i} \\
 \end{array}
 $$
 donde,
@@ -1951,28 +2464,47 @@ $x_{1i}$ = Valores de la variable independiente (Inventario).
 
 $x_{2i}$ = Valores de la variable independiente (Porcentaje de Sam's Club).
 
+calculando los diferentes valores nos queda:
+
+```{r,comment='',warning=FALSE,echo=FALSE}
+ROE<-c(36.7,33.3,35.2,37.1,37.1,35.8,32.6,30,28.5,26.6,24.9)
+Inventario<-c(1.2,1.5,2.2,2.8,3.6,4.7,6.2,7.8,9.8,11.5,14.4)
+SamsClub<-c(1.5,2.6,4.8,7,7.7,8.1,8.6,10.8,12.2,17.7,17.7)
+
+Tabla<-data.frame(ROE,Inventario,SamsClub,Inventario*SamsClub,Inventario*ROE,
+                  SamsClub*ROE,Inventario^2,SamsClub^2)
+
+suma<-apply(Tabla,2,sum)
+
+Tabla<-rbind(Tabla,suma)
+rownames(Tabla)[nrow(Tabla)]<-'Suma total'
+
+kable(Tabla,col.names = c('$Y$','$X_1$','$X_2$','$X_1$ $X_2$','$X_1 Y$','$X_2 Y$','$X^2_1$','$X^2_2$'))
+```
+
+
 Sustituyendo los valores en el sistema de ecuación tenemos:
 
 $$
 \begin{array}{rl}
-\vspace{3mm} 357.8 &= 11a + 65.7b_1 + 98.7b_2\\
-\vspace{3mm} 1957.01 &= 65.7a + 586.35b_1 + 817.2b_2\\
-\vspace{3mm} 3009.55 &= 98.7a + 817.2b_1 + 1171.97b_2 \\
+\vspace{3mm} 357.8 &= 11\beta_o + 65.7\beta_1 + 98.7\beta_2\\
+\vspace{3mm} 1957.01 &= 65.7\beta_o + 586.35\beta_1 + 817.2\beta_2\\
+\vspace{3mm} 3009.55 &= 98.7\beta_o + 817.2\beta_1 + 1171.97\beta_2 \\
 \end{array}
 $$
 Resolviendo el sistema de ecuaciones, tenemos que los coeficientes están dados por:
 
-$a$ = 36.9939
+$\beta_o$ = 36.9939
 
-$b_1$ = -1.5735
+$\beta_1$ = -1.5735
 
-$b_2$ = 0.5496
+$\beta_2$ = 0.5496
 
 Así la ecuación de regresión múltiple está dada por:
 
 $$Y = 36.9939 -1.5735X_1 + 0.5496X_2$$
 
-De acuerdo con el modelo de regresión, para aumentar la tasa de rendimiento (ROE) se sugiere aumentar el porcentaje de tiendas que incluyen a Sam's Club, pues esta variable es la que más tiene peso en la ecuación de regresión.
+De acuerdo con el modelo de regresión, para aumentar la tasa de rendimiento (ROE) se sugiere aumentar el porcentaje de tiendas que incluyen a Sam's Club, pues esta variable es la que tiene más peso en la ecuación de regresión. Para reforzar este consejo se recomienda realizar pruebas para cada parámetro, de este modo veremos si son significativos o no.
 
 \textbf{\underline{En R:}}
 
@@ -2078,7 +2610,9 @@ Por lo que la tabla de frecuencias observadas y esperadas queda como sigue:
 \textbf{\underline{En R:}}
 
 Usamos la función `chiq.test()` para calcular las tablas de frecuencia observadas y esperadas, por lo que nos queda:
-'
+
+\newpage
+
 ```{r,comment='',warning=FALSE}
 Ventas<-matrix(c(20,30,20,30,7,40,8,5,3,30,2,5),4,3)
 xsq<-chisq.test(Ventas)
@@ -2094,7 +2628,7 @@ Para el ejercicio 1:
 
 a) Establezca las hipótesis nula y alternativa.
 
-b) Calcule el valor $X^2$ de la muestra.
+b) Calcule el valor $\chi^2$ de la muestra.
 
 c) Al nivel de significancia de 0.10, ¿cuál es su conclusión?
 
@@ -2108,22 +2642,22 @@ donde $H_o$ es la hipótesis nula y $H_a$ es la hipótesis alternativa.
 
 b) El estadístico de prueba para ésta prueba de hipótesis viene dado por:
 
-$$X^2 = \displaystyle \sum \frac{(f_o - f_e)^2}{f_e}$$
+$$\chi^2 = \displaystyle \sum_i \frac{(f_{oi} - f_{ei})^2}{f_{ei}}$$
 donde $f_o$ y $f_e$ son las frecuencias observadas y esperadas respectivamente de cada celda (calculadas en el ejercicio anterior). Así sustituyendo los respectivos valores en el estadístico nos queda:
 
 $$
 \begin{array}{rl}
-\vspace{3mm} X^2 &= \displaystyle \sum \frac{(f_o - f_e)^2}{f_e}\\
+\vspace{3mm} \chi^2 &= \displaystyle \sum_i \frac{(f_{oi} - f_{ei})^2}{f_{ei}}\\
 \vspace{3mm} &= \displaystyle \frac{(20-15)^2}{15} + \frac{(7-9)^2}{9} + ...+ \frac{(5-8)^2}{8} \\
 \vspace{3mm} &= 1.66 + 0.44 + ... + 1.125 \\
 \vspace{3mm} &= 34.597
 \end{array}
 $$
-por lo que el valor de $X^2$ es de 34.597.
+por lo que el valor de $\chi^2$ es de 34.597.
 
 \textbf{\underline{En R:}}
 
-Usamos la función `chiq.test()` para calcular el estadístico $X^2$, por lo que nos queda:
+Usamos la función `chiq.test()` para calcular el estadístico $\chi^2$, por lo que nos queda:
 '
 ```{r,comment='',warning=FALSE}
 Ventas<-matrix(c(20,30,20,30,7,40,8,5,3,30,2,5),4,3)
@@ -2131,9 +2665,9 @@ xsq<-chisq.test(Ventas)
 xsq$statistic
 ```
 
-c) Para $\alpha$ = 0.10, tenemos que el valor crítico está dado por $X^2_{\alpha} = X^2_{0.1} = 10.645$ (con 6 grados de libertad pues como la tabla de contigencia tiene una dimensión de 4 x 3, los grados de libertad están dados por: número de filas - 1 $\times$ número de columas - 1).
+c) Para $\alpha$ = 0.10, tenemos que el valor crítico está dado por $\chi^2_{(n-1)(m-1),\alpha} = \chi^2_{(3x2),\alpha} = \chi^2_{6,0.1} = 10.645$ (con 6 grados de libertad pues como la tabla de contigencia tiene una dimensión de 4 x 3, los grados de libertad están dados por: número de filas - 1 $\times$ número de columas - 1).
 
-Como el valor de el estadístico es de 34.597, tenemos que 10.645<34.597 por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula, por lo que las ventas de chips y el estado de la economía de Estados Unidos son dependientes entre sí.
+Como el valor de el estadístico es de 34.597, tenemos que 10.645<34.597 por lo que hay suficiente evidencia estadística para rechazar la hipótesis nula, por lo que las ventas de chips y el estado de la economía de Estados Unidos son dependientes entre sí, es decir, las ventas chip varían con respecto a los ciclos de la economía de Estados Unidos.
 
 \textbf{\underline{En R:}}
 
@@ -2167,8 +2701,8 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                        yend = dchisq(p,df=(r-1)*(c-1))), 
                    colour = "red",linetype=1)+
       
-        annotate("text", x=p, y =-0.01, label ="X^2", parse = TRUE)+
-        annotate("text", x=cuantil1, y =-0.01, label="'X'[alpha] ^2",
+        annotate("text", x=p, y =-0.01, label ="chi^2", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.01, label="chi[alpha] ^2",
                  parse = TRUE)+
         annotate("text", x=5, y = 0.05, label="'Aceptar H'[0]",
                  parse = TRUE)+
@@ -2209,7 +2743,7 @@ $$H_o: \text{Los tres tamaños de empresas tienen la misma estructura de capital
 $$H_a: \text{Los tres tamaños de empresas no tienen la misma estructura de capital}$$
 donde $H_o$ es la hipótesis nula y $H_a$ es la hipótesis alternativa. El estadístico de prueba para ésta prueba de hipótesis viene dado por:
 
-$$X^2 = \displaystyle \sum \frac{(f_o - f_e)^2}{f_e}$$
+$$\chi^2 = \displaystyle \sum_i \frac{(f_{oi} - f_{ei})^2}{f_{ei}}$$
 donde $f_o$ y $f_e$ son las frecuencias observadas y esperadas respectivamente de cada celda. Calculando las frecuencias tenemos:
 
 | Fila | Columna | $f_o$ |                      $f_e$                       |
@@ -2226,21 +2760,21 @@ donde $f_o$ y $f_e$ son las frecuencias observadas y esperadas respectivamente d
 |      |         |       |                                                  |
 |   2  |    3    |   9   |  $\displaystyle \frac{37 \times 17}{62} = 10.145$|
 
-Así sustituyendo los respectivos valores en el estadístico y sabiendo que $X^2_{\alpha} = X^2_{0.1} = 4.61$ (con 2 grados de libertad pues como la tabla de contigencia tiene una dimensión de 2 x 3, los grados de libertad están dados por: número de filas - 1 $\times$ número de columas - 1) tenemos:
+Así sustituyendo los respectivos valores en el estadístico y sabiendo que $\chi^2_{(n-1)(m-1),\alpha} = \chi^2_{(1x2),\alpha} = \chi^2_{2,0.1} = 4.61$ (con 2 grados de libertad pues como la tabla de contigencia tiene una dimensión de 2 x 3, los grados de libertad están dados por: número de filas - 1 $\times$ número de columas - 1) tenemos:
 
 $$
 \begin{array}{rl}
-\vspace{3mm} X^2 &= \displaystyle \sum \frac{(f_o - f_e)^2}{f_e}\\
+\vspace{3mm} \chi^2 &= \displaystyle \sum_i \frac{(f_{oi} - f_{ei})^2}{f_{ei}}\\
 \vspace{3mm} &= \displaystyle \frac{(7-6.854)^2}{6.854} + \frac{(10-11.29)^2}{11.29} + \frac{(8-6.854)^2}{6.854} + \frac{(10-10.145)^2}{10.145} +\frac{(18-16.709)^2}{16.709}+ \frac{(9-10.145)^2}{10.145} \\
 \vspace{3mm} &= 0.00311 + 0.1473 + 0.1916 + 0.00207 + 0.0997 + 0.1292\\
 \vspace{3mm} &= 0.57298
 \end{array}
 $$
-por lo que el valor de $X^2$ es de 0.57298. Como el valor crítico es de 4.61, tenemos que 4.61>0.57298 por lo que no existe suficiente evidencia estadística para rechazar la hipótesis nula, por lo que los tres tamaños de empresas tienen la misma estructura de capital.
+por lo que el valor de $\chi^2$ es de 0.57298. Como el valor crítico es de 4.61, tenemos que 4.61>0.57298 por lo que no existe suficiente evidencia estadística para rechazar la hipótesis nula, por lo que los tres tamaños de empresas tienen la misma estructura de capital.
 
 \textbf{\underline{En R:}}
 
-Usamos la función `chiq.test()` para calcular el estadístico $X^2$, por lo que nos queda:
+Usamos la función `chiq.test()` para calcular el estadístico $\chi^2$, por lo que nos queda:
 '
 ```{r,comment='',warning=FALSE}
 Activos<-matrix(c(7,10,10,18,8,9),2,3)
@@ -2280,8 +2814,8 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                        yend = dchisq(p,df=(r-1)*(c-1))), 
                    colour = "red",linetype=1)+
       
-        annotate("text", x=p, y =-0.02, label ="X^2", parse = TRUE)+
-        annotate("text", x=cuantil1, y =-0.025, label="'X'[alpha] ^2",
+        annotate("text", x=p, y =-0.02, label ="chi^2", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.025, label="chi[alpha] ^2",
                  parse = TRUE)+
         annotate("text", x=2, y = 0.1, label="'Aceptar H'[0]",
                  parse = TRUE)+
@@ -2311,7 +2845,7 @@ $$H_o: \text{Los datos son consistentes con una distribución de Poisson con $\l
 $$H_o: \text{Los datos no son consistentes con una distribución de Poisson con $\lambda$ =3}$$
 donde $H_o$ es la hipótesis nula y $H_a$ es la hipótesis alternativa. El estadístico de prueba para ésta prueba de hipótesis viene dado por:
 
-$$X^2 = \displaystyle \sum \frac{(f_o - f_e)^2}{f_e}$$
+$$\chi^2 = \displaystyle \sum_i \frac{(f_{oi} - f_{ei})^2}{f_{ei}}$$
 donde $f_o$ y $f_e$ son las frecuencias observadas y esperadas respectivamente de cada celda. Para esta prueba de bondad de ajuste la frecuencia esperada viene dada por:
 
 $$f_e=n \times P(\mathcal{X}=i)$$
@@ -2396,11 +2930,11 @@ Así calculando las frecuencias tenemos:
 |       |                           |
 |   20  |  500 $\times$ 0.0842=42.1 |
 
-Así sustituyendo los respectivos valores en el estadístico y sabiendo que $X^2_{\alpha} = X^2_{0.05} = 12.59$ (con 7-1=6 grados de libertad) tenemos:
+Así sustituyendo los respectivos valores en el estadístico y sabiendo que $\chi^2_{(n-1),\alpha} = \chi^2_{6,0.05} = 12.59$ (con 7-1=6 grados de libertad) tenemos:
 
 $$
 \begin{array}{rl}
-\vspace{3mm} X^2 &= \displaystyle \sum \frac{(f_o - f_e)^2}{f_e}\\
+\vspace{3mm} \chi^2 &= \displaystyle \sum_i \frac{(f_{oi} - f_{ei})^2}{f_{ei}}\\
 \vspace{3mm} &= \displaystyle \frac{(22-24.85)^2}{24.85} + \frac{(74-74.65)^2}{74.65} + \frac{(115-112)^2}{112} + \frac{(95-112)^2}{112}\\
 \vspace{3mm} &+ \displaystyle \frac{(94-84)^2}{84}+ \frac{(80-50.4)^2}{50.4} + \frac{(20-42.1)^2}{42.1}\\
 \vspace{3mm} &= 0.3268 + 0.005659+0.0803+2.5803+1.1904+17.3841+11.6011\\
@@ -2411,7 +2945,7 @@ Como el valor crítico es de 12.59, tenemos que 12.59<33.168 por lo que existe s
 
 \textbf{\underline{En R:}}
 
-Usamos la función `chiq.test()` para calcular el estadístico $X^2$, por lo que nos queda:
+Usamos la función `chiq.test()` para calcular el estadístico $\chi^2$, por lo que nos queda:
 '
 ```{r,comment='',warning=FALSE}
 Periodos<-c(22,74,115,95,94,80,20)
@@ -2452,15 +2986,15 @@ f<-ggplot(mapping = aes(x,y))+geom_line(colour = "blue")+
                        yend = dchisq(p,df=n-1)), 
                    colour = "red",linetype=1)+
       
-        annotate("text", x=p, y =-0.01, label ="X^2", parse = TRUE)+
-        annotate("text", x=cuantil1, y =-0.01, label="'X'[alpha] ^2",
+        annotate("text", x=p, y =-0.01, label ="chi^2", parse = TRUE)+
+        annotate("text", x=cuantil1, y =-0.01, label="chi[alpha] ^2",
                  parse = TRUE)+
         annotate("text", x=5, y = 0.05, label="'Aceptar H'[0]",
                  parse = TRUE)+
         annotate("text", x=cuantil1+2.5, y=0.025, label="'Rechazar H'[0]",
                  parse = TRUE)+
   
-      ylim(-0.05,0.2)+
+      ylim(-0.025,0.15)+
       xlim(-1,35)+
       labs( title = "Prueba Chi-cuadrado",
             x = " ", y = " ",caption = "http://synergy.vision/" )+
